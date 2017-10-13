@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+   <modelVersion>4.0.0</modelVersion>
+    <groupId>com.frequentis.xvp.voice</groupId>
+    <artifactId>test-automation-sqt</artifactId>
+    <packaging>jar</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+    <url>http://www.frequentis.com</url>
+    <organization>
+        <name>Frequentis AG</name>
+        <url>http://www.frequentis.com</url>
+    </organization>
+
+   <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+      <storyBoard>DefaultStoryBoard.csb</storyBoard>
+      <cats.wait-timeout>1000000</cats.wait-timeout>
+      <docker.autopull>always</docker.autopull>
+
+      <ignore.failure.in.stories>true</ignore.failure.in.stories>
+      <ignore.failure.in.view>true</ignore.failure.in.view>
+      <toolsjar>${java.home}/../lib/tools.jar</toolsjar>
+
+      <agentsHome>${project.build.directory}/automation/agents</agentsHome>
+
+      <xvp-cats-mixin.version>2.0.0</xvp-cats-mixin.version>
+      <mixin-maven-plugin.version>0.1-alpha-39</mixin-maven-plugin.version>
+      <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+      <reqpro-trace-importer.version>1.16.0</reqpro-trace-importer.version>
+      <exec-maven-plugin.version>1.5.0</exec-maven-plugin.version>
+      <maven-dependency-plugin>3.0.0</maven-dependency-plugin>
+      <maven.resources.plugin.version>3.0.0</maven.resources.plugin.version>
+
+      <cats.version>3.9.0</cats.version>
+      <domain.voip.version>3.9.0</domain.voip.version>
+      <slf4j.version>1.7.18</slf4j.version>
+    </properties>
+
+   <dependencies>
+      <!-- Required for SOX / PSQM tools as they are not available from CATS Master and have to be provided -->
+      <dependency>
+            <groupId>com.frequentis.c4i.test</groupId>
+            <artifactId>cats-media-psqm</artifactId>
+            <version>${cats.version}</version>
+            <type>zip</type>
+            <scope>provided</scope>
+      </dependency>
+      <!-- CATS and 3rd party modules -->
+      <dependency>
+         <groupId>com.frequentis.c4i.test</groupId>
+         <artifactId>cats-master-common</artifactId>
+         <version>${cats.version}</version>
+         <scope>test</scope>
+      </dependency>
+      <!--needed to prepare the reports.home with required FTL resources and stuff -->
+      <dependency>
+         <groupId>com.frequentis.c4i.test</groupId>
+         <artifactId>cats-report-resources</artifactId>
+         <version>${cats.version}</version>
+         <scope>provided</scope>
+      </dependency>
+
+      <!-- DOMAIN PACKAGE VOIP/PCAP -->
+      <dependency>
+            <groupId>com.frequentis.c4i.test</groupId>
+            <artifactId>cats-voip-steps</artifactId>
+            <version>${domain.voip.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>com.frequentis.c4i.test</groupId>
+         <artifactId>cats-agent-voip</artifactId>
+         <version>${cats.version}</version>
+         <classifier>scripting</classifier>
+      </dependency>
+      <dependency>
+         <groupId>com.frequentis.c4i.test</groupId>
+         <artifactId>cats-voip-pcap-steps</artifactId>
+         <version>${domain.voip.version}</version>
+      </dependency>
+      <!--SSH STEPS to START CO-->
+      <dependency>
+         <groupId>com.frequentis.c4i.test</groupId>
+         <artifactId>cats-ssh-steps</artifactId>
+         <version>${cats.version}</version>
+      </dependency>
+
+      <!-- ZIP dependecies of CATS Platform needed for JUnit execution (normally provided by CATS CO) -->
+      <dependency>
+          <groupId>com.frequentis.c4i.test</groupId>
+          <artifactId>cats-platform</artifactId>
+          <version>${cats.version}</version>
+          <type>zip</type>
+        </dependency>
+    </dependencies>
+
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>com.github.odavid.maven.plugins</groupId>
+            <artifactId>mixin-maven-plugin</artifactId>
+            <version>${mixin-maven-plugin.version}</version>
+            <extensions>true</extensions>
+            <configuration>
+               <mixins>
+                  <mixin>
+                     <groupId>com.frequentis.xvp.dockerbuild</groupId>
+                     <artifactId>xvp-cats-mixin</artifactId>
+                     <version>${xvp-cats-mixin.version}</version>
+                  </mixin>
+               </mixins>
+            </configuration>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>${maven-dependency-plugin}</version>
+            <executions>
+               <execution>
+                  <!-- Required for SOX / PSQM tools as they are not available from CATS Master and have to be provided -->
+                  <id>unpack-original-psqm</id>
+                  <phase>generate-resources</phase>
+                  <goals>
+                     <goal>unpack-dependencies</goal>
+                  </goals>
+                  <configuration>
+                     <includeGroupIds>com.frequentis.c4i.test</includeGroupIds>
+                     <includeArtifactIds>cats-media-psqm</includeArtifactIds>
+                     <includeTypes>zip</includeTypes>
+                     <outputDirectory>${project.build.directory}</outputDirectory>
+                     <excludeTransitive>true</excludeTransitive>
+                  </configuration>
+               </execution>
+               <execution>
+                  <!-- Prepare platform dependencies for JUnit execution (normally provided by CO) -->
+                  <id>unpack-platform-resources</id>
+                  <goals>
+                     <goal>unpack-dependencies</goal>
+                  </goals>
+                  <phase>generate-resources</phase>
+                  <configuration>
+                     <includeGroupIds>com.frequentis.c4i.test</includeGroupIds>
+                     <includeArtifactIds>cats-platform</includeArtifactIds>
+                     <includeTypes>zip</includeTypes>
+                     <outputDirectory>${project.build.directory}/</outputDirectory>
+                     <excludeTransitive>true</excludeTransitive>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+         <plugin>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>${maven.resources.plugin.version}</version>
+            <executions>
+               <execution>
+                  <id>copy-own-jar</id>
+                  <phase>package</phase>
+                  <goals>
+                     <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                     <outputDirectory>${automation.target}/lib</outputDirectory>
+                     <resources>
+                        <resource>
+                           <directory>${project.build.directory}</directory>
+                           <includes>
+                              <include>*.jar</include>
+                           </includes>
+                        </resource>
+                     </resources>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+      </plugins>
+   </build>
+   <pluginRepositories>
+      <pluginRepository>
+         <releases>
+            <enabled>true</enabled>
+            <updatePolicy>always</updatePolicy>
+         </releases>
+         <snapshots>
+            <enabled>true</enabled>
+         </snapshots>
+         <id>artifactory</id>
+         <name>Artifactory maven repository</name>
+         <url>http://artifactory.frequentis.frq:8081/artifactory/repo</url>
+      </pluginRepository>
+   </pluginRepositories>
+   <repositories>
+      <repository>
+         <releases>
+            <enabled>true</enabled>
+            <updatePolicy>always</updatePolicy>
+         </releases>
+         <snapshots>
+            <enabled>true</enabled>
+         </snapshots>
+         <id>artifactory</id>
+         <name>Artifactory maven repository</name>
+         <url>http://artifactory.frequentis.frq:8081/artifactory/repo</url>
+      </repository>
+   </repositories>
+</project>
