@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hazelcast>
+    <group>
+        <name>cats-home</name>
+        <password>cats-home</password>
+    </group>
+    <network>
+       <public-address>${CATS_PUBLIC_IP}</public-address>
+       <port auto-increment="true" port-count="1000">${CATS_HAZELCAST_PORT}</port>
+       <join>
+          <multicast enabled="false"/>
+          <tcp-ip enabled="true">
+             <member>${CATS_PUBLIC_IP}:5701</member>
+             <member>${CATS_PUBLIC_IP}:5801</member>
+          </tcp-ip>
+       </join>
+    </network>
+</hazelcast>
