@@ -3,7 +3,7 @@
  *            Registered with Commercial Court Vienna,
  *            reg.no. FN 72.115b.
  */
-package com.frequentis.cats.websocket.dto;
+package com.frequentis.xvp.tools.cats.websocket.dto;
 
 import com.frequentis.c4i.test.bdd.fluent.step.Profile;
 import com.frequentis.c4i.test.bdd.instrumentation.error.UnsupportedProfileError;
