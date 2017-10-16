@@ -11,9 +11,9 @@ import java.util.List;
 import org.jbehave.core.steps.ParameterConverters;
 
 import com.frequentis.c4i.test.bdd.CatsStories;
-
+import com.frequentis.xvp.tools.cats.websocket.converter.ClientEndpointConfigurationConverter;
 /**
- * SystemTestingAutomationProject for showcasing VoIP domain package.
+ * SystemTestingAutomationProject for XVP.
  */
 public class SystemTestingAutomationProject extends CatsStories
 {
@@ -31,10 +31,10 @@ public class SystemTestingAutomationProject extends CatsStories
        */
       customConverters.add( new ParameterConverters.EnumConverter() );
 
-      //      /**
-      //       * WEBSOCKET converters.
-      //       */
-      //      customConverters.add( new ClientEndpointConfigurationConverter() );
+      /**
+       * WEBSOCKET converters.
+       */
+      customConverters.add( new ClientEndpointConfigurationConverter() );
 
       return customConverters.toArray( new ParameterConverters.ParameterConverter[customConverters.size()] );
    }
