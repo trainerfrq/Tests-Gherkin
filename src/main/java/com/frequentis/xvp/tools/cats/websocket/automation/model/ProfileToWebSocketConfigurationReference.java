@@ -3,7 +3,7 @@
  *            Registered with Commercial Court Vienna,
  *            reg.no. FN 72.115b.
  */
-package com.frequentis.cats.websocket.automation.model;
+package com.frequentis.xvp.tools.cats.websocket.automation.model;
 
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameter;
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameterBase;

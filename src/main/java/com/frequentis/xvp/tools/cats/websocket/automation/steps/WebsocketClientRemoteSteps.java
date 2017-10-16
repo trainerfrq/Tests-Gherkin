@@ -3,7 +3,7 @@
  *            Registered with Commercial Court Vienna,
  *            reg.no. FN 72.115b.
  */
-package com.frequentis.cats.websocket.automation.steps;
+package com.frequentis.xvp.tools.cats.websocket.automation.steps;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,14 +16,13 @@ import org.jbehave.core.annotations.When;
 import com.frequentis.c4i.test.agent.websocket.client.impl.models.ClientEndpointConfiguration;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStep;
-import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepExecution;
 import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
 import com.frequentis.c4i.test.model.ExecutionData;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameterBase;
-import com.frequentis.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
-import com.frequentis.cats.websocket.dto.BookableProfileName;
-import com.frequentis.cats.websocket.dto.WebsocketAutomationSteps;
+import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
+import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
 
 import scripts.cats.websocket.parallel.OpenWebSocketClientConnection;
 import scripts.cats.websocket.parallel.SendTextMessageAsIsParallel;
@@ -42,7 +41,6 @@ public class WebsocketClientRemoteSteps extends WebsocketAutomationSteps
          final List<ProfileToWebSocketConfigurationReference> namedProfileToWebSocketConfigReferences )
    {
       final RemoteStep remStep = remoteStep( "Parsing Datatables paralelly" );
-      RemoteStepExecution execution = null;
       if ( namedProfileToWebSocketConfigReferences.size() == 0 )
       {
          localStep( "looking into tables for parsing" )
@@ -66,17 +64,12 @@ public class WebsocketClientRemoteSteps extends WebsocketAutomationSteps
          final ArrayList<String> endpointName = new ArrayList<String>();
          endpointName.add( reference.getKey() );
 
-         execution =
+         evaluate(
                remStep
                      .scriptOn( profileScriptResolver().map( OpenWebSocketClientConnection.class,
                            BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
                      .input( OpenWebSocketClientConnection.IPARAM_ENDPOINTCONFIGURATION, ( Serializable ) config )
-                     .input( OpenWebSocketClientConnection.IPARAM_MULTIPLEENDPOINTNAMES, endpointName );
-      }
-
-      if ( execution != null )
-      {
-         evaluate( execution );
+                     .input( OpenWebSocketClientConnection.IPARAM_MULTIPLEENDPOINTNAMES, endpointName ) );
       }
    }
 
@@ -173,9 +166,39 @@ public class WebsocketClientRemoteSteps extends WebsocketAutomationSteps
       if ( receviedMessage != null )
       {
          final LocalStep checkReceivedMessage = localStep( "Check received Message" );
-         checkReceivedMessage.details( ExecutionDetails.create( "Check received Message" ).received( receviedMessage )
-               .expected( expectedMessageString ).success( receviedMessage.contains( expectedMessageString ) ) );
+         evaluate( checkReceivedMessage.details( ExecutionDetails.create( "Check received Message" )
+               .received( receviedMessage ).expected( expectedMessageString )
+               .success( receviedMessage.contains( expectedMessageString ) ) ) );
          setStoryListData( namedTimeStamp, remoteStepResult.getOutput( ReceiveMessageAsIs.OPARAM_ACTIONTIME ) );
+      }
+   }
+
+
+   @Then("using the websocket $namedWebSocket websocket message is received and validated against the expected message $expectedMessage and $parameter in the message saved as $namedParameter")
+   public void receiveMessageSaveParameter( final String namedWebSocket, final String expectedMessage,
+         final String parameter, final String namedParameter )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      final RemoteStepResult remoteStepResult =
+            evaluate( remoteStep( "Sending message with using " + namedWebSocket )
+                  .scriptOn( profileScriptResolver().map( ReceiveMessageAsIs.class, BookableProfileName.websocket ),
+                        requireProfile( reference.getProfileName() ) )
+                  .input( ReceiveMessageAsIs.IPARAM_ENDPOINTNAME, namedWebSocket ) );
+      final String receviedMessage = ( String ) remoteStepResult.getOutput( ReceiveMessageAsIs.OPARAM_RECEIVEDMESSAGE );
+      final String expectedMessageString = assertStoryListData( expectedMessage, String.class );
+      if ( receviedMessage != null )
+      {
+         final LocalStep checkReceivedMessage = localStep( "Check received Message" );
+         evaluate( checkReceivedMessage.details( ExecutionDetails.create( "Check received Message" )
+               .received( receviedMessage ).expected( expectedMessageString )
+               .success( receviedMessage.contains( expectedMessageString ) ) ) );
+         if ( receviedMessage.contains( parameter ) )
+         {
+            setStoryListData( namedParameter, receviedMessage.split( parameter )[1].split( "," )[0] );
+         }
+
       }
    }
 }

@@ -3,7 +3,7 @@
  *            Registered with Commercial Court Vienna,
  *            reg.no. FN 72.115b.
  */
-package com.frequentis.cats.websocket.automation.steps;
+package com.frequentis.xvp.tools.cats.websocket.automation.steps;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -18,7 +18,7 @@ import com.frequentis.c4i.test.agent.websocket.client.impl.models.ClientEndpoint
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameterBase;
-import com.frequentis.cats.websocket.dto.WebsocketAutomationSteps;
+import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
 
 /**
  * Created by MAyar on 18.01.2017.
@@ -116,6 +116,23 @@ public class WebsocketClientLocalSteps extends WebsocketAutomationSteps
       setStoryListData( group, finalMessageList );
       createNamedParameter.details( ExecutionDetails.create( "Group created" ).usedData( group, finalMessageList ) );
 
+   }
+
+
+   /*{"header": {"correlationId": "00004711-0815-4000-8000-00000000021a"}, "body": {"statisticRequest": { "<sessionId>"}}}*/
+
+   @Given("the $namedMessage is defined with variable $variable as $value")
+   public void createVariableParameter( final String namedMessage, final String param, final String value )
+   {
+      if ( getStoryListData( param, String.class ) != null )
+      {
+         setStoryListData( namedMessage,
+               value.replaceAll( param.split( ":" )[0], getStoryListData( param, String.class ) ) );
+      }
+      else
+      {
+         setStoryListData( namedMessage, value.replaceAll( param.split( ":" )[0], param ) );
+      }
    }
 
 

@@ -3,14 +3,14 @@ package scripts.cats.websocket.parallel
 import com.frequentis.c4i.test.agent.websocket.client.impl.ClientEndpoint
 import com.frequentis.c4i.test.agent.websocket.common.impl.message.TextMessage
 import com.frequentis.c4i.test.model.ExecutionDetails
-import com.frequentis.cats.websocket.plugin.WebsocketScriptTemplate
+import com.frequentis.xvp.tools.cats.websocket.plugin.WebsocketScriptTemplate
 
 /**
  * Created by MAyar on 19.01.2017.
  */
 class SendTextMessageAsIsParallel extends WebsocketScriptTemplate {
 
-    public static final String IPARAM_ENDPOINTNAME= "endpoint-name";
+    public static final String IPARAM_ENDPOINTNAME = "endpoint-name";
     public static final String IPARAM_MESSAGETOSEND = "message-tosend";
 
     @Override
@@ -20,7 +20,7 @@ class SendTextMessageAsIsParallel extends WebsocketScriptTemplate {
         final ClientEndpoint endpoint = getWebSocketEndpoint(endpointName);
 
         evaluate(ExecutionDetails.create("Getting input paramaeters")
-                .received("Endpoint name: "+ endpointName)
+                .received("Endpoint name: " + endpointName)
                 .success(endpointName == null || (endpointName != null && !endpointName.isEmpty())));
 
         List<String> messageToSendList = assertInput(IPARAM_MESSAGETOSEND) as List;

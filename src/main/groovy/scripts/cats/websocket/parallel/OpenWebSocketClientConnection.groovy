@@ -4,7 +4,7 @@ import com.frequentis.c4i.test.agent.websocket.client.impl.ClientEndpoint
 import com.frequentis.c4i.test.agent.websocket.client.impl.models.ClientEndpointConfiguration
 import com.frequentis.c4i.test.agent.websocket.common.impl.buffer.MessageBuffer
 import com.frequentis.c4i.test.model.ExecutionDetails
-import com.frequentis.cats.websocket.plugin.WebsocketScriptTemplate
+import com.frequentis.xvp.tools.cats.websocket.plugin.WebsocketScriptTemplate
 
 /**
  * Created by MAyar on 18.01.2017.
@@ -53,13 +53,13 @@ class OpenWebSocketClientConnection extends WebsocketScriptTemplate {
 
             evaluate(ExecutionDetails.create("\"Creating a new WebSocketEndpoint instance" + count++)
                     .expected("Instance is not null")
-                    .success( webSocketEndpoint != null))
+                    .success(webSocketEndpoint != null))
 
             if (webSocketEndpoint != null) {
 
                 evaluate(ExecutionDetails.create("Checking WebSocketEndpoint instance")
                         .received("Created WebSocketEndpoint instance:" + endpointName == null ? "Default endpoint" : endpointName)
-                        .success( webSocketEndpoint != null))
+                        .success(webSocketEndpoint != null))
 
                 String uri = webSocketEndpoint.getUri();
                 Boolean isRunning = webSocketEndpoint.isRunning();
