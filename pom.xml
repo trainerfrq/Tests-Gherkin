@@ -35,6 +35,7 @@
 
       <cats.version>3.9.0</cats.version>
       <domain.voip.version>3.9.0</domain.voip.version>
+      <domain.websocket.version>0.0.1-AG-SNAPSHOT</domain.websocket.version>
       <slf4j.version>1.7.18</slf4j.version>
     </properties>
 
@@ -78,6 +79,17 @@
          <groupId>com.frequentis.c4i.test</groupId>
          <artifactId>cats-voip-pcap-steps</artifactId>
          <version>${domain.voip.version}</version>
+      </dependency>
+      <!-- DOMAIN PACKAGE WEBSOCKET -->
+      <dependency>
+         <groupId>com.frequentis.c4i.test</groupId>
+         <artifactId>cats-agent-websocket</artifactId>
+         <version>${cats.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>com.frequentis.xvp.tools.cats</groupId>
+         <artifactId>cats-websocket-steps</artifactId>
+         <version>${domain.websocket.version}</version>
       </dependency>
       <!--SSH STEPS to START CO-->
       <dependency>
