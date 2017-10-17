@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jobs xmlns="http://req_pro_trace_import.com/configuration">
+    <job>
+        <name>System Testing AST Import</name>
+        <simulation>false</simulation>
+        <incremental>true</incremental>
+        <sources>
+            <workingCopy path="./">
+                <filter regex="src/main/stories"/>
+                <parsers>
+                    <parse extension="story" with="SmsStoryParser"/>
+                </parsers>
+            </workingCopy>
+        </sources>
+        <options>
+            <allowedTraceTargets>
+                <target>TC</target>
+                <target>SRS</target>
+                <target>SSS</target>
+            </allowedTraceTargets>
+            <reverseTraces>true</reverseTraces>
+            <identityPolicy use="url_plus_name"/>
+            <attributes>
+                <map name="URL" to="Source"/>
+            </attributes>
+        </options>
+        <output>
+            <jama>
+                <username>svc-contour</username>
+                <password>tFJptJNAV481</password>
+                <project>QXVP</project>
+                <releaseId>XVP VA REL1.0 </releaseId>
+                <testtype>Automated Test</testtype>
+                <documentType>TC</documentType>
+                <parentFolder>/Voice Application (VA)/SystemTests/Test Cases - System Tests/Automated Tests</parentFolder>
+            </jama>
+            <file path="system_testing_ast_traces.xml" format="xml"/>
+        </output>
+    </job>
+</jobs>
