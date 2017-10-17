@@ -1,3 +1,5 @@
+@REQUIREMENTS:GID-2535689
+
 Scenario: Booking profiles
 Given booked profiles:
 | profile   | group  | host       |

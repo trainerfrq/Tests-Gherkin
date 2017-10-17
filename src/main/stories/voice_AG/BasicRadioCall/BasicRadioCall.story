@@ -1,5 +1,4 @@
-Narrative:
-General Requirements: Core functionality must be available
+@REQUIREMENTS:GID-1316706
 
 Scenario: Booking steps
 Given booked profiles:
