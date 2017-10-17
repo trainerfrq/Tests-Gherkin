@@ -17,11 +17,11 @@ Given applied the websocket configuration:
 
 Scenario: Associate with OPVoiceSvc1
 Then start recording on named websocket WS1 with a buffer size of 1
-When using the websocket WS1 the message named assocReq is sent as is with time stamp associateTime
+When using the websocket WS1 the message named assocReq1 is sent as is with time stamp associateTime
 
 Scenario: Associate with OPVoiceSvc2
 Then start recording on named websocket WS2 with a buffer size of 1
-When using the websocket WS2 the message named assocReq is sent as is with time stamp associateTime
+When using the websocket WS2 the message named assocReq2 is sent as is with time stamp associateTime
 
 Scenario:Send Establish Request
 When using the websocket WS1 the message named callEstablishReq is sent as is with time stamp callEstablishTime

@@ -37,12 +37,6 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_common\WebsocketJSONMessages\DefineJSONMessages.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
                 </cats:storyList>
@@ -64,6 +58,12 @@
                     </cats:report>
                     <cats:reports/>
                     <cats:stories>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_common\WebsocketJSONMessages\DefineJSONMessages.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_AG\common\PrepareGRSphone_125.story</cats:storyPath>
                             <cats:storyParameters/>
@@ -103,6 +103,12 @@
                     </cats:report>
                     <cats:reports/>
                     <cats:stories>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_common\WebsocketJSONMessages\DefineJSONMessages.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG\BasicGGCall\BasicGGCall.story</cats:storyPath>
                             <cats:storyParameters/>
