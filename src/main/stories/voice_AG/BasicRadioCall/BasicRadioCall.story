@@ -46,7 +46,7 @@ Given RADIOS1 apply OPV-1 configuration
 Scenario: Make Call
 When RADIOS1 calls SIP URI <<BASIC_CALL_FRQ-SVC.SIP.URI>>
 Then RADIOS1 DialogState is CONFIRMED within 100 ms
-Then GRS1 DialogState is CONFIRMED within 100 ms
+Then GRS1 DialogState is EARLY within 100 ms
 
 Scenario: End call
 When RADIOS1 terminate calls
