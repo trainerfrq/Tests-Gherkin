@@ -19,7 +19,7 @@
                 <cats:storyList enabled="true">
                     <cats:name>CommonStories</cats:name>
                     <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
-                    <cats:repetitions>1</cats:repetitions>
+                    <cats:repetitions>100</cats:repetitions>
                     <cats:report>
                         <cats:status>CREATED</cats:status>
                     </cats:report>

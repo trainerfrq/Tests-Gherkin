@@ -107,6 +107,54 @@
         </dependency>
     </dependencies>
 
+   <profiles>
+      <profile>
+         <id>run-TraceImporter</id>
+         <activation>
+            <property>
+               <name>!skipTraceImport</name>
+            </property>
+         </activation>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.codehaus.mojo</groupId>
+                  <artifactId>exec-maven-plugin</artifactId>
+                  <version>${exec-maven-plugin.version}</version>
+                  <executions>
+                     <execution>
+                        <phase>package</phase>
+                        <goals>
+                           <goal>java</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+                  <configuration>
+                     <includeProjectDependencies>false</includeProjectDependencies>
+                     <includePluginDependencies>true</includePluginDependencies>
+                     <executableDependency>
+                        <groupId>com.frequentis.fcsc.tools</groupId>
+                        <artifactId>reqpro-trace-import</artifactId>
+                     </executableDependency>
+                     <mainClass>com.frequentis.requirements.tracing.importer.TraceImporter</mainClass>
+                     <arguments>
+                        <argument>${project.basedir}/src/main/resources/system_testing_ast_config.xml</argument>
+                     </arguments>
+                     <systemProperties />
+                  </configuration>
+                  <dependencies>
+                     <dependency>
+                        <groupId>com.frequentis.fcsc.tools</groupId>
+                        <artifactId>reqpro-trace-import</artifactId>
+                        <version>${reqpro-trace-importer.version}</version>
+                        <type>jar</type>
+                     </dependency>
+                  </dependencies>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+   </profiles>
    <build>
       <plugins>
          <plugin>
