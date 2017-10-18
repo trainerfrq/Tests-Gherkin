@@ -201,4 +201,34 @@ public class WebsocketClientRemoteSteps extends WebsocketAutomationSteps
 
       }
    }
+
+
+   @Then("using the websocket $namedWebSocket websocket message is received with time stamp $namedTimeStamp and validated against the expected message $expectedMessage and $parameter in the message saved as $namedParameter")
+   public void receiveMessageSaveParameter( final String namedWebSocket, final String namedTimeStamp,
+         final String expectedMessage, final String parameter, final String namedParameter )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      final RemoteStepResult remoteStepResult =
+            evaluate( remoteStep( "Sending message with using " + namedWebSocket )
+                  .scriptOn( profileScriptResolver().map( ReceiveMessageAsIs.class, BookableProfileName.websocket ),
+                        requireProfile( reference.getProfileName() ) )
+                  .input( ReceiveMessageAsIs.IPARAM_ENDPOINTNAME, namedWebSocket ) );
+      final String receviedMessage = ( String ) remoteStepResult.getOutput( ReceiveMessageAsIs.OPARAM_RECEIVEDMESSAGE );
+      final String expectedMessageString = assertStoryListData( expectedMessage, String.class );
+      if ( receviedMessage != null )
+      {
+         final LocalStep checkReceivedMessage = localStep( "Check received Message" );
+         evaluate( checkReceivedMessage.details( ExecutionDetails.create( "Check received Message" )
+               .received( receviedMessage ).expected( expectedMessageString )
+               .success( receviedMessage.contains( expectedMessageString ) ) ) );
+         if ( receviedMessage.contains( parameter ) )
+         {
+            setStoryListData( namedParameter, receviedMessage.split( parameter )[1].split( "," )[0] );
+            setStoryListData( namedTimeStamp, remoteStepResult.getOutput( ReceiveMessageAsIs.OPARAM_ACTIONTIME ) );
+         }
+
+      }
+   }
 }
