@@ -1,9 +1,5 @@
+Scenario: Trigger a frequency selection which will establish an A/G call with 100ms in 95% of all cases
 @REQUIREMENTS:GID-1675520
-
-Narrative:
-As a user
-I want to perform an action
-So that I can achieve a business goal
 
 Scenario: Booking profiles
 Given booked profiles:
