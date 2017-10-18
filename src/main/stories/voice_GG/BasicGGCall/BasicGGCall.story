@@ -1,3 +1,4 @@
+Scenario: Simulate an HMI to initiate and answer a GG Call
 @REQUIREMENTS:GID-2535689
 
 Scenario: Booking profiles
@@ -30,13 +31,16 @@ When using the websocket WS1 the message named callEstablishReq is sent as is wi
 Then using the websocket WS1 websocket message is received and validated against the expected message callStatusInd and "callId": in the message saved as namedCallId
 
 Scenario: Check incoming Request and accept call
-Then using the websocket WS2 websocket message is received and validated against the expected message callIncomingInd and "callId": in the message saved as incomingCallId
+Then using the websocket WS2 websocket message is received with time stamp callIncomingIndTime and validated against the expected message callIncomingInd and "callId": in the message saved as incomingCallId
 Given the callAcceptReq is defined with variable incomingCallId as {"header":{"correlationId":"9c4fb267-e452-428f-b049-ae6709d659c8"},"body":{"callAcceptRequest":{"callId":incomingCallId}}}
 When using the websocket WS2 the message named callAcceptReq is sent as is with time stamp callAcceptTime
 
 Scenario: Clear call
 Given the callClearReq is defined with variable namedCallId as {header: {correlationId: 0dac38fc-9d10-4def-ba0d-45d2c2dcb5bf},body: { callClearRequest: {callId:namedCallId}}}
 When using the websocket WS1 the message named callClearReq is sent as is with time stamp callClearTime
+
+Scenario: Call Setup time
+Then calculated CallSetupTime from nanos callIncomingIndTime to callEstablishTime is within 100 ms and saved to DB cats.gg.e2e.delays.callSetupTime
 
 Scenario: Cleanup
 When using the websocket WS1 the message named disAssocReq is sent as is with time stamp disassociateTime

@@ -1,3 +1,4 @@
+Scenario:Make a TxRx call to Frequency service which will trigger a TxRx call to GRS.
 @REQUIREMENTS:GID-1316706
 
 Scenario: Booking steps
