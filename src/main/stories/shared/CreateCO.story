@@ -1,11 +1,4 @@
-Meta:
-
-Narrative:
-As a user
-I want to perform an action
-So that I can achieve a business goal
-
-Scenario: scenario description
+Scenario: Connect to host
 Given SSH connections:
 | name  | remote-address | remotePort | username | password  |
 | sess1 | <<HOST_IP>>    | 22         | root     | !frqAdmin |

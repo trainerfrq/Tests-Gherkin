@@ -29,6 +29,7 @@ When using the websocket WS2 the message named assocReq2 is sent as is with time
 Scenario:Send Establish Request
 When using the websocket WS1 the message named callEstablishReq is sent as is with time stamp callEstablishTime
 Then using the websocket WS1 websocket message is received and validated against the expected message callStatusInd and "callId": in the message saved as namedCallId
+Then wait for 3 seconds
 
 Scenario: Check incoming Request and accept call
 Then using the websocket WS2 websocket message is received with time stamp callIncomingIndTime and validated against the expected message callIncomingInd and "callId": in the message saved as incomingCallId
