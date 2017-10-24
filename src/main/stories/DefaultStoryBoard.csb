@@ -18,13 +18,19 @@
             <cats:storyLists>
                 <cats:storyList enabled="true">
                     <cats:name>CommonStories</cats:name>
-                    <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
+                    <cats:onErrorOption>ABORT_ENTIRE_STORY_SET</cats:onErrorOption>
                     <cats:repetitions>1</cats:repetitions>
                     <cats:report>
                         <cats:status>CREATED</cats:status>
                     </cats:report>
                     <cats:reports/>
                     <cats:stories>
+                        <cats:story enabled="true">
+                            <cats:storyPath>shared/UpdateServices.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>shared/CreateCO.story</cats:storyPath>
                             <cats:storyParameters/>
@@ -65,7 +71,7 @@
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_AG/common/PrepareGRSphone_125.story</cats:storyPath>
+                            <cats:storyPath>voice_AG/common/PrepareGRS_125.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>

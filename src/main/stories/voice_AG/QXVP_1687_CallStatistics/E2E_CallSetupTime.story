@@ -24,7 +24,7 @@ Scenario: Keyin on Frq
 When using the websocket WS1 the message named RxTxKeyinReq is sent as is with time stamp keyInTime
 Then using the websocket WS1 websocket message is received and validated against the expected message RxTxAck with time stamp RxTxAckTime
 Then wait for 2 seconds
-Then GRS1 DialogState is EARLY within 100 ms
+Then GRS1 DialogState is CONFIRMED within 100 ms
 
 Scenario: keyout on Frq
 Then start recording on named websocket WS1 with a buffer size of 1
