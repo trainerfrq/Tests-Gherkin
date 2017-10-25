@@ -17,7 +17,6 @@ Given the SIP header configuration named SipConfig:
 
 Given the SDP media description configuration named SDPConfigRxTx:
 | context | attribute-name          | attribute-value    |
-| *       | type                    | RadioTxRx          |
 | *       | R2S-KeepAlivePeriod     | 200                |
 | *       | R2S-KeepAliveMultiplier | 10                 |
 | *       | rtphe                   | 1                  |
