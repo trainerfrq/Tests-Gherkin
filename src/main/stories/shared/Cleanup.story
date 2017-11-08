@@ -13,5 +13,5 @@ When stopping profiles:
 | <<CO1_IP>> | websocket/hmi | <<Timeout|300>> | 1  |
 
 Then waiting for 5 seconds
-When SSH host sess1 executes docker rm -f co1
+When SSH host sess3 executes docker rm -f co1
 Then waiting for 5 seconds

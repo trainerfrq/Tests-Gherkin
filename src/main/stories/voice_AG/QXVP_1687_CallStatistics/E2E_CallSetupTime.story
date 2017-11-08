@@ -22,8 +22,8 @@ When using the websocket WS1 the message named assocReq1 is sent as is with time
 
 Scenario: Keyin on Frq
 When using the websocket WS1 the message named RxTxKeyinReq is sent as is with time stamp keyInTime
+Then wait for 1 seconds
 Then using the websocket WS1 websocket message is received and validated against the expected message RxTxAck with time stamp RxTxAckTime
-Then wait for 2 seconds
 Then GRS1 DialogState is CONFIRMED within 100 ms
 
 Scenario: keyout on Frq

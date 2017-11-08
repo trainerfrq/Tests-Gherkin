@@ -37,13 +37,51 @@ public class CommonLocalSteps extends SystemTestingAutomationSteps
       final long timeStamp1 = assertStoryListData( namedTimeStamp1, Long.class );
       final long timeStamp2 = assertStoryListData( namedTimeStamp2, Long.class );
       final long delayValue = (timeStamp1 - timeStamp2) / 1000000;
+      if(delayValue<0)
+      {
+         calculateDelay.details(
+                 ExecutionDetails.create("Calculating delay")
+                                 .usedData(namedTimeStamp1, timeStamp1)
+                                 .usedData(namedTimeStamp2, timeStamp2)
+                                 .received(Long.toString(delayValue))
+                                 .failure()
+         );
 
-      calculateDelay.details( ExecutionDetails.create( "Calculating delay" ).usedData( namedTimeStamp1, timeStamp1 )
-            .usedData( namedTimeStamp2, timeStamp2 ).received( Long.toString( delayValue ) )
-            .success( delayValue > 0 && delayValue < timeoutMs ) );
-      setStoryListData( delay, delayValue );
-      CatsMetricsStore.getMetricsInstance()
-            .reportMeasurement( Measurement.measurement( dbName ).field( delay, delayValue ).build() );
+      } else if(delayValue<timeoutMs) {
+         calculateDelay.details(
+                 ExecutionDetails.create("Calculating delay")
+                                 .usedData(namedTimeStamp1, timeStamp1)
+                                 .usedData(namedTimeStamp2, timeStamp2)
+                                 .received(Long.toString(delayValue))
+                                 .success()
+         );
+         setStoryListData( delay, delayValue );
+         CatsMetricsStore.getMetricsInstance()
+                         .reportMeasurement( Measurement.measurement( dbName ).field( delay, delayValue ).build() );
+      } else if(delayValue<timeoutMs*10) {
+            calculateDelay.details(
+                    ExecutionDetails.create("Calculating delay")
+                                    .usedData(namedTimeStamp1, timeStamp1)
+                                    .usedData(namedTimeStamp2, timeStamp2)
+                                    .received(Long.toString(delayValue))
+                                    .caution()
+            );
+         setStoryListData( delay, delayValue );
+         CatsMetricsStore.getMetricsInstance()
+                         .reportMeasurement( Measurement.measurement( dbName ).field( delay, delayValue ).build() );
+      }
+      else {
+         calculateDelay.details(
+                 ExecutionDetails.create("Calculating delay")
+                                 .usedData(namedTimeStamp1, timeStamp1)
+                                 .usedData(namedTimeStamp2, timeStamp2)
+                                 .received(Long.toString(delayValue))
+                                 .failure()
+         );
+         setStoryListData( delay, delayValue );
+         CatsMetricsStore.getMetricsInstance()
+                         .reportMeasurement( Measurement.measurement( dbName ).field( delay, delayValue ).build() );
+      }
 
       record( calculateDelay );
    }
