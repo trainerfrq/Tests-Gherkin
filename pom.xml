@@ -28,7 +28,7 @@
       <xvp-cats-mixin.version>2.0.0</xvp-cats-mixin.version>
       <mixin-maven-plugin.version>0.1-alpha-39</mixin-maven-plugin.version>
       <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
-      <reqpro-trace-importer.version>1.16.0</reqpro-trace-importer.version>
+      <reqpro-trace-importer.version>1.17.0</reqpro-trace-importer.version>
       <exec-maven-plugin.version>1.5.0</exec-maven-plugin.version>
       <maven-dependency-plugin>3.0.0</maven-dependency-plugin>
       <maven.resources.plugin.version>3.0.0</maven.resources.plugin.version>
