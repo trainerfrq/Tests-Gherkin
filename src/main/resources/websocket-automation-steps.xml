@@ -4,7 +4,9 @@
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+
     <bean class="com.frequentis.xvp.tools.cats.websocket.automation.steps.WebsocketClientLocalSteps"/>
     <bean class="com.frequentis.xvp.tools.cats.websocket.automation.steps.WebsocketClientRemoteSteps"/>
 
+    <bean class="com.frequentis.xvp.tools.cats.websocket.automation.steps.VoiceBaseSteps"/>
 </beans>
