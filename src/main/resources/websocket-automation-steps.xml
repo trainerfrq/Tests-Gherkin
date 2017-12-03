@@ -7,6 +7,4 @@
 
     <bean class="com.frequentis.xvp.tools.cats.websocket.automation.steps.WebsocketClientLocalSteps"/>
     <bean class="com.frequentis.xvp.tools.cats.websocket.automation.steps.WebsocketClientRemoteSteps"/>
-
-    <bean class="com.frequentis.xvp.tools.cats.websocket.automation.steps.VoiceBaseSteps"/>
 </beans>

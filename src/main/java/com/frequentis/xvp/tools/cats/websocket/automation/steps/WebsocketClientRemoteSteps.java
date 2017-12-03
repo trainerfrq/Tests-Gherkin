@@ -26,9 +26,12 @@ import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
 
 import scripts.cats.websocket.parallel.OpenWebSocketClientConnection;
 import scripts.cats.websocket.parallel.SendTextMessageAsIsParallel;
+import scripts.cats.websocket.sequential.CloseWebSocketClientConnection;
 import scripts.cats.websocket.sequential.ReceiveMessageAsIs;
 import scripts.cats.websocket.sequential.SendTextMessageAsIs;
 import scripts.cats.websocket.sequential.StartClientConnectionRecording;
+import scripts.cats.websocket.sequential.buffer.OpenMessageBuffer;
+import scripts.cats.websocket.sequential.buffer.RemoveCustomMessageBuffer;
 
 /**
  * Created by MAyar on 18.01.2017.
@@ -230,5 +233,48 @@ public class WebsocketClientRemoteSteps extends WebsocketAutomationSteps
          }
 
       }
+   }
+
+
+   @When("$namedWebSocket opens the message buffer for message type $messageType named $bufferName")
+   public void openCustomMessageBuffer( final String namedWebSocket, final String messageType, final String bufferName )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      evaluate( remoteStep( "Create the message buffer named: " + bufferName + " with filter type: " + messageType )
+            .scriptOn( profileScriptResolver().map( OpenMessageBuffer.class, BookableProfileName.websocket ),
+                  requireProfile( reference.getProfileName() ) )
+            .input( OpenMessageBuffer.IPARAM_ENDPOINTNAME, reference.getKey() )
+            .input( OpenMessageBuffer.IPARAM_BUFFERKEY, bufferName )
+            .input( OpenMessageBuffer.IPARAM_MESSAGETYPE, messageType ) );
+   }
+
+
+   @When("the named websocket $namedWebSocket removes the message buffer named $bufferName")
+   public void removeCustomMessageBuffer( final String namedWebSocket, final String bufferName )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      evaluate( remoteStep( "Remove the message buffer: " + bufferName )
+            .scriptOn( profileScriptResolver().map( RemoveCustomMessageBuffer.class, BookableProfileName.websocket ),
+                  requireProfile( reference.getProfileName() ) )
+            .input( RemoveCustomMessageBuffer.IPARAM_ENDPOINTNAME, reference.getKey() )
+            .input( RemoveCustomMessageBuffer.IPARAM_BUFFERKEY, bufferName ) );
+   }
+
+
+   @When("$namedWebSocket closes websocket client connection")
+   public void closeWebSocketConnection( final String namedWebSocket )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      evaluate(
+            remoteStep( "Start recording on named WebSocket: " + namedWebSocket )
+                  .scriptOn( profileScriptResolver().map( CloseWebSocketClientConnection.class,
+                        BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                  .input( CloseWebSocketClientConnection.IPARAM_ENDPOINTNAME, reference.getKey() ) );
    }
 }
