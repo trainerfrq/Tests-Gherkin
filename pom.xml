@@ -15,7 +15,7 @@
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-      <storyBoard>DefaultStoryBoard.csb</storyBoard>
+      <storyBoard>GGStoryBoard.csb</storyBoard>
       <cats.wait-timeout>1000000</cats.wait-timeout>
       <docker.autopull>always</docker.autopull>
 
@@ -33,6 +33,7 @@
       <maven-dependency-plugin>3.0.0</maven-dependency-plugin>
       <maven.resources.plugin.version>3.0.0</maven.resources.plugin.version>
 
+      <voice.service.interface.version>0.8.0-SNAPSHOT</voice.service.interface.version>
       <cats.version>3.9.0</cats.version>
       <domain.voip.version>3.9.0</domain.voip.version>
       <domain.websocket.version>0.0.1-AG-SNAPSHOT</domain.websocket.version>
@@ -40,6 +41,12 @@
     </properties>
 
    <dependencies>
+      <dependency>
+         <groupId>com.frequentis.xvp.voice</groupId>
+         <artifactId>op-voice-service-interface</artifactId>
+         <version>${voice.service.interface.version}</version>
+      </dependency>
+
       <!-- Required for SOX / PSQM tools as they are not available from CATS Master and have to be provided -->
       <dependency>
             <groupId>com.frequentis.c4i.test</groupId>
@@ -140,7 +147,7 @@
                      <arguments>
                         <argument>${project.basedir}/src/main/resources/system_testing_ast_config.xml</argument>
                      </arguments>
-                     <systemProperties />
+                     <systemProperties/>
                   </configuration>
                   <dependencies>
                      <dependency>
