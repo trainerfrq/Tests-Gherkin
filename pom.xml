@@ -23,7 +23,28 @@
 
 
     <build>
+        <!-- Important in order for groovy scripts to be included in the jar -->
+       <resources>
+            <resource>
+                <directory>src/main/groovy</directory>
+            </resource>
+        </resources>
         <plugins>
+            <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>1</id>
+                        <goals>
+                            <goal>addSources</goal>
+                            <goal>generateStubs</goal>
+                            <goal>compile</goal>
+                            <goal>removeStubs</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
