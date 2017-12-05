@@ -18,6 +18,7 @@ Given applied the websocket configuration:
 | WS1 | WEBSOCKET 1  | WS_Config-1           |
 | WS2 | WEBSOCKET 1  | WS_Config-2           |
 
+
 Scenario: Create the message buffers
 When WS1 opens the message buffer for message type missionsAvailableIndication named MissionsAvailableIndicationBuffer1
 When WS1 opens the message buffer for message type missionChangedIndication named MissionChangedIndicationBuffer1
@@ -62,16 +63,11 @@ When WS2 receives call incoming indication on message buffer named CallIncomingI
 And WS2 confirms incoming phone call with callId incomingPhoneCallId
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status out_ringing
 
-Scenario: Called client answers the incoming call
-When WS2 answers the incoming phone call with the callId incomingPhoneCallId
-Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and status connected
-And WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status connected
-
-Scenario: Caller client clears the phone call
-When WS1 clears the phone call with the callId outgoingPhoneCallId
+Scenario: Called client rejects the incoming call
+When WS2 clears the phone call with the callId incomingPhoneCallId
 And waiting for 3 seconds
-Then WS1 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and terminationDetails self_cleared
-Then WS2 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and terminationDetails peer_cleared
+Then WS2 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and terminationDetails self_cleared
+Then WS1 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and terminationDetails peer_cleared
 
 Scenario: Cleanup
 When WS1 disassociates from Op Voice Service

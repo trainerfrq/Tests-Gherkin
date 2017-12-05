@@ -5,11 +5,16 @@
  */
 package com.frequentis.xvp.voice.test.automation.sqt.step;
 
+import scripts.cats.websocket.sequential.SendTextMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
+import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 import static com.frequentis.c4i.test.model.MatcherDetails.match;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 
 import java.util.ArrayList;
@@ -42,10 +47,6 @@ import com.frequentis.xvp.voice.opvoice.json.messages.missions.ChangeMissionResp
 import com.frequentis.xvp.voice.opvoice.json.messages.missions.MissionChangeCompletedEvent;
 import com.frequentis.xvp.voice.opvoice.json.messages.missions.MissionChangedIndication;
 import com.google.common.collect.Lists;
-
-import scripts.cats.websocket.sequential.SendTextMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
-import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 
 public class GGBasicSteps extends WebsocketAutomationSteps
 {
@@ -89,10 +90,10 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       final RemoteStepResult remoteStepResult =
             evaluate( remoteStep(
                   "Receiving the last message on websocket " + namedWebSocket + " for buffer named " + bufferName )
-                        .scriptOn( profileScriptResolver().map( ReceiveLastReceivedMessage.class,
-                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
-                        .input( ReceiveLastReceivedMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
-                        .input( ReceiveLastReceivedMessage.IPARAM_BUFFERKEY, bufferName ) );
+                  .scriptOn( profileScriptResolver().map( ReceiveLastReceivedMessage.class,
+                        BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                  .input( ReceiveLastReceivedMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                  .input( ReceiveLastReceivedMessage.IPARAM_BUFFERKEY, bufferName ) );
 
       final String jsonResponse =
             ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
@@ -305,6 +306,43 @@ public class GGBasicSteps extends WebsocketAutomationSteps
                   equalTo( getStoryData( phoneCallIdName, String.class ) ) ) )
             .details( match( "Call status does not match", jsonMessage.body().callStatusIndication().getCallStatus(),
                   equalTo( callStatus ) ) ) );
+   }
+
+
+   @Then("$namedWebSocket receives call status indication with terminated status on message buffer named $bufferName with callId $phoneCallIdName and terminationDetails $terminationDetails")
+   public void receiveCallStatusIndicationTerminated( final String namedWebSocket, final String bufferName,
+         final String phoneCallIdName, final String terminationDetails )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      final RemoteStepResult remoteStepResult =
+            evaluate(
+                  remoteStep( "Receiving call status indication on buffer named " + bufferName )
+                        .scriptOn( profileScriptResolver().map( ReceiveLastReceivedMessage.class,
+                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                        .input( ReceiveLastReceivedMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                        .input( ReceiveLastReceivedMessage.IPARAM_BUFFERKEY, bufferName ) );
+
+      final String jsonResponse =
+            ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
+      final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
+
+      evaluate( localStep( "Verify call status indication" )
+            .details(
+                  match( "Is call status indication", jsonMessage.body().isCallStatusIndication(), equalTo( true ) ) )
+            .details( match( "Phone call id matches", jsonMessage.body().callStatusIndication().getCallId(),
+                  equalTo( getStoryData( phoneCallIdName, String.class ) ) ) )
+            .details( match( "Call status is terminated", jsonMessage.body().callStatusIndication().getCallStatus(),
+                  equalTo( CallStatusIndication.TERMINATED ) ) )
+            .details( match( "Termination details is not null",
+                  jsonMessage.body().callStatusIndication().getTerminationDetails(),
+                  is( notNullValue() ) ) )
+            .details( match( "Termination details cause is " + terminationDetails,
+                  jsonMessage.body().callStatusIndication().getTerminationDetails().getCause(),
+                  equalTo( terminationDetails ) ) )
+
+      );
    }
 
 
