@@ -66,8 +66,8 @@ Then WS1 receives call status indication on message buffer named CallStatusIndic
 Scenario: Caller client clears the incoming call
 When WS1 clears the phone call with the callId incomingPhoneCallId
 And waiting for 3 seconds
-Then WS2 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and terminationDetails peer_cleared
-Then WS1 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and terminationDetails self_cleared
+Then WS2 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and terminationDetails normal
+Then WS1 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and terminationDetails normal
 
 Scenario: Cleanup
 When WS1 disassociates from Op Voice Service
