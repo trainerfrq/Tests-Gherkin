@@ -55,7 +55,7 @@ When WS1 loads phone data for role roleId1 and names callSource and callTarget
 
 Scenario: Caller establishes an outgoing call
 When WS1 establishes an outgoing phone call using source callSource ang target callTarget and names outgoingPhoneCallId
-And waiting for 3 seconds
+And waiting for 6 seconds
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status out_trying
 
 Scenario: Called client receives the incoming call and confirms it
@@ -70,13 +70,9 @@ And WS1 receives call status indication on message buffer named CallStatusIndica
 
 Scenario: Called client clears the phone call
 When WS2 clears the phone call with the callId incomingPhoneCallId
-And waiting for 3 seconds
+And waiting for 6 seconds
 Then WS1 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and terminationDetails normal
 Then WS2 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and terminationDetails normal
-
-
-Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status terminated
-And WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and status terminated
 
 Scenario: Cleanup
 When WS1 disassociates from Op Voice Service
