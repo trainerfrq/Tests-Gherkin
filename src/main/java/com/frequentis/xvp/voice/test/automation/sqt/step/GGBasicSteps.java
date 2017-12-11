@@ -17,6 +17,7 @@ import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.UUID;
@@ -250,6 +251,8 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
       final String callingParty = getStoryData( callSourceName, String.class );
       final String calledParty = getStoryData( callTargetName, String.class );
+
+
       final JsonMessage request =
             JsonMessage.builder().withCorrelationId( UUID.randomUUID() )
                   .withPayload(
@@ -279,6 +282,47 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       setStoryData( phoneCallIdName, jsonMessage.body().callEstablishResponse().getCallId() );
    }
 
+   @When("$namedWebSocket establishes an outgoing phone calltype $callType with source $callSourceName and target $callTargetName and names $phoneCallIdName")
+   public void establishOutgoingPhoneCallOpt( final String namedWebSocket, final String callType, final String callSourceName,
+         final String callTargetName, final String phoneCallIdName )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      final String callingParty = getStoryData( callSourceName, String.class );
+      final String calledParty = getStoryData( callTargetName, String.class );
+
+
+      final JsonMessage request =
+            JsonMessage.builder().withCorrelationId( UUID.randomUUID() )
+                  .withPayload(
+                        new CallEstablishRequest( new Random().nextInt(), callingParty, calledParty, callType ) )
+                  .build();
+
+      final RemoteStepResult remoteStepResult =
+            evaluate(
+                  remoteStep( "Establishing outgoing phone call to " + calledParty )
+                        .scriptOn( profileScriptResolver().map( SendAndReceiveTextMessage.class,
+                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                        .input( SendAndReceiveTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                        .input( SendAndReceiveTextMessage.IPARAM_RESPONSETYPE, "callEstablishResponse" )
+                        .input( SendAndReceiveTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
+
+      final String jsonResponse =
+            ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
+      final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
+
+      evaluate( localStep( "Received call establish response" )
+            .details(
+                  match( "Is call establish response", jsonMessage.body().isCallEstablishResponse(), equalTo( true ) ) )
+            .details(
+                  match( "Call status is out_initiating", jsonMessage.body().callEstablishResponse().getCallStatus(),
+                        equalTo( CallStatusIndication.OUT_INITIATING ) ) ) );
+
+      setStoryData( phoneCallIdName, jsonMessage.body().callEstablishResponse().getCallId() );
+   }
+
+
 
    @Then("$namedWebSocket receives call status indication on message buffer named $bufferName with callId $phoneCallIdName and status $callStatus")
    public void receiveCallStatusIndication( final String namedWebSocket, final String bufferName,
@@ -306,6 +350,37 @@ public class GGBasicSteps extends WebsocketAutomationSteps
                   equalTo( getStoryData( phoneCallIdName, String.class ) ) ) )
             .details( match( "Call status does not match", jsonMessage.body().callStatusIndication().getCallStatus(),
                   equalTo( callStatus ) ) ) );
+   }
+
+   @Then("$namedWebSocket receives call status indication on message buffer named $bufferName with callId $phoneCallIdName and status $callStatus and audio direction $audioDirection")
+   public void receiveCallStatusIndicationOpt( final String namedWebSocket, final String bufferName,
+         final String phoneCallIdName, final String callStatus, final String audioDirection )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      final RemoteStepResult remoteStepResult =
+            evaluate(
+                  remoteStep( "Receiving call status indication on buffer named " + bufferName )
+                        .scriptOn( profileScriptResolver().map( ReceiveLastReceivedMessage.class,
+                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                        .input( ReceiveLastReceivedMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                        .input( ReceiveLastReceivedMessage.IPARAM_BUFFERKEY, bufferName ) );
+
+      final String jsonResponse =
+            ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
+      final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
+
+      evaluate( localStep( "Verify call status indication" )
+            .details(
+                  match( "Is call status indication", jsonMessage.body().isCallStatusIndication(), equalTo( true ) ) )
+            .details( match( "Phone call id matches", jsonMessage.body().callStatusIndication().getCallId(),
+                  equalTo( getStoryData( phoneCallIdName, String.class ) ) ) )
+            .details( match( "Call status does not match", jsonMessage.body().callStatusIndication().getCallStatus(),
+                  equalTo( callStatus ) ) )
+            .details( match( "Audio Direction does not match", jsonMessage.body().callStatusIndication().getAudioDirection(),
+                  equalTo( audioDirection ) ) )
+      );
    }
 
 
@@ -346,7 +421,47 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    }
 
 
-   @When("$namedWebSocket receives call incoming indication on message buffer named $bufferName with $callSource and $callTarget and names $incomingPhoneCallId")
+   @When("$namedWebSocket receives callType $callType incoming indication on message buffer named $bufferName with $callSource and $callTarget and names $incomingPhoneCallId and audio direction $audioDirection")
+   public void receiveCallIncomingIndicationType(final String namedWebSocket, final String callType, final String bufferName,
+         final String callSourceName, final String callTargetName, final String phoneCallIdName, final String audioDirection )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      final RemoteStepResult remoteStepResult =
+            evaluate(
+                  remoteStep( "Receiving call incoming indication on buffer named " + bufferName )
+                        .scriptOn( profileScriptResolver().map( ReceiveLastReceivedMessage.class,
+                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                        .input( ReceiveLastReceivedMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                        .input( ReceiveLastReceivedMessage.IPARAM_BUFFERKEY, bufferName ) );
+
+      final String jsonResponse =
+            ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
+      final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
+
+      evaluate( localStep( "Verify call incoming indication" )
+            .details( match( "Is call incoming indication", jsonMessage.body().isCallIncomingIndication(),
+                  equalTo( true ) ) )
+            .details( match( "Call status matches", jsonMessage.body().callIncomingIndication().getCallStatus(),
+                  equalTo( CallStatusIndication.CONNECTED ) ) )
+            .details( match( "Call type matches", jsonMessage.body().callIncomingIndication().getCallType(),
+                  equalTo( callType ) ) )
+            .details( match( "Calling party matches",
+                  jsonMessage.body().callIncomingIndication().getCallingParty().getUri(),
+                  equalTo( getStoryData( callSourceName, String.class ) ) ) )
+            .details( match( "Called party matches", jsonMessage.body().callIncomingIndication().getCalledParty(),
+                  equalTo( getStoryData( callTargetName, String.class ) ) ) )
+            .details( match( "AudioDirection matches",
+                  jsonMessage.body().callIncomingIndication().getAudioDirection(),
+                  equalTo( audioDirection) ) )
+
+      );
+
+      setStoryData( phoneCallIdName, jsonMessage.body().callIncomingIndication().getCallId() );
+   }
+
+   @When("$namedWebSocket receives call  incoming indication on message buffer named $bufferName with $callSource and $callTarget and names $incomingPhoneCallId")
    public void receiveCallIncomingIndication( final String namedWebSocket, final String bufferName,
          final String callSourceName, final String callTargetName, final String phoneCallIdName )
    {
