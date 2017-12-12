@@ -64,14 +64,14 @@ Then WS1 receives call status indication on message buffer named CallStatusIndic
 
 Scenario: Called client answers the incoming call
 When WS2 answers the incoming phone call with the callId incomingPhoneCallId
-Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and status connected
+Then WS2 receives call status indication on message buffer named CallStatusIndiincomingPhoneCallIdcationBuffer2 with callId incomingPhoneCallId and status connected
 And WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status connected
 
 Scenario: Caller client disassociates the phone call
 When WS1 disassociates from Op Voice Service
 And waiting for 5 seconds
 
-Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId icomingPhoneCallId and status terminated
+Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and status terminated
 Then WS1 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and terminationDetails terminated
 
 Scenario: Cleanup
