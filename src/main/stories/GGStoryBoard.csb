@@ -26,6 +26,24 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/BasicGGCall/DisassociateClientOnInactiveCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/BasicGGCall/DisassociateClientOnPendingCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/BasicGGCall/DisassociateClientOnActiveCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/BasicGGCall/IABasicCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
