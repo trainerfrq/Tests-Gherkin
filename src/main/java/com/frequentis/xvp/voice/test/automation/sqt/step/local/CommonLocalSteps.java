@@ -16,73 +16,24 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.sqt.step.local;
 
-import org.jbehave.core.annotations.Then;
+import java.util.List;
 
-import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
-import com.frequentis.c4i.test.metrics.CatsMetricsStore;
-import com.frequentis.c4i.test.metrics.Measurement;
-import com.frequentis.c4i.test.model.ExecutionDetails;
-import com.frequentis.xvp.voice.test.automation.sqt.step.SystemTestingAutomationSteps;
+import org.jbehave.core.annotations.When;
+
+import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
+import com.frequentis.xvp.voice.test.automation.sqt.data.NameValuePair;
 
 /**
  * @author mayar
  */
-public class CommonLocalSteps extends SystemTestingAutomationSteps
+public class CommonLocalSteps extends AutomationSteps
 {
-   @Then("calculated $delay from nanos $namedNanoTimeStamp1 to $namedNanoTimeStamp2 is within $milliSeconds ms and saved to DB $dbName")
-   public void calculateDelayfromTimeStamps( final String delay, final String namedTimeStamp1,
-         final String namedTimeStamp2, final long timeoutMs, final String dbName )
+   @When("define values in story data: $pairs")
+   public void defineValuesInStoryData( final List<NameValuePair> pairs )
    {
-      final LocalStep calculateDelay = localStep( "Calculating delay" );
-      final long timeStamp1 = assertStoryListData( namedTimeStamp1, Long.class );
-      final long timeStamp2 = assertStoryListData( namedTimeStamp2, Long.class );
-      final long delayValue = (timeStamp1 - timeStamp2) / 1000000;
-      if(delayValue<0)
+      for ( NameValuePair pair : pairs )
       {
-         calculateDelay.details(
-                 ExecutionDetails.create("Calculating delay")
-                                 .usedData(namedTimeStamp1, timeStamp1)
-                                 .usedData(namedTimeStamp2, timeStamp2)
-                                 .received(Long.toString(delayValue))
-                                 .failure()
-         );
-
-      } else if(delayValue<timeoutMs) {
-         calculateDelay.details(
-                 ExecutionDetails.create("Calculating delay")
-                                 .usedData(namedTimeStamp1, timeStamp1)
-                                 .usedData(namedTimeStamp2, timeStamp2)
-                                 .received(Long.toString(delayValue))
-                                 .success()
-         );
-         setStoryListData( delay, delayValue );
-         CatsMetricsStore.getMetricsInstance()
-                         .reportMeasurement( Measurement.measurement( dbName ).field( delay, delayValue ).build() );
-      } else if(delayValue<timeoutMs*10) {
-            calculateDelay.details(
-                    ExecutionDetails.create("Calculating delay")
-                                    .usedData(namedTimeStamp1, timeStamp1)
-                                    .usedData(namedTimeStamp2, timeStamp2)
-                                    .received(Long.toString(delayValue))
-                                    .caution()
-            );
-         setStoryListData( delay, delayValue );
-         CatsMetricsStore.getMetricsInstance()
-                         .reportMeasurement( Measurement.measurement( dbName ).field( delay, delayValue ).build() );
+         setStoryData( pair.getName(), pair.getValue() );
       }
-      else {
-         calculateDelay.details(
-                 ExecutionDetails.create("Calculating delay")
-                                 .usedData(namedTimeStamp1, timeStamp1)
-                                 .usedData(namedTimeStamp2, timeStamp2)
-                                 .received(Long.toString(delayValue))
-                                 .failure()
-         );
-         setStoryListData( delay, delayValue );
-         CatsMetricsStore.getMetricsInstance()
-                         .reportMeasurement( Measurement.measurement( dbName ).field( delay, delayValue ).build() );
-      }
-
-      record( calculateDelay );
    }
 }
