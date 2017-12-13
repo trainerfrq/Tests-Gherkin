@@ -63,9 +63,8 @@ And WS2 confirms incoming phone call with callId incomingPhoneCallId
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status out_ringing
 And waiting for 5 seconds
 
-When WS2 disassociates from Op Voice Service
-And waiting for 5 seconds
-Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status terminated
+When WS1 disassociates from Op Voice Service
+Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId incomingPhoneCallId and status terminated
 
 Scenario: Caller client disassociates the phone call
 When WS1 disassociates from Op Voice Service
