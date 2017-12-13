@@ -17,43 +17,43 @@
 <hazelcast-client>
 
     <!--Cluster name to connect-->
-    <group>
+   <group>
         <name>cats-voip-demo</name>
         <password>cats-voip-demo-pass</password>
     </group>
 
-    <!--Network configuration details-->
-    <network>
+   <!--Network configuration details-->
+   <network>
         <cluster-members>
             <!--INITIAL cluster members to connect-->
-            <address>127.0.0.1</address>
+           <address>${CATS_PUBLIC_IP}</address>
         </cluster-members>
 
-        <!-- defines whether the client mode is smart or dummy. -->
-        <smart-routing>true</smart-routing>
+      <!-- defines whether the client mode is smart or dummy. -->
+      <smart-routing>true</smart-routing>
 
-        <!-- While the client is trying to connect initially to one of the members in the ClientNetworkConfig.addressList,
-        all the members might be not available. Instead of giving up, throwing an exception and stopping the client,
-        the client will retry as many as connectionAttemptLimit times. -->
-        <redo-operation>true</redo-operation>
+      <!-- While the client is trying to connect initially to one of the members in the ClientNetworkConfig.addressList,
+      all the members might be not available. Instead of giving up, throwing an exception and stopping the client,
+      the client will retry as many as connectionAttemptLimit times. -->
+      <redo-operation>true</redo-operation>
 
-        <!-- The duration in milliseconds between the connection attempts defined by ClientNetworkConfig.connectionAttemptLimit.-->
-        <connection-attempt-period>3000</connection-attempt-period>
+      <!-- The duration in milliseconds between the connection attempts defined by ClientNetworkConfig.connectionAttemptLimit.-->
+      <connection-attempt-period>3000</connection-attempt-period>
 
-        <!-- While the client is trying to connect initially to one of the members in the ClientNetworkConfig.addressList,
-        all members might be not available. Instead of giving up, throwing an exception and stopping the client,
-        the client will retry as many as ClientNetworkConfig.connectionAttemptLimit times. -->
-        <connection-attempt-limit>5</connection-attempt-limit>
+      <!-- While the client is trying to connect initially to one of the members in the ClientNetworkConfig.addressList,
+      all members might be not available. Instead of giving up, throwing an exception and stopping the client,
+      the client will retry as many as ClientNetworkConfig.connectionAttemptLimit times. -->
+      <connection-attempt-limit>5</connection-attempt-limit>
 
-        <!-- Timeout value in millis for nodes to accept client connection requests.
-            A zero value means wait until connection established or an error occurs. -->
-        <connection-timeout>6000</connection-timeout>
+      <!-- Timeout value in millis for nodes to accept client connection requests.
+          A zero value means wait until connection established or an error occurs. -->
+      <connection-timeout>6000</connection-timeout>
 
         <aws enabled="false"/>
     </network>
 
-    <!--local executor pool size-->
-    <executor-pool-size>1</executor-pool-size>
+   <!--local executor pool size-->
+   <executor-pool-size>1</executor-pool-size>
 
     <listeners>
         <!--listeners-->
@@ -67,7 +67,7 @@
         <!--ProxyFactory configuration details-->
     </proxy-factories>
 
-    <!--load balancer configuration-->
-    <!-- type can be "round-robin" or "random" -->
-    <load-balancer type="random"/>
+   <!--load balancer configuration-->
+   <!-- type can be "round-robin" or "random" -->
+   <load-balancer type="random"/>
 </hazelcast-client>
