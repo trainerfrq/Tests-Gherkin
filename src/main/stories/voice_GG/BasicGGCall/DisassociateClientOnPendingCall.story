@@ -61,14 +61,13 @@ Scenario: Called client receives the incoming call and confirms it
 When WS2 receives call incoming indication on message buffer named CallIncomingIndicationBuffer2 with callSource and callTarget and names incomingPhoneCallId
 And WS2 confirms incoming phone call with callId incomingPhoneCallId
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status out_ringing
-And waiting for 5 seconds
 
+Scenario: Caller client disassociates from Op Voice Service
 When WS1 disassociates from Op Voice Service
-Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId incomingPhoneCallId and status terminated
+Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and status terminated
 
-Scenario: Caller client disassociates the phone call
-When WS1 disassociates from Op Voice Service
-And waiting for 5 seconds
+Scenario: Cleanup
+When WS2 disassociates from Op Voice Service
 
 Scenario: Delete the message buffers
 When the named websocket WS1 removes the message buffer named MissionsAvailableIndicationBuffer1
