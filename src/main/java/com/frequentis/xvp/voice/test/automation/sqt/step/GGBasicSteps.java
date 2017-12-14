@@ -81,7 +81,6 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             .details( match( jsonMessage.body().associateResponse().appId(), equalTo( appId ) ) ) );
    }
 
-
    @Then("$namedWebSocket receives missions available indication on message buffer named $bufferName and names the $availableMissionIdsName")
    public void receiveMissionsAvailableIndication( final String namedWebSocket, final String bufferName,
          final String availableMissionIdsName )

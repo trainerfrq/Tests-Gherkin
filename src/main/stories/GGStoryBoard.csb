@@ -24,7 +24,7 @@
                         <cats:status>CREATED</cats:status>
                     </cats:report>
                     <cats:reports/>
-                    <cats:stories>
+                    <cats:stories>k
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/BasicGGCall/IABasicCall.story</cats:storyPath>
                             <cats:storyParameters/>
