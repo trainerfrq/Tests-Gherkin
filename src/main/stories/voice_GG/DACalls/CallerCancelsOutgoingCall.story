@@ -33,7 +33,7 @@ Then WS1 receives missions available indication on message buffer named Missions
 Then WS1 receives mission changed indication on message buffer named MissionChangedIndicationBuffer1 and names missionId1
 Then WS1 confirms mission change completed for mission missionId1
 
-Scenario: Called client associates with Op Voice Service
+Scenario: Callee client associates with Op Voice Service
 When WS2 associates with Op Voice Service using opId op2 and appId app2
 Then WS2 receives missions available indication on message buffer named MissionsAvailableIndicationBuffer2 and names the availableMissionIds2
 And WS2 receives mission changed indication on message buffer named MissionChangedIndicationBuffer2 and names missionId2
@@ -44,7 +44,7 @@ When WS1 chooses mission with index 0 from available missions named availableMis
 Then WS1 receives mission changed indication on buffer named MissionChangedIndicationBuffer1 equal to missionIdToChange1 and names missionId1 and roleId1
 Then WS1 confirms mission change completed for mission missionId1
 
-Scenario: Called client changes its mission
+Scenario: Callee client changes its mission
 When WS2 chooses mission with index 0 from available missions named availableMissionIds2 and names missionIdToChange2
 Then WS2 receives mission changed indication on buffer named MissionChangedIndicationBuffer2 equal to missionIdToChange2 and names missionId2  and roleId2
 Then WS2 confirms mission change completed for mission missionId2
@@ -57,22 +57,19 @@ When WS1 establishes an outgoing phone call using source callSource ang target c
 And waiting for 6 seconds
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status out_trying
 
-Scenario: Called client receives the incoming call and confirms it
+Scenario: Callee client receives the incoming call and confirms it
 When WS2 receives call incoming indication on message buffer named CallIncomingIndicationBuffer2 with callSource and callTarget and names incomingPhoneCallId
 And WS2 confirms incoming phone call with callId incomingPhoneCallId
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status out_ringing
 
-Scenario: Called client answers the incoming call
-When WS2 answers the incoming phone call with the callId incomingPhoneCallId
-Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and status connected
-And WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status connected
-
-Scenario: Caller client disassociates from Op Voice Service
-When WS1 disassociates from Op Voice Service
-And waiting for 5 seconds
-Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and status terminated
+Scenario: Caller client clears the incoming call
+When WS1 clears the phone call with the callId outgoingPhoneCallId
+And waiting for 6 seconds
+Then WS2 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and terminationDetails normal
+Then WS1 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and terminationDetails normal
 
 Scenario: Cleanup
+When WS1 disassociates from Op Voice Service
 When WS2 disassociates from Op Voice Service
 
 Scenario: Delete the message buffers

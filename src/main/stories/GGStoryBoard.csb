@@ -10,59 +10,77 @@
     </cats:reportFormats>
     <cats:storyCollections>
         <cats:storyCollection enabled="true">
-            <cats:name>New Story Collection 3</cats:name>
+            <cats:name>GG Stories</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
                 <cats:status>CREATED</cats:status>
             </cats:report>
             <cats:storyLists>
                 <cats:storyList enabled="true">
-                    <cats:name>GGStories</cats:name>
+                    <cats:name>GG Stories</cats:name>
                     <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
                     <cats:repetitions>1</cats:repetitions>
                     <cats:report>
                         <cats:status>CREATED</cats:status>
                     </cats:report>
                     <cats:reports/>
-                    <cats:stories>k
+                    <cats:stories>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/BasicGGCall/IABasicCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/DACalls/CallerClearsActiveCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/BasicGGCall/BasicGGCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/DACalls/CalleeClearsActiveCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/BasicGGCall/GGCalledClientClearsCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/DACalls/CalleeRejectsIncomingCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/BasicGGCall/GGCalledClientRejectsCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/DACalls/CallerCancelsOutgoingCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/BasicGGCall/GGCallerClientCancels.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/DACalls/DisassociateClientOnActiveCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/SipPhone/OperatorToSipPhoneCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/DACalls/DisassociateClientOnIncomingCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/SipPhone/SipPhoneToOperatorCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/DACalls/DisassociateClientOnOutgoingCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/IACalls/IABasicCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/SipPhones/OperatorToSipPhoneCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/SipPhones/SipPhoneToOperatorCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
