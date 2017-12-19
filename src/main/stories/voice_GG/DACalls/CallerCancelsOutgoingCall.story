@@ -45,7 +45,7 @@ Then WS1 receives mission changed indication on buffer named MissionChangedIndic
 Then WS1 confirms mission change completed for mission missionId1
 
 Scenario: Callee client changes its mission
-When WS2 chooses mission with index 0 from available missions named availableMissionIds2 and names missionIdToChange2
+When WS2 chooses mission with index 1 from available missions named availableMissionIds2 and names missionIdToChange2
 Then WS2 receives mission changed indication on buffer named MissionChangedIndicationBuffer2 equal to missionIdToChange2 and names missionId2  and roleId2
 Then WS2 confirms mission change completed for mission missionId2
 
