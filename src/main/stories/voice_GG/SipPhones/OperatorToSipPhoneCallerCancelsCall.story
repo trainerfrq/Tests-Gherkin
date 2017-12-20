@@ -52,15 +52,9 @@ When WS1 establishes an outgoing phone call using source callSource ang target c
 And waiting for 3 seconds
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status out_ringing
 
-Scenario: Caller client clears the incoming call
+Scenario: Caller client clears the outgoing call
 When WS1 clears the phone call with the callId outgoingPhoneCallId
 And waiting for 6 seconds
-Then WS1 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and terminationDetails normal
-Then SipContact DialogState is TERMINATED within 100 ms
-
-Scenario: Caller client clears the phone call
-When WS1 clears the phone call with the callId incomingPhoneCallId
-And waiting for 3 seconds
 Then WS1 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and terminationDetails normal
 Then SipContact DialogState is TERMINATED within 100 ms
 

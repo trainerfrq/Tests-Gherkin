@@ -57,7 +57,7 @@ Then SipContact DialogState is EARLY within 100 ms
 Scenario: Callee client rejects the incoming call
 When WS1 clears the phone call with the callId incomingPhoneCallId
 And waiting for 6 seconds
-Then WS1 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and terminationDetails normal
+Then WS1 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer1 with callId incomingPhoneCallId and terminationDetails normal
 Then SipContact DialogState is TERMINATED within 100 ms
 
 Scenario: Sip phone terminates the phone call

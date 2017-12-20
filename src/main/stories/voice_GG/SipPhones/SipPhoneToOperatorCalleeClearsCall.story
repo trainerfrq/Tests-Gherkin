@@ -60,7 +60,7 @@ Then WS1 receives call status indication on message buffer named CallStatusIndic
 Then SipContact DialogState is CONFIRMED within 100 ms
 
 Scenario: Callee client clears the phone call
-When WS1 clears the phone call with the callId outgoingPhoneCallId
+When WS1 clears the phone call with the callId incomingPhoneCallId
 And waiting for 3 seconds
 Then WS1 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer1 with callId incomingPhoneCallId and terminationDetails normal
 Then SipContact DialogState is TERMINATED within 100 ms
