@@ -74,13 +74,13 @@
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/SipPhones/OperatorToSipPhoneCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/SipPhones/OperatorToSipPhoneCallerClearsCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/SipPhones/SipPhoneToOperatorCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/SipPhones/SipPhoneToOperatorCallerTerminatesCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
