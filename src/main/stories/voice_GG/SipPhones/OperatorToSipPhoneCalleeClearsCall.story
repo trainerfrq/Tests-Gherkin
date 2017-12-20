@@ -61,7 +61,7 @@ Scenario: Sip phone terminates the phone call
 When SipContact terminates calls
 Then SipContact DialogState is TERMINATED within 100 ms
 And waiting for 3 seconds
-Then WS1 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer1 with callId incomingPhoneCallId and terminationDetails terminated
+Then WS1 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and terminationDetails normal
 
 Scenario: Cleanup
 When WS1 disassociates from Op Voice Service
