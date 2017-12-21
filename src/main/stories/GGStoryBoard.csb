@@ -85,6 +85,42 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/SipPhones/OperatorToSipPhoneCalleeRejectsCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                         <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/SipPhones/OperatorToSipPhoneCalleeTerminatesCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/SipPhones/OperatorToSipPhoneCallerCancelsCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                         <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/SipPhones/SipPhoneToOperatorCalleeClearsCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/SipPhones/SipPhoneToOperatorCalleeRejectsCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                         <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/SipPhones/SipPhoneToOperatorCallerCancelsCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
                 </cats:storyList>
