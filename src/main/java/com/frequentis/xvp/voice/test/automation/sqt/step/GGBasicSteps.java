@@ -369,7 +369,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
          final String callSourceName, final String callTargetName, final String phoneCallIdName )
    {
       receiveCallIncomingIndication( namedWebSocket, bufferName, callSourceName, callTargetName, phoneCallIdName,
-            "DA/IDA", null, CallStatusIndication.INC_INITIATED );
+            "DA/IDA", CallStatusIndication.INC_INITIATED );
    }
 
 
@@ -480,7 +480,16 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
    private void receiveCallIncomingIndication( final String namedWebSocket, final String bufferName,
          final String callSourceName, final String callTargetName, final String phoneCallIdName, final String callType,
-         final Object audioDirection, final String incInitiated )
+         final String callState )
+   {
+      receiveCallIncomingIndication( namedWebSocket, bufferName, callSourceName, callTargetName, phoneCallIdName,
+            callType, null, callState );
+   }
+
+
+   private void receiveCallIncomingIndication( final String namedWebSocket, final String bufferName,
+         final String callSourceName, final String callTargetName, final String phoneCallIdName, final String callType,
+         final Object audioDirection, final String callState )
    {
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
@@ -501,7 +510,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             .details( match( "Is call incoming indication", jsonMessage.body().isCallIncomingIndication(),
                   equalTo( true ) ) )
             .details( match( "Call status matches", jsonMessage.body().callIncomingIndication().getCallStatus(),
-                  equalTo( incInitiated ) ) )
+                  equalTo( callState ) ) )
             .details( match( "Call type matches", jsonMessage.body().callIncomingIndication().getCallType(),
                   equalTo( callType ) ) )
             .details( match( "Calling party matches",
@@ -542,6 +551,12 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
       final String jsonResponse =
             ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
+      assertThatCallEstablishResponseWasReceived( phoneCallIdName, jsonResponse );
+   }
+
+
+   private void assertThatCallEstablishResponseWasReceived( final String phoneCallIdName, final String jsonResponse )
+   {
       final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
 
       evaluate( localStep( "Received call establish response" )
