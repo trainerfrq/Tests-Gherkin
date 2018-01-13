@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.frequentis.xvp.tools.cats</groupId>
+        <artifactId>cats-domain-websocket</artifactId>
+        <version>0.0.1-AG-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>cats-websocket-dto</artifactId>
+    <packaging>jar</packaging>
+    <name>CATS Webscoket DTO</name>
+    <description>CATS Websocket DTO containing data transfer objects</description>
+    <url>http://www.frequentis.com</url>
+    <organization>
+        <name>Frequentis AG</name>
+        <url>http://www.frequentis.com</url>
+    </organization>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.frequentis.c4i.test</groupId>
+            <artifactId>cats-utils</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.frequentis.c4i.test</groupId>
+            <artifactId>cats-bdd</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.frequentis.c4i.test</groupId>
+            <artifactId>cats-agent-websocket</artifactId>
+        </dependency>
+
+       <!-- Test dependencies -->
+       <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <plugins>
+            <!-- Generate sources jar used by projects in their own automation projects -->
+           <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                            <goal>test-jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+
