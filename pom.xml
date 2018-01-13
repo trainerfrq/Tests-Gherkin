@@ -17,6 +17,6 @@
     </properties>
 
     <modules>
-        <module>automation</module>
+        <module>phone_automation</module>
     </modules>
 </project>
