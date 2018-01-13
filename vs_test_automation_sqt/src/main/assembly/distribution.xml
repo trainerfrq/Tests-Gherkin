@@ -1,0 +1,17 @@
+<assembly>
+    <id>frequentis-cats-home</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>${project.build.directory}/automation/</directory>
+            <outputDirectory>/</outputDirectory>
+        </fileSet>
+       <fileSet>
+            <directory>${project.build.directory}/automation/resources/.frequentis-cats</directory>
+            <outputDirectory>/</outputDirectory>
+        </fileSet>
+    </fileSets>
+</assembly>

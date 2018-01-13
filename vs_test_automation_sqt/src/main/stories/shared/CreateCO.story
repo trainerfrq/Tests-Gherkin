@@ -1,0 +1,9 @@
+Scenario: Connect to host
+Given SSH connections:
+| name  | remote-address | remotePort | username | password  |
+| sess3 | <<HOST_IP>>    | 22         | root     | !frqAdmin |
+
+Scenario: create CO
+When SSH host sess3 executes ./runCO.sh
+
+Then waiting for 30 seconds
