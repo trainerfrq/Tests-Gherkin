@@ -44,6 +44,6 @@ public class SystemTestingAutomationProject extends CatsStories
    @Override
    protected String getStepsDefinition()
    {
-      return "system-testing-demo.xml";
+      return "system-testing-gg.xml";
    }
 }

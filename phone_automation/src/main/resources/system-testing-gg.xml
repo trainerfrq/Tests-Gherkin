@@ -7,8 +7,7 @@
    <bean id="commonLocalSteps" class="com.frequentis.xvp.voice.test.automation.phone.step.local.CommonLocalSteps"/>
 
    <!-- LOCAL VOIP STEPS WHICH ARE NOT IN DOMAIN-->
-   <bean id="xvp_local_voip" class="com.frequentis.xvp.voice.test.automation.phone.step.remote.VoipSteps"/>
-    <bean class="com.frequentis.xvp.voice.test.automation.phone.step.GGBasicSteps"/>
+   <bean class="com.frequentis.xvp.voice.test.automation.phone.step.GGBasicSteps"/>
     <import resource="classpath*:cats-master-common-step-definitions.xml"/>
     <import resource="classpath*:websocket-automation-steps.xml"/>
     <import resource="classpath*:voip-automation-steps.xml"/>
