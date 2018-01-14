@@ -26,10 +26,15 @@
           </option>
           <option name="goals">
             <list>
-              <option value="verify" />
+              <option value="clean" />
+              <option value="install" />
               <option value="-DskipTests" />
               <option value="-P" />
               <option value="AUTOMATION-PACKAGE" />
+              <option value="-DskipTraceImport" />
+              <option value="-DCATS_PUBLIC_IP=192.168.100.1" />
+              <option value="-DCATS_HAZELCAST_PORT=5701" />
+              <option value="-DCATS_CO_IP=192.168.100.1" />
             </list>
           </option>
           <option name="profilesMap">

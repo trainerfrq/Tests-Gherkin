@@ -14,7 +14,7 @@
  ** the written permission of Frequentis AG.
  **
  ************************************************************************/
-package com.frequentis.xvp.voice.test.automation.sqt;
+package com.frequentis.xvp.voice.test.automation.phone;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,8 @@ import com.frequentis.c4i.test.master.junitexecution.CatsRunConfiguration;
  */
 
 @RunWith(CatsJunitRunner.class)
-@CatsRunConfiguration(stories = { "CreateCO.story", "BasicRadioCall.story" }, name = "JUnitSystemTests", catsHomeLocation = ".")
+@CatsRunConfiguration(stories = { "CreateCO.story",
+      "BasicRadioCall.story" }, name = "JUnitSystemTests", catsHomeLocation = ".")
 public class JUnitSystemTests implements CatsJunitTest
 {
    @BeforeClass

@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
    <parent>
-        <groupId>com.frequentis.xvp.voice</groupId>
+        <groupId>com.frequentis.xvp.voice.phone</groupId>
         <artifactId>phone-test-automation</artifactId>
         <version>0.1.0-SNAPSHOT</version>
    </parent>
@@ -24,19 +24,9 @@
 
       <agentsHome>${project.build.directory}/automation/agents</agentsHome>
 
-      <xvp-cats-mixin.version>2.0.0</xvp-cats-mixin.version>
-      <mixin-maven-plugin.version>0.1-alpha-39</mixin-maven-plugin.version>
-      <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
-      <reqpro-trace-importer.version>1.17.0</reqpro-trace-importer.version>
-      <exec-maven-plugin.version>1.5.0</exec-maven-plugin.version>
-      <maven-dependency-plugin>3.0.0</maven-dependency-plugin>
-      <maven.resources.plugin.version>3.0.0</maven.resources.plugin.version>
-
       <voice.service.interface.version>0.8.0-SNAPSHOT</voice.service.interface.version>
-      <cats.version>3.9.0</cats.version>
       <domain.voip.version>3.9.0</domain.voip.version>
-      <domain.websocket.version>0.0.1-AG-SNAPSHOT</domain.websocket.version>
-      <slf4j.version>1.7.18</slf4j.version>
+      <domain.websocket.version>0.1.0-SNAPSHOT</domain.websocket.version>
     </properties>
 
    <dependencies>
@@ -93,7 +83,7 @@
          <version>${cats.version}</version>
       </dependency>
       <dependency>
-         <groupId>com.frequentis.xvp.tools.cats</groupId>
+         <groupId>com.frequentis.xvp.voice.phone</groupId>
          <artifactId>cats-websocket-steps</artifactId>
          <version>${domain.websocket.version}</version>
       </dependency>
@@ -241,32 +231,5 @@
          </plugin>
       </plugins>
    </build>
-   <pluginRepositories>
-      <pluginRepository>
-         <releases>
-            <enabled>true</enabled>
-            <updatePolicy>always</updatePolicy>
-         </releases>
-         <snapshots>
-            <enabled>true</enabled>
-         </snapshots>
-         <id>artifactory</id>
-         <name>Artifactory maven repository</name>
-         <url>http://artifactory.frequentis.frq:8081/artifactory/repo</url>
-      </pluginRepository>
-   </pluginRepositories>
-   <repositories>
-      <repository>
-         <releases>
-            <enabled>true</enabled>
-            <updatePolicy>always</updatePolicy>
-         </releases>
-         <snapshots>
-            <enabled>true</enabled>
-         </snapshots>
-         <id>artifactory</id>
-         <name>Artifactory maven repository</name>
-         <url>http://artifactory.frequentis.frq:8081/artifactory/repo</url>
-      </repository>
-   </repositories>
+
 </project>

@@ -14,26 +14,15 @@
  ** the written permission of Frequentis AG.
  **
  ************************************************************************/
-package com.frequentis.xvp.voice.test.automation.sqt.step.local;
-
-import java.util.List;
-
-import org.jbehave.core.annotations.When;
+package com.frequentis.xvp.voice.test.automation.phone.step;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
-import com.frequentis.xvp.voice.test.automation.sqt.data.NameValuePair;
 
 /**
  * @author mayar
  */
-public class CommonLocalSteps extends AutomationSteps
+
+public class SystemTestingAutomationSteps extends AutomationSteps
 {
-   @When("define values in story data: $pairs")
-   public void defineValuesInStoryData( final List<NameValuePair> pairs )
-   {
-      for ( NameValuePair pair : pairs )
-      {
-         setStoryData( pair.getName(), pair.getValue() );
-      }
-   }
+
 }

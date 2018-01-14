@@ -3,7 +3,7 @@
  *            Registered with Commercial Court Vienna,
  *            reg.no. FN 72.115b.
  */
-package com.frequentis.xvp.voice.test.automation.sqt;
+package com.frequentis.xvp.voice.test.automation.phone;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,7 @@ import org.jbehave.core.steps.ParameterConverters;
 
 import com.frequentis.c4i.test.bdd.CatsStories;
 import com.frequentis.xvp.tools.cats.websocket.converter.ClientEndpointConfigurationConverter;
+
 /**
  * SystemTestingAutomationProject for XVP.
  */

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <groupId>com.frequentis.xvp.tools.cats</groupId>
-        <artifactId>cats-domain-websocket</artifactId>
-        <version>0.0.1-AG-SNAPSHOT</version>
-    </parent>
+   <parent>
+        <groupId>com.frequentis.xvp.voice.phone</groupId>
+        <artifactId>phone-test-automation</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+   </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>cats-websocket-steps</artifactId>
@@ -23,11 +23,11 @@
             <artifactId>cats-bdd</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.frequentis.xvp.tools.cats</groupId>
+            <groupId>com.frequentis.xvp.voice.phone</groupId>
             <artifactId>cats-websocket-dto</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.frequentis.xvp.tools.cats</groupId>
+            <groupId>com.frequentis.xvp.voice.phone</groupId>
             <artifactId>cats-websocket-plugin</artifactId>
         </dependency>
     </dependencies>

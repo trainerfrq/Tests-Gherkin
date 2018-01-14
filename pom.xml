@@ -2,21 +2,230 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.frequentis.xvp.voice</groupId>
-    <artifactId>phone-test-automation</artifactId>
+   <groupId>com.frequentis.xvp.voice.phone</groupId>
+   <artifactId>phone-test-automation</artifactId>
    <version>0.1.0-SNAPSHOT</version>
    <packaging>pom</packaging>
-    <url>http://www.frequentis.com</url>
-    <organization>
-        <name>Frequentis AG</name>
-        <url>http://www.frequentis.com</url>
-    </organization>
+   <url>http://www.frequentis.com</url>
+   <organization>
+      <name>Frequentis AG</name>
+      <url>http://www.frequentis.com</url>
+   </organization>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+   <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <modules>
-        <module>phone_automation</module>
-    </modules>
+      <xvp-cats-mixin.version>2.0.0</xvp-cats-mixin.version>
+      <mixin-maven-plugin.version>0.1-alpha-39</mixin-maven-plugin.version>
+      <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+      <reqpro-trace-importer.version>1.17.0</reqpro-trace-importer.version>
+      <exec-maven-plugin.version>1.5.0</exec-maven-plugin.version>
+      <maven-dependency-plugin>3.0.0</maven-dependency-plugin>
+      <maven.resources.plugin.version>3.0.0</maven.resources.plugin.version>
+      <maven-antrun-plugin>1.8</maven-antrun-plugin>
+      <maven-assembly-plugin>2.5.5</maven-assembly-plugin>
+      <maven-build-helper-plugin>1.11</maven-build-helper-plugin>
+      <maven-source-plugin>3.0.1</maven-source-plugin>
+      <maven-gmavenplus-plugin>1.5</maven-gmavenplus-plugin>
+      <maven-javadoc-plugin>2.10.3</maven-javadoc-plugin>
+      <maven-compiler-plugin>3.3</maven-compiler-plugin>
+      <maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
+      <maven-compiler-plugin.target>1.8</maven-compiler-plugin.target>
+
+      <cats.version>3.9.0</cats.version>
+      <slf4j.version>1.7.18</slf4j.version>
+   </properties>
+
+    <profiles>
+        <profile>
+            <id>doclint-java8-disable</id>
+            <activation>
+                <jdk>[1.8,)</jdk>
+            </activation>
+            <properties>
+                <javadoc.opts>-Xdoclint:none</javadoc.opts>
+            </properties>
+        </profile>
+        <profile>
+            <id>jenkins-release</id>
+            <activation>
+                <property>
+                    <name>catsVersion</name>
+                </property>
+            </activation>
+            <properties>
+                <cats.version>${catsVersion}</cats.version>
+            </properties>
+        </profile>
+    </profiles>
+
+   <dependencyManagement>
+        <dependencies>
+            <!-- Domain package dependencies -->
+           <dependency>
+                <groupId>com.frequentis.xvp.voice.phone</groupId>
+                <artifactId>cats-websocket-dto</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.frequentis.xvp.voice.phone</groupId>
+                <artifactId>cats-websocket-plugin</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.frequentis.xvp.voice.phone</groupId>
+                <artifactId>cats-websocket-steps</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+
+           <!-- General CATS dependencies -->
+           <dependency>
+                <groupId>com.frequentis.c4i.test</groupId>
+                <artifactId>cats-bdd</artifactId>
+                <version>${cats.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.frequentis.c4i.test</groupId>
+                <artifactId>cats-agent-websocket</artifactId>
+                <version>${cats.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.frequentis.c4i.test</groupId>
+                <artifactId>cats-agent-websocket</artifactId>
+                <version>${cats.version}</version>
+                <type>zip</type>
+            </dependency>
+            <dependency>
+                <groupId>com.frequentis.c4i.test</groupId>
+                <artifactId>cats-utils</artifactId>
+                <version>${cats.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.frequentis.c4i.test</groupId>
+                <artifactId>cats-platform</artifactId>
+                <version>${cats.version}</version>
+                <type>zip</type>
+            </dependency>
+            <dependency>
+                <groupId>com.frequentis.c4i.test</groupId>
+                <artifactId>cats-plugin-api</artifactId>
+                <version>${cats.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.frequentis.c4i.test</groupId>
+                <artifactId>cats-report-resources</artifactId>
+                <version>${cats.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.frequentis.c4i.test</groupId>
+                <artifactId>cats-master-common</artifactId>
+                <version>${cats.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+           <!-- 3rd party dependencies -->
+           <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <scope>test</scope>
+                <version>4.12</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin}</version>
+                    <configuration>
+                        <additionalparam>${javadoc.opts}</additionalparam>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>${maven-build-helper-plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.gmavenplus</groupId>
+                    <artifactId>gmavenplus-plugin</artifactId>
+                    <version>${maven-gmavenplus-plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>${maven-antrun-plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${maven-assembly-plugin}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin}</version>
+                <configuration>
+                    <source>${maven-compiler-plugin.source}</source>
+                    <target>${maven-compiler-plugin.target}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+   <pluginRepositories>
+      <pluginRepository>
+         <releases>
+            <enabled>true</enabled>
+            <updatePolicy>always</updatePolicy>
+         </releases>
+         <snapshots>
+            <enabled>true</enabled>
+         </snapshots>
+         <id>artifactory</id>
+         <name>Artifactory maven repository</name>
+         <url>http://artifactory.frequentis.frq:8081/artifactory/repo</url>
+      </pluginRepository>
+   </pluginRepositories>
+   <repositories>
+      <repository>
+         <releases>
+            <enabled>true</enabled>
+            <updatePolicy>always</updatePolicy>
+         </releases>
+         <snapshots>
+            <enabled>true</enabled>
+         </snapshots>
+         <id>artifactory</id>
+         <name>Artifactory maven repository</name>
+         <url>http://artifactory.frequentis.frq:8081/artifactory/repo</url>
+      </repository>
+   </repositories>
+
+   <modules>
+      <module>phone_automation</module>
+      <module>cats-websocket-steps</module>
+      <module>cats-websocket-dto</module>
+      <module>cats-websocket-plugin</module>
+   </modules>
 </project>

@@ -14,7 +14,7 @@
  ** the written permission of Frequentis AG.
  **
  ************************************************************************/
-package com.frequentis.xvp.voice.test.automation.sqt.data;
+package com.frequentis.xvp.voice.test.automation.phone.data;
 
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameter;
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameterClass;

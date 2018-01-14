@@ -14,7 +14,7 @@
  ** the written permission of Frequentis AG.
  **
  ************************************************************************/
-package com.frequentis.xvp.voice.test.automation.sqt.step.remote;
+package com.frequentis.xvp.voice.test.automation.phone.step.remote;
 
 import java.io.File;
 import java.io.Serializable;
@@ -40,7 +40,7 @@ import com.frequentis.c4i.test.util.audio.AudioPlayer;
 import com.frequentis.cats.voip.automation.model.ReferenceAudio;
 import com.frequentis.cats.voip.dto.MepConfiguration;
 import com.frequentis.cats.voip.dto.SipContact;
-import com.frequentis.xvp.voice.test.automation.sqt.step.SystemTestingAutomationSteps;
+import com.frequentis.xvp.voice.test.automation.phone.step.SystemTestingAutomationSteps;
 
 import scripts.voip.CheckIncomingSDP;
 import scripts.voip.GetCurrentCallHistory;

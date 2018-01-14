@@ -3,7 +3,7 @@
  *            Registered with Commercial Court Vienna,
  *            reg.no. FN 72.115b.
  */
-package com.frequentis.xvp.voice.test.automation.sqt.context;
+package com.frequentis.xvp.voice.test.automation.phone.context;
 
 import com.frequentis.c4i.test.bdd.instrumentation.context.StoryContext;
 
@@ -12,7 +12,7 @@ import com.frequentis.c4i.test.bdd.instrumentation.context.StoryContext;
  */
 public class SystemTestingStoryContext extends StoryContext
 {
-   public SystemTestingStoryContext(final String name )
+   public SystemTestingStoryContext( final String name )
    {
       super( name );
    }
