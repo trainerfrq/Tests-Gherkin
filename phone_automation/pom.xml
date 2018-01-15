@@ -25,7 +25,7 @@
       <agentsHome>${project.build.directory}/automation/agents</agentsHome>
 
       <voice.service.interface.version>0.8.0-SNAPSHOT</voice.service.interface.version>
-      <domain.voip.version>3.9.0</domain.voip.version>
+      <domain.voip.version>4.0.0</domain.voip.version>
       <domain.websocket.version>0.1.0-SNAPSHOT</domain.websocket.version>
     </properties>
 
