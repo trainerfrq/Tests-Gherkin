@@ -12,7 +12,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>voice-hmi-dsl-co-support</artifactId>
     <packaging>jar</packaging>
-    <name>CO DSL for Voice Hmi App</name>
+    <name>CATS Voice Hmi CO DSL</name>
     <url>http://www.frequentis.com</url>
     <organization>
         <name>Frequentis AG</name>

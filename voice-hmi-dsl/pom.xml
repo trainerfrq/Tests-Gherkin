@@ -12,7 +12,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>voice-hmi-dsl</artifactId>
     <packaging>jar</packaging>
-    <name>DSL for Voice Hmi App</name>
+    <name>CATS Voice Hmi DSL</name>
     <url>http://www.frequentis.com</url>
     <organization>
         <name>Frequentis AG</name>

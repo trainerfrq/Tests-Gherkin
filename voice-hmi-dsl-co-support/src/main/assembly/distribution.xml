@@ -1,5 +1,5 @@
 <assembly>
-    <id>playground-dsl-co-support</id>
+    <id>voice-hmi-dsl-co-support</id>
     <formats>
         <format>dir</format>
         <format>zip</format>
