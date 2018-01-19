@@ -2,7 +2,7 @@ Scenario: Booking profiles
 Given booked profiles:
 | profile   | group | host       |
 | javafx    | hmi   | <<CO1_IP>> |
-| websocket | hmi   | <<CO1_IP>> |
+| websocket | hmi   | <<CO2_IP>> |
 
 Scenario: Open Web Socket Client connections
 Given named the websocket configurations:

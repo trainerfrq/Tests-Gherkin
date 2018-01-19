@@ -23,7 +23,7 @@ class VerifyDAButtonState extends FxScriptTemplate {
                 .success(daWidget != null));
 
         evaluate(ExecutionDetails.create("Verify DA key has styleClass: " + daKeyState)
-                .success(verifyNodeHasClass(daWidget, daKeyState, 5000)));
+                .success(verifyNodeHasClass(daWidget, daKeyState, 10000)));
     }
 
     protected boolean verifyNodeHasClass(Node node, String className, long nWait) {
@@ -39,6 +39,6 @@ class VerifyDAButtonState extends FxScriptTemplate {
 
             }
         }
-        return WaitTimer.pause(condition, nWait, 200);
+        return WaitTimer.pause(condition, nWait, 400);
     }
 }
