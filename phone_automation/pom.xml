@@ -26,7 +26,6 @@
       <dslHome>${project.build.directory}/automation/dsl</dslHome>
 
       <voice.service.interface.version>0.8.0-SNAPSHOT</voice.service.interface.version>
-      <domain.voip.version>4.0.0</domain.voip.version>
     </properties>
 
    <dependencies>
@@ -63,7 +62,7 @@
       <dependency>
             <groupId>com.frequentis.c4i.test</groupId>
             <artifactId>cats-voip-steps</artifactId>
-            <version>${domain.voip.version}</version>
+            <version>${cats.version}</version>
       </dependency>
       <dependency>
          <groupId>com.frequentis.c4i.test</groupId>
@@ -74,7 +73,7 @@
       <dependency>
          <groupId>com.frequentis.c4i.test</groupId>
          <artifactId>cats-voip-pcap-steps</artifactId>
-         <version>${domain.voip.version}</version>
+         <version>${cats.version}</version>
       </dependency>
       <!-- DOMAIN PACKAGE WEBSOCKET -->
       <dependency>
@@ -85,13 +84,6 @@
       <dependency>
          <groupId>com.frequentis.xvp.voice.phone</groupId>
          <artifactId>cats-websocket-steps</artifactId>
-      </dependency>
-
-      <!--SSH STEPS to START CO-->
-      <dependency>
-         <groupId>com.frequentis.c4i.test</groupId>
-         <artifactId>cats-ssh-steps</artifactId>
-         <version>${cats.version}</version>
       </dependency>
 
       <!--JAVAFX DOMAIN-->
