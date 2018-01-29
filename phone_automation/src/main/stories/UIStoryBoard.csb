@@ -26,25 +26,7 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/CallerClearsActiveCall_UI.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/CalleeClearsActiveCall_UI.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/ClickDA_UI.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/CallerClearsActiveCall_2Hmi_UI.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/ui/CallerClearsActiveCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
