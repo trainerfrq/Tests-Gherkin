@@ -569,4 +569,50 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
       setStoryData( phoneCallIdName, jsonMessage.body().callEstablishResponse().getCallId() );
    }
+
+   @Then("$namedWebSocket receives call status indication list containing of terminated status on message buffer named $bufferName with callId $phoneCallIdName and terminationDetails $terminationDetails")
+   public void receiveAllCallStatusIndicationTerminated( final String namedWebSocket, final String bufferName,
+         final String phoneCallIdName, final String terminationDetails )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      final RemoteStepResult remoteStepResult =
+            evaluate(
+                  remoteStep( "Receiving call status indication on buffer named " + bufferName )
+                        .scriptOn( profileScriptResolver().map( ReceiveAllReceivedMessages.class,
+                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                        .input( ReceiveAllReceivedMessages.IPARAM_ENDPOINTNAME, reference.getKey() )
+                        .input( ReceiveAllReceivedMessages.IPARAM_BUFFERKEY, bufferName ) );
+
+      final ArrayList<String> jsonResponses =
+            ( ArrayList<String> ) remoteStepResult.getOutput( ReceiveAllReceivedMessages.OPARAM_RECEIVEDMESSAGES );
+
+      final List<JsonMessage> jsonMessage = jsonResponses.stream().map( response -> JsonMessage.fromJson( response ) )
+            .collect(
+                  (Collectors.toList()) );
+
+      Map<String, String> callStatusCallIdMap = jsonMessage.stream().collect(
+            Collectors.toMap( x -> x.body().callStatusIndication().getTerminationDetails().getCause(),
+                  x -> x.body().callStatusIndication().getCallId() ) );
+
+
+      Optional<String> firstKey = callStatusCallIdMap.entrySet().stream()
+            .filter( entry -> Objects.equals( entry.getValue(), terminationDetails ) )
+            .map( Map.Entry::getKey ).findFirst();
+
+      if ( firstKey.isPresent() )
+      {
+         System.out.println( "_____________==========_______________________" + firstKey.get() );
+
+
+         String terminationDetailsFound = firstKey.orElseThrow( RuntimeException::new );
+
+         evaluate( localStep( "Verify call status indication" )
+               .details(
+                     match( "Call status termination ", terminationDetailsFound, equalTo( terminationDetails ) ) ) );
+
+      }
+   }
+
 }
