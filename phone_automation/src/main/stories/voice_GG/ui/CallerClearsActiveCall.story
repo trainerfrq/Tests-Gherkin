@@ -1,3 +1,9 @@
+Scenario: Booking profiles
+Given booked profiles:
+| profile | group | host       | identifier |
+| javafx  | hmi   | <<CO1_IP>> | OP1        |
+| javafx  | hmi   | <<CO2_IP>> | OP2        |
+
 Scenario: Caller establishes an outgoing call
 When OP1 presses DA key for OP2
 Then OP1 has the DA key for OP2 in state out_ringing
