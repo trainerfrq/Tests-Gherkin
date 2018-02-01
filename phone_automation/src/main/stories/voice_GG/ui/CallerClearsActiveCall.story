@@ -12,7 +12,7 @@ Scenario: Callee client receives the incoming call
 Then HMI OP2 has the DA key for OP1 in state ringing
 
 Scenario: Callee client answers the incoming call
-When HMI OP2 presses DA key for OP2
+When HMI OP2 presses DA key for OP1
 Then HMI OP1 has the DA key for OP2 in state connected
 Then HMI OP2 has the DA key for OP1 in state connected
 
