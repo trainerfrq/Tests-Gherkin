@@ -10,17 +10,20 @@ import com.frequentis.c4i.test.bdd.fluent.step.ProfileType;
 /**
  * Created by MAyar on 18.01.2017.
  */
-public enum BookableProfileName implements ProfileType {
-    websocket, mep;
+public enum BookableProfileName implements ProfileType
+{
+   websocket, mep, javafx;
+
+   @Override
+   public String getName()
+   {
+      return this.name().toLowerCase();
+   }
 
 
-    @Override
-    public String getName() {
-        return this.name().toLowerCase();
-    }
-
-    @Override
-    public String getVariant() {
-        return "";
-    }
+   @Override
+   public String getVariant()
+   {
+      return "";
+   }
 }
