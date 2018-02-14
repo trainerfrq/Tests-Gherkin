@@ -3,17 +3,19 @@
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <bean id="context" class="com.frequentis.xvp.voice.test.automation.phone.context.SystemTestingStoriesContext"/>
+
    <!-- LOCAL COMMON STEPS WHICH ARE NOT IN ANY DOMAIN-->
    <bean id="commonLocalSteps" class="com.frequentis.xvp.voice.test.automation.phone.step.local.CommonLocalSteps"/>
+    <bean class="com.frequentis.xvp.voice.test.automation.phone.step.local.ConfigurationSteps"/>
+    <bean class="com.frequentis.xvp.voice.test.automation.phone.step.local.GGSshSteps"/>
+    <bean class="com.frequentis.xvp.voice.test.automation.phone.step.GGBasicSteps"/>
+    <bean class="com.frequentis.xvp.voice.test.automation.phone.step.UISteps"/>
 
-   <!--STEPS WHICH ARE NOT IN DOMAIN-->
-   <bean class="com.frequentis.xvp.voice.test.automation.phone.step.GGBasicSteps"/>
-   <bean class="com.frequentis.xvp.voice.test.automation.phone.step.UISteps"/>
     <import resource="classpath*:cats-master-common-step-definitions.xml"/>
     <import resource="classpath*:websocket-automation-steps.xml"/>
     <import resource="classpath*:voip-automation-steps.xml"/>
     <import resource="classpath*:voip-pcap-automation-steps.xml"/>
     <import resource="classpath*:cats-automation-text-validation-steps.xml"/>
     <import resource="classpath*:cats-automation-ssh-steps.xml"/>
-
+    <import resource="classpath*:testSystem-steps.xml"/>
 </beans>

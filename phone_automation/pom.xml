@@ -26,6 +26,7 @@
       <dslHome>${project.build.directory}/automation/dsl</dslHome>
 
       <voice.service.interface.version>0.8.0-SNAPSHOT</voice.service.interface.version>
+      <xvp-cats-libs.version>0.4.0-SNAPSHOT</xvp-cats-libs.version>
     </properties>
 
    <dependencies>
@@ -85,6 +86,12 @@
          <groupId>com.frequentis.xvp.voice.phone</groupId>
          <artifactId>cats-websocket-steps</artifactId>
       </dependency>
+      <!--SSH STEPS -->
+      <dependency>
+         <groupId>com.frequentis.c4i.test</groupId>
+         <artifactId>cats-ssh-steps</artifactId>
+         <version>${cats.version}</version>
+      </dependency>
 
       <!--JAVAFX DOMAIN-->
       <dependency>
@@ -109,6 +116,18 @@
          <groupId>com.frequentis.xvp.voice.phone</groupId>
          <artifactId>voice-hmi-dsl-co-support</artifactId>
      </dependency>
+
+      <!-- CATS STEPS FROM XVP FRAMEWORK -->
+      <dependency>
+         <groupId>com.frequentis.xvp.framework.testing</groupId>
+         <artifactId>xvp-cats-ssh</artifactId>
+         <version>${xvp-cats-libs.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>com.frequentis.xvp.framework.testing</groupId>
+         <artifactId>xvp-cats-test-system</artifactId>
+         <version>${xvp-cats-libs.version}</version>
+      </dependency>
 
       <!-- ZIP dependecies of CATS Platform needed for JUnit execution (normally provided by CATS CO) -->
       <dependency>
