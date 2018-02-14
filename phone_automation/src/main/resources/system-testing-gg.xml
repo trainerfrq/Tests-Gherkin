@@ -18,4 +18,5 @@
     <import resource="classpath*:cats-automation-text-validation-steps.xml"/>
     <import resource="classpath*:cats-automation-ssh-steps.xml"/>
     <import resource="classpath*:testSystem-steps.xml"/>
+    <import resource="classpath*:deployment-steps.xml"/>
 </beans>
