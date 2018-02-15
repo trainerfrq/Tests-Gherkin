@@ -14,7 +14,7 @@
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-      <storyBoard>GGStoryBoard.csb</storyBoard>
+      <storyBoard>UIStoryBoard.csb</storyBoard>
       <cats.wait-timeout>1000000</cats.wait-timeout>
       <docker.autopull>always</docker.autopull>
 
@@ -23,10 +23,9 @@
       <toolsjar>${java.home}/../lib/tools.jar</toolsjar>
 
       <agentsHome>${project.build.directory}/automation/agents</agentsHome>
+      <dslHome>${project.build.directory}/automation/dsl</dslHome>
 
       <voice.service.interface.version>0.8.0-SNAPSHOT</voice.service.interface.version>
-      <domain.voip.version>3.9.0</domain.voip.version>
-      <domain.websocket.version>0.1.0-SNAPSHOT</domain.websocket.version>
     </properties>
 
    <dependencies>
@@ -63,7 +62,7 @@
       <dependency>
             <groupId>com.frequentis.c4i.test</groupId>
             <artifactId>cats-voip-steps</artifactId>
-            <version>${domain.voip.version}</version>
+            <version>${cats.version}</version>
       </dependency>
       <dependency>
          <groupId>com.frequentis.c4i.test</groupId>
@@ -74,7 +73,7 @@
       <dependency>
          <groupId>com.frequentis.c4i.test</groupId>
          <artifactId>cats-voip-pcap-steps</artifactId>
-         <version>${domain.voip.version}</version>
+         <version>${cats.version}</version>
       </dependency>
       <!-- DOMAIN PACKAGE WEBSOCKET -->
       <dependency>
@@ -85,14 +84,31 @@
       <dependency>
          <groupId>com.frequentis.xvp.voice.phone</groupId>
          <artifactId>cats-websocket-steps</artifactId>
-         <version>${domain.websocket.version}</version>
       </dependency>
-      <!--SSH STEPS to START CO-->
+
+      <!--JAVAFX DOMAIN-->
       <dependency>
          <groupId>com.frequentis.c4i.test</groupId>
-         <artifactId>cats-ssh-steps</artifactId>
+         <artifactId>cats-agent-testfx</artifactId>
          <version>${cats.version}</version>
       </dependency>
+      <dependency>
+         <groupId>com.frequentis.c4i.test</groupId>
+         <artifactId>cats-javafx-plugin</artifactId>
+         <version>${cats.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>com.frequentis.xvp.voice.phone</groupId>
+          <artifactId>cats-voice-hmi-steps</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>com.frequentis.xvp.voice.phone</groupId>
+         <artifactId>voice-hmi-dsl</artifactId>
+     </dependency>
+      <dependency>
+         <groupId>com.frequentis.xvp.voice.phone</groupId>
+         <artifactId>voice-hmi-dsl-co-support</artifactId>
+     </dependency>
 
       <!-- ZIP dependecies of CATS Platform needed for JUnit execution (normally provided by CATS CO) -->
       <dependency>
@@ -150,9 +166,85 @@
             </plugins>
          </build>
       </profile>
+        <profile>
+            <!-- The distribution profile copies all the DSL artifacts of this profile into the ${automation.target} folder needed for distributing
+            them using the CATS Master FTP Server. It also generates a combined zip which can be copied to the target automation system -->
+           <id>distribution</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <configuration>
+                            <descriptors>
+                                <descriptors>src/main/assembly/distribution.xml</descriptors>
+                            </descriptors>
+                            <finalName>phone-automation</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>make-assembly</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>unpack</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>com.frequentis.xvp.voice.phone</groupId>
+                                            <artifactId>voice-hmi-dsl</artifactId>
+                                            <version>${project.version}</version>
+                                            <type>zip</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${dslHome}</outputDirectory>
+                                        </artifactItem>
+                                       <artifactItem>
+                                            <groupId>com.frequentis.xvp.voice.phone</groupId>
+                                            <artifactId>voice-hmi-dsl-co-support</artifactId>
+                                            <version>${project.version}</version>
+                                            <type>zip</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${dslHome}</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
    </profiles>
    <build>
       <plugins>
+         <plugin>
+             <groupId>org.codehaus.gmavenplus</groupId>
+             <artifactId>gmavenplus-plugin</artifactId>
+             <executions>
+                 <execution>
+                     <id>1</id>
+                     <goals>
+                         <goal>addSources</goal>
+                         <goal>generateStubs</goal>
+                         <goal>compile</goal>
+                         <goal>removeStubs</goal>
+                     </goals>
+                 </execution>
+             </executions>
+         </plugin>
          <plugin>
             <groupId>com.github.odavid.maven.plugins</groupId>
             <artifactId>mixin-maven-plugin</artifactId>

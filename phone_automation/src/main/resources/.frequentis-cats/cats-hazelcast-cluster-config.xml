@@ -11,7 +11,8 @@
           <multicast enabled="false"/>
           <tcp-ip enabled="true">
              <member>${CATS_PUBLIC_IP}:5701</member>
-             <member>${CATS_PUBLIC_IP}:5801</member>
+             <member>${CATS_CO1_IP}:5701</member>
+             <member>${CATS_CO2_IP}:5701</member>
           </tcp-ip>
        </join>
     </network>

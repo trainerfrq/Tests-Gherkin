@@ -32,7 +32,7 @@
       <maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
       <maven-compiler-plugin.target>1.8</maven-compiler-plugin.target>
 
-      <cats.version>3.9.0</cats.version>
+      <cats.version>4.1.0-EA4</cats.version>
       <slf4j.version>1.7.18</slf4j.version>
    </properties>
 
@@ -77,7 +77,21 @@
                 <artifactId>cats-websocket-steps</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
+           <dependency>
+                <groupId>com.frequentis.xvp.voice.phone</groupId>
+                <artifactId>cats-voice-hmi-steps</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+           <dependency>
+               <groupId>com.frequentis.xvp.voice.phone</groupId>
+               <artifactId>voice-hmi-dsl</artifactId>
+              <version>${project.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>com.frequentis.xvp.voice.phone</groupId>
+               <artifactId>voice-hmi-dsl-co-support</artifactId>
+              <version>${project.version}</version>
+           </dependency>
 
            <!-- General CATS dependencies -->
            <dependency>
@@ -124,6 +138,16 @@
                 <version>${cats.version}</version>
                 <scope>provided</scope>
             </dependency>
+           <dependency>
+               <groupId>com.frequentis.c4i.test</groupId>
+               <artifactId>cats-case-officer-support</artifactId>
+               <version>${cats.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>com.frequentis.c4i.test</groupId>
+               <artifactId>cats-javafx-plugin</artifactId>
+               <version>${cats.version}</version>
+           </dependency>
 
            <!-- 3rd party dependencies -->
            <dependency>
@@ -227,5 +251,7 @@
       <module>cats-websocket-steps</module>
       <module>cats-websocket-dto</module>
       <module>cats-websocket-plugin</module>
+      <module>cats-voice-hmi-steps</module>
+      <module>voice-hmi-dsl</module><module>voice-hmi-dsl-co-support</module>
    </modules>
 </project>

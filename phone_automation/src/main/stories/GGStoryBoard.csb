@@ -26,97 +26,97 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/DACalls/CallerClearsActiveCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/websocket/DACalls/CallerClearsActiveCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/DACalls/CalleeClearsActiveCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/websocket/DACalls/CalleeClearsActiveCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/DACalls/CalleeRejectsIncomingCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/websocket/DACalls/CalleeRejectsIncomingCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/DACalls/CallerCancelsOutgoingCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/websocket/DACalls/CallerCancelsOutgoingCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/DACalls/DisassociateClientOnActiveCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/websocket/DACalls/DisassociateClientOnActiveCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/DACalls/DisassociateClientOnIncomingCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/websocket/DACalls/DisassociateClientOnIncomingCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/DACalls/DisassociateClientOnOutgoingCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/websocket/DACalls/DisassociateClientOnOutgoingCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/IACalls/IABasicCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/websocket/IACalls/IABasicCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/SipPhones/OperatorToSipPhoneCallerClearsCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/websocket/SipPhones/OperatorToSipPhoneCallerClearsCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/SipPhones/SipPhoneToOperatorCallerTerminatesCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/websocket/SipPhones/SipPhoneToOperatorCallerTerminatesCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/SipPhones/OperatorToSipPhoneCalleeRejectsCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/websocket/SipPhones/OperatorToSipPhoneCalleeRejectsCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                          <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/SipPhones/OperatorToSipPhoneCalleeTerminatesCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/websocket/SipPhones/OperatorToSipPhoneCalleeTerminatesCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/SipPhones/OperatorToSipPhoneCallerCancelsCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/websocket/SipPhones/OperatorToSipPhoneCallerCancelsCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                          <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/SipPhones/SipPhoneToOperatorCalleeClearsCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/websocket/SipPhones/SipPhoneToOperatorCalleeClearsCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/SipPhones/SipPhoneToOperatorCalleeRejectsCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/websocket/SipPhones/SipPhoneToOperatorCalleeRejectsCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                          <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/SipPhones/SipPhoneToOperatorCallerCancelsCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/websocket/SipPhones/SipPhoneToOperatorCallerCancelsCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
