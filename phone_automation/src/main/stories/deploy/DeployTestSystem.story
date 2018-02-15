@@ -26,3 +26,23 @@ And waiting for 60 seconds
 Then ssh connection can be established to dockerhost3 within 13 minutes
 And verify start xvp deployment agent process finished with command systemctl is-active xvp-deployment-agent; echo $? on dockerhost3 and check output active 0
 
+Scenario: Create cwp1 machine with PXE boot enabled and verify that cwp1 is accessible via SSH after the deployment has completed
+Given xvp test system
+When rebooting the machine cwp1
+And waiting for 60 seconds
+Then ssh connection can be established to cwp1 within 13 minutes
+And verify start xvp deployment agent process finished with command systemctl is-active xvp-deployment-agent; echo $? on cwp1 and check output active 0
+
+Scenario: Create cwp2 machine with PXE boot enabled and verify that cwp2 is accessible via SSH after the deployment has completed
+Given xvp test system
+When rebooting the machine cwp2
+And waiting for 60 seconds
+Then ssh connection can be established to cwp2 within 13 minutes
+And verify start xvp deployment agent process finished with command systemctl is-active xvp-deployment-agent; echo $? on cwp2 and check output active 0
+
+Scenario: Create cwp3 machine with PXE boot enabled and verify that cwp3 is accessible via SSH after the deployment has completed
+Given xvp test system
+When rebooting the machine cwp3
+And waiting for 60 seconds
+Then ssh connection can be established to cwp3 within 13 minutes
+And verify start xvp deployment agent process finished with command systemctl is-active xvp-deployment-agent; echo $? on cwp3 and check output active 0
