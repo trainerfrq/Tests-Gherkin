@@ -5,6 +5,10 @@
  */
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import scripts.cats.websocket.sequential.SendTextMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
+import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
+import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 import static com.frequentis.c4i.test.model.MatcherDetails.match;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.empty;
@@ -16,6 +20,7 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -34,6 +39,7 @@ import com.frequentis.xvp.voice.opvoice.json.messages.AssociateResponseResult;
 import com.frequentis.xvp.voice.opvoice.json.messages.CallAcceptRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.CallClearRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.CallEstablishRequest;
+import com.frequentis.xvp.voice.opvoice.json.messages.CallHoldRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.CallIncomingConfirmation;
 import com.frequentis.xvp.voice.opvoice.json.messages.CallStatusIndication;
 import com.frequentis.xvp.voice.opvoice.json.messages.DisassociateResponse;
@@ -45,10 +51,6 @@ import com.frequentis.xvp.voice.opvoice.json.messages.missions.ChangeMissionResp
 import com.frequentis.xvp.voice.opvoice.json.messages.missions.MissionChangeCompletedEvent;
 import com.frequentis.xvp.voice.opvoice.json.messages.missions.MissionChangedIndication;
 import com.google.common.collect.Lists;
-
-import scripts.cats.websocket.sequential.SendTextMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
-import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 
 public class GGBasicSteps extends WebsocketAutomationSteps
 {
@@ -288,6 +290,103 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    }
 
 
+   @Then("$namedWebSocket receives call status indication verifying all the messages on message buffer named $bufferName with callId $phoneCallIdName and status $callStatus")
+   public void receiveCallStatusIndicationAllMessages( final String namedWebSocket, final String bufferName,
+         final String phoneCallIdName, final String callStatus )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      final RemoteStepResult remoteStepResult =
+            evaluate(
+                  remoteStep( "Receiving all call status indication messages on buffer named " + bufferName )
+                        .scriptOn( profileScriptResolver().map( ReceiveAllReceivedMessages.class,
+                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                        .input( ReceiveAllReceivedMessages.IPARAM_ENDPOINTNAME, reference.getKey() )
+                        .input( ReceiveAllReceivedMessages.IPARAM_BUFFERKEY, bufferName ) );
+
+      final List<String> receivedMessagesList =
+            ( List<String> ) remoteStepResult.getOutput( ReceiveAllReceivedMessages.OPARAM_RECEIVEDMESSAGES );
+
+      boolean isMatchingMessagePresent = false;
+      String matchingJsonMessage = null;
+      for ( String textMessage : receivedMessagesList )
+      {
+         final JsonMessage jsonMessage = JsonMessage.fromJson( textMessage );
+
+         evaluate( localStep( "Verifying messages from buffer" )
+               .details( ExecutionDetails.create( "Verifying messages from buffer" )
+                     .usedData( "Verifying message number: ", receivedMessagesList.indexOf( textMessage ) )
+                     .usedData( "Current message: ", textMessage ).success( true ) ) );
+
+         if ( jsonMessage.body().isCallStatusIndication()
+               && jsonMessage.body().callStatusIndication().getCallId()
+                     .equals( getStoryData( phoneCallIdName, String.class ) )
+               && jsonMessage.body().callStatusIndication().getCallStatus().equals( callStatus ) )
+         {
+            matchingJsonMessage = textMessage;
+            isMatchingMessagePresent = true;
+         }
+      }
+
+      evaluate( localStep( "Verify if desired message was contained in buffer" )
+            .details( match( "Buffer should contain desired message", isMatchingMessagePresent, equalTo( true ) ) )
+            .details(
+                  ExecutionDetails.create( "The desired message is" ).usedData( "Message: ", matchingJsonMessage ) ) );
+   }
+
+
+   @Then("$namedWebSocket does NOT receive call status indication verifying all the messages on message buffer named $bufferName with callId $phoneCallIdName and status $callStatus")
+   public void doesNotReceiveCallStatusIndicationAllMessages( final String namedWebSocket, final String bufferName,
+         final String phoneCallIdName, final String callStatus )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      final RemoteStepResult remoteStepResult =
+            evaluate(
+                  remoteStep( "Receiving all call status indication messages on buffer named " + bufferName )
+                        .scriptOn( profileScriptResolver().map( ReceiveAllReceivedMessages.class,
+                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                        .input( ReceiveAllReceivedMessages.IPARAM_ENDPOINTNAME, reference.getKey() )
+                        .input( ReceiveAllReceivedMessages.IPARAM_BUFFERKEY, bufferName ) );
+
+      final List<String> receivedMessagesList =
+            ( List<String> ) remoteStepResult.getOutput( ReceiveAllReceivedMessages.OPARAM_RECEIVEDMESSAGES );
+
+      boolean isMatchingMessagePresent = false;
+      String matchingJsonMessage;
+      for ( String textMessage : receivedMessagesList )
+      {
+         final JsonMessage jsonMessage = JsonMessage.fromJson( textMessage );
+
+         evaluate( localStep( "Verifying messages from buffer" )
+               .details( ExecutionDetails.create( "Verifying messages from buffer" )
+                     .usedData( "Verifying message number: ", receivedMessagesList.indexOf( textMessage ) )
+                     .usedData( "Current message: ", textMessage ).success( true ) ) );
+
+         if ( jsonMessage.body().isCallStatusIndication()
+               && jsonMessage.body().callStatusIndication().getCallId()
+                     .equals( getStoryData( phoneCallIdName, String.class ) )
+               && jsonMessage.body().callStatusIndication().getCallStatus().equals( callStatus ) )
+         {
+
+            matchingJsonMessage = textMessage;
+            isMatchingMessagePresent = true;
+
+            evaluate( localStep( "Verify if message was NOT contained in buffer" )
+                  .details( match( "Buffer should NOT contain desired message", isMatchingMessagePresent,
+                        equalTo( false ) ) )
+                  .details( ExecutionDetails.create( "Message was found!" ).usedData( "Message: ",
+                        matchingJsonMessage ) ) );
+         }
+      }
+
+      evaluate( localStep( "Verify if message was NOT contained in buffer" ).details(
+            match( "Buffer should NOT contain desired message", isMatchingMessagePresent, equalTo( false ) ) ) );
+   }
+
+
    @Then("$namedWebSocket receives call status indication on message buffer named $bufferName with callId $phoneCallIdName and status $callStatus and audio direction $audioDirection")
    public void receiveCallStatusIndicationOpt( final String namedWebSocket, final String bufferName,
          final String phoneCallIdName, final String callStatus, final String audioDirection )
@@ -419,6 +518,23 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             JsonMessage.builder().withCorrelationId( UUID.randomUUID() )
                   .withPayload( new CallClearRequest( getStoryData( phoneCallIdName, String.class ) ) ).build();
       evaluate( remoteStep( "Clearing the phone call" )
+            .scriptOn( profileScriptResolver().map( SendTextMessage.class, BookableProfileName.websocket ),
+                  requireProfile( reference.getProfileName() ) )
+            .input( SendAndReceiveTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+            .input( SendAndReceiveTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
+   }
+
+
+   @When("$namedWebSocket holds the phone call with the callId $phoneCallIdName")
+   public void holdPhoneCall( final String namedWebSocket, final String phoneCallIdName )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      final JsonMessage request =
+            JsonMessage.builder().withCorrelationId( UUID.randomUUID() )
+                  .withPayload( new CallHoldRequest( getStoryData( phoneCallIdName, String.class ) ) ).build();
+      evaluate( remoteStep( "Holding the phone call" )
             .scriptOn( profileScriptResolver().map( SendTextMessage.class, BookableProfileName.websocket ),
                   requireProfile( reference.getProfileName() ) )
             .input( SendAndReceiveTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
@@ -569,50 +685,4 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
       setStoryData( phoneCallIdName, jsonMessage.body().callEstablishResponse().getCallId() );
    }
-
-   @Then("$namedWebSocket receives call status indication list containing of terminated status on message buffer named $bufferName with callId $phoneCallIdName and terminationDetails $terminationDetails")
-   public void receiveAllCallStatusIndicationTerminated( final String namedWebSocket, final String bufferName,
-         final String phoneCallIdName, final String terminationDetails )
-   {
-      final ProfileToWebSocketConfigurationReference reference =
-            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
-
-      final RemoteStepResult remoteStepResult =
-            evaluate(
-                  remoteStep( "Receiving call status indication on buffer named " + bufferName )
-                        .scriptOn( profileScriptResolver().map( ReceiveAllReceivedMessages.class,
-                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
-                        .input( ReceiveAllReceivedMessages.IPARAM_ENDPOINTNAME, reference.getKey() )
-                        .input( ReceiveAllReceivedMessages.IPARAM_BUFFERKEY, bufferName ) );
-
-      final ArrayList<String> jsonResponses =
-            ( ArrayList<String> ) remoteStepResult.getOutput( ReceiveAllReceivedMessages.OPARAM_RECEIVEDMESSAGES );
-
-      final List<JsonMessage> jsonMessage = jsonResponses.stream().map( response -> JsonMessage.fromJson( response ) )
-            .collect(
-                  (Collectors.toList()) );
-
-      Map<String, String> callStatusCallIdMap = jsonMessage.stream().collect(
-            Collectors.toMap( x -> x.body().callStatusIndication().getTerminationDetails().getCause(),
-                  x -> x.body().callStatusIndication().getCallId() ) );
-
-
-      Optional<String> firstKey = callStatusCallIdMap.entrySet().stream()
-            .filter( entry -> Objects.equals( entry.getValue(), terminationDetails ) )
-            .map( Map.Entry::getKey ).findFirst();
-
-      if ( firstKey.isPresent() )
-      {
-         System.out.println( "_____________==========_______________________" + firstKey.get() );
-
-
-         String terminationDetailsFound = firstKey.orElseThrow( RuntimeException::new );
-
-         evaluate( localStep( "Verify call status indication" )
-               .details(
-                     match( "Call status termination ", terminationDetailsFound, equalTo( terminationDetails ) ) ) );
-
-      }
-   }
-
 }
