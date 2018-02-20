@@ -5,7 +5,7 @@ Given booked profiles:
 | voip      | opv   | <<CO1_IP>> | VOIP       |
 
 Scenario: Open Web Socket Client connections
-Given named the websocket configurations:docker
+Given named the websocket configurations:
 | named       | websocket-uri       | text-buffer-size |
 | WS_Config-1 | <<OPVOICE1_WS.URI>> | 1000             |
 | WS_Config-2 | <<OPVOICE2_WS.URI>> | 1000             |

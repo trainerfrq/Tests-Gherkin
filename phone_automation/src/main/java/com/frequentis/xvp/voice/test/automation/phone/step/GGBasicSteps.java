@@ -41,6 +41,7 @@ import com.frequentis.xvp.voice.opvoice.json.messages.CallClearRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.CallEstablishRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.CallHoldRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.CallIncomingConfirmation;
+import com.frequentis.xvp.voice.opvoice.json.messages.CallRetrieveRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.CallStatusIndication;
 import com.frequentis.xvp.voice.opvoice.json.messages.DisassociateResponse;
 import com.frequentis.xvp.voice.opvoice.json.messages.DisassociateResponseResult;
@@ -534,6 +535,23 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       final JsonMessage request =
             JsonMessage.builder().withCorrelationId( UUID.randomUUID() )
                   .withPayload( new CallHoldRequest( getStoryData( phoneCallIdName, String.class ) ) ).build();
+      evaluate( remoteStep( "Holding the phone call" )
+            .scriptOn( profileScriptResolver().map( SendTextMessage.class, BookableProfileName.websocket ),
+                  requireProfile( reference.getProfileName() ) )
+            .input( SendAndReceiveTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+            .input( SendAndReceiveTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
+   }
+
+
+   @When("$namedWebSocket retrieves the on hold phone call with the callId $phoneCallIdName")
+   public void retrievePhoneCallOnHold( final String namedWebSocket, final String phoneCallIdName )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      final JsonMessage request =
+            JsonMessage.builder().withCorrelationId( UUID.randomUUID() )
+                  .withPayload( new CallRetrieveRequest( getStoryData( phoneCallIdName, String.class ) ) ).build();
       evaluate( remoteStep( "Holding the phone call" )
             .scriptOn( profileScriptResolver().map( SendTextMessage.class, BookableProfileName.websocket ),
                   requireProfile( reference.getProfileName() ) )

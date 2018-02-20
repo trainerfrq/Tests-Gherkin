@@ -17,24 +17,13 @@ When WS1 loads phone data for role roleId1 and names callSource and callTarget
 
 Scenario: Caller establishes an outgoing call
 When WS1 establishes an outgoing phone call using source callSource ang target callTarget and names outgoingPhoneCallId1
-And waiting for 3 seconds
+And waiting for 1 seconds
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status out_trying
 
 Scenario: Callee client receives the incoming call and confirms it
 When WS2 receives call incoming indication on message buffer named CallIncomingIndicationBuffer2 with callSource and callTarget and names incomingPhoneCallId1
 And WS2 confirms incoming phone call with callId incomingPhoneCallId1
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status out_ringing
-
-Scenario: Callee client answers the incoming call
-When WS2 answers the incoming phone call with the callId incomingPhoneCallId1
-Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status connected
-And WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status connected
-
-Scenario: Callee client hold the call
-When WS2 holds the phone call with the callId incomingPhoneCallId1
-And waiting for 3 seconds
-Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status hold
-And WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status held
 
 Scenario: Define call target
 When define values in story data:
@@ -47,7 +36,7 @@ When WS2 clears all text messages from buffer named CallStatusIndicationBuffer2
 
 Scenario: Caller establishes another outgoing call
 When WS1 establishes an outgoing phone call using source callSource ang target sipPhoneTarget and names outgoingPhoneCallId2
-And waiting for 3 seconds
+And waiting for 1 seconds
 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status out_ringing
 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status terminated
 Then WS2 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and terminationDetails normal

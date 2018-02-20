@@ -18,7 +18,7 @@ When WS1 loads phone data for role roleId1 and names callSource and callTarget
 
 Scenario: Caller establishes an outgoing call
 When WS1 establishes an outgoing phone call using source callSource ang target callTarget and names outgoingPhoneCallId
-And waiting for 3 seconds
+And waiting for 1 seconds
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status out_trying
 
 Scenario: Callee client receives the incoming call and confirms it
@@ -28,13 +28,13 @@ Then WS1 receives call status indication on message buffer named CallStatusIndic
 
 Scenario: Callee client answers the incoming call
 When WS2 answers the incoming phone call with the callId incomingPhoneCallId1
-And waiting for 3 seconds
+And waiting for 1 seconds
 Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status connected
 And WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status connected
 
 Scenario: Callee client hold the call
 When WS2 holds the phone call with the callId incomingPhoneCallId1
-And waiting for 3 seconds
+And waiting for 1 seconds
 Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status hold
 And WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status held
 
@@ -58,7 +58,7 @@ Then SipContact DialogState is EARLY within 100 ms
 
 Scenario: Callee client answers the incoming call
 When WS1 answers the incoming phone call with the callId incomingPhoneCallId2
-And waiting for 3 seconds
+And waiting for 1 seconds
 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId incomingPhoneCallId2 and status connected
 Then SipContact DialogState is CONFIRMED within 100 ms
 
