@@ -24,7 +24,7 @@ When WS2 receives call incoming indication on message buffer named CallIncomingI
 
 Scenario: Callee client disassociates from OP Voice
 When WS2 disassociates from Op Voice Service
-Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status terminated
+Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status out_failed
 
 Scenario: Cleanup
 When WS1 disassociates from Op Voice Service

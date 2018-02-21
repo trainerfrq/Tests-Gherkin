@@ -5,10 +5,6 @@
  */
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import scripts.cats.websocket.sequential.SendTextMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
-import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
-import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 import static com.frequentis.c4i.test.model.MatcherDetails.match;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.empty;
@@ -52,6 +48,11 @@ import com.frequentis.xvp.voice.opvoice.json.messages.missions.ChangeMissionResp
 import com.frequentis.xvp.voice.opvoice.json.messages.missions.MissionChangeCompletedEvent;
 import com.frequentis.xvp.voice.opvoice.json.messages.missions.MissionChangedIndication;
 import com.google.common.collect.Lists;
+
+import scripts.cats.websocket.sequential.SendTextMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
+import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
+import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 
 public class GGBasicSteps extends WebsocketAutomationSteps
 {
@@ -419,9 +420,9 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    }
 
 
-   @Then("$namedWebSocket receives call status indication with terminated status on message buffer named $bufferName with callId $phoneCallIdName and terminationDetails $terminationDetails")
-   public void receiveCallStatusIndicationTerminated( final String namedWebSocket, final String bufferName,
-         final String phoneCallIdName, final String terminationDetails )
+   @Then("$namedWebSocket receives call status indication with $callStatus status on message buffer named $bufferName with callId $phoneCallIdName and terminationDetails $terminationDetails")
+   public void receiveCallStatusIndicationTerminated( final String namedWebSocket, final String callStatus,
+         final String bufferName, final String phoneCallIdName, final String terminationDetails )
    {
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
@@ -443,8 +444,8 @@ public class GGBasicSteps extends WebsocketAutomationSteps
                   match( "Is call status indication", jsonMessage.body().isCallStatusIndication(), equalTo( true ) ) )
             .details( match( "Phone call id matches", jsonMessage.body().callStatusIndication().getCallId(),
                   equalTo( getStoryData( phoneCallIdName, String.class ) ) ) )
-            .details( match( "Call status is terminated", jsonMessage.body().callStatusIndication().getCallStatus(),
-                  equalTo( CallStatusIndication.TERMINATED ) ) )
+            .details( match( "Call status matches", jsonMessage.body().callStatusIndication().getCallStatus(),
+                  equalTo( callStatus ) ) )
             .details( match( "Termination details is not null",
                   jsonMessage.body().callStatusIndication().getTerminationDetails(), is( notNullValue() ) ) )
             .details( match( "Termination details cause is " + terminationDetails,

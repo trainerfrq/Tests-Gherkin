@@ -32,7 +32,7 @@ And waiting for 1 seconds
 Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status connected
 And WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status connected
 
-Scenario: Callee client hold the call
+Scenario: Callee client holds the call
 When WS2 holds the phone call with the callId incomingPhoneCallId1
 And waiting for 1 seconds
 Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status hold
