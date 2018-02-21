@@ -1,7 +1,7 @@
 Narrative:
-GIVEN an active call on an operator position
-WHEN the operator position initiates a new call
-THEN the active call shall be cleared
+As an operator having an active phone call
+I want to establish another phone call
+So that I can verify that the first phone call is terminated
 
 Meta:
      @BeforeStory: ../includes/@PrepareTwoClientsWithMissionsAndSipPhone.story
