@@ -1,4 +1,9 @@
-Scenario: Upload configuration files in Configuration Management Service
+Scenario: Upload configuration files in Configuration Management Service for Mission Service
+When using endpoint <<configurationMngEndpoint>> create configuration id mission-service
+Then waiting for 3 seconds
+And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/mission-service/items/opMissionsConfiguration.json with payload /configuration-files/<<systemName>>/opMissionsConfiguration.json
+
+Scenario: Upload configuration files in Configuration Management Service for Op Voice Service
 When using endpoint <<configurationMngEndpoint>> create configuration id op-voice-service
 Then waiting for 3 seconds
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/items/audioAppClient.json with payload /configuration-files/<<systemName>>/audioAppClient.json
@@ -25,6 +30,8 @@ When the services are updated on deploymentServer
 Then SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp download
 
 Scenario: Start services
+When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy mission_service
+Then waiting for 5 seconds
 When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy phone_routing
 Then waiting for 5 seconds
 When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy audio_service
@@ -39,18 +46,4 @@ And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xv
 Then waiting for 5 seconds
 And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy voice_hmi04
 Then waiting for 5 seconds
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
