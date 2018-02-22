@@ -1,0 +1,419 @@
+[
+  {
+    "roleId": "00000000-0000-0000-0000-000000000001",
+    "roleName": "LOWER-EAST-EXEC",
+    "sipAddresses": {
+      "rolePrimarySipAddress": "sip:role1@example.com",
+      "roleAliasSipAddresses": [
+        "sip:role1alias1@example.com",
+        "sip:role1alias2@example.com",
+        "sip:group1@example.com"
+      ]
+    },
+    "layout": {
+      "roleLayoutInitData": {
+        "columnNumber": 1,
+        "rowNumber": 1,
+        "column": 0,
+        "row": 0,
+        "usedColumnNumber": 1,
+        "usedRowNumber": 1
+      },
+      "roleGridInitData": {
+        "columnNumber": 12,
+        "rowNumber": 18
+      },
+      "roleWidgetLayout": {
+        "widgets": [
+          {
+            "id": "cq1",
+            "type": "callQueue",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "status1",
+            "type": "status",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "f1",
+            "type": "function",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "700",
+            "type": "da",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "706",
+            "type": "da",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "906",
+            "type": "da",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "708",
+            "type": "da",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "710",
+            "type": "da",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "1110",
+            "type": "da",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "111.000",
+            "type": "radio",
+            "grid": "applicationGrid"
+          }
+        ],
+        "positions": [
+          {
+            "id": "cq1",
+            "column": "3",
+            "row": "0",
+            "columnSpan": "3",
+            "rowSpan": "18"
+          },
+          {
+            "id": "status1",
+            "column": "0",
+            "row": "0",
+            "columnSpan": "3",
+            "rowSpan": "4"
+          },
+          {
+            "id": "f1",
+            "column": "0",
+            "row": "4",
+            "columnSpan": "3",
+            "rowSpan": "2"
+          },
+          {
+            "id": "700",
+            "column": 7,
+            "row": 0,
+            "columnSpan": 2,
+            "rowSpan": 2
+          },
+          {
+            "id": "706",
+            "column": 7,
+            "row": 6,
+            "columnSpan": 2,
+            "rowSpan": 2
+          },
+          {
+            "id": "906",
+            "column": 9,
+            "row": 6,
+            "columnSpan": 2,
+            "rowSpan": 2
+          },
+          {
+            "id": "708",
+            "column": 7,
+            "row": 8,
+            "columnSpan": 2,
+            "rowSpan": 2
+          },
+          {
+            "id": "710",
+            "column": 7,
+            "row": 10,
+            "columnSpan": 2,
+            "rowSpan": 2
+          },
+          {
+            "id": "1110",
+            "column": 10,
+            "row": 10,
+            "columnSpan": 2,
+            "rowSpan": 2
+          },
+          {
+            "id": "111.000",
+            "column": 9,
+            "row": 0,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        ]
+      },
+      "roleGridWidgetData": {
+        "grid": [
+        ]
+      },
+      "roleFunctionData": {
+        "functionData": [
+          {
+            "id": "f1",
+            "type": "ShowAvailableMissions"
+          }
+        ]
+      },
+      "rolePhoneData": {
+        "da": [
+          {
+            "id": "700",
+            "target": "sip:222222@example.com",
+            "source": "sip:111111@example.com",
+            "displayName": "OP 2"
+          },
+          {
+            "id": "706",
+            "target": "sip:gg-snom1@192.168.40.10",
+            "source": "sip:111111@192.168.40.10",
+            "displayName": "Snom (as OP1)"
+          },
+          {
+            "id": "906",
+            "target": "sip:cisco@192.168.40.10",
+            "source": "sip:111111@192.168.40.10",
+            "displayName": "Cisco (as OP1)"
+          },
+          {
+            "id": "708",
+            "target": "sip:role2@example.com",
+            "source": "sip:role1@example.com",
+            "displayName": "ROLE 2"
+          },
+          {
+            "id": "710",
+            "target": "sip:gg-snom1@192.168.40.10",
+            "source": "sip:role1@example.com",
+            "displayName": "Snom (as ROLE1)"
+          },
+          {
+            "id": "1110",
+            "target": "sip:gg-snom1@192.168.40.10",
+            "source": "sip:group1@example.com",
+            "displayName": "Group1 (for Snom)"
+          }
+        ]
+      },
+      "roleStatusDisplayData": {
+        "statusDisplay": [
+          {
+            "id": "status0",
+            "time": "%H:%M",
+            "showClock": true,
+            "showMission": true,
+            "showConnectionStatus": true
+          },
+          {
+            "id": "status1",
+            "time": "HH:mm:ss",
+            "showClock": true,
+            "showMission": true,
+            "showConnectionStatus": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "roleId": "00000000-0000-0000-0000-000000000002",
+    "roleName": "LOWER-WEST-EXEC",
+    "sipAddresses": {
+      "rolePrimarySipAddress": "sip:role2@example.com",
+      "roleAliasSipAddresses": [
+        "sip:role1alias1@example.com",
+        "sip:role1alias2@example.com",
+        "sip:group1@example.com"
+      ]
+    },
+    "layout": {
+      "roleLayoutInitData": {
+        "columnNumber": 1,
+        "rowNumber": 1,
+        "column": 0,
+        "row": 0,
+        "usedColumnNumber": 1,
+        "usedRowNumber": 1
+      },
+      "roleGridInitData": {
+        "columnNumber": 12,
+        "rowNumber": 18
+      },
+      "roleWidgetLayout": {
+        "widgets": [
+          {
+            "id": "grid2",
+            "type": "grid",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "702",
+            "type": "da",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "706",
+            "type": "da",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "906",
+            "type": "da",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "708",
+            "type": "da",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "710",
+            "type": "da",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "1110",
+            "type": "da",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "111.000",
+            "type": "radio",
+            "grid": "applicationGrid"
+          }
+        ],
+        "positions": [
+          {
+            "id": "grid2",
+            "column": 0,
+            "row": 0,
+            "columnSpan": 6,
+            "rowSpan": 5
+          },
+          {
+            "id": "702",
+            "column": 7,
+            "row": 2,
+            "columnSpan": 2,
+            "rowSpan": 2
+          },
+          {
+            "id": "706",
+            "column": 7,
+            "row": 6,
+            "columnSpan": 2,
+            "rowSpan": 2
+          },
+          {
+            "id": "906",
+            "column": 9,
+            "row": 6,
+            "columnSpan": 2,
+            "rowSpan": 2
+          },
+          {
+            "id": "708",
+            "column": 7,
+            "row": 8,
+            "columnSpan": 2,
+            "rowSpan": 2
+          },
+          {
+            "id": "710",
+            "column": 7,
+            "row": 10,
+            "columnSpan": 2,
+            "rowSpan": 2
+          },
+          {
+            "id": "1110",
+            "column": 10,
+            "row": 10,
+            "columnSpan": 2,
+            "rowSpan": 2
+          },
+          {
+            "id": "111.000",
+            "column": 9,
+            "row": 0,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        ]
+      },
+      "roleGridWidgetData": {
+        "grid": [
+          {
+            "id": "grid2",
+            "columnNumber": "8",
+            "rowNumber": "10"
+          }
+        ]
+      },
+      "rolePhoneData": {
+        "da": [
+          {
+            "id": "702",
+            "target": "sip:111111@example.com",
+            "source": "sip:222222@example.com",
+            "displayName": "OP 1"
+          },
+          {
+            "id": "706",
+            "target": "sip:gg-snom1@192.168.40.10",
+            "source": "sip:222222@192.168.40.10",
+            "displayName": "Snom (as OP2)"
+          },
+          {
+            "id": "906",
+            "target": "sip:cisco@192.168.40.10",
+            "source": "sip:222222@192.168.40.10",
+            "displayName": "Cisco (as OP2)"
+          },
+          {
+            "id": "708",
+            "target": "sip:role1@example.com",
+            "source": "sip:role2@example.com",
+            "displayName": "ROLE 1"
+          },
+          {
+            "id": "710",
+            "target": "sip:gg-snom1@192.168.40.10",
+            "source": "sip:role2@example.com",
+            "displayName": "Snom (as ROLE 2)"
+          },
+          {
+            "id": "1110",
+            "target": "sip:gg-snom1@192.168.40.10",
+            "source": "sip:group1@example.com",
+            "displayName": "Group1 (for Snom)"
+          }
+        ]
+      },
+      "roleStatusDisplayData": {
+        "statusDisplay": [
+          {
+            "id": "status0",
+            "time": "%H:%M",
+            "showClock": true,
+            "showMission": true,
+            "showConnectionStatus": true
+          },
+          {
+            "id": "status1",
+            "time": "HH:mm:ss",
+            "showClock": true,
+            "showMission": true,
+            "showConnectionStatus": true
+          }
+        ]
+      }
+    }
+  }
+]
