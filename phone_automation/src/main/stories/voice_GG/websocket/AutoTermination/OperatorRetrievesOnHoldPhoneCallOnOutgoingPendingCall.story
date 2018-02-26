@@ -32,8 +32,8 @@ And waiting for 1 seconds
 Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status connected
 And WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status connected
 
-Scenario: Caller client hold the call
-When WS1 holds the phone call with the callId outgoingPhoneCallId1
+Scenario: Caller client puts the call on hold
+When WS1 puts the phone call with the callId outgoingPhoneCallId1 on hold
 And waiting for 1 seconds
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status hold
 And WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status held
@@ -49,7 +49,6 @@ When define values in story data:
 
 Scenario: Callee establishes an outgoing call
 When WS1 establishes an outgoing phone call using source callSource ang target calledTarget and names outgoingPhoneCallId2
-And waiting for 1 seconds
 Then SipContact DialogState is EARLY within 100 ms
 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status out_ringing
 

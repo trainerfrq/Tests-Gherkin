@@ -38,6 +38,8 @@ Scenario: Caller establishes another outgoing call
 When WS1 establishes an outgoing phone call using source callSource ang target sipPhoneTarget and names outgoingPhoneCallId2
 And waiting for 1 seconds
 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status out_ringing
+
+Scenario: Verify the call is terminated
 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status terminated
 Then WS2 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and terminationDetails normal
 

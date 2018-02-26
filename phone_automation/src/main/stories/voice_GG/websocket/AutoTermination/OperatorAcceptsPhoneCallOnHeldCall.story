@@ -32,8 +32,8 @@ And waiting for 1 seconds
 Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status connected
 And WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status connected
 
-Scenario: Callee client holds the call
-When WS2 holds the phone call with the callId incomingPhoneCallId1
+Scenario: Callee client puts the call on hold
+When WS2 puts the phone call with the callId incomingPhoneCallId1 on hold
 And waiting for 1 seconds
 Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status hold
 And WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status held
@@ -68,6 +68,7 @@ Then WS2 receives call status indication with terminated status on message buffe
 
 Scenario: Callee client clears the phone call
 When WS1 clears the phone call with the callId incomingPhoneCallId2
+When WS1 clears the phone call with the callId outgoingPhoneCallId
 
 Scenario: Delete the message buffers
 When the named websocket WS1 removes the message buffer named CallStatusIndicationBuffer1
