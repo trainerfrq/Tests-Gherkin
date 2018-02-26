@@ -12,6 +12,8 @@
           <tcp-ip enabled="true">
              <member>192.168.100.10:5701</member>
              <member>192.168.100.13:5701</member>
+             <member>10.31.205.40:5701</member>
+             <member>10.31.205.43:5701</member>
           </tcp-ip>
        </join>
     </network>
