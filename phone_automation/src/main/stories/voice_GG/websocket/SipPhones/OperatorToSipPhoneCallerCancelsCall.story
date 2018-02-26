@@ -23,7 +23,7 @@ When WS1 opens the message buffer for message type missionChangedIndication name
 When WS1 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer1
 
 Scenario: Caller client associates with Op Voice Service
-When WS1 associates with Op Voice Service using opId op1 and appId app1
+When WS1 associates with Op Voice Service using opId op03 and appId app1
 Then WS1 receives missions available indication on message buffer named MissionsAvailableIndicationBuffer1 and names the availableMissionIds1
 Then WS1 receives mission changed indication on message buffer named MissionChangedIndicationBuffer1 and names missionId1
 Then WS1 confirms mission change completed for mission missionId1

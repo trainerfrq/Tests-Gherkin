@@ -1,7 +1,7 @@
 Scenario: Booking profiles
 Given booked profiles:
-| profile   | group | host       |
-| websocket | hmi   | <<CO1_IP>> |
+| profile   | group          | host       |
+| websocket | <<systemName>> | <<CO1_IP>> |
 
 Scenario: Open Web Socket Client connections
 Given named the websocket configurations:
@@ -22,13 +22,13 @@ When WS2 opens the message buffer for message type missionsAvailableIndication n
 When WS2 opens the message buffer for message type missionChangedIndication named MissionChangedIndicationBuffer2
 
 Scenario: Caller client associates with Op Voice Service
-When WS1 associates with Op Voice Service using opId op1 and appId app1
+When WS1 associates with Op Voice Service using opId op03 and appId app1
 Then WS1 receives missions available indication on message buffer named MissionsAvailableIndicationBuffer1 and names the availableMissionIds1
 Then WS1 receives mission changed indication on message buffer named MissionChangedIndicationBuffer1 and names missionId1
 Then WS1 confirms mission change completed for mission missionId1
 
 Scenario: Callee client associates with Op Voice Service
-When WS2 associates with Op Voice Service using opId op2 and appId app2
+When WS2 associates with Op Voice Service using opId op04 and appId app2
 Then WS2 receives missions available indication on message buffer named MissionsAvailableIndicationBuffer2 and names the availableMissionIds2
 And WS2 receives mission changed indication on message buffer named MissionChangedIndicationBuffer2 and names missionId2
 Then WS2 confirms mission change completed for mission missionId2

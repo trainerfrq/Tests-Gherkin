@@ -49,6 +49,20 @@ public class GGSshSteps extends SshSteps
    }
 
 
+   @When("the start case officer script is copied to $connectionName")
+   public void copyCOScript( final String connectionName ) throws IOException
+   {
+      final String systemName = StepsUtil.getEnvProperty( "systemName" );
+
+      String filePath = "/configuration-files/" + systemName + "/runCO.sh";
+
+      final String scriptContent = processConfigurationTemplate( StepsUtil.getConfigFile( filePath ), new HashMap<>() );
+
+      executeSshCommand( connectionName,
+            "read -d '' runCO << \\EOF \n" + scriptContent + "\nEOF\n\n echo \"$runCO\" > /root/runCO.sh" );
+   }
+
+
    private String processConfigurationTemplate( final File templatePath, final Map<String, String> sub )
       throws IOException
    {
