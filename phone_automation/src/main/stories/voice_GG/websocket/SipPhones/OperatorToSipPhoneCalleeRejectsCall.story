@@ -23,7 +23,7 @@ When WS1 opens the message buffer for message type missionChangedIndication name
 When WS1 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer1
 
 Scenario: Caller client associates with Op Voice Service
-When WS1 associates with Op Voice Service using opId op1 and appId app1
+When WS1 associates with Op Voice Service using opId op03 and appId app1
 Then WS1 receives missions available indication on message buffer named MissionsAvailableIndicationBuffer1 and names the availableMissionIds1
 Then WS1 receives mission changed indication on message buffer named MissionChangedIndicationBuffer1 and names missionId1
 Then WS1 confirms mission change completed for mission missionId1
@@ -56,7 +56,7 @@ Scenario: Sip phone rejects the phone call
 When SipContact declines calls
 Then SipContact DialogState is TERMINATED within 100 ms
 And waiting for 3 seconds
-Then WS1 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and terminationDetails busy
+Then WS1 receives call status indication with out_failed status on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and terminationDetails busy
 
 Scenario: Cleanup
 When WS1 disassociates from Op Voice Service
