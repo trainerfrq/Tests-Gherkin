@@ -34,6 +34,7 @@ And WS1 receives call status indication on message buffer named CallStatusIndica
 
 Scenario: Caller client puts the call on hold
 When WS1 puts the phone call with the callId outgoingPhoneCallId on hold
+And waiting for 1 seconds
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status hold
 And WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status held
 
