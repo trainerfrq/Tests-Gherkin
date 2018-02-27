@@ -24,24 +24,15 @@ class ReceiveAllReceivedMessages extends AbstractBufferScript {
 
     public static final String IPARAM_ENDPOINTNAME = "websocket-endpoint-name";
     public static final String IPARAM_BUFFERKEY = "websocket-target-buffer-key";
-    public static final String IPARAM_MAXRESPONSETIMEOUTINSEC = "max_response_timeout_in_sec";
 
     public static final String RECEIVEDMESSAGE = "received_message";
 
     public static final String OPARAM_RECEIVEDMESSAGES = "received_messages";
-    private final Long MaxResponseTimeout = 30;
 
     @Override
     protected void script() {
         final String endpointName = assertInput(IPARAM_ENDPOINTNAME)
         final String bufferKey = assertInput(IPARAM_BUFFERKEY)
-        String maxResponseTimeoutInSec = getInput(IPARAM_MAXRESPONSETIMEOUTINSEC)
-
-        // Set response latency defaults if necessary
-        if (maxResponseTimeoutInSec == null || maxResponseTimeoutInSec < 1) {
-            maxResponseTimeoutInSec = MaxResponseTimeout;
-            LOG.severe("maxResponseTimeoutInSec = " + maxResponseTimeoutInSec.toString())
-        }
 
         // get and assert endpoint
         ClientEndpoint endpoint = getWebSocketEndpointManager().getWebSocketEndpoint(endpointName);
