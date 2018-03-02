@@ -42,8 +42,11 @@ And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xv
 Then waiting for 5 seconds
 And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy op_voice02
 Then waiting for 5 seconds
-And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy voice_hmi03
+And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove voice_hmi03
 Then waiting for 5 seconds
-And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy voice_hmi04
+And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove voice_hmi04
+Then waiting for 5 seconds
+!-- The audio app is redeployed as workaround for QXVP-7123
+When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy audio_app
 Then waiting for 5 seconds
 

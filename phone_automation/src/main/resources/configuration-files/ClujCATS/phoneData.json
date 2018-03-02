@@ -1,13 +1,13 @@
 {
   "sipProxy": {
-    "opSipProxyHost": "192.168.40.10",
+    "opSipProxyHost": "10.31.205.40",
     "opSipProxyListeningPort": 5060
   },
   "hostSpecificConfigurationMap": {
     "op03": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "192.168.40.11",
+          "opPhysicalHost": "10.31.205.41",
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",
@@ -19,7 +19,7 @@
     "op04": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "192.168.40.12",
+          "opPhysicalHost": "10.31.205.42",
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",
@@ -31,7 +31,7 @@
     "op05": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "192.168.40.13",
+          "opPhysicalHost": "10.31.205.43",
           "opSipListeningPort": 5069
         },
         "opSipDomain": "example.com",

@@ -171,14 +171,14 @@
           },
           {
             "id": "706",
-            "target": "sip:gg-snom1@192.168.40.10",
-            "source": "sip:111111@192.168.40.10",
+            "target": "sip:gg-snom1@10.31.205.40",
+            "source": "sip:111111@10.31.205.40",
             "displayName": "Snom (as OP1)"
           },
           {
             "id": "906",
-            "target": "sip:cisco@192.168.40.10",
-            "source": "sip:111111@192.168.40.10",
+            "target": "sip:cisco@10.31.205.40",
+            "source": "sip:111111@10.31.205.40",
             "displayName": "Cisco (as OP1)"
           },
           {
@@ -189,13 +189,13 @@
           },
           {
             "id": "710",
-            "target": "sip:gg-snom1@192.168.40.10",
+            "target": "sip:gg-snom1@10.31.205.40",
             "source": "sip:role1@example.com",
             "displayName": "Snom (as ROLE1)"
           },
           {
             "id": "1110",
-            "target": "sip:gg-snom1@192.168.40.10",
+            "target": "sip:gg-snom1@10.31.205.40",
             "source": "sip:group1@example.com",
             "displayName": "Group1 (for Snom)"
           }
@@ -366,14 +366,14 @@
           },
           {
             "id": "706",
-            "target": "sip:gg-snom1@192.168.40.10",
-            "source": "sip:222222@192.168.40.10",
+            "target": "sip:gg-snom1@10.31.205.40",
+            "source": "sip:222222@10.31.205.40",
             "displayName": "Snom (as OP2)"
           },
           {
             "id": "906",
-            "target": "sip:cisco@192.168.40.10",
-            "source": "sip:222222@192.168.40.10",
+            "target": "sip:cisco@10.31.205.40",
+            "source": "sip:222222@10.31.205.40",
             "displayName": "Cisco (as OP2)"
           },
           {
@@ -384,13 +384,13 @@
           },
           {
             "id": "710",
-            "target": "sip:gg-snom1@192.168.40.10",
+            "target": "sip:gg-snom1@10.31.205.40",
             "source": "sip:role2@example.com",
             "displayName": "Snom (as ROLE 2)"
           },
           {
             "id": "1110",
-            "target": "sip:gg-snom1@192.168.40.10",
+            "target": "sip:gg-snom1@10.31.205.40",
             "source": "sip:group1@example.com",
             "displayName": "Group1 (for Snom)"
           }
