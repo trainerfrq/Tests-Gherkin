@@ -34,7 +34,7 @@ Then WS1 receives mission changed indication on buffer named MissionChangedIndic
 Then WS1 confirms mission change completed for mission missionId1
 
 Scenario: Caller client retrieves phone data
-When WS1 loads phone data for role roleId1 and names callSource and callTarget
+When WS1 loads phone data for role roleId1 and names callSource and callTarget from the entry number 1
 
 Scenario: Create sip phone
 Given SipContacts group SipContact:

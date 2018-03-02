@@ -89,7 +89,7 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/IACalls/IABasicCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/websocket/IACalls/IAOneWayCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>

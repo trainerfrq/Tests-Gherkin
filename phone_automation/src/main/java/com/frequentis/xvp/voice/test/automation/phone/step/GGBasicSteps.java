@@ -5,14 +5,11 @@
  */
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import scripts.cats.websocket.sequential.SendTextMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
-import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
-import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 import static com.frequentis.c4i.test.model.MatcherDetails.match;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
@@ -53,6 +50,12 @@ import com.frequentis.xvp.voice.opvoice.json.messages.missions.ChangeMissionResp
 import com.frequentis.xvp.voice.opvoice.json.messages.missions.MissionChangeCompletedEvent;
 import com.frequentis.xvp.voice.opvoice.json.messages.missions.MissionChangedIndication;
 import com.google.common.collect.Lists;
+
+import scripts.cats.websocket.sequential.SendTextMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
+import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
+import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 
 public class GGBasicSteps extends WebsocketAutomationSteps
 {
@@ -206,9 +209,9 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    }
 
 
-   @When("$namedWebSocket loads phone data for role $roleIdName and names $callSourceName and $callTargetName")
+   @When("$namedWebSocket loads phone data for role $roleIdName and names $callSourceName and $callTargetName from the entry number $entryNumber")
    public void loadPhoneData( final String namedWebSocket, final String roleIdName, final String callSourceName,
-         final String callTargetName )
+         final String callTargetName, final Integer entryNumber )
    {
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
@@ -238,10 +241,13 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             .details( match( "Response is successful", jsonMessage.body().queryRolePhoneDataResponse().getError(),
                   nullValue() ) )
             .details( match( "Phone data is not empty",
-                  jsonMessage.body().queryRolePhoneDataResponse().getPhoneData().getDa(), not( empty() ) ) ) );
+                  jsonMessage.body().queryRolePhoneDataResponse().getPhoneData().getDa(), not( empty() ) ) )
+            .details( match( "Entry of given number is present",
+                  jsonMessage.body().queryRolePhoneDataResponse().getPhoneData().getDa().size(),
+                  greaterThanOrEqualTo( entryNumber ) ) ) );
 
       final JsonDaDataElement dataElement =
-            jsonMessage.body().queryRolePhoneDataResponse().getPhoneData().getDa().iterator().next();
+            jsonMessage.body().queryRolePhoneDataResponse().getPhoneData().getDa().get( entryNumber - 1 );
       setStoryData( callSourceName, dataElement.getSource() );
       setStoryData( callTargetName, dataElement.getTarget() );
    }
@@ -360,7 +366,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    }
 
 
-   @Then("$namedWebSocket receives call status indication on message buffer named $bufferName with callId $phoneCallIdName and status $callStatus and audio direction $audioDirection")
+   @Then("$namedWebSocket is receiving call status indication on message buffer named $bufferName with callId $phoneCallIdName and status $callStatus and audio direction $audioDirection")
    public void receiveCallStatusIndicationOpt( final String namedWebSocket, final String bufferName,
          final String phoneCallIdName, final String callStatus, final String audioDirection )
    {
@@ -424,6 +430,21 @@ public class GGBasicSteps extends WebsocketAutomationSteps
                   equalTo( terminationDetails ) ) )
 
       );
+   }
+
+
+   @Then("$namedWebSocket has on the message buffer named $bufferName a number of $messageCount messages")
+   public void checkBufferCount( final String namedWebSocket, final String bufferName, final Integer messageCount )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      evaluate( remoteStep( "Receiving message count on buffer named " + bufferName )
+            .scriptOn( profileScriptResolver().map( ReceiveMessageCount.class, BookableProfileName.websocket ),
+                  requireProfile( reference.getProfileName() ) )
+            .input( ReceiveMessageCount.IPARAM_ENDPOINTNAME, reference.getKey() )
+            .input( ReceiveMessageCount.IPARAM_BUFFERKEY, bufferName )
+            .input( ReceiveMessageCount.IPARAM_MESSAGE_COUNT, messageCount ) );
    }
 
 
