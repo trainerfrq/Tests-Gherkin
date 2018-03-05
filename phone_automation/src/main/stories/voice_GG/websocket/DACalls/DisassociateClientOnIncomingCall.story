@@ -12,7 +12,7 @@ When WS2 opens the message buffer for message type callIncomingIndication named 
 When WS2 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer2
 
 Scenario: Caller client retrieves phone data
-When WS1 loads phone data for role roleId1 and names callSource and callTarget
+When WS1 loads phone data for role roleId1 and names callSource and callTarget from the entry number 1
 
 Scenario: Caller establishes an outgoing call
 When WS1 establishes an outgoing phone call using source callSource ang target callTarget and names outgoingPhoneCallId
@@ -24,7 +24,7 @@ When WS2 receives call incoming indication on message buffer named CallIncomingI
 
 Scenario: Callee client disassociates from OP Voice
 When WS2 disassociates from Op Voice Service
-Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status terminated
+Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status out_failed
 
 Scenario: Cleanup
 When WS1 disassociates from Op Voice Service

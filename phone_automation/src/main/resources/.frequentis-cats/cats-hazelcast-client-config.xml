@@ -18,8 +18,8 @@
 
     <!--Cluster name to connect-->
    <group>
-        <name>cats-voip-demo</name>
-        <password>cats-voip-demo-pass</password>
+        <name>cats-home</name>
+        <password>cats-home</password>
     </group>
 
    <!--Network configuration details-->

@@ -49,6 +49,48 @@ public class GGSshSteps extends SshSteps
    }
 
 
+   @When("the start case officer script is copied to $connectionName")
+   public void copyStartCaseOfficerScript( final String connectionName ) throws IOException
+   {
+      final String systemName = StepsUtil.getEnvProperty( "systemName" );
+
+      String filePath = "/configuration-files/" + systemName + "/runCO.sh";
+
+      final String scriptContent = processConfigurationTemplate( StepsUtil.getConfigFile( filePath ), new HashMap<>() );
+
+      executeSshCommand( connectionName,
+            "read -d '' runCO << \\EOF \n" + scriptContent + "\nEOF\n\n echo \"$runCO\" > /root/runCO.sh" );
+   }
+
+
+   @When("the start provisioning agent script is copied to $connectionName")
+   public void copyProvisioningAgentScript( final String connectionName ) throws IOException
+   {
+      final String systemName = StepsUtil.getEnvProperty( "systemName" );
+
+      String filePath = "/configuration-files/" + systemName + "/runPA.sh";
+
+      final String scriptContent = processConfigurationTemplate( StepsUtil.getConfigFile( filePath ), new HashMap<>() );
+
+      executeSshCommand( connectionName,
+            "read -d '' runPA << \\EOF \n" + scriptContent + "\nEOF\n\n echo \"$runPA\" > /root/runPA.sh" );
+   }
+
+
+   @When("the start agent script is copied to CATS folder of the $connectionName")
+   public void copyStartAgentScript( final String connectionName ) throws IOException
+   {
+      final String systemName = StepsUtil.getEnvProperty( "systemName" );
+
+      String filePath = "/configuration-files/" + systemName + "/startAgent.sh";
+
+      final String scriptContent = processConfigurationTemplate( StepsUtil.getConfigFile( filePath ), new HashMap<>() );
+
+      executeSshCommand( connectionName, "read -d '' startAgent << \\EOF \n" + scriptContent
+            + "\nEOF\n\n echo \"$startAgent\" > /var/lib/docker/volumes/sharedVolume/_data/startAgent.sh" );
+   }
+
+
    private String processConfigurationTemplate( final File templatePath, final Map<String, String> sub )
       throws IOException
    {

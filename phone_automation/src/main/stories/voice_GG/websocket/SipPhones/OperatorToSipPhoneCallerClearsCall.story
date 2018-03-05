@@ -11,12 +11,12 @@ Scenario: Create the message buffers
 When WS1 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer1
 
 Scenario: Caller client retrieves phone data
-When WS1 loads phone data for role roleId1 and names callSource and callTarget
+When WS1 loads phone data for role roleId1 and names callSource and callTarget from the entry number 1
 
 Scenario: Define call target
 When define values in story data:
-| name         | value                         |
-| calledTarget | sip:cats@<<PHONE_ROUTING_IP>> |
+| name         | value          |
+| calledTarget | <<SIP_PHONE1>> |
 
 Scenario: Caller establishes an outgoing call
 When WS1 establishes an outgoing phone call using source callSource ang target calledTarget and names outgoingPhoneCallId

@@ -1,0 +1,60 @@
+{
+  "defaultMission": "10000000-0000-0000-0000-000000000000",
+  "missions": [
+    {
+      "id": "10000000-0000-0000-0000-000000000000",
+      "name": "MAN-NIGHT-TACT",
+      "gridRows": 1,
+      "gridCols": 1,
+      "widgets": [
+        {
+          "image": "deploymentserver.frequentis.frq:5000/xvp/mission-selection-app",
+          "appId": "unattended",
+          "version": "latest",
+          "position": {
+            "x": 1,
+            "y": 1
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "20000000-0000-0000-0000-000000000000",
+      "name": "WEST-EXEC",
+      "gridRows": 1,
+      "gridCols": 1,
+      "widgets": [
+        {
+          "image": "xvp/ptz-map",
+          "appId": "ptzmap",
+          "version": "0.0.1",
+          "position": {
+            "x": 1,
+            "y": 1
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          }
+        },
+        {
+          "image": "xvp/eventlist-app",
+          "appId": "eventlist",
+          "version": "0.0.1",
+          "position": {
+            "x": 1,
+            "y": 1
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          }
+        }
+      ]
+    }
+  ]
+}

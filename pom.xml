@@ -32,7 +32,7 @@
       <maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
       <maven-compiler-plugin.target>1.8</maven-compiler-plugin.target>
 
-      <cats.version>4.1.0</cats.version>
+      <cats.version>4.2.0</cats.version>
       <slf4j.version>1.7.18</slf4j.version>
    </properties>
 
@@ -252,6 +252,7 @@
       <module>cats-websocket-dto</module>
       <module>cats-websocket-plugin</module>
       <module>cats-voice-hmi-steps</module>
-      <module>voice-hmi-dsl</module><module>voice-hmi-dsl-co-support</module>
+      <module>voice-hmi-dsl</module>
+      <module>voice-hmi-dsl-co-support</module>
    </modules>
 </project>

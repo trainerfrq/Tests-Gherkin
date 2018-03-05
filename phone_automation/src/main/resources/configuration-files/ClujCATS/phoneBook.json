@@ -1,0 +1,101 @@
+[
+  {
+    "full_name": "Physical Identity OP1",
+    "display_name": "OP1 Physical",
+    "location": "XVP Lab",
+    "organization": "FRQ XVP GG-Team",
+    "notes": "This is the physical identity of the first operating position",
+    "data_sets": [
+      {
+        "destination": "sip:111111@10.31.205.41"
+      }
+    ]
+  },
+  {
+    "full_name": "Physical Identity OP2",
+    "display_name": "OP2 Physical",
+    "location": "XVP Lab",
+    "organization": "FRQ XVP GG-Team",
+    "notes": "This is the physical identity of the first operating position",
+    "data_sets": [
+      {
+        "destination": "sip:222222@10.31.205.42"
+      }
+    ]
+  },
+  {
+    "full_name": "Physical Identity OP3",
+    "display_name": "OP3 Physical",
+    "location": "XVP Lab",
+    "organization": "FRQ XVP GG-Team",
+    "notes": "This is the physical identity of the first operating position",
+    "data_sets": [
+      {
+        "destination": "sip:333333@10.31.205.43"
+      }
+    ]
+  },
+  {
+    "full_name": "Snom 370 SIP Phone",
+    "display_name": "Snom 370 (Carol)",
+    "location": "XVP Lab",
+    "organization": "FRQ XVP GG-Team",
+    "notes": "",
+    "data_sets": [
+      {
+        "destination": "sip:gg-snom1@example.com"
+      },
+      {
+        "destination": "sip:gg-snom1@10.31.205.40"
+      }
+    ]
+  },
+  {
+    "full_name": "Role 1 - Alice",
+    "display_name": "Role 1 (Alice)",
+    "location": "XVP Lab",
+    "organization": "FRQ XVP GG-Team",
+    "notes": "",
+    "data_sets": [
+      {
+        "destination": "sip:role1@example.com"
+      },
+      {
+        "destination": "sip:role1alias1@example.com"
+      },
+      {
+        "destination": "sip:role1alias2@example.com"
+      }
+    ]
+  },
+  {
+    "full_name": "Role 2 - Bob",
+    "display_name": "Role 2 (Bob)",
+    "location": "XVP Lab",
+    "organization": "FRQ XVP GG-Team",
+    "notes": "",
+    "data_sets": [
+      {
+        "destination": "sip:role2@example.com"
+      },
+      {
+        "destination": "sip:role2alias1@example.com"
+      },
+      {
+        "destination": "sip:role2alias2@example.com"
+      }
+    ]
+  },
+  {
+    "full_name": "Call Group 1",
+    "display_name": "Group 1",
+    "location": "XVP Lab",
+    "organization": "FRQ XVP GG-Team",
+    "notes": "",
+    "data_sets": [
+      {
+        "destination": "sip:group1@example.com"
+      }
+    ]
+  }
+]

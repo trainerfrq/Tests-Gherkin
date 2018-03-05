@@ -30,6 +30,7 @@ import scripts.cats.websocket.sequential.CloseWebSocketClientConnection;
 import scripts.cats.websocket.sequential.ReceiveMessageAsIs;
 import scripts.cats.websocket.sequential.SendTextMessageAsIs;
 import scripts.cats.websocket.sequential.StartClientConnectionRecording;
+import scripts.cats.websocket.sequential.buffer.ClearMessageBuffer;
 import scripts.cats.websocket.sequential.buffer.OpenMessageBuffer;
 import scripts.cats.websocket.sequential.buffer.RemoveCustomMessageBuffer;
 
@@ -259,6 +260,20 @@ public class WebsocketClientRemoteSteps extends WebsocketAutomationSteps
 
       evaluate( remoteStep( "Remove the message buffer: " + bufferName )
             .scriptOn( profileScriptResolver().map( RemoveCustomMessageBuffer.class, BookableProfileName.websocket ),
+                  requireProfile( reference.getProfileName() ) )
+            .input( RemoveCustomMessageBuffer.IPARAM_ENDPOINTNAME, reference.getKey() )
+            .input( RemoveCustomMessageBuffer.IPARAM_BUFFERKEY, bufferName ) );
+   }
+
+
+   @When("$namedWebSocket clears all text messages from buffer named $bufferName")
+   public void clearCustomMessageBuffer( final String namedWebSocket, final String bufferName )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      evaluate( remoteStep( "Clear the message buffer: " + bufferName )
+            .scriptOn( profileScriptResolver().map( ClearMessageBuffer.class, BookableProfileName.websocket ),
                   requireProfile( reference.getProfileName() ) )
             .input( RemoveCustomMessageBuffer.IPARAM_ENDPOINTNAME, reference.getKey() )
             .input( RemoveCustomMessageBuffer.IPARAM_BUFFERKEY, bufferName ) );
