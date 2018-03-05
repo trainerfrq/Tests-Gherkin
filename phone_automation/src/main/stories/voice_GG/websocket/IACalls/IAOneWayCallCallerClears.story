@@ -22,7 +22,6 @@ Then WS1 is receiving call status indication on message buffer named CallStatusI
 
 Scenario: Callee client receives the incoming call and confirms it
 When WS2 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer2 with callSource and callTarget and names incomingPhoneCallId and audio direction RX
-And WS2 confirms incoming phone call with callId incomingPhoneCallId
 
 Scenario: Caller client clears the phone call
 When WS1 clears the phone call with the callId outgoingPhoneCallId

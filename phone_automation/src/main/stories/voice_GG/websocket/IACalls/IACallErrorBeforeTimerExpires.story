@@ -20,6 +20,7 @@ When define values in story data:
 
 Scenario: Caller establishes an outgoing call
 When WS1 establishes an outgoing IA call with source callSource and target sipPhoneTarget and names outgoingPhoneCallId
+And waiting for 1 seconds
 
 Scenario: Sip phone rejects the phone call
 When SipContact declines calls

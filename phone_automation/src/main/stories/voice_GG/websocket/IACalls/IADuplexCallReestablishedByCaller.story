@@ -22,7 +22,7 @@ When WS1 establishes an outgoing IA call with source callSourceCalling and targe
 And waiting for 1 seconds
 Then WS1 is receiving call status indication on message buffer named CallStatusIndicationBuffer1 with callId callId1 and status connected and audio direction TX
 
-Scenario: Callee client receives the incoming call and confirms it
+Scenario: Callee client receives the incoming call
 When WS2 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer2 with callSourceCalling and callTargetCalling and names callId2 and audio direction RX
 
 Scenario: Callee establishes an outgoing call
@@ -35,6 +35,7 @@ When WS1 receives call incoming indication for IA call on message buffer named C
 
 Scenario: Caller client clears the phone call
 When WS1 clears the phone call with the callId callId1
+And waiting for 1 seconds
 Then WS1 is receiving call status indication on message buffer named CallStatusIndicationBuffer1 with callId callId1 and status connected and audio direction RX
 Then WS2 is receiving call status indication on message buffer named CallStatusIndicationBuffer2 with callId callId2 and status connected and audio direction TX
 
