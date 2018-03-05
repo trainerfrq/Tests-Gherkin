@@ -623,8 +623,9 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             .details( match( "Calling party matches",
                   jsonMessage.body().callIncomingIndication().getCallingParty().getUri(),
                   containsString( getStoryData( callSourceName, String.class ) ) ) )
-            .details( match( "Called party matches", jsonMessage.body().callIncomingIndication().getCalledParty(),
-                  containsString( getStoryData( callTargetName, String.class ) ) ) )
+            .details(
+                  match( "Called party matches", jsonMessage.body().callIncomingIndication().getCalledParty().getUri(),
+                        containsString( getStoryData( callTargetName, String.class ) ) ) )
             .details( match( "AudioDirection matches", jsonMessage.body().callIncomingIndication().getAudioDirection(),
                   equalTo( audioDirection ) ) ) );
 
