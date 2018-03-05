@@ -252,6 +252,7 @@
       <module>cats-websocket-dto</module>
       <module>cats-websocket-plugin</module>
       <module>cats-voice-hmi-steps</module>
-      <module>voice-hmi-dsl</module><module>voice-hmi-dsl-co-support</module>
+      <module>voice-hmi-dsl</module>
+      <module>voice-hmi-dsl-co-support</module>
    </modules>
 </project>

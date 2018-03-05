@@ -3,6 +3,10 @@ Given SSH connections:
 | name             | remote-address    | remotePort | username | password  |
 | deploymentServer | <<DEP_SERVER_IP>> | 22         | root     | !frqAdmin |
 
+Scenario: Stop HMIs
+When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove voice_hmi03
+And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove voice_hmi04
+
 Scenario: Start Op Voice Services
 When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy op_voice01
 And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy op_voice02
