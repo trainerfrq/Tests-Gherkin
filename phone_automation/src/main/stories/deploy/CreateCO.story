@@ -1,7 +1,11 @@
 Scenario: Connect to case officer host
 Given SSH connections:
 | name   | remote-address | remotePort | username | password  |
-| coHost | <<CO1_IP>>     | 22         | root     | !frqAdmin |
+| coHost | <<CO3_IP>>     | 22         | root     | !frqAdmin |
+
+Scenario: Stop case officer
+When SSH host coHost executes docker rm -f co1
+Then waiting for 5 seconds
 
 Scenario: Create case officer script
 When the start case officer script is copied to coHost

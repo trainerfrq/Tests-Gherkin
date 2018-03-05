@@ -29,6 +29,14 @@ Scenario: Update services
 When the services are updated on deploymentServer
 Then SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp download
 
+Scenario: Stop services
+When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove mission_service
+And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove phone_routing
+And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove audio_service
+And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove audio_app
+And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove voice_hmi03
+And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove voice_hmi04
+
 Scenario: Start services
 When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy mission_service
 Then waiting for 5 seconds
@@ -36,17 +44,6 @@ When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/x
 Then waiting for 5 seconds
 When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy audio_service
 Then waiting for 5 seconds
-When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy audio_app
-Then waiting for 5 seconds
-And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy op_voice01
-Then waiting for 5 seconds
-And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy op_voice02
-Then waiting for 5 seconds
-And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove voice_hmi03
-Then waiting for 5 seconds
-And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove voice_hmi04
-Then waiting for 5 seconds
-!-- The audio app is redeployed as workaround for QXVP-7123
 When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy audio_app
 Then waiting for 5 seconds
 

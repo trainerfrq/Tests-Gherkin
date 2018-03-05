@@ -44,8 +44,8 @@ When WS2 clears all text messages from buffer named CallStatusIndicationBuffer2
 
 Scenario: Define call target
 When define values in story data:
-| name         | value                         |
-| calledTarget | sip:cats@<<PHONE_ROUTING_IP>> |
+| name         | value          |
+| calledTarget | <<SIP_PHONE1>> |
 
 Scenario: Callee establishes an outgoing call
 When WS1 establishes an outgoing phone call using source callSource ang target calledTarget and names outgoingPhoneCallId2
@@ -58,6 +58,7 @@ And waiting for 1 seconds
 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status connected
 
 Scenario: Verify outgoing pending call was terminated
+When waiting for 1 seconds
 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status terminated
 Then SipContact DialogState is TERMINATED within 100 ms
 
