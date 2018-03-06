@@ -5,6 +5,11 @@
  */
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import scripts.cats.websocket.sequential.SendTextMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
+import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
+import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 import static com.frequentis.c4i.test.model.MatcherDetails.match;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.empty;
@@ -50,12 +55,6 @@ import com.frequentis.xvp.voice.opvoice.json.messages.missions.ChangeMissionResp
 import com.frequentis.xvp.voice.opvoice.json.messages.missions.MissionChangeCompletedEvent;
 import com.frequentis.xvp.voice.opvoice.json.messages.missions.MissionChangedIndication;
 import com.google.common.collect.Lists;
-
-import scripts.cats.websocket.sequential.SendTextMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
-import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
-import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 
 public class GGBasicSteps extends WebsocketAutomationSteps
 {
@@ -257,7 +256,15 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    public void establishOutgoingPhoneCall( final String namedWebSocket, final String callSourceName,
          final String callTargetName, final String phoneCallIdName )
    {
-      establishOutgoingCall( namedWebSocket, callSourceName, callTargetName, phoneCallIdName, "DA/IDA" );
+      establishOutgoingCall( namedWebSocket, callSourceName, callTargetName, phoneCallIdName, "DA/IDA", "NON-URGENT" );
+   }
+
+
+   @When("$namedWebSocket establishes an outgoing priority phone call using source $callSourceName ang target $callTargetName and names $phoneCallIdName")
+   public void establishOutgoingPriorityPhoneCall( final String namedWebSocket, final String callSourceName,
+         final String callTargetName, final String phoneCallIdName )
+   {
+      establishOutgoingCall( namedWebSocket, callSourceName, callTargetName, phoneCallIdName, "DA/IDA", "URGENT" );
    }
 
 
@@ -265,7 +272,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    public void establishOutgoingIACall( final String namedWebSocket, final String callSourceName,
          final String callTargetName, final String phoneCallIdName )
    {
-      establishOutgoingCall( namedWebSocket, callSourceName, callTargetName, phoneCallIdName, "IA" );
+      establishOutgoingCall( namedWebSocket, callSourceName, callTargetName, phoneCallIdName, "IA", null );
    }
 
 
@@ -449,12 +456,12 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
 
    @When("$namedWebSocket receives call incoming indication for IA call on message buffer named $bufferName with $callSource and $callTarget and names $incomingPhoneCallId and audio direction $audioDirection")
-   public void receiveCallIncomingIndicationType( final String namedWebSocket, final String bufferName,
+   public void receiveCallIncomingIndicationWithAudioDirection( final String namedWebSocket, final String bufferName,
          final String callSourceName, final String callTargetName, final String phoneCallIdName,
          final String audioDirection )
    {
       receiveCallIncomingIndication( namedWebSocket, bufferName, callSourceName, callTargetName, phoneCallIdName, "IA",
-            audioDirection, CallStatusIndication.CONNECTED );
+            audioDirection, CallStatusIndication.CONNECTED, "NON-URGENT" );
    }
 
 
@@ -463,7 +470,16 @@ public class GGBasicSteps extends WebsocketAutomationSteps
          final String callSourceName, final String callTargetName, final String phoneCallIdName )
    {
       receiveCallIncomingIndication( namedWebSocket, bufferName, callSourceName, callTargetName, phoneCallIdName,
-            "DA/IDA", CallStatusIndication.INC_INITIATED );
+            "DA/IDA", null, CallStatusIndication.INC_INITIATED, "NON-URGENT" );
+   }
+
+
+   @When("$namedWebSocket receives call incoming indication for priority call on message buffer named $bufferName with $callSource and $callTarget and names $incomingPhoneCallId")
+   public void receiveCallIncomingIndicationForPriorityCall( final String namedWebSocket, final String bufferName,
+         final String callSourceName, final String callTargetName, final String phoneCallIdName )
+   {
+      receiveCallIncomingIndication( namedWebSocket, bufferName, callSourceName, callTargetName, phoneCallIdName,
+            "DA/IDA", null, CallStatusIndication.INC_INITIATED, "URGENT" );
    }
 
 
@@ -608,16 +624,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
    private void receiveCallIncomingIndication( final String namedWebSocket, final String bufferName,
          final String callSourceName, final String callTargetName, final String phoneCallIdName, final String callType,
-         final String callState )
-   {
-      receiveCallIncomingIndication( namedWebSocket, bufferName, callSourceName, callTargetName, phoneCallIdName,
-            callType, null, callState );
-   }
-
-
-   private void receiveCallIncomingIndication( final String namedWebSocket, final String bufferName,
-         final String callSourceName, final String callTargetName, final String phoneCallIdName, final String callType,
-         final Object audioDirection, final String callState )
+         final Object audioDirection, final String callState, final String priority )
    {
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
@@ -647,14 +654,16 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             .details( match( "Called party matches", jsonMessage.body().callIncomingIndication().getCalledParty(),
                   containsString( getStoryData( callTargetName, String.class ) ) ) )
             .details( match( "AudioDirection matches", jsonMessage.body().callIncomingIndication().getAudioDirection(),
-                  equalTo( audioDirection ) ) ) );
+                  equalTo( audioDirection ) ) )
+            .details( match( "Call priority matches", jsonMessage.body().callIncomingIndication().getCallPriority(),
+                  equalTo( priority ) ) ) );
 
       setStoryData( phoneCallIdName, jsonMessage.body().callIncomingIndication().getCallId() );
    }
 
 
    private void establishOutgoingCall( final String namedWebSocket, final String callSourceName,
-         final String callTargetName, final String phoneCallIdName, final String callType )
+         final String callTargetName, final String phoneCallIdName, final String callType, final String priority )
    {
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
@@ -662,11 +671,12 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       final String callingParty = getStoryData( callSourceName, String.class );
       final String calledParty = getStoryData( callTargetName, String.class );
 
+      final CallEstablishRequest callEstablishRequest =
+            new CallEstablishRequest( new Random().nextInt(), callingParty, calledParty, callType );
+      callEstablishRequest.setCallPriority( priority );
+
       final JsonMessage request =
-            JsonMessage.builder().withCorrelationId( UUID.randomUUID() )
-                  .withPayload(
-                        new CallEstablishRequest( new Random().nextInt(), callingParty, calledParty, callType ) )
-                  .build();
+            JsonMessage.builder().withCorrelationId( UUID.randomUUID() ).withPayload( callEstablishRequest ).build();
 
       final RemoteStepResult remoteStepResult =
             evaluate(
