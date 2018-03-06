@@ -16,6 +16,10 @@
              <member>10.31.205.51:5701</member>
              <member>10.31.205.52:5701</member>
              <member>10.31.205.43:5701</member>
+             <member>10.17.15.40:5701</member>
+             <member>10.17.15.44:5701</member>
+             <member>10.17.15.45:5701</member>
+             <member>10.17.15.43:5701</member>
           </tcp-ip>
        </join>
     </network>
