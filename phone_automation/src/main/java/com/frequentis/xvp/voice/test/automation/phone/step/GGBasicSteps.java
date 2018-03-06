@@ -461,7 +461,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
          final String audioDirection )
    {
       receiveCallIncomingIndication( namedWebSocket, bufferName, callSourceName, callTargetName, phoneCallIdName, "IA",
-            audioDirection, CallStatusIndication.CONNECTED, "NON-URGENT" );
+            audioDirection, CallStatusIndication.CONNECTED, "URGENT" );
    }
 
 
