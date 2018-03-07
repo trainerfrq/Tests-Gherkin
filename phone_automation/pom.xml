@@ -447,6 +447,21 @@
              </executions>
          </plugin>
          <plugin>
+            <groupId>com.github.odavid.maven.plugins</groupId>
+            <artifactId>mixin-maven-plugin</artifactId>
+            <version>${mixin-maven-plugin.version}</version>
+            <extensions>true</extensions>
+            <configuration>
+               <mixins>
+                  <mixin>
+                     <groupId>com.frequentis.xvp.dockerbuild</groupId>
+                     <artifactId>xvp-cats-mixin</artifactId>
+                     <version>${xvp-cats-mixin.version}</version>
+                  </mixin>
+               </mixins>
+            </configuration>
+         </plugin>
+         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
             <version>${maven-dependency-plugin}</version>
