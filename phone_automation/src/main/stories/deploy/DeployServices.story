@@ -26,7 +26,7 @@ Given SSH connections:
 | deploymentServer | <<DEP_SERVER_IP>> | 22         | root     | !frqAdmin |
 
 Scenario: Update services
-When the services are updated on deploymentServer
+When the services are updated on deploymentServer with ${op.voice.version} and ${voice.hmi.version}
 Then SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp download
 
 Scenario: Stop services

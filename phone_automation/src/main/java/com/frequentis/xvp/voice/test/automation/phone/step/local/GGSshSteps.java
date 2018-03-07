@@ -30,12 +30,11 @@ import com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil;
 
 public class GGSshSteps extends SshSteps
 {
-   @When("the services are updated on $connectionName")
-   public void updateServices( final String connectionName ) throws IOException
+   @When("the services are updated on $connectionName with $opVoiceVersion and $voiceHmiVersion")
+   public void updateServices( final String connectionName, final String opVoiceVersion, final String voiceHmiVersion )
+      throws IOException
    {
       final String systemName = StepsUtil.getEnvProperty( "systemName" );
-      final String opVoiceVersion = StepsUtil.getEnvProperty( "op_voice_version" );
-      final String voiceHmiVersion = StepsUtil.getEnvProperty( "voice_hmi_version" );
 
       String templatePath = "/configuration-files/" + systemName + "/services.cfg";
 
