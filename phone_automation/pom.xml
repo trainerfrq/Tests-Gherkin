@@ -28,6 +28,8 @@
       <voice.service.interface.version>0.14.0-SNAPSHOT</voice.service.interface.version>
       <xvp-cats-libs.version>0.4.0-SNAPSHOT</xvp-cats-libs.version>
 
+      <frq-docker-registry.name>artidocker.frequentis.frq</frq-docker-registry.name>
+      <cats.imagename>${frq-docker-registry.name}/cats/cats-master-image:${cats.version}</cats.imagename>
       <echo-maven-plugin.version>1.2.0</echo-maven-plugin.version>
       <xvp-test-automation.version>1.3.0-SNAPSHOT</xvp-test-automation.version>
    </properties>
