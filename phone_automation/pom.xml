@@ -419,6 +419,22 @@
                                     properties
                                     describing the xvp test system</message>
                               </requireEnvironmentVariable>
+                              <requireEnvironmentVariable>
+                                 <variableName>OP_VOICE_VERSION</variableName>
+                                 <message>The OP_VOICE_VERSION
+                                    environment variable must be defined
+                                    and should indicate the version of
+                                    the Op Voice Service
+                                 </message>
+                              </requireEnvironmentVariable>
+                              <requireEnvironmentVariable>
+                                 <variableName>VOICE_HMI_VERSION</variableName>
+                                 <message>The VOICE_HMI_VERSION
+                                    environment variable must be defined
+                                    and should indicate the version of
+                                    the Voice HMI
+                                 </message>
+                              </requireEnvironmentVariable>
                            </rules>
                         </configuration>
                      </execution>
