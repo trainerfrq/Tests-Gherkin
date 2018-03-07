@@ -1,7 +1,7 @@
 Scenario: Booking profiles
 Given booked profiles:
-| profile   | group          | host       |
-| websocket | <<systemName>> | <<CO3_IP>> |
+| profile   | group | host       |
+| websocket | hmi   | <<CO3_IP>> |
 
 Scenario: Open Web Socket Client connections
 Given named the websocket configurations:
