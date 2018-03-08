@@ -1,8 +1,8 @@
 Scenario: Booking profiles
 Given booked profiles:
-| profile   | group | host       | identifier |
-| websocket | hmi   | <<CO1_IP>> |            |
-| voip      | opv   | <<CO1_IP>> | VOIP       |
+| profile   | group          | host       | identifier |
+| websocket | hmi            | <<CO3_IP>> |            |
+| voip      | <<systemName>> | <<CO3_IP>> | VOIP       |
 
 Scenario: Open Web Socket Client connections
 Given named the websocket configurations:
@@ -35,6 +35,6 @@ When the named websocket WS1 removes the message buffer named MissionChangedIndi
 
 Scenario: Create sip phone
 Given SipContacts group SipContact:
-| key        | profile | user-entity | sip-uri                       |
-| SipContact | VOIP    | cats        | sip:cats@<<PHONE_ROUTING_IP>> |
+| key        | profile | user-entity | sip-uri        |
+| SipContact | VOIP    | cats        | <<SIP_PHONE1>> |
 And phones for SipContact are created

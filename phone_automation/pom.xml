@@ -14,10 +14,6 @@
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-      <storyBoard>UIStoryBoard.csb</storyBoard>
-      <cats.wait-timeout>1000000</cats.wait-timeout>
-      <docker.autopull>always</docker.autopull>
-
       <ignore.failure.in.stories>true</ignore.failure.in.stories>
       <ignore.failure.in.view>true</ignore.failure.in.view>
       <toolsjar>${java.home}/../lib/tools.jar</toolsjar>
@@ -25,8 +21,9 @@
       <agentsHome>${project.build.directory}/automation/agents</agentsHome>
       <dslHome>${project.build.directory}/automation/dsl</dslHome>
 
-      <voice.service.interface.version>0.13.0-SNAPSHOT</voice.service.interface.version>
-    </properties>
+      <voice.service.interface.version>0.14.0-SNAPSHOT</voice.service.interface.version>
+      <xvp-cats-libs.version>0.4.0-SNAPSHOT</xvp-cats-libs.version>
+   </properties>
 
    <dependencies>
       <dependency>
@@ -85,6 +82,12 @@
          <groupId>com.frequentis.xvp.voice.phone</groupId>
          <artifactId>cats-websocket-steps</artifactId>
       </dependency>
+      <!--SSH STEPS -->
+      <dependency>
+         <groupId>com.frequentis.c4i.test</groupId>
+         <artifactId>cats-ssh-steps</artifactId>
+         <version>${cats.version}</version>
+      </dependency>
 
       <!--JAVAFX DOMAIN-->
       <dependency>
@@ -109,6 +112,18 @@
          <groupId>com.frequentis.xvp.voice.phone</groupId>
          <artifactId>voice-hmi-dsl-co-support</artifactId>
      </dependency>
+
+      <!-- CATS STEPS FROM XVP FRAMEWORK -->
+      <dependency>
+         <groupId>com.frequentis.xvp.framework.testing</groupId>
+         <artifactId>xvp-cats-ssh</artifactId>
+         <version>${xvp-cats-libs.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>com.frequentis.xvp.framework.testing</groupId>
+         <artifactId>xvp-cats-test-system</artifactId>
+         <version>${xvp-cats-libs.version}</version>
+      </dependency>
 
       <!-- ZIP dependecies of CATS Platform needed for JUnit execution (normally provided by CATS CO) -->
       <dependency>
@@ -228,6 +243,7 @@
             </build>
         </profile>
    </profiles>
+
    <build>
       <plugins>
          <plugin>
@@ -259,43 +275,6 @@
                   </mixin>
                </mixins>
             </configuration>
-         </plugin>
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <version>${maven-dependency-plugin}</version>
-            <executions>
-               <execution>
-                  <!-- Required for SOX / PSQM tools as they are not available from CATS Master and have to be provided -->
-                  <id>unpack-original-psqm</id>
-                  <phase>generate-resources</phase>
-                  <goals>
-                     <goal>unpack-dependencies</goal>
-                  </goals>
-                  <configuration>
-                     <includeGroupIds>com.frequentis.c4i.test</includeGroupIds>
-                     <includeArtifactIds>cats-media-psqm</includeArtifactIds>
-                     <includeTypes>zip</includeTypes>
-                     <outputDirectory>${project.build.directory}</outputDirectory>
-                     <excludeTransitive>true</excludeTransitive>
-                  </configuration>
-               </execution>
-               <execution>
-                  <!-- Prepare platform dependencies for JUnit execution (normally provided by CO) -->
-                  <id>unpack-platform-resources</id>
-                  <goals>
-                     <goal>unpack-dependencies</goal>
-                  </goals>
-                  <phase>generate-resources</phase>
-                  <configuration>
-                     <includeGroupIds>com.frequentis.c4i.test</includeGroupIds>
-                     <includeArtifactIds>cats-platform</includeArtifactIds>
-                     <includeTypes>zip</includeTypes>
-                     <outputDirectory>${project.build.directory}/</outputDirectory>
-                     <excludeTransitive>true</excludeTransitive>
-                  </configuration>
-               </execution>
-            </executions>
          </plugin>
          <plugin>
             <artifactId>maven-resources-plugin</artifactId>
