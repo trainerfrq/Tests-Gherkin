@@ -5,11 +5,7 @@
       <option name="myRunnerSettings">
         <MavenRunnerSettings>
           <option name="environmentProperties">
-            <map>
-              <entry key="CATS_HAZELCAST_PORT" value="5701" />
-              <entry key="CATS_PUBLIC_IP" value="10.17.80.170" />
-              <entry key="XVP_SYSTEM_PROPERTIES_FILENAME" value="AG.system.properties" />
-            </map>
+            <map />
           </option>
           <option name="jreName" value="#USE_PROJECT_JDK" />
           <option name="mavenProperties">
@@ -29,14 +25,14 @@
           <option name="goals">
             <list>
               <option value="clean" />
-              <option value="verify" />
+              <option value="install" />
               <option value="-P" />
               <option value="AUTOMATION-PACKAGE" />
               <option value="-P" />
+              <option value="distribution" />
+              <option value="-P" />
               <option value="CATS-MASTER" />
               <option value="-DskipTraceImport" />
-              <option value="-DCATS_PUBLIC_IP=10.254.56.242" />
-              <option value="-DCATS_HAZELCAST_PORT=5701" />
             </list>
           </option>
           <option name="profilesMap">

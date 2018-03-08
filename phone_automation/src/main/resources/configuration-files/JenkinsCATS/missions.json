@@ -1,0 +1,42 @@
+[
+  {
+    "missionId": "10000000-0000-0000-0000-000000000000",
+    "missionName": "MAN-NIGHT-TACT",
+    "missionAssignedRoles": [
+      "00000000-0000-0000-0000-000000000001"
+    ],
+    "missionMasterRole": "00000000-0000-0000-0000-000000000001",
+    "missionDefaultSourceSipAddress": "sip:role1@example.com",
+    "iaCallTimeoutMilliseconds": 1000,
+    "maxIncomingIaCallsCount": 3,
+    "priorityCallHandling": "indication",
+    "priorityCallIntrusionWarningPeriod": 0
+  },
+  {
+    "missionId": "20000000-0000-0000-0000-000000000000",
+    "missionName": "WEST-EXEC",
+    "missionAssignedRoles": [
+      "00000000-0000-0000-0000-000000000002"
+    ],
+    "missionMasterRole": "00000000-0000-0000-0000-000000000002",
+    "missionDefaultSourceSipAddress": "sip:role2@example.com",
+    "iaCallTimeoutMilliseconds": 1000,
+    "maxIncomingIaCallsCount": 3,
+    "priorityCallHandling": "indication",
+    "priorityCallIntrusionWarningPeriod": 0
+  },
+  {
+    "missionId": "af57d3c5-22f6-494b-bd57-ed5e2b0d586d",
+    "missionName": "EAST-EXEC",
+    "missionAssignedRoles": [
+      "00000000-0000-0000-0000-000000000001",
+      "b4798f15-88dd-474e-a15f-7b2d2aba92b5"
+    ],
+    "missionMasterRole": "00000000-0000-0000-0000-000000000001",
+    "missionDefaultSourceSipAddress": "sip:role1alias1@example.com",
+    "iaCallTimeoutMilliseconds": 1000,
+    "maxIncomingIaCallsCount": 3,
+    "priorityCallHandling": "indication",
+    "priorityCallIntrusionWarningPeriod": 0
+  }
+]

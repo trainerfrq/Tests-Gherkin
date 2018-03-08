@@ -1,0 +1,47 @@
+{
+  "sipProxy": {
+    "opSipProxyHost": "10.31.205.40",
+    "opSipProxyListeningPort": 5060
+  },
+  "hostSpecificConfigurationMap": {
+    "op03": {
+      "opPhysicalEntity": {
+        "opSipEndpoint": {
+          "opPhysicalHost": "10.31.205.41",
+          "opSipListeningPort": 5060
+        },
+        "opSipDomain": "example.com",
+        "opUserInfo": "111111",
+        "opSipRegistrationTimeoutInSeconds": 300,
+        "opMaxConcurrentCallsCount": 20
+      }
+    },
+    "op04": {
+      "opPhysicalEntity": {
+        "opSipEndpoint": {
+          "opPhysicalHost": "10.31.205.42",
+          "opSipListeningPort": 5060
+        },
+        "opSipDomain": "example.com",
+        "opUserInfo": "222222",
+        "opSipRegistrationTimeoutInSeconds": 300,
+        "opMaxConcurrentCallsCount": 20
+      }
+    },
+    "op05": {
+      "opPhysicalEntity": {
+        "opSipEndpoint": {
+          "opPhysicalHost": "10.31.205.43",
+          "opSipListeningPort": 5069
+        },
+        "opSipDomain": "example.com",
+        "opUserInfo": "333333",
+        "opSipRegistrationTimeoutInSeconds": 300,
+        "opMaxConcurrentCallsCount": 20
+      }
+    }
+  },
+  "audioAppResources": {
+    "audioAppPhoneResourcePoolSize": 10
+  }
+}
