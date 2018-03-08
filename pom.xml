@@ -260,5 +260,6 @@
       <module>cats-voice-hmi-steps</module>
       <module>voice-hmi-dsl</module>
       <module>voice-hmi-dsl-co-support</module>
+      <module>phone_automation_runner</module>
    </modules>
 </project>
