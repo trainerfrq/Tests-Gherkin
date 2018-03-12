@@ -1,7 +1,4 @@
-Narrative:
-As a caller operator having an active phone call with a callee operator
-I want to clear the phone call
-So I can verify that the phone call is terminated on both sides
+Narrative: As a caller operator having an active phone call with a callee operator I want to clear the phone call So I can verify that the phone call is terminated on both sides
 @REQUIREMENTS:GID-2535689
 @REQUIREMENTS:GID-2535706
 
