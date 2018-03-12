@@ -2,6 +2,7 @@ Narrative:
 As an operator having an active call with another operator
 I want to retrieve the call from hold
 So I can verify that the call is unchanged and the state is connected
+Skipped due to QXVP-7473
 
 Meta:
      @BeforeStory: ../includes/@PrepareTwoClientsWithMissions.story
