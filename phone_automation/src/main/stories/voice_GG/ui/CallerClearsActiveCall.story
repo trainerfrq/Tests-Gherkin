@@ -1,6 +1,6 @@
 Scenario: Establish call between two operator positions using the DA keys.
-		  @REQUIREMENTS:QXVP-XVP_SSS-539
-		  @REQUIREMENTS:QXVP-XVP_SSS-541
+		  @REQUIREMENTS:GID-2535689
+		  @REQUIREMENTS:GID-2535706
 
 Scenario: Booking profiles
 Given booked profiles:
