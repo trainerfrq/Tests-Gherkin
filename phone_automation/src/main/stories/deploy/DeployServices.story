@@ -36,6 +36,7 @@ And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xv
 And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove audio_app
 And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove voice_hmi03
 And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove voice_hmi04
+And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove voice_hmi05
 
 Scenario: Start services
 When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy mission_service

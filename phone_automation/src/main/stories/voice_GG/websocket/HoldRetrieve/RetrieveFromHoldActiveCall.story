@@ -1,7 +1,7 @@
 Narrative:
-As an operator having a call on hold with another operator
-I want to establish a new call towards the same callee operator
-So I can verify that the call is retrieved from hold and the state is connected for both operators
+As an operator having an active call with another operator
+I want to retrieve the call from hold
+So I can verify that the call is unchanged and the state is connected
 
 Meta:
      @BeforeStory: ../includes/@PrepareTwoClientsWithMissions.story
@@ -31,21 +31,17 @@ And waiting for 1 seconds
 Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and status connected
 And WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status connected
 
-Scenario: Caller client puts the call on hold
-When WS1 puts the phone call with the callId outgoingPhoneCallId on hold
-And waiting for 2 seconds
+Scenario: Clear buffers
+When WS1 clears all text messages from buffer named CallStatusIndicationBuffer1
+When WS2 clears all text messages from buffer named CallStatusIndicationBuffer2
 
-Scenario: Verify call is on hold
-Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status hold
-Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and status held
-
-Scenario: Caller client established a new call towards the same callee operator
-When WS1 is retrieving the on hold phone call with the callId outgoingPhoneCallId by establishing an outgoing phone call using source callSource and target callTarget
+Scenario: Caller client retrieves call from hold
+When WS1 retrieves the on hold phone call with the callId outgoingPhoneCallId
 And waiting for 1 seconds
 
-Scenario: Verify call is connected
-Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status connected
-Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and status connected
+Scenario: Verify call is unchanged
+Then WS1 has on the message buffer named CallStatusIndicationBuffer1 a number of 0 messages
+Then WS2 has on the message buffer named CallStatusIndicationBuffer2 a number of 0 messages
 
 Scenario: Cleanup call
 When WS1 clears the phone call with the callId outgoingPhoneCallId

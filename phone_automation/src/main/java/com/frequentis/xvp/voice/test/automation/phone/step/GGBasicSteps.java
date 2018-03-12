@@ -5,11 +5,6 @@
  */
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import scripts.cats.websocket.sequential.SendTextMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
-import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
-import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 import static com.frequentis.c4i.test.model.MatcherDetails.match;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.empty;
@@ -55,6 +50,12 @@ import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallIncoming
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallRetrieveRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallStatusIndication;
 import com.google.common.collect.Lists;
+
+import scripts.cats.websocket.sequential.SendTextMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
+import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
+import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 
 public class GGBasicSteps extends WebsocketAutomationSteps
 {
@@ -256,7 +257,8 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    public void establishOutgoingPhoneCall( final String namedWebSocket, final String callSourceName,
          final String callTargetName, final String phoneCallIdName )
    {
-      establishOutgoingCall( namedWebSocket, callSourceName, callTargetName, phoneCallIdName, "DA/IDA", "NON-URGENT" );
+      establishOutgoingCall( namedWebSocket, callSourceName, callTargetName, phoneCallIdName, "DA/IDA", "NON-URGENT",
+            CallStatusIndication.OUT_INITIATING );
    }
 
 
@@ -264,7 +266,8 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    public void establishOutgoingPriorityPhoneCall( final String namedWebSocket, final String callSourceName,
          final String callTargetName, final String phoneCallIdName )
    {
-      establishOutgoingCall( namedWebSocket, callSourceName, callTargetName, phoneCallIdName, "DA/IDA", "URGENT" );
+      establishOutgoingCall( namedWebSocket, callSourceName, callTargetName, phoneCallIdName, "DA/IDA", "URGENT",
+            CallStatusIndication.OUT_INITIATING );
    }
 
 
@@ -272,7 +275,8 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    public void establishOutgoingIACall( final String namedWebSocket, final String callSourceName,
          final String callTargetName, final String phoneCallIdName )
    {
-      establishOutgoingCall( namedWebSocket, callSourceName, callTargetName, phoneCallIdName, "IA", null );
+      establishOutgoingCall( namedWebSocket, callSourceName, callTargetName, phoneCallIdName, "IA", null,
+            CallStatusIndication.OUT_INITIATING );
    }
 
 
@@ -569,6 +573,15 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    }
 
 
+   @When("$namedWebSocket is retrieving the on hold phone call with the callId $phoneCallIdName by establishing an outgoing phone call using source $callSource and target $callTarget")
+   public void retrievePhoneCallOnHoldWithEstablish( final String namedWebSocket, final String phoneCallIdName,
+         final String callSourceName, final String callTargetName )
+   {
+      establishOutgoingCall( namedWebSocket, callSourceName, callTargetName, phoneCallIdName, "DA/IDA", null,
+            CallStatusIndication.HOLD );
+   }
+
+
    @When("$namedWebSocket disassociates from Op Voice Service")
    public void disassociateFromOpVoiceService( final String namedWebSocket )
    {
@@ -663,7 +676,8 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
 
    private void establishOutgoingCall( final String namedWebSocket, final String callSourceName,
-         final String callTargetName, final String phoneCallIdName, final String callType, final String priority )
+         final String callTargetName, final String phoneCallIdName, final String callType, final String priority,
+         final String callStatus )
    {
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
@@ -689,20 +703,20 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
       final String jsonResponse =
             ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
-      assertThatCallEstablishResponseWasReceived( phoneCallIdName, jsonResponse );
+      assertThatCallEstablishResponseWasReceived( phoneCallIdName, jsonResponse, callStatus );
    }
 
 
-   private void assertThatCallEstablishResponseWasReceived( final String phoneCallIdName, final String jsonResponse )
+   private void assertThatCallEstablishResponseWasReceived( final String phoneCallIdName, final String jsonResponse,
+         final String callStatus )
    {
       final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
 
       evaluate( localStep( "Received call establish response" )
             .details(
                   match( "Is call establish response", jsonMessage.body().isCallEstablishResponse(), equalTo( true ) ) )
-            .details(
-                  match( "Call status is out_initiating", jsonMessage.body().callEstablishResponse().getCallStatus(),
-                        equalTo( CallStatusIndication.OUT_INITIATING ) ) ) );
+            .details( match( "Call status is out_initiating",
+                  jsonMessage.body().callEstablishResponse().getCallStatus(), equalTo( callStatus ) ) ) );
 
       setStoryData( phoneCallIdName, jsonMessage.body().callEstablishResponse().getCallId() );
    }

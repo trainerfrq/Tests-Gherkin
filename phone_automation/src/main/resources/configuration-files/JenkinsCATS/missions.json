@@ -22,6 +22,7 @@
     "missionDefaultSourceSipAddress": "sip:role2@example.com",
     "iaCallTimeoutMilliseconds": 1000,
     "maxIncomingIaCallsCount": 3,
+    "maxCallsOnHold": 1,
     "priorityCallHandling": "indication",
     "priorityCallIntrusionWarningPeriod": 0
   },
