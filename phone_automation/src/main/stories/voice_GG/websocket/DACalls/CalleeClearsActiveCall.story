@@ -1,11 +1,10 @@
-Narrative:
-As a callee operator having an active phone call with a caller operator
-I want to clear the phone call
-So I can verify that the phone call is terminated on both sides
+Meta: @BeforeStory: ../includes/@PrepareTwoClientsWithMissions.story
+	  @AfterStory: ../includes/@CleanupTwoClients.story
 
-Meta:
-     @BeforeStory: ../includes/@PrepareTwoClientsWithMissions.story
-     @AfterStory: ../includes/@CleanupTwoClients.story
+Scenario: As a callee operator having an active phone call with a caller operator
+		  I want to clear the phone call
+		  So I can verify that the phone call is terminated on both sides
+		  @REQUIREMENTS:GID-2510109
 
 Scenario: Create the message buffers
 When WS1 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer1

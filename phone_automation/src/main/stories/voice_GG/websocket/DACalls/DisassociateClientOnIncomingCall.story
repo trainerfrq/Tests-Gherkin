@@ -1,10 +1,9 @@
-Narrative:
-As a callee operator having an incoming phone call with a caller operator
-I want to disassociate from Op Voice Service
-So I can verify that the phone call is terminated for the caller operator
+Meta: @BeforeStory: ../includes/@PrepareTwoClientsWithMissions.story
 
-Meta:
-     @BeforeStory: ../includes/@PrepareTwoClientsWithMissions.story
+Scenario: As a callee operator having an incoming phone call with a caller operator
+		  I want to disassociate from Op Voice Service
+		  So I can verify that the phone call is terminated for the caller operator
+		  @REQUIREMENTS:GID-2510109
 
 Scenario: Create the message buffers
 When WS1 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer1
