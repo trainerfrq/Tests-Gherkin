@@ -18,6 +18,7 @@ And waiting for 3 seconds
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status out_ringing
 
 Scenario: Sip phone rejects the phone call
+		  @REQUIREMENTS:GID-2510109
 When SipContact declines calls
 Then SipContact DialogState is TERMINATED within 100 ms
 And waiting for 3 seconds

@@ -29,6 +29,7 @@ Then WS1 receives call status indication on message buffer named CallStatusIndic
 Then SipContact DialogState is CONFIRMED within 100 ms
 
 Scenario: Caller client clears the phone call
+		  @REQUIREMENTS:GID-2510109
 When WS1 clears the phone call with the callId outgoingPhoneCallId
 And waiting for 3 seconds
 Then WS1 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and terminationDetails normal

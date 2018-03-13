@@ -29,6 +29,7 @@ When WS1 establishes an outgoing IA call with source callSourceRoleAlias and tar
 And waiting for 1 seconds
 
 Scenario: Verify call status
+		  @REQUIREMENTS:GID-2505707
 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status terminated
 And waiting for 1 seconds
 Then WS1 does NOT receive call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status terminated

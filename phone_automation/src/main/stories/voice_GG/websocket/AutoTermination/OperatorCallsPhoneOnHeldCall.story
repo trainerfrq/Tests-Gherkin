@@ -46,6 +46,7 @@ When WS1 clears all text messages from buffer named CallStatusIndicationBuffer1
 When WS2 clears all text messages from buffer named CallStatusIndicationBuffer2
 
 Scenario: Caller establishes another outgoing call
+		  @REQUIREMENTS:GID-2878006
 When WS1 establishes an outgoing phone call using source callSource ang target sipPhoneTarget and names outgoingPhoneCallId2
 And waiting for 1 seconds
 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status out_ringing

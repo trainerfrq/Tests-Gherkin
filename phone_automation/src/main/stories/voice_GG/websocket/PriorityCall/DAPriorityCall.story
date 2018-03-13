@@ -16,11 +16,15 @@ Scenario: Caller client retrieves phone data
 When WS1 loads phone data for role roleId1 and names callSource and callTarget from the entry number 1
 
 Scenario: Caller establishes an outgoing priority call
+		  @REQUIREMENTS:GID-2505647
+		  @REQUIREMENTS:GID-2536682
 When WS1 establishes an outgoing priority phone call using source callSource ang target callTarget and names outgoingPhoneCallId
 And waiting for 1 seconds
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status out_trying
 
 Scenario: Callee client receives the incoming priority call and confirms it
+		  @REQUIREMENTS:GID-3685306
+		  @REQUIREMENTS:GID-2505702
 When WS2 receives call incoming indication for priority call on message buffer named CallIncomingIndicationBuffer2 with callSource and callTarget and names incomingPhoneCallId
 And WS2 confirms incoming phone call with callId incomingPhoneCallId
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status out_ringing

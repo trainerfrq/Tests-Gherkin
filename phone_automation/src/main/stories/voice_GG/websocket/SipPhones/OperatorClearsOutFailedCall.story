@@ -30,6 +30,7 @@ And waiting for 3 seconds
 Then WS1 receives call status indication with out_failed status on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and terminationDetails busy
 
 Scenario: Callee client clears the phone call
+		  @REQUIREMENTS:GID-2510109
 When WS1 clears the phone call with the callId outgoingPhoneCallId
 
 Scenario: Verify call is terminated

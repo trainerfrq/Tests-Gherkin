@@ -16,11 +16,13 @@ Scenario: Caller client retrieves phone data
 When WS1 loads phone data for role roleId1 and names callSource and callTarget from the entry number 1
 
 Scenario: Caller establishes an outgoing call
+		  @REQUIREMENTS:GID-2505706
 When WS1 establishes an outgoing IA call with source callSource and target callTarget and names outgoingPhoneCallId
 And waiting for 1 seconds
 Then WS1 is receiving call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status connected and audio direction TX
 
-Scenario: Callee client receives the incoming call and confirms it
+Scenario: Callee client receives the incoming call
+		  @REQUIREMENTS:GID-2505708
 When WS2 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer2 with callSource and callTarget and names incomingPhoneCallId and audio direction RX
 
 Scenario: Cleanup phone call
