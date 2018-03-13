@@ -15,8 +15,8 @@ When WS1 loads phone data for role roleId1 and names callSource and callTarget f
 
 Scenario: Define call target
 When define values in story data:
-| name           | value                         |
-| sipPhoneTarget | sip:cats@<<PHONE_ROUTING_IP>> |
+| name           | value          |
+| sipPhoneTarget | <<SIP_PHONE1>> |
 
 Scenario: Caller establishes an outgoing call
 When WS1 establishes an outgoing IA call with source callSource and target sipPhoneTarget and names outgoingPhoneCallId

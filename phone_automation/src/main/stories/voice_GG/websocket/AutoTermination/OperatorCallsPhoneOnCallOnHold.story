@@ -38,8 +38,8 @@ And WS2 receives call status indication on message buffer named CallStatusIndica
 
 Scenario: Define call target
 When define values in story data:
-| name           | value                         |
-| sipPhoneTarget | sip:cats@<<PHONE_ROUTING_IP>> |
+| name           | value          |
+| sipPhoneTarget | <<SIP_PHONE1>> |
 
 Scenario: Clear buffers
 When WS1 clears all text messages from buffer named CallStatusIndicationBuffer1

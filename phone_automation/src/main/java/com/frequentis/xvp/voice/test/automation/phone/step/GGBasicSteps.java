@@ -5,6 +5,11 @@
  */
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import scripts.cats.websocket.sequential.SendTextMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
+import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
+import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 import static com.frequentis.c4i.test.model.MatcherDetails.match;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.empty;
@@ -32,30 +37,24 @@ import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSock
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
 import com.frequentis.xvp.voice.opvoice.config.layout.JsonDaDataElement;
-import com.frequentis.xvp.voice.opvoice.json.messages.AssociateResponse;
-import com.frequentis.xvp.voice.opvoice.json.messages.AssociateResponseResult;
-import com.frequentis.xvp.voice.opvoice.json.messages.CallAcceptRequest;
-import com.frequentis.xvp.voice.opvoice.json.messages.CallClearRequest;
-import com.frequentis.xvp.voice.opvoice.json.messages.CallEstablishRequest;
-import com.frequentis.xvp.voice.opvoice.json.messages.CallHoldRequest;
-import com.frequentis.xvp.voice.opvoice.json.messages.CallIncomingConfirmation;
-import com.frequentis.xvp.voice.opvoice.json.messages.CallRetrieveRequest;
-import com.frequentis.xvp.voice.opvoice.json.messages.CallStatusIndication;
-import com.frequentis.xvp.voice.opvoice.json.messages.DisassociateResponse;
-import com.frequentis.xvp.voice.opvoice.json.messages.DisassociateResponseResult;
 import com.frequentis.xvp.voice.opvoice.json.messages.JsonMessage;
-import com.frequentis.xvp.voice.opvoice.json.messages.layout.QueryRolePhoneDataRequest;
-import com.frequentis.xvp.voice.opvoice.json.messages.missions.ChangeMissionRequest;
-import com.frequentis.xvp.voice.opvoice.json.messages.missions.ChangeMissionResponseResult;
-import com.frequentis.xvp.voice.opvoice.json.messages.missions.MissionChangeCompletedEvent;
-import com.frequentis.xvp.voice.opvoice.json.messages.missions.MissionChangedIndication;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.AssociateResponse;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.AssociateResponseResult;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.DisassociateResponse;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.DisassociateResponseResult;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.layout.QueryRolePhoneDataRequest;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.missions.ChangeMissionRequest;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.missions.ChangeMissionResponseResult;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.missions.MissionChangeCompletedEvent;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.missions.MissionChangedIndication;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallAcceptRequest;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallClearRequest;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallEstablishRequest;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallHoldRequest;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallIncomingConfirmation;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallRetrieveRequest;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallStatusIndication;
 import com.google.common.collect.Lists;
-
-import scripts.cats.websocket.sequential.SendTextMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
-import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
-import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 
 public class GGBasicSteps extends WebsocketAutomationSteps
 {
@@ -257,7 +256,15 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    public void establishOutgoingPhoneCall( final String namedWebSocket, final String callSourceName,
          final String callTargetName, final String phoneCallIdName )
    {
-      establishOutgoingCall( namedWebSocket, callSourceName, callTargetName, phoneCallIdName, "DA/IDA" );
+      establishOutgoingCall( namedWebSocket, callSourceName, callTargetName, phoneCallIdName, "DA/IDA", "NON-URGENT" );
+   }
+
+
+   @When("$namedWebSocket establishes an outgoing priority phone call using source $callSourceName ang target $callTargetName and names $phoneCallIdName")
+   public void establishOutgoingPriorityPhoneCall( final String namedWebSocket, final String callSourceName,
+         final String callTargetName, final String phoneCallIdName )
+   {
+      establishOutgoingCall( namedWebSocket, callSourceName, callTargetName, phoneCallIdName, "DA/IDA", "URGENT" );
    }
 
 
@@ -265,7 +272,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    public void establishOutgoingIACall( final String namedWebSocket, final String callSourceName,
          final String callTargetName, final String phoneCallIdName )
    {
-      establishOutgoingCall( namedWebSocket, callSourceName, callTargetName, phoneCallIdName, "IA" );
+      establishOutgoingCall( namedWebSocket, callSourceName, callTargetName, phoneCallIdName, "IA", null );
    }
 
 
@@ -449,12 +456,12 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
 
    @When("$namedWebSocket receives call incoming indication for IA call on message buffer named $bufferName with $callSource and $callTarget and names $incomingPhoneCallId and audio direction $audioDirection")
-   public void receiveCallIncomingIndicationType( final String namedWebSocket, final String bufferName,
+   public void receiveCallIncomingIndicationWithAudioDirection( final String namedWebSocket, final String bufferName,
          final String callSourceName, final String callTargetName, final String phoneCallIdName,
          final String audioDirection )
    {
       receiveCallIncomingIndication( namedWebSocket, bufferName, callSourceName, callTargetName, phoneCallIdName, "IA",
-            audioDirection, CallStatusIndication.CONNECTED );
+            audioDirection, CallStatusIndication.CONNECTED, "URGENT" );
    }
 
 
@@ -463,7 +470,16 @@ public class GGBasicSteps extends WebsocketAutomationSteps
          final String callSourceName, final String callTargetName, final String phoneCallIdName )
    {
       receiveCallIncomingIndication( namedWebSocket, bufferName, callSourceName, callTargetName, phoneCallIdName,
-            "DA/IDA", CallStatusIndication.INC_INITIATED );
+            "DA/IDA", null, CallStatusIndication.INC_INITIATED, "NON-URGENT" );
+   }
+
+
+   @When("$namedWebSocket receives call incoming indication for priority call on message buffer named $bufferName with $callSource and $callTarget and names $incomingPhoneCallId")
+   public void receiveCallIncomingIndicationForPriorityCall( final String namedWebSocket, final String bufferName,
+         final String callSourceName, final String callTargetName, final String phoneCallIdName )
+   {
+      receiveCallIncomingIndication( namedWebSocket, bufferName, callSourceName, callTargetName, phoneCallIdName,
+            "DA/IDA", null, CallStatusIndication.INC_INITIATED, "URGENT" );
    }
 
 
@@ -608,16 +624,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
    private void receiveCallIncomingIndication( final String namedWebSocket, final String bufferName,
          final String callSourceName, final String callTargetName, final String phoneCallIdName, final String callType,
-         final String callState )
-   {
-      receiveCallIncomingIndication( namedWebSocket, bufferName, callSourceName, callTargetName, phoneCallIdName,
-            callType, null, callState );
-   }
-
-
-   private void receiveCallIncomingIndication( final String namedWebSocket, final String bufferName,
-         final String callSourceName, final String callTargetName, final String phoneCallIdName, final String callType,
-         final Object audioDirection, final String callState )
+         final Object audioDirection, final String callState, final String priority )
    {
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
@@ -648,14 +655,16 @@ public class GGBasicSteps extends WebsocketAutomationSteps
                   match( "Called party matches", jsonMessage.body().callIncomingIndication().getCalledParty().getUri(),
                         containsString( getStoryData( callTargetName, String.class ) ) ) )
             .details( match( "AudioDirection matches", jsonMessage.body().callIncomingIndication().getAudioDirection(),
-                  equalTo( audioDirection ) ) ) );
+                  equalTo( audioDirection ) ) )
+            .details( match( "Call priority matches", jsonMessage.body().callIncomingIndication().getCallPriority(),
+                  equalTo( priority ) ) ) );
 
       setStoryData( phoneCallIdName, jsonMessage.body().callIncomingIndication().getCallId() );
    }
 
 
    private void establishOutgoingCall( final String namedWebSocket, final String callSourceName,
-         final String callTargetName, final String phoneCallIdName, final String callType )
+         final String callTargetName, final String phoneCallIdName, final String callType, final String priority )
    {
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
@@ -663,11 +672,12 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       final String callingParty = getStoryData( callSourceName, String.class );
       final String calledParty = getStoryData( callTargetName, String.class );
 
+      final CallEstablishRequest callEstablishRequest =
+            new CallEstablishRequest( new Random().nextInt(), callingParty, calledParty, callType );
+      callEstablishRequest.setCallPriority( priority );
+
       final JsonMessage request =
-            JsonMessage.builder().withCorrelationId( UUID.randomUUID() )
-                  .withPayload(
-                        new CallEstablishRequest( new Random().nextInt(), callingParty, calledParty, callType ) )
-                  .build();
+            JsonMessage.builder().withCorrelationId( UUID.randomUUID() ).withPayload( callEstablishRequest ).build();
 
       final RemoteStepResult remoteStepResult =
             evaluate(

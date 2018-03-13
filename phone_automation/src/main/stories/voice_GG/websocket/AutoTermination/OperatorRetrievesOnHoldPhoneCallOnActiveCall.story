@@ -69,6 +69,7 @@ Then WS1 receives call status indication verifying all the messages on message b
 Then WS2 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status connected
 
 Scenario: Verify active call was terminated
+When waiting for 1 seconds
 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId incomingPhoneCallId2 and status terminated
 Then SipContact DialogState is TERMINATED within 100 ms
 

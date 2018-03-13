@@ -1,0 +1,56 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="CATS-CONTAINER-CLUJ" type="MavenRunConfiguration" factoryName="Maven">
+    <MavenSettings>
+      <option name="myGeneralSettings" />
+      <option name="myRunnerSettings">
+        <MavenRunnerSettings>
+          <option name="environmentProperties">
+            <map>
+              <entry key="OP_VOICE_VERSION" value="0.14.0-SNAPSHOT" />
+              <entry key="PROJECT_URL" value="http://10.31.205.40/phone_automation-0.1.0-SNAPSHOT.zip" />
+              <entry key="VOICE_HMI_VERSION" value="0.11.0-SNAPSHOT" />
+              <entry key="XVP_SYSTEM_PROPERTIES_FILENAME" value="ClujCATS.system.properties" />
+              <entry key="XVP_TEST_SYSTEM" value="10.31.205.40" />
+            </map>
+          </option>
+          <option name="jreName" value="#USE_PROJECT_JDK" />
+          <option name="mavenProperties">
+            <map />
+          </option>
+          <option name="passParentEnv" value="true" />
+          <option name="runMavenInBackground" value="true" />
+          <option name="skipTests" value="false" />
+          <option name="vmOptions" value="" />
+        </MavenRunnerSettings>
+      </option>
+      <option name="myRunnerParameters">
+        <MavenRunnerParameters>
+          <option name="profiles">
+            <set />
+          </option>
+          <option name="goals">
+            <list>
+              <option value="clean" />
+              <option value="install" />
+              <option value="-pl" />
+              <option value="phone_automation_runner" />
+              <option value="-DskipTraceImport" />
+              <option value="-Dbuild.docs=true" />
+              <option value="-P" />
+              <option value="XVP-TestSystem-Defined" />
+              <option value="-P" />
+              <option value="CATS-MASTER-IMAGE-FOR-OP-VOICE" />
+              <option value="-DstoryBoard=GGStoryBoard.csb" />
+            </list>
+          </option>
+          <option name="profilesMap">
+            <map />
+          </option>
+          <option name="resolveToWorkspace" value="false" />
+          <option name="workingDirPath" value="$PROJECT_DIR$" />
+        </MavenRunnerParameters>
+      </option>
+    </MavenSettings>
+    <method />
+  </configuration>
+</component>
