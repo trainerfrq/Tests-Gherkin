@@ -421,7 +421,7 @@
             </cats:storyLists>
         </cats:storyCollection>
         <cats:storyCollection enabled="true">
-            <cats:name>New Story Collection 8</cats:name>
+            <cats:name>Websocket - Hold/Retrieve</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
                 <cats:status>CREATED</cats:status>
