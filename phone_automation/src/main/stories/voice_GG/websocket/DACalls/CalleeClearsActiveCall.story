@@ -1,10 +1,10 @@
+Narrative:
+As a callee operator having an active phone call with a caller operator
+I want to clear the phone call
+So I can verify that the phone call is terminated on both sides
+
 Meta: @BeforeStory: ../includes/@PrepareTwoClientsWithMissions.story
 	  @AfterStory: ../includes/@CleanupTwoClients.story
-
-Scenario: As a callee operator having an active phone call with a caller operator
-		  I want to clear the phone call
-		  So I can verify that the phone call is terminated on both sides
-		  @REQUIREMENTS:GID-2510109
 
 Scenario: Create the message buffers
 When WS1 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer1
@@ -30,6 +30,7 @@ Then WS2 receives call status indication on message buffer named CallStatusIndic
 And WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status connected
 
 Scenario: Callee client clears the phone call
+		  @REQUIREMENTS:GID-2510109
 When WS2 clears the phone call with the callId incomingPhoneCallId
 And waiting for 3 seconds
 Then WS1 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and terminationDetails normal
