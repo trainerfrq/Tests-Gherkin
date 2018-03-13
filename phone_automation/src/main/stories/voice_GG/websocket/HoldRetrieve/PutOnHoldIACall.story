@@ -1,7 +1,7 @@
 Narrative:
-As a caller operator
-I want to initiate an IA call
-So I can verify that is automatically accepted
+As an operator having an outgoing IA call
+I want to put the IA call on hold
+So I can verify that the call is not put on hold
 
 Meta:
      @BeforeStory: ../includes/@PrepareTwoClientsWithMissions.story
@@ -15,7 +15,7 @@ When WS2 opens the message buffer for message type callStatusIndication named Ca
 Scenario: Caller client retrieves phone data
 When WS1 loads phone data for role roleId1 and names callSource and callTarget from the entry number 1
 
-Scenario: Caller establishes an outgoing call
+Scenario: Caller establishes an outgoing IA call
 When WS1 establishes an outgoing IA call with source callSource and target callTarget and names outgoingPhoneCallId
 And waiting for 1 seconds
 Then WS1 is receiving call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status connected and audio direction TX

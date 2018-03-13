@@ -715,8 +715,8 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       evaluate( localStep( "Received call establish response" )
             .details(
                   match( "Is call establish response", jsonMessage.body().isCallEstablishResponse(), equalTo( true ) ) )
-            .details( match( "Call status is out_initiating",
-                  jsonMessage.body().callEstablishResponse().getCallStatus(), equalTo( callStatus ) ) ) );
+            .details( match( "Call status is " + callStatus, jsonMessage.body().callEstablishResponse().getCallStatus(),
+                  equalTo( callStatus ) ) ) );
 
       setStoryData( phoneCallIdName, jsonMessage.body().callEstablishResponse().getCallId() );
    }

@@ -38,7 +38,7 @@ And waiting for 1 seconds
 Scenario: Verify call is on hold
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status hold
 
-Scenario: Caller client clears call
+Scenario: Callee client clears call
 When WS2 clears the phone call with the callId incomingPhoneCallId
 And waiting for 1 seconds
 

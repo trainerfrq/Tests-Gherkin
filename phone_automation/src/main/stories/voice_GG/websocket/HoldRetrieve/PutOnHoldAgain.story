@@ -43,7 +43,7 @@ Scenario: Clear buffers
 When WS1 clears all text messages from buffer named CallStatusIndicationBuffer1
 When WS2 clears all text messages from buffer named CallStatusIndicationBuffer2
 
-Scenario: Caller client retrieves call from hold
+Scenario: Caller client put the call on hold again
 When WS1 puts the phone call with the callId outgoingPhoneCallId on hold
 And waiting for 1 seconds
 
