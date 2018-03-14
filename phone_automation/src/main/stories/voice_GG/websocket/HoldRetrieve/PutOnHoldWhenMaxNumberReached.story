@@ -63,6 +63,7 @@ When WS2 clears all text messages from buffer named CallStatusIndicationBuffer2
 When WS3 clears all text messages from buffer named CallStatusIndicationBuffer3
 
 Scenario: Second client puts the call on hold
+		  @REQUIREMENTS:GID-2604614
 When WS2 puts the phone call with the callId outgoingPhoneCallId2 on hold
 And waiting for 2 seconds
 

@@ -39,6 +39,7 @@ Scenario: Verify call is on hold
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status hold
 
 Scenario: Caller client clears call
+		  @REQUIREMENTS:GID-2510109
 When WS1 clears the phone call with the callId outgoingPhoneCallId
 And waiting for 1 seconds
 
