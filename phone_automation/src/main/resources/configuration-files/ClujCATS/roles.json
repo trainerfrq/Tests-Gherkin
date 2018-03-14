@@ -61,6 +61,11 @@
             "grid": "applicationGrid"
           },
           {
+            "id": "709",
+            "type": "da",
+            "grid": "applicationGrid"
+          },
+          {
             "id": "710",
             "type": "da",
             "grid": "applicationGrid"
@@ -127,6 +132,13 @@
             "rowSpan": 2
           },
           {
+            "id": "709",
+            "column": 7,
+            "row": 9,
+            "columnSpan": 2,
+            "rowSpan": 2
+          },
+          {
             "id": "710",
             "column": 7,
             "row": 10,
@@ -186,6 +198,12 @@
             "target": "sip:role2@example.com",
             "source": "sip:role1@example.com",
             "displayName": "ROLE 2"
+          },
+          {
+            "id": "709",
+            "target": "sip:333333@example.com",
+            "source": "sip:111111@example.com",
+            "displayName": "OP 3"
           },
           {
             "id": "710",
