@@ -12,6 +12,8 @@ class ReceiveMessageCount extends AbstractBufferScript {
     public static final String IPARAM_BUFFERKEY = "websocket-target-buffer-key";
     public static final String IPARAM_MESSAGE_COUNT = "websocket-message-count";
 
+    public static final String RECEIVEDMESSAGE = "received_message";
+
     @Override
     protected void script() {
         final String endpointName = assertInput(IPARAM_ENDPOINTNAME)
@@ -37,7 +39,7 @@ class ReceiveMessageCount extends AbstractBufferScript {
 
         allMessages.stream().forEach({ textMessage ->
             record(ExecutionDetails.create("Printing from the buffer message number" + allMessages.indexOf(textMessage))
-                    .expected("Printing from the buffer message number" + allMessages.indexOf(textMessage), textMessage)
+                    .usedData(RECEIVEDMESSAGE, textMessage)
                     .success())
         })
 
