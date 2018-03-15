@@ -3,9 +3,8 @@ As a caller operator having an active phone call with a callee operator
 I want to clear the phone call
 So I can verify that the phone call is terminated on both sides
 
-Meta:
-     @BeforeStory: ../includes/@PrepareTwoClientsWithMissions.story
-     @AfterStory: ../includes/@CleanupTwoClients.story
+Meta: @BeforeStory: ../includes/@PrepareTwoClientsWithMissions.story
+	  @AfterStory: ../includes/@CleanupTwoClients.story
 
 Scenario: Create the message buffers
 When WS1 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer1
@@ -16,6 +15,7 @@ Scenario: Caller client retrieves phone data
 When WS1 loads phone data for role roleId1 and names callSource and callTarget from the entry number 1
 
 Scenario: Caller establishes an outgoing call
+		  @REQUIREMENTS:GID-2535689
 When WS1 establishes an outgoing phone call using source callSource ang target callTarget and names outgoingPhoneCallId
 And waiting for 6 seconds
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status out_trying

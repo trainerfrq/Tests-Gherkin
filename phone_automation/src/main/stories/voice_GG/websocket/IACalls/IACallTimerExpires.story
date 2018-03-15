@@ -19,6 +19,7 @@ When define values in story data:
 | sipPhoneTarget | <<SIP_PHONE1>> |
 
 Scenario: Caller establishes an outgoing call
+		  @REQUIREMENTS:GID-2505705
 When WS1 establishes an outgoing IA call with source callSource and target sipPhoneTarget and names outgoingPhoneCallId
 And waiting for 3 seconds
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status terminated

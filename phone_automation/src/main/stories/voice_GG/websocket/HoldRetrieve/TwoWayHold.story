@@ -32,6 +32,8 @@ Then WS2 receives call status indication on message buffer named CallStatusIndic
 And WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status connected
 
 Scenario: Caller client puts the call on hold
+		  @REQUIREMENTS:GID-2505734
+		  @REQUIREMENTS:GID-2510074
 When WS1 puts the phone call with the callId outgoingPhoneCallId on hold
 And waiting for 1 seconds
 

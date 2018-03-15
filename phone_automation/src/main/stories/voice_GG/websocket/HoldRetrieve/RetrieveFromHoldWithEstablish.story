@@ -40,6 +40,7 @@ Then WS1 receives call status indication on message buffer named CallStatusIndic
 Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and status held
 
 Scenario: Caller client established a new call towards the same callee operator
+		  @REQUIREMENTS:GID-2510075
 When WS1 is retrieving the on hold phone call with the callId outgoingPhoneCallId by establishing an outgoing phone call using source callSource and target callTarget
 And waiting for 1 seconds
 

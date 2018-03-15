@@ -1,9 +1,9 @@
 Scenario: Create a virtual machine and boot it with the deployment ISO image with template. Wait for the deployment to finish and verify that the deploymentServer is accesible via SSH.
 Given xvp test system
-When booting machine DOC-VST02-10 from ISO image <<boot.iso.url>>
+When booting machine DEP-VST02-10 from ISO image <<boot.iso.url>>
 When waiting for 800 seconds
-Then ssh connection can be established to DOC-VST02-10 within 13 minutes
-And verify start xvp deployment agent process finished with command systemctl is-active xvp-deployment-agent; echo $? on DOC-VST02-10 and check output active 0
+Then ssh connection can be established to DEP-VST02-10 within 13 minutes
+And verify start xvp deployment agent process finished with command systemctl is-active xvp-deployment-agent; echo $? on DEP-VST02-10 and check output active 0
 
 Scenario: Create DOC-VST02-11 machine with PXE boot enabled and verify that DOC-VST02-11 is accessible via SSH after the deployment has completed
 Given xvp test system
@@ -46,3 +46,17 @@ When rebooting the machine CWP-VST02-16
 And waiting for 60 seconds
 Then ssh connection can be established to CWP-VST02-16 within 13 minutes
 And verify start xvp deployment agent process finished with command systemctl is-active xvp-deployment-agent; echo $? on CWP-VST02-16 and check output active 0
+
+Scenario: Create CAT-VST02-17 machine with PXE boot enabled and verify that DOC-VST02-11 is accessible via SSH after the deployment has completed
+Given xvp test system
+When rebooting the machine CAT-VST02-17
+And waiting for 130 seconds
+Then ssh connection can be established to CAT-VST02-17 within 13 minutes
+And verify start xvp deployment agent process finished with command systemctl is-active xvp-deployment-agent; echo $? on CAT-VST02-17 and check output active 0
+
+Scenario: Create CAT-VST02-18 machine with PXE boot enabled and verify that DOC-VST02-11 is accessible via SSH after the deployment has completed
+Given xvp test system
+When rebooting the machine CAT-VST02-18
+And waiting for 130 seconds
+Then ssh connection can be established to CAT-VST02-18 within 13 minutes
+And verify start xvp deployment agent process finished with command systemctl is-active xvp-deployment-agent; echo $? on CAT-VST02-18 and check output active 0

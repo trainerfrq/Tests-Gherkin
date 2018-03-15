@@ -51,6 +51,7 @@ And WS1 confirms incoming phone call with callId incomingPhoneCallId2
 Then SipContact DialogState is EARLY within 100 ms
 
 Scenario: Callee client answers the incoming call
+		  @REQUIREMENTS:GID-2878006
 When WS1 answers the incoming phone call with the callId incomingPhoneCallId2
 And waiting for 1 seconds
 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId incomingPhoneCallId2 and status connected
