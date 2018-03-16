@@ -3,9 +3,8 @@ As a caller operator having an outgoing phone call to a callee operator
 I want to cancel the phone call
 So I can verify that the phone call is terminated on both sides
 
-Meta:
-     @BeforeStory: ../includes/@PrepareTwoClientsWithMissions.story
-     @AfterStory: ../includes/@CleanupTwoClients.story
+Meta: @BeforeStory: ../includes/@PrepareTwoClientsWithMissions.story
+	  @AfterStory: ../includes/@CleanupTwoClients.story
 
 Scenario: Create the message buffers
 When WS1 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer1
@@ -26,6 +25,7 @@ And WS2 confirms incoming phone call with callId incomingPhoneCallId
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status out_ringing
 
 Scenario: Caller client clears the incoming call
+		  @REQUIREMENTS:GID-2510109
 When WS1 clears the phone call with the callId outgoingPhoneCallId
 And waiting for 3 seconds
 Then WS2 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and terminationDetails normal

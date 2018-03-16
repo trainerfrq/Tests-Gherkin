@@ -32,7 +32,7 @@
       "opPhysicalEntity": {
         "opSipEndpoint": {
           "opPhysicalHost": "10.31.205.43",
-          "opSipListeningPort": 5069
+          "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",
         "opUserInfo": "333333",

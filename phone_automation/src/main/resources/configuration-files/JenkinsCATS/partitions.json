@@ -19,6 +19,16 @@
           "audioAppUri": "ws://10.17.15.45:5674/ctrlif"
         }
       ]
+    },
+    {
+      "partitionKey": "op05",
+      "clients": [
+        {
+          "opId": "op05",
+          "radioUserName": "OpVoiceUser3",
+          "audioAppUri": "ws://10.17.15.46:5674/ctrlif"
+        }
+      ]
     }
   ]
 }

@@ -3,8 +3,7 @@ As a callee operator having an incoming phone call with a caller operator
 I want to disassociate from Op Voice Service
 So I can verify that the phone call is terminated for the caller operator
 
-Meta:
-     @BeforeStory: ../includes/@PrepareTwoClientsWithMissions.story
+Meta: @BeforeStory: ../includes/@PrepareTwoClientsWithMissions.story
 
 Scenario: Create the message buffers
 When WS1 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer1
@@ -23,6 +22,7 @@ Scenario: Callee client receives the incoming call
 When WS2 receives call incoming indication on message buffer named CallIncomingIndicationBuffer2 with callSource and callTarget and names incomingPhoneCallId
 
 Scenario: Callee client disassociates from OP Voice
+		  @REQUIREMENTS:GID-2510109
 When WS2 disassociates from Op Voice Service
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status out_failed
 
