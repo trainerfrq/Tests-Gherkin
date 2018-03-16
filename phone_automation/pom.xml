@@ -21,9 +21,9 @@
       <agentsHome>${project.build.directory}/automation/agents</agentsHome>
       <dslHome>${project.build.directory}/automation/dsl</dslHome>
 
-      <voice.service.interface.version>0.14.0-SNAPSHOT</voice.service.interface.version>
+      <voice.service.interface.version>0.20.0-SNAPSHOT</voice.service.interface.version>
       <xvp-cats-libs.version>0.4.0-SNAPSHOT</xvp-cats-libs.version>
-   </properties>
+ </properties>
 
    <dependencies>
       <dependency>
@@ -193,7 +193,6 @@
                             <descriptors>
                                 <descriptors>src/main/assembly/distribution.xml</descriptors>
                             </descriptors>
-                            <finalName>phone-automation</finalName>
                             <appendAssemblyId>false</appendAssemblyId>
                         </configuration>
                         <executions>
