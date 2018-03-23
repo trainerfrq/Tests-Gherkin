@@ -46,4 +46,4 @@ And SSH host hmiHost2 executes sed -i 's/${CATS_PUBLIC_IP}/<<DEP_SERVER_IP>>/g' 
 Scenario: Start HMIs
 When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy voice_hmi03
 And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy voice_hmi04
-Then waiting for 60 seconds
+Then waiting for 120 seconds
