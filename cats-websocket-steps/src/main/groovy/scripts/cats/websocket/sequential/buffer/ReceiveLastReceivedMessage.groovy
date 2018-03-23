@@ -23,23 +23,15 @@ class ReceiveLastReceivedMessage extends AbstractBufferScript {
 
     public static final String IPARAM_ENDPOINTNAME = "websocket-endpoint-name";
     public static final String IPARAM_BUFFERKEY = "websocket-target-buffer-key";
-    public static final String IPARAM_MAXRESPONSETIMEOUTINSEC = "max_response_timeout_in_sec";
+    public static final String IPARAM_SHALLBEDELETED = "shall-be-deleted";
 
     public static final String OPARAM_RECEIVEDMESSAGE = "received_message";
-
-    private final Long MaxResponseTimeout = 30;
 
     @Override
     protected void script() {
         final String endpointName = assertInput(IPARAM_ENDPOINTNAME)
         final String bufferKey = assertInput(IPARAM_BUFFERKEY)
-        String maxResponseTimeoutInSec = getInput(IPARAM_MAXRESPONSETIMEOUTINSEC)
-
-        // Set response latency defaults if necessary
-        if (maxResponseTimeoutInSec == null || maxResponseTimeoutInSec < 1) {
-            maxResponseTimeoutInSec = MaxResponseTimeout;
-            LOG.severe("maxResponseTimeoutInSec = " + maxResponseTimeoutInSec.toString())
-        }
+        final Boolean shallBeDeleted = assertInput(IPARAM_SHALLBEDELETED) as Boolean
 
         // get and assert endpoint
         ClientEndpoint endpoint = getWebSocketEndpointManager().getWebSocketEndpoint(endpointName);
@@ -65,7 +57,13 @@ class ReceiveLastReceivedMessage extends AbstractBufferScript {
                 .expected("there is at least one message stored in the buffer named: " + bufferKey)
                 .success(receiveNrTextMessages(endpoint, bufferKey, 1, 10000)))
 
-        List<TextMessage> allMessages = usedBuffer.pollAllTextMessages()
+        List<TextMessage> allMessages
+        if (shallBeDeleted) {
+            allMessages = usedBuffer.pollAllTextMessages()
+        } else {
+            allMessages = usedBuffer.peekAllTextMessages()
+        }
+
         // verify that at least one message is in the buffer
         evaluate(ExecutionDetails.create("Verify the nr. of stored messages")
                 .expected("The number is: " + allMessages.size())

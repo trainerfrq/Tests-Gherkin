@@ -189,9 +189,9 @@
           },
           {
             "id": "906",
-            "target": "sip:cisco@10.17.15.40",
-            "source": "sip:111111@10.17.15.40",
-            "displayName": "Cisco (as OP1)"
+            "target": "sip:111111@example.com",
+            "source": "sip:333333@example.com",
+            "displayName": "OP 3"
           },
           {
             "id": "708",
