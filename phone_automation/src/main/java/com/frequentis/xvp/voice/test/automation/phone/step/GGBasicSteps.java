@@ -673,7 +673,8 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             assertCallingParty( jsonMessage, callParty );
             break;
          default:
-            //fail step
+            evaluate( localStep( "Check call party type" )
+                  .details( ExecutionDetails.create( "Unknown call party type: " + callPartyType ).failure() ) );
             break;
       }
    }
