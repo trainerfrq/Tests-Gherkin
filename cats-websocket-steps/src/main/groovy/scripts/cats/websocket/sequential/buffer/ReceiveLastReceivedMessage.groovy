@@ -13,17 +13,13 @@ import com.frequentis.c4i.test.agent.websocket.common.impl.message.TextMessage
 import com.frequentis.c4i.test.model.ExecutionDetails
 import scripts.cats.websocket.plugin.AbstractBufferScript
 
-import java.util.logging.Logger
-
 /**
  * Receive a single text message on a given endpoint/buffer
  */
 class ReceiveLastReceivedMessage extends AbstractBufferScript {
-    private static Logger LOG = Logger.getLogger(ReceiveLastReceivedMessage.getName());
-
     public static final String IPARAM_ENDPOINTNAME = "websocket-endpoint-name";
     public static final String IPARAM_BUFFERKEY = "websocket-target-buffer-key";
-    public static final String IPARAM_SHALLBEDELETED = "shall-be-deleted";
+    public static final String IPARAM_DISCARDALLMESSAGES = "discard-all-messages";
 
     public static final String OPARAM_RECEIVEDMESSAGE = "received_message";
 
@@ -31,7 +27,7 @@ class ReceiveLastReceivedMessage extends AbstractBufferScript {
     protected void script() {
         final String endpointName = assertInput(IPARAM_ENDPOINTNAME)
         final String bufferKey = assertInput(IPARAM_BUFFERKEY)
-        final Boolean shallBeDeleted = assertInput(IPARAM_SHALLBEDELETED) as Boolean
+        Boolean shallBeDeleted = getInput(IPARAM_DISCARDALLMESSAGES, true) as Boolean
 
         // get and assert endpoint
         ClientEndpoint endpoint = getWebSocketEndpointManager().getWebSocketEndpoint(endpointName);
