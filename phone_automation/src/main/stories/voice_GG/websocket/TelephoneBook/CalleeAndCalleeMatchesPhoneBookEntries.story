@@ -57,6 +57,7 @@ Scenario: Sip phone calls operator
 When SipContact calls SIP URI <<OPVOICE3_PHONE_URI>>
 
 Scenario: Callee client receives the incoming call and confirms it
+		  @REQUIREMENTS:GID-2877902
 When WS3 receives call incoming indication on message buffer named CallIncomingIndicationBuffer3 with callingParty matching sourceCallParty
 When WS3 receives call incoming indication on message buffer named CallIncomingIndicationBuffer3 with calledParty matching targetCallParty
 
