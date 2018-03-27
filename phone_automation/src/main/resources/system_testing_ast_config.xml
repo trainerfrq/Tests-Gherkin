@@ -3,7 +3,7 @@
     <job>
         <name>System Testing AST Import</name>
         <simulation>false</simulation>
-        <incremental>true</incremental>
+        <incremental>false</incremental>
         <sources>
             <workingCopy path="./">
                 <filter regex="src/main/stories"/>
@@ -32,7 +32,7 @@
                 <releaseId>XVP VA REL1.0 </releaseId>
                 <testtype>Automated Test</testtype>
                 <documentType>TC</documentType>
-                <parentFolder>/Voice Application (VA)/SystemTests/Test Cases - System Tests/Automated Tests</parentFolder>
+                <parentFolder>/Voice Application (VA)/SystemTests/Test Cases - System Tests/Automated Tests - Phone</parentFolder>
             </jama>
             <file path="system_testing_ast_traces.xml" format="xml"/>
         </output>

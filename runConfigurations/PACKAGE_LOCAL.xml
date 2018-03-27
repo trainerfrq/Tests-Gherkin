@@ -1,15 +1,12 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="CATS-CONTAINER" type="MavenRunConfiguration" factoryName="Maven">
+  <configuration default="false" name="PACKAGE_LOCAL" type="MavenRunConfiguration" factoryName="Maven">
     <MavenSettings>
       <option name="myGeneralSettings" />
       <option name="myRunnerSettings">
         <MavenRunnerSettings>
           <option name="environmentProperties">
             <map>
-              <entry key="PROJECT_URL" value="http://artifactory.frequentis.frq:8081/artifactory/libs-snapshots/com/frequentis/xvp/voice/test-automation-sqt/0.0.1-SNAPSHOT/test-automation-sqt-0.0.1-SNAPSHOT-automation.zip" />
-              <entry key="XVP_SYSTEM_PROPERTIES_FILENAME" value="SRS.system.properties" />
-              <entry key="XVP_TEST_SYSTEM" value="10.254.56.242" />
-              <entry key="http_proxy" value="10.254.56.253:8888/" />
+              <entry key="" value="" />
             </map>
           </option>
           <option name="jreName" value="#USE_PROJECT_JDK" />
@@ -29,13 +26,17 @@
           </option>
           <option name="goals">
             <list>
+              <option value="clean" />
               <option value="install" />
+              <option value="-DskipTests" />
+              <option value="-P" />
+              <option value="AUTOMATION-PACKAGE" />
+              <option value="-P" />
+              <option value="distribution" />
               <option value="-DskipTraceImport" />
-              <option value="-Dbuild.docs=true" />
-              <option value="-P" />
-              <option value="XVP-TestSystem-Defined" />
-              <option value="-P" />
-              <option value="CATS-MASTER-IMAGE" />
+              <option value="-DCATS_PUBLIC_IP=192.168.100.1" />
+              <option value="-DCATS_HAZELCAST_PORT=5701" />
+              <option value="-DCATS_CO1_IP=192.168.100.1" />
             </list>
           </option>
           <option name="profilesMap">

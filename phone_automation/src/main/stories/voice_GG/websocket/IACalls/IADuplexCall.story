@@ -18,11 +18,13 @@ When WS1 loads phone data for role roleId1 and names callSourceCalling and callT
 When WS2 loads phone data for role roleId2 and names callSourceCalled and callTargetCalled from the entry number 1
 
 Scenario: Caller establishes an outgoing call
+		  @REQUIREMENTS:GID-2505706
 When WS1 establishes an outgoing IA call with source callSourceCalling and target callTargetCalling and names outgoingPhoneCallId1
 And waiting for 1 seconds
 Then WS1 is receiving call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status connected and audio direction TX
 
 Scenario: Callee client receives the incoming call
+		  @REQUIREMENTS:GID-2505708
 When WS2 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer2 with callSourceCalling and callTargetCalling and names incomingPhoneCallId1 and audio direction RX
 
 Scenario: Callee establishes an outgoing call

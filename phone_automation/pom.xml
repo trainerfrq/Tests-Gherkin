@@ -14,10 +14,6 @@
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-      <storyBoard>UIStoryBoard.csb</storyBoard>
-      <cats.wait-timeout>1000000</cats.wait-timeout>
-      <docker.autopull>always</docker.autopull>
-
       <ignore.failure.in.stories>true</ignore.failure.in.stories>
       <ignore.failure.in.view>true</ignore.failure.in.view>
       <toolsjar>${java.home}/../lib/tools.jar</toolsjar>
@@ -25,9 +21,9 @@
       <agentsHome>${project.build.directory}/automation/agents</agentsHome>
       <dslHome>${project.build.directory}/automation/dsl</dslHome>
 
-      <voice.service.interface.version>0.14.0-SNAPSHOT</voice.service.interface.version>
+      <voice.service.interface.version>0.20.0-SNAPSHOT</voice.service.interface.version>
       <xvp-cats-libs.version>0.4.0-SNAPSHOT</xvp-cats-libs.version>
-   </properties>
+ </properties>
 
    <dependencies>
       <dependency>
@@ -197,7 +193,6 @@
                             <descriptors>
                                 <descriptors>src/main/assembly/distribution.xml</descriptors>
                             </descriptors>
-                            <finalName>phone-automation</finalName>
                             <appendAssemblyId>false</appendAssemblyId>
                         </configuration>
                         <executions>
@@ -247,6 +242,7 @@
             </build>
         </profile>
    </profiles>
+
    <build>
       <plugins>
          <plugin>
@@ -278,43 +274,6 @@
                   </mixin>
                </mixins>
             </configuration>
-         </plugin>
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <version>${maven-dependency-plugin}</version>
-            <executions>
-               <execution>
-                  <!-- Required for SOX / PSQM tools as they are not available from CATS Master and have to be provided -->
-                  <id>unpack-original-psqm</id>
-                  <phase>generate-resources</phase>
-                  <goals>
-                     <goal>unpack-dependencies</goal>
-                  </goals>
-                  <configuration>
-                     <includeGroupIds>com.frequentis.c4i.test</includeGroupIds>
-                     <includeArtifactIds>cats-media-psqm</includeArtifactIds>
-                     <includeTypes>zip</includeTypes>
-                     <outputDirectory>${project.build.directory}</outputDirectory>
-                     <excludeTransitive>true</excludeTransitive>
-                  </configuration>
-               </execution>
-               <execution>
-                  <!-- Prepare platform dependencies for JUnit execution (normally provided by CO) -->
-                  <id>unpack-platform-resources</id>
-                  <goals>
-                     <goal>unpack-dependencies</goal>
-                  </goals>
-                  <phase>generate-resources</phase>
-                  <configuration>
-                     <includeGroupIds>com.frequentis.c4i.test</includeGroupIds>
-                     <includeArtifactIds>cats-platform</includeArtifactIds>
-                     <includeTypes>zip</includeTypes>
-                     <outputDirectory>${project.build.directory}/</outputDirectory>
-                     <excludeTransitive>true</excludeTransitive>
-                  </configuration>
-               </execution>
-            </executions>
          </plugin>
          <plugin>
             <artifactId>maven-resources-plugin</artifactId>

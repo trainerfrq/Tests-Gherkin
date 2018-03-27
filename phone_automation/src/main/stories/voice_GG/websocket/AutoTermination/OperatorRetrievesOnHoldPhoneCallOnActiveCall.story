@@ -63,6 +63,7 @@ Then WS1 receives call status indication verifying all the messages on message b
 Then SipContact DialogState is CONFIRMED within 100 ms
 
 Scenario: Callee client retrieves call on hold
+		  @REQUIREMENTS:GID-2878006
 When WS1 retrieves the on hold phone call with the callId outgoingPhoneCallId
 And waiting for 1 seconds
 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status connected
