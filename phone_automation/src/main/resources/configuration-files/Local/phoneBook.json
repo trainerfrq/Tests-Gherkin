@@ -1,62 +1,64 @@
 [
   {
-    "full_name": "Physical Identity OP1",
-    "display_name": "OP1 Physical",
+    "fullName": "Physical Identity OP1",
+    "displayName": "OP1 Physical",
     "location": "XVP Lab",
     "organization": "FRQ XVP GG-Team",
     "notes": "This is the physical identity of the first operating position",
-    "data_sets": [
+    "dataSets": [
       {
-        "destination": "sip:111111@10.17.80.181"
+        "destination": "sip:111111@10.31.205.41"
       }
     ]
   },
   {
-    "full_name": "Physical Identity OP2",
-    "display_name": "OP2 Physical",
-    "location": "XVP Lab",
-    "organization": "FRQ XVP GG-Team",
-    "notes": "This is the physical identity of the first operating position",
-    "data_sets": [
+    "fullName": "Lloyd Ripley",
+    "displayName": "Lloyd",
+    "location": "123 6th St. Melbourne, FL 32904",
+    "organization": "European Applications",
+    "notes": "Language - English",
+    "dataSets": [
       {
-        "destination": "sip:222222@10.17.80.182"
+        "destination": "sip:333333@10.31.205.43",
+        "displayAddon": "Ground2Ground"
       }
     ]
   },
   {
-    "full_name": "Physical Identity OP3",
-    "display_name": "OP3 Physical",
-    "location": "XVP Lab",
-    "organization": "FRQ XVP GG-Team",
-    "notes": "This is the physical identity of the first operating position",
-    "data_sets": [
+    "fullName": "Madoline Katharyn",
+    "displayName": "Madoline",
+    "location": "71 Pilgrim Avenue Chevy Chase, MD 20815",
+    "organization": "Chinese Metals",
+    "notes": "Language - Chinese",
+    "dataSets": [
       {
-        "destination": "sip:333333@10.17.80.183"
+        "destination": "sip:12345@10.31.205.43",
+        "displayAddon": "Air2Ground"
       }
     ]
   },
   {
-    "full_name": "Snom 370 SIP Phone",
-    "display_name": "Snom 370 (Carol)",
+    "fullName": "Snom 370 SIP Phone",
+    "displayName": "Snom 370 (Carol)",
     "location": "XVP Lab",
     "organization": "FRQ XVP GG-Team",
     "notes": "",
-    "data_sets": [
+    "dataSets": [
       {
         "destination": "sip:gg-snom1@example.com"
       },
       {
-        "destination": "sip:gg-snom1@10.17.80.183"
+        "destination": "sip:gg-snom1@10.31.205.40"
       }
     ]
   },
   {
-    "full_name": "Role 1 - Alice",
-    "display_name": "Role 1 (Alice)",
+    "fullName": "Role 1 - Alice",
+    "displayName": "Role 1 (Alice)",
     "location": "XVP Lab",
     "organization": "FRQ XVP GG-Team",
     "notes": "",
-    "data_sets": [
+    "dataSets": [
       {
         "destination": "sip:role1@example.com"
       },
@@ -69,12 +71,12 @@
     ]
   },
   {
-    "full_name": "Role 2 - Bob",
-    "display_name": "Role 2 (Bob)",
+    "fullName": "Role 2 - Bob",
+    "displayName": "Role 2 (Bob)",
     "location": "XVP Lab",
     "organization": "FRQ XVP GG-Team",
     "notes": "",
-    "data_sets": [
+    "dataSets": [
       {
         "destination": "sip:role2@example.com"
       },
@@ -87,12 +89,12 @@
     ]
   },
   {
-    "full_name": "Call Group 1",
-    "display_name": "Group 1",
+    "fullName": "Call Group 1",
+    "displayName": "Group 1",
     "location": "XVP Lab",
     "organization": "FRQ XVP GG-Team",
     "notes": "",
-    "data_sets": [
+    "dataSets": [
       {
         "destination": "sip:group1@example.com"
       }
