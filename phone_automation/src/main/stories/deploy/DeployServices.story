@@ -66,7 +66,6 @@ When SSH host dockerHost2 executes docker inspect -f '{{.State.Status}}' mission
 When SSH host dockerHost2 executes docker inspect -f '{{.State.Status}}' audio-service and the output contains running
 
 Scenario: Verify services are running on dockerhost3
-When SSH host dockerHost3 executes docker inspect -f '{{.State.Status}}' mission-service and the output contains running
 When SSH host dockerHost3 executes docker inspect -f '{{.State.Status}}' audio-service and the output contains running
 
 Scenario: Verify services are running on hmiHost1
