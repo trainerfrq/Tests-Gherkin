@@ -47,3 +47,9 @@ Scenario: Start HMIs
 When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy voice_hmi03
 And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy voice_hmi04
 Then waiting for 120 seconds
+
+Scenario: Verify services are running on dockerhost1
+When SSH host hmiHost1 executes docker inspect -f '{{.State.Status}}' voice-hmi03 and the output contains running
+
+Scenario: Verify services are running on dockerhost2
+When SSH host hmiHost2 executes docker inspect -f '{{.State.Status}}' voice-hmi04 and the output contains running
