@@ -44,6 +44,12 @@ And SSH host hmiHost2 executes sed -i 's/${CATS_HAZELCAST_PORT}/5701/g' /var/lib
 And SSH host hmiHost2 executes sed -i 's/${CATS_PUBLIC_IP}/<<DEP_SERVER_IP>>/g' /var/lib/docker/volumes/sharedVolume/_data/cats/.frequentis-cats/cats-hazelcast-client-config.xml
 
 Scenario: Start HMIs
-When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy voice_hmi03
-And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy voice_hmi04
+When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy voice_hmi03 with exit status 0
+And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy voice_hmi04 with exit status 0
 Then waiting for 120 seconds
+
+Scenario: Verify services are running on dockerhost1
+When SSH host hmiHost1 executes docker inspect -f '{{.State.Status}}' voice-hmi03 and the output contains running
+
+Scenario: Verify services are running on dockerhost2
+When SSH host hmiHost2 executes docker inspect -f '{{.State.Status}}' voice-hmi04 and the output contains running

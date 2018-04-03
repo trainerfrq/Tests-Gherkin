@@ -22,8 +22,14 @@ Then waiting for 3 seconds
 
 Scenario: Connect to deploymentServer
 Given SSH connections:
-| name             | remote-address    | remotePort | username | password  |
-| deploymentServer | <<DEP_SERVER_IP>> | 22         | root     | !frqAdmin |
+| name             | remote-address      | remotePort | username | password  |
+| deploymentServer | <<DEP_SERVER_IP>>   | 22         | root     | !frqAdmin |
+| dockerHost1      | <<DOCKER_HOST1_IP>> | 22         | root     | !frqAdmin |
+| dockerHost2      | <<DOCKER_HOST2_IP>> | 22         | root     | !frqAdmin |
+| dockerHost3      | <<DOCKER_HOST3_IP>> | 22         | root     | !frqAdmin |
+| hmiHost1         | <<CO1_IP>>          | 22         | root     | !frqAdmin |
+| hmiHost2         | <<CO2_IP>>          | 22         | root     | !frqAdmin |
+| hmiHost3         | <<CLIENT3_IP>>      | 22         | root     | !frqAdmin |
 
 Scenario: Update services
 When the services are updated on deploymentServer with ${op.voice.version} and ${voice.hmi.version}
@@ -48,3 +54,25 @@ Then waiting for 5 seconds
 When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy audio_app
 Then waiting for 5 seconds
 
+Scenario: Verify services are running on deploymentServer
+When SSH host deploymentServer executes docker inspect -f '{{.State.Status}}' phone-routing and the output contains running
+
+Scenario: Verify services are running on dockerhost1
+When SSH host dockerHost1 executes docker inspect -f '{{.State.Status}}' mission-service and the output contains running
+When SSH host dockerHost1 executes docker inspect -f '{{.State.Status}}' audio-service and the output contains running
+
+Scenario: Verify services are running on dockerhost2
+When SSH host dockerHost2 executes docker inspect -f '{{.State.Status}}' mission-service and the output contains running
+When SSH host dockerHost2 executes docker inspect -f '{{.State.Status}}' audio-service and the output contains running
+
+Scenario: Verify services are running on dockerhost3
+When SSH host dockerHost3 executes docker inspect -f '{{.State.Status}}' audio-service and the output contains running
+
+Scenario: Verify services are running on hmiHost1
+When SSH host hmiHost1 executes docker inspect -f '{{.State.Status}}' audio-app and the output contains running
+
+Scenario: Verify services are running on hmiHost2
+When SSH host hmiHost2 executes docker inspect -f '{{.State.Status}}' audio-app and the output contains running
+
+Scenario: Verify services are running on hmiHost3
+When SSH host hmiHost3 executes docker inspect -f '{{.State.Status}}' audio-app and the output contains running

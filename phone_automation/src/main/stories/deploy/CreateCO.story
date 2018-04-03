@@ -14,3 +14,6 @@ And SSH host coHost executes chmod +x runCO.sh
 Scenario: Start case officer
 When SSH host coHost executes ./runCO.sh
 Then waiting for 60 seconds
+
+Scenario: Verify case officer is running
+When SSH host coHost executes docker inspect -f '{{.State.Status}}' co1 and the output contains running
