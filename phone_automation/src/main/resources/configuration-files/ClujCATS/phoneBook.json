@@ -38,6 +38,79 @@
     ]
   },
   {
+    "fullName": "Wien Police",
+    "displayName": "Police",
+    "location": "Spiegelsberg 18, 4753 ALTMANNSDORF",
+    "organization": "Vienna Police",
+    "notes": "Language - German",
+    "dataSets": [
+      {
+        "destination": "202-555-0155",
+        "displayAddon": "Local"
+      },
+      {
+        "destination": "202-555-0167",
+        "displayAddon": "Autobahn"
+      }
+    ]
+  },
+  {
+    "fullName": "Wien Police",
+    "displayName": "Police",
+    "location": "Annenstrasse 2, 4972 GUNDERPOLLING",
+    "organization": "Vienna Police",
+    "notes": "Language - German",
+    "dataSets": [
+      {
+        "destination": "+1-202-555-0138",
+        "displayAddon": "Local"
+      }
+    ]
+  },
+  {
+    "fullName": "Wien Police",
+    "displayName": "Police",
+    "location": "Lerchenfelder Straße 19, 3195 LAHNSATTEL",
+    "organization": "Vienna Police",
+    "notes": "Language - German",
+    "dataSets": [
+      {
+        "destination": "+1-202-555-2411",
+        "displayAddon": "Local"
+      }
+    ]
+  },
+  {
+    "fullName": "Wien Police",
+    "displayName": "Police-Ambulance",
+    "location": "Hubatschstrasse 44, 8010 SCHAFTAL",
+    "organization": "Vienna Police",
+    "notes": "Language - German",
+    "dataSets": [
+      {
+        "destination": "+1-202-555-1243",
+        "displayAddon": "Local"
+      },
+      {
+        "destination": "+1-202-555-9867",
+        "displayAddon": "Autobahn"
+      }
+    ]
+  },
+  {
+    "fullName": "Wien Police",
+    "displayName": "Police-Ambulance",
+    "location": "Lendplatz 80, 8967 HAUS",
+    "organization": "Vienna Police",
+    "notes": "Language - German",
+    "dataSets": [
+      {
+        "destination": "+1-202-555-1237",
+        "displayAddon": "Local"
+      }
+    ]
+  },
+  {
     "fullName": "Snom 370 SIP Phone",
     "displayName": "Snom 370 (Carol)",
     "location": "XVP Lab",

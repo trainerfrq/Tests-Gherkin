@@ -5,6 +5,11 @@
  */
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import scripts.cats.websocket.sequential.SendTextMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
+import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
+import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 import static com.frequentis.c4i.test.model.MatcherDetails.match;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.empty;
@@ -28,7 +33,7 @@ import org.jbehave.core.annotations.When;
 
 import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
 import com.frequentis.c4i.test.model.ExecutionDetails;
-import com.frequentis.xvp.tools.cats.websocket.automation.model.CallParty;
+import com.frequentis.xvp.tools.cats.websocket.automation.model.PhoneBookEntry;
 import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
@@ -51,12 +56,6 @@ import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallIncoming
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallRetrieveRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallStatusIndication;
 import com.google.common.collect.Lists;
-
-import scripts.cats.websocket.sequential.SendTextMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
-import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
-import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 
 public class GGBasicSteps extends WebsocketAutomationSteps
 {
@@ -636,9 +635,9 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    }
 
 
-   @When("$namedWebSocket receives call incoming indication on message buffer named $bufferName with $callPartyType matching $namedCallParty")
+   @When("$namedWebSocket receives call incoming indication on message buffer named $bufferName with $callPartyType matching phone book entry $phoneBookEntry")
    public void receiveCallIncomingIndicationMatchingCallParty( final String namedWebSocket, final String bufferName,
-         final String callPartyType, final String namedCallParty )
+         final String callPartyType, final String namedPhoneBookEntry )
    {
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
@@ -656,17 +655,17 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
       final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
 
-      CallParty callParty = getStoryListData( namedCallParty, CallParty.class );
-      evaluate( localStep( "Check call party" )
-            .details( ExecutionDetails.create( "Verify call party is defined" ).success( callParty != null ) ) );
+      PhoneBookEntry phoneBookEntry = getStoryListData( namedPhoneBookEntry, PhoneBookEntry.class );
+      evaluate( localStep( "Check phone book entry" ).details(
+            ExecutionDetails.create( "Verify phone book entry is defined" ).success( phoneBookEntry != null ) ) );
 
       switch ( callPartyType )
       {
          case "calledParty":
-            assertCalledParty( jsonMessage, callParty );
+            assertCalledParty( jsonMessage, phoneBookEntry );
             break;
          case "callingParty":
-            assertCallingParty( jsonMessage, callParty );
+            assertCallingParty( jsonMessage, phoneBookEntry );
             break;
          default:
             evaluate( localStep( "Check call party type" )
@@ -676,61 +675,61 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    }
 
 
-   private void assertCallingParty( final JsonMessage jsonMessage, final CallParty callParty )
+   private void assertCallingParty( final JsonMessage jsonMessage, final PhoneBookEntry phoneBookEntry )
    {
       evaluate( localStep( "Verify calling party in call incoming indication" )
             .details( match( "Is call incoming indication", jsonMessage.body().isCallIncomingIndication(),
                   equalTo( true ) ) )
             .details( match( "Calling party uri matches",
                   jsonMessage.body().callIncomingIndication().getCallingParty().getUri(),
-                  equalTo( callParty.getUri() ) ) )
+                  equalTo( phoneBookEntry.getUri() ) ) )
             .details( match( "Calling party name matches",
                   jsonMessage.body().callIncomingIndication().getCallingParty().getName(),
-                  equalTo( callParty.getName() ) ) )
+                  equalTo( phoneBookEntry.getName() ) ) )
             .details( match( "Calling party full name matches",
                   jsonMessage.body().callIncomingIndication().getCallingParty().getFullName(),
-                  equalTo( callParty.getFullName() ) ) )
+                  equalTo( phoneBookEntry.getFullName() ) ) )
             .details( match( "Calling party location matches",
                   jsonMessage.body().callIncomingIndication().getCallingParty().getLocation(),
-                  equalTo( callParty.getLocation() ) ) )
+                  equalTo( phoneBookEntry.getLocation() ) ) )
             .details( match( "Calling party organization matches",
                   jsonMessage.body().callIncomingIndication().getCallingParty().getOrganization(),
-                  equalTo( callParty.getOrganization() ) ) )
+                  equalTo( phoneBookEntry.getOrganization() ) ) )
             .details( match( "Calling party notes match",
                   jsonMessage.body().callIncomingIndication().getCallingParty().getNotes(),
-                  equalTo( callParty.getNotes() ) ) )
+                  equalTo( phoneBookEntry.getNotes() ) ) )
             .details( match( "Calling party display addon matches",
                   jsonMessage.body().callIncomingIndication().getCallingParty().getDisplayAddon(),
-                  equalTo( callParty.getDisplayAddon() ) ) ) );
+                  equalTo( phoneBookEntry.getDisplayAddon() ) ) ) );
    }
 
 
-   private void assertCalledParty( final JsonMessage jsonMessage, final CallParty callParty )
+   private void assertCalledParty( final JsonMessage jsonMessage, final PhoneBookEntry phoneBookEntry )
    {
       evaluate( localStep( "Verify called party in call incoming indication" )
             .details( match( "Is call incoming indication", jsonMessage.body().isCallIncomingIndication(),
                   equalTo( true ) ) )
             .details( match( "Called party uri matches",
                   jsonMessage.body().callIncomingIndication().getCalledParty().getUri(),
-                  equalTo( callParty.getUri() ) ) )
+                  equalTo( phoneBookEntry.getUri() ) ) )
             .details( match( "Called party name matches",
                   jsonMessage.body().callIncomingIndication().getCalledParty().getName(),
-                  equalTo( callParty.getName() ) ) )
+                  equalTo( phoneBookEntry.getName() ) ) )
             .details( match( "Called party full name matches",
                   jsonMessage.body().callIncomingIndication().getCalledParty().getFullName(),
-                  equalTo( callParty.getFullName() ) ) )
+                  equalTo( phoneBookEntry.getFullName() ) ) )
             .details( match( "Called party location matches",
                   jsonMessage.body().callIncomingIndication().getCalledParty().getLocation(),
-                  equalTo( callParty.getLocation() ) ) )
+                  equalTo( phoneBookEntry.getLocation() ) ) )
             .details( match( "Called party organization matches",
                   jsonMessage.body().callIncomingIndication().getCalledParty().getOrganization(),
-                  equalTo( callParty.getOrganization() ) ) )
+                  equalTo( phoneBookEntry.getOrganization() ) ) )
             .details( match( "Called party notes match",
                   jsonMessage.body().callIncomingIndication().getCalledParty().getNotes(),
-                  equalTo( callParty.getNotes() ) ) )
+                  equalTo( phoneBookEntry.getNotes() ) ) )
             .details( match( "Called party display addon matches",
                   jsonMessage.body().callIncomingIndication().getCalledParty().getDisplayAddon(),
-                  equalTo( callParty.getDisplayAddon() ) ) ) );
+                  equalTo( phoneBookEntry.getDisplayAddon() ) ) ) );
    }
 
 
@@ -785,6 +784,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       final String callingParty = getStoryData( callSourceName, String.class );
       final String calledParty = getStoryData( callTargetName, String.class );
 
+      // TODO Use builder instead of deprecated setter
       final CallEstablishRequest callEstablishRequest =
             new CallEstablishRequest( new Random().nextInt(), callingParty, calledParty, callType );
       callEstablishRequest.setCallPriority( priority );
