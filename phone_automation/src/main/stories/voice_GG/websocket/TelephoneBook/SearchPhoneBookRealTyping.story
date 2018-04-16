@@ -9,14 +9,14 @@ Meta:
 
 Scenario: Define phone book entries
 Given the following phone book entries:
-| key    | uri             | name             | full-name   | location                                 | organization  | notes             | display-addon |
-| entry1 | 202-555-0155    | Police           | Wien Police | Spiegelsberg 18, 4753 ALTMANNSDORF       | Vienna Police | Language - German | Local         |
-| entry2 | 202-555-0167    | Police           | Wien Police | Spiegelsberg 18, 4753 ALTMANNSDORF       | Vienna Police | Language - German | Autobahn      |
-| entry3 | +1-202-555-0138 | Police           | Wien Police | Annenstrasse 2, 4972 GUNDERPOLLING       | Vienna Police | Language - German | Local         |
-| entry4 | +1-202-555-2411 | Police           | Wien Police | Lerchenfelder Straße 19, 3195 LAHNSATTEL | Vienna Police | Language - German | Local         |
-| entry5 | +1-202-555-1243 | Police-Ambulance | Wien Police | Hubatschstrasse 44, 8010 SCHAFTAL        | Vienna Police | Language - German | Local         |
-| entry6 | +1-202-555-9867 | Police-Ambulance | Wien Police | Hubatschstrasse 44, 8010 SCHAFTAL        | Vienna Police | Language - German | Autobahn      |
-| entry7 | +1-202-555-1237 | Police-Ambulance | Wien Police | Lendplatz 80, 8967 HAUS                  | Vienna Police | Language - German | Local         |
+| key    | uri                    | name              | full-name   | location                                 | organization  | notes             | display-addon |
+| entry1 | sip:police@12.34.56.78 | Police1           | Wien Police | Spiegelsberg 18, 4753 ALTMANNSDORF       | Vienna Police | Language - German | Local         |
+| entry2 | sip:police@12.34.56.89 | Police1           | Wien Police | Spiegelsberg 18, 4753 ALTMANNSDORF       | Vienna Police | Language - German | Autobahn      |
+| entry3 | sip:police@12.34.56.89 | Police2           | Wien Police | Annenstrasse 2, 4972 GUNDERPOLLING       | Vienna Police | Language - German | Local         |
+| entry4 | sip:police@78.65.43.21 | Police3           | Wien Police | Lerchenfelder Straße 19, 3195 LAHNSATTEL | Vienna Police | Language - German | Local         |
+| entry5 | sip:police@78.56.34.21 | Police-Ambulance1 | Wien Police | Hubatschstrasse 44, 8010 SCHAFTAL        | Vienna Police | Language - German | Autobahn      |
+| entry6 | sip:police@78.56.43.21 | Police-Ambulance1 | Wien Police | Hubatschstrasse 44, 8010 SCHAFTAL        | Vienna Police | Language - German | Local         |
+| entry7 | sip:police@99.56.34.21 | Police-Ambulance2 | Wien Police | Lendplatz 80, 8967 HAUS                  | Vienna Police | Language - German | Local         |
 
 Scenario: Create the message buffers
 When WS1 opens the message buffer for message type phoneBookResponse named PhoneBookResponseBuffer

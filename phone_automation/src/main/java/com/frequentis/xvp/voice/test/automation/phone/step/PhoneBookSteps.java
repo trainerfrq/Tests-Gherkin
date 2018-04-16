@@ -16,6 +16,8 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import scripts.cats.websocket.sequential.SendTextMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
 import static com.frequentis.c4i.test.model.MatcherDetails.match;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
@@ -23,6 +25,8 @@ import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Random;
 import java.util.UUID;
 
@@ -30,6 +34,7 @@ import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
 import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
+import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.automation.model.PhoneBookEntry;
 import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
@@ -38,9 +43,8 @@ import com.frequentis.xvp.voice.opvoice.json.messages.JsonMessage;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookResponse;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookResponseItem;
-
-import scripts.cats.websocket.sequential.SendTextMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
+import com.frequentis.xvp.voice.sip.SipURI;
+import com.frequentis.xvp.voice.sip.SipUser;
 
 public class PhoneBookSteps extends WebsocketAutomationSteps
 {
@@ -64,7 +68,7 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
             .input( SendTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
             .input( SendTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
 
-      setStoryData( namedRequestId, phoneBookRequest.getRequestId() );
+      setStoryListData( namedRequestId, Integer.toString( phoneBookRequest.getRequestId() ) );
    }
 
 
@@ -87,7 +91,7 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
             .input( SendTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
             .input( SendTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
 
-      setStoryData( namedRequestId, phoneBookRequest.getRequestId() );
+      setStoryListData( namedRequestId, Integer.toString( phoneBookRequest.getRequestId() ) );
    }
 
 
@@ -114,8 +118,8 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
       final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
 
       evaluate( localStep( "Received phone book response" )
-            .details( match( jsonMessage.body().getPayload(), instanceOf( PhoneBookResponse.class ) ) )
-            .details( match( jsonMessage.body().phoneBookResponse().getRequestId(), equalTo( requestId ) ) ) );
+            .details( match( jsonMessage.body().getPayload(), instanceOf( PhoneBookResponse.class ) ) ).details( match(
+                  Integer.toString( jsonMessage.body().phoneBookResponse().getRequestId() ), equalTo( requestId ) ) ) );
 
       PhoneBookResponse phoneBookResponse = jsonMessage.body().phoneBookResponse();
       PhoneBookEntry phoneBookEntry = getStoryListData( namedPhoneBookEntry, PhoneBookEntry.class );
@@ -154,8 +158,8 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
       PhoneBookResponse phoneBookResponse = jsonMessage.body().phoneBookResponse();
 
       evaluate( localStep( "Received phone book response" )
-            .details( match( jsonMessage.body().getPayload(), instanceOf( PhoneBookResponse.class ) ) )
-            .details( match( jsonMessage.body().phoneBookResponse().getRequestId(), equalTo( requestId ) ) ) );
+            .details( match( jsonMessage.body().getPayload(), instanceOf( PhoneBookResponse.class ) ) ).details( match(
+                  Integer.toString( jsonMessage.body().phoneBookResponse().getRequestId() ), equalTo( requestId ) ) ) );
 
       evaluate(
             localStep( "Check number of entries" ).details( match( "Verify number of phone book entries in response",
@@ -186,8 +190,8 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
       final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
 
       evaluate( localStep( "Received phone book response" )
-            .details( match( jsonMessage.body().getPayload(), instanceOf( PhoneBookResponse.class ) ) )
-            .details( match( jsonMessage.body().phoneBookResponse().getRequestId(), equalTo( requestId ) ) ) );
+            .details( match( jsonMessage.body().getPayload(), instanceOf( PhoneBookResponse.class ) ) ).details( match(
+                  Integer.toString( jsonMessage.body().phoneBookResponse().getRequestId() ), equalTo( requestId ) ) ) );
 
       PhoneBookResponse phoneBookResponse = jsonMessage.body().phoneBookResponse();
 
@@ -202,8 +206,9 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
       evaluate( localStep( "Verify phone book entry " )
             .details( match( "Phone book entry uri matches", phoneBookResponseItem.getDestination().getUri(),
                   equalTo( phoneBookEntry.getUri() ) ) )
-            .details( match( "Phone book entry display name matches",
-                  phoneBookResponseItem.getDestination().getDisplay(), equalTo( phoneBookEntry.getName() ) ) )
+            .details(
+                  match( "Phone book entry display name matches", phoneBookResponseItem.getDestination().getDisplay(),
+                        equalTo( getUserPartOfURI( phoneBookEntry.getUri() ) ) ) )
             .details( match( "Phone book entry full name matches", phoneBookResponseItem.getFullName(),
                   equalTo( phoneBookEntry.getFullName() ) ) )
             .details( match( "Phone book entry name matches", phoneBookResponseItem.getName(),
@@ -216,5 +221,28 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
                   equalTo( phoneBookEntry.getLocation() ) ) )
             .details( match( "Phone book entry notes matches", phoneBookResponseItem.getNotes(),
                   equalTo( phoneBookEntry.getNotes() ) ) ) );
+   }
+
+
+   private String getUserPartOfURI( final String uri )
+   {
+      SipUser sipUserPart = null;
+      try
+      {
+         final URI convertedURI = new URI( uri );
+         SipURI sipURI = SipURI.fromURI( convertedURI );
+
+         if ( sipURI.getUser().isPresent() )
+         {
+            sipUserPart = sipURI.getUser().get();
+         }
+      }
+      catch ( URISyntaxException | IllegalArgumentException e )
+      {
+         evaluate( localStep( "Parsing SIP URI" )
+               .details( ExecutionDetails.create( "Failed to parse SIP URI" ).failure() ) );
+      }
+
+      return sipUserPart != null ? sipUserPart.getUser() : null;
    }
 }

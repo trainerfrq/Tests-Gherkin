@@ -38,6 +38,79 @@
     ]
   },
   {
+    "fullName": "Wien Police",
+    "displayName": "Police1",
+    "location": "Spiegelsberg 18, 4753 ALTMANNSDORF",
+    "organization": "Vienna Police",
+    "notes": "Language - German",
+    "dataSets": [
+      {
+        "destination": "sip:police@12.34.56.78",
+        "displayAddon": "Local"
+      },
+      {
+        "destination": "sip:police@12.34.56.89",
+        "displayAddon": "Autobahn"
+      }
+    ]
+  },
+  {
+    "fullName": "Wien Police",
+    "displayName": "Police2",
+    "location": "Annenstrasse 2, 4972 GUNDERPOLLING",
+    "organization": "Vienna Police",
+    "notes": "Language - German",
+    "dataSets": [
+      {
+        "destination": "sip:police@12.34.56.89",
+        "displayAddon": "Local"
+      }
+    ]
+  },
+  {
+    "fullName": "Wien Police",
+    "displayName": "Police3",
+    "location": "Lerchenfelder Straße 19, 3195 LAHNSATTEL",
+    "organization": "Vienna Police",
+    "notes": "Language - German",
+    "dataSets": [
+      {
+        "destination": "sip:police@78.65.43.21",
+        "displayAddon": "Local"
+      }
+    ]
+  },
+  {
+    "fullName": "Wien Police",
+    "displayName": "Police-Ambulance1",
+    "location": "Hubatschstrasse 44, 8010 SCHAFTAL",
+    "organization": "Vienna Police",
+    "notes": "Language - German",
+    "dataSets": [
+      {
+        "destination": "sip:police@78.56.43.21",
+        "displayAddon": "Local"
+      },
+      {
+        "destination": "sip:police@78.56.34.21",
+        "displayAddon": "Autobahn"
+      }
+    ]
+  },
+  {
+    "fullName": "Wien Police",
+    "displayName": "Police-Ambulance2",
+    "location": "Lendplatz 80, 8967 HAUS",
+    "organization": "Vienna Police",
+    "notes": "Language - German",
+    "dataSets": [
+      {
+        "destination": "sip:police@99.56.34.21",
+        "displayAddon": "Local"
+      }
+    ]
+  },
+  {
     "fullName": "Snom 370 SIP Phone",
     "displayName": "Snom 370 (Carol)",
     "location": "XVP Lab",

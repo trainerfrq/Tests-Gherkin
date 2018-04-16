@@ -9,15 +9,15 @@ Meta:
 
 Scenario: Define phone book entries
 Given the following phone book entries:
-| key    | uri          | name   | full-name   | location                           | organization  | notes             | display-addon |
-| entry1 | 202-555-0155 | Police | Wien Police | Spiegelsberg 18, 4753 ALTMANNSDORF | Vienna Police | Language - German | Local         |
-| entry2 | 202-555-0167 | Police | Wien Police | Spiegelsberg 18, 4753 ALTMANNSDORF | Vienna Police | Language - German | Autobahn      |
+| key    | uri                    | name    | full-name   | location                           | organization  | notes             | display-addon |
+| entry1 | sip:police@12.34.56.78 | Police1 | Wien Police | Spiegelsberg 18, 4753 ALTMANNSDORF | Vienna Police | Language - German | Local         |
+| entry2 | sip:police@12.34.56.89 | Police1 | Wien Police | Spiegelsberg 18, 4753 ALTMANNSDORF | Vienna Police | Language - German | Autobahn      |
 
 Scenario: Create the message buffers
 When WS1 opens the message buffer for message type phoneBookResponse named PhoneBookResponseBuffer
 
 Scenario: Search telephone book for first two entries
-When WS1 requests a number of 2 entries starting from index 0 with the search pattern police and saves the requestId1
+When WS1 requests a number of 2 entries starting from index 0 with the search pattern police1 and saves the requestId1
 
 Scenario: Assert entries
 Then WS1 receives phone book response on buffer named PhoneBookResponseBuffer for request with requestId1 with a total number of 2 entries
@@ -25,7 +25,7 @@ Then WS1 receives phone book response on buffer named PhoneBookResponseBuffer fo
 Then WS1 receives phone book response on buffer named PhoneBookResponseBuffer for request with requestId1 with entry number 2 matching phone book entry entry2
 
 Scenario: Search telephone book again for first two entries
-When WS1 requests a number of 2 entries starting from index 0 with the search pattern POLICE and saves the requestId2
+When WS1 requests a number of 2 entries starting from index 0 with the search pattern POLICE1 and saves the requestId2
 
 Scenario: Assert entries
 Then WS1 receives phone book response on buffer named PhoneBookResponseBuffer for request with requestId2 with a total number of 2 entries
