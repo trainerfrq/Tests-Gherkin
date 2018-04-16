@@ -17,7 +17,7 @@ Scenario: Assert there are entries in the response
 Then WS1 receives phone book response on buffer named PhoneBookResponseBuffer for request with requestId1 with a total number of 0 entries
 
 Scenario: Assert that no more items are available
-Then WS1 receives phone book response on buffer named PhoneBookResponseBuffer for request with requestId1 with more items available flag being false
+Then WS1 receives phone book response on buffer named PhoneBookResponseBuffer for request with requestId1 with more items available flag being true
 
 Scenario: Delete the message buffers
 When the named websocket WS1 removes the message buffer named PhoneBookResponseBuffer

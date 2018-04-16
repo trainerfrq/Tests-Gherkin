@@ -7,7 +7,7 @@
     "notes": "This is the physical identity of the first operating position",
     "dataSets": [
       {
-        "destination": "sip:111111@10.31.205.41"
+        "destination": "sip:111111@10.31.205.41:5060"
       }
     ]
   },
@@ -19,7 +19,7 @@
     "notes": "Language - English",
     "dataSets": [
       {
-        "destination": "sip:333333@10.31.205.43",
+        "destination": "sip:333333@10.31.205.43:5060",
         "displayAddon": "Ground2Ground"
       }
     ]
@@ -32,7 +32,7 @@
     "notes": "Language - Chinese",
     "dataSets": [
       {
-        "destination": "sip:12345@10.31.205.43",
+        "destination": "sip:12345@10.31.205.43:5070",
         "displayAddon": "Air2Ground"
       }
     ]
