@@ -18,7 +18,7 @@
             <cats:storyLists>
                 <cats:storyList enabled="true">
                     <cats:name>Deploy Services</cats:name>
-                    <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
+                    <cats:onErrorOption>FINISH_CURRENT_STORY</cats:onErrorOption>
                     <cats:repetitions>1</cats:repetitions>
                     <cats:report>
                         <cats:status>CREATED</cats:status>
@@ -45,7 +45,7 @@
             <cats:storyLists>
                 <cats:storyList enabled="true">
                     <cats:name>Websocket - Prepare Tests</cats:name>
-                    <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
+                    <cats:onErrorOption>FINISH_CURRENT_STORY</cats:onErrorOption>
                     <cats:repetitions>1</cats:repetitions>
                     <cats:report>
                         <cats:status>CREATED</cats:status>
@@ -160,13 +160,13 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/websocket/IACalls/IACallErrorBeforeTimerExpires.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/websocket/IACalls/IACallTimerExpires.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
@@ -220,7 +220,7 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/websocket/IACalls/SecondIACallTerminatedIfMaxNumberSet.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
@@ -660,7 +660,7 @@
             <cats:storyLists>
                 <cats:storyList enabled="true">
                     <cats:name>UI - Prepare Tests</cats:name>
-                    <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
+                    <cats:onErrorOption>ABORT_ENTIRE_STORY_SET</cats:onErrorOption>
                     <cats:repetitions>1</cats:repetitions>
                     <cats:report>
                         <cats:status>CREATED</cats:status>
@@ -735,6 +735,12 @@
                     <cats:stories>
                         <cats:story enabled="true">
                             <cats:storyPath>deploy/SaveLogs.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>deploy/HmiCleanup.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
