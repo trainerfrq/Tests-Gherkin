@@ -5,6 +5,11 @@
  */
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import scripts.cats.websocket.sequential.SendTextMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
+import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
+import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 import static com.frequentis.c4i.test.model.MatcherDetails.match;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.empty;
@@ -54,12 +59,6 @@ import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallRetrieve
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallStatusIndication;
 import com.google.common.collect.Lists;
 
-import scripts.cats.websocket.sequential.SendTextMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
-import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
-import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
-
 public class GGBasicSteps extends WebsocketAutomationSteps
 {
    @When("$namedWebSocket associates with Op Voice Service using opId $opId and appId $appId")
@@ -88,8 +87,8 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             .details( match( jsonMessage.body().getPayload(), instanceOf( AssociateResponse.class ) ) )
             .details( match( jsonMessage.body().associateResponse().result().resultCode(),
                   equalTo( AssociateResponseResult.ResultCode.OK ) ) )
-            .details( match( jsonMessage.body().associateResponse().opId(), equalTo( opId ) ) )
-            .details( match( jsonMessage.body().associateResponse().appId(), equalTo( appId ) ) ) );
+            .details( match( jsonMessage.body().associateResponse().opId(), equalTo( OpId.create( opId ) ) ) )
+            .details( match( jsonMessage.body().associateResponse().appId(), equalTo( AppId.create( appId ) ) ) ) );
    }
 
 
