@@ -5,11 +5,6 @@
  */
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import scripts.cats.websocket.sequential.SendTextMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
-import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
-import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 import static com.frequentis.c4i.test.model.MatcherDetails.match;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.empty;
@@ -37,6 +32,8 @@ import com.frequentis.xvp.tools.cats.websocket.automation.model.PhoneBookEntry;
 import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
+import com.frequentis.xvp.voice.opvoice.config.common.AppId;
+import com.frequentis.xvp.voice.opvoice.config.common.OpId;
 import com.frequentis.xvp.voice.opvoice.config.layout.JsonDaDataElement;
 import com.frequentis.xvp.voice.opvoice.json.messages.JsonMessage;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.AssociateResponse;
@@ -57,6 +54,12 @@ import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallRetrieve
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallStatusIndication;
 import com.google.common.collect.Lists;
 
+import scripts.cats.websocket.sequential.SendTextMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
+import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
+import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
+
 public class GGBasicSteps extends WebsocketAutomationSteps
 {
    @When("$namedWebSocket associates with Op Voice Service using opId $opId and appId $appId")
@@ -65,7 +68,8 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
 
-      final JsonMessage request = JsonMessage.newAssociateRequest( UUID.randomUUID(), opId, appId );
+      final JsonMessage request =
+            JsonMessage.newAssociateRequest( UUID.randomUUID(), OpId.create( opId ), AppId.create( appId ) );
 
       final RemoteStepResult remoteStepResult =
             evaluate(
@@ -784,10 +788,9 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       final String callingParty = getStoryData( callSourceName, String.class );
       final String calledParty = getStoryData( callTargetName, String.class );
 
-      // TODO Use builder instead of deprecated setter
       final CallEstablishRequest callEstablishRequest =
-            new CallEstablishRequest( new Random().nextInt(), callingParty, calledParty, callType );
-      callEstablishRequest.setCallPriority( priority );
+            CallEstablishRequest.builder( new Random().nextInt(), calledParty ).withCallType( callType )
+                  .withCallingParty( callingParty ).withCallPriority( priority ).build();
 
       final JsonMessage request =
             JsonMessage.builder().withCorrelationId( UUID.randomUUID() ).withPayload( callEstablishRequest ).build();

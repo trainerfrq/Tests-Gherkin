@@ -13,7 +13,7 @@ When WS1 opens the message buffer for message type phoneBookResponse named Phone
 Scenario: Search telephone book for 0 entries
 When WS1 requests a number of 10 entries starting from index 10 with the search pattern police and saves the requestId1
 
-Scenario: Assert there are entries in the response
+Scenario: Assert there are no entries in the response
 Then WS1 receives phone book response on buffer named PhoneBookResponseBuffer for request with requestId1 with a total number of 0 entries
 
 Scenario: Assert that no more items are available

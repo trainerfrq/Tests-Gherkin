@@ -16,8 +16,6 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import scripts.cats.websocket.sequential.SendTextMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
 import static com.frequentis.c4i.test.model.MatcherDetails.match;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
@@ -46,52 +44,24 @@ import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookRes
 import com.frequentis.xvp.voice.sip.SipURI;
 import com.frequentis.xvp.voice.sip.SipUser;
 
+import scripts.cats.websocket.sequential.SendTextMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
+
 public class PhoneBookSteps extends WebsocketAutomationSteps
 {
    @When("$namedWebSocket requests a number of $nrOfEntries entries starting from index $startIndex with the search pattern $searchPattern and saves the $namedRequestId")
-   public void sendPhoneBookRequest( final String namedWebSocket, final Integer nrOfEntries, final Integer startIndex,
-         final String searchPattern, final String namedRequestId )
+   public void sendPhoneBookRequestWithSearchPattern( final String namedWebSocket, final Integer nrOfEntries,
+         final Integer startIndex, final String searchPattern, final String namedRequestId )
    {
-      final ProfileToWebSocketConfigurationReference reference =
-            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
-
-      PhoneBookRequest phoneBookRequest =
-            new PhoneBookRequest( new Random().nextInt(), searchPattern, startIndex, nrOfEntries );
-
-      final JsonMessage request =
-            JsonMessage.builder().withCorrelationId( UUID.randomUUID() ).withPhoneBookRequest( phoneBookRequest )
-                  .build();
-
-      evaluate( remoteStep( "Sending phone book request " )
-            .scriptOn( profileScriptResolver().map( SendTextMessage.class, BookableProfileName.websocket ),
-                  requireProfile( reference.getProfileName() ) )
-            .input( SendTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
-            .input( SendTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
-
-      setStoryListData( namedRequestId, Integer.toString( phoneBookRequest.getRequestId() ) );
+      sendPhoneBookRequest( namedWebSocket, nrOfEntries, startIndex, searchPattern, namedRequestId );
    }
 
 
    @When("$namedWebSocket requests a number of $nrOfEntries entries starting from index $startIndex with an empty search pattern and saves the $namedRequestId")
-   public void sendPhoneBookRequest( final String namedWebSocket, final Integer nrOfEntries, final Integer startIndex,
-         final String namedRequestId )
+   public void sendPhoneBookRequestWithEmptySearchPattern( final String namedWebSocket, final Integer nrOfEntries,
+         final Integer startIndex, final String namedRequestId )
    {
-      final ProfileToWebSocketConfigurationReference reference =
-            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
-
-      PhoneBookRequest phoneBookRequest = new PhoneBookRequest( new Random().nextInt(), "", startIndex, nrOfEntries );
-
-      final JsonMessage request =
-            JsonMessage.builder().withCorrelationId( UUID.randomUUID() ).withPhoneBookRequest( phoneBookRequest )
-                  .build();
-
-      evaluate( remoteStep( "Sending phone book request " )
-            .scriptOn( profileScriptResolver().map( SendTextMessage.class, BookableProfileName.websocket ),
-                  requireProfile( reference.getProfileName() ) )
-            .input( SendTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
-            .input( SendTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
-
-      setStoryListData( namedRequestId, Integer.toString( phoneBookRequest.getRequestId() ) );
+      sendPhoneBookRequest( namedWebSocket, nrOfEntries, startIndex, "", namedRequestId );
    }
 
 
@@ -197,6 +167,29 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
 
       evaluate( localStep( "Check more items available flag" ).details( match( "Verify more items are available",
             phoneBookResponse.areMoreItemsAvailable(), is( moreItemsAvailable ) ) ) );
+   }
+
+
+   private void sendPhoneBookRequest( final String namedWebSocket, final Integer nrOfEntries, final Integer startIndex,
+         final String searchPattern, final String namedRequestId )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      PhoneBookRequest phoneBookRequest =
+            new PhoneBookRequest( new Random().nextInt(), searchPattern, startIndex, nrOfEntries );
+
+      final JsonMessage request =
+            JsonMessage.builder().withCorrelationId( UUID.randomUUID() ).withPhoneBookRequest( phoneBookRequest )
+                  .build();
+
+      evaluate( remoteStep( "Sending phone book request " )
+            .scriptOn( profileScriptResolver().map( SendTextMessage.class, BookableProfileName.websocket ),
+                  requireProfile( reference.getProfileName() ) )
+            .input( SendTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+            .input( SendTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
+
+      setStoryListData( namedRequestId, Integer.toString( phoneBookRequest.getRequestId() ) );
    }
 
 
