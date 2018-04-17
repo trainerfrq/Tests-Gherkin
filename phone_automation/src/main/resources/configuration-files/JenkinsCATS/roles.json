@@ -236,6 +236,19 @@
             "showConnectionStatus": true
           }
         ]
+      },
+      "roleSettingData": {
+        "missionSettings": {
+          "soundSettings": {
+            "minChimeVolume": 20,
+            "maxChimeVolume": 80,
+            "minUserInputVolume": 10,
+            "maxUserInputVolume": 50
+          },
+          "timeoutSettings": {
+            "cleanPanelModeCallTimeout": 15
+          }
+        }
       }
     }
   },
@@ -431,6 +444,19 @@
             "showConnectionStatus": true
           }
         ]
+      },
+      "roleSettingData": {
+        "missionSettings": {
+          "soundSettings": {
+            "minChimeVolume": 20,
+            "maxChimeVolume": 80,
+            "minUserInputVolume": 10,
+            "maxUserInputVolume": 50
+          },
+          "timeoutSettings": {
+            "cleanPanelModeCallTimeout": 15
+          }
+        }
       }
     }
   }
