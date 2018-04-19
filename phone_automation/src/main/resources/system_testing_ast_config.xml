@@ -29,7 +29,7 @@
                 <username>svc-contour</username>
                 <password>tFJptJNAV481</password>
                 <project>QXVP</project>
-                <releaseId>XVP VA REL1.0 </releaseId>
+                <releaseId>XVP-VA-REL1.0</releaseId>
                 <testtype>Automated Test</testtype>
                 <documentType>TC</documentType>
                 <parentFolder>/Voice Application (VA)/SystemTests/Test Cases - System Tests/Automated Tests - Phone</parentFolder>

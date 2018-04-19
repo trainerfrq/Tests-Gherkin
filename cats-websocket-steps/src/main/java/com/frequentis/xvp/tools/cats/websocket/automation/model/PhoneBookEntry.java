@@ -23,7 +23,7 @@ import com.frequentis.c4i.test.model.parameter.CatsCustomParameterBase;
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameterClass;
 
 @CatsCustomParameterClass
-public class CallParty extends CatsCustomParameterBase implements Serializable
+public class PhoneBookEntry extends CatsCustomParameterBase implements Serializable
 {
    @CatsCustomParameter(parameterName = "uri")
    private String uri;
@@ -134,7 +134,7 @@ public class CallParty extends CatsCustomParameterBase implements Serializable
    @Override
    public String toString()
    {
-      return "CallParty{" + "uri='" + uri + '\'' + ", name='" + name + '\'' + ", fullName='" + fullName + '\''
+      return "PhoneBookEntry{" + "uri='" + uri + '\'' + ", name='" + name + '\'' + ", fullName='" + fullName + '\''
             + ", location='" + location + '\'' + ", organization='" + organization + '\'' + ", notes='" + notes + '\''
             + ", displayAddon='" + displayAddon + '\'' + '}';
    }

@@ -44,11 +44,11 @@ Given SipContacts group SipContact:
 | SipContact | VOIP    | 12345       | <<SIP_PHONE2>> |
 And phones for SipContact are created
 
-Scenario: Define call parties
-Given the following call parties:
-| key             | uri                    | name     | full-name         | location                                | organization          | notes              | display-addon |
-| sourceCallParty | <<SIP_PHONE2>>         | Madoline | Madoline Katharyn | 71 Pilgrim Avenue Chevy Chase, MD 20815 | Chinese Metals        | Language - Chinese | Air2Ground    |
-| targetCallParty | <<OPVOICE3_PHONE_URI>> | Lloyd    | Lloyd Ripley      | 123 6th St. Melbourne, FL 32904         | European Applications | Language - English | Ground2Ground |
+Scenario: Define phone book entries
+Given the following phone book entries:
+| key         | uri                    | name     | full-name         | location                                | organization          | notes              | display-addon |
+| sourceEntry | <<SIP_PHONE2>>         | Madoline | Madoline Katharyn | 71 Pilgrim Avenue Chevy Chase, MD 20815 | Chinese Metals        | Language - Chinese | Air2Ground    |
+| targetEntry | <<OPVOICE3_PHONE_URI>> | Lloyd    | Lloyd Ripley      | 123 6th St. Melbourne, FL 32904         | European Applications | Language - English | Ground2Ground |
 
 Scenario: Create the message buffers
 When WS3 opens the message buffer for message type callIncomingIndication named CallIncomingIndicationBuffer3
@@ -58,8 +58,8 @@ When SipContact calls SIP URI <<OPVOICE3_PHONE_URI>>
 
 Scenario: Callee client receives the incoming call and confirms it
 		  @REQUIREMENTS:GID-2877902
-When WS3 receives call incoming indication on message buffer named CallIncomingIndicationBuffer3 with callingParty matching sourceCallParty
-When WS3 receives call incoming indication on message buffer named CallIncomingIndicationBuffer3 with calledParty matching targetCallParty
+When WS3 receives call incoming indication on message buffer named CallIncomingIndicationBuffer3 with callingParty matching phone book entry sourceEntry
+When WS3 receives call incoming indication on message buffer named CallIncomingIndicationBuffer3 with calledParty matching phone book entry targetEntry
 
 Scenario: Sip phone cancels the phone call
 When SipContact terminates calls
