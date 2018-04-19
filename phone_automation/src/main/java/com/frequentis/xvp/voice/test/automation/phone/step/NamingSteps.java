@@ -23,19 +23,20 @@ import org.jbehave.core.annotations.Given;
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.model.ExecutionDetails;
-import com.frequentis.xvp.tools.cats.websocket.automation.model.CallParty;
+import com.frequentis.xvp.tools.cats.websocket.automation.model.PhoneBookEntry;
 
 public class NamingSteps extends AutomationSteps
 {
-   @Given("the following call parties: $callParties")
-   public void namedCallParties( final List<CallParty> callParties )
+   @Given("the following phone book entries: $phoneBookEntries")
+   public void namedCallParties( final List<PhoneBookEntry> phoneBookEntries )
    {
-      final LocalStep localStep = localStep( "Define the call parties" );
-      for ( final CallParty callParty : callParties )
+      final LocalStep localStep = localStep( "Define the phone book entries" );
+      for ( final PhoneBookEntry phoneBookEntry : phoneBookEntries )
       {
-         final String key = callParty.getKey();
-         setStoryListData( key, callParty );
-         localStep.details( ExecutionDetails.create( "Define the call parties" ).usedData( key, callParty ) );
+         final String key = phoneBookEntry.getKey();
+         setStoryListData( key, phoneBookEntry );
+         localStep
+               .details( ExecutionDetails.create( "Define the phone book entries" ).usedData( key, phoneBookEntry ) );
       }
 
       record( localStep );

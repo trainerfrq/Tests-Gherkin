@@ -44,11 +44,11 @@ Given SipContacts group SipContact:
 | SipContact | VOIP    | anonymous   | <<SIP_PHONE3>> |
 And phones for SipContact are created
 
-Scenario: Define call parties
-Given the following call parties:
-| key             | uri                    | name      | full-name | location | organization | notes | display-addon |
-| sourceCallParty | <<SIP_PHONE3>>         | anonymous |           |          |              |       |               |
-| targetCallParty | <<OPVOICE2_PHONE_URI>> | 222222    |           |          |              |       |               |
+Scenario: Define phone book entries
+Given the following phone book entries:
+| key         | uri                    | name      | full-name | location | organization | notes | display-addon |
+| sourceEntry | <<SIP_PHONE3>>         | anonymous |           |          |              |       |               |
+| targetEntry | <<OPVOICE2_PHONE_URI>> | 222222    |           |          |              |       |               |
 
 Scenario: Create the message buffers
 When WS2 opens the message buffer for message type callIncomingIndication named CallIncomingIndicationBuffer2
@@ -57,8 +57,8 @@ Scenario: Sip phone calls operator
 When SipContact calls SIP URI <<OPVOICE2_PHONE_URI>>
 
 Scenario: Callee client receives the incoming call and confirms it
-When WS2 receives call incoming indication on message buffer named CallIncomingIndicationBuffer2 with callingParty matching sourceCallParty
-When WS2 receives call incoming indication on message buffer named CallIncomingIndicationBuffer2 with calledParty matching targetCallParty
+When WS2 receives call incoming indication on message buffer named CallIncomingIndicationBuffer2 with callingParty matching phone book entry sourceEntry
+When WS2 receives call incoming indication on message buffer named CallIncomingIndicationBuffer2 with calledParty matching phone book entry targetEntry
 
 Scenario: Sip phone cancels the phone call
 When SipContact terminates calls
