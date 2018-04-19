@@ -7,7 +7,7 @@
     "notes": "This is the physical identity of the first operating position",
     "dataSets": [
       {
-        "destination": "sip:111111@10.17.15.41"
+        "destination": "sip:111111@10.17.15.41:5060"
       }
     ]
   },
