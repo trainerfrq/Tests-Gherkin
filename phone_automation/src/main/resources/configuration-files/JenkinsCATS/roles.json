@@ -134,14 +134,14 @@
           {
             "id": "709",
             "column": 7,
-            "row": 9,
+            "row": 10,
             "columnSpan": 2,
             "rowSpan": 2
           },
           {
             "id": "710",
             "column": 7,
-            "row": 10,
+            "row": 12,
             "columnSpan": 2,
             "rowSpan": 2
           },
@@ -258,8 +258,8 @@
     "sipAddresses": {
       "rolePrimarySipAddress": "sip:role2@example.com",
       "roleAliasSipAddresses": [
-        "sip:role1alias1@example.com",
-        "sip:role1alias2@example.com",
+        "sip:role2alias1@example.com",
+        "sip:role2alias2@example.com",
         "sip:group1@example.com"
       ]
     },
@@ -278,6 +278,16 @@
       },
       "roleWidgetLayout": {
         "widgets": [
+          {
+            "id": "cq1",
+            "type": "callQueue",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "status1",
+            "type": "status",
+            "grid": "applicationGrid"
+          },
           {
             "id": "grid2",
             "type": "grid",
@@ -321,11 +331,18 @@
         ],
         "positions": [
           {
-            "id": "grid2",
-            "column": 0,
-            "row": 0,
-            "columnSpan": 6,
-            "rowSpan": 5
+            "id": "cq1",
+            "column": "3",
+            "row": "0",
+            "columnSpan": "3",
+            "rowSpan": "18"
+          },
+          {
+            "id": "status1",
+            "column": "0",
+            "row": "0",
+            "columnSpan": "3",
+            "rowSpan": "4"
           },
           {
             "id": "702",
@@ -380,11 +397,6 @@
       },
       "roleGridWidgetData": {
         "grid": [
-          {
-            "id": "grid2",
-            "columnNumber": "8",
-            "rowNumber": "10"
-          }
         ]
       },
       "rolePhoneData": {
