@@ -27,8 +27,8 @@ Scenario: Sip phone rejects the phone call
 When SipContact declines calls
 Then SipContact DialogState is TERMINATED within 100 ms
 
-Scenario: Verify phone call is terminated
-Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status terminated
+Scenario: Verify phone call is in out failed state
+Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status out_failed
 
 Scenario: Delete the message buffers
 When the named websocket WS1 removes the message buffer named CallStatusIndicationBuffer1
