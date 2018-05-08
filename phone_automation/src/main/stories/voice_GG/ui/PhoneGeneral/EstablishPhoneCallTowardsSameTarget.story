@@ -32,7 +32,7 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Caller establishes another outgoing call towards the same target
 		  @REQUIREMENTS:GID-3657854
-When HMI OP1 presses DA key OP2(as OP1)
+When HMI OP1 presses DA key OP2(as OP3)
 
 Scenario: Verify call is connected for caller and no other call is in queue
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
