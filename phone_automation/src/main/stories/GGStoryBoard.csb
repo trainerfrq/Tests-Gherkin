@@ -775,7 +775,7 @@
        <cats:storyStatistics/>
        <cats:storyDataList/>
        </cats:story>
-       <cats:story enabled="false">
+       <cats:story enabled="true">
        <cats:storyPath>deploy/HmiCleanup.story</cats:storyPath>
        <cats:storyParameters/>
        <cats:storyStatistics/>
