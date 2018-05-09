@@ -685,7 +685,7 @@
        </cats:storyLists>
        </cats:storyCollection>
        <cats:storyCollection enabled="true">
-       <cats:name>UI - DA calls</cats:name>
+       <cats:name>UI - Phone - General</cats:name>
        <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
        <cats:report>
        <cats:status>CREATED</cats:status>
