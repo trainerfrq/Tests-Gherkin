@@ -23,7 +23,7 @@ class DragAndClickOnMenuButtonActiveList extends FxScriptTemplate {
             robot.drag(pointQuery)
             robot.dropBy(pointQuery.getPosition().getX() - 100, pointQuery.getPosition().getY())
             Thread.sleep(1000)
-            robot.clickOn(robot.point(menuButtonId))
+            robot.clickOn(robot.point("#" + menuButtonId))
         }
     }
 }

@@ -23,7 +23,7 @@ Scenario: Callee client receives the incoming call
 Then HMI OP2 has the DA key OP1 in state ringing
 Then HMI OP2 has the call queue item OP1-OP2 in state ringing
 
-Scenario: Caller establishes an outgoing call
+Scenario: Callee accepts incoming call
 When HMI OP2 presses DA key OP1
 
 Scenario: Verify call is connected

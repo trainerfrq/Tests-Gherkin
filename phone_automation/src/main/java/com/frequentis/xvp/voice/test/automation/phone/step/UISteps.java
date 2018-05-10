@@ -42,7 +42,7 @@ public class UISteps extends AutomationSteps
 
    public static final String CALL_QUEUE_ITEM = "_callQueueItem";
 
-   public static final String HOLD_MENU_BUTTON_ID = "#hold_menu_button";
+   public static final String HOLD_MENU_BUTTON_ID = "hold_menu_button";
 
 
    @Given("the DA keys: $daKeys")
