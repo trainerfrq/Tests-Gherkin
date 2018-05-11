@@ -1,7 +1,7 @@
 Narrative:
-As a caller operator having a call on hold with a callee operator
-I want to initiate another phone call towards the same callee operator
-So I can verify that the already existing call is retrieved from hold and no other call is established
+As a called operator having an incoming phone call from a caller operator
+I want to initiate a phone call towards the caller operator
+So I can verify that the incoming phone call is accepted
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -23,24 +23,19 @@ Scenario: Callee client receives the incoming call
 Then HMI OP2 has the DA key OP1 in state ringing
 Then HMI OP2 has the call queue item OP1-OP2 in state ringing
 
-Scenario: Callee accepts incoming call
+Scenario: Caller establishes an outgoing call
+		  @REQUIREMENTS:GID-2510577
 When HMI OP2 presses DA key OP1
 
-Scenario: Verify call is connected
+Scenario: Verify call is connected for OP1
+Then HMI OP1 has the DA key OP2(as OP1) in state connected
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
+Then HMI OP1 has in the call queue a number of 1 calls
+
+Scenario: Verify call is connected for OP2
+Then HMI OP2 has the DA key OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
-
-Scenario: Caller puts call on hold
-When HMI OP1 puts on hold the active call
-Then HMI OP1 has the call queue item OP2-OP1 in state hold
-
-Scenario: Caller establishes another outgoing call towards the same target
-		  @REQUIREMENTS:GID-3657854
-When HMI OP1 presses DA key OP2(as OP3)
-
-Scenario: Verify call is connected again
-Then HMI OP1 has the call queue item OP2-OP1 in state connected
-Then HMI OP2 has the call queue item OP1-OP2 in state connected
+Then HMI OP2 has in the call queue a number of 1 calls
 
 Scenario: Callee clears outgoing call
 When HMI OP2 presses DA key OP1
