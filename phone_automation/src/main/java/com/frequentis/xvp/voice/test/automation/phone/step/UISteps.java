@@ -26,13 +26,25 @@ import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
 import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
 
 import scripts.cats.hmi.ClickDAButton;
+import scripts.cats.hmi.DragAndClickOnMenuButtonActiveList;
+import scripts.cats.hmi.VerifyCallQueueItemState;
+import scripts.cats.hmi.VerifyCallQueueLength;
 import scripts.cats.hmi.VerifyDAButtonState;
 
 public class UISteps extends AutomationSteps
 {
+
+   public static final String CONCAT_CHAR = "_";
+
+   public static final String CALL_QUEUE_ITEM = "_callQueueItem";
+
+   public static final String HOLD_MENU_BUTTON_ID = "hold_menu_button";
+
+
    @Given("the DA keys: $daKeys")
    public void defineDaKeys( final List<DAKey> daKeys )
    {
@@ -48,7 +60,28 @@ public class UISteps extends AutomationSteps
    }
 
 
-   @When("$profileName presses DA key for $target")
+   @Given("the call queue items: $callQueueItems")
+   public void defineCallQueueItems( final List<CallQueueItem> callQueueItems )
+   {
+      final LocalStep localStep = localStep( "Define call queue items" );
+      for ( final CallQueueItem callQueueItem : callQueueItems )
+      {
+         final String itemId =
+               reformatSipUris( callQueueItem.getSource() ).concat( CONCAT_CHAR )
+                     .concat( reformatSipUris( callQueueItem.getTarget() ) ).concat( CONCAT_CHAR )
+                     .concat( callQueueItem.getCallType() ).concat( CALL_QUEUE_ITEM );
+         callQueueItem.setId( itemId );
+
+         final String key = callQueueItem.getKey();
+         setStoryListData( key, callQueueItem );
+         localStep.details( ExecutionDetails.create( "Define call queue item" ).usedData( key, callQueueItem ) );
+      }
+
+      record( localStep );
+   }
+
+
+   @When("$profileName presses DA key $target")
    public void clickDA( final String profileName, final String target )
    {
       DAKey daKey = retrieveDaKey( profileName, target );
@@ -60,7 +93,7 @@ public class UISteps extends AutomationSteps
    }
 
 
-   @Then("$profileName has the DA key for $target in state $state")
+   @Then("$profileName has the DA key $target in state $state")
    public void verifyDAState( final String profileName, final String target, final String state )
    {
       DAKey daKey = retrieveDaKey( profileName, target );
@@ -73,11 +106,51 @@ public class UISteps extends AutomationSteps
    }
 
 
+   @Then("$profileName has the call queue item $callQueueItem in state $state")
+   public void verifyCallQueueItem( final String profileName, final String namedCallQueueItem, final String state )
+   {
+      CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
+
+      evaluate( remoteStep( "Verify call queue item status" )
+            .scriptOn( profileScriptResolver().map( VerifyCallQueueItemState.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyCallQueueItemState.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
+            .input( VerifyCallQueueItemState.IPARAM_CALL_QUEUE_ITEM_STATE, state ) );
+   }
+
+
+   @Then("$profileName has in the call queue a number of $numberOfCalls calls")
+   public void verifyCallQueueLength( final String profileName, final Integer numberOfCalls )
+   {
+      evaluate( remoteStep( "Verify call queue length" )
+            .scriptOn( profileScriptResolver().map( VerifyCallQueueLength.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyCallQueueLength.IPARAM_QUEUE_EXPECTED_LENGTH, numberOfCalls ) );
+   }
+
+
+   @When("$profileName puts on hold the active call")
+   public void putOnHoldActiveCall( final String profileName )
+   {
+      evaluate(
+            remoteStep( "Put on hold active call" )
+                  .scriptOn( profileScriptResolver().map( DragAndClickOnMenuButtonActiveList.class,
+                        BookableProfileName.javafx ), assertProfile( profileName ) )
+                  .input( DragAndClickOnMenuButtonActiveList.IPARAM_MENU_BUTTON_ID, HOLD_MENU_BUTTON_ID ) );
+   }
+
+
    private DAKey retrieveDaKey( final String source, final String target )
    {
       final DAKey daKey = getStoryListData( source + "-" + target, DAKey.class );
       evaluate( localStep( "Check DA key" ).details( ExecutionDetails.create( "Verify DA key is defined" )
             .usedData( "source", source ).usedData( "target", target ).success( daKey != null ) ) );
       return daKey;
+   }
+
+
+   private String reformatSipUris( final String sipUri )
+   {
+      return sipUri.replaceAll( "[.,:]", CONCAT_CHAR );
    }
 }

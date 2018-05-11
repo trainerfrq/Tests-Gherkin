@@ -41,50 +41,45 @@
             "grid": "applicationGrid"
           },
           {
-            "id": "700",
+            "id": "100",
             "type": "da",
             "grid": "applicationGrid"
           },
           {
-            "id": "706",
+            "id": "101",
             "type": "da",
             "grid": "applicationGrid"
           },
           {
-            "id": "906",
+            "id": "102",
             "type": "da",
             "grid": "applicationGrid"
           },
           {
-            "id": "708",
+            "id": "103",
             "type": "da",
             "grid": "applicationGrid"
           },
           {
-            "id": "709",
+            "id": "104",
             "type": "da",
             "grid": "applicationGrid"
           },
           {
-            "id": "710",
+            "id": "105",
             "type": "da",
             "grid": "applicationGrid"
           },
           {
-            "id": "1110",
+            "id": "106",
             "type": "da",
-            "grid": "applicationGrid"
-          },
-          {
-            "id": "111.000",
-            "type": "radio",
             "grid": "applicationGrid"
           }
         ],
         "positions": [
           {
             "id": "cq1",
-            "column": "3",
+            "column": "9",
             "row": "0",
             "columnSpan": "3",
             "rowSpan": "18"
@@ -104,60 +99,53 @@
             "rowSpan": "2"
           },
           {
-            "id": "700",
-            "column": 7,
+            "id": "100",
+            "column": 3,
             "row": 0,
-            "columnSpan": 2,
-            "rowSpan": 2
+            "columnSpan": 3,
+            "rowSpan": 3
           },
           {
-            "id": "706",
-            "column": 7,
-            "row": 6,
-            "columnSpan": 2,
-            "rowSpan": 2
-          },
-          {
-            "id": "906",
-            "column": 9,
-            "row": 6,
-            "columnSpan": 2,
-            "rowSpan": 2
-          },
-          {
-            "id": "708",
-            "column": 7,
-            "row": 8,
-            "columnSpan": 2,
-            "rowSpan": 2
-          },
-          {
-            "id": "709",
-            "column": 7,
-            "row": 10,
-            "columnSpan": 2,
-            "rowSpan": 2
-          },
-          {
-            "id": "710",
-            "column": 7,
-            "row": 12,
-            "columnSpan": 2,
-            "rowSpan": 2
-          },
-          {
-            "id": "1110",
-            "column": 10,
-            "row": 10,
-            "columnSpan": 2,
-            "rowSpan": 2
-          },
-          {
-            "id": "111.000",
-            "column": 9,
+            "id": "101",
+            "column": 6,
             "row": 0,
-            "columnSpan": 2,
-            "rowSpan": 2
+            "columnSpan": 3,
+            "rowSpan": 3
+          },
+          {
+            "id": "102",
+            "column": 3,
+            "row": 3,
+            "columnSpan": 3,
+            "rowSpan": 3
+          },
+          {
+            "id": "103",
+            "column": 6,
+            "row": 3,
+            "columnSpan": 3,
+            "rowSpan": 3
+          },
+          {
+            "id": "104",
+            "column": 0,
+            "row": 6,
+            "columnSpan": 3,
+            "rowSpan": 3
+          },
+          {
+            "id": "105",
+            "column": 3,
+            "row": 6,
+            "columnSpan": 3,
+            "rowSpan": 3
+          },
+          {
+            "id": "106",
+            "column": 6,
+            "row": 6,
+            "columnSpan": 3,
+            "rowSpan": 3
           }
         ]
       },
@@ -176,46 +164,46 @@
       "rolePhoneData": {
         "da": [
           {
-            "id": "700",
+            "id": "100",
             "target": "sip:222222@example.com",
             "source": "sip:111111@example.com",
-            "displayName": "OP 2"
+            "displayName": "OP2(as OP1)"
           },
           {
-            "id": "706",
-            "target": "sip:gg-snom1@10.31.205.40",
-            "source": "sip:111111@10.31.205.40",
-            "displayName": "Snom (as OP1)"
+            "id": "101",
+            "target": "sip:222222@example.com",
+            "source": "sip:op3@example.com",
+            "displayName": "OP2(as OP3)"
           },
           {
-            "id": "906",
+            "id": "102",
+            "target": "sip:op3@example.com",
+            "source": "sip:111111@example.com",
+            "displayName": "OP3(as OP1)"
+          },
+          {
+            "id": "103",
             "target": "sip:111111@example.com",
-            "source": "sip:333333@example.com",
-            "displayName": "OP 3"
+            "source": "sip:op3@example.com",
+            "displayName": "OP1(as OP3)"
           },
           {
-            "id": "708",
+            "id": "104",
             "target": "sip:role2@example.com",
             "source": "sip:role1@example.com",
-            "displayName": "ROLE 2"
+            "displayName": "ROLE2-PRIMARY"
           },
           {
-            "id": "709",
-            "target": "sip:333333@example.com",
+            "id": "105",
+            "target": "sip:role1@example.com",
             "source": "sip:111111@example.com",
-            "displayName": "OP 3"
+            "displayName": "ROLE1(as OP1)"
           },
           {
-            "id": "710",
-            "target": "sip:gg-snom1@10.31.205.40",
+            "id": "106",
+            "target": "sip:role2alias1@example.com",
             "source": "sip:role1@example.com",
-            "displayName": "Snom (as ROLE1)"
-          },
-          {
-            "id": "1110",
-            "target": "sip:gg-snom1@10.31.205.40",
-            "source": "sip:group1@example.com",
-            "displayName": "Group1 (for Snom)"
+            "displayName": "ROLE2-ALIAS"
           }
         ]
       },
@@ -281,45 +269,45 @@
             "grid": "applicationGrid"
           },
           {
-            "id": "702",
+            "id": "110",
             "type": "da",
             "grid": "applicationGrid"
           },
           {
-            "id": "706",
+            "id": "111",
             "type": "da",
             "grid": "applicationGrid"
           },
           {
-            "id": "906",
+            "id": "112",
             "type": "da",
             "grid": "applicationGrid"
           },
           {
-            "id": "708",
+            "id": "113",
             "type": "da",
             "grid": "applicationGrid"
           },
           {
-            "id": "710",
+            "id": "114",
             "type": "da",
             "grid": "applicationGrid"
           },
           {
-            "id": "1110",
+            "id": "115",
             "type": "da",
             "grid": "applicationGrid"
           },
           {
-            "id": "111.000",
-            "type": "radio",
+            "id": "116",
+            "type": "da",
             "grid": "applicationGrid"
           }
         ],
         "positions": [
           {
             "id": "cq1",
-            "column": "3",
+            "column": "9",
             "row": "0",
             "columnSpan": "3",
             "rowSpan": "18"
@@ -332,53 +320,53 @@
             "rowSpan": "4"
           },
           {
-            "id": "702",
-            "column": 7,
-            "row": 2,
-            "columnSpan": 2,
-            "rowSpan": 2
-          },
-          {
-            "id": "706",
-            "column": 7,
-            "row": 6,
-            "columnSpan": 2,
-            "rowSpan": 2
-          },
-          {
-            "id": "906",
-            "column": 9,
-            "row": 6,
-            "columnSpan": 2,
-            "rowSpan": 2
-          },
-          {
-            "id": "708",
-            "column": 7,
-            "row": 8,
-            "columnSpan": 2,
-            "rowSpan": 2
-          },
-          {
-            "id": "710",
-            "column": 7,
-            "row": 10,
-            "columnSpan": 2,
-            "rowSpan": 2
-          },
-          {
-            "id": "1110",
-            "column": 10,
-            "row": 10,
-            "columnSpan": 2,
-            "rowSpan": 2
-          },
-          {
-            "id": "111.000",
-            "column": 9,
+            "id": "110",
+            "column": 3,
             "row": 0,
-            "columnSpan": 2,
-            "rowSpan": 2
+            "columnSpan": 3,
+            "rowSpan": 3
+          },
+          {
+            "id": "111",
+            "column": 6,
+            "row": 0,
+            "columnSpan": 3,
+            "rowSpan": 3
+          },
+          {
+            "id": "112",
+            "column": 3,
+            "row": 3,
+            "columnSpan": 3,
+            "rowSpan": 3
+          },
+          {
+            "id": "113",
+            "column": 6,
+            "row": 3,
+            "columnSpan": 3,
+            "rowSpan": 3
+          },
+          {
+            "id": "114",
+            "column": 0,
+            "row": 6,
+            "columnSpan": 3,
+            "rowSpan": 3
+          },
+          {
+            "id": "115",
+            "column": 3,
+            "row": 6,
+            "columnSpan": 3,
+            "rowSpan": 3
+          },
+          {
+            "id": "116",
+            "column": 6,
+            "row": 6,
+            "columnSpan": 3,
+            "rowSpan": 3
           }
         ]
       },
@@ -389,40 +377,46 @@
       "rolePhoneData": {
         "da": [
           {
-            "id": "702",
+            "id": "110",
             "target": "sip:111111@example.com",
             "source": "sip:222222@example.com",
-            "displayName": "OP 1"
+            "displayName": "OP1"
           },
           {
-            "id": "706",
-            "target": "sip:gg-snom1@10.31.205.40",
-            "source": "sip:222222@10.31.205.40",
-            "displayName": "Snom (as OP2)"
+            "id": "111",
+            "target": "sip:op3@example.com",
+            "source": "sip:222222@example.com",
+            "displayName": "OP3"
           },
           {
-            "id": "906",
-            "target": "sip:cisco@10.31.205.40",
-            "source": "sip:222222@10.31.205.40",
-            "displayName": "Cisco (as OP2)"
+            "id": "112",
+            "target": "sip:role1@example.com",
+            "source": "sip:222222@example.com",
+            "displayName": "ROLE1(as OP2)"
           },
           {
-            "id": "708",
+            "id": "113",
             "target": "sip:role1@example.com",
             "source": "sip:role2@example.com",
-            "displayName": "ROLE 1"
+            "displayName": "ROLE1(as ROLE2)"
           },
           {
-            "id": "710",
-            "target": "sip:gg-snom1@10.31.205.40",
+            "id": "114",
+            "target": "sip:role1alias1@example.com",
+            "source": "sip:222222@example.com",
+            "displayName": "ROLE1-ALIAS(as OP2)"
+          },
+          {
+            "id": "115",
+            "target": "sip:role1alias1@example.com",
             "source": "sip:role2@example.com",
-            "displayName": "Snom (as ROLE 2)"
+            "displayName": "ROLE1-ALIAS(as ROLE2)"
           },
           {
-            "id": "1110",
-            "target": "sip:gg-snom1@10.31.205.40",
-            "source": "sip:group1@example.com",
-            "displayName": "Group1 (for Snom)"
+            "id": "116",
+            "target": "sip:role1alias1@example.com",
+            "source": "sip:role2alias1@example.com",
+            "displayName": "ROLE1-ALIAS(as ROLE2-ALIAS)"
           }
         ]
       },

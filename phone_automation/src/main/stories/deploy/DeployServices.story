@@ -27,8 +27,8 @@ Given SSH connections:
 | dockerHost1      | <<DOCKER_HOST1_IP>> | 22         | root     | !frqAdmin |
 | dockerHost2      | <<DOCKER_HOST2_IP>> | 22         | root     | !frqAdmin |
 | dockerHost3      | <<DOCKER_HOST3_IP>> | 22         | root     | !frqAdmin |
-| hmiHost1         | <<CO1_IP>>          | 22         | root     | !frqAdmin |
-| hmiHost2         | <<CO2_IP>>          | 22         | root     | !frqAdmin |
+| hmiHost1         | <<CLIENT1_IP>>      | 22         | root     | !frqAdmin |
+| hmiHost2         | <<CLIENT2_IP>>      | 22         | root     | !frqAdmin |
 | hmiHost3         | <<CLIENT3_IP>>      | 22         | root     | !frqAdmin |
 
 Scenario: Update services

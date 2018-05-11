@@ -75,352 +75,352 @@
                 </cats:storyList>
             </cats:storyLists>
         </cats:storyCollection>
-        <cats:storyCollection enabled="true">
-            <cats:name>Websocket - DA calls</cats:name>
-            <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
-            <cats:report>
-                <cats:status>CREATED</cats:status>
-            </cats:report>
-            <cats:storyLists>
-                <cats:storyList enabled="true">
-                    <cats:name>Websocket - DA calls</cats:name>
-                    <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
-                    <cats:repetitions>1</cats:repetitions>
-                    <cats:report>
-                        <cats:status>CREATED</cats:status>
-                    </cats:report>
-                    <cats:reports/>
-                    <cats:stories>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/DACalls/CallerClearsActiveCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/DACalls/CalleeClearsActiveCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="false">
-                            <cats:storyPath>voice_GG/websocket/DACalls/CalleeRejectsIncomingCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/DACalls/CallerCancelsOutgoingCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/DACalls/DisassociateClientOnActiveCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="false">
-                            <cats:storyPath>voice_GG/websocket/DACalls/DisassociateClientOnIncomingCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/DACalls/DisassociateClientOnOutgoingCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                    </cats:stories>
-                    <cats:timeout>1800</cats:timeout>
-                </cats:storyList>
-            </cats:storyLists>
-        </cats:storyCollection>
-        <cats:storyCollection enabled="true">
-            <cats:name>Websocket - IA calls</cats:name>
-            <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
-            <cats:report>
-                <cats:status>CREATED</cats:status>
-            </cats:report>
-            <cats:storyLists>
-                <cats:storyList enabled="true">
-                    <cats:name>Websocket - IA calls</cats:name>
-                    <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
-                    <cats:repetitions>1</cats:repetitions>
-                    <cats:report>
-                        <cats:status>CREATED</cats:status>
-                    </cats:report>
-                    <cats:reports/>
-                    <cats:stories>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/IACalls/IACallCallerClearsBeforeTimerExpires.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="false">
-                            <cats:storyPath>voice_GG/websocket/IACalls/IACallErrorBeforeTimerExpires.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="false">
-                            <cats:storyPath>voice_GG/websocket/IACalls/IACallTimerExpires.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/IACalls/IADuplexCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/IACalls/IADuplexCallCalleeAndCallerClears.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/IACalls/IADuplexCallCallerAndCalleeClears.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/IACalls/IADuplexCallReestablishedByCallee.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/IACalls/IADuplexCallReestablishedByCaller.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/IACalls/IAOneWayCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/IACalls/IAOneWayCallCalleeClears.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/IACalls/IAOneWayCallCallerClears.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="false">
-                            <cats:storyPath>voice_GG/websocket/IACalls/SecondIACallTerminatedIfMaxNumberSet.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                    </cats:stories>
-                    <cats:timeout>1800</cats:timeout>
-                </cats:storyList>
-            </cats:storyLists>
-        </cats:storyCollection>
-        <cats:storyCollection enabled="true">
-            <cats:name>Websocket - Sip phones</cats:name>
-            <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
-            <cats:report>
-                <cats:status>CREATED</cats:status>
-            </cats:report>
-            <cats:storyLists>
-                <cats:storyList enabled="true">
-                    <cats:name>Websocket - Sip phones</cats:name>
-                    <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
-                    <cats:repetitions>1</cats:repetitions>
-                    <cats:report>
-                        <cats:status>CREATED</cats:status>
-                    </cats:report>
-                    <cats:reports/>
-                    <cats:stories>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/SipPhones/OperatorToSipPhoneCalleeRejectsCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/SipPhones/OperatorToSipPhoneCalleeTerminatesCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/SipPhones/OperatorToSipPhoneCallerCancelsCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/SipPhones/OperatorToSipPhoneCallerClearsCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/SipPhones/SipPhoneToOperatorCalleeClearsCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/SipPhones/SipPhoneToOperatorCalleeRejectsCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/SipPhones/SipPhoneToOperatorCallerCancelsCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/SipPhones/SipPhoneToOperatorCallerTerminatesCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/SipPhones/OperatorClearsOutFailedCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/SipPhones/OperatorWaitsOnOutFailedCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                    </cats:stories>
-                    <cats:timeout>1800</cats:timeout>
-                </cats:storyList>
-            </cats:storyLists>
-        </cats:storyCollection>
-        <cats:storyCollection enabled="true">
-            <cats:name>Websocket - Autotermination</cats:name>
-            <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
-            <cats:report>
-                <cats:status>CREATED</cats:status>
-            </cats:report>
-            <cats:storyLists>
-                <cats:storyList enabled="true">
-                    <cats:name>Websocket - Autotermination</cats:name>
-                    <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
-                    <cats:repetitions>1</cats:repetitions>
-                    <cats:report>
-                        <cats:status>CREATED</cats:status>
-                    </cats:report>
-                    <cats:reports/>
-                    <cats:stories>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorAcceptsPhoneCallOnActiveCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorAcceptsPhoneCallOnCallOnHold.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorAcceptsPhoneCallOnHeldCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorAcceptsPhoneCallOnOutgoingPendingCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorCallsPhoneOnActiveCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorCallsPhoneOnCallOnHold.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorCallsPhoneOnHeldCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorCallsPhoneOnOutgoingPendingCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorRetrievesOnHoldPhoneCallOnActiveCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorRetrievesOnHoldPhoneCallOnOutgoingPendingCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                    </cats:stories>
-                    <cats:timeout>1800</cats:timeout>
-                </cats:storyList>
-            </cats:storyLists>
-        </cats:storyCollection>
-        <cats:storyCollection enabled="true">
-            <cats:name>Websocket - Priority calls</cats:name>
-            <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
-            <cats:report>
-                <cats:status>CREATED</cats:status>
-            </cats:report>
-            <cats:storyLists>
-                <cats:storyList enabled="true">
-                    <cats:name>Websocket - Priority calls</cats:name>
-                    <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
-                    <cats:repetitions>1</cats:repetitions>
-                    <cats:report>
-                        <cats:status>CREATED</cats:status>
-                    </cats:report>
-                    <cats:reports/>
-                    <cats:stories>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/PriorityCall/DAPriorityCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                    </cats:stories>
-                    <cats:timeout>1800</cats:timeout>
-                </cats:storyList>
-            </cats:storyLists>
-        </cats:storyCollection>
-        <cats:storyCollection enabled="true">
+       <cats:storyCollection enabled="true">
+       <cats:name>Websocket - DA calls</cats:name>
+       <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
+       <cats:report>
+       <cats:status>CREATED</cats:status>
+       </cats:report>
+       <cats:storyLists>
+       <cats:storyList enabled="true">
+       <cats:name>Websocket - DA calls</cats:name>
+       <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
+       <cats:repetitions>1</cats:repetitions>
+       <cats:report>
+       <cats:status>CREATED</cats:status>
+       </cats:report>
+       <cats:reports/>
+       <cats:stories>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/DACalls/CallerClearsActiveCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/DACalls/CalleeClearsActiveCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/DACalls/CalleeRejectsIncomingCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/DACalls/CallerCancelsOutgoingCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/DACalls/DisassociateClientOnActiveCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/DACalls/DisassociateClientOnIncomingCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/DACalls/DisassociateClientOnOutgoingCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       </cats:stories>
+       <cats:timeout>1800</cats:timeout>
+       </cats:storyList>
+       </cats:storyLists>
+       </cats:storyCollection>
+       <cats:storyCollection enabled="true">
+       <cats:name>Websocket - IA calls</cats:name>
+       <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
+       <cats:report>
+       <cats:status>CREATED</cats:status>
+       </cats:report>
+       <cats:storyLists>
+       <cats:storyList enabled="true">
+       <cats:name>Websocket - IA calls</cats:name>
+       <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
+       <cats:repetitions>1</cats:repetitions>
+       <cats:report>
+       <cats:status>CREATED</cats:status>
+       </cats:report>
+       <cats:reports/>
+       <cats:stories>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/IACalls/IACallCallerClearsBeforeTimerExpires.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/IACalls/IACallErrorBeforeTimerExpires.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/IACalls/IACallTimerExpires.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/IACalls/IADuplexCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/IACalls/IADuplexCallCalleeAndCallerClears.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/IACalls/IADuplexCallCallerAndCalleeClears.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/IACalls/IADuplexCallReestablishedByCallee.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/IACalls/IADuplexCallReestablishedByCaller.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/IACalls/IAOneWayCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/IACalls/IAOneWayCallCalleeClears.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/IACalls/IAOneWayCallCallerClears.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/IACalls/SecondIACallTerminatedIfMaxNumberSet.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       </cats:stories>
+       <cats:timeout>1800</cats:timeout>
+       </cats:storyList>
+       </cats:storyLists>
+       </cats:storyCollection>
+       <cats:storyCollection enabled="true">
+       <cats:name>Websocket - Sip phones</cats:name>
+       <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
+       <cats:report>
+       <cats:status>CREATED</cats:status>
+       </cats:report>
+       <cats:storyLists>
+       <cats:storyList enabled="true">
+       <cats:name>Websocket - Sip phones</cats:name>
+       <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
+       <cats:repetitions>1</cats:repetitions>
+       <cats:report>
+       <cats:status>CREATED</cats:status>
+       </cats:report>
+       <cats:reports/>
+       <cats:stories>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/SipPhones/OperatorToSipPhoneCalleeRejectsCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/SipPhones/OperatorToSipPhoneCalleeTerminatesCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/SipPhones/OperatorToSipPhoneCallerCancelsCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/SipPhones/OperatorToSipPhoneCallerClearsCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/SipPhones/SipPhoneToOperatorCalleeClearsCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/SipPhones/SipPhoneToOperatorCalleeRejectsCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/SipPhones/SipPhoneToOperatorCallerCancelsCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/SipPhones/SipPhoneToOperatorCallerTerminatesCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/SipPhones/OperatorClearsOutFailedCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/SipPhones/OperatorWaitsOnOutFailedCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       </cats:stories>
+       <cats:timeout>1800</cats:timeout>
+       </cats:storyList>
+       </cats:storyLists>
+       </cats:storyCollection>
+       <cats:storyCollection enabled="true">
+       <cats:name>Websocket - Autotermination</cats:name>
+       <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
+       <cats:report>
+       <cats:status>CREATED</cats:status>
+       </cats:report>
+       <cats:storyLists>
+       <cats:storyList enabled="true">
+       <cats:name>Websocket - Autotermination</cats:name>
+       <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
+       <cats:repetitions>1</cats:repetitions>
+       <cats:report>
+       <cats:status>CREATED</cats:status>
+       </cats:report>
+       <cats:reports/>
+       <cats:stories>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorAcceptsPhoneCallOnActiveCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorAcceptsPhoneCallOnCallOnHold.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorAcceptsPhoneCallOnHeldCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorAcceptsPhoneCallOnOutgoingPendingCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorCallsPhoneOnActiveCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorCallsPhoneOnCallOnHold.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorCallsPhoneOnHeldCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorCallsPhoneOnOutgoingPendingCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorRetrievesOnHoldPhoneCallOnActiveCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorRetrievesOnHoldPhoneCallOnOutgoingPendingCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       </cats:stories>
+       <cats:timeout>1800</cats:timeout>
+       </cats:storyList>
+       </cats:storyLists>
+       </cats:storyCollection>
+       <cats:storyCollection enabled="true">
+       <cats:name>Websocket - Priority calls</cats:name>
+       <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
+       <cats:report>
+       <cats:status>CREATED</cats:status>
+       </cats:report>
+       <cats:storyLists>
+       <cats:storyList enabled="true">
+       <cats:name>Websocket - Priority calls</cats:name>
+       <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
+       <cats:repetitions>1</cats:repetitions>
+       <cats:report>
+       <cats:status>CREATED</cats:status>
+       </cats:report>
+       <cats:reports/>
+       <cats:stories>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/PriorityCall/DAPriorityCall.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       </cats:stories>
+       <cats:timeout>1800</cats:timeout>
+       </cats:storyList>
+       </cats:storyLists>
+       </cats:storyCollection>
+       <cats:storyCollection enabled="true">
             <cats:name>Websocket - Hold/Retrieve</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
@@ -525,100 +525,100 @@
                 </cats:storyList>
             </cats:storyLists>
         </cats:storyCollection>
-        <cats:storyCollection enabled="true">
-            <cats:name>Websocket - Telephone book</cats:name>
-            <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
-            <cats:report>
-                <cats:status>CREATED</cats:status>
-            </cats:report>
-            <cats:storyLists>
-                <cats:storyList enabled="true">
-                    <cats:name>Websocket - Telephone book</cats:name>
-                    <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
-                    <cats:repetitions>1</cats:repetitions>
-                    <cats:report>
-                        <cats:status>CREATED</cats:status>
-                    </cats:report>
-                    <cats:reports/>
-                    <cats:stories>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/TelephoneBook/CalleeAndCalleeMatchesPhoneBookEntries.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/TelephoneBook/NoneOfCallPartiesMatchesPhoneBookEntries.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookEmptySearchPattern.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookFewerEntriesThanStartIndex.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookNoMatchingEntries.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookNoMoreEntries.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookRealTyping.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookSameSearchPatternDifferentCase.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookSameSearchPatternTwice.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookWithConsecutiveRequests.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookWithPagination.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookZeroEntriesRequested.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                    </cats:stories>
-                    <cats:timeout>1800</cats:timeout>
-                </cats:storyList>
-            </cats:storyLists>
-        </cats:storyCollection>
-        <cats:storyCollection enabled="true">
+       <cats:storyCollection enabled="true">
+       <cats:name>Websocket - Telephone book</cats:name>
+       <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
+       <cats:report>
+       <cats:status>CREATED</cats:status>
+       </cats:report>
+       <cats:storyLists>
+       <cats:storyList enabled="true">
+       <cats:name>Websocket - Telephone book</cats:name>
+       <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
+       <cats:repetitions>1</cats:repetitions>
+       <cats:report>
+       <cats:status>CREATED</cats:status>
+       </cats:report>
+       <cats:reports/>
+       <cats:stories>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/TelephoneBook/CalleeAndCalleeMatchesPhoneBookEntries.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/TelephoneBook/NoneOfCallPartiesMatchesPhoneBookEntries.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookEmptySearchPattern.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookFewerEntriesThanStartIndex.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookNoMatchingEntries.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookNoMoreEntries.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookRealTyping.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookSameSearchPatternDifferentCase.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookSameSearchPatternTwice.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookWithConsecutiveRequests.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookWithPagination.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookZeroEntriesRequested.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       </cats:stories>
+       <cats:timeout>1800</cats:timeout>
+       </cats:storyList>
+       </cats:storyLists>
+       </cats:storyCollection>
+       <cats:storyCollection enabled="true">
             <cats:name>Websocket - Cleanup</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
@@ -651,105 +651,141 @@
                 </cats:storyList>
             </cats:storyLists>
         </cats:storyCollection>
-        <cats:storyCollection enabled="true">
-            <cats:name>UI - Prepare Tests</cats:name>
-            <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
-            <cats:report>
-                <cats:status>CREATED</cats:status>
-            </cats:report>
-            <cats:storyLists>
-                <cats:storyList enabled="true">
-                    <cats:name>UI - Prepare Tests</cats:name>
-                    <cats:onErrorOption>ABORT_ENTIRE_STORY_SET</cats:onErrorOption>
-                    <cats:repetitions>1</cats:repetitions>
-                    <cats:report>
-                        <cats:status>CREATED</cats:status>
-                    </cats:report>
-                    <cats:reports/>
-                    <cats:stories>
-                        <cats:story enabled="true">
-                            <cats:storyPath>deploy/DeployOpVoice.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>deploy/DeployHmi.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                    </cats:stories>
-                    <cats:timeout>1800</cats:timeout>
-                </cats:storyList>
-            </cats:storyLists>
-        </cats:storyCollection>
-        <cats:storyCollection enabled="true">
-            <cats:name>UI - DA calls</cats:name>
-            <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
-            <cats:report>
-                <cats:status>CREATED</cats:status>
-            </cats:report>
-            <cats:storyLists>
-                <cats:storyList enabled="true">
-                    <cats:name>UI - DA calls</cats:name>
-                    <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
-                    <cats:repetitions>1</cats:repetitions>
-                    <cats:report>
-                        <cats:status>CREATED</cats:status>
-                    </cats:report>
-                    <cats:reports/>
-                    <cats:stories>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/@PhoneTestDataUI.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/CallerClearsActiveCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                    </cats:stories>
-                    <cats:timeout>1800</cats:timeout>
-                </cats:storyList>
-            </cats:storyLists>
-        </cats:storyCollection>
-        <cats:storyCollection enabled="true">
-            <cats:name>UI - Cleanup</cats:name>
-            <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
-            <cats:report>
-                <cats:status>CREATED</cats:status>
-            </cats:report>
-            <cats:storyLists>
-                <cats:storyList enabled="true">
-                    <cats:name>UI - Cleanup</cats:name>
-                    <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
-                    <cats:repetitions>1</cats:repetitions>
-                    <cats:report>
-                        <cats:status>CREATED</cats:status>
-                    </cats:report>
-                    <cats:reports/>
-                    <cats:stories>
-                        <cats:story enabled="true">
-                            <cats:storyPath>deploy/SaveLogs.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>deploy/HmiCleanup.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                    </cats:stories>
-                    <cats:timeout>1800</cats:timeout>
-                </cats:storyList>
-            </cats:storyLists>
-        </cats:storyCollection>
+       <cats:storyCollection enabled="true">
+       <cats:name>UI - Prepare Tests</cats:name>
+       <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
+       <cats:report>
+       <cats:status>CREATED</cats:status>
+       </cats:report>
+       <cats:storyLists>
+       <cats:storyList enabled="true">
+       <cats:name>UI - Prepare Tests</cats:name>
+       <cats:onErrorOption>ABORT_ENTIRE_STORY_SET</cats:onErrorOption>
+       <cats:repetitions>1</cats:repetitions>
+       <cats:report>
+       <cats:status>CREATED</cats:status>
+       </cats:report>
+       <cats:reports/>
+       <cats:stories>
+       <cats:story enabled="true">
+       <cats:storyPath>deploy/DeployOpVoice.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>deploy/DeployHmi.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       </cats:stories>
+       <cats:timeout>1800</cats:timeout>
+       </cats:storyList>
+       </cats:storyLists>
+       </cats:storyCollection>
+       <cats:storyCollection enabled="true">
+       <cats:name>UI - Phone - General</cats:name>
+       <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
+       <cats:report>
+       <cats:status>CREATED</cats:status>
+       </cats:report>
+       <cats:storyLists>
+       <cats:storyList enabled="true">
+       <cats:name>UI - Phone - General</cats:name>
+       <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
+       <cats:repetitions>1</cats:repetitions>
+       <cats:report>
+       <cats:status>CREATED</cats:status>
+       </cats:report>
+       <cats:reports/>
+       <cats:stories>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="false">
+       <cats:storyPath>voice_GG/ui/PhoneGeneral/EstablishPhoneCallTowardsSameTarget.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="false">
+       <cats:storyPath>voice_GG/ui/PhoneGeneral/EstablishPhoneCallWhenCallOnHold.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/ui/PhoneGeneral/PhoneCallSimultaneousCalls.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/ui/PhoneGeneral/PhoneCallUsingATSTelephoneNumber.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/ui/PhoneGeneral/PhoneCallUsingAlphanumericAddress.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/ui/PhoneGeneral/PhoneCallUsingRoleURIOtherRole.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>voice_GG/ui/PhoneGeneral/PhoneCallUsingRoleURIOwnRole.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       </cats:stories>
+       <cats:timeout>1800</cats:timeout>
+       </cats:storyList>
+       </cats:storyLists>
+       </cats:storyCollection>
+       <cats:storyCollection enabled="true">
+       <cats:name>UI - Cleanup</cats:name>
+       <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
+       <cats:report>
+       <cats:status>CREATED</cats:status>
+       </cats:report>
+       <cats:storyLists>
+       <cats:storyList enabled="true">
+       <cats:name>UI - Cleanup</cats:name>
+       <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
+       <cats:repetitions>1</cats:repetitions>
+       <cats:report>
+       <cats:status>CREATED</cats:status>
+       </cats:report>
+       <cats:reports/>
+       <cats:stories>
+       <cats:story enabled="true">
+       <cats:storyPath>deploy/SaveLogs.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       <cats:story enabled="true">
+       <cats:storyPath>deploy/HmiCleanup.story</cats:storyPath>
+       <cats:storyParameters/>
+       <cats:storyStatistics/>
+       <cats:storyDataList/>
+       </cats:story>
+       </cats:stories>
+       <cats:timeout>1800</cats:timeout>
+       </cats:storyList>
+       </cats:storyLists>
+       </cats:storyCollection>
     </cats:storyCollections>
-    <cats:webCenterURL>http://10.254.56.242:8081/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880</cats:webCenterURL>
+    <cats:webCenterURL>http://10.254.56.242:8081/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880</cats:webCenterURL>
 </cats:storyBoard>
