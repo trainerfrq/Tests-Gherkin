@@ -766,7 +766,7 @@
             </cats:storyLists>
         </cats:storyCollection>
         <cats:storyCollection enabled="true">
-            <cats:name>New Story Collection 13</cats:name>
+            <cats:name>UI - Phone - Basic Call</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
                 <cats:status>CREATED</cats:status>
