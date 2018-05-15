@@ -788,13 +788,19 @@
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/PhoneBasicCall/DaBasicCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneBasicCall/DACallTerminateInDifferentStates.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/PhoneBasicCall/DAPriorityCallCheckAttributes.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/ui/PhoneBasicCall/DAPriorityCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
