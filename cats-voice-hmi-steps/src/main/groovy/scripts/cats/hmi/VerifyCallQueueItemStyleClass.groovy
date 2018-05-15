@@ -7,14 +7,14 @@ import com.frequentis.c4i.test.util.timer.WaitTimer
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class VerifyCallQueueItemState extends FxScriptTemplate {
-    public static final String IPARAM_CALL_QUEUE_ITEM_ID = "call_queue_item_id";
-    public static final String IPARAM_CALL_QUEUE_ITEM_STATE = "call_queue_item_state";
+class VerifyCallQueueItemStyleClass extends FxScriptTemplate {
+    public static final String IPARAM_CALL_QUEUE_ITEM_ID = "call_queue_item_id"
+    public static final String IPARAM_CALL_QUEUE_ITEM_CLASS_NAME = "call_queue_item_class_name"
 
     @Override
     void script() {
         String callQueueItemId = assertInput(IPARAM_CALL_QUEUE_ITEM_ID) as String;
-        String callQueueItemState = assertInput(IPARAM_CALL_QUEUE_ITEM_STATE) as String;
+        String callQueueItemState = assertInput(IPARAM_CALL_QUEUE_ITEM_CLASS_NAME) as String;
 
         Node callQueueItem = robot.lookup("#" + callQueueItemId).queryFirst();
 
