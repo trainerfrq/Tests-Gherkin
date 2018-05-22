@@ -74,6 +74,21 @@
             "id": "106",
             "type": "da",
             "grid": "applicationGrid"
+          },
+          {
+            "id": "107",
+            "type": "ia",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "108",
+            "type": "ia",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "109",
+            "type": "ia",
+            "grid": "applicationGrid"
           }
         ],
         "positions": [
@@ -146,6 +161,27 @@
             "row": 6,
             "columnSpan": 3,
             "rowSpan": 3
+          },
+          {
+            "id": "107",
+            "column": 0,
+            "row": 9,
+            "columnSpan": 3,
+            "rowSpan": 3
+          },
+          {
+            "id": "108",
+            "column": 3,
+            "row": 9,
+            "columnSpan": 3,
+            "rowSpan": 3
+          },
+          {
+            "id": "109",
+            "column": 6,
+            "row": 9,
+            "columnSpan": 3,
+            "rowSpan": 3
           }
         ]
       },
@@ -204,6 +240,24 @@
             "target": "sip:role2alias1@example.com",
             "source": "sip:role1@example.com",
             "displayName": "ROLE2-ALIAS"
+          },
+          {
+            "id": "107",
+            "target": "sip:222222@example.com",
+            "source": "sip:111111@example.com",
+            "displayName": "IA - OP2(as OP1)"
+          },
+          {
+            "id": "108",
+            "target": "sip:222222@example.com",
+            "source": "sip:op3@example.com",
+            "displayName": "IA - OP2(as OP3)"
+          },
+          {
+            "id": "109",
+            "target": "sip:12345@10.17.15.48:5070",
+            "source": "sip:111111@example.com",
+            "displayName": "IA - PHONE2"
           }
         ]
       },
@@ -302,12 +356,22 @@
             "id": "116",
             "type": "da",
             "grid": "applicationGrid"
+          },
+          {
+            "id": "117",
+            "type": "ia",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "118",
+            "type": "ia",
+            "grid": "applicationGrid"
           }
         ],
         "positions": [
           {
             "id": "cq1",
-            "column": "3",
+            "column": "9",
             "row": "0",
             "columnSpan": "3",
             "rowSpan": "18"
@@ -367,6 +431,20 @@
             "row": 6,
             "columnSpan": 3,
             "rowSpan": 3
+          },
+          {
+            "id": "117",
+            "column": 0,
+            "row": 9,
+            "columnSpan": 3,
+            "rowSpan": 3
+          },
+          {
+            "id": "118",
+            "column": 3,
+            "row": 9,
+            "columnSpan": 3,
+            "rowSpan": 3
           }
         ]
       },
@@ -417,6 +495,18 @@
             "target": "sip:role1alias1@example.com",
             "source": "sip:role2alias1@example.com",
             "displayName": "ROLE1-ALIAS(as ROLE2-ALIAS)"
+          },
+          {
+            "id": "117",
+            "target": "sip:role1@example.com",
+            "source": "sip:222222@example.com",
+            "displayName": "IA - ROLE1"
+          },
+          {
+            "id": "118",
+            "target": "sip:111111@example.com",
+            "source": "sip:222222@example.com",
+            "displayName": "IA - OP1"
           }
         ]
       },

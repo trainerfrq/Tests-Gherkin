@@ -89,7 +89,7 @@ public class CallQueueItem extends CatsCustomParameterBase implements Serializab
    @Override
    public String toString()
    {
-      final StringBuilder sb = new StringBuilder( "DAKey{" );
+      final StringBuilder sb = new StringBuilder( "CallQueueItem{" );
       sb.append( "source='" ).append( source ).append( '\'' );
       sb.append( ", target='" ).append( target ).append( '\'' );
       sb.append( ", callType='" ).append( callType ).append( '\'' );
