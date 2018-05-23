@@ -24,6 +24,7 @@ Then HMI OP2 has the IA key IA - ROLE1 in state connected
 And waiting for 2 seconds
 
 Scenario: IA call is auto-accepted for one operator and declined for the others
+		  @REQUIREMENTS:GID-2686133
 Then the call queue item OP2-ROLE1 is connected for only one of the operator positions: HMI OP1, HMI OP3
 
 Scenario: Cleanup IA call

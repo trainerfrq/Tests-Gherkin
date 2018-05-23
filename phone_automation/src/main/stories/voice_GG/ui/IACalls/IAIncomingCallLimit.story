@@ -27,6 +27,7 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Then HMI OP2 has the IA key IA - OP1 in state connected
 
 Scenario: Op3 establishes another outgoing IA call towards Op2
+		  @REQUIREMENTS:GID-2505707
 When HMI OP3 presses IA key IA - OP2(as OP3)
 Then HMI OP3 has the call queue item OP2-OP3 in state out_failed
 Then HMI OP3 has the IA key IA - OP2(as OP3) in state out_failed

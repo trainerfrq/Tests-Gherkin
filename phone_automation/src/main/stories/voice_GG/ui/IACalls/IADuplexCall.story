@@ -29,6 +29,7 @@ Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction tx
 Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction rx
 
 Scenario: Callee establishes an outgoing IA call
+		  @REQUIREMENTS:GID-2505705
 When HMI OP2 presses IA key IA - OP1
 
 Scenario: Verify call direction

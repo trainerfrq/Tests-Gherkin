@@ -29,6 +29,7 @@ Scenario: SipContact has incoming call
 Then SipContact DialogState is EARLY within 100 ms
 
 Scenario: Wait until timer expires and verify if call is out_failed
+		  @REQUIREMENTS:GID-2505705
 When waiting for 6 seconds
 Then HMI OP1 has the call queue item OP1-PHONE2 in state out_failed
 
