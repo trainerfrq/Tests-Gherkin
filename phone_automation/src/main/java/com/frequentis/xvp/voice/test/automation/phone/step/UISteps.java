@@ -29,6 +29,7 @@ import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
 import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
 
+import scripts.cats.hmi.ClickCallQueueItem;
 import scripts.cats.hmi.ClickDAButton;
 import scripts.cats.hmi.DragAndClickOnMenuButtonActiveList;
 import scripts.cats.hmi.DragAndClickOnMenuButtonDAKey;
@@ -155,6 +156,18 @@ public class UISteps extends AutomationSteps
             .input( VerifyCallQueueItemLabel.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
             .input( VerifyCallQueueItemLabel.IPARAM_DISPLAY_NAME, label )
             .input( VerifyCallQueueItemLabel.IPARAM_LIST_NAME, WAITING_LIST_NAME ) );
+   }
+
+
+   @Then("$profileName accepts the call queue item $callQueueItem")
+   public void acceptCallQueueItem( final String profileName, final String namedCallQueueItem )
+   {
+      CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
+
+      evaluate( remoteStep( "Click call queue item" )
+            .scriptOn( profileScriptResolver().map( ClickCallQueueItem.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyCallQueueItemLabel.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() ) );
    }
 
 
