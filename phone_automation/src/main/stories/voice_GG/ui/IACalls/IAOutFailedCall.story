@@ -33,8 +33,23 @@ Scenario: Wait until timer expires and verify if call is out_failed
 When waiting for 6 seconds
 Then HMI OP1 has the call queue item OP1-PHONE2 in state out_failed
 
+Scenario: Cleanup IA call
+When HMI OP1 presses IA key IA - PHONE2
+Then HMI OP1 has in the call queue a number of 0 calls
+
+Scenario: Caller establishes an outgoing IA call
+When HMI OP1 presses IA key IA - PHONE2
+Then HMI OP1 has the call queue item OP1-PHONE2 in state out_initiating
+
+Scenario: SipContact has incoming call
+Then SipContact DialogState is EARLY within 100 ms
+
+Scenario: Wait until timer expires and verify if call is out_failed
+When waiting for 6 seconds
+Then HMI OP1 has the call queue item OP1-PHONE2 in state out_failed
+
 Scenario: Wait until call is terminated automatically
-Then waiting for 15 seconds
+When waiting for 15 seconds
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Remove SipContact
