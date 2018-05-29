@@ -1,7 +1,7 @@
 Narrative:
 As an operator
-I want to initiate an outgoing IA call towards another operator
-So that I can verify that the IA call is automatically accepted by the other operator
+I want to initiated an outgoing IA call towards an operator with the maximum number of incoming IA calls limit reached
+So that I can verify that the IA call will be in state out_failed instead of connected
 
 Scenario: Booking profiles
 Given booked profiles:

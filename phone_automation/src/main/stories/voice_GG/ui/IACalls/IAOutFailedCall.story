@@ -1,7 +1,7 @@
 Narrative:
 As an operator
-I want to initiate an outgoing IA call towards another operator
-So that I can verify that the IA call is automatically accepted by the other operator
+I want to initiate an outgoing IA call towards a SIP contact not answering automatically to the IA call invite
+So that I can verify that after the IA call timeout expires the call will be in state out_failed
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -33,8 +33,8 @@ Scenario: Wait until timer expires and verify if call is out_failed
 When waiting for 6 seconds
 Then HMI OP1 has the call queue item OP1-PHONE2 in state out_failed
 
-Scenario: Cleanup IA call
-When HMI OP1 presses IA key IA - PHONE2
+Scenario: Wait until call is terminated automatically
+Then waiting for 15 seconds
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Remove SipContact

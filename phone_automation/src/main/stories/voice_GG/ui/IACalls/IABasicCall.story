@@ -18,12 +18,12 @@ Given the call queue items:
 Scenario: Caller establishes an outgoing IA call
 		  @REQUIREMENTS:GID-2505705
 		  @REQUIREMENTS:GID-2505706
-		  @REQUIREMENTS:GID-2505708
 When HMI OP1 presses IA key IA - OP2(as OP1)
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
 
 Scenario: Callee receives incoming IA call
+		  @REQUIREMENTS:GID-2505708
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Then HMI OP2 has the IA key IA - OP1 in state connected
 
