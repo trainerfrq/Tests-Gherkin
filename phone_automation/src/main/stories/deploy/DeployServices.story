@@ -27,8 +27,8 @@ Given SSH connections:
 | dockerHost1      | <<DOCKER_HOST1_IP>> | 22         | root     | !frqAdmin |
 | dockerHost2      | <<DOCKER_HOST2_IP>> | 22         | root     | !frqAdmin |
 | dockerHost3      | <<DOCKER_HOST3_IP>> | 22         | root     | !frqAdmin |
-| hmiHost1         | <<CO1_IP>>          | 22         | root     | !frqAdmin |
-| hmiHost2         | <<CO2_IP>>          | 22         | root     | !frqAdmin |
+| hmiHost1         | <<CLIENT1_IP>>      | 22         | root     | !frqAdmin |
+| hmiHost2         | <<CLIENT2_IP>>      | 22         | root     | !frqAdmin |
 | hmiHost3         | <<CLIENT3_IP>>      | 22         | root     | !frqAdmin |
 
 Scenario: Update services
@@ -39,7 +39,9 @@ Scenario: Stop services
 When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove mission_service
 And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove phone_routing
 And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove audio_service
-And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove audio_app
+And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove audio_app01
+And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove audio_app02
+And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove audio_app03
 And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove voice_hmi03
 And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove voice_hmi04
 And SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove voice_hmi05
@@ -51,7 +53,11 @@ When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/x
 Then waiting for 5 seconds
 When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy audio_service
 Then waiting for 5 seconds
-When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy audio_app
+When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy audio_app01
+Then waiting for 5 seconds
+When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy audio_app02
+Then waiting for 5 seconds
+When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp deploy audio_app03
 Then waiting for 5 seconds
 
 Scenario: Verify services are running on deploymentServer
@@ -69,10 +75,10 @@ Scenario: Verify services are running on dockerhost3
 When SSH host dockerHost3 executes docker inspect -f '{{.State.Status}}' audio-service and the output contains running
 
 Scenario: Verify services are running on hmiHost1
-When SSH host hmiHost1 executes docker inspect -f '{{.State.Status}}' audio-app and the output contains running
+When SSH host hmiHost1 executes docker inspect -f '{{.State.Status}}' audio-app01 and the output contains running
 
 Scenario: Verify services are running on hmiHost2
-When SSH host hmiHost2 executes docker inspect -f '{{.State.Status}}' audio-app and the output contains running
+When SSH host hmiHost2 executes docker inspect -f '{{.State.Status}}' audio-app02 and the output contains running
 
 Scenario: Verify services are running on hmiHost3
-When SSH host hmiHost3 executes docker inspect -f '{{.State.Status}}' audio-app and the output contains running
+When SSH host hmiHost3 executes docker inspect -f '{{.State.Status}}' audio-app03 and the output contains running

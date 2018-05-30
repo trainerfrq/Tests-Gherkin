@@ -32,13 +32,13 @@
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/@PhoneTestDataUI.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/CallerClearsActiveCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/ui/PhoneBasicCall/DABasicCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>

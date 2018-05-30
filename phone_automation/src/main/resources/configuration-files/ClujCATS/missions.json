@@ -7,7 +7,7 @@
     ],
     "missionMasterRole": "00000000-0000-0000-0000-000000000001",
     "missionDefaultSourceSipAddress": "sip:role1@example.com",
-    "iaCallTimeoutMilliseconds": 1000,
+    "iaCallTimeoutMilliseconds": 5000,
     "maxIncomingIaCallsCount": 3,
     "priorityCallHandling": "indication",
     "priorityCallIntrusionWarningPeriod": 0

@@ -19,7 +19,7 @@
     "notes": "Language - English",
     "dataSets": [
       {
-        "destination": "sip:333333@10.31.205.43:5060",
+        "destination": "sip:op3@10.31.205.43:5060",
         "displayAddon": "Ground2Ground"
       }
     ]

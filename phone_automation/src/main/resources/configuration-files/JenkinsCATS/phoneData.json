@@ -35,7 +35,7 @@
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",
-        "opUserInfo": "333333",
+        "opUserInfo": "op3",
         "opSipRegistrationTimeoutInSeconds": 300,
         "opMaxConcurrentCallsCount": 20
       }
