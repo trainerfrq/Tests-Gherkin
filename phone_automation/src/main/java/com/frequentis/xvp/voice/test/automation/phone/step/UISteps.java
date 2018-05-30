@@ -18,12 +18,14 @@ package com.frequentis.xvp.voice.test.automation.phone.step;
 
 import java.util.List;
 
+import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
+import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
@@ -34,6 +36,7 @@ import scripts.cats.hmi.ClickDAButton;
 import scripts.cats.hmi.DragAndClickOnMenuButtonActiveList;
 import scripts.cats.hmi.DragAndClickOnMenuButtonDAKey;
 import scripts.cats.hmi.VerifyCallQueueItemLabel;
+import scripts.cats.hmi.VerifyCallQueueItemStateIfPresent;
 import scripts.cats.hmi.VerifyCallQueueItemStyleClass;
 import scripts.cats.hmi.VerifyCallQueueLength;
 import scripts.cats.hmi.VerifyDAButtonState;
@@ -54,6 +57,8 @@ public class UISteps extends AutomationSteps
    public static final String PRIORITY_CALL_STYLE_CLASS_NAME = "priority";
 
    public static final String WAITING_LIST_NAME = "waitingList";
+
+   public static final String IA_CALL_TYPE = "ia";
 
 
    @Given("the DA keys: $daKeys")
@@ -93,6 +98,7 @@ public class UISteps extends AutomationSteps
 
 
    @When("$profileName presses DA key $target")
+   @Alias("$profileName presses IA key $target")
    public void clickDA( final String profileName, final String target )
    {
       DAKey daKey = retrieveDaKey( profileName, target );
@@ -105,6 +111,7 @@ public class UISteps extends AutomationSteps
 
 
    @Then("$profileName has the DA key $target in state $state")
+   @Alias("$profileName has the IA key $target in state $state")
    public void verifyDAState( final String profileName, final String target, final String state )
    {
       DAKey daKey = retrieveDaKey( profileName, target );
@@ -141,6 +148,26 @@ public class UISteps extends AutomationSteps
                   assertProfile( profileName ) )
             .input( VerifyCallQueueItemStyleClass.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
             .input( VerifyCallQueueItemStyleClass.IPARAM_CALL_QUEUE_ITEM_CLASS_NAME, state ) );
+   }
+
+
+   @Then("$profileName has the IA call queue item $callQueueItem with audio direction $direction")
+   public void verifyIACallQueueItemDirection( final String profileName, final String namedCallQueueItem,
+         final String direction )
+   {
+      CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
+
+      evaluate( remoteStep( "Verify if call queue item is of IA type" )
+            .scriptOn( profileScriptResolver().map( VerifyCallQueueItemStyleClass.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyCallQueueItemStyleClass.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
+            .input( VerifyCallQueueItemStyleClass.IPARAM_CALL_QUEUE_ITEM_CLASS_NAME, IA_CALL_TYPE ) );
+
+      evaluate( remoteStep( "Verify IA call direction" )
+            .scriptOn( profileScriptResolver().map( VerifyCallQueueItemStyleClass.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyCallQueueItemStyleClass.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
+            .input( VerifyCallQueueItemStyleClass.IPARAM_CALL_QUEUE_ITEM_CLASS_NAME, direction ) );
    }
 
 
@@ -215,6 +242,41 @@ public class UISteps extends AutomationSteps
                   assertProfile( profileName ) )
             .input( DragAndClickOnMenuButtonDAKey.IPARAM_DA_KEY_ID, daKey.getId() )
             .input( DragAndClickOnMenuButtonDAKey.IPARAM_MENU_BUTTON_ID, PRIORITY_CALL_MENU_BUTTON_ID ) );
+   }
+
+
+   @Then("the call queue item $namedCallQueueItem is $state for only one of the operator positions: $profileNames")
+   public void verifyIACallAcceptedOnlyOnOnePosition( final String namedCallQueueItem, final String state,
+         final String profileNames )
+   {
+      CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
+      String[] profiles = profileNames.split( "\\s*,\\s*" );
+      int nrOfMatchingCallQueueItems = 0;
+      for ( final String profileName : profiles )
+      {
+         final RemoteStepResult remoteStepResult =
+               evaluate( remoteStep( "Check if call queue item " + namedCallQueueItem + " exists and if it is in state "
+                     + state + " on profile: " + profileName )
+                           .scriptOn( profileScriptResolver().map( VerifyCallQueueItemStateIfPresent.class,
+                                 BookableProfileName.javafx ), assertProfile( profileName ) )
+                           .input( VerifyCallQueueItemStateIfPresent.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
+                           .input( VerifyCallQueueItemStateIfPresent.IPARAM_CALL_QUEUE_ITEM_CLASS_NAME, state ) );
+
+         boolean wasFound =
+               ( boolean ) remoteStepResult
+                     .getOutput( VerifyCallQueueItemStateIfPresent.OPARAM_CALL_QUEUE_ITEM_WAS_FOUND );
+
+         if ( wasFound )
+         {
+            nrOfMatchingCallQueueItems++;
+         }
+      }
+
+      evaluate( localStep( "Verifying number of matching call queue items" ).details(
+            ExecutionDetails.create( "Checking if only one matching call queue item was found on all profiles" )
+                  .expected( "Exactly one matching call queue item" )
+                  .received( "A number of " + nrOfMatchingCallQueueItems + " matching call queue items" )
+                  .success( nrOfMatchingCallQueueItems == 1 ) ) );
    }
 
 
