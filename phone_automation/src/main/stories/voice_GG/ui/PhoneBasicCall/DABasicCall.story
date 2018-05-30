@@ -20,11 +20,14 @@ Scenario: Caller establishes an outgoing call
 		  @REQUIREMENTS:GID-2535706
 		  @REQUIREMENTS:GID-2932449
 		  @REQUIREMENTS:GID-2682478
+		  @REQUIREMENTS:GID-2505643
+		  @REQUIREMENTS:GID-2536683
 When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 
 Scenario: Callee client receives the incoming call
 		  @REQUIREMENTS:GID-2512204
+		  @REQUIREMENTS:GID-2505646
 Then HMI OP2 has the DA key OP1 in state ringing
 
 Scenario: Callee client answers the incoming call

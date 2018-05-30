@@ -16,11 +16,16 @@ Given the call queue items:
 | OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
 
 Scenario: Caller establishes an outgoing priority call
+		  @REQUIREMENTS:GID-2505647
+		  @REQUIREMENTS:GID-2536682
 When HMI OP1 initiates a priority call on DA key OP2(as OP1)
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 
 Scenario: Callee client receives the incoming priority call
 		  @REQUIREMENTS:GID-2535717
+		  @REQUIREMENTS:GID-2505701
+		  @REQUIREMENTS:GID-2505702
+		  @REQUIREMENTS:GID-3685306
 Then HMI OP2 has the DA key OP1 in state ringing
 Then HMI OP2 has in the call queue the item OP1-OP2 with priority
 
