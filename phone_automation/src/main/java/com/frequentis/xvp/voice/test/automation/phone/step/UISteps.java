@@ -31,9 +31,10 @@ import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
 import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
 
+import scripts.cats.hmi.ClickCallQueueItem;
 import scripts.cats.hmi.ClickDAButton;
-import scripts.cats.hmi.DragAndClickOnMenuButtonActiveList;
 import scripts.cats.hmi.DragAndClickOnMenuButtonDAKey;
+import scripts.cats.hmi.DragAndClickOnMenuButtonFirstCallQueueItem;
 import scripts.cats.hmi.VerifyCallQueueItemLabel;
 import scripts.cats.hmi.VerifyCallQueueItemStateIfPresent;
 import scripts.cats.hmi.VerifyCallQueueItemStyleClass;
@@ -54,6 +55,8 @@ public class UISteps extends AutomationSteps
    public static final String DECLINE_CALL_MENU_BUTTON_ID = "decline_call_menu_button";
 
    public static final String PRIORITY_CALL_STYLE_CLASS_NAME = "priority";
+
+   public static final String ACTIVE_LIST_NAME = "activeList";
 
    public static final String WAITING_LIST_NAME = "waitingList";
 
@@ -185,6 +188,19 @@ public class UISteps extends AutomationSteps
    }
 
 
+   @Then("$profileName accepts the call queue item $callQueueItem")
+   @Alias("$profileName cancels the call queue item $callQueueItem")
+   public void clickCallQueueItem( final String profileName, final String namedCallQueueItem )
+   {
+      CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
+
+      evaluate( remoteStep( "Click call queue item" )
+            .scriptOn( profileScriptResolver().map( ClickCallQueueItem.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( ClickCallQueueItem.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() ) );
+   }
+
+
    @Then("$profileName has in the call queue a number of $numberOfCalls calls")
    public void verifyCallQueueLength( final String profileName, final Integer numberOfCalls )
    {
@@ -198,11 +214,22 @@ public class UISteps extends AutomationSteps
    @When("$profileName puts on hold the active call")
    public void putOnHoldActiveCall( final String profileName )
    {
-      evaluate(
-            remoteStep( "Put on hold active call" )
-                  .scriptOn( profileScriptResolver().map( DragAndClickOnMenuButtonActiveList.class,
-                        BookableProfileName.javafx ), assertProfile( profileName ) )
-                  .input( DragAndClickOnMenuButtonActiveList.IPARAM_MENU_BUTTON_ID, HOLD_MENU_BUTTON_ID ) );
+      evaluate( remoteStep( "Put on hold active call queue item" )
+            .scriptOn( profileScriptResolver().map( DragAndClickOnMenuButtonFirstCallQueueItem.class,
+                  BookableProfileName.javafx ), assertProfile( profileName ) )
+            .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_MENU_BUTTON_ID, HOLD_MENU_BUTTON_ID )
+            .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_LIST_NAME, ACTIVE_LIST_NAME ) );
+   }
+
+
+   @Then("$profileName rejects the waiting call queue item")
+   public void rejectCallQueueItem( final String profileName )
+   {
+      evaluate( remoteStep( "Reject waiting call queue item" )
+            .scriptOn( profileScriptResolver().map( DragAndClickOnMenuButtonFirstCallQueueItem.class,
+                  BookableProfileName.javafx ), assertProfile( profileName ) )
+            .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_MENU_BUTTON_ID, DECLINE_CALL_MENU_BUTTON_ID )
+            .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_LIST_NAME, WAITING_LIST_NAME ) );
    }
 
 
