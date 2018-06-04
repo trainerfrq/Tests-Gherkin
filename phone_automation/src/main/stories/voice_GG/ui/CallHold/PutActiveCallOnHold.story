@@ -1,7 +1,7 @@
 Narrative:
-As a caller operator having an active call with a callee operator
-I want to put the active call on hold
-So I can verify that call is put on hold on my side, and is in state held for the callee operator
+As a callee operator having a call held by the caller operator
+I want to put the call on hold also on my side
+So I can verify that call is put on hold on both sides, and that both me and the caller operator can retrieve the call from hold
 
 Scenario: Booking profiles
 Given booked profiles:

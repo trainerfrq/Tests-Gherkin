@@ -1,7 +1,7 @@
 Narrative:
 As an operator having the maximum number of calls on hold reached
 I want to put another call on hold
-So I can verify that call not put on hold
+So I can verify that call is not put on hold
 
 Scenario: Booking profiles
 Given booked profiles:
