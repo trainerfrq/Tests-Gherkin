@@ -36,6 +36,7 @@ Then HMI OP1 has the call queue item OP2-OP1 in state hold
 
 Scenario: Caller establishes another outgoing call towards the same target
 		  @REQUIREMENTS:GID-3657854
+		  @REQUIREMENTS:GID-2510075
 When HMI OP1 presses DA key OP2(as OP3)
 
 Scenario: Verify call is connected again
