@@ -1,7 +1,7 @@
 Narrative:
-As a caller operator having a call on hold with a callee operator
-I want to initiate another phone call towards the same callee operator
-So I can verify that the already existing call is retrieved from hold and no other call is established
+As a callee operator having a call held by the caller operator
+I want to put the call on hold also on my side
+So I can verify that call is put on hold on both sides, and that both me and the caller operator can retrieve the call from hold
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -31,13 +31,32 @@ Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Caller puts call on hold
+		  @REQUIREMENTS:GID-2505734
+		  @REQUIREMENTS:GID-2510074
 When HMI OP1 puts on hold the active call
-Then HMI OP1 has the call queue item OP2-OP1 in state hold
 
-Scenario: Caller establishes another outgoing call towards the same target
-		  @REQUIREMENTS:GID-3657854
+Scenario: Verify call state for both operators
+Then HMI OP1 has the call queue item OP2-OP1 in state hold
+Then HMI OP2 has the call queue item OP1-OP2 in state held
+
+Scenario: Callee puts the call on hold
+When HMI OP2 puts on hold the active call
+
+Scenario: Verify call state for both operators
+Then HMI OP1 has the call queue item OP2-OP1 in state hold
+Then HMI OP2 has the call queue item OP1-OP2 in state hold
+
+Scenario: Callee retrieves call from hold
 		  @REQUIREMENTS:GID-2510075
-When HMI OP1 presses DA key OP2(as OP3)
+Then HMI OP2 retrieves from hold the call queue item OP1-OP2
+
+Scenario: Verify call state for both operators
+Then HMI OP1 has the call queue item OP2-OP1 in state hold
+Then HMI OP2 has the call queue item OP1-OP2 in state held
+
+Scenario: Caller retrieves call from hold
+		  @REQUIREMENTS:GID-2510075
+Then HMI OP1 retrieves from hold the call queue item OP2-OP1
 
 Scenario: Verify call is connected again
 Then HMI OP1 has the call queue item OP2-OP1 in state connected

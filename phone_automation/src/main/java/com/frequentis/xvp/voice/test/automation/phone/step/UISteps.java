@@ -16,9 +16,20 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import scripts.cats.hmi.ClickCallQueueItem;
+import scripts.cats.hmi.ClickDAButton;
+import scripts.cats.hmi.DragAndClickOnMenuButtonDAKey;
+import scripts.cats.hmi.DragAndClickOnMenuButtonFirstCallQueueItem;
+import scripts.cats.hmi.VerifyCallQueueItemLabel;
+import scripts.cats.hmi.VerifyCallQueueItemStateIfPresent;
+import scripts.cats.hmi.VerifyCallQueueItemStyleClass;
+import scripts.cats.hmi.VerifyCallQueueLength;
+import scripts.cats.hmi.VerifyDAButtonState;
+
 import java.util.List;
 
 import org.jbehave.core.annotations.Alias;
+import org.jbehave.core.annotations.Aliases;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -30,16 +41,6 @@ import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
 import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
-
-import scripts.cats.hmi.ClickCallQueueItem;
-import scripts.cats.hmi.ClickDAButton;
-import scripts.cats.hmi.DragAndClickOnMenuButtonDAKey;
-import scripts.cats.hmi.DragAndClickOnMenuButtonFirstCallQueueItem;
-import scripts.cats.hmi.VerifyCallQueueItemLabel;
-import scripts.cats.hmi.VerifyCallQueueItemStateIfPresent;
-import scripts.cats.hmi.VerifyCallQueueItemStyleClass;
-import scripts.cats.hmi.VerifyCallQueueLength;
-import scripts.cats.hmi.VerifyDAButtonState;
 
 public class UISteps extends AutomationSteps
 {
@@ -189,7 +190,8 @@ public class UISteps extends AutomationSteps
 
 
    @Then("$profileName accepts the call queue item $callQueueItem")
-   @Alias("$profileName cancels the call queue item $callQueueItem")
+   @Aliases(values = { "$profileName cancels the call queue item $callQueueItem",
+         "$profileName retrieves from hold the call queue item $callQueueItem" })
    public void clickCallQueueItem( final String profileName, final String namedCallQueueItem )
    {
       CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
