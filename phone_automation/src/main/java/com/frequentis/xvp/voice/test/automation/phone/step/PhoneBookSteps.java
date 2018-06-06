@@ -96,10 +96,10 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
 
       evaluate( localStep( "Check phone book entry" )
             .details( match( "Verify phone book entry is defined", phoneBookEntry, is( notNullValue() ) ) )
-            .details( match( "Entry of given number is present in response", phoneBookResponse.getItems().length,
+            .details( match( "Entry of given number is present in response", phoneBookResponse.getItems().size(),
                   greaterThanOrEqualTo( entryNumber ) ) ) );
 
-      assertPhoneBookEntry( phoneBookResponse.getItems()[entryNumber - 1], phoneBookEntry );
+      assertPhoneBookEntry( phoneBookResponse.getItems().get( entryNumber ), phoneBookEntry );
    }
 
 
@@ -133,7 +133,7 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
 
       evaluate(
             localStep( "Check number of entries" ).details( match( "Verify number of phone book entries in response",
-                  phoneBookResponse.getItems().length, is( nrOfEntries ) ) ) );
+                  phoneBookResponse.getItems().size(), is( nrOfEntries ) ) ) );
    }
 
 
