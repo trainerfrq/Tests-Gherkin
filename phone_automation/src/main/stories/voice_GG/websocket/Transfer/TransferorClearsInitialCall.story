@@ -1,7 +1,7 @@
 Narrative:
-As a transferor operator having an active call with a transferee operator
-I want to transfer the active call to a transfer target with an intermediary consultation call
-So I can verify that the transfer was successful
+As a transferor operator having a held call with a transferee operator during a transfer
+I want to clear the initial call
+So I can verify that the transfer is failed and the consultation call is unaffected
 
 Meta:
      @BeforeStory: ../includes/@PrepareThreeClientsWithMissions.story
@@ -65,27 +65,28 @@ When WS2 clears all text messages from buffer named CallIncomingIndicationBuffer
 When WS3 clears all text messages from buffer named CallStatusIndicationBuffer3
 When WS3 clears all text messages from buffer named CallIncomingIndicationBuffer3
 
-Scenario: Transferor transfers the call
-When WS1 transfers the phone call with the transferee callId outgoingPhoneCallId1 and transfer target callId outgoingPhoneCallId2
-Then waiting for 2 seconds
+Scenario: Transferor clears the initial call
+When WS1 clears the phone call with the callId outgoingPhoneCallId1
+And waiting for 1 seconds
 
 Scenario: Verify messages on transferor side
-!-- TODO QXVP-8546 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status hold
-Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status terminated
+Then WS1 does NOT receive call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status terminated
+Then WS1 does NOT receive call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status out_failed
 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status terminated
 
 Scenario: Verify messages on transferee side
 Then WS2 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status terminated
-When WS2 receives connected call incoming indication on message buffer named CallIncomingIndicationBuffer2 with callTarget2 and callTarget1 and names transferCallId1
 
 Scenario: Verify messages on transfer target side
-!-- TODO QXVP-8546 Then WS3 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer3 with callId incomingPhoneCallId2 and status held
-Then WS3 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer3 with callId incomingPhoneCallId2 and status terminated
-!-- TODO QXVP-8961 When WS3 receives connected call incoming indication on message buffer named CallIncomingIndicationBuffer3 with callTarget1 and callTarget2 and names transferCallId2
+Then WS3 has on the message buffer named CallStatusIndicationBuffer3 a number of 0 messages
 
 Scenario: Cleanup call
-When WS2 clears the phone call with the callId transferCallId1
-!-- TODO QXVP-8961 When WS3 clears the phone call with the callId transferCallId2
+When WS1 clears the phone call with the callId outgoingPhoneCallId2
+And waiting for 1 seconds
+
+Scenario: Call is terminated
+Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status terminated
+Then WS3 receives call status indication on message buffer named CallStatusIndicationBuffer3 with callId incomingPhoneCallId2 and status terminated
 
 Scenario: Delete the message buffers
 When the named websocket WS1 removes the message buffer named CallStatusIndicationBuffer1

@@ -1,11 +1,10 @@
 Narrative:
 As a transferor operator having an active call with a transferee operator
-I want to transfer the active call to a transfer target with an intermediary consultation call
-So I can verify that the transfer was successful
+I want to disassociate from Op Voice Service
+So I can verify that the transfer is failed and calls are cleared
 
 Meta:
      @BeforeStory: ../includes/@PrepareThreeClientsWithMissions.story
-     @AfterStory: ../includes/@CleanupThreeClients.story
 
 Scenario: Create the message buffers
 When WS1 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer1
@@ -59,37 +58,32 @@ Then WS3 receives call status indication on message buffer named CallStatusIndic
 And WS1 receives call status indication with call conditional flag on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status connected
 
 Scenario: Empty buffers
-When WS1 clears all text messages from buffer named CallStatusIndicationBuffer1
 When WS2 clears all text messages from buffer named CallStatusIndicationBuffer2
-When WS2 clears all text messages from buffer named CallIncomingIndicationBuffer2
 When WS3 clears all text messages from buffer named CallStatusIndicationBuffer3
-When WS3 clears all text messages from buffer named CallIncomingIndicationBuffer3
 
-Scenario: Transferor transfers the call
-When WS1 transfers the phone call with the transferee callId outgoingPhoneCallId1 and transfer target callId outgoingPhoneCallId2
-Then waiting for 2 seconds
+Scenario: Delete the message buffer
+When the named websocket WS1 removes the message buffer named CallStatusIndicationBuffer1
 
-Scenario: Verify messages on transferor side
-!-- TODO QXVP-8546 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status hold
-Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status terminated
-Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status terminated
+Scenario: Transferor disassociates from Op Voice Service
+When WS1 disassociates from Op Voice Service
 
-Scenario: Verify messages on transferee side
-Then WS2 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status terminated
-When WS2 receives connected call incoming indication on message buffer named CallIncomingIndicationBuffer2 with callTarget2 and callTarget1 and names transferCallId1
+Scenario: Close Web Socket Client connections
+When WS1 closes websocket client connection
 
-Scenario: Verify messages on transfer target side
-!-- TODO QXVP-8546 Then WS3 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer3 with callId incomingPhoneCallId2 and status held
-Then WS3 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer3 with callId incomingPhoneCallId2 and status terminated
-!-- TODO QXVP-8961 When WS3 receives connected call incoming indication on message buffer named CallIncomingIndicationBuffer3 with callTarget1 and callTarget2 and names transferCallId2
-
-Scenario: Cleanup call
-When WS2 clears the phone call with the callId transferCallId1
-!-- TODO QXVP-8961 When WS3 clears the phone call with the callId transferCallId2
+Scenario: Verify calls are terminated
+Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status terminated
+Then WS3 receives call status indication on message buffer named CallStatusIndicationBuffer3 with callId incomingPhoneCallId2 and status terminated
 
 Scenario: Delete the message buffers
-When the named websocket WS1 removes the message buffer named CallStatusIndicationBuffer1
 When the named websocket WS2 removes the message buffer named CallIncomingIndicationBuffer2
 When the named websocket WS2 removes the message buffer named CallStatusIndicationBuffer2
 When the named websocket WS3 removes the message buffer named CallIncomingIndicationBuffer3
 When the named websocket WS3 removes the message buffer named CallStatusIndicationBuffer3
+
+Scenario: Cleanup
+When WS2 disassociates from Op Voice Service
+When WS3 disassociates from Op Voice Service
+
+Scenario: Close Web Socket Client connections
+When WS2 closes websocket client connection
+When WS3 closes websocket client connection

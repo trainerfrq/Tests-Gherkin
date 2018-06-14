@@ -484,12 +484,13 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    }
 
 
-   @When("$namedWebSocket receives connected call incoming indication on message buffer named $bufferName with $callSource and $callTarget and names $incomingPhoneCallId")
-   public void receiveConnectedCallIncomingIndication( final String namedWebSocket, final String bufferName,
-         final String callSourceName, final String callTargetName, final String phoneCallIdName )
+   @When("$namedWebSocket receives $callStatus call incoming indication on message buffer named $bufferName with $callSource and $callTarget and names $incomingPhoneCallId")
+   public void receiveConnectedCallIncomingIndication( final String namedWebSocket, final String callStatus,
+         final String bufferName, final String callSourceName, final String callTargetName,
+         final String phoneCallIdName )
    {
       receiveCallIncomingIndication( namedWebSocket, bufferName, callSourceName, callTargetName, phoneCallIdName,
-            "DA/IDA", null, CallStatusIndication.CONNECTED, "NON-URGENT" );
+            "DA/IDA", null, callStatus, "NON-URGENT" );
    }
 
 
@@ -786,7 +787,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
    private void receiveCallIncomingIndication( final String namedWebSocket, final String bufferName,
          final String callSourceName, final String callTargetName, final String phoneCallIdName, final String callType,
-         final Object audioDirection, final String callState, final String priority )
+         final Object audioDirection, final String callStatus, final String priority )
    {
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );

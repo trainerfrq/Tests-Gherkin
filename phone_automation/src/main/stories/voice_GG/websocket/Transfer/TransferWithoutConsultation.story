@@ -1,6 +1,6 @@
 Narrative:
 As a transferor operator having an active call with a transferee operator
-I want to transfer the active call to a transfer target with an intermediary consultation call
+I want to transfer the active call to a transfer target without an intermediary consultation call
 So I can verify that the transfer was successful
 
 Meta:
@@ -52,12 +52,6 @@ When WS3 receives call incoming indication on message buffer named CallIncomingI
 And WS3 confirms incoming phone call with callId incomingPhoneCallId2
 Then WS1 receives call status indication with call conditional flag on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status out_ringing
 
-Scenario: Transfer target answers the incoming call
-When WS3 answers the incoming phone call with the callId incomingPhoneCallId2
-And waiting for 1 seconds
-Then WS3 receives call status indication on message buffer named CallStatusIndicationBuffer3 with callId incomingPhoneCallId2 and status connected
-And WS1 receives call status indication with call conditional flag on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status connected
-
 Scenario: Empty buffers
 When WS1 clears all text messages from buffer named CallStatusIndicationBuffer1
 When WS2 clears all text messages from buffer named CallStatusIndicationBuffer2
@@ -65,23 +59,22 @@ When WS2 clears all text messages from buffer named CallIncomingIndicationBuffer
 When WS3 clears all text messages from buffer named CallStatusIndicationBuffer3
 When WS3 clears all text messages from buffer named CallIncomingIndicationBuffer3
 
-Scenario: Transferor transfers the call
+Scenario: Transferor transfers the call without consultation call to be answered
 When WS1 transfers the phone call with the transferee callId outgoingPhoneCallId1 and transfer target callId outgoingPhoneCallId2
 Then waiting for 2 seconds
 
 Scenario: Verify messages on transferor side
-!-- TODO QXVP-8546 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status hold
 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status terminated
 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status terminated
 
-Scenario: Verify messages on transferee side
-Then WS2 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status terminated
-When WS2 receives connected call incoming indication on message buffer named CallIncomingIndicationBuffer2 with callTarget2 and callTarget1 and names transferCallId1
-
 Scenario: Verify messages on transfer target side
-!-- TODO QXVP-8546 Then WS3 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer3 with callId incomingPhoneCallId2 and status held
 Then WS3 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer3 with callId incomingPhoneCallId2 and status terminated
-!-- TODO QXVP-8961 When WS3 receives connected call incoming indication on message buffer named CallIncomingIndicationBuffer3 with callTarget1 and callTarget2 and names transferCallId2
+!-- TODO QXVP-8961 When WS3 receives call incoming indication on message buffer named CallIncomingIndicationBuffer3 with callSource2 and callTarget2 and names transferCallId2
+
+Scenario: Transfer target confirms transfer call
+When WS2 confirms incoming phone call with callId transferCallId1
+And waiting for 1 seconds
+Then WS2 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status connected
 
 Scenario: Cleanup call
 When WS2 clears the phone call with the callId transferCallId1

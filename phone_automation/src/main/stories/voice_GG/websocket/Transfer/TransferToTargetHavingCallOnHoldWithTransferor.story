@@ -1,7 +1,7 @@
 Narrative:
 As a transferor operator having an active call with a transferee operator
-I want to transfer the active call to a transfer target with an intermediary consultation call
-So I can verify that the transfer was successful
+I want to transfer the active call to a transfer target which already has a call on hold with the transferee
+So I can verify that the transfer was successful and that the call on hold remains unaffected
 
 Meta:
      @BeforeStory: ../includes/@PrepareThreeClientsWithMissions.story
@@ -15,8 +15,42 @@ When WS3 opens the message buffer for message type callStatusIndication named Ca
 When WS3 opens the message buffer for message type callIncomingIndication named CallIncomingIndicationBuffer3
 
 Scenario: Transferor retrieves phone data
+When WS1 loads phone data for role roleId1 and names roleCallSource and roleCallTarget from the entry number 6
 When WS1 loads phone data for role roleId1 and names callSource1 and callTarget1 from the entry number 1
 When WS1 loads phone data for role roleId1 and names callSource2 and callTarget2 from the entry number 3
+
+Scenario: Future transferor establishes an outgoing call
+When WS1 establishes an outgoing phone call using source roleCallSource ang target roleCallTarget and names initialOutgoingPhoneCallId
+And waiting for 1 seconds
+Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId initialOutgoingPhoneCallId and status out_trying
+
+Scenario: Future transfer target receives incoming call and confirms it
+When WS3 receives call incoming indication on message buffer named CallIncomingIndicationBuffer3 with roleCallSource and roleCallTarget and names initialIncomingPhoneCallId
+And WS3 confirms incoming phone call with callId initialIncomingPhoneCallId
+Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId initialOutgoingPhoneCallId and status out_ringing
+
+Scenario: Future transfer target answers the incoming call
+When WS3 answers the incoming phone call with the callId initialIncomingPhoneCallId
+And waiting for 1 seconds
+Then WS3 receives call status indication on message buffer named CallStatusIndicationBuffer3 with callId initialIncomingPhoneCallId and status connected
+And WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId initialOutgoingPhoneCallId and status connected
+
+Scenario: Future transferor puts the call on hold
+When WS1 puts the phone call with the callId initialOutgoingPhoneCallId on hold
+And waiting for 1 seconds
+
+Scenario: Future transfer target puts the call on hold
+When WS3 puts the phone call with the callId initialIncomingPhoneCallId on hold
+And waiting for 1 seconds
+
+Scenario: Verify call is on hold for both operators
+Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId initialOutgoingPhoneCallId and status two_way_hold
+Then WS3 receives call status indication on message buffer named CallStatusIndicationBuffer3 with callId initialIncomingPhoneCallId and status two_way_hold
+
+Scenario: Empty buffers
+When WS1 clears all text messages from buffer named CallStatusIndicationBuffer1
+When WS3 clears all text messages from buffer named CallStatusIndicationBuffer3
+When WS3 clears all text messages from buffer named CallIncomingIndicationBuffer3
 
 Scenario: Transferor establishes an outgoing call
 When WS1 establishes an outgoing phone call using source callSource1 ang target callTarget1 and names outgoingPhoneCallId1
@@ -41,6 +75,9 @@ And waiting for 2 seconds
 Scenario: Verify call is on hold
 Then WS1 receives call status indication with call conditional flag on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status hold
 Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status held
+
+Scenario: Empty buffers
+When WS1 clears all text messages from buffer named CallStatusIndicationBuffer1
 
 Scenario: Transferor establishes consultation call
 When WS1 establishes an outgoing phone call with call conditional flag using source callSource2 ang target callTarget2 and names outgoingPhoneCallId2
@@ -83,9 +120,33 @@ Scenario: Verify messages on transfer target side
 Then WS3 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer3 with callId incomingPhoneCallId2 and status terminated
 !-- TODO QXVP-8961 When WS3 receives connected call incoming indication on message buffer named CallIncomingIndicationBuffer3 with callTarget1 and callTarget2 and names transferCallId2
 
-Scenario: Cleanup call
+Scenario: Clear call
 When WS2 clears the phone call with the callId transferCallId1
 !-- TODO QXVP-8961 When WS3 clears the phone call with the callId transferCallId2
+
+Scenario: Empty buffers
+When WS1 clears all text messages from buffer named CallStatusIndicationBuffer1
+When WS3 clears all text messages from buffer named CallStatusIndicationBuffer3
+When WS3 clears all text messages from buffer named CallIncomingIndicationBuffer3
+
+Scenario: Transferee retrieves from hold initial call
+When WS1 retrieves the on hold phone call with the callId initialOutgoingPhoneCallId
+And waiting for 1 seconds
+
+Scenario: Transfer target retrieves from hold initial call
+When WS3 retrieves the on hold phone call with the callId initialIncomingPhoneCallId
+And waiting for 1 seconds
+
+Scenario: Verify call is active for both operators
+Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId initialOutgoingPhoneCallId and status connected
+Then WS3 receives call status indication on message buffer named CallStatusIndicationBuffer3 with callId initialIncomingPhoneCallId and status connected
+
+Scenario: Cleanup call
+When WS1 clears the phone call with the callId initialOutgoingPhoneCallId
+
+Scenario: Verify call is terminated for both operators
+Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId initialOutgoingPhoneCallId and status terminated
+Then WS3 receives call status indication on message buffer named CallStatusIndicationBuffer3 with callId initialIncomingPhoneCallId and status terminated
 
 Scenario: Delete the message buffers
 When the named websocket WS1 removes the message buffer named CallStatusIndicationBuffer1
