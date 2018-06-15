@@ -67,7 +67,7 @@ When WS3 clears all text messages from buffer named CallIncomingIndicationBuffer
 
 Scenario: Transferor transfers the call
 When WS1 transfers the phone call with the transferee callId outgoingPhoneCallId1 and transfer target callId outgoingPhoneCallId2
-Then waiting for 2 seconds
+Then waiting for 3 seconds
 
 Scenario: Verify messages on transferor side
 !-- TODO QXVP-8546 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status hold

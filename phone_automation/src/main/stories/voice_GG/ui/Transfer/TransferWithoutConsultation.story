@@ -66,6 +66,7 @@ Then HMI OP3 has the call queue item OP1-OP3 in state ringing
 
 Scenario: Transfer target answers incoming call
 When HMI OP3 presses DA key OP2(as OP3)
+And waiting for 1 seconds
 
 Scenario: Verify call is connected for both operators
 Then HMI OP1 has the call queue item OP3-OP1 in state connected
@@ -73,6 +74,7 @@ Then HMI OP3 has the call queue item OP1-OP3 in state connected
 
 Scenario: Cleanup call
 When HMI OP1 presses DA key OP3(as OP1)
+And waiting for 1 seconds
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 
