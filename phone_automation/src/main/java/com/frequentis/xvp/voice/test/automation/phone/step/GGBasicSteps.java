@@ -5,6 +5,11 @@
  */
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import scripts.cats.websocket.sequential.SendTextMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
+import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
+import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 import static com.frequentis.c4i.test.model.MatcherDetails.match;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.empty;
@@ -55,12 +60,6 @@ import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallStatusIn
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallTransferRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallTransferResponse;
 import com.google.common.collect.Lists;
-
-import scripts.cats.websocket.sequential.SendTextMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
-import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
-import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 
 public class GGBasicSteps extends WebsocketAutomationSteps
 {
@@ -808,7 +807,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             .details( match( "Is call incoming indication", jsonMessage.body().isCallIncomingIndication(),
                   equalTo( true ) ) )
             .details( match( "Call status matches", jsonMessage.body().callIncomingIndication().getCallStatus(),
-                  equalTo( callState ) ) )
+                  equalTo( callStatus ) ) )
             .details( match( "Call type matches", jsonMessage.body().callIncomingIndication().getCallType(),
                   equalTo( callType ) ) )
             .details( match( "Calling party matches",
