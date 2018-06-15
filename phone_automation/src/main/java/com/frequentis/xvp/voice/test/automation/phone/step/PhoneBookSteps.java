@@ -16,6 +16,8 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import scripts.cats.websocket.sequential.SendTextMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
 import static com.frequentis.c4i.test.model.MatcherDetails.match;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
@@ -43,9 +45,6 @@ import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookRes
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookResponseItem;
 import com.frequentis.xvp.voice.sip.SipURI;
 import com.frequentis.xvp.voice.sip.SipUser;
-
-import scripts.cats.websocket.sequential.SendTextMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
 
 public class PhoneBookSteps extends WebsocketAutomationSteps
 {
@@ -99,7 +98,7 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
             .details( match( "Entry of given number is present in response", phoneBookResponse.getItems().size(),
                   greaterThanOrEqualTo( entryNumber ) ) ) );
 
-      assertPhoneBookEntry( phoneBookResponse.getItems().get( entryNumber ), phoneBookEntry );
+      assertPhoneBookEntry( phoneBookResponse.getItems().get( entryNumber - 1 ), phoneBookEntry );
    }
 
 
