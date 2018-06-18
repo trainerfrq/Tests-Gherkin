@@ -67,6 +67,10 @@ Scenario: Verify messages on transferor side
 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status terminated
 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status terminated
 
+Scenario: Verify messages on transferee side
+Then WS2 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status terminated
+!-- TODO QXVP-8961 When WS2 receives call incoming indication on message buffer named CallIncomingIndicationBuffer2 with callSource2 and callTarget2 and names transferCallId1
+
 Scenario: Verify messages on transfer target side
 Then WS3 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer3 with callId incomingPhoneCallId2 and status terminated
 !-- TODO QXVP-8961 When WS3 receives call incoming indication on message buffer named CallIncomingIndicationBuffer3 with callSource2 and callTarget2 and names transferCallId2
@@ -78,7 +82,6 @@ Then WS2 receives call status indication verifying all the messages on message b
 
 Scenario: Cleanup call
 When WS2 clears the phone call with the callId transferCallId1
-!-- TODO QXVP-8961 When WS3 clears the phone call with the callId transferCallId2
 
 Scenario: Delete the message buffers
 When the named websocket WS1 removes the message buffer named CallStatusIndicationBuffer1
