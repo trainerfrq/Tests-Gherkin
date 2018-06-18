@@ -34,6 +34,7 @@ Then WS2 has on the message buffer named CallStatusIndicationBuffer2 a number of
 Then WS2 has on the message buffer named CallIncomingIndicationBuffer2 a number of 0 messages
 
 Scenario: Verify call can be answered by callee operator
+!-- TODO QXVP-9274 re-enable test when bug is fixed
 When WS2 answers the incoming phone call with the callId incomingPhoneCallId1
 And waiting for 1 seconds
 Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status connected
