@@ -57,6 +57,7 @@ Then HMI OP3 has the DA key OP2(as OP3) in state ringing
 Scenario: Transferor finishes transfer
 		  @REQUIREMENTS:GID-2510076
 		  @REQUIREMENTS:GID-2510078
+!-- TODO QXVP-8545 : re-enable this test after bug is fixed
 When HMI OP2 presses DA key OP3
 
 Scenario: Verify call was transferred

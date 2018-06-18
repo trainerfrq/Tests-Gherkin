@@ -68,6 +68,7 @@ Then HMI OP1 has the call queue item OP2-OP1 in state held
 Scenario: Transferor finishes transfer
 		  @REQUIREMENTS:GID-2510076
 		  @REQUIREMENTS:GID-2510077
+!-- TODO QXVP-8545 : re-enable this test after bug is fixed
 When HMI OP2 presses DA key OP3
 And waiting for 1 seconds
 
