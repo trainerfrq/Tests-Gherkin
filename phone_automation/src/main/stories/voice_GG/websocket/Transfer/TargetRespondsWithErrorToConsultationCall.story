@@ -32,11 +32,11 @@ Then WS2 receives call status indication on message buffer named CallStatusIndic
 And WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status connected
 
 Scenario: Transferor puts the call on hold with call conditional flag
-When WS1 puts the phone call with the callId outgoingPhoneCallId1 on hold with call conditional flag
+When WS1 puts the phone call with the callId outgoingPhoneCallId1 on hold with call conditional flag xfr
 And waiting for 2 seconds
 
 Scenario: Verify call is on hold
-Then WS1 receives call status indication with call conditional flag on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status hold
+Then WS1 receives call status indication with call conditional flag xfr on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status hold
 Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status held
 
 Scenario: Define call target
@@ -45,13 +45,13 @@ When define values in story data:
 | callTarget2 | <<SIP_PHONE1>> |
 
 Scenario: Transferor establishes consultation call towards an nonexistent target
-When WS1 establishes an outgoing phone call with call conditional flag using source callSource1 ang target callTarget2 and names outgoingPhoneCallId2
+When WS1 establishes an outgoing phone call with call conditional flag xfr using source callSource1 ang target callTarget2 and names outgoingPhoneCallId2
 And waiting for 2 seconds
 
 Scenario: Verify messages on transferor side
 Then WS1 does NOT receive call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status terminated
 Then WS1 does NOT receive call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status out_failed
-Then WS1 receives call status indication with call conditional flag on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status out_failed
+Then WS1 receives call status indication with call conditional flag xfr on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status out_failed
 
 Scenario: Verify messages on transferee side
 Then WS2 has on the message buffer named CallStatusIndicationBuffer2 a number of 0 messages

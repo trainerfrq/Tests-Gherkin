@@ -5,11 +5,6 @@
  */
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import scripts.cats.websocket.sequential.SendTextMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
-import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
-import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 import static com.frequentis.c4i.test.model.MatcherDetails.match;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.empty;
@@ -61,11 +56,14 @@ import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallTransfer
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallTransferResponse;
 import com.google.common.collect.Lists;
 
+import scripts.cats.websocket.sequential.SendTextMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
+import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
+import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
+
 public class GGBasicSteps extends WebsocketAutomationSteps
 {
-
-   public static final String CALL_CONDITIONAL_FLAG = "xfr";
-
 
    @When("$namedWebSocket associates with Op Voice Service using opId $opId and appId $appId")
    public void associateWithOpVoiceService( final String namedWebSocket, final String opId, final String appId )
@@ -271,12 +269,13 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    }
 
 
-   @When("$namedWebSocket establishes an outgoing phone call with call conditional flag using source $callSourceName ang target $callTargetName and names $phoneCallIdName")
+   @When("$namedWebSocket establishes an outgoing phone call with call conditional flag $callConditionalFlag using source $callSourceName ang target $callTargetName and names $phoneCallIdName")
    public void establishOutgoingPhoneCallWithCallConditionalFlag( final String namedWebSocket,
-         final String callSourceName, final String callTargetName, final String phoneCallIdName )
+         final String callConditionalFlag, final String callSourceName, final String callTargetName,
+         final String phoneCallIdName )
    {
       establishOutgoingCall( namedWebSocket, callSourceName, callTargetName, phoneCallIdName, "DA/IDA", "NON-URGENT",
-            CallStatusIndication.OUT_INITIATING, CALL_CONDITIONAL_FLAG );
+            CallStatusIndication.OUT_INITIATING, callConditionalFlag );
    }
 
 
@@ -306,11 +305,12 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    }
 
 
-   @Then("$namedWebSocket receives call status indication with call conditional flag on message buffer named $bufferName with callId $phoneCallIdName and status $callStatus")
-   public void receiveCallStatusIndicationWithCallConditionalFlag( final String namedWebSocket, final String bufferName,
-         final String phoneCallIdName, final String callStatus )
+   @Then("$namedWebSocket receives call status indication with call conditional flag $callConditionalFlag on message buffer named $bufferName with callId $phoneCallIdName and status $callStatus")
+   public void receiveCallStatusIndicationWithCallConditionalFlag( final String namedWebSocket,
+         final String callConditionalFlag, final String bufferName, final String phoneCallIdName,
+         final String callStatus )
    {
-      receiveCallStatusIndication( namedWebSocket, bufferName, phoneCallIdName, callStatus, CALL_CONDITIONAL_FLAG );
+      receiveCallStatusIndication( namedWebSocket, bufferName, phoneCallIdName, callStatus, callConditionalFlag );
    }
 
 
@@ -561,10 +561,11 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    }
 
 
-   @When("$namedWebSocket puts the phone call with the callId $phoneCallIdName on hold with call conditional flag")
-   public void holdPhoneCallWithCallConditionalFlag( final String namedWebSocket, final String phoneCallIdName )
+   @When("$namedWebSocket puts the phone call with the callId $phoneCallIdName on hold with call conditional flag $callConditionalFlag")
+   public void holdPhoneCallWithCallConditionalFlag( final String namedWebSocket, final String phoneCallIdName,
+         final String callConditionalFlag )
    {
-      putCallOnHold( namedWebSocket, phoneCallIdName, CALL_CONDITIONAL_FLAG );
+      putCallOnHold( namedWebSocket, phoneCallIdName, callConditionalFlag );
 
    }
 
