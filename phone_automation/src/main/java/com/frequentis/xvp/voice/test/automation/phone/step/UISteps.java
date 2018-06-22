@@ -16,16 +16,6 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import scripts.cats.hmi.ClickCallQueueItem;
-import scripts.cats.hmi.ClickDAButton;
-import scripts.cats.hmi.DragAndClickOnMenuButtonDAKey;
-import scripts.cats.hmi.DragAndClickOnMenuButtonFirstCallQueueItem;
-import scripts.cats.hmi.VerifyCallQueueItemLabel;
-import scripts.cats.hmi.VerifyCallQueueItemStateIfPresent;
-import scripts.cats.hmi.VerifyCallQueueItemStyleClass;
-import scripts.cats.hmi.VerifyCallQueueLength;
-import scripts.cats.hmi.VerifyDAButtonState;
-
 import java.util.List;
 
 import org.jbehave.core.annotations.Alias;
@@ -42,6 +32,17 @@ import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
 import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
 
+import scripts.cats.hmi.ClickCallQueueItem;
+import scripts.cats.hmi.ClickDAButton;
+import scripts.cats.hmi.DragAndClickOnMenuButtonDAKey;
+import scripts.cats.hmi.DragAndClickOnMenuButtonFirstCallQueueItem;
+import scripts.cats.hmi.VerifyCallQueueItemLabel;
+import scripts.cats.hmi.VerifyCallQueueItemStateIfPresent;
+import scripts.cats.hmi.VerifyCallQueueItemStyleClass;
+import scripts.cats.hmi.VerifyCallQueueLength;
+import scripts.cats.hmi.VerifyDAButtonState;
+import scripts.cats.hmi.VerifyTransferState;
+
 public class UISteps extends AutomationSteps
 {
 
@@ -50,6 +51,8 @@ public class UISteps extends AutomationSteps
    public static final String CALL_QUEUE_ITEM = "_callQueueItem";
 
    public static final String HOLD_MENU_BUTTON_ID = "hold_call_menu_button";
+
+   public static final String TRANSFER_MENU_BUTTON_ID = "transfer_call_menu_button";
 
    public static final String PRIORITY_CALL_MENU_BUTTON_ID = "priority_call_menu_button";
 
@@ -62,6 +65,8 @@ public class UISteps extends AutomationSteps
    public static final String WAITING_LIST_NAME = "waitingList";
 
    public static final String IA_CALL_TYPE = "ia";
+
+   public static final String CALL_CONDITIONAL_FLAG = "xfr";
 
 
    @Given("the DA keys: $daKeys")
@@ -154,6 +159,19 @@ public class UISteps extends AutomationSteps
    }
 
 
+   @Then("$profileName has the call conditional flag set for call queue item $callQueueItem")
+   public void verifyCallConditionFlagCallQueueItem( final String profileName, final String namedCallQueueItem )
+   {
+      CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
+
+      evaluate( remoteStep( "Verify call queue item call conditional flag" )
+            .scriptOn( profileScriptResolver().map( VerifyCallQueueItemStyleClass.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyCallQueueItemStyleClass.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
+            .input( VerifyCallQueueItemStyleClass.IPARAM_CALL_QUEUE_ITEM_CLASS_NAME, CALL_CONDITIONAL_FLAG ) );
+   }
+
+
    @Then("$profileName has the IA call queue item $callQueueItem with audio direction $direction")
    public void verifyIACallQueueItemDirection( final String profileName, final String namedCallQueueItem,
          final String direction )
@@ -225,7 +243,7 @@ public class UISteps extends AutomationSteps
 
 
    @Then("$profileName rejects the waiting call queue item")
-   public void rejectCallQueueItem( final String profileName )
+   public void rejectWaitingCall( final String profileName )
    {
       evaluate( remoteStep( "Reject waiting call queue item" )
             .scriptOn( profileScriptResolver().map( DragAndClickOnMenuButtonFirstCallQueueItem.class,
@@ -235,8 +253,19 @@ public class UISteps extends AutomationSteps
    }
 
 
+   @When("$profileName initiates a transfer on the active call")
+   public void transferActiveCall( final String profileName )
+   {
+      evaluate( remoteStep( "Transfer active call queue item" )
+            .scriptOn( profileScriptResolver().map( DragAndClickOnMenuButtonFirstCallQueueItem.class,
+                  BookableProfileName.javafx ), assertProfile( profileName ) )
+            .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_MENU_BUTTON_ID, TRANSFER_MENU_BUTTON_ID )
+            .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_LIST_NAME, ACTIVE_LIST_NAME ) );
+   }
+
+
    @When("$profileName declines the call on DA key $target")
-   public void terminateActiveCall( final String profileName, final String target )
+   public void terminateCallOnDAKey( final String profileName, final String target )
    {
       DAKey daKey = retrieveDaKey( profileName, target );
 
@@ -249,7 +278,7 @@ public class UISteps extends AutomationSteps
 
 
    @When("$profileName initiates a priority call on DA key $target")
-   public void initiatePriorityCall( final String profileName, final String target )
+   public void initiatePriorityCallOnDAKey( final String profileName, final String target )
    {
       DAKey daKey = retrieveDaKey( profileName, target );
 
@@ -258,6 +287,15 @@ public class UISteps extends AutomationSteps
                   assertProfile( profileName ) )
             .input( DragAndClickOnMenuButtonDAKey.IPARAM_DA_KEY_ID, daKey.getId() )
             .input( DragAndClickOnMenuButtonDAKey.IPARAM_MENU_BUTTON_ID, PRIORITY_CALL_MENU_BUTTON_ID ) );
+   }
+
+
+   @Then("$profileName is in transfer state")
+   public void verifyTransferState( final String profileName )
+   {
+      evaluate( remoteStep( "Verify operator position is in transfer state" ).scriptOn(
+            profileScriptResolver().map( VerifyTransferState.class, BookableProfileName.javafx ),
+            assertProfile( profileName ) ) );
    }
 
 

@@ -7,23 +7,22 @@ import com.frequentis.c4i.test.util.timer.WaitTimer
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class VerifyDAButtonState extends FxScriptTemplate {
-    public static final String IPARAM_DA_KEY_ID = "da_key_id";
-    public static final String IPARAM_DA_KEY_STATE = "da_key_state";
+class VerifyTransferState extends FxScriptTemplate {
+
+    public static final String ROOT_VIEW = "rootView"
+    public static final String TRANSFER = "transfer"
 
     @Override
     void script() {
-        String daKeyId = assertInput(IPARAM_DA_KEY_ID) as String;
-        String daKeyState = assertInput(IPARAM_DA_KEY_STATE) as String;
 
-        Node daWidget = robot.lookup("#" + daKeyId).queryFirst();
+        Node rootView = robot.lookup("#" + ROOT_VIEW).queryFirst();
 
-        evaluate(ExecutionDetails.create("Verify DA key was found")
-                .expected("DA key with id " + daKeyId + " was found")
-                .success(daWidget != null));
+        evaluate(ExecutionDetails.create("Verify root view was found")
+                .expected("Root view was found")
+                .success(rootView != null));
 
-        evaluate(ExecutionDetails.create("Verify DA key has styleClass: " + daKeyState)
-                .success(verifyNodeHasClass(daWidget, daKeyState, 10000)));
+        evaluate(ExecutionDetails.create("Verify root view has styleClass: " + TRANSFER)
+                .success(verifyNodeHasClass(rootView, TRANSFER, 10000)));
     }
 
     protected static boolean verifyNodeHasClass(Node node, String className, long nWait) {

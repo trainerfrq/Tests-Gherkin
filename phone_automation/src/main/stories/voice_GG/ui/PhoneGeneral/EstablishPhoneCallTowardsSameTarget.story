@@ -14,6 +14,7 @@ Given the call queue items:
 | key     | source                 | target                 | callType |
 | OP1-OP2 | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
 | OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
+| OP2-OP3 | sip:222222@example.com | sip:op3@example.com    | DA/IDA   |
 
 Scenario: Caller establishes an outgoing call
 When HMI OP1 presses DA key OP2(as OP1)
@@ -35,7 +36,7 @@ Scenario: Caller establishes another outgoing call towards the same target
 When HMI OP1 presses DA key OP2(as OP3)
 
 Scenario: Verify call is connected for caller and no other call is in queue
-Then HMI OP1 has the call queue item OP2-OP1 in state connected
+Then HMI OP1 has the call queue item OP2-OP3 in state connected
 Then HMI OP1 has in the call queue a number of 1 calls
 
 Scenario: Verify call is connected for callee and no other call is in queue
