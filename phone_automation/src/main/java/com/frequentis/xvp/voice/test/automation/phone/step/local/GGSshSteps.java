@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.frequentis.c4i.test.util.FileUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.text.StrSubstitutor;
 import org.jbehave.core.annotations.When;
@@ -55,7 +56,10 @@ public class GGSshSteps extends SshSteps
 
       String filePath = "/configuration-files/" + systemName + "/runCO.sh";
 
-      final String scriptContent = processConfigurationTemplate( StepsUtil.getConfigFile( filePath ), new HashMap<>() );
+      final Map<String, String> map = new HashMap<>();
+      map.put( "CATS_PUBLIC_IP", connectionName );
+
+      final String scriptContent = processConfigurationTemplate( StepsUtil.getConfigFile( filePath ), map );
 
       executeSshCommand( connectionName,
             "read -d '' runCO << \\EOF \n" + scriptContent + "\nEOF\n\n echo \"$runCO\" > /root/runCO.sh" );
