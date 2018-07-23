@@ -22,7 +22,9 @@
       <dslHome>${project.build.directory}/automation/dsl</dslHome>
 
       <voice.service.interface.version>0.37.0-SNAPSHOT</voice.service.interface.version>
+      <mission-configurator-plugin.version>0.5.0-SNAPSHOT</mission-configurator-plugin.version>
       <xvp-cats-libs.version>0.4.0-SNAPSHOT</xvp-cats-libs.version>
+      <jersey-client.version>2.27</jersey-client.version>
  </properties>
 
    <dependencies>
@@ -30,6 +32,12 @@
          <groupId>com.frequentis.xvp.voice</groupId>
          <artifactId>op-voice-service-interface</artifactId>
          <version>${voice.service.interface.version}</version>
+      </dependency>
+
+      <dependency>
+         <groupId>com.frequentis.xvp.framework</groupId>
+         <artifactId>mission-configurator-plugin</artifactId>
+         <version>${mission-configurator-plugin.version}</version>
       </dependency>
 
       <!-- Required for SOX / PSQM tools as they are not available from CATS Master and have to be provided -->

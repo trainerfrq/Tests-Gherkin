@@ -1,0 +1,122 @@
+[
+  {
+    "fullName": "APP",
+    "displayName": "APP",
+    "location": "",
+    "organization": "",
+    "notes": "System gglab mission/role APP",
+    "dataSets": [
+      {
+        "destination": "sip:507723@frequentis.frq"
+      },
+      {
+        "destination": "sip:group1@frequentis.frq"
+      },
+      {
+        "destination": "sip:group2@frequentis.frq"
+      }
+    ]
+  },
+  {
+    "fullName": "GND",
+    "displayName": "GND",
+    "location": "",
+    "organization": "",
+    "notes": "System gglab mission/role GND",
+    "dataSets": [
+      {
+        "destination": "sip:507722@frequentis.frq"
+      },
+      {
+        "destination": "sip:group1@frequentis.frq"
+      },
+      {
+        "destination": "sip:group2@frequentis.frq"
+      }
+    ]
+  },
+  {
+    "fullName": "SUP TWR",
+    "displayName": "SUP TWR",
+    "location": "",
+    "organization": "",
+    "notes": "System gglab mission/role SUP TWR",
+    "dataSets": [
+      {
+        "destination": "sip:507724@frequentis.frq"
+      },
+      {
+        "destination": "sip:group1@frequentis.frq"
+      },
+      {
+        "destination": "sip:group2@frequentis.frq"
+      }
+    ]
+  },
+  {
+    "fullName": "TWR",
+    "displayName": "TWR",
+    "location": "",
+    "organization": "",
+    "notes": "System gglab mission/role TWR",
+    "dataSets": [
+      {
+        "destination": "sip:99999@frequentis.frq"
+      },
+      {
+        "destination": "sip:group1@frequentis.frq"
+      },
+      {
+        "destination": "sip:group2@frequentis.frq"
+      }
+    ]
+  },
+  {
+    "fullName": "OP1",
+    "displayName": "OP1",
+    "location": "",
+    "organization": "",
+    "notes": "System gglab OP OP1",
+    "dataSets": [
+      {
+        "destination": "sip:111111@frequentis.frq"
+      }
+    ]
+  },
+  {
+    "fullName": "OP2",
+    "displayName": "OP2",
+    "location": "",
+    "organization": "",
+    "notes": "System gglab OP OP2",
+    "dataSets": [
+      {
+        "destination": "sip:222222@frequentis.frq"
+      }
+    ]
+  },
+  {
+    "fullName": "OP3",
+    "displayName": "OP3",
+    "location": "",
+    "organization": "",
+    "notes": "System gglab OP OP3",
+    "dataSets": [
+      {
+        "destination": "sip:333333@frequentis.frq"
+      }
+    ]
+  },
+  {
+    "fullName": "Snom",
+    "displayName": "Snom",
+    "location": "",
+    "organization": "",
+    "notes": "System gglab phone Snom",
+    "dataSets": [
+      {
+        "destination": "sip:gg-snom1@frequentis.frq"
+      }
+    ]
+  }
+]

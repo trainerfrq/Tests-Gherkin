@@ -16,13 +16,14 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step.local;
 
-import java.io.File;
+import static com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil.processConfigurationTemplate;
+import static java.util.Arrays.asList;
+
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang.text.StrSubstitutor;
 import org.jbehave.core.annotations.When;
 
 import com.frequentis.c4i.test.ssh.automation.steps.SshSteps;
@@ -30,6 +31,9 @@ import com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil;
 
 public class GGSshSteps extends SshSteps
 {
+   private static final List<Integer> GENERAL_SUCCESS_RESPONSE_CODES = asList( 200, 201 );
+
+
    @When("the services are updated on $connectionName with $opVoiceVersion and $voiceHmiVersion")
    public void updateServices( final String connectionName, final String opVoiceVersion, final String voiceHmiVersion )
       throws IOException
@@ -45,6 +49,18 @@ public class GGSshSteps extends SshSteps
 
       executeSshCommand( connectionName, "read -d '' createServicesCfg << \\EOF \n" + servicesContent
             + "\nEOF\n\n echo \"$createServicesCfg\" > /etc/opt/frequentis/xvp-deployment/services.cfg" );
+   }
+
+
+   @When("the service descriptors are updated on $connectionName with $opVoiceVersion")
+   public void updateServiceDescriptors( final String connectionName, final String opVoiceVersion )
+   {
+      executeSshCommand( connectionName, "sed -i '4s/.*/  \"tag\" : \"" + opVoiceVersion
+            + "\",/' /var/opt/frequentis/xvp/orchestration-agent/agent/descriptors/*CJ-GG-DEV-CWP-1.json" );
+      executeSshCommand( connectionName, "sed -i '4s/.*/  \"tag\" : \"" + opVoiceVersion
+            + "\",/' /var/opt/frequentis/xvp/orchestration-agent/agent/descriptors/*CJ-GG-DEV-CWP-2.json" );
+      executeSshCommand( connectionName, "sed -i '4s/.*/  \"tag\" : \"" + opVoiceVersion
+            + "\",/' /var/opt/frequentis/xvp/orchestration-agent/agent/descriptors/*CJ-GG-DEV-CWP-3.json" );
    }
 
 
@@ -90,12 +106,30 @@ public class GGSshSteps extends SshSteps
    }
 
 
-   private String processConfigurationTemplate( final File templatePath, final Map<String, String> sub )
-      throws IOException
+   @When("the launch audio service script is copied to $connectionName")
+   public void copyLaunchAudioServiceScript( final String connectionName ) throws IOException
    {
-      final String templateStr = FileUtils.readFileToString( templatePath, "UTF-8" );
-      final StrSubstitutor substitutor = new StrSubstitutor( sub );
-      final String substitutedTemplate = substitutor.replace( templateStr );
-      return substitutedTemplate;
+      final String systemName = StepsUtil.getEnvProperty( "systemName" );
+
+      String filePath = "/configuration-files/" + systemName + "/launch-audio-service.sh";
+
+      final String scriptContent = processConfigurationTemplate( StepsUtil.getConfigFile( filePath ), new HashMap<>() );
+
+      executeSshCommand( connectionName, "read -d '' launch-audio-service << \\EOF \n" + scriptContent
+            + "\nEOF\n\n echo \"$launch-audio-service\" > /root/launch-audio-service.sh" );
+   }
+
+
+   @When("the update voice hmi script is copied to $connectionName")
+   public void copyUpdateVoiceHmiScript( final String connectionName ) throws IOException
+   {
+      final String systemName = StepsUtil.getEnvProperty( "systemName" );
+
+      String filePath = "/configuration-files/" + systemName + "/hmi-update.sh";
+
+      final String scriptContent = processConfigurationTemplate( StepsUtil.getConfigFile( filePath ), new HashMap<>() );
+
+      executeSshCommand( connectionName, "read -d '' hmi-update << \\EOF \n" + scriptContent
+            + "\nEOF\n\n echo \"$hmi-update\" > /root/hmi-update.sh" );
    }
 }

@@ -16,10 +16,27 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import static java.util.Objects.requireNonNull;
+import static javax.ws.rs.client.Entity.json;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URI;
+import java.util.Map;
 import java.util.Properties;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.core.Response;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.text.StrSubstitutor;
+import org.glassfish.jersey.client.JerseyClientBuilder;
+import org.glassfish.jersey.client.JerseyWebTarget;
 
 import com.frequentis.c4i.test.agent.DSLSupport;
 import com.frequentis.c4i.test.config.AutomationProjectConfig;
@@ -64,5 +81,51 @@ public final class StepsUtil
       }
 
       return envProperties;
+   }
+
+
+   public static Response sendHttpRequestWithJsonEntity( final URI uri, final String entityString,
+         final BiFunction<Invocation.Builder, Entity<String>, Response> httpMethodFunction )
+   {
+      requireNonNull( entityString, "Payload file path must be present" );
+      requireNonNull( uri, "Endpoint URI must be present" );
+      requireNonNull( httpMethodFunction, "HTTP method must be present" );
+      final Invocation.Builder httpRequestBuilder = getJerseyWebTarget( uri ).request( APPLICATION_JSON );
+      return httpMethodFunction.apply( httpRequestBuilder, json( entityString ) );
+   }
+
+
+   public static Response sendHttpRequest( final URI uri,
+         final Function<Invocation.Builder, Response> httpMethodFunction )
+   {
+      requireNonNull( uri, "Endpoint URI must be present" );
+      requireNonNull( httpMethodFunction, "HTTP method must be present" );
+      final Invocation.Builder httpRequestBuilder = getJerseyWebTarget( uri ).request( APPLICATION_JSON );
+      return httpMethodFunction.apply( httpRequestBuilder );
+   }
+
+
+   public static JerseyWebTarget getJerseyWebTarget( final URI uri )
+   {
+      return JerseyClientBuilder.createClient().target( uri );
+   }
+
+
+   public static String processConfigurationTemplate( final File templatePath, final Map<String, String> sub )
+      throws IOException
+   {
+      final String templateStr = FileUtils.readFileToString( templatePath, "UTF-8" );
+      final StrSubstitutor substitutor = new StrSubstitutor( sub );
+      final String substitutedTemplate = substitutor.replace( templateStr );
+      return substitutedTemplate;
+   }
+
+
+   public static String processConfigurationTemplate( final String templateStr, final Map<String, String> sub )
+      throws IOException
+   {
+      final StrSubstitutor substitutor = new StrSubstitutor( sub );
+      final String substitutedTemplate = substitutor.replace( templateStr );
+      return substitutedTemplate;
    }
 }
