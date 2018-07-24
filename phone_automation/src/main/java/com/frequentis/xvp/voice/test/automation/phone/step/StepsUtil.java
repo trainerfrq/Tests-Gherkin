@@ -31,12 +31,12 @@ import java.util.function.Function;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.text.StrSubstitutor;
 import org.glassfish.jersey.client.JerseyClientBuilder;
-import org.glassfish.jersey.client.JerseyWebTarget;
 
 import com.frequentis.c4i.test.agent.DSLSupport;
 import com.frequentis.c4i.test.config.AutomationProjectConfig;
@@ -105,9 +105,9 @@ public final class StepsUtil
    }
 
 
-   public static JerseyWebTarget getJerseyWebTarget( final URI uri )
+   public static WebTarget getJerseyWebTarget( final URI uri )
    {
-      return JerseyClientBuilder.createClient().target( uri );
+      return new JerseyClientBuilder().build().target( uri );
    }
 
 

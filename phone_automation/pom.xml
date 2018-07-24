@@ -23,8 +23,6 @@
 
       <voice.service.interface.version>0.37.0-SNAPSHOT</voice.service.interface.version>
       <mission-configurator-plugin.version>0.5.0-SNAPSHOT</mission-configurator-plugin.version>
-      <xvp-cats-libs.version>0.4.0-SNAPSHOT</xvp-cats-libs.version>
-      <jersey-client.version>2.27</jersey-client.version>
  </properties>
 
    <dependencies>
@@ -38,6 +36,12 @@
          <groupId>com.frequentis.xvp.framework</groupId>
          <artifactId>mission-configurator-plugin</artifactId>
          <version>${mission-configurator-plugin.version}</version>
+      </dependency>
+
+       <dependency>
+         <groupId>org.glassfish.jersey.core</groupId>
+         <artifactId>jersey-client</artifactId>
+         <version>${jersey-client.version}</version>
       </dependency>
 
       <!-- Required for SOX / PSQM tools as they are not available from CATS Master and have to be provided -->
@@ -120,18 +124,6 @@
          <groupId>com.frequentis.xvp.voice.phone</groupId>
          <artifactId>voice-hmi-dsl-co-support</artifactId>
      </dependency>
-
-      <!-- CATS STEPS FROM XVP FRAMEWORK -->
-      <dependency>
-         <groupId>com.frequentis.xvp.framework.testing</groupId>
-         <artifactId>xvp-cats-ssh</artifactId>
-         <version>${xvp-cats-libs.version}</version>
-      </dependency>
-      <dependency>
-         <groupId>com.frequentis.xvp.framework.testing</groupId>
-         <artifactId>xvp-cats-test-system</artifactId>
-         <version>${xvp-cats-libs.version}</version>
-      </dependency>
 
       <!-- ZIP dependecies of CATS Platform needed for JUnit execution (normally provided by CATS CO) -->
       <dependency>

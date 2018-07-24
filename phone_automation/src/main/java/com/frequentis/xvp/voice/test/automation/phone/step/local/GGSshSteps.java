@@ -111,12 +111,12 @@ public class GGSshSteps extends SshSteps
    {
       final String systemName = StepsUtil.getEnvProperty( "systemName" );
 
-      String filePath = "/configuration-files/" + systemName + "/launch-audio-service.sh";
+      String filePath = "/configuration-files/" + systemName + "/launchAudioService.sh";
 
       final String scriptContent = processConfigurationTemplate( StepsUtil.getConfigFile( filePath ), new HashMap<>() );
 
-      executeSshCommand( connectionName, "read -d '' launch-audio-service << \\EOF \n" + scriptContent
-            + "\nEOF\n\n echo \"$launch-audio-service\" > /root/launch-audio-service.sh" );
+      executeSshCommand( connectionName, "read -d '' launchAudioService << \\EOF \n" + scriptContent
+            + "\nEOF\n\n echo \"$launchAudioService\" > /root/launchAudioService.sh" );
    }
 
 
@@ -125,11 +125,11 @@ public class GGSshSteps extends SshSteps
    {
       final String systemName = StepsUtil.getEnvProperty( "systemName" );
 
-      String filePath = "/configuration-files/" + systemName + "/hmi-update.sh";
+      String filePath = "/configuration-files/" + systemName + "/hmiUpdate.sh";
 
       final String scriptContent = processConfigurationTemplate( StepsUtil.getConfigFile( filePath ), new HashMap<>() );
 
-      executeSshCommand( connectionName, "read -d '' hmi-update << \\EOF \n" + scriptContent
-            + "\nEOF\n\n echo \"$hmi-update\" > /root/hmi-update.sh" );
+      executeSshCommand( connectionName,
+            "read -d '' hmiUpdate << \\EOF \n" + scriptContent + "\nEOF\n\n echo \"$hmiUpdate\" > /root/hmiUpdate.sh" );
    }
 }

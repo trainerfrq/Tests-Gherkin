@@ -18,15 +18,16 @@ package com.frequentis.xvp.voice.test.automation.phone.step.local;
 
 import static com.frequentis.c4i.test.config.AutomationProjectConfig.fromCatsHome;
 import static com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil.processConfigurationTemplate;
-import static com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil.sendHttpRequest;
 import static java.lang.String.format;
 import static java.lang.String.valueOf;
+import static java.net.URLEncoder.encode;
 import static java.time.Instant.now;
 
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
@@ -37,14 +38,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.commons.io.FileUtils;
 import org.glassfish.jersey.client.JerseyClientBuilder;
-import org.glassfish.jersey.client.JerseyWebTarget;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
@@ -55,6 +55,7 @@ import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.mission.configurator.LayoutConfiguration;
+import com.frequentis.xvp.mission.configurator.objects.ImageDescriptor;
 import com.frequentis.xvp.mission.configurator.objects.LayoutObject;
 import com.frequentis.xvp.mission.configurator.objects.Position;
 import com.frequentis.xvp.mission.configurator.objects.Size;
@@ -76,6 +77,8 @@ public class ConfigurationSteps extends AutomationSteps
    private static final String LAYOUTS_PATH = "/configurations/mission-service/groups/layouts/";
 
    private static final String WIDGET_CONFIGS_PATH = "/configurations/mission-service/groups/layouts/widgets/";
+
+   private static final String IMAGE_DESCRIPTORS_PATH = "/configurations/orchestration/groups/images/";
 
 
    @When("issuing http POST request to endpoint $endpointUri and path $resourcePath with payload $templatePath")
@@ -189,51 +192,6 @@ public class ConfigurationSteps extends AutomationSteps
    }
 
 
-   @Then("downloading docker image version from uri $endpointUri")
-   public void downloadDockerImage( final String endpointUri ) throws URISyntaxException, IOException
-   {
-      final LocalStep localStep = localStep( "Execute GET request" );
-
-      if ( endpointUri != null )
-      {
-         URI artifactoryUri = new URI( endpointUri );
-         localStep.details( ExecutionDetails.create( "Downloading from: " + endpointUri ).success() );
-
-         Response response = sendHttpRequest( artifactoryUri, Invocation.Builder::get );
-
-         localStep.details( ExecutionDetails.create( "Executed GET request with payload! " ).expected( "200 or 201" )
-               .received( Integer.toString( response.getStatus() ) ).success( requestWithSuccess( response ) ) );
-
-         final String responseContent = response.readEntity( new GenericType<String>()
-         {
-         } );
-
-         final Path path =
-               Paths.get( getCatsResourcesFolderPath(),
-                     "/configuration-files/ClujDEV/op-voice-service-docker-image.json" );
-         localStep.details( ExecutionDetails.create( "Path is: " + path.toString() ).success() );
-
-         localStep.details( ExecutionDetails.create( "Response content is: " + responseContent ).success() );
-         try (FileWriter file = new FileWriter( path.toString() ))
-         {
-            file.write( responseContent );
-         }
-         catch ( FileNotFoundException ex )
-         {
-            localStep
-                  .details( ExecutionDetails.create( "Executed GET request! " ).expected( "Target file can be created" )
-                        .received( "Target file: " + path.toString() + " cannot be created" ).failure() );
-         }
-
-      }
-      else
-      {
-         localStep.details( ExecutionDetails.create( "Executed PUT request! " ).expected( "Success" )
-               .received( "Endpoint is not present", endpointUri != null ).failure() );
-      }
-   }
-
-
    @When("using endpoint $endpointUri create configuration id $configurationId")
    public void createConfigurationId( final String endpointUri, final String configurationId ) throws Throwable
    {
@@ -307,7 +265,44 @@ public class ConfigurationSteps extends AutomationSteps
    }
 
 
-   @Then("adding to layout $layoutName on endpoint $endpointUri the following service widgets: ")
+   @When("deleting all previous versions of image descriptors for service $serviceName on endpoint $endpointUri")
+   public void deleteAllServiceImagesForService( final String serviceName, final String endpointUri )
+      throws URISyntaxException
+   {
+      final LocalStep localStep = localStep( "Removing all image descriptors for service " + serviceName );
+      if ( endpointUri != null )
+      {
+         final URI configurationURI = new URI( endpointUri );
+         List<ImageDescriptor> imageDescriptors = getAllImageDescriptors( localStep, configurationURI );
+
+         imageDescriptors.stream().filter( imageDescriptor -> imageDescriptor.getImageName().endsWith( serviceName ) )
+               .forEach( imageDescriptor ->
+               {
+                  try
+                  {
+                     final URI imageDescriptorUri =
+                           configurationURI.resolve( IMAGE_DESCRIPTORS_PATH )
+                                 .resolve( encode(
+                                       format( "%s:%s", imageDescriptor.getImageName(), imageDescriptor.getTag() ),
+                                       "UTF-8" ) );
+                     Response response =
+                           getConfigurationItemsWebTarget( imageDescriptorUri.toString() )
+                                 .request( MediaType.APPLICATION_JSON ).delete();
+                     localStep.details( ExecutionDetails.create( "Executed DELETE request with payload! " )
+                           .expected( "200 or 201" ).received( Integer.toString( response.getStatus() ) )
+                           .success( requestWithSuccess( response ) ) );
+                  }
+                  catch ( UnsupportedEncodingException e )
+                  {
+                     throw new IllegalStateException( e );
+                  }
+
+               } );
+      }
+   }
+
+
+   @Then("adding to layout $layoutName on endpoint $endpointUri the following service widgets: $serviceWidgets")
    public void addLayout( final String layoutName, final String endpointUri,
          final List<XvpServiceWidget> serviceWidgets )
       throws URISyntaxException
@@ -378,6 +373,21 @@ public class ConfigurationSteps extends AutomationSteps
    }
 
 
+   private List<ImageDescriptor> getAllImageDescriptors( final LocalStep localStep, final URI configurationURI )
+   {
+      Response response =
+            getConfigurationItemsWebTarget( configurationURI + IMAGE_DESCRIPTORS_PATH )
+                  .request( MediaType.APPLICATION_JSON ).get();
+
+      localStep.details( ExecutionDetails.create( "Executed GET request with payload! " ).expected( "200 or 201" )
+            .received( Integer.toString( response.getStatus() ) ).success( requestWithSuccess( response ) ) );
+
+      return parseObjectsListFromServerResponse( response, new TypeReference<List<ImageDescriptor>>()
+      {
+      } );
+   }
+
+
    private List<LayoutConfiguration> updateLayoutConfigurations( final LocalStep localStep, final URI configurationURI )
    {
       Response response =
@@ -433,7 +443,7 @@ public class ConfigurationSteps extends AutomationSteps
    }
 
 
-   private JerseyWebTarget getConfigurationItemsWebTarget( final String uri )
+   private WebTarget getConfigurationItemsWebTarget( final String uri )
    {
       return new JerseyClientBuilder().build().target( uri );
    }

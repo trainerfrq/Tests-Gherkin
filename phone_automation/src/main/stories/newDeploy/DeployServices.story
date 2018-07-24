@@ -21,18 +21,18 @@ And waiting for 30 seconds
 
 Scenario: Start audio-app on host 1
 When the launch audio service script is copied to hmiHost1
-And SSH host hmiHost1 executes chmod +x launch-audio-service.sh
-And SSH host hmiHost1 executes ./launch-audio-service.sh
+And SSH host hmiHost1 executes chmod +x launchAudioService.sh
+And SSH host hmiHost1 executes ./launchAudioService.sh
 
 Scenario: Start audio-app on host 2
 When the launch audio service script is copied to hmiHost2
-And SSH host hmiHost2 executes chmod +x launch-audio-service.sh
-And SSH host hmiHost2 executes ./launch-audio-service.sh
+And SSH host hmiHost2 executes chmod +x launchAudioService.sh
+And SSH host hmiHost2 executes ./launchAudioService.sh
 
 Scenario: Start audio-app on host 3
 When the launch audio service script is copied to hmiHost3
-And SSH host hmiHost3 executes chmod +x launch-audio-service.sh
-And SSH host hmiHost3 executes ./launch-audio-service.sh
+And SSH host hmiHost3 executes chmod +x launchAudioService.sh
+And SSH host hmiHost3 executes ./launchAudioService.sh
 And waiting for 10 seconds
 
 Scenario: Verify services are running on dockerhost1
