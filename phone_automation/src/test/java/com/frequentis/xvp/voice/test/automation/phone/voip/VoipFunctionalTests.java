@@ -1,4 +1,4 @@
-package com.frequentis.xvp.voice.test.automation.phone.websocket;
+package com.frequentis.xvp.voice.test.automation.phone.voip;
 
 import com.frequentis.c4i.test.master.junitexecution.CatsJunitRunner;
 import com.frequentis.c4i.test.master.junitexecution.CatsJunitTest;
@@ -17,14 +17,14 @@ import java.util.List;
 @RunWith(CatsJunitRunner.class)
 @CatsRunConfiguration(
         stories = {
-                "voice_GG/websocket/DACalls/CalleeClearsActiveCall.story",
+                "voice_GG/websocket/includes/@PrepareClientWithMissionAndSipPhone.story",
         },
         catsHomeLocation = ".",
-        name = "BasicFunctionalTests")
+        name = "VoipFunctionalTests")
 
-public class BasicFunctionalTests implements CatsJunitTest {
+public class VoipFunctionalTests implements CatsJunitTest {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(BasicFunctionalTests.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(VoipFunctionalTests.class);
 
     @BeforeClass
     public static void beforeStories() {
@@ -46,7 +46,7 @@ public class BasicFunctionalTests implements CatsJunitTest {
     @Override
     public List<String> getBeforeStories() {
         final List<String> beforeStories = new ArrayList<>();
-        beforeStories.add("JUnit/websocket/LaunchProfiles.story");
+        beforeStories.add("JUnit/voip/LaunchProfiles.story");
         return beforeStories;
     }
 
