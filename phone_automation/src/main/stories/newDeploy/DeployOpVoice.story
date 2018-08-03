@@ -16,23 +16,28 @@ Then downloading op-voice-service docker image version ${op.voice.version} from 
 Scenario: Upload docker image
 When issuing http POST request to endpoint <<configurationMngEndpoint>> and path /configurations/orchestration/groups/images/ with payload /configuration-files/<<systemName>>/op-voice-service-docker-image.json
 
-Scenario: Change version of Op Voice Service in deployed docker image
-When the service descriptors are updated on deploymentServer with ${op.voice.version}
-Then SSH host deploymentServer executes /usr/bin/xvp descriptors publish -g
+Scenario: Change version of Op Voice Service in deployed service descriptors
+!-- Update the deployed service descriptor with op-voice-service version for partition 1
+When SSH host deploymentServer executes sed -i '4s/.*/  "tag" : "${op.voice.version}",/' /var/opt/frequentis/xvp/orchestration-agent/agent/descriptors/*${OP_VOICE_PARTITION_KEY_1}.json
+!-- Update the deployed service descriptor with op-voice-service version for partition 2
+When SSH host deploymentServer executes sed -i '4s/.*/  "tag" : "${op.voice.version}",/' /var/opt/frequentis/xvp/orchestration-agent/agent/descriptors/*${OP_VOICE_PARTITION_KEY_2}.json
+!-- Update the deployed service descriptor with op-voice-service version for partition 3
+When SSH host deploymentServer executes sed -i '4s/.*/  "tag" : "${op.voice.version}",/' /var/opt/frequentis/xvp/orchestration-agent/agent/descriptors/*${OP_VOICE_PARTITION_KEY_3}.json
 
-Scenario: Start services
+Scenario: Publish the service descriptors and start services
+Then SSH host deploymentServer executes /usr/bin/xvp descriptors publish -g
 Then SSH host deploymentServer executes /usr/bin/xvp services deploy --all -g
 And waiting for 30 seconds
 
 Scenario: Set restart policy for Op Voice Services
 !-- Scenario is needed to de-active the default on-failure restart policy,
 !-- otherwise the next scenario will always pass, as containers will be always running
-Then SSH host dockerHost3 executes docker update --restart=no op-voice-service-CJ-GG-DEV-CWP-1
-Then SSH host dockerHost3 executes docker update --restart=no op-voice-service-CJ-GG-DEV-CWP-2
-Then SSH host dockerHost3 executes docker update --restart=no op-voice-service-CJ-GG-DEV-CWP-3
+Then SSH host dockerHost3 executes docker update --restart=no op-voice-service-${OP_VOICE_PARTITION_KEY_1}
+Then SSH host dockerHost3 executes docker update --restart=no op-voice-service-${OP_VOICE_PARTITION_KEY_2}
+Then SSH host dockerHost3 executes docker update --restart=no op-voice-service-${OP_VOICE_PARTITION_KEY_3}
 Then waiting for 30 seconds
 
 Scenario: Verify Op Voice Services are running
-When SSH host dockerHost3 executes docker inspect -f '{{.State.Status}}' op-voice-service-CJ-GG-DEV-CWP-1 and the output contains running
-When SSH host dockerHost3 executes docker inspect -f '{{.State.Status}}' op-voice-service-CJ-GG-DEV-CWP-2 and the output contains running
-When SSH host dockerHost3 executes docker inspect -f '{{.State.Status}}' op-voice-service-CJ-GG-DEV-CWP-3 and the output contains running
+When SSH host dockerHost3 executes docker inspect -f '{{.State.Status}}' op-voice-service-${OP_VOICE_PARTITION_KEY_1} and the output contains running
+When SSH host dockerHost3 executes docker inspect -f '{{.State.Status}}' op-voice-service-${OP_VOICE_PARTITION_KEY_2} and the output contains running
+When SSH host dockerHost3 executes docker inspect -f '{{.State.Status}}' op-voice-service-${OP_VOICE_PARTITION_KEY_3} and the output contains running

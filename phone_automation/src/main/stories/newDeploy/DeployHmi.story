@@ -9,6 +9,14 @@ Given SSH connections:
 | hmiHost2         | <<CLIENT2_IP>>      | 22         | root     | !frqAdmin |
 | hmiHost3         | <<CLIENT3_IP>>      | 22         | root     | !frqAdmin |
 
+Scenario: Stop all running voice-hmi services
+When SSH host hmiHost1 executes docker rm -f $(docker ps -f name=${PARTITION_KEY_1})
+And waiting for 5 seconds
+When SSH host hmiHost2 executes docker rm -f $(docker ps -f name=${PARTITION_KEY_2})
+And waiting for 5 seconds
+When SSH host hmiHost3 executes docker rm -f $(docker ps -f name=${PARTITION_KEY_3})
+And waiting for 5 seconds
+
 Scenario: Start provision agent on host 1
 !-- Remove exited container that could be previous provision agent containers
 When SSH host hmiHost1 executes docker rm $(docker ps -q -a -f status=exited)
@@ -18,13 +26,10 @@ And SSH host hmiHost1 executes ./runPA.sh
 Then waiting for 30 seconds
 
 Scenario: Prepare CATS configuration on host 1
-When the start agent script is copied to CATS folder of the hmiHost1
 !-- Remove line containing ${CATS_PUBLIC_IP} from cats-hazelcast-cluster-config.xml
-And SSH host hmiHost1 executes sed -i '/${CATS_PUBLIC_IP}/d' /var/lib/docker/volumes/sharedVolume/_data/cats/.frequentis-cats/cats-hazelcast-cluster-config.xml
-!-- Replace ${CATS_HAZELCAST_PORT} with 5701 from cats-hazelcast-cluster-config.xml
-And SSH host hmiHost1 executes sed -i 's/${CATS_HAZELCAST_PORT}/5701/g' /var/lib/docker/volumes/sharedVolume/_data/cats/.frequentis-cats/cats-hazelcast-cluster-config.xml
-!-- Replace ${CATS_PUBLIC_IP} with the ip of cats master from cats-hazelcast-client-config.xml
-And SSH host hmiHost1 executes sed -i 's/${CATS_PUBLIC_IP}/<<DEP_SERVER_IP>>/g' /var/lib/docker/volumes/sharedVolume/_data/cats/.frequentis-cats/cats-hazelcast-client-config.xml
+When SSH host hmiHost1 executes sed -i '/'CATS_PUBLIC_IP'/d' /var/lib/docker/volumes/sharedVolume/_data/cats/.frequentis-cats/cats-hazelcast-cluster-config.xml
+!-- Add CATS_PUBLIC_IP and CATS_HAZELCAST_PORT environment variables to start.sh script (workaround for ICATS-2611)
+And SSH host hmiHost1 executes sed -i 's/javafx;hmi/javafx\/hmi -DCATS_PUBLIC_IP=${DOCKER_HOST1_IP} -DCATS_HAZELCAST_PORT=5701/' /var/lib/docker/volumes/sharedVolume/_data/cats/start.sh
 
 Scenario: Start provision agent on host 2
 !-- Remove exited container that could be previous provision agent containers
@@ -35,13 +40,10 @@ And SSH host hmiHost2 executes ./runPA.sh
 Then waiting for 30 seconds
 
 Scenario: Prepare CATS configuration on host 2
-When the start agent script is copied to CATS folder of the hmiHost2
 !-- Remove line containing ${CATS_PUBLIC_IP} from cats-hazelcast-cluster-config.xml
-And SSH host hmiHost2 executes sed -i '/${CATS_PUBLIC_IP}/d' /var/lib/docker/volumes/sharedVolume/_data/cats/.frequentis-cats/cats-hazelcast-cluster-config.xml
-!-- Replace ${CATS_HAZELCAST_PORT} with 5701 from cats-hazelcast-cluster-config.xml
-And SSH host hmiHost2 executes sed -i 's/${CATS_HAZELCAST_PORT}/5701/g' /var/lib/docker/volumes/sharedVolume/_data/cats/.frequentis-cats/cats-hazelcast-cluster-config.xml
-!-- Replace ${CATS_PUBLIC_IP} with the ip from cats-hazelcast-client-config.xml
-And SSH host hmiHost2 executes sed -i 's/${CATS_PUBLIC_IP}/<<DEP_SERVER_IP>>/g' /var/lib/docker/volumes/sharedVolume/_data/cats/.frequentis-cats/cats-hazelcast-client-config.xml
+When SSH host hmiHost2 executes sed -i '/'CATS_PUBLIC_IP'/d' /var/lib/docker/volumes/sharedVolume/_data/cats/.frequentis-cats/cats-hazelcast-cluster-config.xml
+!-- Add CATS_PUBLIC_IP and CATS_HAZELCAST_PORT environment variables to start.sh script (workaround for ICATS-2611)
+And SSH host hmiHost2 executes sed -i 's/javafx;hmi/javafx\/hmi -DCATS_PUBLIC_IP=${DOCKER_HOST1_IP} -DCATS_HAZELCAST_PORT=5701/' /var/lib/docker/volumes/sharedVolume/_data/cats/start.sh
 
 Scenario: Start provision agent on host 3
 !-- Remove exited container that could be previous provision agent containers
@@ -52,13 +54,10 @@ And SSH host hmiHost3 executes ./runPA.sh
 Then waiting for 30 seconds
 
 Scenario: Prepare CATS configuration on host 3
-When the start agent script is copied to CATS folder of the hmiHost3
 !-- Remove line containing ${CATS_PUBLIC_IP} from cats-hazelcast-cluster-config.xml
-And SSH host hmiHost3 executes sed -i '/${CATS_PUBLIC_IP}/d' /var/lib/docker/volumes/sharedVolume/_data/cats/.frequentis-cats/cats-hazelcast-cluster-config.xml
-!-- Replace ${CATS_HAZELCAST_PORT} with 5701 from cats-hazelcast-cluster-config.xml
-And SSH host hmiHost3 executes sed -i 's/${CATS_HAZELCAST_PORT}/5701/g' /var/lib/docker/volumes/sharedVolume/_data/cats/.frequentis-cats/cats-hazelcast-cluster-config.xml
-!-- Replace ${CATS_PUBLIC_IP} with the ip from cats-hazelcast-client-config.xml
-And SSH host hmiHost3 executes sed -i 's/${CATS_PUBLIC_IP}/<<DEP_SERVER_IP>>/g' /var/lib/docker/volumes/sharedVolume/_data/cats/.frequentis-cats/cats-hazelcast-client-config.xml
+When SSH host hmiHost3 executes sed -i '/'CATS_PUBLIC_IP'/d' /var/lib/docker/volumes/sharedVolume/_data/cats/.frequentis-cats/cats-hazelcast-cluster-config.xml
+!-- Add CATS_PUBLIC_IP and CATS_HAZELCAST_PORT environment variables to start.sh script (workaround for ICATS-2611)
+And SSH host hmiHost3 executes sed -i 's/javafx;hmi/javafx\/hmi -DCATS_PUBLIC_IP=${DOCKER_HOST1_IP} -DCATS_HAZELCAST_PORT=5701/' /var/lib/docker/volumes/sharedVolume/_data/cats/start.sh
 
 Scenario: Download image descriptor
 Then downloading voice-hmi-service docker image version ${voice.hmi.version} from <<voiceHmiDockerImageArtifactoryUri>> to path /configuration-files/<<systemName>>/voice-hmi-service-docker-image.json
@@ -84,12 +83,11 @@ And SSH host deploymentServer executes chmod +x hmiUpdate.sh
 And SSH host deploymentServer executes ./hmiUpdate.sh
 And waiting for 60 seconds
 
-!-- Not working scenarios
-!-- Scenario: Verify services are running on dockerhost1
-!-- When SSH host hmiHost1 executes docker inspect -f '{{.State.Status}}' voice-hmi03 and the output contains running
-!--
-!-- Scenario: Verify services are running on dockerhost2
-!-- When SSH host hmiHost2 executes docker inspect -f '{{.State.Status}}' voice-hmi04 and the output contains running
-!--
-!-- Scenario: Verify services are running on dockerhost3
-!-- When SSH host hmiHost3 executes docker inspect -f '{{.State.Status}}' voice-hmi05 and the output contains running
+Scenario: Verify services are running on dockerhost1
+When SSH host hmiHost1 executes  docker inspect -f '{{.State.Status}}' $(docker ps -q -f name=${PARTITION_KEY_1}) and the output contains running
+
+Scenario: Verify services are running on dockerhost2
+When SSH host hmiHost2 executes  docker inspect -f '{{.State.Status}}' $(docker ps -q -f name=${PARTITION_KEY_2}) and the output contains running
+
+Scenario: Verify services are running on dockerhost3
+When SSH host hmiHost3 executes  docker inspect -f '{{.State.Status}}' $(docker ps -q -f name=${PARTITION_KEY_3}) and the output contains running

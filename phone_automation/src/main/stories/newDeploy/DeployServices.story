@@ -14,23 +14,41 @@ When SSH host deploymentServer executes /usr/bin/xvp services remove phone-routi
 Then waiting for 5 seconds
 When SSH host deploymentServer executes /usr/bin/xvp services remove audio-service -g
 Then waiting for 5 seconds
+When SSH host deploymentServer executes /usr/bin/xvp services remove mission-service -g
+Then waiting for 5 seconds
+
+Scenario: Stop audio-app on all hosts
+When SSH host hmiHost1 executes docker rm -f audio-app
+Then waiting for 5 seconds
+When SSH host hmiHost2 executes docker rm -f audio-app
+Then waiting for 5 seconds
+When SSH host hmiHost3 executes docker rm -f audio-app
+Then waiting for 5 seconds
+
+Scenario: Stop all running voice-hmi services
+When SSH host hmiHost1 executes docker rm -f $(docker ps -f name=${PARTITION_KEY_1})
+And waiting for 5 seconds
+When SSH host hmiHost2 executes docker rm -f $(docker ps -f name=${PARTITION_KEY_2})
+And waiting for 5 seconds
+When SSH host hmiHost3 executes docker rm -f $(docker ps -f name=${PARTITION_KEY_3})
+And waiting for 5 seconds
 
 Scenario: Start servies
 Then SSH host deploymentServer executes /usr/bin/xvp services deploy --all -g
 And waiting for 30 seconds
 
 Scenario: Start audio-app on host 1
-When the launch audio service script is copied to hmiHost1
+When the launch audio service script is copied to hmiHost1 and updated with ${AUDIO_NETWORK_HOST1_IP}
 And SSH host hmiHost1 executes chmod +x launchAudioService.sh
 And SSH host hmiHost1 executes ./launchAudioService.sh
 
 Scenario: Start audio-app on host 2
-When the launch audio service script is copied to hmiHost2
+When the launch audio service script is copied to hmiHost2 and updated with ${AUDIO_NETWORK_HOST2_IP}
 And SSH host hmiHost2 executes chmod +x launchAudioService.sh
 And SSH host hmiHost2 executes ./launchAudioService.sh
 
 Scenario: Start audio-app on host 3
-When the launch audio service script is copied to hmiHost3
+When the launch audio service script is copied to hmiHost3 and updated with ${AUDIO_NETWORK_HOST3_IP}
 And SSH host hmiHost3 executes chmod +x launchAudioService.sh
 And SSH host hmiHost3 executes ./launchAudioService.sh
 And waiting for 10 seconds
@@ -38,14 +56,11 @@ And waiting for 10 seconds
 Scenario: Verify services are running on dockerhost1
 When SSH host dockerHost1 executes docker inspect -f '{{.State.Status}}' phone-routing and the output contains running
 When SSH host dockerHost1 executes docker inspect -f '{{.State.Status}}' audio-service-1 and the output contains running
+When SSH host dockerHost1 executes docker inspect -f '{{.State.Status}}' mission-service-1 and the output contains running
 
 Scenario: Verify services are running on dockerhost2
 When SSH host dockerHost2 executes docker inspect -f '{{.State.Status}}' audio-service-2 and the output contains running
-
-Scenario: Verify services are running on dockerhost3
-When SSH host dockerHost3 executes docker inspect -f '{{.State.Status}}'  op-voice-service-CJ-GG-DEV-CWP-1 and the output contains running
-When SSH host dockerHost3 executes docker inspect -f '{{.State.Status}}'  op-voice-service-CJ-GG-DEV-CWP-2 and the output contains running
-When SSH host dockerHost3 executes docker inspect -f '{{.State.Status}}'  op-voice-service-CJ-GG-DEV-CWP-3 and the output contains running
+When SSH host dockerHost2 executes docker inspect -f '{{.State.Status}}' mission-service-2 and the output contains running
 
 Scenario: Verify services are running on hmiHost1
 When SSH host hmiHost1 executes docker inspect -f '{{.State.Status}}' audio-app and the output contains running

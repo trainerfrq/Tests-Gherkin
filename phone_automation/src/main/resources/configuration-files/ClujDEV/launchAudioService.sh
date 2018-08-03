@@ -8,7 +8,7 @@ docker run \
 --device=/dev/snd:/dev/snd \
 --net=host \
 -d --dns=172.17.42.1 \
--e NET_DATA=192.168.10.14 \
--e NET_AUDIO=192.168.10.14 \
+-e NET_DATA=${audio_app_network_ip} \
+-e NET_AUDIO=${audio_app_network_ip} \
 --restart unless-stopped \
 internalregistry:5000/fcsc-audio/xvp-audio-service:0.2.0-working
