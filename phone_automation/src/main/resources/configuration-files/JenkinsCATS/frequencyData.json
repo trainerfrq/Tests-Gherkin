@@ -1,20 +1,33 @@
 {
   "frequencies": [
     {
-      "frequencyId": "111.000",
+      "frequencyId": "123.700",
       "frequencySignalingId": 0,
-      "destinationSipUri": "sip:111.000@127.0.0.1:12345",
+      "destinationSipUri": "sip:ED137B_1@127.0.0.1:5060",
       "rtpParameters": {}
     },
     {
-      "frequencyId": "125.000",
+      "frequencyId": "124.600",
       "frequencySignalingId": 1,
-      "destinationSipUri": "sip:125.000@127.0.0.1:12345",
-      "rtpParameters": {
-        "jitterBufferInitialSize": 30,
-        "jitterBufferMaxSize": 120,
-        "r2sKeepAliveMultiplier": 20
-      }
+      "destinationSipUri": "sip:ED137B_2@127.0.0.1:5060",
+      "rtpParameters": {}
+    },
+    {
+      "frequencyId": "125.500",
+      "frequencySignalingId": 2,
+      "destinationSipUri": "sip:ED137B_3@127.0.0.1:5060",
+      "rtpParameters": {}
+    },
+    {
+      "frequencyId": "126.700",
+      "frequencySignalingId": 3,
+      "destinationSipUri": "sip:ED137B_4@127.0.0.1:5060",
+      "rtpParameters": {}
     }
-  ]
+  ],
+  "rtLogicSignallingParameters": {
+    "rtLogicName": "opVoiceRtLogic",
+    "inputVirtualDeviceNames": [],
+    "outputVirtualDeviceNames": []
+  }
 }

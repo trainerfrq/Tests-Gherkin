@@ -1,32 +1,62 @@
 {
   "partitions": [
     {
-      "partitionKey": "op03",
+      "partitionKey": "CWP-VST02-15",
       "clients": [
         {
-          "opId": "op03",
-          "radioUserName": "OpVoiceUser1",
-          "audioAppUri": "ws://10.17.15.44:5674/ctrlif"
+          "opId": "CWP-VST02-15",
+          "radioUserName": "OpVoiceUser02",
+          "audioAppUri": "ws://192.168.100.45:8805/ctrlif"
+        }
+      ],
+      "audioServiceConnections": [
+        {
+          "mediaPlane": "A",
+          "uri": "ws://192.168.100.144:8805/ctrlif"
+        },
+        {
+          "mediaPlane": "B",
+          "uri": "ws://192.168.100.143:8805/ctrlif"
         }
       ]
     },
     {
-      "partitionKey": "op04",
+      "partitionKey": "CWP-VST02-16",
       "clients": [
         {
-          "opId": "op04",
-          "radioUserName": "OpVoiceUser2",
-          "audioAppUri": "ws://10.17.15.45:5674/ctrlif"
+          "opId": "CWP-VST02-16",
+          "radioUserName": "OpVoiceUser03",
+          "audioAppUri": "ws://192.168.100.46:8805/ctrlif"
+        }
+      ],
+      "audioServiceConnections": [
+        {
+          "mediaPlane": "A",
+          "uri": "ws://192.168.100.144:8805/ctrlif"
+        },
+        {
+          "mediaPlane": "B",
+          "uri": "ws://192.168.100.143:8805/ctrlif"
         }
       ]
     },
     {
-      "partitionKey": "op05",
+      "partitionKey": "CWP-VST02-14",
       "clients": [
         {
-          "opId": "op05",
-          "radioUserName": "OpVoiceUser3",
-          "audioAppUri": "ws://10.17.15.46:5674/ctrlif"
+          "opId": "CWP-VST02-14",
+          "radioUserName": "OpVoiceUser01",
+          "audioAppUri": "ws://192.168.100.44:8805/ctrlif"
+        }
+      ],
+      "audioServiceConnections": [
+        {
+          "mediaPlane": "A",
+          "uri": "ws://192.168.100.144:8805/ctrlif"
+        },
+        {
+          "mediaPlane": "B",
+          "uri": "ws://192.168.100.143:8805/ctrlif"
         }
       ]
     }

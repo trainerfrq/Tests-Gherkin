@@ -1,6 +1,6 @@
 [
   {
-    "missionId": "10000000-0000-0000-0000-000000000000",
+    "missionId": "22e6596e-93d3-4859-ae1e-2009f457f9ae",
     "missionName": "MAN-NIGHT-TACT",
     "missionAssignedRoles": [
       "00000000-0000-0000-0000-000000000001"
@@ -13,7 +13,7 @@
     "priorityCallIntrusionWarningPeriod": 0
   },
   {
-    "missionId": "20000000-0000-0000-0000-000000000000",
+    "missionId": "4a549394-87fc-4133-8aa9-717fb82f6a66",
     "missionName": "WEST-EXEC",
     "missionAssignedRoles": [
       "00000000-0000-0000-0000-000000000002"
@@ -27,7 +27,7 @@
     "priorityCallIntrusionWarningPeriod": 0
   },
   {
-    "missionId": "af57d3c5-22f6-494b-bd57-ed5e2b0d586d",
+    "missionId": "634070c1-a620-4f0e-b7d4-c0812a4bba10",
     "missionName": "EAST-EXEC",
     "missionAssignedRoles": [
       "00000000-0000-0000-0000-000000000001",

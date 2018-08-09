@@ -10,11 +10,11 @@ Given SSH connections:
 | hmiHost3         | <<CLIENT3_IP>>      | 22         | root     | !frqAdmin |
 
 Scenario: Stop all running voice-hmi services
-When SSH host hmiHost1 executes docker rm -f $(docker ps -f name=${PARTITION_KEY_1})
+When SSH host hmiHost1 executes docker rm -f $(docker ps -q -a -f name=${PARTITION_KEY_1})
 And waiting for 5 seconds
-When SSH host hmiHost2 executes docker rm -f $(docker ps -f name=${PARTITION_KEY_2})
+When SSH host hmiHost2 executes docker rm -f $(docker ps -q -a -f name=${PARTITION_KEY_2})
 And waiting for 5 seconds
-When SSH host hmiHost3 executes docker rm -f $(docker ps -f name=${PARTITION_KEY_3})
+When SSH host hmiHost3 executes docker rm -f $(docker ps -q -a -f name=${PARTITION_KEY_3})
 And waiting for 5 seconds
 
 Scenario: Start provision agent on host 1
@@ -29,7 +29,7 @@ Scenario: Prepare CATS configuration on host 1
 !-- Remove line containing ${CATS_PUBLIC_IP} from cats-hazelcast-cluster-config.xml
 When SSH host hmiHost1 executes sed -i '/'CATS_PUBLIC_IP'/d' /var/lib/docker/volumes/sharedVolume/_data/cats/.frequentis-cats/cats-hazelcast-cluster-config.xml
 !-- Add CATS_PUBLIC_IP and CATS_HAZELCAST_PORT environment variables to start.sh script (workaround for ICATS-2611)
-And SSH host hmiHost1 executes sed -i 's/javafx;hmi/javafx\/hmi -DCATS_PUBLIC_IP=${DOCKER_HOST1_IP} -DCATS_HAZELCAST_PORT=5701/' /var/lib/docker/volumes/sharedVolume/_data/cats/start.sh
+And SSH host hmiHost1 executes sed -i 's/javafx;hmi/javafx\/hmi -DCATS_PUBLIC_IP=${CATS_MASTER_IP} -DCATS_HAZELCAST_PORT=5701/' /var/lib/docker/volumes/sharedVolume/_data/cats/start.sh
 
 Scenario: Start provision agent on host 2
 !-- Remove exited container that could be previous provision agent containers
@@ -43,7 +43,7 @@ Scenario: Prepare CATS configuration on host 2
 !-- Remove line containing ${CATS_PUBLIC_IP} from cats-hazelcast-cluster-config.xml
 When SSH host hmiHost2 executes sed -i '/'CATS_PUBLIC_IP'/d' /var/lib/docker/volumes/sharedVolume/_data/cats/.frequentis-cats/cats-hazelcast-cluster-config.xml
 !-- Add CATS_PUBLIC_IP and CATS_HAZELCAST_PORT environment variables to start.sh script (workaround for ICATS-2611)
-And SSH host hmiHost2 executes sed -i 's/javafx;hmi/javafx\/hmi -DCATS_PUBLIC_IP=${DOCKER_HOST1_IP} -DCATS_HAZELCAST_PORT=5701/' /var/lib/docker/volumes/sharedVolume/_data/cats/start.sh
+And SSH host hmiHost2 executes sed -i 's/javafx;hmi/javafx\/hmi -DCATS_PUBLIC_IP=${CATS_MASTER_IP} -DCATS_HAZELCAST_PORT=5701/' /var/lib/docker/volumes/sharedVolume/_data/cats/start.sh
 
 Scenario: Start provision agent on host 3
 !-- Remove exited container that could be previous provision agent containers
@@ -57,7 +57,7 @@ Scenario: Prepare CATS configuration on host 3
 !-- Remove line containing ${CATS_PUBLIC_IP} from cats-hazelcast-cluster-config.xml
 When SSH host hmiHost3 executes sed -i '/'CATS_PUBLIC_IP'/d' /var/lib/docker/volumes/sharedVolume/_data/cats/.frequentis-cats/cats-hazelcast-cluster-config.xml
 !-- Add CATS_PUBLIC_IP and CATS_HAZELCAST_PORT environment variables to start.sh script (workaround for ICATS-2611)
-And SSH host hmiHost3 executes sed -i 's/javafx;hmi/javafx\/hmi -DCATS_PUBLIC_IP=${DOCKER_HOST1_IP} -DCATS_HAZELCAST_PORT=5701/' /var/lib/docker/volumes/sharedVolume/_data/cats/start.sh
+And SSH host hmiHost3 executes sed -i 's/javafx;hmi/javafx\/hmi -DCATS_PUBLIC_IP=${CATS_MASTER_IP} -DCATS_HAZELCAST_PORT=5701/' /var/lib/docker/volumes/sharedVolume/_data/cats/start.sh
 
 Scenario: Download image descriptor
 Then downloading voice-hmi-service docker image version ${voice.hmi.version} from <<voiceHmiDockerImageArtifactoryUri>> to path /configuration-files/<<systemName>>/voice-hmi-service-docker-image.json

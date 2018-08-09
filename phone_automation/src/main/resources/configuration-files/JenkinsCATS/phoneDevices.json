@@ -1,0 +1,41 @@
+[
+  {
+    "opId": "CWP-VST02-14",
+    "devices": {
+      "gg_input": {
+        "type": "ext",
+        "id": "handset_0"
+      },
+      "gg_output": {
+        "type": "ext",
+        "id": "handset_0"
+      }
+    }
+  },
+  {
+    "opId": "CWP-VST02-15",
+    "devices": {
+      "gg_input": {
+        "type": "ext",
+        "id": "handset_0"
+      },
+      "gg_output": {
+        "type": "ext",
+        "id": "handset_0"
+      }
+    }
+  },
+  {
+    "opId": "CWP-VST02-16",
+    "devices": {
+      "gg_input": {
+        "type": "ext",
+        "id": "handset_0"
+      },
+      "gg_output": {
+        "type": "ext",
+        "id": "handset_0"
+      }
+    }
+  }
+]
