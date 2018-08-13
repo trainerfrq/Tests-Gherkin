@@ -1,0 +1,41 @@
+[
+  {
+    "opId": "CJ-GG-DEV-CWP-1",
+    "devices": {
+      "gg_input": {
+        "type": "ext",
+        "id": "handset_0_0"
+      },
+      "gg_output": {
+        "type": "ext",
+        "id": "handset_0_0"
+      }
+    }
+  },
+  {
+    "opId": "CJ-GG-DEV-CWP-2",
+    "devices": {
+      "gg_input": {
+        "type": "ext",
+        "id": "handset_0_0"
+      },
+      "gg_output": {
+        "type": "ext",
+        "id": "handset_0_0"
+      }
+    }
+  },
+  {
+    "opId": "CJ-GG-DEV-CWP-3",
+    "devices": {
+      "gg_input": {
+        "type": "ext",
+        "id": "handset_0_0"
+      },
+      "gg_output": {
+        "type": "ext",
+        "id": "handset_0_0"
+      }
+    }
+  }
+]

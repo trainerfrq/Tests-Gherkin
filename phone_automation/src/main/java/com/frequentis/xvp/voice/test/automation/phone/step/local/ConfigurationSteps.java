@@ -16,32 +16,69 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step.local;
 
+import static com.frequentis.c4i.test.config.AutomationProjectConfig.fromCatsHome;
+import static com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil.processConfigurationTemplate;
+import static java.lang.String.format;
+import static java.lang.String.valueOf;
+import static java.net.URLEncoder.encode;
+import static java.time.Instant.now;
+
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.commons.io.FileUtils;
 import org.glassfish.jersey.client.JerseyClientBuilder;
-import org.glassfish.jersey.client.JerseyWebTarget;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.model.ExecutionDetails;
+import com.frequentis.xvp.mission.configurator.LayoutConfiguration;
+import com.frequentis.xvp.mission.configurator.objects.ImageDescriptor;
+import com.frequentis.xvp.mission.configurator.objects.LayoutObject;
+import com.frequentis.xvp.mission.configurator.objects.Position;
+import com.frequentis.xvp.mission.configurator.objects.Size;
+import com.frequentis.xvp.mission.configurator.objects.Widget;
+import com.frequentis.xvp.mission.configurator.objects.WidgetConfig;
+import com.frequentis.xvp.voice.test.automation.phone.data.XvpServiceWidget;
 import com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil;
+import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 public class ConfigurationSteps extends AutomationSteps
 {
+
    private static final List<Integer> SUCCESS_RESPONSES = Arrays.asList( 200, 201 );
 
    private static final List<Integer> SUCCESS_AND_CONFLICT_RESPONSES = Arrays.asList( 200, 201, 409 );
+
+   private static final String LAYOUTS_PATH = "/configurations/mission-service/groups/layouts/";
+
+   private static final String WIDGET_CONFIGS_PATH = "/configurations/mission-service/groups/layouts/widgets/";
+
+   private static final String IMAGE_DESCRIPTORS_PATH = "/configurations/orchestration/groups/images/";
 
 
    @When("issuing http POST request to endpoint $endpointUri and path $resourcePath with payload $templatePath")
@@ -89,6 +126,67 @@ public class ConfigurationSteps extends AutomationSteps
       else
       {
          localStep.details( ExecutionDetails.create( "Executed PUT request! " ).expected( "Success" )
+               .received( "Endpoint is not present", endpointUri != null ).failure() );
+      }
+   }
+
+
+   @Then("downloading $serviceName docker image version $serviceVersion from $endpointUri to path $targetPath")
+   public void downloadDockerImage( final String serviceName, final String serviceVersion, final String endpointUri,
+         final String targetPath )
+      throws IOException
+   {
+      final LocalStep localStep = localStep( "Execute GET request" );
+
+      if ( endpointUri != null )
+      {
+
+         final Map<String, String> map = new HashMap<>();
+         switch ( serviceName )
+         {
+            case "op-voice-service":
+               map.put( "op_voice_version", serviceVersion );
+               break;
+            case "voice-hmi-service":
+               map.put( "voice_hmi_version", serviceVersion );
+               break;
+            default:
+               break;
+         }
+
+         final String artifactoryUri = processConfigurationTemplate( endpointUri, map );
+
+         localStep.details( ExecutionDetails.create( "Downloading from: " + artifactoryUri ).success() );
+
+         Response response =
+               getConfigurationItemsWebTarget( artifactoryUri ).request( MediaType.APPLICATION_JSON ).get();
+
+         localStep.details( ExecutionDetails.create( "Executed GET request with payload! " ).expected( "200 or 201" )
+               .received( Integer.toString( response.getStatus() ) ).success( requestWithSuccess( response ) ) );
+
+         final String responseContent = response.readEntity( new GenericType<String>()
+         {
+         } );
+
+         final Path path = Paths.get( getCatsResourcesFolderPath(), targetPath );
+         localStep.details( ExecutionDetails.create( "Path is: " + path.toString() ).success() );
+
+         localStep.details( ExecutionDetails.create( "Response content is: " + responseContent ).success() );
+
+         try (FileWriter file = new FileWriter( path.toString() ))
+         {
+            file.write( responseContent );
+         }
+         catch ( FileNotFoundException ex )
+         {
+            localStep
+                  .details( ExecutionDetails.create( "Executed GET request! " ).expected( "Target file can be created" )
+                        .received( "Target file: " + path.toString() + " cannot be created" ).failure() );
+         }
+      }
+      else
+      {
+         localStep.details( ExecutionDetails.create( "Executed GET request! " ).expected( "Success" )
                .received( "Endpoint is not present", endpointUri != null ).failure() );
       }
    }
@@ -167,6 +265,172 @@ public class ConfigurationSteps extends AutomationSteps
    }
 
 
+   @When("deleting all previous versions of image descriptors for service $serviceName on endpoint $endpointUri")
+   public void deleteAllServiceImagesForService( final String serviceName, final String endpointUri )
+      throws URISyntaxException
+   {
+      final LocalStep localStep = localStep( "Removing all image descriptors for service " + serviceName );
+      if ( endpointUri != null )
+      {
+         final URI configurationURI = new URI( endpointUri );
+         List<ImageDescriptor> imageDescriptors = getAllImageDescriptors( localStep, configurationURI );
+
+         imageDescriptors.stream().filter( imageDescriptor -> imageDescriptor.getImageName().endsWith( serviceName ) )
+               .forEach( imageDescriptor ->
+               {
+                  try
+                  {
+                     final URI imageDescriptorUri =
+                           configurationURI.resolve( IMAGE_DESCRIPTORS_PATH )
+                                 .resolve( encode(
+                                       format( "%s:%s", imageDescriptor.getImageName(), imageDescriptor.getTag() ),
+                                       "UTF-8" ) );
+                     Response response =
+                           getConfigurationItemsWebTarget( imageDescriptorUri.toString() )
+                                 .request( MediaType.APPLICATION_JSON ).delete();
+                     localStep.details( ExecutionDetails.create( "Executed DELETE request with payload! " )
+                           .expected( "200 or 201" ).received( Integer.toString( response.getStatus() ) )
+                           .success( requestWithSuccess( response ) ) );
+                  }
+                  catch ( UnsupportedEncodingException e )
+                  {
+                     throw new IllegalStateException( e );
+                  }
+
+               } );
+      }
+   }
+
+
+   @Then("adding to layout $layoutName on endpoint $endpointUri the following service widgets: $serviceWidgets")
+   public void addLayout( final String layoutName, final String endpointUri,
+         final List<XvpServiceWidget> serviceWidgets )
+      throws URISyntaxException
+   {
+      final LocalStep localStep = localStep( "Adding new service widgets to the layout with name " + layoutName );
+      if ( endpointUri != null )
+      {
+         final URI configurationURI = new URI( endpointUri );
+         List<LayoutConfiguration> layouts = updateLayoutConfigurations( localStep, configurationURI );
+         List<WidgetConfig> widgets = updateWidgetConfigurations( localStep, configurationURI );
+
+         serviceWidgets.forEach( xvpServiceWidget ->
+         {
+            final Position serviceWidgetPosition =
+                  new Position( xvpServiceWidget.getPositionX(), xvpServiceWidget.getPositionY() );
+            final Size serviceWidgetSize =
+                  new Size( xvpServiceWidget.getSizeWidth(), xvpServiceWidget.getSizeHeight() );
+
+            LayoutConfiguration layoutConfiguration =
+                  createNewLayoutConfiguration( layoutName, layouts, widgets, xvpServiceWidget, serviceWidgetPosition,
+                        serviceWidgetSize );
+
+            try
+            {
+               final String templateContent = new ObjectMapper().writeValueAsString( layoutConfiguration );
+               Response response =
+                     getConfigurationItemsWebTarget( configurationURI + LAYOUTS_PATH )
+                           .request( MediaType.APPLICATION_JSON ).post( Entity.json( templateContent ) );
+               localStep.details( ExecutionDetails.create( "Executed POST request with payload! " )
+                     .expected( "200 or 201" ).received( Integer.toString( response.getStatus() ) )
+                     .success( requestWithSuccess( response ) ) );
+            }
+            catch ( JsonProcessingException e )
+            {
+               throw new IllegalStateException( e );
+            }
+
+         } );
+      }
+   }
+
+
+   private LayoutConfiguration createNewLayoutConfiguration( final String layoutName,
+         final List<LayoutConfiguration> layouts, final List<WidgetConfig> widgets,
+         final XvpServiceWidget xvpServiceWidget, final Position serviceWidgetPosition, final Size serviceWidgetSize )
+   {
+      LayoutConfiguration layoutConfiguration =
+            layouts.stream().filter( layoutConfig -> layoutConfig.getLayoutName().equals( layoutName ) ).findFirst()
+                  .orElseThrow( () -> new IllegalStateException( "There are no layouts with the given name! " ) );
+
+      WidgetConfig widgetConfig =
+            widgets.stream()
+                  .filter( widget -> widget.getFixedProperties().getImageName()
+                        .endsWith( xvpServiceWidget.getFullyQualifiedServiceName() )
+                        && widget.getFixedProperties().getTag().equals( xvpServiceWidget.getServiceVersion() ) )
+                  .findFirst().orElseThrow( () -> new IllegalStateException(
+                        "The are no widgets for service " + xvpServiceWidget.getFullyQualifiedServiceName() ) );
+      final String widgetId = valueOf( now().toEpochMilli() );
+      final String widgetType =
+            format( "%s:%s", xvpServiceWidget.getFullyQualifiedServiceName(), xvpServiceWidget.getServiceVersion() );
+      final Widget serviceWidget =
+            new Widget( widgetId, widgetType, serviceWidgetPosition, serviceWidgetSize, 0, 0, null );
+      final LayoutObject layoutObject = layoutConfiguration.getLayoutObject();
+      layoutObject.getWidgets().put( widgetId, ImmutableMap.of( "imageName",
+            widgetConfig.getFixedProperties().getImageName(), "tag", widgetConfig.getFixedProperties().getTag() ) );
+      layoutObject.getLayout().getWidgets().add( serviceWidget );
+      return layoutConfiguration;
+   }
+
+
+   private List<ImageDescriptor> getAllImageDescriptors( final LocalStep localStep, final URI configurationURI )
+   {
+      Response response =
+            getConfigurationItemsWebTarget( configurationURI + IMAGE_DESCRIPTORS_PATH )
+                  .request( MediaType.APPLICATION_JSON ).get();
+
+      localStep.details( ExecutionDetails.create( "Executed GET request with payload! " ).expected( "200 or 201" )
+            .received( Integer.toString( response.getStatus() ) ).success( requestWithSuccess( response ) ) );
+
+      return parseObjectsListFromServerResponse( response, new TypeReference<List<ImageDescriptor>>()
+      {
+      } );
+   }
+
+
+   private List<LayoutConfiguration> updateLayoutConfigurations( final LocalStep localStep, final URI configurationURI )
+   {
+      Response response =
+            getConfigurationItemsWebTarget( configurationURI + LAYOUTS_PATH ).request( MediaType.APPLICATION_JSON )
+                  .get();
+
+      localStep.details( ExecutionDetails.create( "Executed GET request with payload! " ).expected( "200 or 201" )
+            .received( Integer.toString( response.getStatus() ) ).success( requestWithSuccess( response ) ) );
+
+      return parseObjectsListFromServerResponse( response, new TypeReference<List<LayoutConfiguration>>()
+      {
+      } );
+   }
+
+
+   private List<WidgetConfig> updateWidgetConfigurations( final LocalStep localStep, final URI configurationURI )
+   {
+      Response response =
+            getConfigurationItemsWebTarget( configurationURI + WIDGET_CONFIGS_PATH )
+                  .request( MediaType.APPLICATION_JSON ).get();
+
+      localStep.details( ExecutionDetails.create( "Executed GET request with payload! " ).expected( "200 or 201" )
+            .received( Integer.toString( response.getStatus() ) ).success( requestWithSuccess( response ) ) );
+
+      return parseObjectsListFromServerResponse( response, new TypeReference<List<WidgetConfig>>()
+      {
+      } );
+   }
+
+
+   private <T> List<T> parseObjectsListFromServerResponse( final Response response, final TypeReference typeReference )
+   {
+      try
+      {
+         return new ObjectMapper().readValue( response.readEntity( String.class ), typeReference );
+      }
+      catch ( final IOException e )
+      {
+         throw new UncheckedIOException( e );
+      }
+   }
+
+
    private boolean requestWithSuccess( final Response response )
    {
       return SUCCESS_RESPONSES.contains( response.getStatus() );
@@ -179,8 +443,14 @@ public class ConfigurationSteps extends AutomationSteps
    }
 
 
-   private JerseyWebTarget getConfigurationItemsWebTarget( final String uri )
+   private WebTarget getConfigurationItemsWebTarget( final String uri )
    {
       return new JerseyClientBuilder().build().target( uri );
+   }
+
+
+   public static String getCatsResourcesFolderPath()
+   {
+      return fromCatsHome().getMasterResourcesHome();
    }
 }

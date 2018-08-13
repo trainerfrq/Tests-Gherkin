@@ -24,13 +24,13 @@ When WS2 opens the message buffer for message type missionsAvailableIndication n
 When WS2 opens the message buffer for message type missionChangedIndication named MissionChangedIndicationBuffer2
 
 Scenario: Caller client associates with Op Voice Service
-When WS2 associates with Op Voice Service using opId op04 and appId app2
+When WS2 associates with Op Voice Service using opId ${OP_VOICE_PARTITION_KEY_2} and appId app2
 Then WS2 receives missions available indication on message buffer named MissionsAvailableIndicationBuffer2 and names the availableMissionIds2
 Then WS2 receives mission changed indication on message buffer named MissionChangedIndicationBuffer2 and names missionId2
 Then WS2 confirms mission change completed for mission missionId2
 
 Scenario: Caller client changes its mission
-When WS2 chooses mission with index 1 from available missions named availableMissionIds2 and names missionIdToChange2
+When WS2 chooses mission with name WEST-EXEC from available missions named availableMissionIds2 and names missionIdToChange2
 Then WS2 receives mission changed indication on buffer named MissionChangedIndicationBuffer2 equal to missionIdToChange2 and names missionId2 and roleId2
 Then WS2 confirms mission change completed for mission missionId2
 

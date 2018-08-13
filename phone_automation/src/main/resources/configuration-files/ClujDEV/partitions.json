@@ -1,62 +1,62 @@
 {
   "partitions": [
     {
-      "partitionKey": "CWP-VST02-15",
+      "partitionKey": "CJ-GG-DEV-CWP-2",
       "clients": [
         {
-          "opId": "CWP-VST02-15",
+          "opId": "CJ-GG-DEV-CWP-2",
           "radioUserName": "OpVoiceUser02",
-          "audioAppUri": "ws://192.168.100.45:8805/ctrlif"
+          "audioAppUri": "ws://192.168.10.15:8805/ctrlif"
         }
       ],
       "audioServiceConnections": [
         {
           "mediaPlane": "A",
-          "uri": "ws://192.168.100.144:8805/ctrlif"
+          "uri": "ws://192.168.10.38:8805/ctrlif"
         },
         {
           "mediaPlane": "B",
-          "uri": "ws://192.168.100.143:8805/ctrlif"
+          "uri": "ws://192.168.10.37:8805/ctrlif"
         }
       ]
     },
     {
-      "partitionKey": "CWP-VST02-16",
+      "partitionKey": "CJ-GG-DEV-CWP-3",
       "clients": [
         {
-          "opId": "CWP-VST02-16",
+          "opId": "CJ-GG-DEV-CWP-3",
           "radioUserName": "OpVoiceUser03",
-          "audioAppUri": "ws://192.168.100.46:8805/ctrlif"
+          "audioAppUri": "ws://192.168.10.16:8805/ctrlif"
         }
       ],
       "audioServiceConnections": [
         {
           "mediaPlane": "A",
-          "uri": "ws://192.168.100.144:8805/ctrlif"
+          "uri": "ws://192.168.10.38:8805/ctrlif"
         },
         {
           "mediaPlane": "B",
-          "uri": "ws://192.168.100.143:8805/ctrlif"
+          "uri": "ws://192.168.10.37:8805/ctrlif"
         }
       ]
     },
     {
-      "partitionKey": "CWP-VST02-14",
+      "partitionKey": "CJ-GG-DEV-CWP-1",
       "clients": [
         {
-          "opId": "CWP-VST02-14",
+          "opId": "CJ-GG-DEV-CWP-1",
           "radioUserName": "OpVoiceUser01",
-          "audioAppUri": "ws://192.168.100.44:8805/ctrlif"
+          "audioAppUri": "ws://192.168.10.14:8805/ctrlif"
         }
       ],
       "audioServiceConnections": [
         {
           "mediaPlane": "A",
-          "uri": "ws://192.168.100.144:8805/ctrlif"
+          "uri": "ws://192.168.10.38:8805/ctrlif"
         },
         {
           "mediaPlane": "B",
-          "uri": "ws://192.168.100.143:8805/ctrlif"
+          "uri": "ws://192.168.10.37:8805/ctrlif"
         }
       ]
     }

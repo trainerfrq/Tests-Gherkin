@@ -1,0 +1,14 @@
+{
+  "virtualDevices": [
+    {
+      "virtualDeviceName": "MIC",
+      "direction": "IN",
+      "rtpParameters": {}
+    },
+    {
+      "virtualDeviceName": "LSP",
+      "direction": "OUT",
+      "rtpParameters": {}
+    }
+  ]
+}

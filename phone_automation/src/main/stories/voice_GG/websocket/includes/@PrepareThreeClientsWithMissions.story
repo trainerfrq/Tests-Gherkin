@@ -26,35 +26,35 @@ When WS3 opens the message buffer for message type missionsAvailableIndication n
 When WS3 opens the message buffer for message type missionChangedIndication named MissionChangedIndicationBuffer3
 
 Scenario: First client associates with Op Voice Service
-When WS1 associates with Op Voice Service using opId op03 and appId app1
+When WS1 associates with Op Voice Service using opId ${OP_VOICE_PARTITION_KEY_1} and appId app1
 Then WS1 receives missions available indication on message buffer named MissionsAvailableIndicationBuffer1 and names the availableMissionIds1
 Then WS1 receives mission changed indication on message buffer named MissionChangedIndicationBuffer1 and names missionId1
 Then WS1 confirms mission change completed for mission missionId1
 
 Scenario: Second client associates with Op Voice Service
-When WS2 associates with Op Voice Service using opId op04 and appId app2
+When WS2 associates with Op Voice Service using opId ${OP_VOICE_PARTITION_KEY_2} and appId app2
 Then WS2 receives missions available indication on message buffer named MissionsAvailableIndicationBuffer2 and names the availableMissionIds2
 And WS2 receives mission changed indication on message buffer named MissionChangedIndicationBuffer2 and names missionId2
 Then WS2 confirms mission change completed for mission missionId2
 
 Scenario: Third client associates with Op Voice Service
-When WS3 associates with Op Voice Service using opId op05 and appId app3
+When WS3 associates with Op Voice Service using opId ${OP_VOICE_PARTITION_KEY_3} and appId app3
 Then WS3 receives missions available indication on message buffer named MissionsAvailableIndicationBuffer3 and names the availableMissionIds3
 And WS3 receives mission changed indication on message buffer named MissionChangedIndicationBuffer3 and names missionId3
 Then WS3 confirms mission change completed for mission missionId3
 
-Scenario: First client changes its mission
-When WS1 chooses mission with index 0 from available missions named availableMissionIds1 and names missionIdToChange1
+Scenario: Caller client changes its mission
+When WS1 chooses mission with name MAN-NIGHT-TACT from available missions named availableMissionIds1 and names missionIdToChange1
 Then WS1 receives mission changed indication on buffer named MissionChangedIndicationBuffer1 equal to missionIdToChange1 and names missionId1 and roleId1
 Then WS1 confirms mission change completed for mission missionId1
 
-Scenario: Second client changes its mission
-When WS2 chooses mission with index 1 from available missions named availableMissionIds2 and names missionIdToChange2
-Then WS2 receives mission changed indication on buffer named MissionChangedIndicationBuffer2 equal to missionIdToChange2 and names missionId2 and roleId2
+Scenario: Callee client changes its mission
+When WS2 chooses mission with name WEST-EXEC from available missions named availableMissionIds2 and names missionIdToChange2
+Then WS2 receives mission changed indication on buffer named MissionChangedIndicationBuffer2 equal to missionIdToChange2 and names missionId2  and roleId2
 Then WS2 confirms mission change completed for mission missionId2
 
 Scenario: Third client changes its mission
-When WS3 chooses mission with index 0 from available missions named availableMissionIds3 and names missionIdToChange3
+When WS3 chooses mission with name EAST-EXEC from available missions named availableMissionIds3 and names missionIdToChange3
 Then WS3 receives mission changed indication on buffer named MissionChangedIndicationBuffer3 equal to missionIdToChange3 and names missionId3 and roleId3
 Then WS3 confirms mission change completed for mission missionId3
 
