@@ -93,7 +93,7 @@
            </dependency>
            <dependency>
                <groupId>com.frequentis.xvp.voice.phone</groupId>
-               <artifactId>voice-hmi-dsl-co-support</artifactId>
+               <artifactId>dsl-co-support</artifactId>
               <version>${project.version}</version>
            </dependency>
 
@@ -277,7 +277,9 @@
       <module>cats-websocket-plugin</module>
       <module>cats-voice-hmi-steps</module>
       <module>voice-hmi-dsl</module>
-      <module>voice-hmi-dsl-co-support</module>
+      <module>dsl-co-support</module>
       <module>phone_automation_runner</module>
+      <module>configurator-dsl</module>
+      <module>cats-configurator-steps</module>
    </modules>
 </project>

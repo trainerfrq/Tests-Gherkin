@@ -1,0 +1,18 @@
+<assembly>
+    <id>voice-hmi-dsl-co-support</id>
+    <formats>
+        <format>dir</format>
+        <format>zip</format>
+    </formats>
+    <baseDirectory>voice-hmi-dsl-co-support</baseDirectory>
+    <includeBaseDirectory>true</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>src/main/groovy/scripts</directory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+            <outputDirectory>/scripts/</outputDirectory>
+        </fileSet>
+    </fileSets>
+</assembly>

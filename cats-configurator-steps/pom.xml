@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <artifactId>phone-test-automation</artifactId>
+        <groupId>com.frequentis.xvp.voice.phone</groupId>
+        <version>0.1.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>cats-configurator-steps</artifactId>
+    <packaging>jar</packaging>
+    <name>CATS Configurator Steps</name>
+    <url>http://www.frequentis.com</url>
+    <organization>
+        <name>Frequentis AG</name>
+        <url>http://www.frequentis.com</url>
+    </organization>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.frequentis.xvp.voice.phone</groupId>
+            <artifactId>configurator-dsl</artifactId>
+            <version>0.1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <!-- Important in order for groovy scripts to be included in the jar -->
+       <resources>
+            <resource>
+                <directory>src/main/groovy</directory>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>1</id>
+                        <goals>
+                            <goal>addSources</goal>
+                            <goal>generateStubs</goal>
+                            <goal>compile</goal>
+                            <goal>removeStubs</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+           <!-- Generate sources jar used by projects in their own automation projects -->
+           <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                            <goal>test-jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
