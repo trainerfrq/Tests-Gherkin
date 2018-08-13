@@ -59,7 +59,7 @@
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>deploy/StartProfilesForWebsocketTests.story</cats:storyPath>
+                            <cats:storyPath>newDeploy/StartProfilesForWebsocketTests.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
@@ -763,12 +763,6 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>deploy/SaveLogs.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
                 </cats:storyList>
@@ -809,7 +803,7 @@
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>deploy/StartProfilesForUITests.story</cats:storyPath>
+                            <cats:storyPath>newDeploy/StartProfilesForUITests.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
@@ -1142,13 +1136,7 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
-                            <cats:storyPath>deploy/SaveLogs.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>deploy/HmiCleanup.story</cats:storyPath>
+                            <cats:storyPath>newDeploy/HmiCleanup.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>

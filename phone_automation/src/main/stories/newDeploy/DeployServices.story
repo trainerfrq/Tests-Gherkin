@@ -22,6 +22,11 @@ And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path c
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/items/virtualDevices.json with payload /configuration-files/<<systemName>>/virtualDevices.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/items/phoneDevices.json with payload /configuration-files/<<systemName>>/phoneDevices.json
 
+Scenario: Upload configuration files in Configuration Management Service for Op Voice Service
+When using endpoint <<configurationMngEndpoint>> create configuration id phone-routing
+Then waiting for 3 seconds
+And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/phone-routing/items/kamailio.cfg with payload /configuration-files/<<systemName>>/kamailio.cfg
+
 Scenario: Commit and activate configuration
 When using endpoint <<configurationMngEndpoint>> commit the configuration and name version versionId
 Then waiting for 1 seconds
@@ -72,21 +77,12 @@ And SSH host hmiHost3 executes chmod +x launchAudioService.sh
 And SSH host hmiHost3 executes ./launchAudioService.sh
 And waiting for 10 seconds
 
-Scenario: Verify services are running on dockerhost1
-When SSH host dockerHost1 executes docker inspect -f '{{.State.Status}}' phone-routing and the output contains running
-When SSH host dockerHost1 executes docker inspect -f '{{.State.Status}}' audio-service-1 and the output contains running
-When SSH host dockerHost1 executes docker inspect -f '{{.State.Status}}' mission-service-1 and the output contains running
-
-Scenario: Verify services are running on dockerhost2
-When SSH host dockerHost2 executes docker inspect -f '{{.State.Status}}' audio-service-2 and the output contains running
-When SSH host dockerHost2 executes docker inspect -f '{{.State.Status}}' mission-service-2 and the output contains running
-
-Scenario: Verify services are running on hmiHost1
+Scenario: Verify audio-app is running on hmiHost1
 When SSH host hmiHost1 executes docker inspect -f '{{.State.Status}}' audio-app and the output contains running
 
-Scenario: Verify services are running on hmiHost2
+Scenario: Verify audio-app is running on hmiHost2
 When SSH host hmiHost2 executes docker inspect -f '{{.State.Status}}' audio-app and the output contains running
 
-Scenario: Verify services are running on hmiHost3
+Scenario: Verify audio-app is running on hmiHost3
 When SSH host hmiHost3 executes docker inspect -f '{{.State.Status}}' audio-app and the output contains running
 

@@ -5,6 +5,11 @@
  */
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import scripts.cats.websocket.sequential.SendTextMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
+import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
+import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 import static com.frequentis.c4i.test.model.MatcherDetails.match;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.empty;
@@ -16,7 +21,7 @@ import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -43,6 +48,7 @@ import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.Disassociat
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.layout.QueryRolePhoneDataRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.missions.ChangeMissionRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.missions.ChangeMissionResponseResult;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.missions.Mission;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.missions.MissionChangeCompletedEvent;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.missions.MissionChangedIndication;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallAcceptRequest;
@@ -54,13 +60,6 @@ import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallRetrieve
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallStatusIndication;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallTransferRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallTransferResponse;
-import com.google.common.collect.Lists;
-
-import scripts.cats.websocket.sequential.SendTextMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
-import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
-import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 
 public class GGBasicSteps extends WebsocketAutomationSteps
 {
@@ -118,10 +117,13 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       evaluate( localStep( "Received missions available indication" )
             .details( match( jsonMessage.body().isMissionsAvailableIndication(), equalTo( true ) ) ) );
 
-      final ArrayList<String> missionIds =
-            Lists.newArrayList( jsonMessage.body().missionsAvailableIndication().getMissions().stream()
-                  .map( mission -> mission.getMissionId() ).collect( Collectors.toList() ) );
-      setStoryData( availableMissionIdsName, missionIds );
+      final HashMap<String, String> missions = new HashMap<>();
+      for ( Mission mission : jsonMessage.body().missionsAvailableIndication().getMissions() )
+      {
+         missions.put( mission.getMissionName(), mission.getMissionId() );
+      }
+
+      setStoryData( availableMissionIdsName, missions );
    }
 
 
@@ -174,21 +176,21 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    }
 
 
-   @When("$namedWebSocket chooses mission with index $missionIndex from available missions named $availableMissionIdsName and names $missionIdToChangeName")
-   public void changeMission( final String namedWebSocket, final int missionIndex, final String availableMissionIdsName,
+   @When("$namedWebSocket chooses mission with name $missionName from available missions named $availableMissionsName and names $missionIdToChangeName")
+   public void changeMission( final String namedWebSocket, final String missionName, final String availableMissionsName,
          final String missionIdToChangeName )
    {
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
 
-      final ArrayList<String> availableMissionIds = getStoryData( availableMissionIdsName, ArrayList.class );
+      final HashMap<String, String> availableMissions = getStoryData( availableMissionsName, HashMap.class );
 
-      evaluate( localStep( "Retrieving missionId from story data" )
-            .details( ExecutionDetails.create( "Available missions contains given index" )
-                  .usedData( "Available missions count", availableMissionIds.size() )
-                  .usedData( "Given index", missionIndex ).success( availableMissionIds.size() > missionIndex ) ) );
+      evaluate( localStep( "Retrieving missions from story data" ).details( ExecutionDetails
+            .create( "Available missions contains given mission name" )
+            .usedData( "Available missions count", availableMissions.size() )
+            .usedData( "Given mission name", missionName ).success( availableMissions.containsKey( missionName ) ) ) );
 
-      final String missionId = availableMissionIds.get( missionIndex );
+      final String missionId = availableMissions.get( missionName );
       final JsonMessage request =
             JsonMessage.newChangeMissionRequest( new ChangeMissionRequest( missionId ), UUID.randomUUID() );
 

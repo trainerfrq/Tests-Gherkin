@@ -1,6 +1,6 @@
 [
   {
-    "opId": "CWP-VST02-14",
+    "opId": "CJ-GG-DEV-CWP-1",
     "devices": {
       "gg_input": {
         "type": "ext",
@@ -13,7 +13,7 @@
     }
   },
   {
-    "opId": "CWP-VST02-15",
+    "opId": "CJ-GG-DEV-CWP-2",
     "devices": {
       "gg_input": {
         "type": "ext",
@@ -26,7 +26,7 @@
     }
   },
   {
-    "opId": "CWP-VST02-16",
+    "opId": "CJ-GG-DEV-CWP-3",
     "devices": {
       "gg_input": {
         "type": "ext",

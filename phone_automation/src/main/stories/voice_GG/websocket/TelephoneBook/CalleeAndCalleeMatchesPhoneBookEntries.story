@@ -24,13 +24,13 @@ When WS3 opens the message buffer for message type missionsAvailableIndication n
 When WS3 opens the message buffer for message type missionChangedIndication named MissionChangedIndicationBuffer3
 
 Scenario: Caller client associates with Op Voice Service
-When WS3 associates with Op Voice Service using opId op05 and appId app3
+When WS3 associates with Op Voice Service using opId ${OP_VOICE_PARTITION_KEY_3} and appId app3
 Then WS3 receives missions available indication on message buffer named MissionsAvailableIndicationBuffer3 and names the availableMissionIds3
 Then WS3 receives mission changed indication on message buffer named MissionChangedIndicationBuffer3 and names missionId3
 Then WS3 confirms mission change completed for mission missionId3
 
 Scenario: Caller client changes its mission
-When WS3 chooses mission with index 0 from available missions named availableMissionIds3 and names missionIdToChange3
+When WS3 chooses mission with name EAST-EXEC from available missions named availableMissionIds3 and names missionIdToChange3
 Then WS3 receives mission changed indication on buffer named MissionChangedIndicationBuffer3 equal to missionIdToChange3 and names missionId3 and roleId3
 Then WS3 confirms mission change completed for mission missionId3
 

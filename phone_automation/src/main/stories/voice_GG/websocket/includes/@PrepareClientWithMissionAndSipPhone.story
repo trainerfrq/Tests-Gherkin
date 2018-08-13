@@ -25,7 +25,7 @@ Then WS1 receives mission changed indication on message buffer named MissionChan
 Then WS1 confirms mission change completed for mission missionId1
 
 Scenario: Caller client changes its mission
-When WS1 chooses mission with index 2 from available missions named availableMissionIds1 and names missionIdToChange1
+When WS1 chooses mission with name MAN-NIGHT-TACT from available missions named availableMissionIds1 and names missionIdToChange1
 Then WS1 receives mission changed indication on buffer named MissionChangedIndicationBuffer1 equal to missionIdToChange1 and names missionId1 and roleId1
 Then WS1 confirms mission change completed for mission missionId1
 
