@@ -10,23 +10,11 @@
        <join>
           <multicast enabled="false"/>
           <tcp-ip enabled="true">
-             <member>192.168.100.10:5701</member>
-             <member>192.168.100.13:5701</member>
-             <member>10.31.205.40:5701</member>
-             <member>10.31.205.51:5701</member>
-             <member>10.31.205.52:5701</member>
-             <member>10.31.205.53:5701</member>
-             <member>10.31.205.43:5701</member>
              <member>10.17.15.47:5701</member>
              <member>10.17.15.44:5701</member>
              <member>10.17.15.45:5701</member>
              <member>10.17.15.46:5701</member>
              <member>10.17.15.48:5701</member>
-             <member>10.31.205.11:5701</member>
-             <member>10.31.205.12:5701</member>
-             <member>10.31.205.14:5701</member>
-             <member>10.31.205.15:5701</member>
-             <member>10.31.205.16:5701</member>
           </tcp-ip>
        </join>
     </network>
