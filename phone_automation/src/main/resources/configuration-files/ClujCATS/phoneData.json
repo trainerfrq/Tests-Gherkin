@@ -1,13 +1,13 @@
 {
   "sipProxy": {
-    "opSipProxyHost": "10.31.205.40",
+    "opSipProxyHost": "192.168.40.117",
     "opSipProxyListeningPort": 5060
   },
   "hostSpecificConfigurationMap": {
-    "op03": {
+    "cj-gg-cat-cwp-1": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "10.31.205.41",
+          "opPhysicalHost": "192.168.40.114",
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",
@@ -16,10 +16,10 @@
         "opMaxConcurrentCallsCount": 20
       }
     },
-    "op04": {
+    "cj-gg-cat-cwp-2": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "10.31.205.42",
+          "opPhysicalHost": "192.168.40.115",
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",
@@ -28,10 +28,10 @@
         "opMaxConcurrentCallsCount": 20
       }
     },
-    "op05": {
+    "cj-gg-cat-cwp-3": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "10.31.205.43",
+          "opPhysicalHost": "192.168.40.116",
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",
