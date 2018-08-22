@@ -6,7 +6,7 @@
         {
           "opId": "cj-gg-cat-cwp-2",
           "radioUserName": "OpVoiceUser02",
-          "audioAppUri": "ws://192.168.40.95:8805:8805/ctrlif"
+          "audioAppUri": "ws://192.168.40.95:8805/ctrlif"
         }
       ],
       "audioServiceConnections": [

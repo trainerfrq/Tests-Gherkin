@@ -64,7 +64,7 @@ Then downloading voice-hmi-service docker image version ${voice.hmi.version} fro
 
 Scenario: Upload image descriptor
 When deleting all previous versions of image descriptors for service voice-hmi-service on endpoint <<configurationMngEndpoint>>
-When issuing http POST request to endpoint <<configurationMngEndpoint>> and path /configurations/orchestration/groups/images/ with payload /configuration-files/<<systemName>>/voice-hmi-service-docker-image.json
+When issuing http POST request to endpoint <<configurationMngEndpoint>> and path configurations/orchestration/groups/images/ with payload /configuration-files/<<systemName>>/voice-hmi-service-docker-image.json
 
 Scenario: Change layout to new voice-hmi version
 Then adding to layout voice on endpoint <<configurationMngEndpoint>> the following service widgets:

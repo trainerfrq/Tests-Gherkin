@@ -74,11 +74,11 @@ public class ConfigurationSteps extends AutomationSteps
 
    private static final List<Integer> SUCCESS_AND_CONFLICT_RESPONSES = Arrays.asList( 200, 201, 409 );
 
-   private static final String LAYOUTS_PATH = "/configurations/mission-service/groups/layouts/";
+   private static final String LAYOUTS_PATH = "configurations/mission-service/groups/layouts/";
 
-   private static final String WIDGET_CONFIGS_PATH = "/configurations/mission-service/groups/layouts/widgets/";
+   private static final String WIDGET_CONFIGS_PATH = "configurations/mission-service/groups/layouts/widgets/";
 
-   private static final String IMAGE_DESCRIPTORS_PATH = "/configurations/orchestration/groups/images/";
+   private static final String IMAGE_DESCRIPTORS_PATH = "configurations/orchestration/groups/images/";
 
 
    @When("issuing http POST request to endpoint $endpointUri and path $resourcePath with payload $templatePath")

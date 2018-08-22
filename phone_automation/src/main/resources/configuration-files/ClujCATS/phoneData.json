@@ -7,7 +7,7 @@
     "cj-gg-cat-cwp-1": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "192.168.40.114",
+          "opPhysicalHost": "192.168.40.121",
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",
@@ -19,7 +19,7 @@
     "cj-gg-cat-cwp-2": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "192.168.40.115",
+          "opPhysicalHost": "192.168.40.122",
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",
@@ -31,7 +31,7 @@
     "cj-gg-cat-cwp-3": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "192.168.40.116",
+          "opPhysicalHost": "192.168.40.123",
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",

@@ -14,7 +14,7 @@ Scenario: Download docker image from artifactory
 Then downloading op-voice-service docker image version ${op.voice.version} from <<opVoiceDockerImageArtifactoryUri>> to path /configuration-files/<<systemName>>/op-voice-service-docker-image.json
 
 Scenario: Upload docker image
-When issuing http POST request to endpoint <<configurationMngEndpoint>> and path /configurations/orchestration/groups/images/ with payload /configuration-files/<<systemName>>/op-voice-service-docker-image.json
+When issuing http POST request to endpoint <<configurationMngEndpoint>> and path configurations/orchestration/groups/images/ with payload /configuration-files/<<systemName>>/op-voice-service-docker-image.json
 
 Scenario: Change version of Op Voice Service in deployed service descriptors
 !-- Update the deployed service descriptor with op-voice-service version for partition 1
