@@ -50,11 +50,11 @@ When SSH host hmiHost3 executes docker rm -f audio-app
 Then waiting for 5 seconds
 
 Scenario: Stop all running voice-hmi services
-When SSH host hmiHost1 executes docker rm -f $(docker ps -f name=${PARTITION_KEY_1})
+When SSH host hmiHost1 executes docker rm -f $(docker ps -q -a -f name=${PARTITION_KEY_1})
 And waiting for 5 seconds
-When SSH host hmiHost2 executes docker rm -f $(docker ps -f name=${PARTITION_KEY_2})
+When SSH host hmiHost2 executes docker rm -f $(docker ps -q -a -f name=${PARTITION_KEY_2})
 And waiting for 5 seconds
-When SSH host hmiHost3 executes docker rm -f $(docker ps -f name=${PARTITION_KEY_3})
+When SSH host hmiHost3 executes docker rm -f $(docker ps -q -a -f name=${PARTITION_KEY_3})
 And waiting for 5 seconds
 
 Scenario: Start servies
