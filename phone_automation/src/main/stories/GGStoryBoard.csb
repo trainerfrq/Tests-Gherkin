@@ -676,7 +676,7 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferToTargetHavingCallOnHoldWithTransferee.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
