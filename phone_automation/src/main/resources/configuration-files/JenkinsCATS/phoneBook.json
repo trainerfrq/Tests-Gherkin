@@ -19,7 +19,7 @@
     "notes": "Language - English",
     "dataSets": [
       {
-        "destination": "sip:op3@192.168.100.147:5060",
+        "destination": "sip:op3@192.168.100.148:5060",
         "displayAddon": "Ground2Ground"
       }
     ]
@@ -32,7 +32,7 @@
     "notes": "Language - Chinese",
     "dataSets": [
       {
-        "destination": "sip:12345@10.17.15.48:5070",
+        "destination": "sip:12345@192.168.100.48:5070",
         "displayAddon": "Air2Ground"
       }
     ]
