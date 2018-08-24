@@ -17,11 +17,9 @@
 package com.frequentis.xvp.voice.test.automation.phone.step.local;
 
 import static com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil.processConfigurationTemplate;
-import static java.util.Arrays.asList;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.jbehave.core.annotations.When;
@@ -31,38 +29,8 @@ import com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil;
 
 public class GGSshSteps extends SshSteps
 {
-   private static final List<Integer> GENERAL_SUCCESS_RESPONSE_CODES = asList( 200, 201 );
 
-
-   @When("the services are updated on $connectionName with $opVoiceVersion and $voiceHmiVersion")
-   public void updateServices( final String connectionName, final String opVoiceVersion, final String voiceHmiVersion )
-      throws IOException
-   {
-      final String systemName = StepsUtil.getEnvProperty( "systemName" );
-
-      String templatePath = "/configuration-files/" + systemName + "/services.cfg";
-
-      final Map<String, String> map = new HashMap<>();
-      map.put( "op_voice_version", opVoiceVersion );
-      map.put( "voice_hmi_version", voiceHmiVersion );
-      final String servicesContent = processConfigurationTemplate( StepsUtil.getConfigFile( templatePath ), map );
-
-      executeSshCommand( connectionName, "read -d '' createServicesCfg << \\EOF \n" + servicesContent
-            + "\nEOF\n\n echo \"$createServicesCfg\" > /etc/opt/frequentis/xvp-deployment/services.cfg" );
-   }
-
-
-   @When("the service descriptors are updated on $connectionName with $opVoiceVersion for partition $partitionKey")
-   public void updateServiceDescriptors( final String connectionName, final String opVoiceVersion,
-         final String partitionKey )
-   {
-      executeSshCommand( connectionName, "sed -i '4s/.*/  \"tag\" : \"" + opVoiceVersion
-            + "\",/' /var/opt/frequentis/xvp/orchestration-agent/agent/descriptors/*CJ-GG-DEV-CWP-1.json" );
-      executeSshCommand( connectionName, "sed -i '4s/.*/  \"tag\" : \"" + opVoiceVersion
-            + "\",/' /var/opt/frequentis/xvp/orchestration-agent/agent/descriptors/*CJ-GG-DEV-CWP-2.json" );
-      executeSshCommand( connectionName, "sed -i '4s/.*/  \"tag\" : \"" + opVoiceVersion
-            + "\",/' /var/opt/frequentis/xvp/orchestration-agent/agent/descriptors/*CJ-GG-DEV-CWP-3.json" );
-   }
+   public static final String LAUNCH_AUDIO_APP_SCRIPT_DIRECTORY = "/configuration-files/common/launchAudioApp.sh";
 
 
    @When("the start case officer script is copied to $connectionName")
@@ -93,35 +61,18 @@ public class GGSshSteps extends SshSteps
    }
 
 
-   @When("the start agent script is copied to CATS folder of the $connectionName")
-   public void copyStartAgentScript( final String connectionName ) throws IOException
+   @When("the launch audio app script is copied to $connectionName and updated with $audioNetworkIp")
+   public void copyLaunchAudioAppScript( final String connectionName, final String audioNetworkIp ) throws IOException
    {
-      final String systemName = StepsUtil.getEnvProperty( "systemName" );
-
-      String filePath = "/configuration-files/" + systemName + "/startAgent.sh";
-
-      final String scriptContent = processConfigurationTemplate( StepsUtil.getConfigFile( filePath ), new HashMap<>() );
-
-      executeSshCommand( connectionName, "read -d '' startAgent << \\EOF \n" + scriptContent
-            + "\nEOF\n\n echo \"$startAgent\" > /var/lib/docker/volumes/sharedVolume/_data/startAgent.sh" );
-   }
-
-
-   @When("the launch audio service script is copied to $connectionName and updated with $audioNetworkIp")
-   public void copyLaunchAudioServiceScript( final String connectionName, final String audioNetworkIp )
-      throws IOException
-   {
-      final String systemName = StepsUtil.getEnvProperty( "systemName" );
-
-      String filePath = "/configuration-files/" + systemName + "/launchAudioService.sh";
 
       final Map<String, String> map = new HashMap<>();
       map.put( "audio_app_network_ip", audioNetworkIp );
 
-      final String scriptContent = processConfigurationTemplate( StepsUtil.getConfigFile( filePath ), map );
+      final String scriptContent =
+            processConfigurationTemplate( StepsUtil.getConfigFile( LAUNCH_AUDIO_APP_SCRIPT_DIRECTORY ), map );
 
-      executeSshCommand( connectionName, "read -d '' launchAudioService << \\EOF \n" + scriptContent
-            + "\nEOF\n\n echo \"$launchAudioService\" > /root/launchAudioService.sh" );
+      executeSshCommand( connectionName, "read -d '' launchAudioApp << \\EOF \n" + scriptContent
+            + "\nEOF\n\n echo \"$launchAudioApp\" > /root/launchAudioApp.sh" );
    }
 
 
