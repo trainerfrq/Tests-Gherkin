@@ -20,6 +20,7 @@
 
       <agentsHome>${project.build.directory}/automation/agents</agentsHome>
       <dslHome>${project.build.directory}/automation/dsl</dslHome>
+      <!--available.profiles>${project.basedir}/src/main/resources/profiles/</available.profiles-->
 
       <voice.service.interface.version>0.37.0-SNAPSHOT</voice.service.interface.version>
       <mission-configurator-plugin.version>0.5.0-SNAPSHOT</mission-configurator-plugin.version>
@@ -132,7 +133,20 @@
           <version>${cats.version}</version>
           <type>zip</type>
         </dependency>
-    </dependencies>
+       <dependency>
+           <groupId>com.frequentis.c4i.test</groupId>
+           <artifactId>cats-agent-websocket</artifactId>
+           <version>${cats.version}</version>
+           <type>zip</type>
+       </dependency>
+       <dependency>
+           <groupId>com.google.guava</groupId>
+           <artifactId>guava</artifactId>
+           <version>23.0</version>
+       </dependency>
+
+   </dependencies>
+
 
    <profiles>
       <profile>
@@ -239,6 +253,34 @@
                         </executions>
                     </plugin>
                 </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>CATS-JUNIT</id>
+            <build>
+               <plugins>
+                  <plugin>
+                     <groupId>org.apache.maven.plugins</groupId>
+                     <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                           <execution>
+                           <!-- Prepare platform dependencies for JUnit execution (normally provided by CO) -->
+                              <id>unpack-platform-resources</id>
+                                  <goals>
+                                      <goal>unpack-dependencies</goal>
+                                  </goals>
+                                        <phase>generate-resources</phase>
+                                           <configuration>
+                                              <includeGroupIds>com.frequentis.c4i.test</includeGroupIds>
+                                              <includeArtifactIds>cats-platform</includeArtifactIds>
+                                              <includeTypes>zip</includeTypes>
+                                              <outputDirectory>${project.build.directory}/</outputDirectory>
+                                              <excludeTransitive>true</excludeTransitive>
+                                           </configuration>
+                           </execution>
+                         </executions>
+                  </plugin>
+              </plugins>
             </build>
         </profile>
    </profiles>
