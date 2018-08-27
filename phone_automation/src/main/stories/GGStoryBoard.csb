@@ -26,7 +26,7 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
-                            <cats:storyPath>newDeploy/DeployServices.story</cats:storyPath>
+                            <cats:storyPath>deploy/DeployServices.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
@@ -53,19 +53,19 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
-                            <cats:storyPath>newDeploy/CreateCO.story</cats:storyPath>
+                            <cats:storyPath>deploy/CreateCO.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>newDeploy/StartProfilesForWebsocketTests.story</cats:storyPath>
+                            <cats:storyPath>deploy/StartProfilesForWebsocketTests.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>newDeploy/DeployOpVoice.story</cats:storyPath>
+                            <cats:storyPath>deploy/DeployOpVoice.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
@@ -676,19 +676,19 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferToTargetHavingCallOnHoldWithTransferee.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferToTargetHavingCallOnHoldWithTransferor.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferWithConsultation.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
@@ -712,7 +712,7 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferorAcceptCallWhileTransferInProgress.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
@@ -758,7 +758,7 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
-                            <cats:storyPath>newDeploy/WebsocketCleanup.story</cats:storyPath>
+                            <cats:storyPath>deploy/WebsocketCleanup.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
@@ -785,25 +785,19 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
-                            <cats:storyPath>newDeploy/DeployOpVoice.story</cats:storyPath>
+                            <cats:storyPath>deploy/DeployHmi.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>newDeploy/DeployHmi.story</cats:storyPath>
+                            <cats:storyPath>deploy/CreateCO.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>newDeploy/CreateCO.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>newDeploy/StartProfilesForUITests.story</cats:storyPath>
+                            <cats:storyPath>deploy/StartProfilesForUITests.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
@@ -1136,7 +1130,7 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
-                            <cats:storyPath>newDeploy/HmiCleanup.story</cats:storyPath>
+                            <cats:storyPath>deploy/HmiCleanup.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>

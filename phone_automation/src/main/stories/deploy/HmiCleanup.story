@@ -1,12 +1,17 @@
 Scenario: Connect to hosts
 Given SSH connections:
-| name             | remote-address    | remotePort | username | password  |
-| deploymentServer | <<DEP_SERVER_IP>> | 22         | root     | !frqAdmin |
+| name     | remote-address | remotePort | username | password  |
+| hmiHost1 | <<CLIENT1_IP>> | 22         | root     | !frqAdmin |
+| hmiHost2 | <<CLIENT2_IP>> | 22         | root     | !frqAdmin |
+| hmiHost3 | <<CLIENT3_IP>> | 22         | root     | !frqAdmin |
 
-Scenario: Stop hmi
-When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove voice_hmi03
-When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove voice_hmi04
-When SSH host deploymentServer executes /opt/frequentis/xvp-deployment/scripts/xvp remove voice_hmi05
+Scenario: Stop all running voice-hmi services
+When SSH host hmiHost1 executes docker rm -f $(docker ps -f name=${PARTITION_KEY_1})
+And waiting for 5 seconds
+When SSH host hmiHost2 executes docker rm -f $(docker ps -f name=${PARTITION_KEY_2})
+And waiting for 5 seconds
+When SSH host hmiHost3 executes docker rm -f $(docker ps -f name=${PARTITION_KEY_3})
+And waiting for 5 seconds
 
 Scenario: Stop profiles
 When stopping profiles:

@@ -255,7 +255,7 @@
           },
           {
             "id": "109",
-            "target": "sip:12345@10.17.15.48:5070",
+            "target": "sip:12345@192.168.100.48:5070",
             "source": "sip:111111@example.com",
             "displayName": "IA - PHONE2"
           }

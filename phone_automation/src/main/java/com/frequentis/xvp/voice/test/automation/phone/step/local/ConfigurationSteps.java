@@ -17,7 +17,6 @@
 package com.frequentis.xvp.voice.test.automation.phone.step.local;
 
 import static com.frequentis.c4i.test.config.AutomationProjectConfig.fromCatsHome;
-import static com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil.processConfigurationTemplate;
 import static java.lang.String.format;
 import static java.lang.String.valueOf;
 import static java.net.URLEncoder.encode;
@@ -33,9 +32,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
@@ -74,11 +71,11 @@ public class ConfigurationSteps extends AutomationSteps
 
    private static final List<Integer> SUCCESS_AND_CONFLICT_RESPONSES = Arrays.asList( 200, 201, 409 );
 
-   private static final String LAYOUTS_PATH = "/configurations/mission-service/groups/layouts/";
+   private static final String LAYOUTS_PATH = "configurations/mission-service/groups/layouts/";
 
-   private static final String WIDGET_CONFIGS_PATH = "/configurations/mission-service/groups/layouts/widgets/";
+   private static final String WIDGET_CONFIGS_PATH = "configurations/mission-service/groups/layouts/widgets/";
 
-   private static final String IMAGE_DESCRIPTORS_PATH = "/configurations/orchestration/groups/images/";
+   private static final String IMAGE_DESCRIPTORS_PATH = "configurations/orchestration/groups/images/";
 
 
    @When("issuing http POST request to endpoint $endpointUri and path $resourcePath with payload $templatePath")
@@ -131,35 +128,16 @@ public class ConfigurationSteps extends AutomationSteps
    }
 
 
-   @Then("downloading $serviceName docker image version $serviceVersion from $endpointUri to path $targetPath")
-   public void downloadDockerImage( final String serviceName, final String serviceVersion, final String endpointUri,
-         final String targetPath )
-      throws IOException
+   @Then("downloading docker image from $endpointUri to path $targetPath")
+   public void downloadDockerImage( final String endpointUri, final String targetPath ) throws IOException
    {
       final LocalStep localStep = localStep( "Execute GET request" );
 
       if ( endpointUri != null )
       {
+         localStep.details( ExecutionDetails.create( "Downloading from: " + endpointUri ).success() );
 
-         final Map<String, String> map = new HashMap<>();
-         switch ( serviceName )
-         {
-            case "op-voice-service":
-               map.put( "op_voice_version", serviceVersion );
-               break;
-            case "voice-hmi-service":
-               map.put( "voice_hmi_version", serviceVersion );
-               break;
-            default:
-               break;
-         }
-
-         final String artifactoryUri = processConfigurationTemplate( endpointUri, map );
-
-         localStep.details( ExecutionDetails.create( "Downloading from: " + artifactoryUri ).success() );
-
-         Response response =
-               getConfigurationItemsWebTarget( artifactoryUri ).request( MediaType.APPLICATION_JSON ).get();
+         Response response = getConfigurationItemsWebTarget( endpointUri ).request( MediaType.APPLICATION_JSON ).get();
 
          localStep.details( ExecutionDetails.create( "Executed GET request with payload! " ).expected( "200 or 201" )
                .received( Integer.toString( response.getStatus() ) ).success( requestWithSuccess( response ) ) );
@@ -275,7 +253,7 @@ public class ConfigurationSteps extends AutomationSteps
          final URI configurationURI = new URI( endpointUri );
          List<ImageDescriptor> imageDescriptors = getAllImageDescriptors( localStep, configurationURI );
 
-         imageDescriptors.stream().filter( imageDescriptor -> imageDescriptor.getImageName().endsWith( serviceName ) )
+         imageDescriptors.stream().filter( imageDescriptor -> imageDescriptor.getImageName().equals( serviceName ) )
                .forEach( imageDescriptor ->
                {
                   try
@@ -288,9 +266,10 @@ public class ConfigurationSteps extends AutomationSteps
                      Response response =
                            getConfigurationItemsWebTarget( imageDescriptorUri.toString() )
                                  .request( MediaType.APPLICATION_JSON ).delete();
-                     localStep.details( ExecutionDetails.create( "Executed DELETE request with payload! " )
-                           .expected( "200 or 201" ).received( Integer.toString( response.getStatus() ) )
-                           .success( requestWithSuccess( response ) ) );
+                     localStep
+                           .details( ExecutionDetails.create( "Executed DELETE request on URI: " + imageDescriptorUri )
+                                 .expected( "200 or 201" ).received( Integer.toString( response.getStatus() ) )
+                                 .success( requestWithSuccess( response ) ) );
                   }
                   catch ( UnsupportedEncodingException e )
                   {
@@ -379,8 +358,10 @@ public class ConfigurationSteps extends AutomationSteps
             getConfigurationItemsWebTarget( configurationURI + IMAGE_DESCRIPTORS_PATH )
                   .request( MediaType.APPLICATION_JSON ).get();
 
-      localStep.details( ExecutionDetails.create( "Executed GET request with payload! " ).expected( "200 or 201" )
-            .received( Integer.toString( response.getStatus() ) ).success( requestWithSuccess( response ) ) );
+      localStep.details(
+            ExecutionDetails.create( "Executed GET request on URI: " + configurationURI + IMAGE_DESCRIPTORS_PATH )
+                  .expected( "200 or 201" ).received( Integer.toString( response.getStatus() ) )
+                  .success( requestWithSuccess( response ) ) );
 
       return parseObjectsListFromServerResponse( response, new TypeReference<List<ImageDescriptor>>()
       {
