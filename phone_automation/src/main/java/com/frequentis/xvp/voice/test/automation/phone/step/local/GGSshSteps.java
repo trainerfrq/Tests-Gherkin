@@ -16,14 +16,12 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step.local;
 
-import java.io.File;
+import static com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil.processConfigurationTemplate;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.frequentis.c4i.test.util.FileUtil;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang.text.StrSubstitutor;
 import org.jbehave.core.annotations.When;
 
 import com.frequentis.c4i.test.ssh.automation.steps.SshSteps;
@@ -31,22 +29,8 @@ import com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil;
 
 public class GGSshSteps extends SshSteps
 {
-   @When("the services are updated on $connectionName with $opVoiceVersion and $voiceHmiVersion")
-   public void updateServices( final String connectionName, final String opVoiceVersion, final String voiceHmiVersion )
-      throws IOException
-   {
-      final String systemName = StepsUtil.getEnvProperty( "systemName" );
 
-      String templatePath = "/configuration-files/" + systemName + "/services.cfg";
-
-      final Map<String, String> map = new HashMap<>();
-      map.put( "op_voice_version", opVoiceVersion );
-      map.put( "voice_hmi_version", voiceHmiVersion );
-      final String servicesContent = processConfigurationTemplate( StepsUtil.getConfigFile( templatePath ), map );
-
-      executeSshCommand( connectionName, "read -d '' createServicesCfg << \\EOF \n" + servicesContent
-            + "\nEOF\n\n echo \"$createServicesCfg\" > /etc/opt/frequentis/xvp-deployment/services.cfg" );
-   }
+   public static final String LAUNCH_AUDIO_APP_SCRIPT_DIRECTORY = "/configuration-files/common/launchAudioApp.sh";
 
 
    @When("the start case officer script is copied to $connectionName")
@@ -56,10 +40,7 @@ public class GGSshSteps extends SshSteps
 
       String filePath = "/configuration-files/" + systemName + "/runCO.sh";
 
-      final Map<String, String> map = new HashMap<>();
-      map.put( "CATS_PUBLIC_IP", connectionName );
-
-      final String scriptContent = processConfigurationTemplate( StepsUtil.getConfigFile( filePath ), map );
+      final String scriptContent = processConfigurationTemplate( StepsUtil.getConfigFile( filePath ), new HashMap<>() );
 
       executeSshCommand( connectionName,
             "read -d '' runCO << \\EOF \n" + scriptContent + "\nEOF\n\n echo \"$runCO\" > /root/runCO.sh" );
@@ -80,26 +61,31 @@ public class GGSshSteps extends SshSteps
    }
 
 
-   @When("the start agent script is copied to CATS folder of the $connectionName")
-   public void copyStartAgentScript( final String connectionName ) throws IOException
+   @When("the launch audio app script is copied to $connectionName and updated with $audioNetworkIp")
+   public void copyLaunchAudioAppScript( final String connectionName, final String audioNetworkIp ) throws IOException
    {
-      final String systemName = StepsUtil.getEnvProperty( "systemName" );
 
-      String filePath = "/configuration-files/" + systemName + "/startAgent.sh";
+      final Map<String, String> map = new HashMap<>();
+      map.put( "audio_app_network_ip", audioNetworkIp );
 
-      final String scriptContent = processConfigurationTemplate( StepsUtil.getConfigFile( filePath ), new HashMap<>() );
+      final String scriptContent =
+            processConfigurationTemplate( StepsUtil.getConfigFile( LAUNCH_AUDIO_APP_SCRIPT_DIRECTORY ), map );
 
-      executeSshCommand( connectionName, "read -d '' startAgent << \\EOF \n" + scriptContent
-            + "\nEOF\n\n echo \"$startAgent\" > /var/lib/docker/volumes/sharedVolume/_data/startAgent.sh" );
+      executeSshCommand( connectionName, "read -d '' launchAudioApp << \\EOF \n" + scriptContent
+            + "\nEOF\n\n echo \"$launchAudioApp\" > /root/launchAudioApp.sh" );
    }
 
 
-   private String processConfigurationTemplate( final File templatePath, final Map<String, String> sub )
-      throws IOException
+   @When("the update voice hmi script is copied to $connectionName")
+   public void copyUpdateVoiceHmiScript( final String connectionName ) throws IOException
    {
-      final String templateStr = FileUtils.readFileToString( templatePath, "UTF-8" );
-      final StrSubstitutor substitutor = new StrSubstitutor( sub );
-      final String substitutedTemplate = substitutor.replace( templateStr );
-      return substitutedTemplate;
+      final String systemName = StepsUtil.getEnvProperty( "systemName" );
+
+      String filePath = "/configuration-files/" + systemName + "/hmiUpdate.sh";
+
+      final String scriptContent = processConfigurationTemplate( StepsUtil.getConfigFile( filePath ), new HashMap<>() );
+
+      executeSshCommand( connectionName,
+            "read -d '' hmiUpdate << \\EOF \n" + scriptContent + "\nEOF\n\n echo \"$hmiUpdate\" > /root/hmiUpdate.sh" );
    }
 }

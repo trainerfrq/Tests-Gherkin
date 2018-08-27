@@ -35,8 +35,10 @@
       <maven-enforcer-plugin.version>3.0.0-M1</maven-enforcer-plugin.version>
       <fabric8-docker-maven-plugin.version>0.16.8</fabric8-docker-maven-plugin.version>
       <xvp-test-automation.version>1.3.0-SNAPSHOT</xvp-test-automation.version>
+      <guava.version>23.0</guava.version>
 
-      <cats.version>4.2.0</cats.version>
+      <cats.version>4.8.0</cats.version>
+      <jersey-client.version>2.27</jersey-client.version>
       <slf4j.version>1.7.18</slf4j.version>
    </properties>
 
@@ -65,7 +67,14 @@
 
    <dependencyManagement>
         <dependencies>
-            <!-- Domain package dependencies -->
+            <!-- Manually added dependency to avoid version conflicts -->
+           <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+           </dependency>
+
+           <!-- Domain package dependencies -->
            <dependency>
                 <groupId>com.frequentis.xvp.voice.phone</groupId>
                 <artifactId>cats-websocket-dto</artifactId>

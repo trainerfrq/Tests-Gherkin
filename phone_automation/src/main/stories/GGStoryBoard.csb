@@ -676,19 +676,19 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferToTargetHavingCallOnHoldWithTransferee.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferToTargetHavingCallOnHoldWithTransferor.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferWithConsultation.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
@@ -712,7 +712,7 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferorAcceptCallWhileTransferInProgress.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
@@ -763,12 +763,6 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>deploy/SaveLogs.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
                 </cats:storyList>
@@ -790,12 +784,6 @@
                     </cats:report>
                     <cats:reports/>
                     <cats:stories>
-                        <cats:story enabled="true">
-                            <cats:storyPath>deploy/DeployOpVoice.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>deploy/DeployHmi.story</cats:storyPath>
                             <cats:storyParameters/>
@@ -1142,12 +1130,6 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
-                            <cats:storyPath>deploy/SaveLogs.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
                             <cats:storyPath>deploy/HmiCleanup.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
@@ -1159,5 +1141,5 @@
             </cats:storyLists>
         </cats:storyCollection>
     </cats:storyCollections>
-    <cats:webCenterURL>http://10.254.56.242:8081/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880</cats:webCenterURL>
+    <cats:webCenterURL>http://10.254.56.242:8081/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880</cats:webCenterURL>
 </cats:storyBoard>
