@@ -20,11 +20,11 @@ Scenario: Caller establishes an outgoing call
 When HMI OP1 presses DA key ROLE1(as OP1)
 Then HMI OP1 has the DA key ROLE1(as OP1) in state out_ringing
 
-Scenario: Op1 client receives the incoming call
+Scenario: Op1 client verifies the outgoing call
 Then HMI OP1 has the call queue item Role1-OP1 in state out_ringing
 
-Scenario: Op1 client verifies the outgoing call
-Then HMI OP1 has the call queue item OP1-Role1 in state ringing
+Scenario: Op1 client verifies that it does not receive the incoming call
+Then HMI OP1 has in the call queue a number of 1 calls
 
 Scenario: Op3 client receives the incoming call
 Then HMI OP3 has the call queue item OP1-Role1 in state ringing
