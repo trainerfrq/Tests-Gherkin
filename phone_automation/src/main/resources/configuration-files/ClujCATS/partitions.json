@@ -9,16 +9,20 @@
           "audioAppUri": "ws://192.168.40.95:8805/ctrlif"
         }
       ],
-      "audioServiceConnections": [
-        {
-          "mediaPlane": "A",
-          "uri": "ws://192.168.40.116:8805/ctrlif"
-        },
-        {
-          "mediaPlane": "B",
-          "uri": "ws://192.168.40.115:8805/ctrlif"
-        }
-      ]
+      "audioServiceConnections": {
+        "connectionTimeout": 2000,
+        "requestTimeout": 1000,
+        "connections": [
+          {
+            "mediaPlane": "A",
+            "uri": "ws://172.1.1.1:8805/ctrlif"
+          },
+          {
+            "mediaPlane": "B",
+            "uri": "ws://172.1.1.2:8805/ctrlif"
+          }
+        ]
+      }
     },
     {
       "partitionKey": "cj-gg-cat-cwp-3",
@@ -29,16 +33,20 @@
           "audioAppUri": "ws://192.168.40.96:8805/ctrlif"
         }
       ],
-      "audioServiceConnections": [
-        {
-          "mediaPlane": "A",
-          "uri": "ws://192.168.40.116:8805/ctrlif"
-        },
-        {
-          "mediaPlane": "B",
-          "uri": "ws://192.168.40.115:8805/ctrlif"
-        }
-      ]
+      "audioServiceConnections": {
+        "connectionTimeout": 2000,
+        "requestTimeout": 1000,
+        "connections": [
+          {
+            "mediaPlane": "A",
+            "uri": "ws://172.1.1.1:8805/ctrlif"
+          },
+          {
+            "mediaPlane": "B",
+            "uri": "ws://172.1.1.2:8805/ctrlif"
+          }
+        ]
+      }
     },
     {
       "partitionKey": "cj-gg-cat-cwp-1",
@@ -49,16 +57,20 @@
           "audioAppUri": "ws://192.168.40.94:8805/ctrlif"
         }
       ],
-      "audioServiceConnections": [
-        {
-          "mediaPlane": "A",
-          "uri": "ws://192.168.40.116:8805/ctrlif"
-        },
-        {
-          "mediaPlane": "B",
-          "uri": "ws://192.168.40.115:8805/ctrlif"
-        }
-      ]
+      "audioServiceConnections": {
+        "connectionTimeout": 2000,
+        "requestTimeout": 1000,
+        "connections": [
+          {
+            "mediaPlane": "A",
+            "uri": "ws://172.1.1.1:8805/ctrlif"
+          },
+          {
+            "mediaPlane": "B",
+            "uri": "ws://172.1.1.2:8805/ctrlif"
+          }
+        ]
+      }
     }
   ]
 }
