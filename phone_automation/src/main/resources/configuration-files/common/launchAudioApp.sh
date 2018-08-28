@@ -11,4 +11,4 @@ docker run \
 -e NET_DATA=${audio_app_network_ip} \
 -e NET_AUDIO=${audio_app_network_ip} \
 --restart unless-stopped \
-artidocker.frequentis.frq/fcsc-audio/xvp-audio-service:0.2.1
+artidocker.frequentis.frq/fcsc-audio/xvp-audio-service:0.4.0
