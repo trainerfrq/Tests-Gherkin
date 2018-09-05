@@ -18,3 +18,9 @@ Given the DA keys:
 | HMI OP3 | OP1(as OP3)           | 103 |
 | HMI OP3 | OP2(as OP3)           | 101 |
 | HMI OP3 | IA - OP2(as OP3)      | 108 |
+
+Given the function keys:
+| key         | id |
+| PHONEBOOK   | f1 |
+| CALLHISTORY | f2 |
+| MISSIONS    | f3 |

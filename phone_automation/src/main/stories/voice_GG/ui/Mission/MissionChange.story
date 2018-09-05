@@ -1,0 +1,16 @@
+Narrative:
+As a caller operator having an active mission
+I want to change mission
+So I can verify that I can access other missions
+
+Scenario: Booking profiles
+Given booked profiles:
+| profile | group | host           | identifier |
+| javafx  | hmi   | <<CLIENT1_IP>> | HMI OP1    |
+
+Scenario: Verify operator mission
+Then HMI OP1 has the assigned mission $mission
+
+Scenario: Change mission
+When HMI OP1 presses function key mission
+Then HMI OP1 has a list of 3 missions available

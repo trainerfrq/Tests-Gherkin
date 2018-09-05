@@ -18,6 +18,7 @@ package com.frequentis.xvp.voice.test.automation.phone.step;
 
 import java.util.List;
 
+import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
 import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Aliases;
 import org.jbehave.core.annotations.Given;
@@ -32,16 +33,7 @@ import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
 import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
 
-import scripts.cats.hmi.ClickCallQueueItem;
-import scripts.cats.hmi.ClickDAButton;
-import scripts.cats.hmi.DragAndClickOnMenuButtonDAKey;
-import scripts.cats.hmi.DragAndClickOnMenuButtonFirstCallQueueItem;
-import scripts.cats.hmi.VerifyCallQueueItemLabel;
-import scripts.cats.hmi.VerifyCallQueueItemStateIfPresent;
-import scripts.cats.hmi.VerifyCallQueueItemStyleClass;
-import scripts.cats.hmi.VerifyCallQueueLength;
-import scripts.cats.hmi.VerifyDAButtonState;
-import scripts.cats.hmi.VerifyTransferState;
+import scripts.cats.hmi.*;
 
 public class UISteps extends AutomationSteps
 {
@@ -84,6 +76,21 @@ public class UISteps extends AutomationSteps
    }
 
 
+    @Given("the function keys: $functionKeys")
+    public void defineFunctionKeys( final List<FunctionKey> functionKeys )
+    {
+        final LocalStep localStep = localStep( "Define function keys" );
+        for ( final FunctionKey functionKey : functionKeys )
+        {
+            final String key = functionKey.getKey();
+            setStoryListData( key, functionKey );
+            localStep.details( ExecutionDetails.create( "Define function key" ).usedData( key, functionKey ) );
+        }
+
+        record( localStep );
+    }
+
+
    @Given("the call queue items: $callQueueItems")
    public void defineCallQueueItems( final List<CallQueueItem> callQueueItems )
    {
@@ -115,6 +122,17 @@ public class UISteps extends AutomationSteps
             .scriptOn( profileScriptResolver().map( ClickDAButton.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
             .input( ClickDAButton.IPARAM_DA_KEY_ID, daKey.getId() ) );
+   }
+
+   @When("$profileName presses function key $type")
+   public void clickFunctionKey(final String profileName, final String type)
+   {
+      FunctionKey functionKey = retrieveFunctionKey(type);
+
+      evaluate( remoteStep("Click on a function key")
+             .scriptOn( profileScriptResolver().map( ClickFunctionButton.class, BookableProfileName.javafx),
+                    assertProfile(profileName))
+              .input( ClickFunctionButton.IPARAM_FUNCTION_KEY_ID, functionKey.getId() ) );
    }
 
 
@@ -333,6 +351,22 @@ public class UISteps extends AutomationSteps
                   .success( nrOfMatchingCallQueueItems == 1 ) ) );
    }
 
+   @Then("$profileName has the assigned mission $mission")
+   public void verifyAssignedMission(final String profileName, final String mission){
+       evaluate( remoteStep( "Verify that the user has the correct assigned mission" )
+               .scriptOn( profileScriptResolver().map( VerifyStatusDisplay.class, BookableProfileName.javafx ),
+                       assertProfile( profileName ) )
+               .input( VerifyStatusDisplay.IPARAM_STATUS_DISPLAY_TEXT, mission ) );
+   }
+
+    @Then("$profileName has a list of $numberOfMissions missions available")
+    public void verifyListofAvailableMissions(final String profileName, final String numberOfMissions){
+        evaluate( remoteStep( "Verify that the user has the correct list of missions" )
+                .scriptOn( profileScriptResolver().map( VerifyMissionList.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input( VerifyMissionList.IPARAM_MISSION_LIST_SIZE, numberOfMissions ) );
+    }
+
 
    private DAKey retrieveDaKey( final String source, final String target )
    {
@@ -340,6 +374,16 @@ public class UISteps extends AutomationSteps
       evaluate( localStep( "Check DA key" ).details( ExecutionDetails.create( "Verify DA key is defined" )
             .usedData( "source", source ).usedData( "target", target ).success( daKey != null ) ) );
       return daKey;
+   }
+
+   private FunctionKey retrieveFunctionKey(final String key)
+   {
+      final FunctionKey functionKey = getStoryListData (key, FunctionKey.class);
+      evaluate(localStep("Check Function Key")
+                 .details(ExecutionDetails.create("Verify Function key is defined")
+                 .usedData("key", key)
+                 .success(functionKey.getId()!=null)));
+      return functionKey;
    }
 
 
