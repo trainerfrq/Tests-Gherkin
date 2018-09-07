@@ -10,7 +10,21 @@
     "iaCallTimeoutMilliseconds": 5000,
     "maxIncomingIaCallsCount": 3,
     "priorityCallHandling": "indication",
-    "priorityCallIntrusionWarningPeriod": 0
+    "priorityCallIntrusionWarningPeriod": 0,
+    "missionAssignedCallRouteSelectors": [
+      {
+        "id": "default",
+        "name": "Default",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:{user_input}@example.com"
+      },
+      {
+        "id": "none",
+        "name": "None",
+        "patternType": "replacePlaceholder",
+        "pattern": "{user_input}"
+      }
+    ]
   },
   {
     "missionId": "e43bacf4-9e67-42ea-ac39-4e30e2583809",
@@ -24,7 +38,21 @@
     "maxIncomingIaCallsCount": 1,
     "maxCallsOnHold": 1,
     "priorityCallHandling": "indication",
-    "priorityCallIntrusionWarningPeriod": 0
+    "priorityCallIntrusionWarningPeriod": 0,
+    "missionAssignedCallRouteSelectors": [
+      {
+        "id": "default",
+        "name": "Default",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:{user_input}@example.com"
+      },
+      {
+        "id": "none",
+        "name": "None",
+        "patternType": "replacePlaceholder",
+        "pattern": "{user_input}"
+      }
+    ]
   },
   {
     "missionId": "e8faa015-ad4d-4d11-b403-b9e4983cbf74",
@@ -37,6 +65,20 @@
     "iaCallTimeoutMilliseconds": 1000,
     "maxIncomingIaCallsCount": 3,
     "priorityCallHandling": "indication",
-    "priorityCallIntrusionWarningPeriod": 0
+    "priorityCallIntrusionWarningPeriod": 0,
+    "missionAssignedCallRouteSelectors": [
+      {
+        "id": "default",
+        "name": "Default",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:{user_input}@example.com"
+      },
+      {
+        "id": "none",
+        "name": "None",
+        "patternType": "replacePlaceholder",
+        "pattern": "{user_input}"
+      }
+    ]
   }
 ]

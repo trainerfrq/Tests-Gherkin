@@ -16,9 +16,10 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
 import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Aliases;
 import org.jbehave.core.annotations.Given;
@@ -31,34 +32,66 @@ import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
+import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
 import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
+import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
 
-import scripts.cats.hmi.*;
+import scripts.cats.hmi.ClickActivateMission;
+import scripts.cats.hmi.ClickCallQueueItem;
+import scripts.cats.hmi.ClickDAButton;
+import scripts.cats.hmi.ClickFunctionKey;
+import scripts.cats.hmi.ClickOnCallHistoryCallButton;
+import scripts.cats.hmi.ClickOnPhoneBookCallButton;
+import scripts.cats.hmi.ClickOnRedialCallButton;
+import scripts.cats.hmi.DragAndClickOnMenuButtonDAKey;
+import scripts.cats.hmi.DragAndClickOnMenuButtonFirstCallQueueItem;
+import scripts.cats.hmi.SelectCallHistoryEntry;
+import scripts.cats.hmi.SelectCallRouteSelector;
+import scripts.cats.hmi.SelectMissionFromList;
+import scripts.cats.hmi.SelectPhoneBookEntry;
+import scripts.cats.hmi.ToggleCallPriority;
+import scripts.cats.hmi.VerifyCallQueueItemLabel;
+import scripts.cats.hmi.VerifyCallQueueItemStateIfPresent;
+import scripts.cats.hmi.VerifyCallQueueItemStyleClass;
+import scripts.cats.hmi.VerifyCallQueueLength;
+import scripts.cats.hmi.VerifyDAButtonState;
+import scripts.cats.hmi.VerifyMissionList;
+import scripts.cats.hmi.VerifyStatusDisplay;
+import scripts.cats.hmi.VerifyTransferState;
+import scripts.cats.hmi.WriteInPhoneBookTextBox;
 
 public class UISteps extends AutomationSteps
 {
 
-   public static final String CONCAT_CHAR = "_";
+   private static final String CONCAT_CHAR = "_";
 
-   public static final String CALL_QUEUE_ITEM = "_callQueueItem";
+   private static final String CALL_QUEUE_ITEM = "_callQueueItem";
 
-   public static final String HOLD_MENU_BUTTON_ID = "hold_call_menu_button";
+   private static final String HOLD_MENU_BUTTON_ID = "hold_call_menu_button";
 
-   public static final String TRANSFER_MENU_BUTTON_ID = "transfer_call_menu_button";
+   private static final String TRANSFER_MENU_BUTTON_ID = "transfer_call_menu_button";
 
-   public static final String PRIORITY_CALL_MENU_BUTTON_ID = "priority_call_menu_button";
+   private static final String PRIORITY_CALL_MENU_BUTTON_ID = "priority_call_menu_button";
 
-   public static final String DECLINE_CALL_MENU_BUTTON_ID = "decline_call_menu_button";
+   private static final String DECLINE_CALL_MENU_BUTTON_ID = "decline_call_menu_button";
 
-   public static final String PRIORITY_CALL_STYLE_CLASS_NAME = "priority";
+   private static final String PRIORITY_CALL_STYLE_CLASS_NAME = "priority";
 
-   public static final String ACTIVE_LIST_NAME = "activeList";
+   private static final String ACTIVE_LIST_NAME = "activeList";
 
-   public static final String WAITING_LIST_NAME = "waitingList";
+   private static final String WAITING_LIST_NAME = "waitingList";
 
-   public static final String IA_CALL_TYPE = "ia";
+   private static final String IA_CALL_TYPE = "ia";
 
-   public static final String CALL_CONDITIONAL_FLAG = "xfr";
+   private static final String CALL_CONDITIONAL_FLAG = "xfr";
+
+   private static final Map<String, String> CALL_QUEUE_LIST_MAP = new HashMap<>();
+
+   static
+   {
+      CALL_QUEUE_LIST_MAP.put( "waiting", ACTIVE_LIST_NAME );
+      CALL_QUEUE_LIST_MAP.put( "active", WAITING_LIST_NAME );
+   }
 
 
    @Given("the DA keys: $daKeys")
@@ -76,19 +109,35 @@ public class UISteps extends AutomationSteps
    }
 
 
-    @Given("the function keys: $functionKeys")
-    public void defineFunctionKeys( final List<FunctionKey> functionKeys )
-    {
-        final LocalStep localStep = localStep( "Define function keys" );
-        for ( final FunctionKey functionKey : functionKeys )
-        {
-            final String key = functionKey.getKey();
-            setStoryListData( key, functionKey );
-            localStep.details( ExecutionDetails.create( "Define function key" ).usedData( key, functionKey ) );
-        }
+   @Given("the function keys: $functionKeys")
+   public void defineFunctionKeys( final List<FunctionKey> functionKeys )
+   {
+      final LocalStep localStep = localStep( "Define function keys" );
+      for ( final FunctionKey functionKey : functionKeys )
+      {
+         final String key = functionKey.getKey();
+         setStoryListData( key, functionKey );
+         localStep.details( ExecutionDetails.create( "Define function key" ).usedData( key, functionKey ) );
+      }
 
-        record( localStep );
-    }
+      record( localStep );
+   }
+
+
+   @Given("the call route selectors: $callRouteSelectors")
+   public void defineCallRouteSelectors( final List<CallRouteSelector> callRouteSelectors )
+   {
+      final LocalStep localStep = localStep( "Define call route selector" );
+      for ( final CallRouteSelector callRouteSelector : callRouteSelectors )
+      {
+         final String key = callRouteSelector.getKey();
+         setStoryListData( key, callRouteSelector );
+         localStep
+               .details( ExecutionDetails.create( "Define call route selector" ).usedData( key, callRouteSelector ) );
+      }
+
+      record( localStep );
+   }
 
 
    @Given("the call queue items: $callQueueItems")
@@ -124,15 +173,96 @@ public class UISteps extends AutomationSteps
             .input( ClickDAButton.IPARAM_DA_KEY_ID, daKey.getId() ) );
    }
 
-   @When("$profileName presses function key $type")
-   public void clickFunctionKey(final String profileName, final String type)
-   {
-      FunctionKey functionKey = retrieveFunctionKey(type);
 
-      evaluate( remoteStep("Click on a function key")
-             .scriptOn( profileScriptResolver().map( ClickFunctionButton.class, BookableProfileName.javafx),
-                    assertProfile(profileName))
-              .input( ClickFunctionButton.IPARAM_FUNCTION_KEY_ID, functionKey.getId() ) );
+   @When("$profileName presses function key $type")
+   public void clickFunctionKey( final String profileName, final String type )
+   {
+      FunctionKey functionKey = retrieveFunctionKey( type );
+
+      evaluate( remoteStep( "Click on a function key" )
+            .scriptOn( profileScriptResolver().map( ClickFunctionKey.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( ClickFunctionKey.IPARAM_FUNCTION_KEY_ID, functionKey.getId() ) );
+   }
+
+
+   @When("$profileName writes in phonebook text box the address: $address")
+   public void writeInPhoneBookTextBox( final String profileName, final String address )
+   {
+      evaluate(
+            remoteStep( "Write in phonebook text box" )
+                  .scriptOn( profileScriptResolver().map( WriteInPhoneBookTextBox.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                  .input( WriteInPhoneBookTextBox.IPARAM_SEARCH_BOX_TEXT, address ) );
+   }
+
+
+   @When("$profileName selects phonebook entry number: $entryNumber")
+   public void selectPhoneBookEntry( final String profileName, final Integer entryNumber )
+   {
+      evaluate( remoteStep( "Select phone book entry" )
+            .scriptOn( profileScriptResolver().map( SelectPhoneBookEntry.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( SelectPhoneBookEntry.IPARAM_PHONEBOOK_ENTRY_NUMBER, entryNumber ) );
+   }
+
+
+   @When("$profileName selects call history list entry number: $entryNumber")
+   public void selectCallHistoryEntry( final String profileName, final Integer entryNumber )
+   {
+      evaluate( remoteStep( "Select call history list entry" )
+            .scriptOn( profileScriptResolver().map( SelectCallHistoryEntry.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( SelectCallHistoryEntry.IPARAM_CALL_HISTORY_ENTRY_NUMBER, entryNumber ) );
+   }
+
+
+   @When("$profileName toggles call priority")
+   public void toggleCallPriority( final String profileName )
+   {
+      evaluate( remoteStep( "Toggle call priority" ).scriptOn(
+            profileScriptResolver().map( ToggleCallPriority.class, BookableProfileName.javafx ),
+            assertProfile( profileName ) ) );
+   }
+
+
+   @When("$profileName selects call route selector: $callRouteSelector")
+   public void selectCallRouteSelector( final String profileName, final String callRouteSelector )
+   {
+      evaluate( remoteStep( "Select call route selector" )
+            .scriptOn( profileScriptResolver().map( WriteInPhoneBookTextBox.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( SelectCallRouteSelector.IPARAM_CALL_ROUTE_SELECTOR_ID, callRouteSelector ) );
+   }
+
+
+   @When("$profileName initiates a call from the $functionPopup")
+   public void initiateCallFromPhoneBook( final String profileName, final String functionPopup )
+   {
+      switch ( functionPopup )
+      {
+         case "phonebook":
+            evaluate( remoteStep( "Initiate call from phonebook" ).scriptOn(
+                  profileScriptResolver().map( ClickOnPhoneBookCallButton.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) ) );
+            break;
+         case "call history":
+            evaluate( remoteStep( "Initiate call from call history" ).scriptOn(
+                  profileScriptResolver().map( ClickOnCallHistoryCallButton.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) ) );
+            break;
+         default:
+            break;
+      }
+   }
+
+
+   @When("$profileName redials last number")
+   public void redialLastNumber( final String profileName )
+   {
+      evaluate( remoteStep( "Redial last number" ).scriptOn(
+            profileScriptResolver().map( ClickOnRedialCallButton.class, BookableProfileName.javafx ),
+            assertProfile( profileName ) ) );
    }
 
 
@@ -210,9 +340,9 @@ public class UISteps extends AutomationSteps
    }
 
 
-   @Then("$profileName has the call queue item $callQueueItem in the waiting list with label $label")
+   @Then("$profileName has the call queue item $callQueueItem in the $callQueueList list with label $label")
    public void verifyCallQueueItemLabelActiveList( final String profileName, final String namedCallQueueItem,
-         final String label )
+         final String callQueueList, final String label )
    {
       CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
 
@@ -221,13 +351,14 @@ public class UISteps extends AutomationSteps
                   assertProfile( profileName ) )
             .input( VerifyCallQueueItemLabel.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
             .input( VerifyCallQueueItemLabel.IPARAM_DISPLAY_NAME, label )
-            .input( VerifyCallQueueItemLabel.IPARAM_LIST_NAME, WAITING_LIST_NAME ) );
+            .input( VerifyCallQueueItemLabel.IPARAM_LIST_NAME, CALL_QUEUE_LIST_MAP.get( callQueueList ) ) );
    }
 
 
    @Then("$profileName accepts the call queue item $callQueueItem")
    @Aliases(values = { "$profileName cancels the call queue item $callQueueItem",
-         "$profileName retrieves from hold the call queue item $callQueueItem" })
+         "$profileName retrieves from hold the call queue item $callQueueItem",
+         "$profileName terminates the call queue item $callQueueItem" })
    public void clickCallQueueItem( final String profileName, final String namedCallQueueItem )
    {
       CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
@@ -351,35 +482,45 @@ public class UISteps extends AutomationSteps
                   .success( nrOfMatchingCallQueueItems == 1 ) ) );
    }
 
+
    @Then("$profileName has the assigned mission $mission")
-   public void verifyAssignedMission(final String profileName, final String mission){
-       evaluate( remoteStep( "Verify that the user has the correct assigned mission" )
-               .scriptOn( profileScriptResolver().map( VerifyStatusDisplay.class, BookableProfileName.javafx ),
-                       assertProfile( profileName ) )
-               .input( VerifyStatusDisplay.IPARAM_STATUS_DISPLAY_TEXT, mission ) );
+   public void verifyAssignedMission( final String profileName, final String mission )
+   {
+      evaluate(
+            remoteStep( "Verify that the user has the correct assigned mission" )
+                  .scriptOn( profileScriptResolver().map( VerifyStatusDisplay.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                  .input( VerifyStatusDisplay.IPARAM_STATUS_DISPLAY_TEXT, mission ) );
    }
 
-    @Then("$profileName has a list of $numberOfMissions missions available")
-    public void verifyListofAvailableMissions(final String profileName, final String numberOfMissions){
-        evaluate( remoteStep( "Verify that the user has the correct list of missions" )
-                .scriptOn( profileScriptResolver().map( VerifyMissionList.class, BookableProfileName.javafx ),
-                        assertProfile( profileName ) )
-                .input( VerifyMissionList.IPARAM_MISSION_LIST_SIZE, numberOfMissions ) );
-    }
 
-    @Then("$profileName changes current mission to mission $mission")
-    public void changeMission(final String profileName, final String mission){
-        evaluate( remoteStep( "user selects mission: " +mission )
-                .scriptOn( profileScriptResolver().map( SelectMissionFromList.class, BookableProfileName.javafx ),
+   @Then("$profileName has a list of $numberOfMissions missions available")
+   public void verifyListofAvailableMissions( final String profileName, final String numberOfMissions )
+   {
+      evaluate( remoteStep( "Verify that the user has the correct list of missions" )
+            .scriptOn( profileScriptResolver().map( VerifyMissionList.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyMissionList.IPARAM_MISSION_LIST_SIZE, numberOfMissions ) );
+   }
+
+
+   @Then("$profileName changes current mission to mission $mission")
+   public void changeMission( final String profileName, final String mission )
+   {
+      evaluate(
+            remoteStep( "user selects mission: " + mission )
+                  .scriptOn( profileScriptResolver().map( SelectMissionFromList.class, BookableProfileName.javafx ),
                         assertProfile( profileName ) )
-                .input( SelectMissionFromList.IPARAM_MISSION_LIST_ITEM, mission ));
-    }
+                  .input( SelectMissionFromList.IPARAM_MISSION_LIST_ITEM, mission ) );
+   }
+
 
    @Then("$profileName press button Activate Mission")
-   public void clickActivateMission(final String profileName){
-      evaluate( remoteStep( "user clicks Activate Mission")
-              .scriptOn( profileScriptResolver().map( ClickActivateMission.class, BookableProfileName.javafx ),
-                      assertProfile( profileName ) ));
+   public void clickActivateMission( final String profileName )
+   {
+      evaluate( remoteStep( "user clicks Activate Mission" ).scriptOn(
+            profileScriptResolver().map( ClickActivateMission.class, BookableProfileName.javafx ),
+            assertProfile( profileName ) ) );
    }
 
 
@@ -391,19 +532,18 @@ public class UISteps extends AutomationSteps
       return daKey;
    }
 
-   private FunctionKey retrieveFunctionKey(final String key)
+
+   private FunctionKey retrieveFunctionKey( final String key )
    {
-      final FunctionKey functionKey = getStoryListData (key, FunctionKey.class);
-      evaluate(localStep("Check Function Key")
-                 .details(ExecutionDetails.create("Verify Function key is defined")
-                 .usedData("key", key)
-                 .success(functionKey.getId()!=null)));
+      final FunctionKey functionKey = getStoryListData( key, FunctionKey.class );
+      evaluate( localStep( "Check Function Key" ).details( ExecutionDetails.create( "Verify Function key is defined" )
+            .usedData( "key", key ).success( functionKey.getId() != null ) ) );
       return functionKey;
    }
 
 
    private String reformatSipUris( final String sipUri )
    {
-      return sipUri.replaceAll( "[.,:]", CONCAT_CHAR );
+      return sipUri != null ? sipUri.replaceAll( "[.,:]", CONCAT_CHAR ) : "";
    }
 }

@@ -5,7 +5,7 @@ import java.io.Serializable;
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameter;
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameterBase;
 
-public class FunctionKey extends CatsCustomParameterBase implements Serializable
+public class CallRouteSelector extends CatsCustomParameterBase implements Serializable
 {
 
    @CatsCustomParameter
@@ -27,6 +27,6 @@ public class FunctionKey extends CatsCustomParameterBase implements Serializable
    @Override
    public String toString()
    {
-      return "FunctionKey{" + "id='" + id + '\'' + '}';
+      return "CallRouteSelector{" + "id='" + id + '\'' + '}';
    }
 }

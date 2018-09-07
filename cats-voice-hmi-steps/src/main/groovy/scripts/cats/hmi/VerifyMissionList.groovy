@@ -6,8 +6,6 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-
-
 class VerifyMissionList extends FxScriptTemplate {
     private static final Logger LOGGER = LoggerFactory.getLogger(VerifyMissionList.class);
 
@@ -16,7 +14,7 @@ class VerifyMissionList extends FxScriptTemplate {
     @Override
     void script() {
 
-        Integer missionListSize = assertInput (IPARAM_MISSION_LIST_SIZE) as Integer
+        Integer missionListSize = assertInput(IPARAM_MISSION_LIST_SIZE) as Integer
 
         Node missionPopup = robot.lookup("#missionPopup").queryFirst();
 
@@ -24,8 +22,8 @@ class VerifyMissionList extends FxScriptTemplate {
                 .expected("missionPopup is not null")
                 .success(missionPopup != null));
 
-        if(missionPopup != null){
-            final Set<Node> missionItems = robot.lookup( "#missionPopup #missionList .missionListItem" ).queryAll();
+        if (missionPopup != null) {
+            final Set<Node> missionItems = robot.lookup("#missionPopup #missionList .missionListItem").queryAll();
             evaluate(ExecutionDetails.create("Mission list size is the expected one")
                     .received(missionItems.size().toString())
                     .expected(IPARAM_MISSION_LIST_SIZE)

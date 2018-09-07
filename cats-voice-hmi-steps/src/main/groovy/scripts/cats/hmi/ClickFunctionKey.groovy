@@ -6,8 +6,8 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class ClickFunctionButton extends FxScriptTemplate {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ClickFunctionButton.class);
+class ClickFunctionKey extends FxScriptTemplate {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ClickFunctionKey.class);
 
     public static final String IPARAM_FUNCTION_KEY_ID = "function_key_id";
 
@@ -24,7 +24,7 @@ class ClickFunctionButton extends FxScriptTemplate {
 
         if (functionKeyId != null) {
             robot.clickOn(robot.point(functionKeyWidget));
-            LOGGER.debug("Click on Mission key: [{}]", functionKeyWidget);
+            LOGGER.debug("Click on function key: [{}]", functionKeyWidget);
         }
     }
 }
