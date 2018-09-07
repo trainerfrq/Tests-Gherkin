@@ -2,7 +2,6 @@ package scripts.cats.hmi
 
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
-import javafx.scene.control.ListView
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import scripts.agent.testfx.automation.FxScriptTemplate
@@ -19,7 +18,7 @@ class VerifyMissionList extends FxScriptTemplate {
 
         Integer missionListSize = assertInput (IPARAM_MISSION_LIST_SIZE) as Integer
 
-        Node missionPopup = robot.lookup("missionPopup").queryFirst();
+        Node missionPopup = robot.lookup("#missionPopup").queryFirst();
 
         evaluate(ExecutionDetails.create("Mission popup was found")
                 .expected("missionPopup is not null")
@@ -31,8 +30,6 @@ class VerifyMissionList extends FxScriptTemplate {
                     .received(missionItems.size().toString())
                     .expected(IPARAM_MISSION_LIST_SIZE)
                     .success(missionItems.size().equals(missionListSize)));
-           // final ListView items = robot.lookup("#missionPopup #missionList").queryFirst()
-           // items.getSelectionModel().selectFirst()
         }
     }
 }

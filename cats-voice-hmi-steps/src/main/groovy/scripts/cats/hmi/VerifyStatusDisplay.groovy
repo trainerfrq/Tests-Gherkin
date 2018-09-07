@@ -1,6 +1,7 @@
 package scripts.cats.hmi
 
 import com.frequentis.c4i.test.model.ExecutionDetails
+import javafx.scene.control.Label
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import scripts.agent.testfx.automation.FxScriptTemplate
@@ -16,18 +17,18 @@ class VerifyStatusDisplay extends FxScriptTemplate {
 
         String text = assertInput (IPARAM_STATUS_DISPLAY_TEXT) as String;
 
-        Node statusDisplay = robot.lookup("status1").queryFirst();
+        Label statusDisplay = robot.lookup("#status1 #missionLabel").queryFirst();
 
         evaluate(ExecutionDetails.create("Status display was found")
                 .expected("statusDisplay is not null")
                 .success(statusDisplay != null));
 
         if(statusDisplay != null){
-            String textDisplay = statusDisplay.text()
+            String textDisplay = statusDisplay.textProperty().getValue()
             evaluate(ExecutionDetails.create("Status displays the expected mission")
                     .received("Expected text is: " + textDisplay)
                     .expected("Received text is: " + text)
-                    .success(textDisplay.contains(text)));
+                    .success(statusDisplay.textProperty().getValue().equals(text)));
         }
     }
 }

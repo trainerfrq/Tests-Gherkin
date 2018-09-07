@@ -367,6 +367,21 @@ public class UISteps extends AutomationSteps
                 .input( VerifyMissionList.IPARAM_MISSION_LIST_SIZE, numberOfMissions ) );
     }
 
+    @Then("$profileName changes current mission to mission $mission")
+    public void changeMission(final String profileName, final String mission){
+        evaluate( remoteStep( "user selects mission: " +mission )
+                .scriptOn( profileScriptResolver().map( SelectMissionFromList.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input( SelectMissionFromList.IPARAM_MISSION_LIST_ITEM, mission ));
+    }
+
+   @Then("$profileName press button Activate Mission")
+   public void clickActivateMission(final String profileName){
+      evaluate( remoteStep( "user clicks Activate Mission")
+              .scriptOn( profileScriptResolver().map( ClickActivateMission.class, BookableProfileName.javafx ),
+                      assertProfile( profileName ) ));
+   }
+
 
    private DAKey retrieveDaKey( final String source, final String target )
    {
