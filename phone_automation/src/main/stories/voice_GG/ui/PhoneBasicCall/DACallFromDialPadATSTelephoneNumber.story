@@ -26,6 +26,7 @@ When HMI OP1 writes in phonebook text box the address: 222222
 
 Scenario: Caller hits phonebook call button
 When HMI OP1 initiates a call from the phonebook
+Then waiting for 1 second
 
 Scenario: Call is initiated
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing

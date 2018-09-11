@@ -22,7 +22,7 @@ Scenario: Caller selects call route selector
 When HMI OP1 selects call route selector: None
 
 Scenario: Caller selects item from phonebook
-When HMI OP1 selects phonebook entry number: 2
+When HMI OP1 selects phonebook entry number: 1
 
 Scenario: Caller hits phonebook call button
 When HMI OP1 initiates a call from the phonebook

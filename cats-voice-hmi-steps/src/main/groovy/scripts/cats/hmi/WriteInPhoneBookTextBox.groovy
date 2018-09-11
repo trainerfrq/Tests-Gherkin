@@ -3,12 +3,9 @@ package scripts.cats.hmi
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
 import javafx.scene.control.TextField
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 class WriteInPhoneBookTextBox extends FxScriptTemplate {
-    private static final Logger LOGGER = LoggerFactory.getLogger(WriteInPhoneBookTextBox.class);
 
     public static final String IPARAM_SEARCH_BOX_TEXT = "search_box_text"
 
@@ -30,7 +27,9 @@ class WriteInPhoneBookTextBox extends FxScriptTemplate {
                     .expected("Textfield is not null")
                     .success(textField != null))
 
+            robot.clickOn(robot.point(textField))
             robot.write(searchBoxText)
+
             evaluate(ExecutionDetails.create("Textfield has the desired text")
                     .expected(searchBoxText)
                     .received(textField.getText())

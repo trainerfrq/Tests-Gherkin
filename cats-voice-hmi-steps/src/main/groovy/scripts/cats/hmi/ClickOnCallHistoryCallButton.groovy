@@ -3,7 +3,6 @@ package scripts.cats.hmi
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.css.PseudoClass
 import javafx.scene.Node
-import javafx.scene.layout.Pane
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 class ClickOnCallHistoryCallButton extends FxScriptTemplate {
@@ -17,7 +16,7 @@ class ClickOnCallHistoryCallButton extends FxScriptTemplate {
                 .success(callHistoryPopup != null))
 
         if (callHistoryPopup != null) {
-            final Pane initiateCallButton = robot.lookup("#initiateCallButton").queryFirst()
+            final Node initiateCallButton = robot.lookup("#initiateCallButton").queryFirst()
 
             evaluate(ExecutionDetails.create("Call button was found")
                     .expected("Call button is not null")

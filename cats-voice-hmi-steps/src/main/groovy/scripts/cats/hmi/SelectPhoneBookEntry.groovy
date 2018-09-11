@@ -2,14 +2,10 @@ package scripts.cats.hmi
 
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 class SelectPhoneBookEntry extends FxScriptTemplate {
-    private static final Logger LOGGER = LoggerFactory.getLogger(SelectPhoneBookEntry.class);
-
-    public static final String IPARAM_PHONEBOOK_ENTRY_NUMBER = "call_route_selector_id"
+    public static final String IPARAM_PHONEBOOK_ENTRY_NUMBER = "phonebook_entry_number"
 
     @Override
     void script() {
@@ -23,13 +19,13 @@ class SelectPhoneBookEntry extends FxScriptTemplate {
                 .success(phoneBookPopup != null))
 
         if (phoneBookPopup != null) {
-            final Set<Node> phoneBookEntries = robot.lookup("#phonebookPopup .table-row-cell").queryAll()
+            final Node phoneBookEntry = robot.lookup("#phonebookTable .table-row-cell").selectAt(phoneBookEntryNumber).queryFirst()
 
             evaluate(ExecutionDetails.create("Phonebook entry number " + phoneBookEntryNumber + " was found")
                     .expected("Phonebook entry is not null")
-                    .success(phoneBookEntries[phoneBookEntryNumber] != null))
+                    .success(phoneBookEntry != null))
 
-            robot.clickOn(robot.point(phoneBookEntries[phoneBookEntryNumber]))
+            robot.clickOn(robot.point(phoneBookEntry))
         }
     }
 }

@@ -35,7 +35,7 @@ Scenario: OP1 opens call history
 When HMI OP1 presses function key CALLHISTORY
 
 Scenario: OP1 selects first entry from history
-When HMI OP1 selects call history list entry number: 1
+When HMI OP1 selects call history list entry number: 0
 
 Scenario: OP1 hits call history call button
 When HMI OP1 initiates a call from the call history

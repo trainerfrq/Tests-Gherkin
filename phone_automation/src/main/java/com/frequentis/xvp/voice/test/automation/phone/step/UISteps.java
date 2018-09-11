@@ -230,7 +230,7 @@ public class UISteps extends AutomationSteps
    public void selectCallRouteSelector( final String profileName, final String callRouteSelector )
    {
       evaluate( remoteStep( "Select call route selector" )
-            .scriptOn( profileScriptResolver().map( WriteInPhoneBookTextBox.class, BookableProfileName.javafx ),
+            .scriptOn( profileScriptResolver().map( SelectCallRouteSelector.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
             .input( SelectCallRouteSelector.IPARAM_CALL_ROUTE_SELECTOR_ID, callRouteSelector ) );
    }

@@ -3,7 +3,6 @@ package scripts.cats.hmi
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.css.PseudoClass
 import javafx.scene.Node
-import javafx.scene.layout.Pane
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 class ClickOnRedialCallButton extends FxScriptTemplate {
@@ -17,7 +16,7 @@ class ClickOnRedialCallButton extends FxScriptTemplate {
                 .success(callHistoryPopup != null))
 
         if (callHistoryPopup != null) {
-            final Pane redialCallButton = robot.lookup("#redialCallButton").queryFirst()
+            final Node redialCallButton = robot.lookup("#redialCallButton").queryFirst()
 
             evaluate(ExecutionDetails.create("Redial call button was found")
                     .expected("Redial call button is not null")
