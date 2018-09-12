@@ -15,7 +15,7 @@ class ClickActivateMission extends FxScriptTemplate {
         Button activateButton = robot.lookup("#missionPopup #activateMissionButton").queryFirst();
 
         evaluate(ExecutionDetails.create("Activate Mission button was found")
-                .expected("daWidget is not null")
+                .expected("activateButton is not null")
                 .success(activateButton != null));
 
         if (activateButton != null) {

@@ -1,7 +1,7 @@
 Narrative:
 As a caller operator having an active DA basic call with a callee operator
 I want to change mission
-So I can verify that the DA basic call is is not affected by this action
+So I can verify that the DA basic call is not affected by this action
 
 Meta: @AfterStory: ../includes/@SwitchToInitialMission.story
 
