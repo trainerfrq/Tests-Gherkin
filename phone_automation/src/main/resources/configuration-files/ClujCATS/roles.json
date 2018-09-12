@@ -210,8 +210,7 @@
         ]
       },
       "roleGridWidgetData": {
-        "grid": [
-        ]
+        "grid": []
       },
       "roleFunctionData": {
         "functionData": [
@@ -413,6 +412,11 @@
             "id": "118",
             "type": "ia",
             "grid": "applicationGrid"
+          },
+          {
+            "id": "119",
+            "type": "ia",
+            "grid": "applicationGrid"
           }
         ],
         "positions": [
@@ -513,12 +517,18 @@
             "row": 9,
             "columnSpan": 3,
             "rowSpan": 3
+          },
+          {
+            "id": "119",
+            "column": 6,
+            "row": 9,
+            "columnSpan": 3,
+            "rowSpan": 3
           }
         ]
       },
       "roleGridWidgetData": {
-        "grid": [
-        ]
+        "grid": []
       },
       "roleFunctionData": {
         "functionData": [
@@ -591,6 +601,12 @@
             "target": "sip:111111@example.com",
             "source": "sip:222222@example.com",
             "displayName": "IA - OP1"
+          },
+          {
+            "id": "119",
+            "target": "sip:222222@example.com",
+            "source": "sip:222222@example.com",
+            "displayName": "IA - OP2"
           }
         ]
       },

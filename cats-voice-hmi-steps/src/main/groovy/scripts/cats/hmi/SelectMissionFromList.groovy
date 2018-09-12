@@ -1,12 +1,8 @@
 package scripts.cats.hmi
 
-import com.frequentis.c4i.test.agent.DSLSupport
 import com.frequentis.c4i.test.model.ExecutionDetails
-import com.frequentis.c4i.test.util.timer.WaitCondition
-import com.frequentis.c4i.test.util.timer.WaitTimer
 import javafx.scene.Node
 import javafx.scene.control.ListView
-import javafx.scene.layout.Pane
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import scripts.agent.testfx.automation.FxScriptTemplate
@@ -25,16 +21,8 @@ class SelectMissionFromList extends FxScriptTemplate {
                 .expected("mission item exists")
                 .success(items != null));
 
-        items.getSelectionModel().select(missionListItem)
+        final Set<Node> missionItems = robot.lookup("#missionPopup #missionList .missionListItem").queryAll();
 
-        /*final Set<Node> missionItems = robot.lookup("#missionPopup #missionList .missionListItem").queryAll();
-        final List<Node> listOfItem = missionItems.collect()
-        final Node item = listOfItem.find().lookup(missionListItem)*/
-
-        /* if (item != null) {
-            robot.clickOn(robot.point(item));
-            LOGGER.debug("Click on specific mission: [{}]", item.toString());
-        }*/
-
+        robot.clickOn(robot.point(missionItems[missionListItem]))
     }
 }

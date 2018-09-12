@@ -358,7 +358,8 @@ public class UISteps extends AutomationSteps
    @Then("$profileName accepts the call queue item $callQueueItem")
    @Aliases(values = { "$profileName cancels the call queue item $callQueueItem",
          "$profileName retrieves from hold the call queue item $callQueueItem",
-         "$profileName terminates the call queue item $callQueueItem" })
+         "$profileName terminates the call queue item $callQueueItem",
+          "$profileName presses the call queue item $callQueueItem"})
    public void clickCallQueueItem( final String profileName, final String namedCallQueueItem )
    {
       CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );

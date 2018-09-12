@@ -16,7 +16,7 @@ When HMI OP1 presses function key MISSIONS
 Then HMI OP1 has a list of 3 missions available
 Then HMI OP1 changes current mission to mission 0
 Then HMI OP1 press button Activate Mission
-Then waiting for 10 seconds
+Then waiting for 5 seconds
 
 Scenario: Verify operator mission
 Then HMI OP1 has the assigned mission WEST-EXEC
@@ -24,9 +24,9 @@ Then HMI OP1 has the assigned mission WEST-EXEC
 Scenario: Change to previous mission
 When HMI OP1 presses function key MISSIONS
 Then HMI OP1 has a list of 3 missions available
-Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
+Then HMI OP1 changes current mission to mission 1
 Then HMI OP1 press button Activate Mission
-Then waiting for 10 seconds
+Then waiting for 5 seconds
 
 Scenario: Verify operator mission
 Then HMI OP1 has the assigned mission MAN-NIGHT-TACT
