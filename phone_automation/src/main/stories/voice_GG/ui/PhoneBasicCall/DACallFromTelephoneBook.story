@@ -25,9 +25,12 @@ Scenario: Caller selects item from phonebook
 When HMI OP1 selects phonebook entry number: 1
 
 Scenario: Caller hits phonebook call button
+		  @REQUIREMENTS:GID-2535749
+		  @REQUIREMENTS:GID-2536683
 When HMI OP1 initiates a call from the phonebook
 
 Scenario: Call is initiated
+		  @REQUIREMENTS:GID-2932446
 Then HMI OP1 has the call queue item OP3-OP1 in the active list with label Lloyd
 
 Scenario: Caller clears outgoing call

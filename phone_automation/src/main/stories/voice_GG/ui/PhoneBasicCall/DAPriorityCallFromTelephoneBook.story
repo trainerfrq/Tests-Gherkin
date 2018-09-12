@@ -28,9 +28,13 @@ Scenario: Caller toggles priority
 When HMI OP1 toggles call priority
 
 Scenario: Caller hits phonebook call button
+		  @REQUIREMENTS:GID-2535749
+		  @REQUIREMENTS:GID-2535757
+		  @REQUIREMENTS:GID-2536682
 When HMI OP1 initiates a call from the phonebook
 
 Scenario: Priority call is initiated
+		  @REQUIREMENTS:GID-2932446
 Then HMI OP1 has in the call queue the item OP3-OP1 with priority
 Then HMI OP1 has the call queue item OP3-OP1 in the active list with label Lloyd
 

@@ -25,9 +25,13 @@ Scenario: Caller writes target address in text box
 When HMI OP1 writes in phonebook text box the address: sip:222222@example.com
 
 Scenario: Caller hits phonebook call button
+		  @REQUIREMENTS:GID-4020711
+		  @REQUIREMENTS:GID-2535740
+		  @REQUIREMENTS:GID-2536683
 When HMI OP1 initiates a call from the phonebook
 
 Scenario: Call is initiated
+		  @REQUIREMENTS:GID-2535717
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
 Then HMI OP2 has the call queue item OP1-OP2 in state ringing
 

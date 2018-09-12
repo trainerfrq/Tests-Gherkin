@@ -24,15 +24,18 @@ When HMI OP1 selects call route selector: Default
 Scenario: Caller writes target address in text box
 When HMI OP1 writes in phonebook text box the address: 222222
 
+Scenario: Caller toggles call priority
+When HMI OP1 toggles call priority
+
 Scenario: Caller hits phonebook call button
 		  @REQUIREMENTS:GID-2535727
 		  @REQUIREMENTS:GID-2535740
 		  @REQUIREMENTS:GID-2536683
+		  @REQUIREMENTS:GID-2536682
 When HMI OP1 initiates a call from the phonebook
 Then waiting for 1 second
 
 Scenario: Call is initiated
-		  @REQUIREMENTS:GID-2932446
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
 Then HMI OP2 has the call queue item OP1-OP2 in state ringing
 
