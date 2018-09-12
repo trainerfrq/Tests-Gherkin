@@ -16,26 +16,6 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.jbehave.core.annotations.Alias;
-import org.jbehave.core.annotations.Aliases;
-import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
-
-import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
-import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
-import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
-import com.frequentis.c4i.test.model.ExecutionDetails;
-import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
-import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
-import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
-import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
-import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
-
 import scripts.cats.hmi.ClickActivateMission;
 import scripts.cats.hmi.ClickCallQueueItem;
 import scripts.cats.hmi.ClickDAButton;
@@ -59,6 +39,26 @@ import scripts.cats.hmi.VerifyMissionList;
 import scripts.cats.hmi.VerifyStatusDisplay;
 import scripts.cats.hmi.VerifyTransferState;
 import scripts.cats.hmi.WriteInPhoneBookTextBox;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.jbehave.core.annotations.Alias;
+import org.jbehave.core.annotations.Aliases;
+import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
+
+import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
+import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
+import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
+import com.frequentis.c4i.test.model.ExecutionDetails;
+import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
+import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
+import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
+import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
 
 public class UISteps extends AutomationSteps
 {
@@ -89,8 +89,8 @@ public class UISteps extends AutomationSteps
 
    static
    {
-      CALL_QUEUE_LIST_MAP.put( "waiting", ACTIVE_LIST_NAME );
-      CALL_QUEUE_LIST_MAP.put( "active", WAITING_LIST_NAME );
+      CALL_QUEUE_LIST_MAP.put( "waiting", WAITING_LIST_NAME );
+      CALL_QUEUE_LIST_MAP.put( "active", ACTIVE_LIST_NAME );
    }
 
 
