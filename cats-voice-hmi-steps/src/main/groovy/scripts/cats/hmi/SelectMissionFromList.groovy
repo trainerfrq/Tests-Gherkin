@@ -10,19 +10,20 @@ import scripts.agent.testfx.automation.FxScriptTemplate
 class SelectMissionFromList extends FxScriptTemplate {
     private static final Logger LOGGER = LoggerFactory.getLogger(SelectMissionFromList.class);
 
-    public static final String IPARAM_MISSION_LIST_ITEM = "mission_list_item"
+    public static final String IPARAM_MISSION_NAME = "mission_list_name"
 
     @Override
     void script() {
-        Integer missionListItem = assertInput(IPARAM_MISSION_LIST_ITEM) as Integer
+
+        String missionListName = assertInput(IPARAM_MISSION_NAME) as String
 
         final ListView items = robot.lookup("#missionPopup #missionList").queryFirst()
         evaluate(ExecutionDetails.create("Verify mission is the one expected:  " + items.toString())
                 .expected("mission item exists")
                 .success(items != null));
 
-        final Set<Node> missionItems = robot.lookup("#missionPopup #missionList .missionListItem").queryAll();
+        final Node mission = robot.lookup(missionListName).queryFirst()
+        robot.clickOn(robot.point(mission))
 
-        robot.clickOn(robot.point(missionItems[missionListItem]))
     }
 }

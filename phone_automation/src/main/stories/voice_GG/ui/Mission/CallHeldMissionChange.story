@@ -1,7 +1,7 @@
 Narrative:
 As a caller operator having a held call on my side
-I want to do a change mission actions
-So I can verify that calls are not affected by this action
+I want to do change mission actions
+So I can verify that calls are not affected by these actions
 
 Meta: @AfterStory: ../includes/@SwitchToInitialMission.story
 
@@ -40,12 +40,14 @@ When HMI OP2 puts on hold the active call
 Then HMI OP2 has the call queue item OP1-OP2 in state hold
 Then HMI OP1 has the call queue item OP2-OP1 in state held
 
-Scenario: Change mission for HMI OP1 and verify call state
-		  @REQUIREMENTS: QXVP-XVP_SSS-740
+Scenario: Change mission for HMI OP1
 When HMI OP1 presses function key MISSIONS
-Then HMI OP1 changes current mission to mission 0
-Then HMI OP1 press button Activate Mission
+Then HMI OP1 changes current mission to mission WEST-EXEC
+Then HMI OP1 activates mission
 Then waiting for 5 seconds
+
+Scenario: Verify call state
+		   @REQUIREMENTS: GID-3005111
 Then HMI OP2 has the call queue item OP1-OP2 in state hold
 Then HMI OP1 has the call queue item OP2-OP1 in state held
 
@@ -64,12 +66,14 @@ Scenario: Verify call is connected for both operators
 Then HMI OP3 has the call queue item OP2-OP3 in state connected
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
 
-Scenario: Change mission for HMI OP2 and verify call state
-		  @REQUIREMENTS: QXVP-XVP_SSS-740
+Scenario: Change mission for HMI OP2
 When HMI OP2 presses function key MISSIONS
-Then HMI OP2 changes current mission to mission 1
-Then HMI OP2 press button Activate Mission
+Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
+Then HMI OP2 activates mission
 Then waiting for 5 seconds
+
+Scenario: Verify call state
+		   @REQUIREMENTS: GID-3005111
 Then HMI OP1 has the call queue item OP2-OP1 in state held
 Then HMI OP2 has the call queue item OP1-OP2 in state hold
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
@@ -79,12 +83,14 @@ When HMI OP2 puts on hold the active call
 Then HMI OP2 has the call queue item OP3-OP2 in state hold
 Then HMI OP3 has the call queue item OP2-OP3 in state held
 
-Scenario: Change mission for HMI OP3 and verify call state
-		  @REQUIREMENTS: QXVP-XVP_SSS-740
+Scenario: Change mission for HMI OP3
 When HMI OP3 presses function key MISSIONS
-Then HMI OP3 changes current mission to mission 0
-Then HMI OP3 press button Activate Mission
+Then HMI OP3 changes current mission to mission WEST-EXEC
+Then HMI OP3 activates mission
 Then waiting for 5 seconds
+
+Scenario: Verify call state
+		   @REQUIREMENTS: GID-3005111
 Then HMI OP2 has the call queue item OP3-OP2 in state hold
 Then HMI OP3 has the call queue item OP2-OP3 in state held
 
@@ -93,8 +99,8 @@ Then HMI OP2 retrieves from hold the call queue item OP3-OP2
 
 Scenario: Op3 change mission
 When HMI OP3 presses function key MISSIONS
-Then HMI OP3 changes current mission to mission 2
-Then HMI OP3 press button Activate Mission
+Then HMI OP3 changes current mission to mission EAST-EXEC
+Then HMI OP3 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify operator mission
@@ -117,7 +123,7 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP2-OP1
 
-Scenario: Verify all cals were clear
+Scenario: Verify all cals were cleared
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls

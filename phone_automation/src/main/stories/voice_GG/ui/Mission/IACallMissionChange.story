@@ -1,7 +1,7 @@
 Narrative:
 As a caller operator having an active IA call with a callee operator
 I want to change mission
-So I can verify that the IA call is is not affected by this action
+So I can verify that the IA call is not affected by this action
 
 Meta: @AfterStory: ../includes/@SwitchToInitialMission.story
 
@@ -26,12 +26,14 @@ Scenario: Callee receives incoming IA call
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Then HMI OP2 has the IA key IA - OP1 in state connected
 
-Scenario: Change mission for HMI OP1 and verify call state for both operators
-		  @REQUIREMENTS: QXVP-XVP_SSS-740
+Scenario: Change mission for HMI OP1
 When HMI OP1 presses function key MISSIONS
-Then HMI OP1 changes current mission to mission 0
-Then HMI OP1 press button Activate Mission
+Then HMI OP1 changes current mission to mission WEST-EXEC
+Then HMI OP1 activates mission
 Then waiting for 5 seconds
+
+Scenario: Verify call state for both operators
+		  @REQUIREMENTS: GID-3005111
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
@@ -40,12 +42,14 @@ Then HMI OP2 presses the call queue item OP1-OP2
 Then HMI OP1 has in the call queue a number of 1 calls
 Then HMI OP2 has in the call queue a number of 1 calls
 
-Scenario: Change mission for HMI OP2 and verify call state for both operators
-		  @REQUIREMENTS: QXVP-XVP_SSS-740
+Scenario: Change mission for HMI OP2
+		  @REQUIREMENTS: GID-3005111
 When HMI OP2 presses function key MISSIONS
-Then HMI OP2 changes current mission to mission 1
-Then HMI OP2 press button Activate Mission
+Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
+Then HMI OP2 activates mission
 Then waiting for 5 seconds
+
+Scenario: Verify call state for both operators
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 

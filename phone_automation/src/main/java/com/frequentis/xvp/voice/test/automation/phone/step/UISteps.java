@@ -36,29 +36,7 @@ import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
 import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
 import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
 
-import scripts.cats.hmi.ClickActivateMission;
-import scripts.cats.hmi.ClickCallQueueItem;
-import scripts.cats.hmi.ClickDAButton;
-import scripts.cats.hmi.ClickFunctionKey;
-import scripts.cats.hmi.ClickOnCallHistoryCallButton;
-import scripts.cats.hmi.ClickOnPhoneBookCallButton;
-import scripts.cats.hmi.ClickOnRedialCallButton;
-import scripts.cats.hmi.DragAndClickOnMenuButtonDAKey;
-import scripts.cats.hmi.DragAndClickOnMenuButtonFirstCallQueueItem;
-import scripts.cats.hmi.SelectCallHistoryEntry;
-import scripts.cats.hmi.SelectCallRouteSelector;
-import scripts.cats.hmi.SelectMissionFromList;
-import scripts.cats.hmi.SelectPhoneBookEntry;
-import scripts.cats.hmi.ToggleCallPriority;
-import scripts.cats.hmi.VerifyCallQueueItemLabel;
-import scripts.cats.hmi.VerifyCallQueueItemStateIfPresent;
-import scripts.cats.hmi.VerifyCallQueueItemStyleClass;
-import scripts.cats.hmi.VerifyCallQueueLength;
-import scripts.cats.hmi.VerifyDAButtonState;
-import scripts.cats.hmi.VerifyMissionList;
-import scripts.cats.hmi.VerifyStatusDisplay;
-import scripts.cats.hmi.VerifyTransferState;
-import scripts.cats.hmi.WriteInPhoneBookTextBox;
+import scripts.cats.hmi.*;
 
 public class UISteps extends AutomationSteps
 {
@@ -512,16 +490,24 @@ public class UISteps extends AutomationSteps
             remoteStep( "user selects mission: " + mission )
                   .scriptOn( profileScriptResolver().map( SelectMissionFromList.class, BookableProfileName.javafx ),
                         assertProfile( profileName ) )
-                  .input( SelectMissionFromList.IPARAM_MISSION_LIST_ITEM, mission ) );
+                  .input( SelectMissionFromList.IPARAM_MISSION_NAME, mission ) );
    }
 
 
-   @Then("$profileName press button Activate Mission")
+   @Then("$profileName activates mission")
    public void clickActivateMission( final String profileName )
    {
       evaluate( remoteStep( "user clicks Activate Mission" ).scriptOn(
             profileScriptResolver().map( ClickActivateMission.class, BookableProfileName.javafx ),
             assertProfile( profileName ) ) );
+   }
+
+   @Then("$profileName closes mission popup window")
+   public void clickCloseMission( final String profileName )
+   {
+      evaluate( remoteStep( "user clicks Close Mission" ).scriptOn(
+              profileScriptResolver().map( ClickMissionCloseButton.class, BookableProfileName.javafx ),
+              assertProfile( profileName ) ) );
    }
 
 

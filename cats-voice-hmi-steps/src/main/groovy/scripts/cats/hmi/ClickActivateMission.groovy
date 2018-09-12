@@ -12,15 +12,15 @@ class ClickActivateMission extends FxScriptTemplate {
 
     @Override
     void script() {
-        Button daWidget = robot.lookup("#missionPopup #activateMissionButton").queryFirst();
+        Button activateButton = robot.lookup("#missionPopup #activateMissionButton").queryFirst();
 
         evaluate(ExecutionDetails.create("Activate Mission button was found")
                 .expected("daWidget is not null")
-                .success(daWidget != null));
+                .success(activateButton != null));
 
-        if (daWidget != null) {
-            robot.clickOn(robot.point(daWidget));
-            LOGGER.debug("Click on Activate Mission: [{}]", daWidget.toString());
+        if (activateButton != null) {
+            robot.clickOn(robot.point(activateButton));
+            LOGGER.debug("Click on Activate Mission: [{}]", activateButton.toString());
         }
     }
 }

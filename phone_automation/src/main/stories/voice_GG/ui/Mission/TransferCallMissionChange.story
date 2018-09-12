@@ -1,7 +1,7 @@
 Narrative:
-As an operator part of an active call
-I want to transfer the active call to a transfer target operator using an intermediary consultation call
-So I can verify that the call was transferred successfully
+As an operator part of an ongoing transfer of a call
+I want to change mission
+So I can verify that the call transfer is not affected by this action
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -54,24 +54,30 @@ Then HMI OP2 has the DA key OP3 in state out_ringing
 Scenario: Transfer target receives incoming call
 Then HMI OP3 has the DA key OP2(as OP3) in state ringing
 
-Scenario: Change mission for HMI OP2 and verify call state for Op1 and Op2
-		  @REQUIREMENTS: QXVP-XVP_SSS-740
+Scenario: Change mission for HMI OP2
 When HMI OP2 presses function key MISSIONS
-Then HMI OP2 changes current mission to mission 1
-Then HMI OP2 press button Activate Mission
+Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
+Then HMI OP2 activates mission
 Then waiting for 5 seconds
+
+Scenario: Verify call state for Op1 and Op2
+		  @REQUIREMENTS: GID-3005111
 Then HMI OP2 has the call conditional flag set for call queue item OP1-OP2
+Then HMI OP2 is in transfer state
 Then HMI OP1 has the call queue item OP2-OP1 in state held
 Then HMI OP2 has the call queue item OP3-OP2 in state out_ringing
 Then HMI OP3 has the call queue item OP2-OP3 in state ringing
 
-Scenario: Change mission for HMI OP3 and verify call state for Op1, Op2 and Op3
-		  @REQUIREMENTS: QXVP-XVP_SSS-740
+Scenario: Change mission for HMI OP3
 When HMI OP3 presses function key MISSIONS
-Then HMI OP3 changes current mission to mission 0
-Then HMI OP3 press button Activate Mission
+Then HMI OP3 changes current mission to mission WEST-EXEC
+Then HMI OP3 activates mission
 Then waiting for 5 seconds
+
+Scenario: Verify call state for Op1, Op2 and Op3
+		  @REQUIREMENTS: GID-3005111
 Then HMI OP2 has the call conditional flag set for call queue item OP1-OP2
+Then HMI OP2 is in transfer state
 Then HMI OP1 has the call queue item OP2-OP1 in state held
 Then HMI OP3 has the call queue item OP2-OP3 in state ringing
 
@@ -87,10 +93,9 @@ Then HMI OP2 has the call queue item OP1-OP2 in state hold
 Then HMI OP1 has the call queue item OP2-OP1 in state held
 
 Scenario: Transferor changes mission and finishes transfer
-		  @REQUIREMENTS: QXVP-XVP_SSS-740
 When HMI OP2 presses function key MISSIONS
-Then HMI OP2 changes current mission to mission 0
-Then HMI OP2 press button Activate Mission
+Then HMI OP2 changes current mission to mission WEST-EXEC
+Then HMI OP2 activates mission
 Then waiting for 5 seconds
 When HMI OP2 presses DA key OP3
 And waiting for 3 seconds
@@ -101,10 +106,9 @@ Then HMI OP3 has the call queue item OP1-OP3 in state connected
 Then HMI OP1 has the call queue item OP3-OP1 in state connected
 
 Scenario: Change missions back for HMI OP3
-		  @REQUIREMENTS: QXVP-XVP_SSS-740
 When HMI OP3 presses function key MISSIONS
-Then HMI OP3 changes current mission to mission 2
-Then HMI OP3 press button Activate Mission
+Then HMI OP3 changes current mission to mission EAST-EXEC
+Then HMI OP3 activates mission
 Then waiting for 5 seconds
 
 Scenario: Cleanup call

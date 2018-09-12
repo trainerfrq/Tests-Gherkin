@@ -1,24 +1,24 @@
 Narrative:
 As a callee operator having multiple calls on hold on my side
 I want to do several change mission actions
-So I can verify that calls are not affected by this action
+So I can verify that calls are not affected by these actions
 
 Scenario: Booking profiles
 Given booked profiles:
-| profile | group | host           | identifier |
-| javafx  | hmi   | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi   | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi   | <<CLIENT3_IP>> | HMI OP3    |
+| profile | group          | host           | identifier |
+| javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
+| javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
 | voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
-| OP3-OP2 | sip:op3@example.com    | sip:222222@example.com | DA/IDA   |
-| OP2-OP3 | sip:222222@example.com | sip:op3@example.com    | DA/IDA   |
-| SipContact-OP2 | <<SIP_PHONE2>> | <<OPVOICE2_PHONE_URI>> | DA/IDA   |
+| key            | source                 | target                 | callType |
+| OP1-OP2        | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
+| OP2-OP1        | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
+| OP3-OP2        | sip:op3@example.com    | sip:222222@example.com | DA/IDA   |
+| OP2-OP3        | sip:222222@example.com | sip:op3@example.com    | DA/IDA   |
+| SipContact-OP2 | <<SIP_PHONE2>>         | <<OPVOICE2_PHONE_URI>> | DA/IDA   |
 
 Scenario: Create sip phone
 Given SipContacts group SipContact:
@@ -47,12 +47,14 @@ Scenario: Op2 client receives the incoming call
 Then HMI OP2 has the DA key OP1 in state ringing
 Then HMI OP2 has the call queue item OP1-OP2 in state ringing
 
-Scenario: Change mission for HMI OP2 and verify call state
-		  @REQUIREMENTS: QXVP-XVP_SSS-740
+Scenario: Change mission for HMI OP2
 When HMI OP2 presses function key MISSIONS
-Then HMI OP2 changes current mission to mission 1
-Then HMI OP2 press button Activate Mission
+Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
+Then HMI OP2 activates mission
 Then waiting for 5 seconds
+
+Scenario: Verify call state
+		   @REQUIREMENTS: GID-3005111
 Then HMI OP2 has the call queue item SipContact-OP2 in state hold
 Then HMI OP2 has the call queue item OP1-OP2 in state ringing
 
@@ -67,12 +69,14 @@ Scenario: Callee puts call on hold
 When HMI OP2 puts on hold the active call
 Then HMI OP2 has the call queue item OP1-OP2 in state hold
 
-Scenario: Change mission for HMI OP2 and verify call state
-		  @REQUIREMENTS: QXVP-XVP_SSS-740
+Scenario: Change mission for HMI OP2
 When HMI OP2 presses function key MISSIONS
-Then HMI OP2 changes current mission to mission 0
-Then HMI OP2 press button Activate Mission
+Then HMI OP2 changes current mission to mission WEST-EXEC
+Then HMI OP2 activates mission
 Then waiting for 5 seconds
+
+Scenario: Verify call state
+		  @REQUIREMENTS: GID-3005111
 Then HMI OP2 has the call queue item SipContact-OP2 in state hold
 Then HMI OP2 has the call queue item OP1-OP2 in state hold
 
@@ -95,12 +99,14 @@ Scenario: Callee tries to put the call on hold, but it can't because of the conf
 When HMI OP2 puts on hold the active call
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
 
-Scenario: Change mission for HMI OP2 and verify call state
-		  @REQUIREMENTS: QXVP-XVP_SSS-740
+Scenario: Change mission for HMI OP2
 When HMI OP2 presses function key MISSIONS
-Then HMI OP2 changes current mission to mission 1
-Then HMI OP2 press button Activate Mission
+Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
+Then HMI OP2 activates mission
 Then waiting for 5 seconds
+
+Scenario: Verify call state
+		   @REQUIREMENTS: GID-3005111
 Then HMI OP2 has the call queue item SipContact-OP2 in state hold
 Then HMI OP2 has the call queue item OP1-OP2 in state hold
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
@@ -109,12 +115,14 @@ Scenario: Callee tries again to put the call on hold, this time succesfully
 When HMI OP2 puts on hold the active call
 Then HMI OP2 has the call queue item OP3-OP2 in state hold
 
-Scenario: Change mission for HMI OP2 and verify call state
-		  @REQUIREMENTS: QXVP-XVP_SSS-740
+Scenario: Change mission for HMI OP2
 When HMI OP2 presses function key MISSIONS
-Then HMI OP2 changes current mission to mission 0
-Then HMI OP2 press button Activate Mission
+Then HMI OP2 changes current mission to mission WEST-EXEC
+Then HMI OP2 activates mission
 Then waiting for 5 seconds
+
+Scenario: Verify call state
+		   @REQUIREMENTS: GID-3005111
 Then HMI OP2 has the call queue item SipContact-OP2 in state hold
 Then HMI OP2 has the call queue item OP1-OP2 in state hold
 Then HMI OP2 has the call queue item OP3-OP2 in state hold
@@ -144,7 +152,7 @@ Then HMI OP2 retrieves from hold the call queue item SipContact-OP2
 Then HMI OP2 has the call queue item SipContact-OP2 in state connected
 Then HMI OP2 terminates the call queue item SipContact-OP2
 
-Scenario: Verify all cals were clear
+Scenario: Verify all cals were cleared
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls

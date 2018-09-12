@@ -26,8 +26,8 @@ class VerifyStatusDisplay extends FxScriptTemplate {
         if(statusDisplay != null){
             String textDisplay = statusDisplay.textProperty().getValue()
             evaluate(ExecutionDetails.create("Status displays the expected mission")
-                    .received("Expected text is: " + textDisplay)
-                    .expected("Received text is: " + text)
+                    .received("Received text is: " + textDisplay)
+                    .expected("Expected text is: " + text)
                     .success(statusDisplay.textProperty().getValue().equals(text)));
         }
     }
