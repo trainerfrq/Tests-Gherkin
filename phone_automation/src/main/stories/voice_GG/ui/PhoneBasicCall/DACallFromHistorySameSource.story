@@ -40,6 +40,8 @@ Scenario: Caller selects first entry from history
 When HMI OP1 selects call history list entry number: 0
 
 Scenario: Caller hits call history call button
+		  REQUIREMENTS:GID-2535764
+		  REQUIREMENTS:GID-2536683
 When HMI OP1 initiates a call from the call history
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 
@@ -50,6 +52,7 @@ Scenario: Callee client answers the incoming call
 When HMI OP2 presses DA key OP1
 
 Scenario: Verify call is connected for both operators
+		  REQUIREMENTS:GID-2535771
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 

@@ -40,6 +40,9 @@ Scenario: OP2 selects first entry from history
 When HMI OP2 selects call history list entry number: 0
 
 Scenario: OP2 hits call history call button
+		  REQUIREMENTS:GID-2535764
+		  REQUIREMENTS:GID-2536683
+		  REQUIREMENTS:GID-2656702
 When HMI OP2 initiates a call from the call history
 Then HMI OP2 has the DA key OP1 in state out_ringing
 

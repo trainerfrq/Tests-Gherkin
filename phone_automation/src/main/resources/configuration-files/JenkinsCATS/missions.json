@@ -6,7 +6,7 @@
       "00000000-0000-0000-0000-000000000001"
     ],
     "missionMasterRole": "00000000-0000-0000-0000-000000000001",
-    "missionDefaultSourceSipAddress": "sip:role1@example.com",
+    "missionDefaultSourceSipAddress": "sip:mission1@example.com",
     "iaCallTimeoutMilliseconds": 5000,
     "maxIncomingIaCallsCount": 3,
     "priorityCallHandling": "indication",
@@ -33,7 +33,7 @@
       "00000000-0000-0000-0000-000000000002"
     ],
     "missionMasterRole": "00000000-0000-0000-0000-000000000002",
-    "missionDefaultSourceSipAddress": "sip:role2@example.com",
+    "missionDefaultSourceSipAddress": "sip:mission2@example.com",
     "iaCallTimeoutMilliseconds": 1000,
     "maxIncomingIaCallsCount": 1,
     "maxCallsOnHold": 1,
@@ -62,7 +62,7 @@
       "b4798f15-88dd-474e-a15f-7b2d2aba92b5"
     ],
     "missionMasterRole": "00000000-0000-0000-0000-000000000001",
-    "missionDefaultSourceSipAddress": "sip:role1alias1@example.com",
+    "missionDefaultSourceSipAddress": "sip:mission3@example.com",
     "iaCallTimeoutMilliseconds": 1000,
     "maxIncomingIaCallsCount": 3,
     "priorityCallHandling": "indication",

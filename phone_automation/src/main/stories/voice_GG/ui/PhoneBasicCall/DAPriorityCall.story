@@ -18,6 +18,7 @@ Given the call queue items:
 Scenario: Caller establishes an outgoing priority call
 		  @REQUIREMENTS:GID-2505647
 		  @REQUIREMENTS:GID-2536682
+		  @REQUIREMENTS:GID-2505649
 When HMI OP1 initiates a priority call on DA key OP2(as OP1)
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 

@@ -28,6 +28,8 @@ Scenario: Caller hits phonebook call button
 When HMI OP1 initiates a call from the phonebook
 
 Scenario: Call is initiated
+		  @REQUIREMENTS:GID-2877904
+		  @REQUIREMENTS:GID-2932446
 Then HMI OP1 has the call queue item SipContact-OP1 in the active list with label Lloyd
 
 Scenario: Caller clears outgoing call
