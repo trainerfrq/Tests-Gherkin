@@ -16,10 +16,25 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
+import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
+import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
+import com.frequentis.c4i.test.model.ExecutionDetails;
+import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
+import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
+import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
+import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
+import org.jbehave.core.annotations.Alias;
+import org.jbehave.core.annotations.Aliases;
+import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.ClickActivateMission;
 import scripts.cats.hmi.ClickCallQueueItem;
 import scripts.cats.hmi.ClickDAButton;
 import scripts.cats.hmi.ClickFunctionKey;
+import scripts.cats.hmi.ClickMissionCloseButton;
 import scripts.cats.hmi.ClickOnCallHistoryCallButton;
 import scripts.cats.hmi.ClickOnPhoneBookCallButton;
 import scripts.cats.hmi.ClickOnRedialCallButton;
@@ -43,22 +58,6 @@ import scripts.cats.hmi.WriteInPhoneBookTextBox;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.jbehave.core.annotations.Alias;
-import org.jbehave.core.annotations.Aliases;
-import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
-
-import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
-import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
-import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
-import com.frequentis.c4i.test.model.ExecutionDetails;
-import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
-import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
-import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
-import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
-import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
 
 public class UISteps extends AutomationSteps
 {
