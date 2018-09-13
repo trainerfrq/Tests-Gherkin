@@ -16,6 +16,30 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import scripts.cats.hmi.ClickActivateMission;
+import scripts.cats.hmi.ClickCallQueueItem;
+import scripts.cats.hmi.ClickDAButton;
+import scripts.cats.hmi.ClickFunctionKey;
+import scripts.cats.hmi.ClickOnCallHistoryCallButton;
+import scripts.cats.hmi.ClickOnPhoneBookCallButton;
+import scripts.cats.hmi.ClickOnRedialCallButton;
+import scripts.cats.hmi.DragAndClickOnMenuButtonDAKey;
+import scripts.cats.hmi.DragAndClickOnMenuButtonFirstCallQueueItem;
+import scripts.cats.hmi.SelectCallHistoryEntry;
+import scripts.cats.hmi.SelectCallRouteSelector;
+import scripts.cats.hmi.SelectMissionFromList;
+import scripts.cats.hmi.SelectPhoneBookEntry;
+import scripts.cats.hmi.ToggleCallPriority;
+import scripts.cats.hmi.VerifyCallQueueItemLabel;
+import scripts.cats.hmi.VerifyCallQueueItemStateIfPresent;
+import scripts.cats.hmi.VerifyCallQueueItemStyleClass;
+import scripts.cats.hmi.VerifyCallQueueLength;
+import scripts.cats.hmi.VerifyDAButtonState;
+import scripts.cats.hmi.VerifyMissionList;
+import scripts.cats.hmi.VerifyStatusDisplay;
+import scripts.cats.hmi.VerifyTransferState;
+import scripts.cats.hmi.WriteInPhoneBookTextBox;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,8 +59,6 @@ import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
 import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
 import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
-
-import scripts.cats.hmi.*;
 
 public class UISteps extends AutomationSteps
 {
@@ -67,8 +89,8 @@ public class UISteps extends AutomationSteps
 
    static
    {
-      CALL_QUEUE_LIST_MAP.put( "waiting", ACTIVE_LIST_NAME );
-      CALL_QUEUE_LIST_MAP.put( "active", WAITING_LIST_NAME );
+      CALL_QUEUE_LIST_MAP.put( "waiting", WAITING_LIST_NAME );
+      CALL_QUEUE_LIST_MAP.put( "active", ACTIVE_LIST_NAME );
    }
 
 
