@@ -12,7 +12,7 @@
         },
         "opSipDomain": "example.com",
         "opUserInfo": "222222",
-        "opSipRegistrationTimeoutInSeconds": 64800,
+        "opSipRegistrationTimeoutInSeconds": 300,
         "opMaxConcurrentCallsCount": 20
       }
     },
@@ -24,7 +24,7 @@
         },
         "opSipDomain": "example.com",
         "opUserInfo": "op3",
-        "opSipRegistrationTimeoutInSeconds": 64800,
+        "opSipRegistrationTimeoutInSeconds": 300,
         "opMaxConcurrentCallsCount": 20
       }
     },
@@ -36,7 +36,7 @@
         },
         "opSipDomain": "example.com",
         "opUserInfo": "111111",
-        "opSipRegistrationTimeoutInSeconds": 64800,
+        "opSipRegistrationTimeoutInSeconds": 300,
         "opMaxConcurrentCallsCount": 20
       }
     }

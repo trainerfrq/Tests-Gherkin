@@ -41,6 +41,16 @@
             "grid": "applicationGrid"
           },
           {
+            "id": "f2",
+            "type": "function",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "f3",
+            "type": "function",
+            "grid": "applicationGrid"
+          },
+          {
             "id": "100",
             "type": "da",
             "grid": "applicationGrid"
@@ -110,7 +120,21 @@
             "id": "f1",
             "column": "0",
             "row": "4",
-            "columnSpan": "3",
+            "columnSpan": "1",
+            "rowSpan": "2"
+          },
+          {
+            "id": "f2",
+            "column": "1",
+            "row": "4",
+            "columnSpan": "1",
+            "rowSpan": "2"
+          },
+          {
+            "id": "f3",
+            "column": "2",
+            "row": "4",
+            "columnSpan": "1",
             "rowSpan": "2"
           },
           {
@@ -186,14 +210,21 @@
         ]
       },
       "roleGridWidgetData": {
-        "grid": [
-        ]
+        "grid": []
       },
       "roleFunctionData": {
         "functionData": [
           {
             "id": "f1",
-            "type": "ShowAvailableMissions"
+            "type": "phonebook"
+          },
+          {
+            "id": "f2",
+            "type": "history"
+          },
+          {
+            "id": "f3",
+            "type": "mission"
           }
         ]
       },
@@ -318,6 +349,21 @@
             "grid": "applicationGrid"
           },
           {
+            "id": "f1",
+            "type": "function",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "f2",
+            "type": "function",
+            "grid": "applicationGrid"
+          },
+          {
+            "id": "f3",
+            "type": "function",
+            "grid": "applicationGrid"
+          },
+          {
             "id": "grid2",
             "type": "grid",
             "grid": "applicationGrid"
@@ -366,6 +412,11 @@
             "id": "118",
             "type": "ia",
             "grid": "applicationGrid"
+          },
+          {
+            "id": "119",
+            "type": "ia",
+            "grid": "applicationGrid"
           }
         ],
         "positions": [
@@ -382,6 +433,27 @@
             "row": "0",
             "columnSpan": "3",
             "rowSpan": "4"
+          },
+          {
+            "id": "f1",
+            "column": "0",
+            "row": "4",
+            "columnSpan": "1",
+            "rowSpan": "2"
+          },
+          {
+            "id": "f2",
+            "column": "1",
+            "row": "4",
+            "columnSpan": "1",
+            "rowSpan": "2"
+          },
+          {
+            "id": "f3",
+            "column": "2",
+            "row": "4",
+            "columnSpan": "1",
+            "rowSpan": "2"
           },
           {
             "id": "110",
@@ -445,11 +517,33 @@
             "row": 9,
             "columnSpan": 3,
             "rowSpan": 3
+          },
+          {
+            "id": "119",
+            "column": 6,
+            "row": 9,
+            "columnSpan": 3,
+            "rowSpan": 3
           }
         ]
       },
       "roleGridWidgetData": {
-        "grid": [
+        "grid": []
+      },
+      "roleFunctionData": {
+        "functionData": [
+          {
+            "id": "f1",
+            "type": "phonebook"
+          },
+          {
+            "id": "f2",
+            "type": "history"
+          },
+          {
+            "id": "f3",
+            "type": "mission"
+          }
         ]
       },
       "rolePhoneData": {
@@ -507,6 +601,12 @@
             "target": "sip:111111@example.com",
             "source": "sip:222222@example.com",
             "displayName": "IA - OP1"
+          },
+          {
+            "id": "119",
+            "target": "sip:222222@example.com",
+            "source": "sip:222222@example.com",
+            "displayName": "IA - OP2"
           }
         ]
       },

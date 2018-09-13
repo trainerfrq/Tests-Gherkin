@@ -1,0 +1,176 @@
+[
+  {
+    "fullName": "Physical Identity OP1",
+    "displayName": "OP1 Physical",
+    "location": "XVP Lab",
+    "organization": "FRQ XVP GG-Team",
+    "notes": "This is the physical identity of the first operating position",
+    "dataSets": [
+      {
+        "destination": "sip:111111@192.168.40.121:5060"
+      }
+    ]
+  },
+  {
+    "fullName": "Lloyd Ripley",
+    "displayName": "Lloyd",
+    "location": "123 6th St. Melbourne, FL 32904",
+    "organization": "European Applications",
+    "notes": "Language - English",
+    "dataSets": [
+      {
+        "destination": "sip:op3@192.168.40.123:5060",
+        "displayAddon": "Ground2Ground"
+      }
+    ]
+  },
+  {
+    "fullName": "Madoline Katharyn",
+    "displayName": "Madoline",
+    "location": "71 Pilgrim Avenue Chevy Chase, MD 20815",
+    "organization": "Chinese Metals",
+    "notes": "Language - Chinese",
+    "dataSets": [
+      {
+        "destination": "sip:12345@192.168.40.90:5070",
+        "displayAddon": "Air2Ground"
+      }
+    ]
+  },
+  {
+    "fullName": "Wien Police",
+    "displayName": "Police1",
+    "location": "Spiegelsberg 18, 4753 ALTMANNSDORF",
+    "organization": "Vienna Police",
+    "notes": "Language - German",
+    "dataSets": [
+      {
+        "destination": "sip:police@12.34.56.78",
+        "displayAddon": "Local"
+      },
+      {
+        "destination": "sip:police@12.34.56.89",
+        "displayAddon": "Autobahn"
+      }
+    ]
+  },
+  {
+    "fullName": "Wien Police",
+    "displayName": "Police2",
+    "location": "Annenstrasse 2, 4972 GUNDERPOLLING",
+    "organization": "Vienna Police",
+    "notes": "Language - German",
+    "dataSets": [
+      {
+        "destination": "sip:police@12.34.56.89",
+        "displayAddon": "Local"
+      }
+    ]
+  },
+  {
+    "fullName": "Wien Police",
+    "displayName": "Police3",
+    "location": "Lerchenfelder Straße 19, 3195 LAHNSATTEL",
+    "organization": "Vienna Police",
+    "notes": "Language - German",
+    "dataSets": [
+      {
+        "destination": "sip:police@78.65.43.21",
+        "displayAddon": "Local"
+      }
+    ]
+  },
+  {
+    "fullName": "Wien Police",
+    "displayName": "Police-Ambulance1",
+    "location": "Hubatschstrasse 44, 8010 SCHAFTAL",
+    "organization": "Vienna Police",
+    "notes": "Language - German",
+    "dataSets": [
+      {
+        "destination": "sip:police@78.56.43.21",
+        "displayAddon": "Local"
+      },
+      {
+        "destination": "sip:police@78.56.34.21",
+        "displayAddon": "Autobahn"
+      }
+    ]
+  },
+  {
+    "fullName": "Wien Police",
+    "displayName": "Police-Ambulance2",
+    "location": "Lendplatz 80, 8967 HAUS",
+    "organization": "Vienna Police",
+    "notes": "Language - German",
+    "dataSets": [
+      {
+        "destination": "sip:police@99.56.34.21",
+        "displayAddon": "Local"
+      }
+    ]
+  },
+  {
+    "fullName": "Snom 370 SIP Phone",
+    "displayName": "Snom 370 (Carol)",
+    "location": "XVP Lab",
+    "organization": "FRQ XVP GG-Team",
+    "notes": "",
+    "dataSets": [
+      {
+        "destination": "sip:gg-snom1@example.com"
+      },
+      {
+        "destination": "sip:gg-snom1@10.31.205.90"
+      }
+    ]
+  },
+  {
+    "fullName": "Role 1 - Alice",
+    "displayName": "Role 1 (Alice)",
+    "location": "XVP Lab",
+    "organization": "FRQ XVP GG-Team",
+    "notes": "",
+    "dataSets": [
+      {
+        "destination": "sip:role1@example.com"
+      },
+      {
+        "destination": "sip:role1alias1@example.com"
+      },
+      {
+        "destination": "sip:role1alias2@example.com"
+      }
+    ]
+  },
+  {
+    "fullName": "Role 2 - Bob",
+    "displayName": "Role 2 (Bob)",
+    "location": "XVP Lab",
+    "organization": "FRQ XVP GG-Team",
+    "notes": "",
+    "dataSets": [
+      {
+        "destination": "sip:role2@example.com"
+      },
+      {
+        "destination": "sip:role2alias1@example.com"
+      },
+      {
+        "destination": "sip:role2alias2@example.com"
+      }
+    ]
+  },
+  {
+    "fullName": "Call Group 1",
+    "displayName": "Group 1",
+    "location": "XVP Lab",
+    "organization": "FRQ XVP GG-Team",
+    "notes": "",
+    "dataSets": [
+      {
+        "destination": "sip:group1@example.com"
+      }
+    ]
+  }
+]
