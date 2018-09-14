@@ -272,6 +272,12 @@
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/SipPhones/OperatorToSipPhoneCheckAudioCodec.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/SipPhones/SipPhoneToOperatorCalleeClearsCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
