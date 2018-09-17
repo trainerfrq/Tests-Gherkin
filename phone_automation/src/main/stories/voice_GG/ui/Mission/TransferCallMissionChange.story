@@ -97,6 +97,7 @@ When HMI OP2 presses function key MISSIONS
 Then HMI OP2 changes current mission to mission WEST-EXEC
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
+!-- TODO QXVP-8545 : re-enable this test after bug is fixed
 When HMI OP2 presses DA key OP3
 And waiting for 3 seconds
 
