@@ -15,9 +15,11 @@ Given the DA keys:
 | HMI OP2 | ROLE1-ALIAS(as ROLE2) | 115 |
 | HMI OP2 | IA - ROLE1            | 117 |
 | HMI OP2 | IA - OP1              | 118 |
+| HMI OP2 | IA - OP2              | 119 |
 | HMI OP3 | OP1(as OP3)           | 103 |
 | HMI OP3 | OP2(as OP3)           | 101 |
 | HMI OP3 | IA - OP2(as OP3)      | 108 |
+
 
 Scenario: Define function keys
 Given the function keys:
