@@ -31,7 +31,7 @@ Then WS1 receives call status indication with out_failed status on message buffe
 Scenario: Caller client clears the phone call
 When WS1 clears the phone call with the callId outgoingPhoneCallId
 And waiting for 3 seconds
-Then WS1 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and terminationDetails normal
+Then WS1 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and terminationDetails busy
 
 Scenario: Delete the message buffers
 When the named websocket WS1 removes the message buffer named CallStatusIndicationBuffer1
