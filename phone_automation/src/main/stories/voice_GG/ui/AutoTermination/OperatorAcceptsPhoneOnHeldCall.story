@@ -95,7 +95,6 @@ When HMI OP2 presses DA key OP3
 Then HMI OP2 has the DA key OP3 in state out_ringing
 
 Scenario: Verify call state for all operators
-		  @REQUIREMENTS:GID-2878006
 Then HMI OP1 has the call queue item SipContact-OP1 in state connected
 Then HMI OP1 has the call queue item OP3-OP1 in state hold
 Then HMI OP2 has the call queue item OP3-OP2 in state out_ringing

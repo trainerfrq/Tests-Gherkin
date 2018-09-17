@@ -1,6 +1,6 @@
 Narrative:
 As an operator having an active phone call
-I want to start an outgoing IA phone call
+I want to initiate an outgoing IA phone call
 So that I can verify that the first phone call is terminated
 
 Scenario: Booking profiles

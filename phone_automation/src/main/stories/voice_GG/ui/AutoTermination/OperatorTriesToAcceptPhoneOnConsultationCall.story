@@ -1,7 +1,7 @@
 Narrative:
 As an operator part of an ongoing transfer with consultation
 I want to answer an incoming call while having consultation call connected
-So I can verify that the consultation call can't be terminated
+So I can verify that the incoming call cannot be answered(or accepted), and the consultation call is not auto-terminated
 
 Scenario: Booking profiles
 Given booked profiles:
