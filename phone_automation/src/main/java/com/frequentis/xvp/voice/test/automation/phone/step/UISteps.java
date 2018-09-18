@@ -51,6 +51,7 @@ import scripts.cats.hmi.VerifyCallQueueItemStyleClass;
 import scripts.cats.hmi.VerifyCallQueueLength;
 import scripts.cats.hmi.VerifyDAButtonState;
 import scripts.cats.hmi.VerifyMissionList;
+import scripts.cats.hmi.VerifyNotificationLabel;
 import scripts.cats.hmi.VerifyStatusDisplay;
 import scripts.cats.hmi.VerifyTransferState;
 import scripts.cats.hmi.WriteInPhoneBookTextBox;
@@ -529,6 +530,17 @@ public class UISteps extends AutomationSteps
       evaluate( remoteStep( "user clicks Close Mission" ).scriptOn(
               profileScriptResolver().map( ClickMissionCloseButton.class, BookableProfileName.javafx ),
               assertProfile( profileName ) ) );
+   }
+
+
+   @Then("$profileName has a notification that shows $label")
+   public void verifyNotificationLabel( final String profileName, final String label )
+   {
+      evaluate(
+              remoteStep( "Verify that the user sees the correct notification label" )
+                      .scriptOn( profileScriptResolver().map( VerifyNotificationLabel.class, BookableProfileName.javafx ),
+                              assertProfile( profileName ) )
+                      .input( VerifyNotificationLabel.IPARAM_NOTIFICATION_LABEL_TEXT, label ) );
    }
 
 
