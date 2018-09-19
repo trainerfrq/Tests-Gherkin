@@ -364,11 +364,6 @@
             "grid": "applicationGrid"
           },
           {
-            "id": "grid2",
-            "type": "grid",
-            "grid": "applicationGrid"
-          },
-          {
             "id": "110",
             "type": "da",
             "grid": "applicationGrid"
