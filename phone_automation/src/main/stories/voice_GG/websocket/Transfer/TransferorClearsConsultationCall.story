@@ -85,7 +85,7 @@ When WS1 retrieves the on hold phone call with the callId outgoingPhoneCallId1
 And waiting for 1 seconds
 
 Scenario: Call is connected again
-!-- TODO QXVP-9145 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status connected
+Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status connected
 Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status connected
 
 Scenario: Cleanup call
@@ -93,7 +93,7 @@ When WS1 clears the phone call with the callId outgoingPhoneCallId1
 And waiting for 1 seconds
 
 Scenario: Call is terminated
-!-- TODO QXVP-9145 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status terminated
+Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status terminated
 Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status terminated
 
 Scenario: Delete the message buffers

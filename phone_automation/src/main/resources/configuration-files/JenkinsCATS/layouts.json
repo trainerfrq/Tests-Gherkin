@@ -1,0 +1,592 @@
+[
+  {
+    "schemaVersion": "0.5.0-SNAPSHOT",
+    "layoutId": "lower-east-exec-layout",
+    "name": "LOWER-EAST-EXEC Layout",
+    "functionData": {
+      "functionData": [
+        {
+          "id": "f1",
+          "type": "phonebook"
+        },
+        {
+          "id": "f2",
+          "type": "history"
+        },
+        {
+          "id": "f3",
+          "type": "mission"
+        }
+      ]
+    },
+    "gridInitData": {
+      "columnNumber": 12,
+      "rowNumber": 18
+    },
+    "gridWidgetData": {
+      "grid": []
+    },
+    "layoutInitData": {
+      "columnNumber": 1,
+      "rowNumber": 1,
+      "column": 0,
+      "row": 0,
+      "usedColumnNumber": 1,
+      "usedRowNumber": 1
+    },
+    "phoneData": {
+      "da": [
+        {
+          "id": "100",
+          "target": "sip:222222@example.com",
+          "source": "sip:111111@example.com",
+          "displayName": "OP2(as OP1)"
+        },
+        {
+          "id": "101",
+          "target": "sip:222222@example.com",
+          "source": "sip:op3@example.com",
+          "displayName": "OP2(as OP3)"
+        },
+        {
+          "id": "102",
+          "target": "sip:op3@example.com",
+          "source": "sip:111111@example.com",
+          "displayName": "OP3(as OP1)"
+        },
+        {
+          "id": "103",
+          "target": "sip:111111@example.com",
+          "source": "sip:op3@example.com",
+          "displayName": "OP1(as OP3)"
+        },
+        {
+          "id": "104",
+          "target": "sip:role2@example.com",
+          "source": "sip:role1@example.com",
+          "displayName": "ROLE2-PRIMARY"
+        },
+        {
+          "id": "105",
+          "target": "sip:role1@example.com",
+          "source": "sip:111111@example.com",
+          "displayName": "ROLE1(as OP1)"
+        },
+        {
+          "id": "106",
+          "target": "sip:role2alias1@example.com",
+          "source": "sip:role1@example.com",
+          "displayName": "ROLE2-ALIAS"
+        },
+        {
+          "id": "107",
+          "target": "sip:222222@example.com",
+          "source": "sip:111111@example.com",
+          "displayName": "IA - OP2(as OP1)"
+        },
+        {
+          "id": "108",
+          "target": "sip:222222@example.com",
+          "source": "sip:op3@example.com",
+          "displayName": "IA - OP2(as OP3)"
+        },
+        {
+          "id": "109",
+          "target": "sip:12345@192.168.100.48:5070",
+          "source": "sip:111111@example.com",
+          "displayName": "IA - PHONE2"
+        }
+      ]
+    },
+    "statusDisplayData": {
+      "statusDisplay": [
+        {
+          "id": "status0",
+          "time": "%H:%M",
+          "showClock": true,
+          "showMission": true,
+          "showConnectionStatus": true
+        },
+        {
+          "id": "status1",
+          "time": "HH:mm:ss",
+          "showClock": true,
+          "showMission": true,
+          "showConnectionStatus": true
+        }
+      ]
+    },
+    "widgetLayout": {
+      "widgets": [
+        {
+          "id": "cq1",
+          "type": "callQueue",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "status1",
+          "type": "status",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "f1",
+          "type": "function",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "f2",
+          "type": "function",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "f3",
+          "type": "function",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "100",
+          "type": "da",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "101",
+          "type": "da",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "102",
+          "type": "da",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "103",
+          "type": "da",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "104",
+          "type": "da",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "105",
+          "type": "da",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "106",
+          "type": "da",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "107",
+          "type": "ia",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "108",
+          "type": "ia",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "109",
+          "type": "ia",
+          "grid": "applicationGrid"
+        }
+      ],
+      "positions": [
+        {
+          "id": "cq1",
+          "column": "9",
+          "row": "0",
+          "columnSpan": "3",
+          "rowSpan": "18"
+        },
+        {
+          "id": "status1",
+          "column": "0",
+          "row": "0",
+          "columnSpan": "3",
+          "rowSpan": "4"
+        },
+        {
+          "id": "f1",
+          "column": "0",
+          "row": "4",
+          "columnSpan": "1",
+          "rowSpan": "2"
+        },
+        {
+          "id": "f2",
+          "column": "1",
+          "row": "4",
+          "columnSpan": "1",
+          "rowSpan": "2"
+        },
+        {
+          "id": "f3",
+          "column": "2",
+          "row": "4",
+          "columnSpan": "1",
+          "rowSpan": "2"
+        },
+        {
+          "id": "100",
+          "column": 3,
+          "row": 0,
+          "columnSpan": 3,
+          "rowSpan": 3
+        },
+        {
+          "id": "101",
+          "column": 6,
+          "row": 0,
+          "columnSpan": 3,
+          "rowSpan": 3
+        },
+        {
+          "id": "102",
+          "column": 3,
+          "row": 3,
+          "columnSpan": 3,
+          "rowSpan": 3
+        },
+        {
+          "id": "103",
+          "column": 6,
+          "row": 3,
+          "columnSpan": 3,
+          "rowSpan": 3
+        },
+        {
+          "id": "104",
+          "column": 0,
+          "row": 6,
+          "columnSpan": 3,
+          "rowSpan": 3
+        },
+        {
+          "id": "105",
+          "column": 3,
+          "row": 6,
+          "columnSpan": 3,
+          "rowSpan": 3
+        },
+        {
+          "id": "106",
+          "column": 6,
+          "row": 6,
+          "columnSpan": 3,
+          "rowSpan": 3
+        },
+        {
+          "id": "107",
+          "column": 0,
+          "row": 9,
+          "columnSpan": 3,
+          "rowSpan": 3
+        },
+        {
+          "id": "108",
+          "column": 3,
+          "row": 9,
+          "columnSpan": 3,
+          "rowSpan": 3
+        },
+        {
+          "id": "109",
+          "column": 6,
+          "row": 9,
+          "columnSpan": 3,
+          "rowSpan": 3
+        }
+      ]
+    }
+  },
+  {
+    "schemaVersion": "0.5.0-SNAPSHOT",
+    "layoutId": "lower-west-exec-layout",
+    "name": "LOWER-WEST-EXEC Layout",
+    "functionData": {
+      "functionData": [
+        {
+          "id": "f1",
+          "type": "phonebook"
+        },
+        {
+          "id": "f2",
+          "type": "history"
+        },
+        {
+          "id": "f3",
+          "type": "mission"
+        }
+      ]
+    },
+    "gridInitData": {
+      "columnNumber": 12,
+      "rowNumber": 18
+    },
+    "gridWidgetData": {
+      "grid": []
+    },
+    "layoutInitData": {
+      "columnNumber": 1,
+      "rowNumber": 1,
+      "column": 0,
+      "row": 0,
+      "usedColumnNumber": 1,
+      "usedRowNumber": 1
+    },
+    "phoneData": {
+      "da": [
+        {
+          "id": "110",
+          "target": "sip:111111@example.com",
+          "source": "sip:222222@example.com",
+          "displayName": "OP1"
+        },
+        {
+          "id": "111",
+          "target": "sip:op3@example.com",
+          "source": "sip:222222@example.com",
+          "displayName": "OP3"
+        },
+        {
+          "id": "112",
+          "target": "sip:role1@example.com",
+          "source": "sip:222222@example.com",
+          "displayName": "ROLE1(as OP2)"
+        },
+        {
+          "id": "113",
+          "target": "sip:role1@example.com",
+          "source": "sip:role2@example.com",
+          "displayName": "ROLE1(as ROLE2)"
+        },
+        {
+          "id": "114",
+          "target": "sip:role1alias1@example.com",
+          "source": "sip:222222@example.com",
+          "displayName": "ROLE1-ALIAS(as OP2)"
+        },
+        {
+          "id": "115",
+          "target": "sip:role1alias1@example.com",
+          "source": "sip:role2@example.com",
+          "displayName": "ROLE1-ALIAS(as ROLE2)"
+        },
+        {
+          "id": "116",
+          "target": "sip:role1alias1@example.com",
+          "source": "sip:role2alias1@example.com",
+          "displayName": "ROLE1-ALIAS(as ROLE2-ALIAS)"
+        },
+        {
+          "id": "117",
+          "target": "sip:role1@example.com",
+          "source": "sip:222222@example.com",
+          "displayName": "IA - ROLE1"
+        },
+        {
+          "id": "118",
+          "target": "sip:111111@example.com",
+          "source": "sip:222222@example.com",
+          "displayName": "IA - OP1"
+        }
+      ]
+    },
+    "statusDisplayData": {
+      "statusDisplay": [
+        {
+          "id": "status0",
+          "time": "%H:%M",
+          "showClock": true,
+          "showMission": true,
+          "showConnectionStatus": true
+        },
+        {
+          "id": "status1",
+          "time": "HH:mm:ss",
+          "showClock": true,
+          "showMission": true,
+          "showConnectionStatus": true
+        }
+      ]
+    },
+    "widgetLayout": {
+      "widgets": [
+        {
+          "id": "cq1",
+          "type": "callQueue",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "status1",
+          "type": "status",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "f1",
+          "type": "function",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "f2",
+          "type": "function",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "f3",
+          "type": "function",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "110",
+          "type": "da",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "111",
+          "type": "da",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "112",
+          "type": "da",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "113",
+          "type": "da",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "114",
+          "type": "da",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "115",
+          "type": "da",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "116",
+          "type": "da",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "117",
+          "type": "ia",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "118",
+          "type": "ia",
+          "grid": "applicationGrid"
+        }
+      ],
+      "positions": [
+        {
+          "id": "cq1",
+          "column": "9",
+          "row": "0",
+          "columnSpan": "3",
+          "rowSpan": "18"
+        },
+        {
+          "id": "status1",
+          "column": "0",
+          "row": "0",
+          "columnSpan": "3",
+          "rowSpan": "4"
+        },
+        {
+          "id": "f1",
+          "column": "0",
+          "row": "4",
+          "columnSpan": "1",
+          "rowSpan": "2"
+        },
+        {
+          "id": "f2",
+          "column": "1",
+          "row": "4",
+          "columnSpan": "1",
+          "rowSpan": "2"
+        },
+        {
+          "id": "f3",
+          "column": "2",
+          "row": "4",
+          "columnSpan": "1",
+          "rowSpan": "2"
+        },
+        {
+          "id": "110",
+          "column": 3,
+          "row": 0,
+          "columnSpan": 3,
+          "rowSpan": 3
+        },
+        {
+          "id": "111",
+          "column": 6,
+          "row": 0,
+          "columnSpan": 3,
+          "rowSpan": 3
+        },
+        {
+          "id": "112",
+          "column": 3,
+          "row": 3,
+          "columnSpan": 3,
+          "rowSpan": 3
+        },
+        {
+          "id": "113",
+          "column": 6,
+          "row": 3,
+          "columnSpan": 3,
+          "rowSpan": 3
+        },
+        {
+          "id": "114",
+          "column": 0,
+          "row": 6,
+          "columnSpan": 3,
+          "rowSpan": 3
+        },
+        {
+          "id": "115",
+          "column": 3,
+          "row": 6,
+          "columnSpan": 3,
+          "rowSpan": 3
+        },
+        {
+          "id": "116",
+          "column": 6,
+          "row": 6,
+          "columnSpan": 3,
+          "rowSpan": 3
+        },
+        {
+          "id": "117",
+          "column": 0,
+          "row": 9,
+          "columnSpan": 3,
+          "rowSpan": 3
+        },
+        {
+          "id": "118",
+          "column": 3,
+          "row": 9,
+          "columnSpan": 3,
+          "rowSpan": 3
+        }
+      ]
+    }
+  }
+]
