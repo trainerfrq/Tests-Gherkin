@@ -1,6 +1,6 @@
 Narrative:
 As an operator
-I want to initiate an outgoing DA call by clicking on a previous incoming DA call's history entry
+I want to initiate an outgoing DA call by clicking on a previous incoming DA priority call's history entry
 So I can check that the call towards the corresponding entry is initiated as a routine call using the destination according to the selected call
 
 Scenario: Booking profiles
@@ -15,44 +15,46 @@ Given the call queue items:
 | OP1-OP2 | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
 | OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
 
-Scenario: OP1 establishes an outgoing call
-When HMI OP1 presses DA key OP2(as OP1)
+Scenario: Caller establishes an outgoing priority call
+When HMI OP1 initiates a priority call on DA key OP2(as OP1)
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 
-Scenario: OP2 client receives the incoming call
+Scenario: Callee client receives the incoming call
 Then HMI OP2 has the DA key OP1 in state ringing
+Then HMI OP2 has in the call queue the item OP1-OP2 with priority
 
-Scenario: OP2 client answers the incoming call
+Scenario: Callee client answers the incoming call
 When HMI OP2 presses DA key OP1
 
 Scenario: Verify call is connected for both operators
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
-Scenario: OP1 client clears the phone call
+Scenario: Caller client clears the phone call
 When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP2 has in the call queue a number of 0 calls
 
-Scenario: OP2 opens call history
+Scenario: Callee opens call history
 When HMI OP2 presses function key CALLHISTORY
 
-Scenario: OP2 selects first entry from history
+Scenario: Callee selects first entry from history
 When HMI OP2 selects call history list entry number: 0
 
-Scenario: OP2 hits call history call button
-		  REQUIREMENTS:GID-2535764
-		  REQUIREMENTS:GID-2536683
-		  REQUIREMENTS:GID-2656702
+Scenario: Callee hits call history call button
+		  @REQUIREMENTS:GID-2535764
+		  @REQUIREMENTS:GID-2536682
 When HMI OP2 initiates a call from the call history
-Then HMI OP2 has the DA key OP1 in state out_ringing
+Then HMI OP2 has the DA key OP2(as OP1) in state out_ringing
 
-Scenario: OP1 client receives the incoming call
-Then HMI OP1 has the DA key OP2(as OP1) in state ringing
+Scenario: Op1 receives the incoming call
+Then HMI OP1 has the DA key OP1(as OP2) in state ringing
+Then HMI OP1 has in the call queue the item OP2-OP1 with priority
 
-Scenario: OP1 client answers the incoming call
-When HMI OP1 presses DA key OP2(as OP1)
+Scenario: Callee client answers the incoming call
+When HMI OP2 presses DA key OP1
 
 Scenario: Verify call is connected for both operators
+		  @REQUIREMENTS:GID-2535771
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 

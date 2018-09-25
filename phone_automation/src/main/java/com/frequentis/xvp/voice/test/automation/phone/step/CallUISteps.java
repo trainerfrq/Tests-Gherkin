@@ -37,7 +37,7 @@ import scripts.cats.hmi.ClickOnCallHistoryCallButton;
 import scripts.cats.hmi.ClickOnPhoneBookCallButton;
 import scripts.cats.hmi.DragAndClickOnMenuButtonDAKey;
 import scripts.cats.hmi.VerifyDAButtonState;
-import scripts.cats.hmi.VerifyTransferState;
+import scripts.cats.hmi.VerifyOperatorPositionState;
 
 public class CallUISteps extends AutomationSteps
 {
@@ -182,7 +182,7 @@ public class CallUISteps extends AutomationSteps
    public void verifyTransferState( final String profileName )
    {
       evaluate( remoteStep( "Verify operator position is in transfer state" ).scriptOn(
-            profileScriptResolver().map( VerifyTransferState.class, BookableProfileName.javafx ),
+            profileScriptResolver().map( VerifyOperatorPositionState.class, BookableProfileName.javafx ),
             assertProfile( profileName ) ) );
    }
 

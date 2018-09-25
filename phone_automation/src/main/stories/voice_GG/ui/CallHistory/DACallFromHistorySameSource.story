@@ -15,6 +15,12 @@ Given the call queue items:
 | OP1-OP2 | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
 | OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
 
+Scenario: Caller clears call history list
+When HMI OP1 presses function key CALLHISTORY
+Then HMI OP1 clears Call History list
+Then HMI OP1 verifies that call history list contains 0 entries
+Then HMI OP1 closes Call History popup window
+
 Scenario: Caller establishes an outgoing call
 When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
@@ -35,9 +41,11 @@ Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Caller opens call history
 When HMI OP1 presses function key CALLHISTORY
+Then HMI OP1 verifies that call history list contains 1 entries
 
 Scenario: Caller selects first entry from history
 When HMI OP1 selects call history list entry number: 0
+Then HMI OP1 verifies that call history call button has label OP2(as OP1)
 
 Scenario: Caller hits call history call button
 		  REQUIREMENTS:GID-2535764

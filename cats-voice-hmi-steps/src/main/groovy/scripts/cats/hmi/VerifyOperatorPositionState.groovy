@@ -7,13 +7,15 @@ import com.frequentis.c4i.test.util.timer.WaitTimer
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class VerifyTransferState extends FxScriptTemplate {
+class VerifyOperatorPositionState extends FxScriptTemplate {
 
     public static final String ROOT_VIEW = "rootView"
-    public static final String TRANSFER = "transfer"
+    public static final String STATE = "state_mode"
 
     @Override
     void script() {
+
+        String state = assertInput(STATE) as String
 
         Node rootView = robot.lookup("#" + ROOT_VIEW).queryFirst();
 
@@ -21,8 +23,8 @@ class VerifyTransferState extends FxScriptTemplate {
                 .expected("Root view was found")
                 .success(rootView != null));
 
-        evaluate(ExecutionDetails.create("Verify root view has styleClass: " + TRANSFER)
-                .success(verifyNodeHasClass(rootView, TRANSFER, 10000)));
+        evaluate(ExecutionDetails.create("Verify root view has styleClass: " + state)
+                .success(verifyNodeHasClass(rootView, state, 10000)));
     }
 
     protected static boolean verifyNodeHasClass(Node node, String className, long nWait) {
