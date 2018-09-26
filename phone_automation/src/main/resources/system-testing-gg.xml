@@ -11,8 +11,11 @@
     <bean class="com.frequentis.xvp.voice.test.automation.phone.step.GGBasicSteps"/>
     <bean class="com.frequentis.xvp.voice.test.automation.phone.step.NamingSteps"/>
     <bean class="com.frequentis.xvp.voice.test.automation.phone.step.PhoneBookSteps"/>
-    <bean class="com.frequentis.xvp.voice.test.automation.phone.step.UISteps"/>
-    <bean class="com.frequentis.xvp.voice.test.automation.phone.step.VoipSteps"/>
+    <bean class="com.frequentis.xvp.voice.test.automation.phone.step.CallUISteps"/>
+    <bean class="com.frequentis.xvp.voice.test.automation.phone.step.CallHistoryUISteps"/>
+    <bean class="com.frequentis.xvp.voice.test.automation.phone.step.CallQueueUISteps"/>
+    <bean class="com.frequentis.xvp.voice.test.automation.phone.step.PhoneBookUISteps"/>
+    <bean class="com.frequentis.xvp.voice.test.automation.phone.step.MissionListUISteps"/>
 
     <import resource="classpath*:cats-master-common-step-definitions.xml"/>
     <import resource="classpath*:websocket-automation-steps.xml"/>
