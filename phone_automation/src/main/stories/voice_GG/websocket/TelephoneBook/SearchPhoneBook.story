@@ -38,10 +38,10 @@ When WS1 requests all entries and saves the requestId2
 
 Scenario: Assert first 10 entries
 		  @REQUIREMENTS:GID-2659402
-Then WS1 receives phone book response on buffer named PhoneBookResponseBuffer for request with requestId2 with one entry matching phone book entry <entry>
+Then WS1 receives phone book response on buffer named PhoneBookResponseBuffer for request with requestId2 with one entry matching phone book entry <key>
 
 Examples:
-|entry    |
+|key      |
 |entry1   |
 |entry2   |
 |entry3   |

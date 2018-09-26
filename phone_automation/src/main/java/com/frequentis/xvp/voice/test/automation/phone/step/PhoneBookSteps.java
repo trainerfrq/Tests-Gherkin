@@ -116,9 +116,9 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
    }
 
 
-   @Then("$namedWebSocket receives phone book response on buffer named $bufferName for request with $namedRequestId with one entry matching phone book entry <entry>")
+   @Then("$namedWebSocket receives phone book response on buffer named $bufferName for request with $namedRequestId with one entry matching phone book entry <key>")
    public void receivePhoneBookResponseCheckAllEntriesFromTable( @Named("namedWebSocket") final String namedWebSocket, @Named("bufferName") final String bufferName,
-                                                                 @Named("namedRequestId") final String namedRequestId, @Named("entry") final String entry )
+                                                                 @Named("namedRequestId") final String namedRequestId, @Named("key") final String entry )
    {
       receivePhoneBookResponseCheckAllEntries( namedWebSocket, bufferName, namedRequestId, entry );
    }
@@ -155,11 +155,7 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
                         .details( match( "Verify phone book entry is defined", phoneBookEntry, is( notNullValue() ) ) ) );
 
       assertPhoneBookEntryAllEntries( phoneBookResponse.getItems(), phoneBookEntry );
-
    }
-
-
-
 
 
    @Then("$namedWebSocket receives phone book response on buffer named $bufferName for request with $namedRequestId with a total number of $nrOfEntries entries")
