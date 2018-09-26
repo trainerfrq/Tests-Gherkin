@@ -1,6 +1,6 @@
 Narrative:
 As a caller operator
-I want to establish an outgoing call
+I want to establish an outgoing DA call
 So I can verify that the caller identity for the incoming call is displayed.
 
 Scenario: Booking profiles
@@ -33,11 +33,12 @@ Scenario: Call is terminated for both
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 
-Scenario: Caller opens call history
-When HMI OP2 presses function key CALLHISTORY
-
 Scenario: Caller selects first entry from history
+When HMI OP2 presses function key CALLHISTORY
 When HMI OP2 selects call history list entry number: 0
+
+Scenario: Caller verifies the label on call history button
+Then HMI OP2 verifies that call history call button has label OP3
 
 Scenario: Caller hits call history call button
 When HMI OP2 initiates a call from the call history

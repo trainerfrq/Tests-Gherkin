@@ -17,14 +17,14 @@
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
 import com.google.common.collect.ImmutableList;
-import java.util.stream.Collectors;
+import java.util.List;
+import org.jbehave.core.annotations.Named;
+import org.jbehave.core.model.ExamplesTable;
 import scripts.cats.websocket.sequential.SendTextMessage;
 import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
 import static com.frequentis.c4i.test.model.MatcherDetails.match;
-import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.isIn;
@@ -44,8 +44,6 @@ import com.frequentis.xvp.tools.cats.websocket.automation.model.PhoneBookEntry;
 import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
-import com.frequentis.xvp.voice.opvoice.config.phonebook.PhoneBook;
-import com.frequentis.xvp.voice.opvoice.config.phonebook.PhoneBookDataSet;
 import com.frequentis.xvp.voice.opvoice.json.messages.JsonMessage;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookResponse;
@@ -55,6 +53,9 @@ import com.frequentis.xvp.voice.sip.SipUser;
 
 public class PhoneBookSteps extends WebsocketAutomationSteps
 {
+
+   public static final int ITEM_CNT = 100000;
+
    @When("$namedWebSocket requests a number of $nrOfEntries entries starting from index $startIndex with the search pattern $searchPattern and saves the $namedRequestId")
    public void sendPhoneBookRequestWithSearchPattern( final String namedWebSocket, final Integer nrOfEntries,
          final Integer startIndex, final String searchPattern, final String namedRequestId )
@@ -69,7 +70,6 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
    {
       sendPhoneBookRequest( namedWebSocket, nrOfEntries, startIndex, "", namedRequestId );
    }
-
 
    @When("$namedWebSocket requests all entries and saves the $namedRequestId")
    public void sendPhoneBookRequestForAllEntriesWithEmptySearchPattern( final String namedWebSocket, final String namedRequestId )
@@ -116,9 +116,15 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
    }
 
 
-   @Then("$namedWebSocket receives phone book response on buffer named $bufferName for request with $namedRequestId with one entry matching phone book entry $phoneBookEntry")
+   @Then("$namedWebSocket receives phone book response on buffer named $bufferName for request with $namedRequestId with one entry matching phone book entry <entry>")
+   public void receivePhoneBookResponseCheckAllEntriesFromTable( @Named("namedWebSocket") final String namedWebSocket, @Named("bufferName") final String bufferName,
+                                                                 @Named("namedRequestId") final String namedRequestId, @Named("entry") final String entry )
+   {
+      receivePhoneBookResponseCheckAllEntries( namedWebSocket, bufferName, namedRequestId, entry );
+   }
+
    public void receivePhoneBookResponseCheckAllEntries( final String namedWebSocket, final String bufferName,
-                                                   final String namedRequestId, final String namedPhoneBookEntry )
+                                                        final String namedRequestId, final String namedPhoneBookEntry )
    {
       final ProfileToWebSocketConfigurationReference reference =
               getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
@@ -151,6 +157,9 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
       assertPhoneBookEntryAllEntries( phoneBookResponse.getItems(), phoneBookEntry );
 
    }
+
+
+
 
 
    @Then("$namedWebSocket receives phone book response on buffer named $bufferName for request with $namedRequestId with a total number of $nrOfEntries entries")
@@ -248,10 +257,8 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
       final ProfileToWebSocketConfigurationReference reference =
               getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
 
-      final int nrOfEntries = 100000;
-
       PhoneBookRequest phoneBookRequest =
-              new PhoneBookRequest( new Random().nextInt(),"",0, nrOfEntries );
+              new PhoneBookRequest(new Random().nextInt(), "", 0, ITEM_CNT);
 
       final JsonMessage request =
               JsonMessage.builder().withCorrelationId( UUID.randomUUID() ).withPhoneBookRequest( phoneBookRequest )
@@ -292,11 +299,12 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
    private void assertPhoneBookEntryAllEntries(final ImmutableList<PhoneBookResponseItem> items, final PhoneBookEntry phoneBookEntry) {
 
       PhoneBookResponseItem entry = new PhoneBookResponseItem(phoneBookEntry.getName(), phoneBookEntry.getFullName(),phoneBookEntry.getLocation(),
-                                                                 phoneBookEntry.getOrganization(),phoneBookEntry.getNotes(),phoneBookEntry.getDisplayAddon(),
-                                                                 phoneBookEntry.getUri(), getUserPartOfURI( phoneBookEntry.getUri() ));
+                                                              phoneBookEntry.getOrganization(),phoneBookEntry.getNotes(),phoneBookEntry.getDisplayAddon(),
+                                                              phoneBookEntry.getUri(), getUserPartOfURI( phoneBookEntry.getUri() ));
       evaluate( localStep( "Verify phone book entry exists in the entire phone book list" )
                         .details(match(entry,isIn(items))));
    }
+
 
    private String getUserPartOfURI( final String uri )
    {
