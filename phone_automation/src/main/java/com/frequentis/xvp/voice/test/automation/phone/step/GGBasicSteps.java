@@ -220,7 +220,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
    @When("$namedWebSocket loads phone data for role $roleIdName and names $callSourceName and $callTargetName from the entry number $entryNumber")
    public void loadPhoneData( final String namedWebSocket, final String roleIdName, final String callSourceName,
-         final String callTargetName, final Integer entryNumber )
+   final String callTargetName, final Integer entryNumber )
    {
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
@@ -260,6 +260,49 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       setStoryData( callSourceName, dataElement.getSource() );
       setStoryData( callTargetName, dataElement.getTarget() );
    }
+
+    @When("$namedWebSocket loads phone data for role $roleIdName and same names for $callSourceName and $callTargetName from the entry number $entryNumber")
+    public void loadPhoneDataForSameSourceAndTarget( final String namedWebSocket, final String roleIdName, final String callSourceName,
+                               final String callTargetName, final Integer entryNumber )
+    {
+        final ProfileToWebSocketConfigurationReference reference =
+                getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+        final String roleId = getStoryData( roleIdName, String.class );
+        QueryRolePhoneDataRequest queryRolePhoneDataRequest = new QueryRolePhoneDataRequest( roleId );
+        final JsonMessage request =
+                JsonMessage.builder().withQueryRolePhoneDataRequest( queryRolePhoneDataRequest )
+                           .withCorrelationId( UUID.randomUUID() ).build();
+
+        final RemoteStepResult remoteStepResult =
+                evaluate(
+                        remoteStep( "Querying role phone data for role " + roleId )
+                                .scriptOn( profileScriptResolver().map( SendAndReceiveTextMessage.class,
+                                                                        BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                                .input( SendAndReceiveTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                                .input( SendAndReceiveTextMessage.IPARAM_RESPONSETYPE, "queryRolePhoneDataResponse" )
+                                .input( SendAndReceiveTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
+
+        final String jsonResponse =
+                ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
+        final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
+
+        evaluate( localStep( "Received query role phone data response" )
+                          .details( match( "Is query role phone data response", jsonMessage.body().isQueryRolePhoneDataResponse(),
+                                           equalTo( true ) ) )
+                          .details( match( "Response is successful", jsonMessage.body().queryRolePhoneDataResponse().getError(),
+                                           nullValue() ) )
+                          .details( match( "Phone data is not empty",
+                                           jsonMessage.body().queryRolePhoneDataResponse().getPhoneData().getDa(), not( empty() ) ) )
+                          .details( match( "Entry of given number is present",
+                                           jsonMessage.body().queryRolePhoneDataResponse().getPhoneData().getDa().size(),
+                                           greaterThanOrEqualTo( entryNumber ) ) ) );
+
+        final JsonDaDataElement dataElement =
+                jsonMessage.body().queryRolePhoneDataResponse().getPhoneData().getDa().get( entryNumber - 1 );
+        setStoryData( callSourceName, dataElement.getSource() );
+        setStoryData( callTargetName, dataElement.getSource() );
+    }
 
 
    @When("$namedWebSocket establishes an outgoing phone call using source $callSourceName ang target $callTargetName and names $phoneCallIdName")

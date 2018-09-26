@@ -842,6 +842,24 @@
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/PhoneGeneral/DisplayCallerIdentityForDAIncomingCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/PhoneGeneral/DisplayCallerIdentityForIAIncomingCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/PhoneGeneral/DisplayCallerRoleForIncomingCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneGeneral/EstablishPhoneCallTowardsSameTarget.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
