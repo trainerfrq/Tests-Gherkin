@@ -3,9 +3,9 @@
     "missionId": "22e6596e-93d3-4859-ae1e-2009f457f9ae",
     "missionName": "MAN-NIGHT-TACT",
     "missionAssignedRoles": [
-      "00000000-0000-0000-0000-000000000001"
+      "LOWER-EAST-EXEC"
     ],
-    "missionMasterRole": "00000000-0000-0000-0000-000000000001",
+    "missionMasterRole": "LOWER-EAST-EXEC",
     "missionDefaultSourceSipAddress": "sip:mission1@example.com",
     "iaCallTimeoutMilliseconds": 5000,
     "maxIncomingIaCallsCount": 3,
@@ -24,15 +24,25 @@
         "patternType": "replacePlaceholder",
         "pattern": "{user_input}"
       }
-    ]
+    ],
+    "schemaVersion": "0.5.0-SNAPSHOT",
+    "phoneSettings": {
+      "sipAddresses": [
+        "sip:role1@example.com",
+        "sip:group1@example.com",
+        "sip:role1alias2@example.com",
+        "sip:role1alias1@example.com"
+      ]
+    },
+    "layoutId": "lower-east-exec-layout"
   },
   {
     "missionId": "4a549394-87fc-4133-8aa9-717fb82f6a66",
     "missionName": "WEST-EXEC",
     "missionAssignedRoles": [
-      "00000000-0000-0000-0000-000000000002"
+      "LOWER-WEST-EXEC"
     ],
-    "missionMasterRole": "00000000-0000-0000-0000-000000000002",
+    "missionMasterRole": "LOWER-WEST-EXEC",
     "missionDefaultSourceSipAddress": "sip:mission2@example.com",
     "iaCallTimeoutMilliseconds": 1000,
     "maxIncomingIaCallsCount": 1,
@@ -52,16 +62,25 @@
         "patternType": "replacePlaceholder",
         "pattern": "{user_input}"
       }
-    ]
+    ],
+    "schemaVersion": "0.5.0-SNAPSHOT",
+    "phoneSettings": {
+      "sipAddresses": [
+        "sip:role2@example.com",
+        "sip:group1@example.com",
+        "sip:role2alias2@example.com",
+        "sip:role2alias1@example.com"
+      ]
+    },
+    "layoutId": "lower-west-exec-layout"
   },
   {
     "missionId": "634070c1-a620-4f0e-b7d4-c0812a4bba10",
     "missionName": "EAST-EXEC",
     "missionAssignedRoles": [
-      "00000000-0000-0000-0000-000000000001",
-      "b4798f15-88dd-474e-a15f-7b2d2aba92b5"
+      "LOWER-EAST-EXEC"
     ],
-    "missionMasterRole": "00000000-0000-0000-0000-000000000001",
+    "missionMasterRole": "LOWER-EAST-EXEC",
     "missionDefaultSourceSipAddress": "sip:mission3@example.com",
     "iaCallTimeoutMilliseconds": 1000,
     "maxIncomingIaCallsCount": 3,
@@ -80,6 +99,16 @@
         "patternType": "replacePlaceholder",
         "pattern": "{user_input}"
       }
-    ]
+    ],
+    "schemaVersion": "0.5.0-SNAPSHOT",
+    "phoneSettings": {
+      "sipAddresses": [
+        "sip:role1@example.com",
+        "sip:group1@example.com",
+        "sip:role1alias2@example.com",
+        "sip:role1alias1@example.com"
+      ]
+    },
+    "layoutId": "lower-east-exec-layout"
   }
 ]

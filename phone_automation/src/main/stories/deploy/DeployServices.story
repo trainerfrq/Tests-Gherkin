@@ -17,7 +17,7 @@ And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path c
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/items/virtualDevices.json with payload /configuration-files/common/virtualDevices.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/items/missions.json with payload /configuration-files/<<systemName>>/missions.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/items/phoneData.json with payload /configuration-files/<<systemName>>/phoneData.json
-And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/items/roles.json with payload /configuration-files/<<systemName>>/roles.json
+And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/items/layouts.json with payload /configuration-files/<<systemName>>/layouts.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/items/phoneBook.json with payload /configuration-files/<<systemName>>/phoneBook.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/items/partitions.json with payload /configuration-files/<<systemName>>/partitions.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/items/phoneDevices.json with payload /configuration-files/<<systemName>>/phoneDevices.json
