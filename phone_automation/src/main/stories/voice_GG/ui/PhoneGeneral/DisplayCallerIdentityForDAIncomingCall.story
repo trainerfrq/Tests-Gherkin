@@ -18,6 +18,7 @@ Scenario: Caller establishes an outgoing call
 When HMI OP2 presses DA key OP3
 
 Scenario: Callee client receives the incoming call with the identity of the caller
+		  @REQUIREMENTS:GID-3547601
 Then HMI OP3 has the call queue item OP2-OP3 in the waiting list with label OP2 Physical
 
 Scenario: Callee client answers the incoming call

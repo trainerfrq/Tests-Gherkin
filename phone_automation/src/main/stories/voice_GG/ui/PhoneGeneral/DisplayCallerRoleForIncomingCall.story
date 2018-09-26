@@ -22,6 +22,7 @@ Scenario: Caller establishes an outgoing call towards Role1 as OP2
 When HMI OP2 presses DA key ROLE1(as OP2)
 
 Scenario: Operators part of called role receive the incoming call with caller identity
+		  @REQUIREMENTS:GID-3547601
 Then HMI OP1 has the call queue item OP2-Role1 in the waiting list with label OP2 Physical
 Then HMI OP3 has the call queue item OP2-Role1 in the waiting list with label OP2 Physical
 
