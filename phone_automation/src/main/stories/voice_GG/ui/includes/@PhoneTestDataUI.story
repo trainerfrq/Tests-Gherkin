@@ -27,6 +27,7 @@ Given the function keys:
 | PHONEBOOK   | f1 |
 | CALLHISTORY | f2 |
 | MISSIONS    | f3 |
+| CALLFORWARD | f4 |
 
 Scenario: Define call route selectors
 Given the call route selectors:

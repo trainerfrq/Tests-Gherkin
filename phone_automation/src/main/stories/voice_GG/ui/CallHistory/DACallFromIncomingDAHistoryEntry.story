@@ -15,11 +15,18 @@ Given the call queue items:
 | OP1-OP2 | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
 | OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
 
-Scenario: Callee clears call history list
+Scenario: OP2 clears call history list
 When HMI OP2 presses function key CALLHISTORY
 Then HMI OP2 clears Call History list
 Then HMI OP2 verifies that call history list contains 0 entries
 Then HMI OP2 closes Call History popup window
+
+Scenario: OP1 clears call history list
+When HMI OP1 presses function key CALLHISTORY
+Then HMI OP1 clears Call History list
+Then HMI OP1 verifies that call history list contains 0 entries
+Then HMI OP1 closes Call History popup window
+
 
 Scenario: OP1 establishes an outgoing call
 When HMI OP1 presses DA key OP2(as OP1)
@@ -46,7 +53,7 @@ Then HMI OP2 verifies that call history list contains 1 entries
 Scenario: OP2 selects first entry from history
 When HMI OP2 selects call history list entry number: 0
 
-Scenario: OP2 hits call history call button
+Scenario: OP2 does call from call history
 		  REQUIREMENTS:GID-2535764
 		  REQUIREMENTS:GID-2536683
 		  REQUIREMENTS:GID-2656702
@@ -58,7 +65,7 @@ Then HMI OP1 has the DA key OP2(as OP1) in state ringing
 
 Scenario: OP1 opens call history
 When HMI OP1 presses function key CALLHISTORY
-Then HMI OP1 verifies that call history list contains 2 entries
+Then HMI OP1 verifies that call history list contains 1 entries
 Then HMI OP1 closes Call History popup window
 
 Scenario: OP1 client answers the incoming call

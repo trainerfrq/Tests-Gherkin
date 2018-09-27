@@ -2,6 +2,7 @@ package scripts.cats.hmi
 
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
+import javafx.scene.control.ListView
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 class VerifyCallHistoryListEntries extends FxScriptTemplate {
@@ -20,12 +21,12 @@ class VerifyCallHistoryListEntries extends FxScriptTemplate {
 
         if (callHistoryPopup != null) {
 
-            final Set<Node> callHistoryListAll = robot.lookup("#callHistoryList .list-cell").queryAll()
-            int callHistoryEntryList = callHistoryListAll.size() - 8
+            final ListView callHistoryListAll = robot.lookup("#callHistoryList").queryFirst()
+            int callHistoryEntryList = callHistoryListAll.getItems().size()
 
             evaluate(ExecutionDetails.create("Call History list size is the expected one", callHistoryEntryList.toString())
                     .received(callHistoryEntryList.toString())
-                    .expected(IPARAM_CALL_HISTORY_LIST_SIZE)
+                    .expected(callHistoryListSize.toString())
                     .success(callHistoryEntryList.equals(callHistoryListSize)));
         }
     }

@@ -39,7 +39,7 @@ When HMI OP2 presses function key CALLHISTORY
 Scenario: OP2 selects first entry from history
 When HMI OP2 selects call history list entry number: 0
 
-Scenario: OP2 hits call history call button
+Scenario: OP2 does call from call history
 		  REQUIREMENTS:GID-2535764
 		  REQUIREMENTS:GID-2536683
 		  REQUIREMENTS:GID-2656702

@@ -34,6 +34,7 @@ import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
 
 import scripts.cats.hmi.ClickCallQueueItem;
 import scripts.cats.hmi.DragAndClickOnMenuButtonFirstCallQueueItem;
+import scripts.cats.hmi.VerifyCallQueueBar;
 import scripts.cats.hmi.VerifyCallQueueItemLabel;
 import scripts.cats.hmi.VerifyCallQueueItemStateIfPresent;
 import scripts.cats.hmi.VerifyCallQueueItemStyleClass;
@@ -223,6 +224,16 @@ public class CallQueueUISteps extends AutomationSteps
             .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_MENU_BUTTON_ID, TRANSFER_MENU_BUTTON_ID )
             .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_LIST_NAME, ACTIVE_LIST_NAME ) );
    }
+
+
+    @Then("$profileName verifies that call queue item bar signals call state $state")
+    public void verifyCallQueueBar( final String profileName, final String state )
+    {
+        evaluate( remoteStep( "Verify call queue item bar" )
+                .scriptOn( profileScriptResolver().map( VerifyCallQueueBar.class,
+                        BookableProfileName.javafx ), assertProfile( profileName ) )
+                .input( VerifyCallQueueBar.IPARAM_CALL_QUEUE_STATE, state ) );
+    }
 
 
    @Then("the call queue item $namedCallQueueItem is $state for only one of the operator positions: $profileNames")
