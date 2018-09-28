@@ -17,9 +17,7 @@
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
 import com.google.common.collect.ImmutableList;
-import java.util.List;
 import org.jbehave.core.annotations.Named;
-import org.jbehave.core.model.ExamplesTable;
 import scripts.cats.websocket.sequential.SendTextMessage;
 import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
 import static com.frequentis.c4i.test.model.MatcherDetails.match;
@@ -54,7 +52,7 @@ import com.frequentis.xvp.voice.sip.SipUser;
 public class PhoneBookSteps extends WebsocketAutomationSteps
 {
 
-   public static final int ITEM_CNT = 100000;
+   public static final int MAX_NUMBER_OF_PHONEBOOK_ITEMS = 100000;
 
    @When("$namedWebSocket requests a number of $nrOfEntries entries starting from index $startIndex with the search pattern $searchPattern and saves the $namedRequestId")
    public void sendPhoneBookRequestWithSearchPattern( final String namedWebSocket, final Integer nrOfEntries,
@@ -254,7 +252,7 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
               getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
 
       PhoneBookRequest phoneBookRequest =
-              new PhoneBookRequest(new Random().nextInt(), "", 0, ITEM_CNT);
+              new PhoneBookRequest(new Random().nextInt(), "", 0, MAX_NUMBER_OF_PHONEBOOK_ITEMS);
 
       final JsonMessage request =
               JsonMessage.builder().withCorrelationId( UUID.randomUUID() ).withPhoneBookRequest( phoneBookRequest )
