@@ -17,16 +17,9 @@
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
-import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
-import com.frequentis.c4i.test.model.ExecutionDetails;
-import com.frequentis.xvp.tools.cats.websocket.automation.model.PhoneBookEntry;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
-import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
-import scripts.cats.hmi.VerifyNotificationLabel;
-import scripts.cats.hmi.VerifyOperatorPositionState;
-
-import java.util.List;
+import scripts.cats.hmi.asserts.VerifyNotificationLabel;
 
 public class GGBasicUISteps extends AutomationSteps
 {

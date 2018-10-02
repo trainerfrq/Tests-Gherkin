@@ -17,12 +17,16 @@ Given the call queue items:
 
 Scenario: Caller opens phonebook
 When HMI OP1 presses function key PHONEBOOK
+Then HMI OP1 verify that call route selector shows Default
 
 Scenario: Caller selects call route selector
-When HMI OP1 selects call route selector: None
+When HMI OP1 selects call route selector: none
+Then HMI OP1 verify that call route selector shows None
+Then HMI OP1 verifies that phone book call button is disable
 
 Scenario: Caller writes target address in text box
 When HMI OP1 writes in phonebook text box the address: <<OPVOICE3_PHONE_URI>>
+Then HMI OP1 verifies that phone book call button is enable
 
 Scenario: Caller hits phonebook call button
 When HMI OP1 initiates a call from the phonebook

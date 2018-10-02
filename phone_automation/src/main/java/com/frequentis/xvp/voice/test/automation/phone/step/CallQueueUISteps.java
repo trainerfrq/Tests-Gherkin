@@ -32,13 +32,13 @@ import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
 
-import scripts.cats.hmi.ClickCallQueueItem;
-import scripts.cats.hmi.DragAndClickOnMenuButtonFirstCallQueueItem;
-import scripts.cats.hmi.VerifyCallQueueBar;
-import scripts.cats.hmi.VerifyCallQueueItemLabel;
-import scripts.cats.hmi.VerifyCallQueueItemStateIfPresent;
-import scripts.cats.hmi.VerifyCallQueueItemStyleClass;
-import scripts.cats.hmi.VerifyCallQueueLength;
+import scripts.cats.hmi.actions.ClickCallQueueItem;
+import scripts.cats.hmi.actions.DragAndClickOnMenuButtonFirstCallQueueItem;
+import scripts.cats.hmi.asserts.VerifyCallQueueBar;
+import scripts.cats.hmi.asserts.VerifyCallQueueItemLabel;
+import scripts.cats.hmi.asserts.VerifyCallQueueItemStateIfPresent;
+import scripts.cats.hmi.asserts.VerifyCallQueueItemStyleClass;
+import scripts.cats.hmi.asserts.VerifyCallQueueLength;
 
 public class CallQueueUISteps extends AutomationSteps
 {
