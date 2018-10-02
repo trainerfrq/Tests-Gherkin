@@ -34,7 +34,7 @@ import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
 
 import scripts.cats.hmi.actions.ClickCallQueueItem;
 import scripts.cats.hmi.actions.DragAndClickOnMenuButtonFirstCallQueueItem;
-import scripts.cats.hmi.asserts.VerifyCallQueueBar;
+import scripts.cats.hmi.asserts.VerifyCallQueueBarState;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemLabel;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemStateIfPresent;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemStyleClass;
@@ -230,9 +230,9 @@ public class CallQueueUISteps extends AutomationSteps
     public void verifyCallQueueBar( final String profileName, final String state )
     {
         evaluate( remoteStep( "Verify call queue item bar" )
-                .scriptOn( profileScriptResolver().map( VerifyCallQueueBar.class,
+                .scriptOn( profileScriptResolver().map( VerifyCallQueueBarState.class,
                         BookableProfileName.javafx ), assertProfile( profileName ) )
-                .input( VerifyCallQueueBar.IPARAM_CALL_QUEUE_STATE, state ) );
+                .input( VerifyCallQueueBarState.IPARAM_CALL_QUEUE_STATE, state ) );
     }
 
 

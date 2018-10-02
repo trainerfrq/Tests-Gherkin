@@ -5,8 +5,9 @@ import javafx.scene.Node
 import javafx.scene.control.ListView
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class VerifyCallHistoryListEntries extends FxScriptTemplate {
-    public static final String IPARAM_CALL_HISTORY_LIST_SIZE = "call_history_entry_number"
+class VerifyCallHistoryListSize extends FxScriptTemplate {
+
+    public static final String IPARAM_CALL_HISTORY_LIST_SIZE = "call_history_list_size"
 
     @Override
     void script() {
@@ -21,13 +22,13 @@ class VerifyCallHistoryListEntries extends FxScriptTemplate {
 
         if (callHistoryPopup != null) {
 
-            final ListView callHistoryListAll = robot.lookup("#callHistoryList").queryFirst()
-            int callHistoryEntryList = callHistoryListAll.getItems().size()
+            final ListView callHistoryList = robot.lookup("#callHistoryList").queryFirst()
+            int receivedCallHistoryListSize = callHistoryList.getItems().size()
 
-            evaluate(ExecutionDetails.create("Call History list size is the expected one", callHistoryEntryList.toString())
-                    .received(callHistoryEntryList.toString())
+            evaluate(ExecutionDetails.create("Call History list size is the expected one")
+                    .received(receivedCallHistoryListSize.toString())
                     .expected(callHistoryListSize.toString())
-                    .success(callHistoryEntryList.equals(callHistoryListSize)));
+                    .success(receivedCallHistoryListSize.equals(callHistoryListSize)));
         }
     }
 }

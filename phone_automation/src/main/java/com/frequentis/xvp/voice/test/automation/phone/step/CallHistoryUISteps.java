@@ -27,7 +27,7 @@ import scripts.cats.hmi.actions.ClickOnCallHistoryCloseButton;
 import scripts.cats.hmi.actions.ClickOnRedialCallButton;
 import scripts.cats.hmi.actions.SelectCallHistoryEntry;
 import scripts.cats.hmi.asserts.VerifyCallHistoryDialButtonLabel;
-import scripts.cats.hmi.asserts.VerifyCallHistoryListEntries;
+import scripts.cats.hmi.asserts.VerifyCallHistoryListSize;
 import scripts.cats.hmi.asserts.VerifyCallHistoryRedialBtnLabel;
 import scripts.cats.hmi.asserts.VerifyRedialCallButtonState;
 
@@ -71,9 +71,9 @@ public class CallHistoryUISteps extends AutomationSteps
     public void verifyCallHistoryNumberOfEntries( final String profileName, final Integer number )
     {
         evaluate( remoteStep( "Verify call history list contains " + number.toString() + "entries" )
-                .scriptOn( profileScriptResolver().map( VerifyCallHistoryListEntries.class, BookableProfileName.javafx ),
+                .scriptOn( profileScriptResolver().map( VerifyCallHistoryListSize.class, BookableProfileName.javafx ),
                         assertProfile( profileName ) )
-                .input( VerifyCallHistoryListEntries.IPARAM_CALL_HISTORY_LIST_SIZE, number ) );
+                .input( VerifyCallHistoryListSize.IPARAM_CALL_HISTORY_LIST_SIZE, number ) );
     }
 
     @Then("$profileName verifies that call history call button has label $label")

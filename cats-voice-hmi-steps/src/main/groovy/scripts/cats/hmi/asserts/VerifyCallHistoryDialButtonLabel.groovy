@@ -18,8 +18,9 @@ class VerifyCallHistoryDialButtonLabel extends FxScriptTemplate {
 
         String buttonText = dialCallButton.getText()
 
-        evaluate(ExecutionDetails.create("Button displays the expected text: ", dialCallButton.getText())
+        evaluate(ExecutionDetails.create("Button displays the expected text ")
                 .expected("Button displays the expected text: " + displayName)
+                .received("Button displays the expected text: " + buttonText)
                 .success(buttonText.contains(displayName)))
     }
 }

@@ -6,8 +6,8 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class SelectCallRouteSelectorNone extends FxScriptTemplate {
-    private static final Logger LOGGER = LoggerFactory.getLogger(SelectCallRouteSelectorNone.class);
+class SelectCallRouteSelector extends FxScriptTemplate {
+    private static final Logger LOGGER = LoggerFactory.getLogger(SelectCallRouteSelector.class);
 
     public static final String IPARAM_CALL_ROUTE_SELECTOR_ID = "call_route_selector_id"
 
