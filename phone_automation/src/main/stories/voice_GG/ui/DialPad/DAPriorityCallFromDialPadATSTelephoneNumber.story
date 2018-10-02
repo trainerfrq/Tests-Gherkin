@@ -17,15 +17,17 @@ Given the call queue items:
 
 Scenario: Caller opens phonebook
 When HMI OP1 presses function key PHONEBOOK
-
-Scenario: Caller selects call route selector
-When HMI OP1 selects call route selector: Default
+Then HMI OP1 verify that call route selector shows Default
+Then HMI OP1 verifies that phone book call button is disabled
+Then HMI OP1 verifies that phone book priority toggle is inactive
 
 Scenario: Caller writes target address in text box
 When HMI OP1 writes in phonebook text box the address: 222222
+Then HMI OP1 verifies that phone book call button is enabled
 
 Scenario: Caller toggles call priority
 When HMI OP1 toggles call priority
+Then HMI OP1 verifies that phone book priority toggle is active
 
 Scenario: Caller hits phonebook call button
 		  @REQUIREMENTS:GID-2535727
@@ -37,7 +39,9 @@ Then waiting for 1 second
 
 Scenario: Call is initiated
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
+Then HMI OP1 verifies that call queue item bar signals call state priority
 Then HMI OP2 has the call queue item OP1-OP2 in state ringing
+Then HMI OP1 verifies that call queue item bar signals call state priority
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP2-OP1

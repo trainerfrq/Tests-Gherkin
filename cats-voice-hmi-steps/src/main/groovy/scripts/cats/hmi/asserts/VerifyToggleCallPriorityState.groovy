@@ -23,14 +23,19 @@ class VerifyToggleCallPriorityState extends FxScriptTemplate {
         if (phoneBookPopup != null) {
             final Node priorityToggle = robot.lookup("#priorityToggle").queryFirst()
 
-            if(state.equals("active")){
-                evaluate(ExecutionDetails.create("Priority toggle state is: " +state)
-                    .expected("Priority toggle expected state is: " + state)
-                    .success(priorityToggle.getPseudoClassStates().contains(PseudoClass.getPseudoClass("hover"))))
-            } else if (state.equals("inactive")) {
-                evaluate(ExecutionDetails.create("Priority toggle state is: " +state)
-                        .expected("Priority toggle expected state is: " + state)
-                        .success(!priorityToggle.getPseudoClassStates().contains(PseudoClass.getPseudoClass("hover"))))
+            switch(state){
+                case "active":
+                    evaluate(ExecutionDetails.create("Priority toggle state is: " +state)
+                            .expected("Priority toggle expected state is: " + state)
+                            .success(priorityToggle.getPseudoClassStates().contains(PseudoClass.getPseudoClass("hover"))))
+                    break
+                case "inactive":
+                    evaluate(ExecutionDetails.create("Priority toggle state is: " +state)
+                            .expected("Priority toggle expected state is: " + state)
+                            .success(!priorityToggle.getPseudoClassStates().contains(PseudoClass.getPseudoClass("hover"))))
+                    break
+                default:
+                    break
             }
 
         }

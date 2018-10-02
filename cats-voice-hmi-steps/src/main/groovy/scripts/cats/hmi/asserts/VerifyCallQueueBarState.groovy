@@ -4,7 +4,7 @@ import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.layout.VBox
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class VerifyCallQueueBar extends FxScriptTemplate {
+class VerifyCallQueueBarState extends FxScriptTemplate {
     public static final String IPARAM_CALL_QUEUE_STATE = "call_queue_state";
 
     @Override

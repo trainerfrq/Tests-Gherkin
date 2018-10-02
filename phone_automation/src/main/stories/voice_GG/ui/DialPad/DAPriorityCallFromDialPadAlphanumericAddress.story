@@ -22,7 +22,8 @@ Then HMI OP1 verify that call route selector shows Default
 Scenario: Caller selects call route selector
 When HMI OP1 selects call route selector: none
 Then HMI OP1 verify that call route selector shows None
-Then HMI OP1 verifies that phone book call button is disable
+Then HMI OP1 verifies that phone book call button is disabled
+Then HMI OP1 verifies that phone book priority toggle is inactive
 
 Scenario: Caller writes target address in text box
 When HMI OP1 writes in phonebook text box the address: sip:222222@example.com
@@ -41,7 +42,9 @@ When HMI OP1 initiates a call from the phonebook
 Scenario: Call is initiated
 		  @REQUIREMENTS:GID-2535717
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
+Then HMI OP1 verifies that call queue item bar signals call state priority
 Then HMI OP2 has the call queue item OP1-OP2 in state ringing
+Then HMI OP2 verifies that call queue item bar signals call state priority
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP2-OP1
