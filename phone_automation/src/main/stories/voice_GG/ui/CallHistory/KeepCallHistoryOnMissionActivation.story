@@ -57,6 +57,11 @@ Then HMI OP3 has the call queue item OP2-Role1 in state ringing
 Scenario: Caller clears outgoing call
 When HMI OP2 presses DA key ROLE1(as OP2)
 
+Scenario: Verify call is terminated for all operators
+Then HMI OP1 has in the call queue a number of 0 calls
+Then HMI OP2 has in the call queue a number of 0 calls
+Then HMI OP3 has in the call queue a number of 0 calls
+
 Scenario: Caller opens call history
 When HMI OP2 presses function key CALLHISTORY
 
