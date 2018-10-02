@@ -22,14 +22,14 @@ import org.jbehave.core.annotations.When;
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 
-import scripts.cats.hmi.ClickOnCallHistoryClearButton;
-import scripts.cats.hmi.ClickOnCallHistoryCloseButton;
-import scripts.cats.hmi.ClickOnRedialCallButton;
-import scripts.cats.hmi.SelectCallHistoryEntry;
-import scripts.cats.hmi.VerifyCallHistoryDialBtnLabel;
-import scripts.cats.hmi.VerifyCallHistoryListEntries;
-import scripts.cats.hmi.VerifyCallHistoryRedialBtnLabel;
-import scripts.cats.hmi.VerifyRedialCallButtonState;
+import scripts.cats.hmi.actions.ClickOnCallHistoryClearButton;
+import scripts.cats.hmi.actions.ClickOnCallHistoryCloseButton;
+import scripts.cats.hmi.actions.ClickOnRedialCallButton;
+import scripts.cats.hmi.actions.SelectCallHistoryEntry;
+import scripts.cats.hmi.asserts.VerifyCallHistoryDialButtonLabel;
+import scripts.cats.hmi.asserts.VerifyCallHistoryListEntries;
+import scripts.cats.hmi.asserts.VerifyCallHistoryRedialBtnLabel;
+import scripts.cats.hmi.asserts.VerifyRedialCallButtonState;
 
 public class CallHistoryUISteps extends AutomationSteps
 {
@@ -80,9 +80,9 @@ public class CallHistoryUISteps extends AutomationSteps
     public void verifyCallHistoryButtonContainsLabel( final String profileName, final String label )
     {
         evaluate( remoteStep( "Verify call history call button contains label " + label)
-                .scriptOn( profileScriptResolver().map( VerifyCallHistoryDialBtnLabel.class, BookableProfileName.javafx ),
+                .scriptOn( profileScriptResolver().map( VerifyCallHistoryDialButtonLabel.class, BookableProfileName.javafx ),
                         assertProfile( profileName ) )
-                .input(VerifyCallHistoryDialBtnLabel.IPARAM_DISPLAY_NAME, label) );
+                .input(VerifyCallHistoryDialButtonLabel.IPARAM_DISPLAY_NAME, label) );
     }
 
     @Then("$profileName verifies that call history redial button has label $label")

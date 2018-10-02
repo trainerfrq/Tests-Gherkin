@@ -17,12 +17,12 @@ Given the call queue items:
 
 Scenario: Caller opens phonebook
 When HMI OP1 presses function key PHONEBOOK
-
-Scenario: Caller selects call route selector
-When HMI OP1 selects call route selector: Default
+Then HMI OP1 verify that call route selector shows Default
+Then HMI OP1 verifies that phone book call button is disable
 
 Scenario: Caller writes target address in text box
 When HMI OP1 writes in phonebook text box the address: 222222
+Then HMI OP1 verifies that phone book call button is enable
 
 Scenario: Caller hits phonebook call button
 		  @REQUIREMENTS:GID-2535727
@@ -34,6 +34,7 @@ Then waiting for 1 second
 Scenario: Call is initiated
 		  @REQUIREMENTS:GID-2932446
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
+!-- Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2 Physical
 Then HMI OP2 has the call queue item OP1-OP2 in state ringing
 
 Scenario: Caller clears outgoing call
