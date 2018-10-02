@@ -47,7 +47,7 @@ Scenario: Caller selects first entry from history
 When HMI OP1 selects call history list entry number: 0
 Then HMI OP1 verifies that call history call button has label OP2(as OP1)
 
-Scenario: Caller hits call history call button
+Scenario: Caller does call from call history
 		  REQUIREMENTS:GID-2535764
 		  REQUIREMENTS:GID-2536683
 When HMI OP1 initiates a call from the call history

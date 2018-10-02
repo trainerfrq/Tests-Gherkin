@@ -178,12 +178,13 @@ public class CallUISteps extends AutomationSteps
    }
 
 
-   @Then("$profileName is in transfer state")
-   public void verifyTransferState( final String profileName )
+   @Then("$profileName is in $state state")
+   public void verifyTransferState( final String profileName, final String state )
    {
       evaluate( remoteStep( "Verify operator position is in transfer state" ).scriptOn(
             profileScriptResolver().map( VerifyOperatorPositionState.class, BookableProfileName.javafx ),
-            assertProfile( profileName ) ) );
+            assertProfile( profileName ) )
+            .input(VerifyOperatorPositionState.STATE, state));
    }
 
 

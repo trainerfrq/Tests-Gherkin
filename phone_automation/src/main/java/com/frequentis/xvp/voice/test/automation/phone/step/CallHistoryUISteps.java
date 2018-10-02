@@ -29,6 +29,7 @@ import scripts.cats.hmi.SelectCallHistoryEntry;
 import scripts.cats.hmi.VerifyCallHistoryDialBtnLabel;
 import scripts.cats.hmi.VerifyCallHistoryListEntries;
 import scripts.cats.hmi.VerifyCallHistoryRedialBtnLabel;
+import scripts.cats.hmi.VerifyRedialCallButtonState;
 
 public class CallHistoryUISteps extends AutomationSteps
 {
@@ -83,5 +84,25 @@ public class CallHistoryUISteps extends AutomationSteps
                         assertProfile( profileName ) )
                 .input(VerifyCallHistoryDialBtnLabel.IPARAM_DISPLAY_NAME, label) );
     }
+
+    @Then("$profileName verifies that call history redial button has label $label")
+    public void verifyRedialButtonContainsLabel( final String profileName, final String label )
+    {
+        evaluate( remoteStep( "Verify call history redial button contains label " + label)
+                .scriptOn( profileScriptResolver().map( VerifyCallHistoryRedialBtnLabel.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input(VerifyCallHistoryRedialBtnLabel.IPARAM_DISPLAY_NAME, label) );
+    }
+
+    @Then("$profileName verifies that call history redial button is $state")
+    public void verifyRedialButtonState( final String profileName, final String state )
+    {
+        evaluate( remoteStep( "Verify call history redial button has state " + state)
+                .scriptOn( profileScriptResolver().map( VerifyRedialCallButtonState.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input(VerifyRedialCallButtonState.IPARAM_STATE, state) );
+    }
+
+
 
 }
