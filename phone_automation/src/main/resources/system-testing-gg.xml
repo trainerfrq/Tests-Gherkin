@@ -18,7 +18,6 @@
     <bean class="com.frequentis.xvp.voice.test.automation.phone.step.MissionListUISteps"/>
     <bean class="com.frequentis.xvp.voice.test.automation.phone.step.GGBasicUISteps"/>
     <bean class="com.frequentis.xvp.voice.test.automation.phone.step.VoipSteps"/>
-    <bean class="com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil"/>
 
     <import resource="classpath*:cats-master-common-step-definitions.xml"/>
     <import resource="classpath*:websocket-automation-steps.xml"/>
