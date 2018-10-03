@@ -12,6 +12,18 @@
     ]
   },
   {
+    "fullName": "Physical Identity OP2",
+    "displayName": "OP2 Physical",
+    "location": "XVP Lab",
+    "organization": "FRQ XVP GG-Team",
+    "notes": "This is the physical identity of the second operating position",
+    "dataSets": [
+      {
+        "destination": "sip:222222@example.com"
+      }
+    ]
+  },
+  {
     "fullName": "Lloyd Ripley",
     "displayName": "Lloyd",
     "location": "123 6th St. Melbourne, FL 32904",
