@@ -18,11 +18,11 @@ Given the call queue items:
 Scenario: Caller opens phonebook
 When HMI OP1 presses function key PHONEBOOK
 Then HMI OP1 verify that call route selector shows Default
-Then HMI OP1 verifies that phone book call button is disable
+Then HMI OP1 verifies that phone book call button is disabled
 
 Scenario: Caller writes target address in text box
 When HMI OP1 writes in phonebook text box the address: 222222
-Then HMI OP1 verifies that phone book call button is enable
+Then HMI OP1 verifies that phone book call button is enabled
 
 Scenario: Caller hits phonebook call button
 		  @REQUIREMENTS:GID-2535727

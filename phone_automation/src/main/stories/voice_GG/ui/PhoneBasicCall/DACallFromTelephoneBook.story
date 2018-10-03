@@ -17,12 +17,20 @@ Given the call queue items:
 
 Scenario: Caller opens phonebook
 When HMI OP1 presses function key PHONEBOOK
+Then HMI OP1 verifies that phone book call button is disabled
+
 
 Scenario: Caller selects call route selector
-When HMI OP1 selects call route selector: None
+		  @REQUIREMENTS:GID-2985359
+Then HMI OP1 verify that call route selector shows Default
+When HMI OP1 selects call route selector: none
+Then HMI OP1 verify that call route selector shows None
+Then HMI OP1 verifies that phone book call button is disabled
 
 Scenario: Caller selects item from phonebook
 When HMI OP1 selects phonebook entry number: 1
+Then HMI OP1 verifies that phone book text box displays text Lloyd
+Then HMI OP1 verifies that phone book call button is enabled
 
 Scenario: Caller hits phonebook call button
 		  @REQUIREMENTS:GID-2535749

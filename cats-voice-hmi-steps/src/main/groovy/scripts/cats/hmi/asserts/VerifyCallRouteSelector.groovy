@@ -23,7 +23,6 @@ class VerifyCallRouteSelector extends FxScriptTemplate {
                 .success(phoneBookPopup != null))
 
         if (phoneBookPopup != null) {
-            final Node callRouteSelectorComboBox = robot.lookup("#callRouteComboBox").queryFirst()
             final ListCell specificCallRouteSelector = robot.lookup( "#callRouteComboBox .list-cell" ).queryFirst();
 
             String receivedLabel = specificCallRouteSelector.getText()

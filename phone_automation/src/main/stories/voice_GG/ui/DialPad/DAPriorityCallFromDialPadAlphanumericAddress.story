@@ -17,9 +17,11 @@ Given the call queue items:
 
 Scenario: Caller opens phonebook
 When HMI OP1 presses function key PHONEBOOK
-Then HMI OP1 verify that call route selector shows Default
+Then HMI OP1 verifies that phone book call button is disabled
 
 Scenario: Caller selects call route selector
+		  @REQUIREMENTS:GID-2985359
+Then HMI OP1 verify that call route selector shows Default
 When HMI OP1 selects call route selector: none
 Then HMI OP1 verify that call route selector shows None
 Then HMI OP1 verifies that phone book call button is disabled
@@ -27,8 +29,10 @@ Then HMI OP1 verifies that phone book priority toggle is inactive
 
 Scenario: Caller writes target address in text box
 When HMI OP1 writes in phonebook text box the address: sip:222222@example.com
+Then HMI OP1 verifies that phone book call button is enabled
 
 Scenario: Caller toggles call priority
+		  @REQUIREMENTS:GID-3827803
 When HMI OP1 toggles call priority
 Then HMI OP1 verifies that phone book priority toggle is active
 
@@ -38,6 +42,7 @@ Scenario: Caller hits phonebook call button
 		  @REQUIREMENTS:GID-2536683
 		  @REQUIREMENTS:GID-2536682
 When HMI OP1 initiates a call from the phonebook
+
 
 Scenario: Call is initiated
 		  @REQUIREMENTS:GID-2535717
