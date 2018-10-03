@@ -23,9 +23,20 @@ class VerifyPhoneBookCallButtonState extends FxScriptTemplate {
         if (phoneBookPopup != null) {
             final Node callButton = robot.lookup("#callButton").queryFirst()
 
-            evaluate(ExecutionDetails.create("Verify that call button state is: " + state)
-                    .expected("Redial call button state is: " + state)
-                    .success(callButton.getPseudoClassStates().contains(PseudoClass.getPseudoClass(state))))
+            switch(state){
+                case "enabled":
+                    evaluate(ExecutionDetails.create("Verify that call button state is: " + state)
+                            .expected("Call button expected state is: " + state)
+                            .success(!callButton.getPseudoClassStates().contains(PseudoClass.getPseudoClass("disabled"))))
+                    break
+                case "disabled":
+                    evaluate(ExecutionDetails.create("Verify that call button state is: " + state)
+                            .expected("Call button expected state is: " + state)
+                            .success(callButton.getPseudoClassStates().contains(PseudoClass.getPseudoClass("disabled"))))
+                    break
+                default:
+                    break
+            }
         }
     }
 }

@@ -20,7 +20,8 @@ class SelectPhoneBookEntry extends FxScriptTemplate {
                 .success(phoneBookPopup != null))
 
         if (phoneBookPopup != null) {
-            final Node phoneBookEntry = robot.lookup("#phonebookTable .table-row-cell").selectAt(phoneBookEntryNumber).queryFirst()
+
+            final Node phoneBookEntry = robot.lookup( "#phonebookTable #phonebookEntry_"+phoneBookEntryNumber ).queryFirst();
 
             evaluate(ExecutionDetails.create("Phonebook entry number " + phoneBookEntryNumber + " was found")
                     .expected("Phonebook entry is not null")

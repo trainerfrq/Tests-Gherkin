@@ -72,6 +72,7 @@ Then HMI OP2 has the DA key OP1 in state connected
 Scenario: Caller client clears the phone call
 When HMI OP2 presses DA key OP1
 Then HMI OP2 has in the call queue a number of 0 calls
+Then waiting for 2 seconds
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Change mission for HMI OP2

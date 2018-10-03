@@ -17,16 +17,18 @@ Given the call queue items:
 
 Scenario: Caller opens phonebook
 When HMI OP1 presses function key PHONEBOOK
-Then HMI OP1 verify that call route selector shows Default
+Then HMI OP1 verifies that phone book call button is disabled
 
 Scenario: Caller selects call route selector
+		  @REQUIREMENTS:GID-2985359
+Then HMI OP1 verify that call route selector shows Default
 When HMI OP1 selects call route selector: none
 Then HMI OP1 verify that call route selector shows None
-Then HMI OP1 verifies that phone book call button is disable
+Then HMI OP1 verifies that phone book call button is disabled
 
 Scenario: Caller writes target address in text box
 When HMI OP1 writes in phonebook text box the address: <<OPVOICE3_PHONE_URI>>
-Then HMI OP1 verifies that phone book call button is enable
+Then HMI OP1 verifies that phone book call button is enabled
 
 Scenario: Caller hits phonebook call button
 When HMI OP1 initiates a call from the phonebook
@@ -34,6 +36,7 @@ When HMI OP1 initiates a call from the phonebook
 Scenario: Call is initiated
 		  @REQUIREMENTS:GID-2877904
 		  @REQUIREMENTS:GID-2932446
+!-- TODO QXVP-10847 : re-enable this test after bug is fixed
 Then HMI OP1 has the call queue item SipContact-OP1 in the active list with label Lloyd
 
 Scenario: Caller clears outgoing call
