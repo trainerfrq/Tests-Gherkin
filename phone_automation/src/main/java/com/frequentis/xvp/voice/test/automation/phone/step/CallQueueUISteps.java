@@ -32,12 +32,13 @@ import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
 
-import scripts.cats.hmi.ClickCallQueueItem;
-import scripts.cats.hmi.DragAndClickOnMenuButtonFirstCallQueueItem;
-import scripts.cats.hmi.VerifyCallQueueItemLabel;
-import scripts.cats.hmi.VerifyCallQueueItemStateIfPresent;
-import scripts.cats.hmi.VerifyCallQueueItemStyleClass;
-import scripts.cats.hmi.VerifyCallQueueLength;
+import scripts.cats.hmi.actions.ClickCallQueueItem;
+import scripts.cats.hmi.actions.DragAndClickOnMenuButtonFirstCallQueueItem;
+import scripts.cats.hmi.asserts.VerifyCallQueueBarState;
+import scripts.cats.hmi.asserts.VerifyCallQueueItemLabel;
+import scripts.cats.hmi.asserts.VerifyCallQueueItemStateIfPresent;
+import scripts.cats.hmi.asserts.VerifyCallQueueItemStyleClass;
+import scripts.cats.hmi.asserts.VerifyCallQueueLength;
 
 public class CallQueueUISteps extends AutomationSteps
 {
@@ -223,6 +224,16 @@ public class CallQueueUISteps extends AutomationSteps
             .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_MENU_BUTTON_ID, TRANSFER_MENU_BUTTON_ID )
             .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_LIST_NAME, ACTIVE_LIST_NAME ) );
    }
+
+
+    @Then("$profileName verifies that call queue item bar signals call state $state")
+    public void verifyCallQueueBar( final String profileName, final String state )
+    {
+        evaluate( remoteStep( "Verify call queue item bar" )
+                .scriptOn( profileScriptResolver().map( VerifyCallQueueBarState.class,
+                        BookableProfileName.javafx ), assertProfile( profileName ) )
+                .input( VerifyCallQueueBarState.IPARAM_CALL_QUEUE_STATE, state ) );
+    }
 
 
    @Then("the call queue item $namedCallQueueItem is $state for only one of the operator positions: $profileNames")

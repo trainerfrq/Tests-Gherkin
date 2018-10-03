@@ -31,13 +31,13 @@ import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
 import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
 import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
 
-import scripts.cats.hmi.ClickDAButton;
-import scripts.cats.hmi.ClickFunctionKey;
-import scripts.cats.hmi.ClickOnCallHistoryCallButton;
-import scripts.cats.hmi.ClickOnPhoneBookCallButton;
-import scripts.cats.hmi.DragAndClickOnMenuButtonDAKey;
-import scripts.cats.hmi.VerifyDAButtonState;
-import scripts.cats.hmi.VerifyOperatorPositionState;
+import scripts.cats.hmi.actions.ClickDAButton;
+import scripts.cats.hmi.actions.ClickFunctionKey;
+import scripts.cats.hmi.actions.ClickOnCallHistoryCallButton;
+import scripts.cats.hmi.actions.ClickOnPhoneBookCallButton;
+import scripts.cats.hmi.actions.DragAndClickOnMenuButtonDAKey;
+import scripts.cats.hmi.asserts.VerifyDAButtonState;
+import scripts.cats.hmi.asserts.VerifyOperatorPositionState;
 
 public class CallUISteps extends AutomationSteps
 {
@@ -178,12 +178,13 @@ public class CallUISteps extends AutomationSteps
    }
 
 
-   @Then("$profileName is in transfer state")
-   public void verifyTransferState( final String profileName )
+   @Then("$profileName is in $state state")
+   public void verifyTransferState( final String profileName, final String state )
    {
       evaluate( remoteStep( "Verify operator position is in transfer state" ).scriptOn(
             profileScriptResolver().map( VerifyOperatorPositionState.class, BookableProfileName.javafx ),
-            assertProfile( profileName ) ) );
+            assertProfile( profileName ) )
+            .input(VerifyOperatorPositionState.STATE, state));
    }
 
 

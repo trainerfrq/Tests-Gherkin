@@ -16,15 +16,20 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 
-import scripts.cats.hmi.SelectCallRouteSelector;
-import scripts.cats.hmi.SelectPhoneBookEntry;
-import scripts.cats.hmi.ToggleCallPriority;
-import scripts.cats.hmi.WriteInPhoneBookTextBox;
+import scripts.cats.hmi.actions.SelectCallRouteSelector;
+import scripts.cats.hmi.actions.SelectPhoneBookEntry;
+import scripts.cats.hmi.actions.ToggleCallPriority;
+import scripts.cats.hmi.asserts.VerifyCallRouteSelector;
+import scripts.cats.hmi.asserts.VerifyPhoneBookCallButtonState;
+import scripts.cats.hmi.actions.WriteInPhoneBookTextBox;
+import scripts.cats.hmi.asserts.VerifyPhoneBookTextBox;
+import scripts.cats.hmi.asserts.VerifyToggleCallPriorityState;
 
 public class PhoneBookUISteps extends AutomationSteps
 {
@@ -66,5 +71,41 @@ public class PhoneBookUISteps extends AutomationSteps
                   assertProfile( profileName ) )
             .input( SelectCallRouteSelector.IPARAM_CALL_ROUTE_SELECTOR_ID, callRouteSelector ) );
    }
+
+   @Then("$profileName verify that call route selector shows $callRouteSelector")
+   public void verifyCallRouteSelector( final String profileName, final String callRouteSelector )
+   {
+      evaluate( remoteStep( "Verify call route selector" )
+              .scriptOn( profileScriptResolver().map( VerifyCallRouteSelector.class, BookableProfileName.javafx ),
+                      assertProfile( profileName ) )
+              .input( VerifyCallRouteSelector.IPARAM_CALL_ROUTE_SELECTOR_LABEL, callRouteSelector ) );
+   }
+
+   @Then("$profileName verifies that phone book call button is $state")
+   public void verifyCallButtonState( final String profileName, final String state )
+   {
+      evaluate( remoteStep( "Verify call button has state " + state )
+              .scriptOn( profileScriptResolver().map( VerifyPhoneBookCallButtonState.class, BookableProfileName.javafx ),
+                      assertProfile( profileName ) )
+              .input( VerifyPhoneBookCallButtonState.IPARAM_STATE, state ) );
+   }
+
+    @Then("$profileName verifies that phone book priority toggle is $state")
+    public void verifyPriorityToggleState( final String profileName, final String state )
+    {
+        evaluate( remoteStep( "Verify call button has state " + state )
+                .scriptOn( profileScriptResolver().map( VerifyToggleCallPriorityState.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input( VerifyToggleCallPriorityState.IPARAM_STATE, state ) );
+    }
+
+    @Then("$profileName verifies that phone book text box displays text $text")
+    public void verifyPhoneBookTextBox( final String profileName, final String text )
+    {
+        evaluate( remoteStep( "Verify phone book text box displays text " + text )
+                .scriptOn( profileScriptResolver().map( VerifyPhoneBookTextBox.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input( VerifyPhoneBookTextBox.IPARAM_SEARCH_BOX_TEXT, text ) );
+    }
 
 }
