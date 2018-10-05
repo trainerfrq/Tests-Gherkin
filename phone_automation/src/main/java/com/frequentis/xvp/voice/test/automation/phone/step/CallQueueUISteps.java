@@ -33,8 +33,11 @@ import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
 
 import scripts.cats.hmi.actions.ClickCallQueueItem;
+import scripts.cats.hmi.actions.ClickOnCallQueueInfoContainer;
 import scripts.cats.hmi.actions.DragAndClickOnMenuButtonFirstCallQueueItem;
 import scripts.cats.hmi.asserts.VerifyCallQueueBarState;
+import scripts.cats.hmi.asserts.VerifyCallQueueInfoContainerIfVisible;
+import scripts.cats.hmi.asserts.VerifyCallQueueInfoContainerLabel;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemLabel;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemStateIfPresent;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemStyleClass;
@@ -225,6 +228,14 @@ public class CallQueueUISteps extends AutomationSteps
             .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_LIST_NAME, ACTIVE_LIST_NAME ) );
    }
 
+    @When("$profileName deactivates call forward by pressing on the call queue info")
+    public void clickOnCallQueueInfo( final String profileName )
+    {
+        evaluate( remoteStep( "Deactivates call forward by pressing on the call queue info" )
+                .scriptOn( profileScriptResolver().map( ClickOnCallQueueInfoContainer.class,
+                        BookableProfileName.javafx ), assertProfile( profileName ) ));
+    }
+
 
     @Then("$profileName verifies that call queue item bar signals call state $state")
     public void verifyCallQueueBar( final String profileName, final String state )
@@ -269,6 +280,25 @@ public class CallQueueUISteps extends AutomationSteps
                   .received( "A number of " + nrOfMatchingCallQueueItems + " matching call queue items" )
                   .success( nrOfMatchingCallQueueItems == 1 ) ) );
    }
+
+
+    @Then("$profileName verifies that call queue info container is $state")
+    public void verifyCallQueueInfoContainerState( final String profileName, final String state )
+    {
+        evaluate( remoteStep( "Verify call queue info container state" )
+                .scriptOn( profileScriptResolver().map( VerifyCallQueueInfoContainerIfVisible.class,
+                        BookableProfileName.javafx ), assertProfile( profileName ) )
+                .input( VerifyCallQueueInfoContainerIfVisible.IPARAM_VISISBILITY, state ) );
+    }
+
+    @Then("$profileName verifies that call queue info container contains $info")
+    public void verifyCallQueueInfoContainerLabel( final String profileName, final String info )
+    {
+        evaluate( remoteStep( "Verify call queue info container info" )
+                .scriptOn( profileScriptResolver().map( VerifyCallQueueInfoContainerLabel.class,
+                        BookableProfileName.javafx ), assertProfile( profileName ) )
+                .input( VerifyCallQueueInfoContainerLabel.IPARAM_INFO_LABEL, info ) );
+    }
 
 
    private String reformatSipUris( final String sipUri )

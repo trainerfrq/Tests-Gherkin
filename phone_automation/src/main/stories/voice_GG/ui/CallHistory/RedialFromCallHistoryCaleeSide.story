@@ -1,6 +1,6 @@
 Narrative:
 As an operator
-I want to try to initiate an outgoing call by clicking on the redial button when Call Hostory has only incoming entries
+I want to try to initiate an outgoing call by clicking on the redial button when Call History has only incoming entries
 So I can check that redial of an incoming entry is not possible
 
 Scenario: Booking profiles
