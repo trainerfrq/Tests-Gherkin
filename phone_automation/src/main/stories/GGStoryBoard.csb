@@ -1466,6 +1466,12 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallForward/ChangeMissionWhileCallForwardIsActive.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
