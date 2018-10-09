@@ -1,7 +1,7 @@
 Narrative:
 As a caller operator having to leave temporarily my Operator Position
 I want to activate CallForward and choose target from phone book
-So I can verify that all DA calls are forwarded to the selected (forward) target Operator Position
+So I can verify that all DA calls are forwarded to the selected target Operator Position
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -26,13 +26,13 @@ Then HMI OP1 verifies that call queue info container is not visible
 Scenario: Op1 opens phonebook
 When HMI OP1 presses function key PHONEBOOK
 Then HMI OP1 verifies that phone book call button is disabled
-Then HMI OP1 verifies that phone book forward button is disabled
+Then HMI OP1 verifies that phone book forward button state is disabled
 
 Scenario: Op1 selects an item from phonebook for the call forward action
 		  REQUIREMENTS:GID-2521111
 When HMI OP1 selects phonebook entry number: 4
 Then HMI OP1 verifies that phone book call button is enabled
-Then HMI OP1 verifies that phone book forward button is enabled
+Then HMI OP1 verifies that phone book forward button state is enabled
 Then HMI OP1 is in forward_ongoing state
 
 Scenario: Op1 activates call forward

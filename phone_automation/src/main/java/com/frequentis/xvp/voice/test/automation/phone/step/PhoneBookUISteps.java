@@ -101,7 +101,7 @@ public class PhoneBookUISteps extends AutomationSteps
               .input( VerifyPhoneBookCallButtonState.IPARAM_STATE, state ) );
    }
 
-    @Then("$profileName verifies that phone book forward button is $state")
+    @Then("$profileName verifies that phone book forward button state is $state")
     public void verifyForwardButtonState( final String profileName, final String state )
     {
         evaluate( remoteStep( "Verify forward button has state " + state )

@@ -1,7 +1,7 @@
 Narrative:
 As a caller operator having to leave temporarily my Operator Position
 I want to activate CallForward
-So I can verify that all IA phone calls are forwarded to the selected (forward) target Operator Position
+So I can verify that all IA phone calls are forwarded to the selected target Operator Position
 
 Scenario: Booking profiles
 Given booked profiles:

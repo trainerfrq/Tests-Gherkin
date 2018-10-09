@@ -22,12 +22,12 @@ Then HMI OP1 is in forward_ongoing state
 Scenario: Op1 opens phonebook
 When HMI OP1 presses function key PHONEBOOK
 Then HMI OP1 verifies that phone book call button is disabled
-Then HMI OP1 verifies that phone book forward button is disabled
+Then HMI OP1 verifies that phone book forward button state is disabled
 
 Scenario: Op1 selects an item from phonebook for the call forward action
 When HMI OP1 selects phonebook entry number: 4
 Then HMI OP1 verifies that phone book call button is enabled
-Then HMI OP1 verifies that phone book forward button is enabled
+Then HMI OP1 verifies that phone book forward button state is enabled
 Then HMI OP1 is in forward_ongoing state
 
 Scenario: Op1 hits phonebook call button
@@ -42,12 +42,12 @@ Then HMI OP1 terminates the call queue item OP2-OP1
 Scenario: Op1 opens phonebook
 When HMI OP1 presses function key PHONEBOOK
 Then HMI OP1 verifies that phone book call button is disabled
-Then HMI OP1 verifies that phone book forward button is disabled
+Then HMI OP1 verifies that phone book forward button state is disabled
 
 Scenario: Op1 selects an item from phonebook for the call forward action
 When HMI OP1 selects phonebook entry number: 4
 Then HMI OP1 verifies that phone book call button is enabled
-Then HMI OP1 verifies that phone book forward button is enabled
+Then HMI OP1 verifies that phone book forward button state is enabled
 Then HMI OP1 is in forward_ongoing state
 
 Scenario: Op1 activates call forward
