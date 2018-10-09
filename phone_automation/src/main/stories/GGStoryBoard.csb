@@ -1450,6 +1450,99 @@
             </cats:storyLists>
         </cats:storyCollection>
         <cats:storyCollection enabled="true">
+            <cats:name>UI - Call Forward</cats:name>
+            <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
+            <cats:report>
+                <cats:status>CREATED</cats:status>
+            </cats:report>
+            <cats:storyLists>
+                <cats:storyList enabled="true">
+                    <cats:name>UI - Call Forward</cats:name>
+                    <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
+                    <cats:repetitions>1</cats:repetitions>
+                    <cats:report>
+                        <cats:status>CREATED</cats:status>
+                    </cats:report>
+                    <cats:reports/>
+                    <cats:stories>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/CallForward/ChangeMissionWhileCallForwardIsActive.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/CallForward/DACallForward.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/CallForward/DACallForwardChooseTargetFromPhonebook.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/CallForward/DAPriorityCallForward.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/CallForward/IACallForward.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/CallForward/OutgoingCallFromPhonebookWhileCallForwardIsActive.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/CallForward/OutgoingCallWhileCallForwardIsActive.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/CallForward/RedialFromCallHistoryWhileCallForwardIsActive.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/CallForward/ActivateCallForwardWhileActiveCallsExist.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/CallForward/DACallForwardChooseTargetFromDialpad.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="false">
+                            <cats:storyPath>voice_GG/ui/CallForward/ValidSIPCallForward.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                    </cats:stories>
+                    <cats:timeout>1800</cats:timeout>
+                </cats:storyList>
+            </cats:storyLists>
+        </cats:storyCollection>
+        <cats:storyCollection enabled="true">
             <cats:name>UI - Cleanup</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
@@ -1477,5 +1570,5 @@
             </cats:storyLists>
         </cats:storyCollection>
     </cats:storyCollections>
-    <cats:webCenterURL>http://10.254.56.242:8081/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880</cats:webCenterURL>
+    <cats:webCenterURL>http://10.254.56.242:8081/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880</cats:webCenterURL>
 </cats:storyBoard>
