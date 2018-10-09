@@ -1,7 +1,7 @@
 Narrative:
 As a caller operator having to leave temporarily my Operator Position
 I want to activate CallForward and choose target from phone book
-So I can verify that all DA calls are forwarded to the indicated Operator Position
+So I can verify that all DA calls are forwarded to the selected (forward) target Operator Position
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -47,7 +47,7 @@ Scenario: Op3 establishes an outgoing call
 When HMI OP3 presses DA key OP1(as OP3)
 Then HMI OP3 has the DA key OP1(as OP3) in state out_ringing
 
-Scenario: Call is automatically forward to Op2
+Scenario: Call is automatically forwarded to Op2
 		  REQUIREMENTS:GID-2521112
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP2 has the DA key OP3 in state ringing

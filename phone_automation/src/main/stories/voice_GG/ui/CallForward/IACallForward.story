@@ -1,7 +1,7 @@
 Narrative:
 As a caller operator having to leave temporarily my Operator Position
 I want to activate CallForward
-So I can verify that all IA phone calls are forwarded to the indicated Operator Position
+So I can verify that all IA phone calls are forwarded to the selected (forward) target Operator Position
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -23,7 +23,7 @@ When HMI OP1 presses function key CALLFORWARD
 Then HMI OP1 is in forward_ongoing state
 Then HMI OP1 verifies that call queue info container is not visible
 
-Scenario: Op1 choose the Op3 for the call forward action
+Scenario: Op1 chooses Op3 as call forward target
 		  REQUIREMENTS:GID-2521111
 When HMI OP1 presses DA key OP3(as OP1)
 Then HMI OP1 is in forward_active state
@@ -36,7 +36,7 @@ Scenario: Op2 establishes an outgoing IA call
 When HMI OP2 presses IA key IA - OP1
 Then HMI OP2 has the IA key IA - OP1 in state connected
 
-Scenario: Call is automatically forward to Op3
+Scenario: Call is automatically forwarded to Op3
 		  REQUIREMENTS:GID-2521112
 Then HMI OP3 has in the call queue a number of 1 calls
 Then HMI OP3 has the IA key IA - OP2(as OP3) in state connected

@@ -19,7 +19,7 @@ Scenario: Op1 activates Call Forward
 When HMI OP1 presses function key CALLFORWARD
 Then HMI OP1 is in forward_ongoing state
 
-Scenario: Op1 choose the Op2 for the call forward action
+Scenario: Op1 chooses Op2 as call forward target
 		  REQUIREMENTS:GID-2521111
 When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP1 is in forward_active state
@@ -61,3 +61,6 @@ When HMI OP1 presses function key MISSIONS
 Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
+
+Scenario: Verify call queue info container is not visible for Op1
+Then HMI OP1 verifies that call queue info container is not visible
