@@ -19,6 +19,14 @@ Given the call queue items:
 | OP2-OP3   | sip:222222@example.com | sip:op3@example.com    | DA/IDA   |
 | OP2-Role1 | sip:222222@example.com | sip:role1@example.com  | DA/IDA   |
 
+Scenario: Define call history entries
+Given the following call history entries:
+| key     | remoteDisplayName | callDirection | callConnectionStatus| duration    |
+| entry0  | ROLE1(as OP2)     | outgoing      | not_established     | 00:00       |
+| entry1  | OP3               | outgoing      | not_established     | 00:00       |
+| entry2  | OP1               | outgoing      | not_established     | 00:00       |
+
+
 Scenario: Caller clears call history list
 When HMI OP2 presses function key CALLHISTORY
 Then HMI OP2 clears Call History list
@@ -27,6 +35,7 @@ Then HMI OP2 closes Call History popup window
 
 Scenario: Caller establishes an outgoing call
 When HMI OP2 presses DA key OP1
+Then assign date time value for entry entry2
 Then HMI OP2 has the DA key OP1 in state out_ringing
 
 Scenario: Callee client receives the incoming call
@@ -37,6 +46,7 @@ When HMI OP2 presses DA key OP1
 
 Scenario: Caller establishes an another outgoing call
 When HMI OP2 presses DA key OP3
+Then assign date time value for entry entry1
 Then HMI OP2 has the DA key OP3 in state out_ringing
 
 Scenario: Callee client receives the incoming call
@@ -48,6 +58,7 @@ When HMI OP2 presses DA key OP3
 Scenario: Caller establishes an outgoing call towards Role1 as OP2
 		  @REQUIREMENTS:GID-2886201
 When HMI OP2 presses DA key ROLE1(as OP2)
+Then assign date time value for entry entry0
 Then HMI OP2 has the DA key ROLE1(as OP2) in state out_ringing
 
 Scenario: Operators part of called role receive the incoming call
@@ -74,6 +85,11 @@ Then HMI OP2 verifies that call history call button has label OP3
 When HMI OP2 selects call history list entry number: 2
 Then HMI OP2 verifies that call history call button has label OP1
 
+Scenario: Caller verifies call history additional informations
+Then HMI OP2 verifies call history entry number 0 matches entry0
+Then HMI OP2 verifies call history entry number 1 matches entry1
+Then HMI OP2 verifies call history entry number 2 matches entry2
+
 Scenario: Caller closes call history
 Then HMI OP2 closes Call History popup window
 
@@ -95,6 +111,11 @@ When HMI OP2 selects call history list entry number: 1
 Then HMI OP2 verifies that call history call button has label OP3
 When HMI OP2 selects call history list entry number: 2
 Then HMI OP2 verifies that call history call button has label OP1
+
+Scenario: Caller verifies call history additional informations
+Then HMI OP2 verifies call history entry number 0 matches entry0
+Then HMI OP2 verifies call history entry number 1 matches entry1
+Then HMI OP2 verifies call history entry number 2 matches entry2
 
 Scenario: Caller closes call history
 Then HMI OP2 closes Call History popup window

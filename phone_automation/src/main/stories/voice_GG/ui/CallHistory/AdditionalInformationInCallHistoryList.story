@@ -129,7 +129,8 @@ When HMI OP2 presses function key CALLHISTORY
 Scenario: Caller verifies the call history list
 Then HMI OP2 verifies that call history list contains 6 entries
 
-Scenario: Caller verifies call history entry
+Scenario: Caller verifies call history additional informations
+            @REQUIREMENTS:GID-3225207
 Then HMI OP2 verifies call history entry number 0 matches entry0
 Then HMI OP2 verifies call history entry number 1 matches entry1
 Then HMI OP2 verifies call history entry number 2 matches entry2
