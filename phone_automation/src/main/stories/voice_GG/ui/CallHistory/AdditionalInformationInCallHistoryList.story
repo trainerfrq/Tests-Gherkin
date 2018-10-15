@@ -27,6 +27,7 @@ Then HMI OP2 closes Call History popup window
 
 Scenario: Caller establishes first outgoing call - not established
 When HMI OP2 presses DA key OP1
+Then assign date time value for entry entry5
 Then HMI OP2 has the DA key OP1 in state out_ringing
 
 Scenario: Callee client receives the incoming call
@@ -41,6 +42,7 @@ Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Caller establishes second outgoing call - established
 When HMI OP2 presses DA key OP1
+Then assign date time value for entry entry4
 Then HMI OP2 has the DA key OP1 in state out_ringing
 
 Scenario: Callee client receives the incoming call
@@ -66,6 +68,7 @@ When HMI OP2 presses IA key IA - OP1
 
 Scenario: Callee receives incoming IA call
 Then HMI OP2 has the IA key IA - OP1 in state connected
+Then assign date time value for entry entry3
 
 Scenario: Cleanup IA call
 When HMI OP2 presses IA key IA - OP1
@@ -76,6 +79,7 @@ Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Caller establishes 4th outgoing call - incoming for OP2
 When HMI OP1 presses DA key OP2(as OP1)
+Then assign date time value for entry entry2
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 
 Scenario: Callee client receives the incoming call
@@ -91,6 +95,7 @@ Then HMI OP2 has in the call queue a number of 0 calls
 Scenario: Caller establishes 5th outgoing IA call
 When HMI OP1 presses IA key IA - OP2(as OP1)
 Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
+Then assign date time value for entry entry1
 And wait for 3 seconds
 
 Scenario: Cleanup IA call
@@ -102,6 +107,7 @@ Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Caller establishes 6th outgoing call - priority
 When HMI OP2 initiates a priority call on DA key OP1
+Then assign date time value for entry entry0
 Then HMI OP2 has the DA key OP1 in state out_ringing
 
 Scenario: Callee client receives the incoming priority call

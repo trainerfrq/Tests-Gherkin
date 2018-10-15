@@ -16,6 +16,8 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
@@ -105,6 +107,7 @@ public class CallHistoryUISteps extends AutomationSteps {
     @Then("$profileName verifies call history entry number $entryNumber matches $namedEntry")
     public void verifyCallHistoryEntryTargetName(final String profileName, final String entryNumber, String namedEntry) {
         CallHistoryEntry callHistoryEntry = getStoryListData(namedEntry, CallHistoryEntry.class );
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM HH:mm:ss");
 
         evaluate(remoteStep("Verify call history entry number " + entryNumber )
                          .scriptOn(
@@ -114,9 +117,14 @@ public class CallHistoryUISteps extends AutomationSteps {
                          .input(VerifyCallHistoryEntry.IPARAM_CALL_HISTORY_ENTRY_DISPLAY_NAME, callHistoryEntry.getRemoteDisplayName())
                          .input(VerifyCallHistoryEntry.IPARAM_CALL_HISTORY_ENTRY_DIRECTION, callHistoryEntry.getCallDirection())
                          .input(VerifyCallHistoryEntry.IPARAM_CALL_HISTORY_ENTRY_CONNECTION_STATUS, callHistoryEntry.getCallConnectionStatus())
-                         .input(VerifyCallHistoryEntry.IPARAM_CALL_HISTORY_ENTRY_DURATION,callHistoryEntry.getDuration()));
+                         .input(VerifyCallHistoryEntry.IPARAM_CALL_HISTORY_ENTRY_DURATION,callHistoryEntry.getDuration())
+                         .input(VerifyCallHistoryEntry.IPARAM_CALL_HISTORY_ENTRY_DATE_TIME, callHistoryEntry.getInitiationTime().format(formatter)));
     }
 
-
+    @Then("assign date time value for entry $namedEntry")
+    public void captureTime(final String namedEntry){
+        CallHistoryEntry callHistoryEntry = getStoryListData(namedEntry, CallHistoryEntry.class );
+        callHistoryEntry.setInitiationTime(LocalDateTime.now());
+    }
 
 }

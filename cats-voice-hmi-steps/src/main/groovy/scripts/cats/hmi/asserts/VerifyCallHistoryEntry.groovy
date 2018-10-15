@@ -11,6 +11,7 @@ class VerifyCallHistoryEntry extends FxScriptTemplate {
     public static final String IPARAM_CALL_HISTORY_ENTRY_DIRECTION = "call_history_entry_direction"
     public static final String IPARAM_CALL_HISTORY_ENTRY_CONNECTION_STATUS = "call_history_entry_connection_status"
     public static final String IPARAM_CALL_HISTORY_ENTRY_DURATION = "call_history_entry_duration"
+    public static final String IPARAM_CALL_HISTORY_ENTRY_DATE_TIME = "call_history_entry_data_time"
 
 
     @Override
@@ -21,6 +22,7 @@ class VerifyCallHistoryEntry extends FxScriptTemplate {
         String callHistoryEntryDirection = assertInput(IPARAM_CALL_HISTORY_ENTRY_DIRECTION) as String
         String callHistoryEntryConnectionStatus = assertInput(IPARAM_CALL_HISTORY_ENTRY_CONNECTION_STATUS) as String
         String callHistoryEntryDuration = assertInput(IPARAM_CALL_HISTORY_ENTRY_DURATION) as String
+        String callHistoryEntryDateTime = assertInput(IPARAM_CALL_HISTORY_ENTRY_DATE_TIME) as String
 
 
         final Node callHistoryEntry = robot.lookup("#callHistoryList .list-cell").selectAt(callHistoryEntryNumber).queryFirst()
@@ -48,6 +50,12 @@ class VerifyCallHistoryEntry extends FxScriptTemplate {
                 .expected(callHistoryEntryDuration)
                 .received(duration)
                 .success(duration.contains(callHistoryEntryDuration)))
+
+        String time = (callHistoryEntry).lookup("#timeLabel").toString()
+        evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for date and time")
+                .expected(callHistoryEntryDateTime)
+                .received(time)
+                .success(time.contains(callHistoryEntryDateTime)))
 
     }
 
