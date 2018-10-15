@@ -18,6 +18,7 @@ package com.frequentis.xvp.voice.test.automation.phone.step;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
@@ -31,6 +32,7 @@ import scripts.cats.hmi.actions.ClickOnRedialCallButton;
 import scripts.cats.hmi.actions.SelectCallHistoryEntry;
 import scripts.cats.hmi.asserts.VerifyCallHistoryDialButtonLabel;
 import scripts.cats.hmi.asserts.VerifyCallHistoryEntry;
+import scripts.cats.hmi.asserts.VerifyCallHistoryListIsTimeSorted;
 import scripts.cats.hmi.asserts.VerifyCallHistoryListSize;
 import scripts.cats.hmi.asserts.VerifyCallHistoryRedialBtnLabel;
 import scripts.cats.hmi.asserts.VerifyRedialCallButtonState;
@@ -105,7 +107,7 @@ public class CallHistoryUISteps extends AutomationSteps {
     }
 
     @Then("$profileName verifies call history entry number $entryNumber matches $namedEntry")
-    public void verifyCallHistoryEntryTargetName(final String profileName, final String entryNumber, String namedEntry) {
+    public void verifyCallHistoryEntry(final String profileName, final String entryNumber, String namedEntry) {
         CallHistoryEntry callHistoryEntry = getStoryListData(namedEntry, CallHistoryEntry.class );
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM HH:mm:ss");
 
@@ -127,4 +129,12 @@ public class CallHistoryUISteps extends AutomationSteps {
         callHistoryEntry.setInitiationTime(LocalDateTime.now());
     }
 
+    @Then("$profileName verifies call history list is time-sorted")
+    public void verifyCallHistoryTimeSorted(final String profileName) {
+
+        evaluate(remoteStep("Verify call history list is time sorted " )
+                         .scriptOn(
+                                 profileScriptResolver().map(VerifyCallHistoryListIsTimeSorted.class, BookableProfileName.javafx),
+                                 assertProfile(profileName)));
+    }
 }
