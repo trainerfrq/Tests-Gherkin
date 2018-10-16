@@ -1,4 +1,4 @@
-Narrative:
+ Narrative:
 As an operator
 I want to change mission and initiate from call history an outgoing call with a SIP address that is not part of current mission
 So I can check that the call towards the corresponding entry is initiated and displays the mission's default source SIP address
