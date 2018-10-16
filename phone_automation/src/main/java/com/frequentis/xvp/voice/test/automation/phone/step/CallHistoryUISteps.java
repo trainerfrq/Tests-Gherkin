@@ -18,7 +18,6 @@ package com.frequentis.xvp.voice.test.automation.phone.step;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
@@ -109,7 +108,8 @@ public class CallHistoryUISteps extends AutomationSteps {
     @Then("$profileName verifies call history entry number $entryNumber matches $namedEntry")
     public void verifyCallHistoryEntry(final String profileName, final String entryNumber, String namedEntry) {
         CallHistoryEntry callHistoryEntry = getStoryListData(namedEntry, CallHistoryEntry.class );
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM HH:mm:ss");
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm:ss");
 
         evaluate(remoteStep("Verify call history entry number " + entryNumber )
                          .scriptOn(
@@ -120,7 +120,8 @@ public class CallHistoryUISteps extends AutomationSteps {
                          .input(VerifyCallHistoryEntry.IPARAM_CALL_HISTORY_ENTRY_DIRECTION, callHistoryEntry.getCallDirection())
                          .input(VerifyCallHistoryEntry.IPARAM_CALL_HISTORY_ENTRY_CONNECTION_STATUS, callHistoryEntry.getCallConnectionStatus())
                          .input(VerifyCallHistoryEntry.IPARAM_CALL_HISTORY_ENTRY_DURATION,callHistoryEntry.getDuration())
-                         .input(VerifyCallHistoryEntry.IPARAM_CALL_HISTORY_ENTRY_DATE_TIME, callHistoryEntry.getInitiationTime().format(formatter)));
+                         .input(VerifyCallHistoryEntry.IPARAM_CALL_HISTORY_ENTRY_TIME, callHistoryEntry.getInitiationTime().format(timeFormatter))
+                         .input(VerifyCallHistoryEntry.IPARAM_CALL_HISTORY_ENTRY_DATE, callHistoryEntry.getInitiationTime().format(dateFormatter)));
     }
 
     @Then("assign date time value for entry $namedEntry")

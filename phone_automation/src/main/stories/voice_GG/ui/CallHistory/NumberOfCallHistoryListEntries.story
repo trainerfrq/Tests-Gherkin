@@ -44,10 +44,10 @@ Scenario: Caller closes call history
 Then HMI OP2 closes Call History popup window
 
 Scenario: Caller establishes the 101st call
-When HMI OP2 presses DA key OP1
+When HMI OP2 presses DA key OP3
 
 Scenario: Caller client clears the phone call
-When HMI OP2 presses DA key OP1
+When HMI OP2 presses DA key OP3
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for caller
@@ -58,6 +58,10 @@ When HMI OP2 presses function key CALLHISTORY
 
 Scenario: Caller verifies that the call history list still has 100 entries
 Then HMI OP2 verifies that call history list contains 100 entries
+
+Scenario: Caller verifies that the last call is in call history list
+When HMI OP2 selects call history list entry number: 0
+Then HMI OP2 verifies that call history call button has label OP3
 
 Scenario: Caller clears call history list
 Then HMI OP2 clears Call History list
