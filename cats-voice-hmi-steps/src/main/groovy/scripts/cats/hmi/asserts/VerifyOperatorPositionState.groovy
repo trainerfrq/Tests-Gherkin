@@ -21,6 +21,7 @@ class VerifyOperatorPositionState extends FxScriptTemplate {
 
         evaluate(ExecutionDetails.create("Verify root view was found")
                 .expected("Root view was found")
+                .received(rootView.getStyleClass().toString())
                 .success(rootView != null));
 
         evaluate(ExecutionDetails.create("Verify root view has styleClass: " + state)
