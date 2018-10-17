@@ -38,7 +38,7 @@ Then HMI OP1 has the DA key OP2(as OP1) in state ringing
 
 Scenario: Caller client clears the phone call
 When HMI OP2 presses DA key OP1
-Then assign duration value for entry entry5
+Then call duration for entry entry5 is calculated
 
 Scenario: Caller establishes second outgoing call - established
 When HMI OP2 presses DA key OP1
@@ -58,7 +58,7 @@ And wait for 5 seconds
 
 Scenario: Caller client clears the phone call
 When HMI OP2 presses DA key OP1
-Then assign duration value for entry entry4
+Then call duration for entry entry4 is calculated
 
 Scenario: Caller establishes third outgoing call - IA call
 When HMI OP2 presses IA key IA - OP1
@@ -69,7 +69,7 @@ Then assign date time value for entry entry3
 
 Scenario: Cleanup IA call
 When HMI OP2 presses IA key IA - OP1
-Then assign duration value for entry entry3
+Then call duration for entry entry3 is calculated
 
 Scenario: Caller establishes 4th outgoing call - incoming for OP2
 When HMI OP1 presses DA key OP2(as OP1)
@@ -81,7 +81,7 @@ Then HMI OP2 has the DA key OP1 in state ringing
 
 Scenario: Caller client clears the phone call
 When HMI OP1 presses DA key OP2(as OP1)
-Then assign duration value for entry entry2
+Then call duration for entry entry2 is calculated
 
 Scenario: Caller establishes 5th outgoing IA call
 When HMI OP1 presses IA key IA - OP2(as OP1)
@@ -91,7 +91,7 @@ And wait for 3 seconds
 
 Scenario: Cleanup IA call
 When HMI OP1 presses IA key IA - OP2(as OP1)
-Then assign duration value for entry entry1
+Then call duration for entry entry1 is calculated
 
 Scenario: Caller establishes 6th outgoing call - priority
 When HMI OP2 initiates a priority call on DA key OP1
@@ -106,7 +106,7 @@ When HMI OP1 presses DA key OP2(as OP1)
 
 Scenario: Callee terminates call
 When HMI OP1 presses DA key OP2(as OP1)
-Then assign duration value for entry entry0
+Then call duration for entry entry0 is calculated
 
 Scenario: Call is terminated also for both operators
 Then HMI OP1 has in the call queue a number of 0 calls

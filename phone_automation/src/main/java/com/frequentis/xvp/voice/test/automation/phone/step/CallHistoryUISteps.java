@@ -132,7 +132,7 @@ public class CallHistoryUISteps extends AutomationSteps {
         callHistoryEntry.setInitiationTime(LocalDateTime.now());
     }
 
-    @Then("assign duration value for entry $namedEntry")
+    @Then("call duration for entry $namedEntry is calculated")
     public void assignDuration(final String namedEntry){
         CallHistoryEntry callHistoryEntry = getStoryListData(namedEntry, CallHistoryEntry.class );
 
