@@ -61,8 +61,8 @@ Scenario: Caller establishes third outgoing call - IA call
 When HMI OP2 presses IA key IA - OP1
 
 Scenario: Callee receives incoming IA call
-Then HMI OP2 has the IA key IA - OP1 in state connected
 Then assign date time value for entry entry3
+Then HMI OP2 has the IA key IA - OP1 in state connected
 
 Scenario: Cleanup IA call
 When HMI OP2 presses IA key IA - OP1

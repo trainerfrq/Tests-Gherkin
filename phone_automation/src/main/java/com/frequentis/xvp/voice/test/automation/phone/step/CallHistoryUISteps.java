@@ -24,6 +24,7 @@ import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
+import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallHistoryEntry;
 
@@ -128,12 +129,19 @@ public class CallHistoryUISteps extends AutomationSteps {
 
     @Then("assign date time value for entry $namedEntry")
     public void captureTime(final String namedEntry){
+
         CallHistoryEntry callHistoryEntry = getStoryListData(namedEntry, CallHistoryEntry.class );
         callHistoryEntry.setInitiationTime(LocalDateTime.now());
+        evaluate(localStep("Set date time value for current call history entry" )
+            .details(ExecutionDetails.create("Date time value for current call history entry is: " )
+            .received(callHistoryEntry.getInitiationTime().toString())
+            .success(callHistoryEntry.getInitiationTime() != null)));
+
     }
 
     @Then("call duration for entry $namedEntry is calculated")
     public void assignDuration(final String namedEntry){
+
         CallHistoryEntry callHistoryEntry = getStoryListData(namedEntry, CallHistoryEntry.class );
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("mm:ss");
@@ -141,6 +149,12 @@ public class CallHistoryUISteps extends AutomationSteps {
         String callDuration = LocalTime.ofNanoOfDay(duration.toNanos()).format(dateTimeFormatter);
 
         callHistoryEntry.setDuration(callDuration);
+
+        evaluate(localStep("Set call duration for current call history entry  " )
+                         .details(ExecutionDetails.create("Call duration for entry  " + namedEntry + " is: " )
+                                                  .received(callHistoryEntry.getDuration())
+                                                  .success(callHistoryEntry.getDuration() != null)));
+
     }
 
     @Then("$profileName verifies call history list is time-sorted")

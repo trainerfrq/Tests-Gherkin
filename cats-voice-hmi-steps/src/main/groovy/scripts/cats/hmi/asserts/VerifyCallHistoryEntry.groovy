@@ -31,7 +31,7 @@ class VerifyCallHistoryEntry extends FxScriptTemplate {
 
         Label nameLabel = robot.lookup("#callHistoryList #nameLabel").selectAt(callHistoryEntryNumber).queryFirst()
         String nameText = nameLabel.getText()
-        evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for time")
+        evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for name")
                 .expected(callHistoryEntryDisplayName)
                 .received(nameText)
                 .success(nameText == callHistoryEntryDisplayName))
@@ -64,7 +64,7 @@ class VerifyCallHistoryEntry extends FxScriptTemplate {
 
         Label dateLabel = robot.lookup("#callHistoryList #dateLabel").selectAt(callHistoryEntryNumber).queryFirst()
         String dateText = dateLabel.getText()
-        evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for time")
+        evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for date")
                 .expected(callHistoryEntryDate)
                 .received(dateText)
                 .success(dateText == callHistoryEntryDate))
