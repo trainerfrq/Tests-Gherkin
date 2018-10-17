@@ -16,7 +16,9 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -128,6 +130,17 @@ public class CallHistoryUISteps extends AutomationSteps {
     public void captureTime(final String namedEntry){
         CallHistoryEntry callHistoryEntry = getStoryListData(namedEntry, CallHistoryEntry.class );
         callHistoryEntry.setInitiationTime(LocalDateTime.now());
+    }
+
+    @Then("assign duration value for entry $namedEntry")
+    public void assignDuration(final String namedEntry){
+        CallHistoryEntry callHistoryEntry = getStoryListData(namedEntry, CallHistoryEntry.class );
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("mm:ss");
+        Duration duration = Duration.between(callHistoryEntry.getInitiationTime() , LocalDateTime.now());
+        String callDuration = LocalTime.ofNanoOfDay(duration.toNanos()).format(dateTimeFormatter);
+
+        callHistoryEntry.setDuration(callDuration);
     }
 
     @Then("$profileName verifies call history list is time-sorted")

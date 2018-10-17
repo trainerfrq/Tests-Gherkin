@@ -3,6 +3,7 @@ package scripts.cats.hmi.asserts
 
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
+import javafx.scene.control.Label
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 class VerifyCallHistoryEntry extends FxScriptTemplate {
@@ -46,23 +47,25 @@ class VerifyCallHistoryEntry extends FxScriptTemplate {
                 .received(statusConnection)
                 .success(statusConnection.contains(callHistoryEntryConnectionStatus)))
 
-        String duration = (callHistoryEntry).lookup("#durationLabel").toString()
+        Label durationLabel = robot.lookup("#durationLabel").selectAt(callHistoryEntryNumber).queryFirst()
+        String durationText = durationLabel.getText()
         evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for duration")
                 .expected(callHistoryEntryDuration)
-                .received(duration)
-                .success(duration.contains(callHistoryEntryDuration)))
+                .received(durationText.toString())
+                .success(durationText.toString() == callHistoryEntryDuration))
+
+        Label timeLabel = robot.lookup("#timeLabel").selectAt(callHistoryEntryNumber).queryFirst()
+        String timeText = timeLabel.getText()
+        evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for time")
+                .expected(callHistoryEntryTime)
+                .received(timeText.toString())
+                .success(timeText.toString() == callHistoryEntryTime))
 
         String date = (callHistoryEntry).lookup("#dateLabel").toString()
         evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for date")
                 .expected(callHistoryEntryDate)
                 .received(date)
                 .success(date.contains(callHistoryEntryDate)))
-
-        String time = (callHistoryEntry).lookup("#timeLabel").toString()
-        evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for time")
-                .expected(callHistoryEntryTime)
-                .received(time)
-                .success(time.contains(callHistoryEntryTime)))
 
     }
 
