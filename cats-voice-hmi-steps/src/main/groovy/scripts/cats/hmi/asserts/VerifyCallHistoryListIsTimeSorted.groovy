@@ -3,7 +3,7 @@ package scripts.cats.hmi.asserts
 import com.frequentis.c4i.test.model.ExecutionDetails
 import com.google.common.collect.Ordering
 import javafx.scene.Node
-
+import javafx.scene.control.Label
 import javafx.scene.control.ListView
 import scripts.agent.testfx.automation.FxScriptTemplate
 
@@ -34,12 +34,14 @@ class VerifyCallHistoryListIsTimeSorted extends FxScriptTemplate {
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd")
 
             for(int i = 0;i<receivedCallHistoryListSize;i++){
-                final Node callHistoryEntry = robot.lookup("#callHistoryList .list-cell").selectAt(i).queryFirst()
 
-                String time = (callHistoryEntry).lookup("#timeLabel").toString().substring(59,67)
-                String date = (callHistoryEntry).lookup("#dateLabel").toString().substring(59,69)
+                Label timeLabel = robot.lookup("#callHistoryList #timeLabel").selectAt(i).queryFirst()
+                Label dateLabel = robot.lookup("#callHistoryList #dateLabel").selectAt(i).queryFirst()
 
-                LocalDateTime localDateTime = LocalDateTime.of(LocalDate.parse(date,dateFormatter),LocalTime.parse(time))
+                LocalDate date = LocalDate.parse(dateLabel.getText(),dateFormatter)
+                LocalTime time = LocalTime.parse(timeLabel.getText())
+
+                LocalDateTime localDateTime = LocalDateTime.of(date,time)
                 dateTimeList.add(localDateTime)
             }
 

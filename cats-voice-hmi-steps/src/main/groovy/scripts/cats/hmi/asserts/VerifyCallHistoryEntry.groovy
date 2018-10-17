@@ -29,11 +29,12 @@ class VerifyCallHistoryEntry extends FxScriptTemplate {
 
         final Node callHistoryEntry = robot.lookup("#callHistoryList .list-cell").selectAt(callHistoryEntryNumber).queryFirst()
 
-        String name = (callHistoryEntry).lookup("#nameLabel").toString()
-        evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for name")
+        Label nameLabel = robot.lookup("#callHistoryList #nameLabel").selectAt(callHistoryEntryNumber).queryFirst()
+        String nameText = nameLabel.getText()
+        evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for time")
                 .expected(callHistoryEntryDisplayName)
-                .received(name)
-                .success(name.contains(callHistoryEntryDisplayName)))
+                .received(nameText)
+                .success(nameText == callHistoryEntryDisplayName))
 
         String direction = (callHistoryEntry).lookup("#callDirection").toString()
         evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for call direction")
@@ -47,25 +48,26 @@ class VerifyCallHistoryEntry extends FxScriptTemplate {
                 .received(statusConnection)
                 .success(statusConnection.contains(callHistoryEntryConnectionStatus)))
 
-        Label durationLabel = robot.lookup("#durationLabel").selectAt(callHistoryEntryNumber).queryFirst()
+        Label durationLabel = robot.lookup("#callHistoryList #durationLabel").selectAt(callHistoryEntryNumber).queryFirst()
         String durationText = durationLabel.getText()
         evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for duration")
                 .expected(callHistoryEntryDuration)
                 .received(durationText)
                 .success(durationText.toString() == callHistoryEntryDuration))
 
-        Label timeLabel = robot.lookup("#timeLabel").selectAt(callHistoryEntryNumber).queryFirst()
+        Label timeLabel = robot.lookup("#callHistoryList #timeLabel").selectAt(callHistoryEntryNumber).queryFirst()
         String timeText = timeLabel.getText()
         evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for time")
                 .expected(callHistoryEntryTime)
                 .received(timeText)
                 .success(timeText.toString() == callHistoryEntryTime))
 
-        String date = (callHistoryEntry).lookup("#dateLabel").toString()
-        evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for date")
+        Label dateLabel = robot.lookup("#callHistoryList #dateLabel").selectAt(callHistoryEntryNumber).queryFirst()
+        String dateText = dateLabel.getText()
+        evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for time")
                 .expected(callHistoryEntryDate)
-                .received(date)
-                .success(date.contains(callHistoryEntryDate)))
+                .received(dateText)
+                .success(dateText == callHistoryEntryDate))
 
     }
 
