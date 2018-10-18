@@ -59,9 +59,9 @@ Then call duration for entry entry4 is calculated
 
 Scenario: Caller establishes third outgoing call - IA call
 When HMI OP2 presses IA key IA - OP1
+Then assign date time value for entry entry3
 
 Scenario: Callee receives incoming IA call
-Then assign date time value for entry entry3
 Then HMI OP2 has the IA key IA - OP1 in state connected
 
 Scenario: Cleanup IA call
@@ -77,18 +77,18 @@ Scenario: Callee client receives the incoming call
 Then HMI OP2 has the DA key OP1 in state ringing
 
 Scenario: Caller client clears the phone call
-When HMI OP1 presses DA key OP2(as OP1)
 Then call duration for entry entry2 is calculated
+When HMI OP1 presses DA key OP2(as OP1)
 
 Scenario: Caller establishes 5th outgoing IA call
 When HMI OP1 presses IA key IA - OP2(as OP1)
-Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
 Then assign date time value for entry entry1
+Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
 And wait for 3 seconds
 
 Scenario: Cleanup IA call
-When HMI OP1 presses IA key IA - OP2(as OP1)
 Then call duration for entry entry1 is calculated
+When HMI OP1 presses IA key IA - OP2(as OP1)
 
 Scenario: Caller establishes 6th outgoing call - priority
 When HMI OP2 initiates a priority call on DA key OP1
