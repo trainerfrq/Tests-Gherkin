@@ -1,8 +1,8 @@
 package scripts.cats.hmi.asserts
 
 import com.frequentis.c4i.test.model.ExecutionDetails
+import com.frequentis.c4i.test.util.timer.WaitTimer
 import javafx.scene.Node
-import javafx.scene.control.ListView
 import javafx.scene.control.TableView
 import scripts.agent.testfx.automation.FxScriptTemplate
 
@@ -15,7 +15,7 @@ class VerifyPhoneBookListSize extends FxScriptTemplate {
 
         Integer phonebookListSize = assertInput(IPARAM_PHONEBOOK_LIST_SIZE) as Integer
 
-        Node phoneBookPopup = robot.lookup("#phonebookPopup").queryFirst()
+        final Node phoneBookPopup = robot.lookup("#phonebookPopup").queryFirst()
 
         evaluate(ExecutionDetails.create("Phonebook popup was found")
                 .expected("Phonebook popup is not null")
@@ -23,10 +23,14 @@ class VerifyPhoneBookListSize extends FxScriptTemplate {
 
         if (phoneBookPopup != null) {
 
-            TableView phonebookTable = robot.lookup( "#phonebookTable" ).queryFirst()
+            final TableView phonebookTable = robot.lookup( "#phonebookTable" ).queryFirst()
+            phonebookTable.refresh()
+
+            WaitTimer.pause(1000); //this is needed because the changes in the phone list when a search is done are not automatically reflected on HMI
+
             int receivedPhonebookTableSize = phonebookTable.getItems().size()
 
-            evaluate(ExecutionDetails.create("Phone book list size is the expected one")
+            evaluate(ExecutionDetails.create("New phone book list size is the expected one")
                     .received(receivedPhonebookTableSize.toString())
                     .expected(phonebookListSize.toString())
                     .success(receivedPhonebookTableSize.equals(phonebookListSize)));

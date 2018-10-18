@@ -55,6 +55,8 @@ Then HMI OP1 checks that input text box displays sip text
 When HMI OP1 presses key shift
 
 Scenario: Operator makes a call using the dialpad keyboard
+		  @REQUIREMENTS:GID-2535727
+		  @REQUIREMENTS:GID-2536683
 When HMI OP1 selects call route selector: none
 When HMI OP1 toggles the symbol key
 Then waiting for 2 seconds
@@ -87,7 +89,6 @@ Then HMI OP1 verifies that phone book call button is enabled
 When HMI OP1 initiates a call from the phonebook
 
 Scenario: Call is initiated
-		  @REQUIREMENTS:GID-2535717
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
 Then HMI OP1 has the call queue item OP2-OP1 in the active list with label sip:222222@example.com
 Then HMI OP2 has the call queue item OP1-OP2 in state ringing

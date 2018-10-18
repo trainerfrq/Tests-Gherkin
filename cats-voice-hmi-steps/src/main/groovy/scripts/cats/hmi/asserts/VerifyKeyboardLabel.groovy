@@ -6,19 +6,19 @@ import scripts.agent.testfx.automation.FxScriptTemplate
 
 class VerifyKeyboardLabel extends FxScriptTemplate {
 
-    public static final String IPARAM_KEY = "key"
+    public static final String IPARAM_KEY_LABEL = "key_label"
 
     @Override
     void script() {
 
-        String key = assertInput(IPARAM_KEY) as String
+        String keyLabel = assertInput(IPARAM_KEY_LABEL) as String
 
-        Label label = robot.lookup( "#phonebookPopup #" + key + " .label" ).queryFirst();
+        Label label = robot.lookup( "#phonebookPopup #" + keyLabel + " .label" ).queryFirst();
 
         evaluate(ExecutionDetails.create("Key label displays the correct letter/symbol")
                 .received("Received key is: " + label.getText())
-                .expected("Expected text is: " + key)
-                .success(label.getText().equals(key)));
+                .expected("Expected text is: " + keyLabel)
+                .success(label.getText().equals(keyLabel)));
 
     }
 }

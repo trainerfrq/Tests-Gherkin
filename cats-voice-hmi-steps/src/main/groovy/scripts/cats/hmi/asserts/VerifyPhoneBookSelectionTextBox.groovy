@@ -1,6 +1,7 @@
 package scripts.cats.hmi.asserts
 
 import com.frequentis.c4i.test.model.ExecutionDetails
+import com.frequentis.c4i.test.util.timer.WaitTimer
 import javafx.scene.Node
 import javafx.scene.control.TextField
 import scripts.agent.testfx.automation.FxScriptTemplate

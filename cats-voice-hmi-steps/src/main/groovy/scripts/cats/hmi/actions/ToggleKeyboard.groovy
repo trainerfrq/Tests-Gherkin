@@ -10,9 +10,9 @@ class ToggleKeyboard extends FxScriptTemplate {
     @Override
     void script() {
 
-        String keyboard_type = assertInput(IPARAM_KEYBOARD_TYPE) as String
+        String keyboardType = assertInput(IPARAM_KEYBOARD_TYPE) as String
 
-        Node toggle = robot.lookup( "#phonebookPopup #" + keyboard_type + "Toggle" ).queryFirst()
+        Node toggle = robot.lookup( "#phonebookPopup #" + keyboardType + "Toggle" ).queryFirst()
 
         robot.clickOn(robot.point(toggle))
     }

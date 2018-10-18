@@ -14,7 +14,7 @@ class ClickOnKeyboard extends FxScriptTemplate {
 
         Node keys = robot.lookup( "#phonebookPopup #" + key ).queryFirst()
 
-        robot.clickOn(robot.point(keys))
+        robot.clickOn(robot.point(keys)) // keys like ":", "." can't be pressed using this method because these valid css identifiers and testfx cannot query for them
 
     }
 }

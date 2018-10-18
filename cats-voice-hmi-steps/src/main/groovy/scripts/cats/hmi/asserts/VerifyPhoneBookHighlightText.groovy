@@ -5,6 +5,8 @@ import com.frequentis.c4i.test.model.ExecutionDetails
 import com.frequentis.c4i.test.util.timer.WaitCondition
 import com.frequentis.c4i.test.util.timer.WaitTimer
 import javafx.scene.Node
+import javafx.scene.control.TableView
+import javafx.scene.layout.Pane
 import javafx.scene.text.Text
 import javafx.scene.text.TextFlow
 import scripts.agent.testfx.automation.FxScriptTemplate
@@ -15,38 +17,25 @@ class VerifyPhoneBookHighlightText extends FxScriptTemplate {
 
     @Override
     void script() {
-
         String highlightText = assertInput(IPARAM_HIGHLIGHT_TEXT) as String
 
-        Set<TextFlow> cellTextFlowSet = robot.lookup( "#phonebookTable .tableCellTextFlow" ).queryAll();
+        final TableView phonebookTable = robot.lookup( "#phonebookTable" ).queryFirst()
+        phonebookTable.refresh()
 
-        for ( Node node : cellTextFlowSet )
+        WaitTimer.pause(1000);
+
+        Set<TextFlow> cellTextFlowSet = robot.lookup( "#phonebookTable .tableCellTextFlow" ).queryAll();
+        Pane cellTextFlowTable = robot.lookup( "#phonebookTable .tableCellTextFlow" ).queryFirst()
+        Node node = cellTextFlowTable.getChildren().first()
+        Text textNode = ( Text ) node;
+
+        for ( TextFlow cellTextFlow : cellTextFlowSet )
              {
-                Text textNode = ( Text ) node;
                  evaluate(ExecutionDetails.create("Highlight text is the desired text")
                          .expected(highlightText)
                          .received(textNode.getText())
-                         .success(textNode.getText() == highlightText))
-
-                 evaluate(ExecutionDetails.create("Verify text is highlighted")
-                         .success(verifyNodeHasClass(textNode, "searchHighlight", 1000)));
+                         .success(textNode.getText().toLowerCase() == highlightText))
 
              }
-    }
-
-    protected static boolean verifyNodeHasClass(Node node, String className, long nWait) {
-        String styleClass = node.styleClass.join(" ");
-        WaitCondition condition = new WaitCondition("Wait until node has [" + className + "] class") {
-            @Override
-            boolean test() {
-                DSLSupport.evaluate(ExecutionDetails.create("Verifying has class")
-                        .expected("Expected class: " + className)
-                        .received("Found classes: " + styleClass)
-                        .success())
-                return styleClass.contains(className);
-
-            }
-        }
-        return WaitTimer.pause(condition, nWait, 400);
     }
 }

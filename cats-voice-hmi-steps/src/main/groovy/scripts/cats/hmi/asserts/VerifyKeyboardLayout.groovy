@@ -11,7 +11,7 @@ class VerifyKeyboardLayout extends FxScriptTemplate {
     @Override
     void script() {
 
-        String keyboard_layout = assertInput(IPARAM_KEYBOARD_LAYOUT) as String
+        String keyboardLayout = assertInput(IPARAM_KEYBOARD_LAYOUT) as String
 
         Node keyboard = robot.lookup("#phonebook_keyboard").queryFirst();
 
@@ -19,10 +19,10 @@ class VerifyKeyboardLayout extends FxScriptTemplate {
                 .expected("phonebook keyboard exists")
                 .success(keyboard != null));
 
-        Node layout = robot.lookup( "#phonebookPopup #" + keyboard_layout + "Layout" ).queryFirst()
+        Node layout = robot.lookup( "#phonebookPopup #" + keyboardLayout + "Layout" ).queryFirst()
 
         evaluate(ExecutionDetails.create("The keyboard layout was found")
-                .expected("The expected " + keyboard_layout + "keyboard layout is displayed")
+                .expected("The expected " + keyboardLayout + "keyboard layout is displayed")
                 .success(layout != null));
 
     }
