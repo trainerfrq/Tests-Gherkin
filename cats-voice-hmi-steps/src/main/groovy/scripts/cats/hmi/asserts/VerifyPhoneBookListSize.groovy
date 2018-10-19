@@ -30,7 +30,7 @@ class VerifyPhoneBookListSize extends FxScriptTemplate {
 
             int receivedPhonebookTableSize = phonebookTable.getItems().size()
 
-            evaluate(ExecutionDetails.create("New phone book list size is the expected one")
+            evaluate(ExecutionDetails.create("Phone book list size is the expected one")
                     .received(receivedPhonebookTableSize.toString())
                     .expected(phonebookListSize.toString())
                     .success(receivedPhonebookTableSize.equals(phonebookListSize)));

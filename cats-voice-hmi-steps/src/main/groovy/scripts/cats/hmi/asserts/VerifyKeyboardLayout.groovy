@@ -22,7 +22,7 @@ class VerifyKeyboardLayout extends FxScriptTemplate {
         Node layout = robot.lookup( "#phonebookPopup #" + keyboardLayout + "Layout" ).queryFirst()
 
         evaluate(ExecutionDetails.create("The keyboard layout was found")
-                .expected("The expected " + keyboardLayout + "keyboard layout is displayed")
+                .expected("The expected " + keyboardLayout + " keyboard layout is displayed")
                 .success(layout != null));
 
     }
