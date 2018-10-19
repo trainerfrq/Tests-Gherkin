@@ -48,8 +48,8 @@ Then HMI OP1 verifies that call history list contains 1 entries
 Then HMI OP1 verifies that call history redial button has label OP2(as OP1)
 
 Scenario: Caller redials from CallHistory
-		  REQUIREMENTS:GID-2535764
-		  REQUIREMENTS:GID-2535779
+		  @REQUIREMENTS:GID-2535764
+		  @REQUIREMENTS:GID-2535779
 When HMI OP1 redials last number
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 
@@ -60,7 +60,7 @@ Scenario: Callee client answers the incoming call
 When HMI OP2 presses DA key OP1
 
 Scenario: Verify call is connected for both operators
-		  REQUIREMENTS:GID-2535786
+		  @REQUIREMENTS:GID-2535786
 Then HMI OP1 has the call queue item OP2-OP1-DA in state connected
 Then HMI OP2 has the call queue item OP1-OP2-DA in state connected
 Then HMI OP2 verifies that call queue item bar signals call state active
@@ -97,8 +97,8 @@ Then HMI OP1 verifies that call history list contains 3 entries
 Then HMI OP1 verifies that call history redial button has label OP2(as OP1)
 
 Scenario: Caller redials from CallHistory
-		  REQUIREMENTS:GID-2535764
-		  REQUIREMENTS:GID-2535779
+		  @REQUIREMENTS:GID-2535764
+		  @REQUIREMENTS:GID-2535779
 When HMI OP1 redials last number
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 
@@ -106,7 +106,7 @@ Scenario: Callee client answers the incoming call
 When HMI OP2 presses DA key OP1
 
 Scenario: Verify call is connected for both operators
-		  REQUIREMENTS:GID-2535786
+		  @REQUIREMENTS:GID-2535786
 Then HMI OP1 has the call queue item OP2-OP1-DA in state connected
 Then HMI OP2 has the call queue item OP1-OP2-DA in state connected
 Then HMI OP2 verifies that call queue item bar signals call state priority
@@ -135,9 +135,9 @@ Then HMI OP1 verifies that call history list contains 5 entries
 Then HMI OP1 verifies that call history redial button has label IA - OP2(as OP1)
 
 Scenario: Caller redials from CallHistory
-		  REQUIREMENTS:GID-2535764
-		  REQUIREMENTS:GID-2535779
-		  REQUIREMENTS:GID-2535786
+		  @REQUIREMENTS:GID-2535764
+		  @REQUIREMENTS:GID-2535779
+		  @REQUIREMENTS:GID-2535786
 When HMI OP1 redials last number
 Then HMI OP1 has the call queue item OP2-OP1-IA in state connected
 Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected

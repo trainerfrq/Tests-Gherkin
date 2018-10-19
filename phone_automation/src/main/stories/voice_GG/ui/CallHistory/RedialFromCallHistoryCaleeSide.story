@@ -43,7 +43,7 @@ When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Op2 opens call history
-		  REQUIREMENTS:GID-2535779
+		  @REQUIREMENTS:GID-2535779
 When HMI OP2 presses function key CALLHISTORY
 Then HMI OP2 verifies that call history list contains 1 entries
 Then HMI OP2 verifies that call history redial button is disabled
@@ -72,7 +72,7 @@ Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Op2 opens call history
-		  REQUIREMENTS:GID-2535779
+		  @REQUIREMENTS:GID-2535779
 When HMI OP2 presses function key CALLHISTORY
 Then HMI OP2 verifies that call history list contains 2 entries
 Then HMI OP2 verifies that call history redial button is disabled
@@ -93,7 +93,7 @@ When HMI OP1 presses IA key IA - OP2(as OP1)
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Op2 opens call history
-		  REQUIREMENTS:GID-2535779
+		  @REQUIREMENTS:GID-2535779
 When HMI OP2 presses function key CALLHISTORY
 Then HMI OP2 verifies that call history list contains 3 entries
 Then HMI OP2 verifies that call history redial button is disabled
