@@ -16,17 +16,31 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+import org.apache.commons.io.FileUtils;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
+import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
+import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
+import com.frequentis.xvp.voice.test.automation.phone.data.Mission;
 
+import scripts.cats.hmi.actions.ClickOnPhoneBookCloseButton;
 import scripts.cats.hmi.actions.ClickOnPhoneBookForwardButton;
 import scripts.cats.hmi.actions.SelectCallRouteSelector;
 import scripts.cats.hmi.actions.SelectPhoneBookEntry;
 import scripts.cats.hmi.actions.ToggleCallPriority;
 import scripts.cats.hmi.asserts.VerifyCallRouteSelector;
+import scripts.cats.hmi.asserts.VerifyCallRouteSelectorFromList;
 import scripts.cats.hmi.asserts.VerifyPhoneBookCallButtonState;
 import scripts.cats.hmi.actions.WriteInPhoneBookTextBox;
 import scripts.cats.hmi.asserts.VerifyPhoneBookForwardButtonState;
@@ -92,7 +106,26 @@ public class PhoneBookUISteps extends AutomationSteps
               .input( VerifyCallRouteSelector.IPARAM_CALL_ROUTE_SELECTOR_LABEL, callRouteSelector ) );
    }
 
-   @Then("$profileName verifies that phone book call button is $state")
+    @Then("$profileName verifies that call route selector number $callRouteSelectorNo matches $namedCallRouteSelector")
+    public void verifyCallRouteSelectorFromList(final String profileName, final String callRouteSelectorNumber, final String namedCallRouteSelector) {
+
+        CallRouteSelector callRouteSelector = getStoryListData(namedCallRouteSelector, CallRouteSelector.class);
+        evaluate(remoteStep("Verify call route selector number " + callRouteSelectorNumber)
+                         .scriptOn(
+                                 profileScriptResolver().map(VerifyCallRouteSelectorFromList.class, BookableProfileName.javafx),
+                                 assertProfile(profileName))
+                         .input(VerifyCallRouteSelectorFromList.IPARAM_CALL_ROUTE_SELECTOR_LABEL, callRouteSelector.getName())
+                         .input(VerifyCallRouteSelectorFromList.IPARAM_CALL_ROUTE_SELECTOR_NUMBER, callRouteSelectorNumber));
+    }
+
+    @Then("$profileName closes Phone Book window")
+    public void closeCallHistoryPopup(final String profileName) {
+        evaluate(remoteStep("Close Phone Book window").scriptOn(
+                profileScriptResolver().map(ClickOnPhoneBookCloseButton.class, BookableProfileName.javafx),
+                assertProfile(profileName)));
+    }
+
+    @Then("$profileName verifies that phone book call button is $state")
    public void verifyCallButtonState( final String profileName, final String state )
    {
       evaluate( remoteStep( "Verify call button has state " + state )
@@ -135,6 +168,52 @@ public class PhoneBookUISteps extends AutomationSteps
                 .scriptOn( profileScriptResolver().map( VerifyPhoneBookTextBox.class, BookableProfileName.javafx ),
                         assertProfile( profileName ) )
                 .input( VerifyPhoneBookTextBox.IPARAM_SEARCH_BOX_TEXT, text ) );
+    }
+
+    @Then("get for $namedCallRouteSelector the values assigned for Call Route Selector number $callRouteSelectorNumber for mission $mission from $path")
+    public void assignValuesForCallRouteSelectors(final String namedCallRouteSelector, final Integer callRouteSelectorNumber, final String givenMission, final String path) throws IOException {
+
+        List<Mission> missionList = readMissionFromJson(path);
+
+        Mission receivedMission = getMissionFromList(missionList, givenMission);
+        List<CallRouteSelector> callRouteSelectorList = receivedMission.getMissionAssignedCallRouteSelectors();
+
+        CallRouteSelector callRouteSelector = getStoryListData(namedCallRouteSelector, CallRouteSelector.class);
+
+        callRouteSelector.setId(callRouteSelectorList.get(callRouteSelectorNumber).getId());
+        callRouteSelector.setName(callRouteSelectorList.get(callRouteSelectorNumber).getName());
+        callRouteSelector.setPattern(callRouteSelectorList.get(callRouteSelectorNumber).getPattern());
+
+        final LocalStep localStep = localStep("Values for Call Route Selector have been assigned ");
+        localStep.details(ExecutionDetails.create("Values for Call Route Selector have been assigned ").received(callRouteSelector.toString()));
+        record(localStep);
+    }
+
+    public List<Mission> readMissionFromJson(String path) throws IOException {
+
+        Gson gson = new GsonBuilder().create();
+        String callRouteSelectors = FileUtils.readFileToString(StepsUtil.getConfigFile(path));
+
+        Type foundListType = new TypeToken<ArrayList<Mission>>() {}.getType();
+        List<Mission> list = new Gson().fromJson(callRouteSelectors, foundListType);
+
+        final LocalStep localStep = localStep("Missions read from missions.json ");
+        localStep.details(ExecutionDetails.create("Missions read from missions.json are: ").received(list.toString()));
+        record(localStep);
+
+        return list;
+    }
+
+
+    public Mission getMissionFromList(List<Mission> missionList, String givenMission) {
+
+        Mission result = null;
+        for (Mission mission : missionList) {
+            if (mission.getMissionName().equals( givenMission)) {
+                result = mission;
+            }
+        }
+        return result;
     }
 
 }
