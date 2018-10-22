@@ -246,8 +246,9 @@ public class PhoneBookUISteps extends AutomationSteps {
         List<String> responseList = new ArrayList<>(Arrays.asList(response.split("],")));
 
         for (int i = 0; i < callRouteSelectorNameList.size(); i++) {
+
             final LocalStep localStep = localStep("Missions read from missions.json are well-displayed ");
-            localStep.details(ExecutionDetails.create("CAll Route Selector number " + i + " is well-displayed ")
+            localStep.details(ExecutionDetails.create("Call Route Selector number " + i + " is well-displayed ")
                                               .expected(callRouteSelectorNameList.get(i))
                                               .received(responseList.get(i))
                                               .success(responseList.get(i).contains(callRouteSelectorNameList.get(i))));
@@ -275,10 +276,6 @@ public class PhoneBookUISteps extends AutomationSteps {
                 result = mission;
             }
         }
-        final LocalStep localStep = localStep("Missions read from missions.json ");
-        localStep.details(ExecutionDetails.create("Missions read from missions.json are: ").received(result.toString()));
-        record(localStep);
-
         return result;
     }
 }

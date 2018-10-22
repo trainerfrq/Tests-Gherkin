@@ -25,8 +25,7 @@ class VerifyCallRouteSelectorList extends FxScriptTemplate {
 
             List<String> list = callRouteSelector.items
 
-            evaluate(ExecutionDetails.create("Call route selector list:")
-                    .expected()
+            evaluate(ExecutionDetails.create("Call route selector list")
                     .received(list.toString())
                     .success(list != null))
 
