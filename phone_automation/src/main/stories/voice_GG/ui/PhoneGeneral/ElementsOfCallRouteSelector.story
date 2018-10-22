@@ -9,130 +9,72 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source  | target | callType |
-| OP2-OP1 | 222222  |        | DA/IDA   |
-| 123-OP1 | 123     |        | DA/IDA   |
-| 234-OP1 | 234     |        | DA/IDA   |
+| key       | source  | target | callType |
+| OP2-OP1   | 222222  |        | DA/IDA   |
+| 2-OP1     | 22222   |        | DA/IDA   |
+| 22-OP1    | 2222    |        | DA/IDA   |
+| 222-OP1   | 222     |        | DA/IDA   |
+| 2222-OP1  | 22      |        | DA/IDA   |
+| 22222-OP1 | 2       |        | DA/IDA   |
 
-Scenario: Caller opens phonebook
+Scenario: Caller initiates a call with Call Route Selector None
 When HMI OP1 presses function key PHONEBOOK
-
-Scenario: Caller selects call route selector
-Then HMI OP1 verify that call route selector shows Default
-
-Scenario: Caller writes target address in text box
+When HMI OP1 selects call route selector: none
+Then HMI OP1 verify that call route selector shows None
 When HMI OP1 writes in phonebook text box the address: 222222
-
-Scenario: Caller hits phonebook call button
 When HMI OP1 initiates a call from the phonebook
+Then HMI OP1 has the call queue item OP2-OP1 in state out_failed
+Then HMI OP1 terminates the call queue item OP2-OP1
+Then HMI OP1 has in the call queue a number of 0 calls
 
-Scenario: Verify call is received and call status is ringing
+Scenario: Caller initiates a call with Call Route Selector Default
+When HMI OP1 presses function key PHONEBOOK
+Then HMI OP1 verify that call route selector shows Default
+When HMI OP1 writes in phonebook text box the address: 222222
+When HMI OP1 initiates a call from the phonebook
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
 
-Scenario: Caller clears outgoing call
-Then HMI OP1 terminates the call queue item OP2-OP1
-
-Scenario: Caller opens phonebook
+Scenario: Caller initiates a call with Call Route Selector FrqUser
 When HMI OP1 presses function key PHONEBOOK
-
-Scenario: Caller selects call route selector
-When HMI OP1 selects call route selector: none
-Then HMI OP1 verify that call route selector shows None
-
-Scenario: Caller writes target address in text box
-When HMI OP1 writes in phonebook text box the address: 222222
-
-Scenario: Caller hits phonebook call button
-When HMI OP1 initiates a call from the phonebook
-
-Scenario: Verify call is received and call status is failed
-Then HMI OP1 has the call queue item OP2-OP1 in state out_failed
-
-Scenario: Caller clears outgoing call
-Then HMI OP1 terminates the call queue item OP2-OP1
-
-Scenario: Call is terminated
-Then HMI OP1 has in the call queue a number of 0 calls
-
-Scenario: Caller opens phonebook
-When HMI OP1 presses function key PHONEBOOK
-
-Scenario: Caller selects call route selector
 When HMI OP1 selects call route selector: frqUser
 Then HMI OP1 verify that call route selector shows FrqUser
-
-Scenario: Caller writes target address in text box
-When HMI OP1 writes in phonebook text box the address: 123
-
-Scenario: Caller hits phonebook call button
+When HMI OP1 writes in phonebook text box the address: 22222
 When HMI OP1 initiates a call from the phonebook
+Then HMI OP1 has the call queue item 2-OP1 in state out_ringing
 
-Scenario: Verify call is received and call status is ringing
-Then HMI OP1 has the call queue item 123-OP1 in state out_trying
-
-Scenario: Caller clears outgoing call
-Then HMI OP1 terminates the call queue item 123-OP1
-And wait for 20 seconds
-
-Scenario: Caller opens phonebook
+Scenario: Caller initiates a call with Call Route Selector Gmail
 When HMI OP1 presses function key PHONEBOOK
-
-Scenario: Caller selects call route selector
-When HMI OP1 selects call route selector: none
-Then HMI OP1 verify that call route selector shows None
-
-Scenario: Caller writes target address in text box
-When HMI OP1 writes in phonebook text box the address: 123
-
-Scenario: Caller hits phonebook call button
-When HMI OP1 initiates a call from the phonebook
-
-Scenario: Verify call is received and call status is failed
-Then HMI OP1 has the call queue item 123-OP1 in state out_failed
-
-Scenario: Caller clears outgoing call
-Then HMI OP1 terminates the call queue item 123-OP1
-And wait for 20 seconds
-
-Scenario: Call is terminated
-Then HMI OP1 has in the call queue a number of 0 calls
-
-Scenario: Caller opens phonebook
-When HMI OP1 presses function key PHONEBOOK
-
-Scenario: Caller selects call route selector
 When HMI OP1 selects call route selector: gmail
 Then HMI OP1 verify that call route selector shows Gmail
-
-Scenario: Caller writes target address in text box
-When HMI OP1 writes in phonebook text box the address: 234
-
-Scenario: Caller hits phonebook call button
+When HMI OP1 writes in phonebook text box the address: 2222
 When HMI OP1 initiates a call from the phonebook
+Then HMI OP1 has the call queue item 22-OP1 in state out_ringing
 
-Scenario: Verify call is received and call status is ringing
-Then HMI OP1 has the call queue item 234-OP1 in state out_trying
-
-Scenario: Caller opens phonebook
+Scenario: Caller initiates a call with Call Route Selector Admin
 When HMI OP1 presses function key PHONEBOOK
-
-Scenario: Caller selects call route selector
-When HMI OP1 selects call route selector: none
-Then HMI OP1 verify that call route selector shows None
-
-Scenario: Caller writes target address in text box
-When HMI OP1 writes in phonebook text box the address: 234
-
-Scenario: Caller hits phonebook call button
+When HMI OP1 selects call route selector: admin
+Then HMI OP1 verify that call route selector shows Admin
+When HMI OP1 writes in phonebook text box the address: 222
 When HMI OP1 initiates a call from the phonebook
+Then HMI OP1 has the call queue item 222-OP1 in state out_ringing
 
-Scenario: Verify call is received and call status is failed
-Then HMI OP1 has the call queue item 234-OP1 in state out_failed
+Scenario: Caller initiates a call with Call Route Selector Super
+When HMI OP1 presses function key PHONEBOOK
+When HMI OP1 selects call route selector: super
+Then HMI OP1 verify that call route selector shows Super
+When HMI OP1 writes in phonebook text box the address: 22
+When HMI OP1 initiates a call from the phonebook
+Then HMI OP1 has the call queue item 2222-OP1 in state out_ringing
 
-Scenario: Caller clears outgoing call
-Then HMI OP1 terminates the call queue item 234-OP1
-And wait for 30 seconds
+Scenario: Caller initiates a call with Call Route Selector Student
+When HMI OP1 presses function key PHONEBOOK
+When HMI OP1 selects call route selector: student
+Then HMI OP1 verify that call route selector shows Student
+When HMI OP1 writes in phonebook text box the address: 2
+When HMI OP1 initiates a call from the phonebook
+Then HMI OP1 has the call queue item 22222-OP1 in state out_ringing
 
-Scenario: Call is terminated
+Scenario: Caller clears last outgoing call
+Then HMI OP1 terminates the call queue item 22222-OP1
 Then HMI OP1 has in the call queue a number of 0 calls
 
