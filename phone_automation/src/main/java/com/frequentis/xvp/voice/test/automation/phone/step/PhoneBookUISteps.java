@@ -16,41 +16,37 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
-import org.apache.commons.io.FileUtils;
+import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
-import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
-import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
-import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
-import com.frequentis.xvp.voice.test.automation.phone.data.Mission;
 
+import scripts.cats.hmi.actions.ClickOnKeyboard;
 import scripts.cats.hmi.actions.ClickOnPhoneBookCloseButton;
+import scripts.cats.hmi.actions.ClickOnPhoneBookDeleteButton;
 import scripts.cats.hmi.actions.ClickOnPhoneBookForwardButton;
 import scripts.cats.hmi.actions.SelectCallRouteSelector;
 import scripts.cats.hmi.actions.SelectPhoneBookEntry;
 import scripts.cats.hmi.actions.ToggleCallPriority;
+import scripts.cats.hmi.actions.ToggleKeyboard;
 import scripts.cats.hmi.asserts.VerifyCallRouteSelector;
-import scripts.cats.hmi.asserts.VerifyCallRouteSelectorFromList;
+import scripts.cats.hmi.asserts.VerifyKeyboardLayout;
 import scripts.cats.hmi.asserts.VerifyPhoneBookCallButtonState;
 import scripts.cats.hmi.actions.WriteInPhoneBookTextBox;
 import scripts.cats.hmi.asserts.VerifyPhoneBookForwardButtonState;
 import scripts.cats.hmi.asserts.VerifyPhoneBookForwardButtonIfVisible;
-import scripts.cats.hmi.asserts.VerifyPhoneBookTextBox;
+import scripts.cats.hmi.asserts.VerifyPhoneBookHighlightText;
+import scripts.cats.hmi.asserts.VerifyPhoneBookListSize;
+import scripts.cats.hmi.asserts.VerifyPhoneBookSelectionTextBox;
+import scripts.cats.hmi.asserts.VerifyPhoneBookInputTextBox;
 import scripts.cats.hmi.asserts.VerifyToggleCallPriorityState;
 
 public class PhoneBookUISteps extends AutomationSteps
 {
    @When("$profileName writes in phonebook text box the address: $address")
+   @Alias("$profileName writes in phonebook text box: $address")
    public void writeInPhoneBookTextBox( final String profileName, final String address )
    {
       evaluate(
@@ -106,26 +102,7 @@ public class PhoneBookUISteps extends AutomationSteps
               .input( VerifyCallRouteSelector.IPARAM_CALL_ROUTE_SELECTOR_LABEL, callRouteSelector ) );
    }
 
-    @Then("$profileName verifies that call route selector number $callRouteSelectorNo matches $namedCallRouteSelector")
-    public void verifyCallRouteSelectorFromList(final String profileName, final String callRouteSelectorNumber, final String namedCallRouteSelector) {
-
-        CallRouteSelector callRouteSelector = getStoryListData(namedCallRouteSelector, CallRouteSelector.class);
-        evaluate(remoteStep("Verify call route selector number " + callRouteSelectorNumber)
-                         .scriptOn(
-                                 profileScriptResolver().map(VerifyCallRouteSelectorFromList.class, BookableProfileName.javafx),
-                                 assertProfile(profileName))
-                         .input(VerifyCallRouteSelectorFromList.IPARAM_CALL_ROUTE_SELECTOR_LABEL, callRouteSelector.getName())
-                         .input(VerifyCallRouteSelectorFromList.IPARAM_CALL_ROUTE_SELECTOR_NUMBER, callRouteSelectorNumber));
-    }
-
-    @Then("$profileName closes Phone Book window")
-    public void closeCallHistoryPopup(final String profileName) {
-        evaluate(remoteStep("Close Phone Book window").scriptOn(
-                profileScriptResolver().map(ClickOnPhoneBookCloseButton.class, BookableProfileName.javafx),
-                assertProfile(profileName)));
-    }
-
-    @Then("$profileName verifies that phone book call button is $state")
+   @Then("$profileName verifies that phone book call button is $state")
    public void verifyCallButtonState( final String profileName, final String state )
    {
       evaluate( remoteStep( "Verify call button has state " + state )
@@ -165,55 +142,79 @@ public class PhoneBookUISteps extends AutomationSteps
     public void verifyPhoneBookTextBox( final String profileName, final String text )
     {
         evaluate( remoteStep( "Verify phone book text box displays text " + text )
-                .scriptOn( profileScriptResolver().map( VerifyPhoneBookTextBox.class, BookableProfileName.javafx ),
+                .scriptOn( profileScriptResolver().map( VerifyPhoneBookSelectionTextBox.class, BookableProfileName.javafx ),
                         assertProfile( profileName ) )
-                .input( VerifyPhoneBookTextBox.IPARAM_SEARCH_BOX_TEXT, text ) );
+                .input( VerifyPhoneBookSelectionTextBox.IPARAM_SEARCH_BOX_TEXT, text ) );
     }
 
-    @Then("get for $namedCallRouteSelector the values assigned for Call Route Selector number $callRouteSelectorNumber for mission $mission from $path")
-    public void assignValuesForCallRouteSelectors(final String namedCallRouteSelector, final Integer callRouteSelectorNumber, final String givenMission, final String path) throws IOException {
-
-        List<Mission> missionList = readMissionFromJson(path);
-
-        Mission receivedMission = getMissionFromList(missionList, givenMission);
-        List<CallRouteSelector> callRouteSelectorList = receivedMission.getMissionAssignedCallRouteSelectors();
-
-        CallRouteSelector callRouteSelector = getStoryListData(namedCallRouteSelector, CallRouteSelector.class);
-
-        callRouteSelector.setId(callRouteSelectorList.get(callRouteSelectorNumber).getId());
-        callRouteSelector.setName(callRouteSelectorList.get(callRouteSelectorNumber).getName());
-        callRouteSelector.setPattern(callRouteSelectorList.get(callRouteSelectorNumber).getPattern());
-
-        final LocalStep localStep = localStep("Values for Call Route Selector have been assigned ");
-        localStep.details(ExecutionDetails.create("Values for Call Route Selector have been assigned ").received(callRouteSelector.toString()));
-        record(localStep);
+    @Then("$profileName verifies that phone book dial pad has the $layout layout")
+    public void verifyDialpadLayout( final String profileName, final String layout )
+    {
+        evaluate( remoteStep( "Verify dial pad layout is " + layout )
+                .scriptOn( profileScriptResolver().map( VerifyKeyboardLayout.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input( VerifyKeyboardLayout.IPARAM_KEYBOARD_LAYOUT, layout ) );
     }
 
-    public List<Mission> readMissionFromJson(String path) throws IOException {
-
-        Gson gson = new GsonBuilder().create();
-        String callRouteSelectors = FileUtils.readFileToString(StepsUtil.getConfigFile(path));
-
-        Type foundListType = new TypeToken<ArrayList<Mission>>() {}.getType();
-        List<Mission> list = new Gson().fromJson(callRouteSelectors, foundListType);
-
-        final LocalStep localStep = localStep("Missions read from missions.json ");
-        localStep.details(ExecutionDetails.create("Missions read from missions.json are: ").received(list.toString()));
-        record(localStep);
-
-        return list;
+    @When("$profileName toggles the $toggle key")
+    public void toggleDialpad( final String profileName, final String toggle )
+    {
+        evaluate( remoteStep( "Toggle dialpad keyboard" ).scriptOn(
+                profileScriptResolver().map( ToggleKeyboard.class, BookableProfileName.javafx ),
+                assertProfile( profileName ) )
+                .input(ToggleKeyboard.IPARAM_KEYBOARD_TYPE, toggle));
     }
 
+    @When("$profileName closes phonebook")
+    public void closePhonebook( final String profileName )
+    {
+        evaluate( remoteStep( "Close phonebook" ).scriptOn(
+                profileScriptResolver().map( ClickOnPhoneBookCloseButton.class, BookableProfileName.javafx ),
+                assertProfile( profileName ) ) );
+    }
 
-    public Mission getMissionFromList(List<Mission> missionList, String givenMission) {
+    @When("$profileName presses key $key")
+    public void clicksOnKey( final String profileName, final String key )
+    {
+        evaluate( remoteStep( "Presses key" ).scriptOn(
+                profileScriptResolver().map( ClickOnKeyboard.class, BookableProfileName.javafx ),
+                assertProfile( profileName ) )
+                .input(ClickOnKeyboard.IPARAM_KEY, key));
+    }
 
-        Mission result = null;
-        for (Mission mission : missionList) {
-            if (mission.getMissionName().equals( givenMission)) {
-                result = mission;
-            }
-        }
-        return result;
+    @Then("$profileName checks that input text box displays $inputText text")
+    public void verifyInputTextBox( final String profileName, final String inputText )
+    {
+        evaluate( remoteStep( "Verify input text box displays text " + inputText )
+                .scriptOn( profileScriptResolver().map( VerifyPhoneBookInputTextBox.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input( VerifyPhoneBookInputTextBox.IPARAM_INPUT_BOX_TEXT, inputText ) );
+    }
+
+    @When("$profileName deletes a character from text box")
+    public void clicksOnKey( final String profileName )
+    {
+        evaluate( remoteStep( "Deletes a character" ).scriptOn(
+                profileScriptResolver().map( ClickOnPhoneBookDeleteButton.class, BookableProfileName.javafx ),
+                assertProfile( profileName ) ));
+    }
+
+    @Then("$profileName verifies that all phonebook entries have text $text highlighted")
+    public void verifyPhonebookListHighlighted( final String profileName, final String text )
+    {
+        evaluate( remoteStep( "Verify text " + text + "is highlighted" )
+                .scriptOn( profileScriptResolver().map( VerifyPhoneBookHighlightText.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input( VerifyPhoneBookHighlightText.IPARAM_HIGHLIGHT_TEXT, text ) );
+    }
+
+    @Then("$profileName verifies that phonebook list has $number items")
+    public void verifyPhonebookListSize( final String profileName, final String number )
+    {
+        evaluate( remoteStep( "Verify phone book has the expected size" )
+                .scriptOn( profileScriptResolver().map( VerifyPhoneBookListSize.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input( VerifyPhoneBookListSize.IPARAM_PHONEBOOK_LIST_SIZE, number ) );
     }
 
 }

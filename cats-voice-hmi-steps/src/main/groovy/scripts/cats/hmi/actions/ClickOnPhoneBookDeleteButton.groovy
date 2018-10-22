@@ -1,11 +1,10 @@
 package scripts.cats.hmi.actions
 
 import com.frequentis.c4i.test.model.ExecutionDetails
-import javafx.css.PseudoClass
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class ClickOnPhoneBookCloseButton extends FxScriptTemplate {
+class ClickOnPhoneBookDeleteButton extends FxScriptTemplate {
     @Override
     void script() {
 
@@ -16,9 +15,9 @@ class ClickOnPhoneBookCloseButton extends FxScriptTemplate {
                 .success(phoneBookPopup != null))
 
         if (phoneBookPopup != null) {
-            final Node closeButton = robot.lookup("#phonebookPopup #closePopupButton").queryFirst()
+            final Node deleteButton = robot.lookup("#phonebookPopup #inputBackspace").queryFirst()
 
-            robot.clickOn(robot.point(closeButton))
+            robot.clickOn(robot.point(deleteButton))
         }
     }
 }
