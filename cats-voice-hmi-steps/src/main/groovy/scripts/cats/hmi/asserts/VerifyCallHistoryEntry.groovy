@@ -4,7 +4,10 @@ package scripts.cats.hmi.asserts
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
 import javafx.scene.control.Label
+import org.joda.time.DateTime
+import org.joda.time.format.DateTimeFormat
 import scripts.agent.testfx.automation.FxScriptTemplate
+
 
 class VerifyCallHistoryEntry extends FxScriptTemplate {
 
@@ -55,19 +58,22 @@ class VerifyCallHistoryEntry extends FxScriptTemplate {
                 .received(durationText)
                 .success(durationText.toString() == callHistoryEntryDuration))
 
-        Label timeLabel = robot.lookup("#callHistoryList #timeLabel").selectAt(callHistoryEntryNumber).queryFirst()
-        String timeText = timeLabel.getText()
-        evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for time")
-                .expected(callHistoryEntryTime)
-                .received(timeText)
-                .success(timeText.toString() == callHistoryEntryTime))
-
         Label dateLabel = robot.lookup("#callHistoryList #dateLabel").selectAt(callHistoryEntryNumber).queryFirst()
         String dateText = dateLabel.getText()
         evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for date")
                 .expected(callHistoryEntryDate)
                 .received(dateText)
                 .success(dateText == callHistoryEntryDate))
+
+        Label timeLabel = robot.lookup("#callHistoryList #timeLabel").selectAt(callHistoryEntryNumber).queryFirst()
+        DateTime received = DateTime.parse(timeLabel.getText(), DateTimeFormat.forPattern("hh:mm:ss"))
+        DateTime givenTime = DateTime.parse(callHistoryEntryTime, DateTimeFormat.forPattern("hh:mm:ss"))
+        DateTime start =  received.minusSeconds(2)
+        DateTime end =  received.plusSeconds(2)
+        evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for time")
+                .expected(callHistoryEntryTime)
+                .received(timeLabel.getText())
+                .success(givenTime.isAfter(start) && givenTime.isBefore(end)))
 
     }
 
