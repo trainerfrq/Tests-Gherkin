@@ -1,4 +1,4 @@
-Narrative:
+ Narrative:
 As an operator
 I want to change mission and initiate from call history an outgoing call with a SIP address that is not part of current mission
 So I can check that the call towards the corresponding entry is initiated and displays the mission's default source SIP address
@@ -45,8 +45,8 @@ When HMI OP1 selects call history list entry number: 0
 Then HMI OP1 verifies that call history call button has label 222222
 
 Scenario: Caller does call from call history
-		  REQUIREMENTS:GID-2535764
-		  REQUIREMENTS:GID-4084452
+		  @REQUIREMENTS:GID-2535764
+		  @REQUIREMENTS:GID-4084452
 When HMI OP1 initiates a call from the call history
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
 Then HMI OP2 has the call queue item OP1-OP2-2 in state ringing

@@ -29,11 +29,6 @@ class WriteInPhoneBookTextBox extends FxScriptTemplate {
 
             robot.clickOn(robot.point(textField))
             robot.write(searchBoxText)
-
-            evaluate(ExecutionDetails.create("Textfield has the desired text")
-                    .expected(searchBoxText)
-                    .received(textField.getText())
-                    .success(textField.getText() == searchBoxText))
         }
     }
 }
