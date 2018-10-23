@@ -236,7 +236,7 @@ public class PhoneBookUISteps extends AutomationSteps {
         }
 
         final RemoteStepResult remoteStepResult =
-                evaluate(remoteStep("Verify call route selectors ")
+                evaluate(remoteStep("Verify call route selector list is present ")
                                  .scriptOn(
                                          profileScriptResolver().map(VerifyCallRouteSelectorList.class, BookableProfileName.javafx),
                                          assertProfile(profileName)));
@@ -258,14 +258,10 @@ public class PhoneBookUISteps extends AutomationSteps {
 
     public List<Mission> readMissionFromJson(String path) throws IOException {
 
-        Gson gson = new GsonBuilder().create();
-        String callRouteSelectors = FileUtils.readFileToString(StepsUtil.getConfigFile(path));
+        String missions = FileUtils.readFileToString(StepsUtil.getConfigFile(path));
 
-        Type foundListType = new TypeToken<ArrayList<Mission>>() {
-        }.getType();
-        List<Mission> list = new Gson().fromJson(callRouteSelectors, foundListType);
+        return new Gson().fromJson(missions, new TypeToken<ArrayList<Mission>>() {}.getType());
 
-        return list;
     }
 
     public Mission getMissionFromList(List<Mission> missionList, String givenMission) {
