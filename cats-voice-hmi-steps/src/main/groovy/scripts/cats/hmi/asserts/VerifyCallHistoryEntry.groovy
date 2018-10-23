@@ -8,6 +8,10 @@ import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 import scripts.agent.testfx.automation.FxScriptTemplate
 
+import java.time.Duration
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+
 
 class VerifyCallHistoryEntry extends FxScriptTemplate {
 
@@ -53,10 +57,13 @@ class VerifyCallHistoryEntry extends FxScriptTemplate {
 
         Label durationLabel = robot.lookup("#callHistoryList #durationLabel").selectAt(callHistoryEntryNumber).queryFirst()
         String durationText = durationLabel.getText()
+        LocalTime lt = LocalTime.parse ("00:" + callHistoryEntryDuration )
+        Duration duration = Duration.between ( LocalTime.MIN , lt ).plusSeconds(1)
+        String approxDuration = LocalTime.ofNanoOfDay(duration.toNanos()).format(DateTimeFormatter.ofPattern("mm:ss"))
         evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for duration")
                 .expected(callHistoryEntryDuration)
                 .received(durationText)
-                .success(durationText.toString() == callHistoryEntryDuration))
+                .success(durationText.toString() == callHistoryEntryDuration || durationText.toString() == approxDuration))
 
         Label dateLabel = robot.lookup("#callHistoryList #dateLabel").selectAt(callHistoryEntryNumber).queryFirst()
         String dateText = dateLabel.getText()
