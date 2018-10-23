@@ -57,13 +57,12 @@ class VerifyCallHistoryEntry extends FxScriptTemplate {
 
         Label durationLabel = robot.lookup("#callHistoryList #durationLabel").selectAt(callHistoryEntryNumber).queryFirst()
         String durationText = durationLabel.getText()
-        LocalTime lt = LocalTime.parse ("00:" + callHistoryEntryDuration )
-        Duration duration = Duration.between ( LocalTime.MIN , lt ).minusSeconds(1)
-        String approxDuration = LocalTime.ofNanoOfDay(duration.toNanos()).format(DateTimeFormatter.ofPattern("mm:ss"))
+        Duration givenDuration = Duration.between ( LocalTime.MIN , LocalTime.parse ("00:" + callHistoryEntryDuration ) ).plusSeconds(1)
+        Duration receivedDuration = Duration.between ( LocalTime.MIN , LocalTime.parse ("00:" + durationText ) )
         evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for duration")
                 .expected(callHistoryEntryDuration)
                 .received(durationText)
-                .success(durationText.toString() == callHistoryEntryDuration || durationText.toString() == approxDuration))
+                .success(receivedDuration <= givenDuration ))
 
         Label dateLabel = robot.lookup("#callHistoryList #dateLabel").selectAt(callHistoryEntryNumber).queryFirst()
         String dateText = dateLabel.getText()
