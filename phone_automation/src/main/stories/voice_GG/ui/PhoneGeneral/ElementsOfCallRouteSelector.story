@@ -35,7 +35,6 @@ Then HMI OP1 verify that call route selector shows Default
 When HMI OP1 writes in phonebook text box the address: 222222
 When HMI OP1 initiates a call from the phonebook
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
-Then HMI OP1 has the call queue item OP2-OP1 in the waiting list with label 222222
 Then HMI OP1 terminates the call queue item OP2-OP1
 Then HMI OP1 has in the call queue a number of 0 calls
 
