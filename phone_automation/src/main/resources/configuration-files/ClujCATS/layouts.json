@@ -113,7 +113,8 @@
         },
         {
           "id": "status1",
-          "time": "HH:mm:ss",
+          "date": "MM/dd/yy",
+          "time": "hh:mm:ss a",
           "showClock": true,
           "showMission": true,
           "showConnectionStatus": true
@@ -433,7 +434,8 @@
         },
         {
           "id": "status1",
-          "time": "HH:mm:ss",
+          "date": "MM/dd/yy",
+          "time": "hh:mm:ss a",
           "showClock": true,
           "showMission": true,
           "showConnectionStatus": true
