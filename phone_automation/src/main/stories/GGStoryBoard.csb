@@ -1334,6 +1334,12 @@
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
+                             <cats:storyPath>voice_GG/ui/CallHistory/AdditionalInformationInCallHistoryList.story</cats:storyPath>
+                             <cats:storyParameters/>
+                             <cats:storyStatistics/>
+                             <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallHistory/DACallFromHistoryAfterMissionChange.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
@@ -1376,10 +1382,22 @@
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
+                             <cats:storyPath>voice_GG/ui/CallHistory/KeepCallHistoryOnMissionActivation.story</cats:storyPath>
+                             <cats:storyParameters/>
+                             <cats:storyStatistics/>
+                             <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallHistory/MissionDefaultSIPCallFromHistoryAfterMissionChange.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                             <cats:storyPath>voice_GG/ui/CallHistory/NumberOfCallHistoryListEntries.story</cats:storyPath>
+                             <cats:storyParameters/>
+                             <cats:storyStatistics/>
+                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallHistory/RedialFromCallHistoryCaleeSide.story</cats:storyPath>
@@ -1392,6 +1410,12 @@
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                             <cats:storyPath>voice_GG/ui/CallHistory/TimeSortedCallHistoryList.story</cats:storyPath>
+                             <cats:storyParameters/>
+                             <cats:storyStatistics/>
+                             <cats:storyDataList/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>

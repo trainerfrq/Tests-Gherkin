@@ -23,6 +23,7 @@ import org.jbehave.core.annotations.Given;
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.model.ExecutionDetails;
+import com.frequentis.xvp.voice.test.automation.phone.data.CallHistoryEntry;
 import com.frequentis.xvp.tools.cats.websocket.automation.model.PhoneBookEntry;
 
 public class NamingSteps extends AutomationSteps
@@ -37,6 +38,21 @@ public class NamingSteps extends AutomationSteps
          setStoryListData( key, phoneBookEntry );
          localStep
                .details( ExecutionDetails.create( "Define the phone book entries" ).usedData( key, phoneBookEntry ) );
+      }
+
+      record( localStep );
+   }
+
+   @Given("the following call history entries: $callHistoryEntries")
+   public void namedHistoryEntries( final List<CallHistoryEntry> callHistoryEntries )
+   {
+      final LocalStep localStep = localStep( "Define the call history entries" );
+      for ( final CallHistoryEntry callHistoryEntry : callHistoryEntries )
+      {
+         final String key = callHistoryEntry.getKey();
+         setStoryListData( key, callHistoryEntry );
+         localStep
+                 .details( ExecutionDetails.create( "Define the call history entries" ).usedData( key, callHistoryEntry ) );
       }
 
       record( localStep );
