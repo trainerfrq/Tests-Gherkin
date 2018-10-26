@@ -31,6 +31,15 @@ Given the function keys:
 
 Scenario: Define call route selectors
 Given the call route selectors:
-| key     | id      |
-| Default | default |
-| None    | none    |
+| key       | id      |
+| Default   | default |
+| None      | none    |
+| FrqUser   | frqUser |
+| Gmail     | gmail   |
+| Admin     | admin   |
+| Super     | super   |
+| Student   | student |
+| Professor | prof    |
+| Medic     | medic   |
+| Mail      | mail    |
+

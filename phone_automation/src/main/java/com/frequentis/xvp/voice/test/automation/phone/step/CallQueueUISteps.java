@@ -16,6 +16,17 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import scripts.cats.hmi.actions.ClickCallQueueItem;
+import scripts.cats.hmi.actions.ClickOnCallQueueInfoContainer;
+import scripts.cats.hmi.actions.DragAndClickOnMenuButtonFirstCallQueueItem;
+import scripts.cats.hmi.asserts.VerifyCallQueueBarState;
+import scripts.cats.hmi.asserts.VerifyCallQueueInfoContainerIfVisible;
+import scripts.cats.hmi.asserts.VerifyCallQueueInfoContainerLabel;
+import scripts.cats.hmi.asserts.VerifyCallQueueItemLabel;
+import scripts.cats.hmi.asserts.VerifyCallQueueItemStateIfPresent;
+import scripts.cats.hmi.asserts.VerifyCallQueueItemStyleClass;
+import scripts.cats.hmi.asserts.VerifyCallQueueLength;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,17 +42,6 @@ import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
-
-import scripts.cats.hmi.actions.ClickCallQueueItem;
-import scripts.cats.hmi.actions.ClickOnCallQueueInfoContainer;
-import scripts.cats.hmi.actions.DragAndClickOnMenuButtonFirstCallQueueItem;
-import scripts.cats.hmi.asserts.VerifyCallQueueBarState;
-import scripts.cats.hmi.asserts.VerifyCallQueueInfoContainerIfVisible;
-import scripts.cats.hmi.asserts.VerifyCallQueueInfoContainerLabel;
-import scripts.cats.hmi.asserts.VerifyCallQueueItemLabel;
-import scripts.cats.hmi.asserts.VerifyCallQueueItemStateIfPresent;
-import scripts.cats.hmi.asserts.VerifyCallQueueItemStyleClass;
-import scripts.cats.hmi.asserts.VerifyCallQueueLength;
 
 public class CallQueueUISteps extends AutomationSteps
 {
@@ -159,6 +159,20 @@ public class CallQueueUISteps extends AutomationSteps
    public void verifyCallQueueItemLabelActiveList( final String profileName, final String namedCallQueueItem,
          final String callQueueList, final String label )
    {
+      final LocalStep step = localStep( "Wait for " + 1 + " second" );
+      try
+      {
+         Thread.sleep( 1000 );
+         step.details(
+               ExecutionDetails.create( "Wait for " + 1 + " second" ).received( "Waited" ).success( true ) );
+      }
+      catch ( final Exception ex )
+      {
+         step.details( ExecutionDetails.create( "Wait for " + 1 + " second" ).received( "Waited with error" )
+               .success( false ) );
+      }
+      record( step );
+
       CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
 
       evaluate( remoteStep( "Verify call queue item status" )
