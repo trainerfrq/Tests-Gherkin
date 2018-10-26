@@ -30,6 +30,11 @@ Scenario: Callee client receives the incoming call
 		  @REQUIREMENTS:GID-2505646
 Then HMI OP2 has the DA key OP1 in state ringing
 
+Scenario: Verify call queue section
+		  @REQUIREMENTS:GID-3371941
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2(as OP1)
+Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with label 111111
+
 Scenario: Callee client answers the incoming call
 		  @REQUIREMENTS:GID-2510577
 When HMI OP2 presses DA key OP1
@@ -37,6 +42,12 @@ When HMI OP2 presses DA key OP1
 Scenario: Verify call is connected for both operators
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
+
+Scenario: Verify call queue section
+		  @REQUIREMENTS:GID-3371942
+Then HMI OP2 verifies that the call queue item OP1-OP2 was removed from the waiting list
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2(as OP1)
+Then HMI OP2 has the call queue item OP1-OP2 in the active list with label 111111
 
 Scenario: Caller client clears the phone call
 		  @REQUIREMENTS:GID-2510109
