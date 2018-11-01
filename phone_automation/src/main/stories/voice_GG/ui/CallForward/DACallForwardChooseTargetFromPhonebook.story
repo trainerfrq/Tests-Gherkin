@@ -29,7 +29,7 @@ Then HMI OP1 verifies that phone book call button is disabled
 Then HMI OP1 verifies that phone book forward button state is disabled
 
 Scenario: Op1 selects an item from phonebook for the call forward action
-		  REQUIREMENTS:GID-2521111
+		  @REQUIREMENTS:GID-2521111
 When HMI OP1 selects phonebook entry number: 4
 Then HMI OP1 verifies that phone book call button is enabled
 Then HMI OP1 verifies that phone book forward button state is enabled
@@ -48,7 +48,7 @@ When HMI OP3 presses DA key OP1(as OP3)
 Then HMI OP3 has the DA key OP1(as OP3) in state out_ringing
 
 Scenario: Call is automatically forwarded to Op2
-		  REQUIREMENTS:GID-2521112
+		  @REQUIREMENTS:GID-2521112
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP2 has the DA key OP3 in state ringing
 
