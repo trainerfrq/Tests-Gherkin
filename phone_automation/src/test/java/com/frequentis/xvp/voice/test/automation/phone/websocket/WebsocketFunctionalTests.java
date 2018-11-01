@@ -17,7 +17,7 @@ import java.util.List;
 @RunWith(CatsJunitRunner.class)
 @CatsRunConfiguration(
         stories = {
-                "voice_GG/websocket/DACalls/CalleeClearsActiveCall.story",
+                "voice_GG/websocket/noCommit/test.story",
         },
         catsHomeLocation = ".",
         name = "WebsocketFunctionalTests")
