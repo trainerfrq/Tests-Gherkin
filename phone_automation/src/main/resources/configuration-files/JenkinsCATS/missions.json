@@ -98,6 +98,54 @@
         "name": "None",
         "patternType": "replacePlaceholder",
         "pattern": "{user_input}"
+      },
+      {
+        "id": "frqUser",
+        "name": "FrqUser",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:2{user_input}@example.com"
+      },
+      {
+        "id": "gmail",
+        "name": "Gmail",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:22{user_input}@example.com"
+      },
+      {
+        "id": "admin",
+        "name": "Admin",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:222{user_input}@example.com"
+      },
+      {
+        "id": "super",
+        "name": "Super",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:2222{user_input}@example.com"
+      },
+      {
+        "id": "student",
+        "name": "Student",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:22222{user_input}@example.com"
+      },
+      {
+        "id": "prof",
+        "name": "Professor",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:1{user_input}@example.com"
+      },
+      {
+        "id": "medic",
+        "name": "Medic",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:11{user_input}@example.com"
+      },
+      {
+        "id": "mail",
+        "name": "Mail",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:111{user_input}@example.com"
       }
     ],
     "schemaVersion": "0.5.0-SNAPSHOT",
