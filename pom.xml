@@ -35,7 +35,6 @@
       <maven-enforcer-plugin.version>3.0.0-M1</maven-enforcer-plugin.version>
       <fabric8-docker-maven-plugin.version>0.16.8</fabric8-docker-maven-plugin.version>
       <xvp-test-automation.version>1.3.0-SNAPSHOT</xvp-test-automation.version>
-      <xvp-cats-libs.version>1.1.0-SNAPSHOT</xvp-cats-libs.version>
       <guava.version>23.0</guava.version>
 
       <cats.version>4.8.0</cats.version>
@@ -106,11 +105,6 @@
                <artifactId>voice-hmi-dsl-co-support</artifactId>
               <version>${project.version}</version>
            </dependency>
-            <dependency>
-                <groupId>com.frequentis.xvp.framework.testing</groupId>
-                <artifactId>xvp-cats-rest-configuration</artifactId>
-                <version>${xvp-cats-libs.version}</version>
-            </dependency>
 
            <!-- General CATS dependencies -->
            <dependency>
