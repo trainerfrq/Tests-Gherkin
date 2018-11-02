@@ -168,7 +168,7 @@ public class CallQueueUISteps extends AutomationSteps
    public void verifyCallQueueItemLabelActiveList( final String profileName, final String namedCallQueueItem,
          final String callQueueList, final String label )
    {
-      waitForSeconds( 1 );
+      waitForSeconds( 0.5 );
       CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
 
       evaluate( remoteStep( "Verify call queue item status" )
@@ -198,8 +198,7 @@ public class CallQueueUISteps extends AutomationSteps
    public void verifyCallQueueItemList( final String profileName, final String namedCallQueueItem,
          final String callQueueList )
    {
-      waitForSeconds( 1 );
-
+      waitForSeconds( 0.5 );
       CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
 
       evaluate( remoteStep( "Verify call queue item is not in the given section " )
@@ -360,13 +359,13 @@ public class CallQueueUISteps extends AutomationSteps
    }
 
 
-   public void waitForSeconds( final int secs )
+   public void waitForSeconds( final double secs )
    {
       final LocalStep step = localStep( "Wait for " + secs + " seconds" );
 
       try
       {
-         Thread.sleep( secs * 1000 );
+         Thread.sleep( (int) secs * 1000 );
          step.details(
                ExecutionDetails.create( "Wait for " + secs + " seconds" ).received( "Waited" ).success( true ) );
       }
