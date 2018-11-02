@@ -40,6 +40,12 @@
       </dependency>
 
        <dependency>
+           <groupId>com.frequentis.xvp.framework.testing</groupId>
+           <artifactId>xvp-cats-rest-configuration</artifactId>
+           <version>${xvp-cats-libs.version}</version>
+       </dependency>
+
+       <dependency>
          <groupId>org.glassfish.jersey.core</groupId>
          <artifactId>jersey-client</artifactId>
          <version>${jersey-client.version}</version>
