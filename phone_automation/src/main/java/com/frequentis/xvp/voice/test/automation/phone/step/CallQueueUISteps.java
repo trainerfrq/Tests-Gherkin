@@ -168,7 +168,7 @@ public class CallQueueUISteps extends AutomationSteps
    public void verifyCallQueueItemLabelActiveList( final String profileName, final String namedCallQueueItem,
          final String callQueueList, final String label )
    {
-      waitForSeconds( 0.5 );
+      waitForSeconds( 1 );
       CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
 
       evaluate( remoteStep( "Verify call queue item status" )
@@ -198,7 +198,7 @@ public class CallQueueUISteps extends AutomationSteps
    public void verifyCallQueueItemList( final String profileName, final String namedCallQueueItem,
          final String callQueueList )
    {
-      waitForSeconds( 0.5 );
+      waitForSeconds( 1 );
       CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
 
       evaluate( remoteStep( "Verify call queue item is not in the given section " )

@@ -86,7 +86,7 @@ Then HMI OP1 verifies that the call queue item OP3-OP1 from the waiting list has
 Scenario: Operator receives a SIP call
 When SipContact calls SIP URI <<OPVOICE1_PHONE_URI>>
 Then waiting for 2 seconds
-Then HMI OP1 has the call queue item SipContact-OP1 in the waiting list with label 12345
+Then HMI OP1 has the call queue item SipContact-OP1 in the waiting list with label Madoline
 Then HMI OP1 has the call queue item OP3-OP1 in the waiting list with label op3
 Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2 Physical
 
@@ -94,7 +94,7 @@ Scenario: Operator puts the active call on hold and verifies call queue section 
 When HMI OP1 puts on hold the active call
 Then HMI OP1 verifies that the call queue item OP2-OP1 was removed from the active list
 Then HMI OP1 has the call queue item OP2-OP1 in the hold list with label OP2 Physical
-Then HMI OP1 has the call queue item SipContact-OP1 in the waiting list with label 12345
+Then HMI OP1 has the call queue item SipContact-OP1 in the waiting list with label Madoline
 Then HMI OP1 has the call queue item OP3-OP1 in the waiting list with label op3
 Then HMI OP1 verifies that the call queue item OP2-OP1 from the hold list has call type DA/IDA
 
@@ -104,12 +104,12 @@ Then HMI OP1 verifies that the call queue item OP3-OP1 has index 1 in the waitin
 
 Scenario: Operator answers Sip call
 Then HMI OP1 accepts the call queue item SipContact-OP1
-Then HMI OP1 has the call queue item SipContact-OP1 in the active list with label 12345
+Then HMI OP1 has the call queue item SipContact-OP1 in the active list with label Madoline
 
 Scenario: Operator puts the Sip call on hold and verifies call queue section (hold)
 When HMI OP1 puts on hold the active call
 Then HMI OP1 verifies that the call queue item SipContact-OP1 was removed from the active list
-Then HMI OP1 has the call queue item SipContact-OP1 in the hold list with label 12345
+Then HMI OP1 has the call queue item SipContact-OP1 in the hold list with label Madoline
 Then HMI OP1 has the call queue item OP3-OP1 in the waiting list with label op3
 Then HMI OP1 has the call queue item OP2-OP1 in the hold list with label OP2 Physical
 Then HMI OP1 verifies that the call queue item SipContact-OP1 from the hold list has call type DA/IDA
@@ -123,7 +123,7 @@ Scenario: Operator initiates transfer for the active call
 When HMI OP1 initiates a transfer on the active call
 Then HMI OP1 verifies that the call queue item OP3-OP1 was removed from the active list
 Then HMI OP1 has the call queue item OP3-OP1 in the hold list with label op3
-Then HMI OP1 has the call queue item SipContact-OP1 in the hold list with label 12345
+Then HMI OP1 has the call queue item SipContact-OP1 in the hold list with label Madoline
 Then HMI OP1 has the call queue item OP2-OP1 in the hold list with label OP2 Physical
 
 Scenario: Operator verifies the order of call queue items in the hold section
