@@ -1,0 +1,41 @@
+[
+  {
+    "missionId": "22e6596e-93d3-4859-ae1e-2009f457f9ae",
+    "frequencies": [
+      {
+        "frequencyId": "123.700",
+        "couplingAllowed": true
+      },
+      {
+        "frequencyId": "125.500",
+        "couplingAllowed": false
+      }
+    ]
+  },
+  {
+    "missionId": "4a549394-87fc-4133-8aa9-717fb82f6a66",
+    "frequencies": [
+      {
+        "frequencyId": "123.700",
+        "couplingAllowed": true
+      },
+      {
+        "frequencyId": "125.500",
+        "couplingAllowed": false
+      }
+    ]
+  },
+  {
+    "missionId": "634070c1-a620-4f0e-b7d4-c0812a4bba10",
+    "frequencies": [
+      {
+        "frequencyId": "123.700",
+        "couplingAllowed": true
+      },
+      {
+        "frequencyId": "125.500",
+        "couplingAllowed": false
+      }
+    ]
+  }
+]
