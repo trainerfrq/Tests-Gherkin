@@ -37,16 +37,18 @@ Then HMI OP2 has the DA key OP3 in state ringing
 Scenario: Op2 answers the incoming call
 Then HMI OP2 accepts the call queue item OP3-OP2
 
-Scenario: Verify calls state on all operators
-Then HMI OP1 has the call queue item OP2-OP1 in state connected
+Scenario: Verify call state on all operators
 Then HMI OP1 has in the call queue a number of 1 calls
-Then HMI OP2 has the call queue item OP3-OP2 in state connected
+Then HMI OP1 has the call queue item OP2-OP1 in state connected
+Then HMI OP2 has in the call queue a number of 1 calls
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
-Then HMI OP2 has in the call queue a number of 2 calls
-Then HMI OP3 has the call queue item OP2-OP3 in state connected
+Then HMI OP2 click on call queue Elements list
+Then HMI OP2 has the call queue item OP3-OP2 in state connected
 Then HMI OP3 has in the call queue a number of 1 calls
+Then HMI OP3 has the call queue item OP2-OP3 in state connected
 
-Scenario: Op2 also initiate a IA call, transforming the existing IA half duplex call in a full duplex
+Scenario: Op2 also initiates an IA call, transforming the existing IA half duplex call in a full duplex
+Then HMI OP2 presses the call queue item OP3-OP2
 When HMI OP2 presses IA key IA - OP1
 
 Scenario: Verify calls state on all operators

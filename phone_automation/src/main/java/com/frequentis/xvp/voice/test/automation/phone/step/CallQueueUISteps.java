@@ -16,15 +16,16 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import scripts.cats.hmi.actions.ClickCallQueueElementsList;
 import scripts.cats.hmi.actions.ClickCallQueueItem;
 import scripts.cats.hmi.actions.ClickOnCallQueueInfoContainer;
 import scripts.cats.hmi.actions.DragAndClickOnMenuButtonFirstCallQueueItem;
 import scripts.cats.hmi.asserts.VerifyCallQueueBarState;
 import scripts.cats.hmi.asserts.VerifyCallQueueInfoContainerIfVisible;
 import scripts.cats.hmi.asserts.VerifyCallQueueInfoContainerLabel;
+import scripts.cats.hmi.asserts.VerifyCallQueueItemCallType;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemIndexInList;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemLabel;
-import scripts.cats.hmi.asserts.VerifyCallQueueItemCallType;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemNotInList;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemStateIfPresent;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemStyleClass;
@@ -235,6 +236,14 @@ public class CallQueueUISteps extends AutomationSteps
             .scriptOn( profileScriptResolver().map( ClickCallQueueItem.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
             .input( ClickCallQueueItem.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() ) );
+   }
+
+   @Then("$profileName click on call queue Elements list")
+   public void clickCallQueueElements( final String profileName )
+   {
+      evaluate( remoteStep( "Click call queue elements list" )
+            .scriptOn( profileScriptResolver().map( ClickCallQueueElementsList.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) ) );
    }
 
 
