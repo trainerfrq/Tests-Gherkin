@@ -39,6 +39,11 @@ Scenario: Verify call state for both operators
 Then HMI OP1 has the call queue item OP2-OP1 in state hold
 Then HMI OP2 has the call queue item OP1-OP2 in state held
 
+Scenario: Verify call queue section
+		  @REQUIREMENTS:GID-3371934
+Then HMI OP1 has the call queue item OP2-OP1 in the hold list with label OP2(as OP1)
+Then HMI OP2 has the call queue item OP1-OP2 in the active list with label 111111
+
 Scenario: Callee puts the call on hold
 When HMI OP2 puts on hold the active call
 
@@ -61,6 +66,12 @@ Then HMI OP1 retrieves from hold the call queue item OP2-OP1
 Scenario: Verify call is connected again
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
+
+Scenario: Verify call queue section
+		  @REQUIREMENTS:GID-3371935
+Then HMI OP1 verifies that the call queue item OP2-OP1 was removed from the hold list
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2(as OP1)
+Then HMI OP2 has the call queue item OP1-OP2 in the active list with label 111111
 
 Scenario: Callee clears outgoing call
 When HMI OP2 presses DA key OP1

@@ -73,18 +73,6 @@
         "pattern": "sip:111{user_input}@example.com"
       }
     ],
-    "radioData": {
-      "frequencies": [
-        {
-          "frequencyId": "111.000",
-          "couplingAllowed": true
-        },
-        {
-          "frequencyId": "125.000",
-          "couplingAllowed": false
-        }
-      ]
-    },
     "schemaVersion": "0.5.0-SNAPSHOT",
     "phoneSettings": {
       "sipAddresses": [
@@ -123,18 +111,6 @@
         "pattern": "{user_input}"
       }
     ],
-    "radioData": {
-      "frequencies": [
-        {
-          "frequencyId": "111.000",
-          "couplingAllowed": true
-        },
-        {
-          "frequencyId": "125.000",
-          "couplingAllowed": false
-        }
-      ]
-    },
     "schemaVersion": "0.5.0-SNAPSHOT",
     "phoneSettings": {
       "sipAddresses": [
@@ -220,18 +196,6 @@
         "pattern": "sip:111{user_input}@example.com"
       }
     ],
-    "radioData": {
-      "frequencies": [
-        {
-          "frequencyId": "111.000",
-          "couplingAllowed": true
-        },
-        {
-          "frequencyId": "125.000",
-          "couplingAllowed": false
-        }
-      ]
-    },
     "schemaVersion": "0.5.0-SNAPSHOT",
     "phoneSettings": {
       "sipAddresses": [

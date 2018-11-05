@@ -22,7 +22,10 @@ import scripts.cats.hmi.actions.DragAndClickOnMenuButtonFirstCallQueueItem;
 import scripts.cats.hmi.asserts.VerifyCallQueueBarState;
 import scripts.cats.hmi.asserts.VerifyCallQueueInfoContainerIfVisible;
 import scripts.cats.hmi.asserts.VerifyCallQueueInfoContainerLabel;
+import scripts.cats.hmi.asserts.VerifyCallQueueItemIndexInList;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemLabel;
+import scripts.cats.hmi.asserts.VerifyCallQueueItemCallType;
+import scripts.cats.hmi.asserts.VerifyCallQueueItemNotInList;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemStateIfPresent;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemStyleClass;
 import scripts.cats.hmi.asserts.VerifyCallQueueLength;
@@ -59,6 +62,10 @@ public class CallQueueUISteps extends AutomationSteps
 
    private static final String WAITING_LIST_NAME = "waitingList";
 
+   private static final String HOLD_LIST_NAME = "holdList";
+
+   private static final String PRIORITY_LIST_NAME = "priorityList";
+
    private static final String HOLD_MENU_BUTTON_ID = "hold_call_menu_button";
 
    private static final String DECLINE_CALL_MENU_BUTTON_ID = "decline_call_menu_button";
@@ -71,6 +78,8 @@ public class CallQueueUISteps extends AutomationSteps
    {
       CALL_QUEUE_LIST_MAP.put( "waiting", WAITING_LIST_NAME );
       CALL_QUEUE_LIST_MAP.put( "active", ACTIVE_LIST_NAME );
+      CALL_QUEUE_LIST_MAP.put( "hold", HOLD_LIST_NAME );
+      CALL_QUEUE_LIST_MAP.put( "priority", PRIORITY_LIST_NAME );
    }
 
 
@@ -159,20 +168,7 @@ public class CallQueueUISteps extends AutomationSteps
    public void verifyCallQueueItemLabelActiveList( final String profileName, final String namedCallQueueItem,
          final String callQueueList, final String label )
    {
-      final LocalStep step = localStep( "Wait for " + 1 + " second" );
-      try
-      {
-         Thread.sleep( 1000 );
-         step.details(
-               ExecutionDetails.create( "Wait for " + 1 + " second" ).received( "Waited" ).success( true ) );
-      }
-      catch ( final Exception ex )
-      {
-         step.details( ExecutionDetails.create( "Wait for " + 1 + " second" ).received( "Waited with error" )
-               .success( false ) );
-      }
-      record( step );
-
+      waitForSeconds( 1 );
       CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
 
       evaluate( remoteStep( "Verify call queue item status" )
@@ -183,6 +179,48 @@ public class CallQueueUISteps extends AutomationSteps
             .input( VerifyCallQueueItemLabel.IPARAM_LIST_NAME, CALL_QUEUE_LIST_MAP.get( callQueueList ) ) );
    }
 
+   @Then("$profileName verifies that the call queue item $callQueueItem from the $callQueueList list has call type $givenCallType")
+   public void verifyCallQueueItemCallType( final String profileName, final String namedCallQueueItem,
+         final String callQueueList, final String givenCallType )
+   {
+      CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
+
+      evaluate( remoteStep( "Verify call queue item call type" )
+            .scriptOn( profileScriptResolver().map( VerifyCallQueueItemCallType.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyCallQueueItemCallType.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
+            .input( VerifyCallQueueItemCallType.IPARAM_DISPLAY_CALL_TYPE, givenCallType )
+            .input( VerifyCallQueueItemCallType.IPARAM_LIST_NAME, CALL_QUEUE_LIST_MAP.get( callQueueList ) ) );
+   }
+
+   @Then("$profileName verifies that the call queue item $callQueueItem was removed from the $callQueueList list")
+
+   public void verifyCallQueueItemList( final String profileName, final String namedCallQueueItem,
+         final String callQueueList )
+   {
+      waitForSeconds( 1 );
+      CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
+
+      evaluate( remoteStep( "Verify call queue item is not in the given section " )
+            .scriptOn( profileScriptResolver().map( VerifyCallQueueItemNotInList.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyCallQueueItemNotInList.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
+            .input( VerifyCallQueueItemNotInList.IPARAM_LIST_NAME, CALL_QUEUE_LIST_MAP.get( callQueueList ) ) );
+   }
+
+   @Then("$profileName verifies that the call queue item $callQueueItem has index $indexNumber in the $callQueueList list")
+   public void verifyCallQueueItemOrder( final String profileName, final String namedCallQueueItem,
+         final String indexNumber, final String callQueueList )
+   {
+      CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
+
+      evaluate( remoteStep( "Verify call queue item is at index " + indexNumber + " in the call queue list." )
+            .scriptOn( profileScriptResolver().map( VerifyCallQueueItemIndexInList.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyCallQueueItemIndexInList.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
+            .input( VerifyCallQueueItemIndexInList.IPARAM_CALL_QUEUE_ITEM_INDEX, indexNumber)
+            .input( VerifyCallQueueItemIndexInList.IPARAM_LIST_NAME, CALL_QUEUE_LIST_MAP.get( callQueueList ) ) );
+   }
 
    @Then("$profileName accepts the call queue item $callQueueItem")
    @Aliases(values = { "$profileName cancels the call queue item $callQueueItem",
@@ -318,5 +356,24 @@ public class CallQueueUISteps extends AutomationSteps
    private String reformatSipUris( final String sipUri )
    {
       return sipUri != null ? sipUri.replaceAll( "[.,:]", CONCAT_CHAR ) : "";
+   }
+
+
+   public void waitForSeconds( final double secs )
+   {
+      final LocalStep step = localStep( "Wait for " + secs + " seconds" );
+
+      try
+      {
+         Thread.sleep( (int) secs * 1000 );
+         step.details(
+               ExecutionDetails.create( "Wait for " + secs + " seconds" ).received( "Waited" ).success( true ) );
+      }
+      catch ( final Exception ex )
+      {
+         step.details( ExecutionDetails.create( "Wait for " + secs + " seconds" ).received( "Waited with error" )
+               .success( false ) );
+      }
+      record( step );
    }
 }
