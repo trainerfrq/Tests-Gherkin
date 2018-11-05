@@ -842,6 +842,12 @@
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
+                             <cats:storyPath>voice_GG/ui/PhoneGeneral/CallQueueSections.story</cats:storyPath>
+                             <cats:storyParameters/>
+                             <cats:storyStatistics/>
+                             <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneGeneral/DisplayCallerIdentityForDAIncomingCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
