@@ -193,7 +193,7 @@
     "notes": "Aliquip nisi culpa eu sunt aliqua consequat magna.",
     "dataSets": [
       {
-        "destination": "sip:00123@frequentis.frq"
+        "destination": "sip:000123@example.com"
       }
     ]
   },
@@ -205,7 +205,7 @@
     "notes": "Deserunt aliquip sit et quis ea et elit deserunt occaecat anim sint.",
     "dataSets": [
       {
-        "destination": "sip:234@gmail.com"
+        "destination": "sip:234000@example.com"
       }
     ]
   },
@@ -217,7 +217,7 @@
     "notes": "Aliqua enim esse non exercitation laborum mollit occaecat est quis enim eu et voluptate.",
     "dataSets": [
       {
-        "destination": "sip:345@administrator"
+        "destination": "sip:345000@example.com"
       }
     ]
   },
@@ -241,7 +241,7 @@
     "notes": "Ullamco quis mollit cillum consequat adipisicing officia anim officia fugiat dolor magna consectetur anim.",
     "dataSets": [
       {
-        "destination": "sip:456@super.cool"
+        "destination": "sip:456000@example.com"
       }
     ]
   },
@@ -253,7 +253,7 @@
     "notes": "Irure consequat in incididunt quis minim do voluptate velit duis amet amet mollit laboris.",
     "dataSets": [
       {
-        "destination": "sip:567@ubb.com"
+        "destination": "sip:567000@example.com"
       }
     ]
   },
@@ -265,7 +265,7 @@
     "notes": "Ipsum sit laboris dolore tempor cupidatat.",
     "dataSets": [
       {
-        "destination": "sip:678@ubb.com"
+        "destination": "sip:678000@example.com"
       }
     ]
   },
@@ -277,7 +277,7 @@
     "notes": "Culpa amet nulla sunt cillum qui.",
     "dataSets": [
       {
-        "destination": "sip:789@hospital.com"
+        "destination": "sip:789000@example.com"
       }
     ]
   },
@@ -289,7 +289,7 @@
     "notes": "Et adipisicing magna nulla consectetur reprehenderit nulla culpa deserunt.",
     "dataSets": [
       {
-        "destination": "8910@yahoo.com"
+        "destination": "sip:891000@example.com"
       }
     ]
   },
