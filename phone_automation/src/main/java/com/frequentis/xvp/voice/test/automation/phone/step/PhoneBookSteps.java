@@ -35,6 +35,7 @@ import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
+import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.automation.model.PhoneBookEntry;
@@ -112,6 +113,18 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
                   greaterThanOrEqualTo( entryNumber ) ) ) );
 
       assertPhoneBookEntry( phoneBookResponse.getItems().get( entryNumber - 1 ), phoneBookEntry );
+   }
+
+
+   @Then("remove request $namedRequestId")
+   public void removeRequestId( final String namedRequestId )
+   {
+      removeStoryListData( namedRequestId );
+      final LocalStep localStep = localStep( "Remove request " + namedRequestId );
+      localStep.details( ExecutionDetails.create( "Remove request " + namedRequestId )
+            .received(getStoryListData().toString())
+            .success(  ));
+      record( localStep );
    }
 
 
@@ -244,6 +257,7 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
             .input( SendTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
 
       setStoryListData( namedRequestId, Integer.toString( phoneBookRequest.getRequestId() ) );
+
    }
 
 

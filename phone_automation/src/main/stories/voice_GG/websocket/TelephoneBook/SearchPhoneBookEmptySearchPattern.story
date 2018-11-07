@@ -43,35 +43,38 @@ Then WS1 receives phone book response on buffer named PhoneBookResponseBuffer fo
 Scenario: Assert that more items are available
 Then WS1 receives phone book response on buffer named PhoneBookResponseBuffer for request with requestId1 with more items available flag being true
 
+Scenario: Remove request
+Then remove request requestId1
+
 Scenario: Request all entries from telephone book
-When WS1 requests a number of 10000 entries starting from index 0 with an empty search pattern and saves the requestId2
+When WS1 requests all entries and saves the requestId2
 
 Scenario: Assert first 20 entries
 		  @REQUIREMENTS:GID-2659402
 Then WS1 receives phone book response on buffer named PhoneBookResponseBuffer for request with requestId2 with one entry matching phone book entry <key>
 
 Examples:
-|key      |
-|entry1   |
-|entry2   |
-|entry3   |
-|entry4   |
-|entry5   |
-|entry6   |
-|entry7   |
-|entry8   |
-|entry9   |
-|entry10  |
-|entry11  |
-|entry12  |
-|entry13  |
-|entry14  |
-|entry15  |
-|entry16  |
-|entry17  |
-|entry18  |
-|entry19  |
-|entry20  |
+| key      |
+| entry1   |
+| entry2   |
+| entry3   |
+| entry4   |
+| entry5   |
+| entry6   |
+| entry7   |
+| entry8   |
+| entry9   |
+| entry10  |
+| entry11  |
+| entry12  |
+| entry13  |
+| entry14  |
+| entry15  |
+| entry16  |
+| entry17  |
+| entry18  |
+| entry19  |
+| entry20  |
 
 Scenario: Assert that no more items are available
 Then WS1 receives phone book response on buffer named PhoneBookResponseBuffer for request with requestId2 with more items available flag being false
