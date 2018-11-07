@@ -35,7 +35,6 @@ import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
-import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.automation.model.PhoneBookEntry;
@@ -74,15 +73,8 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
    @When("$namedWebSocket requests all entries and saves the $namedRequestId")
    public void sendPhoneBookRequestForAllEntriesWithEmptySearchPattern( final String namedWebSocket, final String namedRequestId )
    {
-      final LocalStep localStep = localStep( "Remove request " + namedRequestId );
-      localStep.details( ExecutionDetails.create( "Verify if first request is deleted "  )
-            .received(getStoryListData("requestId1", String.class))
-            .success( getStoryListData("requestId1", String.class) == null ));
-      record( localStep );
-
       sendPhoneBookRequest( namedWebSocket, MAX_NUMBER_OF_PHONEBOOK_ITEMS, 0, "", namedRequestId );
 
-      record( localStep );
    }
 
 
@@ -121,38 +113,6 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
                   greaterThanOrEqualTo( entryNumber ) ) ) );
 
       assertPhoneBookEntry( phoneBookResponse.getItems().get( entryNumber - 1 ), phoneBookEntry );
-   }
-
-
-   @Then("remove request $namedRequestId")
-   public void removeRequestId( final String namedRequestId )
-   {
-      final LocalStep localStep = localStep( "Remove request " + namedRequestId );
-
-      localStep.details( ExecutionDetails.create( "Before remove request " + namedRequestId )
-            .received(getStoryListData(namedRequestId, String.class))
-            .success( ));
-
-      removeStoryListData( namedRequestId );
-
-      localStep.details( ExecutionDetails.create( "After remove request " + namedRequestId )
-            .received(getStoryListData(namedRequestId, String.class))
-            .success(  ));
-      record( localStep );
-
-      final LocalStep step = localStep( "Wait for 3 seconds" );
-      try
-      {
-         Thread.sleep( 3000 );
-         step.details(
-               ExecutionDetails.create( "Wait for 3 seconds" ).received( "Waited" ).success( true ) );
-      }
-      catch ( final Exception ex )
-      {
-         step.details( ExecutionDetails.create( "Wait for 3 seconds" ).received( "Waited with error" )
-               .success( false ) );
-      }
-      record( step );
    }
 
 
