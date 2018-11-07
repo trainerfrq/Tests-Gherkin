@@ -77,7 +77,7 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
       final LocalStep localStep = localStep( "Remove request " + namedRequestId );
       localStep.details( ExecutionDetails.create( "Verify if first request is deleted "  )
             .received(getStoryListData("requestId1", String.class))
-            .success(  ));
+            .success( getStoryListData("requestId1", String.class) == null ));
       record( localStep );
 
       sendPhoneBookRequest( namedWebSocket, MAX_NUMBER_OF_PHONEBOOK_ITEMS, 0, "", namedRequestId );
@@ -134,21 +134,6 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
             .success( ));
 
       removeStoryListData( namedRequestId );
-
-      final LocalStep step = localStep( "Wait for 2 seconds" );
-
-      try
-      {
-         Thread.sleep( 2000 );
-         step.details(
-               ExecutionDetails.create( "Wait for 2 seconds" ).received( "Waited" ).success( true ) );
-      }
-      catch ( final Exception ex )
-      {
-         step.details( ExecutionDetails.create( "Wait for 2 seconds" ).received( "Waited with error" )
-               .success( false ) );
-      }
-      record( step );
 
       localStep.details( ExecutionDetails.create( "After remove request " + namedRequestId )
             .received(getStoryListData(namedRequestId, String.class))
