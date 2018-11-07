@@ -44,7 +44,7 @@ Scenario: Assert that more items are available
 Then WS1 receives phone book response on buffer named PhoneBookResponseBuffer for request with requestId1 with more items available flag being true
 
 Scenario: Request all entries from telephone book
-When WS1 requests all entries and saves the requestId2
+When WS1 requests a number of 10000 entries starting from index 0 with an empty search pattern and saves the requestId2
 
 Scenario: Assert first 20 entries
 		  @REQUIREMENTS:GID-2659402
