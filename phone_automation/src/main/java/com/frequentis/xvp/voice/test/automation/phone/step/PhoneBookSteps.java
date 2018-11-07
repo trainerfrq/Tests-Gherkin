@@ -139,6 +139,20 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
             .received(getStoryListData(namedRequestId, String.class))
             .success(  ));
       record( localStep );
+
+      final LocalStep step = localStep( "Wait for 3 seconds" );
+      try
+      {
+         Thread.sleep( 3000 );
+         step.details(
+               ExecutionDetails.create( "Wait for 3 seconds" ).received( "Waited" ).success( true ) );
+      }
+      catch ( final Exception ex )
+      {
+         step.details( ExecutionDetails.create( "Wait for 3 seconds" ).received( "Waited with error" )
+               .success( false ) );
+      }
+      record( step );
    }
 
 
