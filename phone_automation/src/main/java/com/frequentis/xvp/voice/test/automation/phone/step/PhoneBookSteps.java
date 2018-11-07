@@ -74,7 +74,15 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
    @When("$namedWebSocket requests all entries and saves the $namedRequestId")
    public void sendPhoneBookRequestForAllEntriesWithEmptySearchPattern( final String namedWebSocket, final String namedRequestId )
    {
+      final LocalStep localStep = localStep( "Remove request " + namedRequestId );
+      localStep.details( ExecutionDetails.create( "Verify if first request is deleted "  )
+            .received(getStoryListData("requestId1", String.class))
+            .success(  ));
+      record( localStep );
+
       sendPhoneBookRequest( namedWebSocket, MAX_NUMBER_OF_PHONEBOOK_ITEMS, 0, "", namedRequestId );
+
+      record( localStep );
    }
 
 
@@ -119,10 +127,31 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
    @Then("remove request $namedRequestId")
    public void removeRequestId( final String namedRequestId )
    {
-      removeStoryListData( namedRequestId );
       final LocalStep localStep = localStep( "Remove request " + namedRequestId );
-      localStep.details( ExecutionDetails.create( "Remove request " + namedRequestId )
-            .received(getStoryListData().toString())
+
+      localStep.details( ExecutionDetails.create( "Before remove request " + namedRequestId )
+            .received(getStoryListData(namedRequestId, String.class))
+            .success( ));
+
+      removeStoryListData( namedRequestId );
+
+      final LocalStep step = localStep( "Wait for 2 seconds" );
+
+      try
+      {
+         Thread.sleep( 2000 );
+         step.details(
+               ExecutionDetails.create( "Wait for 2 seconds" ).received( "Waited" ).success( true ) );
+      }
+      catch ( final Exception ex )
+      {
+         step.details( ExecutionDetails.create( "Wait for 2 seconds" ).received( "Waited with error" )
+               .success( false ) );
+      }
+      record( step );
+
+      localStep.details( ExecutionDetails.create( "After remove request " + namedRequestId )
+            .received(getStoryListData(namedRequestId, String.class))
             .success(  ));
       record( localStep );
    }
