@@ -74,7 +74,6 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
    public void sendPhoneBookRequestForAllEntriesWithEmptySearchPattern( final String namedWebSocket, final String namedRequestId )
    {
       sendPhoneBookRequest( namedWebSocket, MAX_NUMBER_OF_PHONEBOOK_ITEMS, 0, "", namedRequestId );
-
    }
 
 
