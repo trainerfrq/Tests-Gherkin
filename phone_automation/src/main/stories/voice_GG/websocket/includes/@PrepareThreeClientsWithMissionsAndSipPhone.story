@@ -10,13 +10,19 @@ Given named the websocket configurations:
 | WS_Config-1 | <<OPVOICE1_WS.URI>> | 1000             |
 | WS_Config-2 | <<OPVOICE2_WS.URI>> | 1000             |
 | WS_Config-3 | <<OPVOICE3_WS.URI>> | 1000             |
+| WS_Config-4 | <<OPVOICE4_WS.URI>> | 1000             |
+| WS_Config-5 | <<OPVOICE5_WS.URI>> | 1000             |
+| WS_Config-6 | <<OPVOICE6_WS.URI>> | 1000             |
 
 Scenario: Open Web Socket Client connections
 Given applied the websocket configuration:
-| key | profile-name | websocket-config-name |
-| WS1 | WEBSOCKET 1  | WS_Config-1           |
-| WS2 | WEBSOCKET 1  | WS_Config-2           |
-| WS3 | WEBSOCKET 1  | WS_Config-3           |
+| profile-name | websocket-config-name |
+| WEBSOCKET 1  | WS_Config-1           |
+| WEBSOCKET 1  | WS_Config-2           |
+| WEBSOCKET 1  | WS_Config-3           |
+| WEBSOCKET 1  | WS_Config-4           |
+| WEBSOCKET 1  | WS_Config-5           |
+| WEBSOCKET 1  | WS_Config-6           |
 
 Scenario: Create the message buffers for missions
 When WS1 opens the message buffer for message type missionsAvailableIndication named MissionsAvailableIndicationBuffer1
