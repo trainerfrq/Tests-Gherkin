@@ -30,6 +30,7 @@ import scripts.cats.hmi.asserts.VerifyCallQueueItemNotInList;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemStateIfPresent;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemStyleClass;
 import scripts.cats.hmi.asserts.VerifyCallQueueLength;
+import scripts.cats.hmi.asserts.VerifyCallQueueSectionLength;
 
 import java.util.HashMap;
 import java.util.List;
@@ -254,6 +255,17 @@ public class CallQueueUISteps extends AutomationSteps
             .scriptOn( profileScriptResolver().map( VerifyCallQueueLength.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
             .input( VerifyCallQueueLength.IPARAM_QUEUE_EXPECTED_LENGTH, numberOfCalls ) );
+   }
+
+
+   @Then("$profileName has in the $listName list a number of $numberOfCalls calls")
+   public void verifyCallQueueSectionLength( final String profileName, final String callQueueList, final Integer numberOfCalls )
+   {
+      evaluate( remoteStep( "Verify call queue list length" )
+            .scriptOn( profileScriptResolver().map( VerifyCallQueueSectionLength.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyCallQueueSectionLength.IPARAM_QUEUE_EXPECTED_LENGTH, numberOfCalls )
+            .input( VerifyCallQueueSectionLength.IPARAM_LIST_NAME, callQueueList ) );
    }
 
 

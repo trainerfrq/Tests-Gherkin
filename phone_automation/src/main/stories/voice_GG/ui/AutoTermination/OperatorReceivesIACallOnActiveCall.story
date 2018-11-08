@@ -45,6 +45,7 @@ Then HMI OP2 click on call queue Elements list
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
 Then HMI OP3 has in the call queue a number of 1 calls
 Then HMI OP3 has the call queue item OP2-OP3 in state connected
+Then HMI OP2 has in the active list a number of 2 calls
 
 Scenario: Op3 terminates IA call
 When HMI OP3 presses IA key IA - OP2(as OP3)
