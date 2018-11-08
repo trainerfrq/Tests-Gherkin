@@ -566,12 +566,6 @@
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                             <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookAndVerifyEntries.story</cats:storyPath>
-                             <cats:storyParameters/>
-                             <cats:storyStatistics/>
-                             <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookFewerEntriesThanStartIndex.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
