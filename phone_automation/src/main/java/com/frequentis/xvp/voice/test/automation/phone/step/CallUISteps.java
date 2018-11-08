@@ -16,6 +16,15 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import scripts.cats.hmi.actions.ClickDAButton;
+import scripts.cats.hmi.actions.ClickFunctionKey;
+import scripts.cats.hmi.actions.ClickOnCallHistoryCallButton;
+import scripts.cats.hmi.actions.ClickOnPhoneBookCallButton;
+import scripts.cats.hmi.actions.DragAndClickOnMenuButtonDAKey;
+import scripts.cats.hmi.asserts.VerifyDAButtonState;
+import scripts.cats.hmi.asserts.VerifyDAKeyDisplayCallType;
+import scripts.cats.hmi.asserts.VerifyOperatorPositionState;
+
 import java.util.List;
 
 import org.jbehave.core.annotations.Alias;
@@ -31,18 +40,14 @@ import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
 import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
 import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
 
-import scripts.cats.hmi.actions.ClickDAButton;
-import scripts.cats.hmi.actions.ClickFunctionKey;
-import scripts.cats.hmi.actions.ClickOnCallHistoryCallButton;
-import scripts.cats.hmi.actions.ClickOnPhoneBookCallButton;
-import scripts.cats.hmi.actions.DragAndClickOnMenuButtonDAKey;
-import scripts.cats.hmi.asserts.VerifyDAButtonState;
-import scripts.cats.hmi.asserts.VerifyOperatorPositionState;
-
 public class CallUISteps extends AutomationSteps {
     private static final String PRIORITY_CALL_MENU_BUTTON_ID = "priority_call_menu_button";
 
     private static final String DECLINE_CALL_MENU_BUTTON_ID = "decline_call_menu_button";
+
+    private static final String HOLD_MENU_BUTTON_ID = "hold_call_menu_button";
+
+    private static final String TRANSFER_MENU_BUTTON_ID = "transfer_call_menu_button";
 
     @Given("the DA keys: $daKeys")
     public void defineDaKeys(final List<DAKey> daKeys) {
@@ -142,6 +147,20 @@ public class CallUISteps extends AutomationSteps {
                          .input(VerifyDAButtonState.IPARAM_DA_KEY_STATE, state));
     }
 
+    @Then("$profileName verifies that the DA key $target has the displayed call type $givenCallType")
+    public void verifyDAKeyCallType( final String profileName, final String target,
+          final String givenCallType )
+    {
+        DAKey daKey = retrieveDaKey(profileName, target);
+
+        evaluate( remoteStep( "Verify DA key call type" )
+              .scriptOn( profileScriptResolver().map( VerifyDAKeyDisplayCallType.class, BookableProfileName.javafx ),
+                    assertProfile( profileName ) )
+              .input( VerifyDAKeyDisplayCallType.IPARAM_DA_KEY_ID, daKey.getId() )
+              .input( VerifyDAKeyDisplayCallType.IPARAM_DA_KEY_CALL_TYPE, givenCallType ) );
+    }
+
+
     @When("$profileName declines the call on DA key $target")
     public void terminateCallOnDAKey(final String profileName, final String target) {
         DAKey daKey = retrieveDaKey(profileName, target);
@@ -173,6 +192,27 @@ public class CallUISteps extends AutomationSteps {
                 assertProfile(profileName)).input(VerifyOperatorPositionState.STATE, state));
     }
 
+    @When("$profileName puts on hold the active call using DA key $target")
+    public void putOnHoldActiveCall( final String profileName, final String target )
+    {
+        DAKey daKey = retrieveDaKey(profileName, target);
+        evaluate( remoteStep( "Put on hold active call queue item" )
+              .scriptOn( profileScriptResolver().map( DragAndClickOnMenuButtonDAKey.class,
+                    BookableProfileName.javafx ), assertProfile( profileName ) )
+              .input( DragAndClickOnMenuButtonDAKey.IPARAM_MENU_BUTTON_ID, HOLD_MENU_BUTTON_ID )
+              .input( DragAndClickOnMenuButtonDAKey.IPARAM_DA_KEY_ID, daKey.getId() ) );
+    }
+
+    @When("$profileName initiates a transfer on the active call using DA key $target ")
+    public void transferActiveCall( final String profileName, final String target  )
+    {
+        DAKey daKey = retrieveDaKey(profileName, target);
+        evaluate( remoteStep( "Transfer active call queue item" )
+              .scriptOn( profileScriptResolver().map( DragAndClickOnMenuButtonDAKey.class,
+                    BookableProfileName.javafx ), assertProfile( profileName ) )
+              .input( DragAndClickOnMenuButtonDAKey.IPARAM_MENU_BUTTON_ID, TRANSFER_MENU_BUTTON_ID )
+              .input( DragAndClickOnMenuButtonDAKey.IPARAM_DA_KEY_ID, daKey.getId() ) );
+    }
 
     private DAKey retrieveDaKey(final String source, final String target) {
         final DAKey daKey = getStoryListData(source + "-" + target, DAKey.class);
