@@ -44,7 +44,7 @@
     "notes": "Language - Chinese",
     "dataSets": [
       {
-        "destination": "sip:12345@192.168.40.90:5070",
+        "destination": "sip:12345@192.168.10.12:5070",
         "displayAddon": "Air2Ground"
       }
     ]

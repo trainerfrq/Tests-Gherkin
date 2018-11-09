@@ -16,22 +16,6 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
-import com.frequentis.c4i.test.model.ExecutionDetails;
-import com.frequentis.xvp.tools.cats.websocket.automation.model.PhoneBookEntry;
-import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
-import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
-import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
-import com.frequentis.xvp.voice.opvoice.json.messages.JsonMessage;
-import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookRequest;
-import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookResponse;
-import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookResponseItem;
-import com.frequentis.xvp.voice.sip.SipURI;
-import com.frequentis.xvp.voice.sip.SipUser;
-import com.google.common.collect.ImmutableList;
-import org.jbehave.core.annotations.Named;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
 import scripts.cats.websocket.sequential.SendTextMessage;
 import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
 import static com.frequentis.c4i.test.model.MatcherDetails.match;
@@ -46,6 +30,24 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Random;
 import java.util.UUID;
+
+import org.jbehave.core.annotations.Named;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
+
+import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
+import com.frequentis.c4i.test.model.ExecutionDetails;
+import com.frequentis.xvp.tools.cats.websocket.automation.model.PhoneBookEntry;
+import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
+import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
+import com.frequentis.xvp.voice.opvoice.json.messages.JsonMessage;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookRequest;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookResponse;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookResponseItem;
+import com.frequentis.xvp.voice.sip.SipURI;
+import com.frequentis.xvp.voice.sip.SipUser;
+import com.google.common.collect.ImmutableList;
 
 public class PhoneBookSteps extends WebsocketAutomationSteps
 {
@@ -67,10 +69,11 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
       sendPhoneBookRequest( namedWebSocket, nrOfEntries, startIndex, "", namedRequestId );
    }
 
+
    @When("$namedWebSocket requests all entries and saves the $namedRequestId")
    public void sendPhoneBookRequestForAllEntriesWithEmptySearchPattern( final String namedWebSocket, final String namedRequestId )
    {
-      sendPhoneBookRequestForAllEntries( namedWebSocket, namedRequestId );
+      sendPhoneBookRequest( namedWebSocket, MAX_NUMBER_OF_PHONEBOOK_ITEMS, 0, "", namedRequestId );
    }
 
 
@@ -241,29 +244,9 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
             .input( SendTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
 
       setStoryListData( namedRequestId, Integer.toString( phoneBookRequest.getRequestId() ) );
+
    }
 
-
-   private void sendPhoneBookRequestForAllEntries(final String namedWebSocket, final String namedRequestId) {
-
-      final ProfileToWebSocketConfigurationReference reference =
-              getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
-
-      PhoneBookRequest phoneBookRequest =
-              new PhoneBookRequest(new Random().nextInt(), "", 0, MAX_NUMBER_OF_PHONEBOOK_ITEMS);
-
-      final JsonMessage request =
-              JsonMessage.builder().withCorrelationId( UUID.randomUUID() ).withPhoneBookRequest( phoneBookRequest )
-                         .build();
-
-      evaluate( remoteStep( "Sending phone book request " )
-                        .scriptOn( profileScriptResolver().map( SendTextMessage.class, BookableProfileName.websocket ),
-                                   requireProfile( reference.getProfileName() ) )
-                        .input( SendTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
-                        .input( SendTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
-
-      setStoryListData( namedRequestId, Integer.toString( phoneBookRequest.getRequestId() ) );
-   }
 
    private void assertPhoneBookEntry( final PhoneBookResponseItem phoneBookResponseItem,
          final PhoneBookEntry phoneBookEntry )
@@ -287,6 +270,7 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
             .details( match( "Phone book entry notes matches", phoneBookResponseItem.getNotes(),
                   equalTo( phoneBookEntry.getNotes() ) ) ) );
    }
+
 
    private void assertPhoneBookEntryAllEntries(final ImmutableList<PhoneBookResponseItem> items, final PhoneBookEntry phoneBookEntry) {
 

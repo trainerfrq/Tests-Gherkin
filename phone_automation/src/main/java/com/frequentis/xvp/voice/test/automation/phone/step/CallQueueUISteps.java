@@ -16,19 +16,21 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import scripts.cats.hmi.actions.ClickCallQueueElementsList;
 import scripts.cats.hmi.actions.ClickCallQueueItem;
 import scripts.cats.hmi.actions.ClickOnCallQueueInfoContainer;
 import scripts.cats.hmi.actions.DragAndClickOnMenuButtonFirstCallQueueItem;
 import scripts.cats.hmi.asserts.VerifyCallQueueBarState;
 import scripts.cats.hmi.asserts.VerifyCallQueueInfoContainerIfVisible;
 import scripts.cats.hmi.asserts.VerifyCallQueueInfoContainerLabel;
+import scripts.cats.hmi.asserts.VerifyCallQueueItemCallType;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemIndexInList;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemLabel;
-import scripts.cats.hmi.asserts.VerifyCallQueueItemCallType;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemNotInList;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemStateIfPresent;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemStyleClass;
 import scripts.cats.hmi.asserts.VerifyCallQueueLength;
+import scripts.cats.hmi.asserts.VerifyCallQueueSectionLength;
 
 import java.util.HashMap;
 import java.util.List;
@@ -237,6 +239,14 @@ public class CallQueueUISteps extends AutomationSteps
             .input( ClickCallQueueItem.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() ) );
    }
 
+   @Then("$profileName click on call queue Elements list")
+   public void clickCallQueueElements( final String profileName )
+   {
+      evaluate( remoteStep( "Click call queue elements list" )
+            .scriptOn( profileScriptResolver().map( ClickCallQueueElementsList.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) ) );
+   }
+
 
    @Then("$profileName has in the call queue a number of $numberOfCalls calls")
    public void verifyCallQueueLength( final String profileName, final Integer numberOfCalls )
@@ -245,6 +255,17 @@ public class CallQueueUISteps extends AutomationSteps
             .scriptOn( profileScriptResolver().map( VerifyCallQueueLength.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
             .input( VerifyCallQueueLength.IPARAM_QUEUE_EXPECTED_LENGTH, numberOfCalls ) );
+   }
+
+
+   @Then("$profileName has in the $listName list a number of $numberOfCalls calls")
+   public void verifyCallQueueSectionLength( final String profileName, final String callQueueList, final Integer numberOfCalls )
+   {
+      evaluate( remoteStep( "Verify call queue list length" )
+            .scriptOn( profileScriptResolver().map( VerifyCallQueueSectionLength.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyCallQueueSectionLength.IPARAM_QUEUE_EXPECTED_LENGTH, numberOfCalls )
+            .input( VerifyCallQueueSectionLength.IPARAM_LIST_NAME, callQueueList ) );
    }
 
 
