@@ -1,10 +1,9 @@
 Scenario: Connect to deploymentServer
 Given SSH connections:
-| name             | remote-address      | remotePort | username | password  |
-| deploymentServer | <<DEP_SERVER_IP>>   | 22         | root     | !frqAdmin |
-| dockerHost1      | <<DOCKER_HOST1_IP>> | 22         | root     | !frqAdmin |
-| dockerHost2      | <<DOCKER_HOST2_IP>> | 22         | root     | !frqAdmin |
-| dockerHost3      | <<DOCKER_HOST3_IP>> | 22         | root     | !frqAdmin |
+| name             | remote-address       | remotePort | username | password  |
+| deploymentServer | <<DEP_SERVER_IP>>    | 22         | root     | !frqAdmin |
+| dockerHost1      | <<OPVOICE_HOST1_IP>> | 22         | root     | !frqAdmin |
+| dockerHost2      | <<OPVOICE_HOST2_IP>> | 22         | root     | !frqAdmin |
 
 Scenario: Stop running Op Voice Services
 When SSH host deploymentServer executes /usr/bin/xvp services remove op-voice-service -g
@@ -29,18 +28,7 @@ When SSH host deploymentServer executes sed -i '4s/.*/  "tag" : "${op.voice.vers
 Scenario: Publish the service descriptors and start services
 Then SSH host deploymentServer executes /usr/bin/xvp descriptors download -g
 Then SSH host deploymentServer executes /usr/bin/xvp services deploy --all -g
-And waiting for 30 seconds
-
-Scenario: Set restart policy for Op Voice Services
-!-- Scenario is needed to de-active the default on-failure restart policy,
-!-- otherwise the next scenario will always pass, as containers will be always running
-Then SSH host dockerHost2 executes docker update --restart=no op-voice-service-${OP_VOICE_PARTITION_KEY_1}-1
-Then SSH host dockerHost2 executes docker update --restart=no op-voice-service-${OP_VOICE_PARTITION_KEY_2}-1
-Then SSH host dockerHost2 executes docker update --restart=no op-voice-service-${OP_VOICE_PARTITION_KEY_3}-1
-Then SSH host dockerHost1 executes docker update --restart=no op-voice-service-${OP_VOICE_PARTITION_KEY_1}-2
-Then SSH host dockerHost1 executes docker update --restart=no op-voice-service-${OP_VOICE_PARTITION_KEY_2}-2
-Then SSH host dockerHost1 executes docker update --restart=no op-voice-service-${OP_VOICE_PARTITION_KEY_3}-2
-Then waiting for 30 seconds
+And waiting for 120 seconds
 
 Scenario: Verify Op Voice Services are running
 When SSH host dockerHost2 executes docker inspect -f '{{.State.Status}}' op-voice-service-${OP_VOICE_PARTITION_KEY_1}-1 and the output contains running
