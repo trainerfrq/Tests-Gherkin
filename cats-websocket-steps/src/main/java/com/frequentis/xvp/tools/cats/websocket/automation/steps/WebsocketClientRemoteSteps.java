@@ -93,6 +93,11 @@ public class WebsocketClientRemoteSteps extends WebsocketAutomationSteps
                   i++;
               }
               else if (redundancyState.contains("PASSIVE")){
+                 evaluate(
+                         remoteStep( "Close passive websocket connection " + reference.getWebSocketConfigurationName() )
+                                 .scriptOn( profileScriptResolver().map( CloseWebSocketClientConnection.class,
+                                         BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                                 .input( CloseWebSocketClientConnection.IPARAM_ENDPOINTNAME, reference.getKey() ) );
                  endpointName.remove(reference.getKey());
               }
           }
