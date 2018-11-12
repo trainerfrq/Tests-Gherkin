@@ -196,7 +196,6 @@ public class CallQueueUISteps extends AutomationSteps
    }
 
    @Then("$profileName verifies that the call queue item $callQueueItem was removed from the $callQueueList list")
-
    public void verifyCallQueueItemList( final String profileName, final String namedCallQueueItem,
          final String callQueueList )
    {
@@ -265,7 +264,7 @@ public class CallQueueUISteps extends AutomationSteps
             .scriptOn( profileScriptResolver().map( VerifyCallQueueSectionLength.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
             .input( VerifyCallQueueSectionLength.IPARAM_QUEUE_EXPECTED_LENGTH, numberOfCalls )
-            .input( VerifyCallQueueSectionLength.IPARAM_LIST_NAME, callQueueList ) );
+            .input( VerifyCallQueueSectionLength.IPARAM_LIST_NAME, CALL_QUEUE_LIST_MAP.get( callQueueList ) ) );
    }
 
 
