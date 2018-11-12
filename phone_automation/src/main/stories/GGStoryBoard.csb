@@ -16,7 +16,7 @@
                 <cats:status>CREATED</cats:status>
             </cats:report>
             <cats:storyLists>
-                <cats:storyList enabled="true">
+                <cats:storyList enabled="false">
                     <cats:name>Deploy Services</cats:name>
                     <cats:onErrorOption>FINISH_CURRENT_STORY</cats:onErrorOption>
                     <cats:repetitions>1</cats:repetitions>
@@ -25,7 +25,7 @@
                     </cats:report>
                     <cats:reports/>
                     <cats:stories>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>deploy/DeployServices.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
