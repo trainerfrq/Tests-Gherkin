@@ -193,21 +193,21 @@ public class CallUISteps extends AutomationSteps {
     }
 
     @When("$profileName puts on hold the active call using DA key $target")
-    public void putOnHoldActiveCall( final String profileName, final String target )
+    public void putOnHoldActiveCallOnDAKey( final String profileName, final String target )
     {
         DAKey daKey = retrieveDaKey(profileName, target);
-        evaluate( remoteStep( "Put on hold active call queue item" )
+        evaluate( remoteStep( "Put on hold active call" )
               .scriptOn( profileScriptResolver().map( DragAndClickOnMenuButtonDAKey.class,
                     BookableProfileName.javafx ), assertProfile( profileName ) )
               .input( DragAndClickOnMenuButtonDAKey.IPARAM_MENU_BUTTON_ID, HOLD_MENU_BUTTON_ID )
               .input( DragAndClickOnMenuButtonDAKey.IPARAM_DA_KEY_ID, daKey.getId() ) );
     }
 
-    @When("$profileName initiates a transfer on the active call using DA key $target ")
-    public void transferActiveCall( final String profileName, final String target  )
+    @When("$profileName initiates a transfer using the DA key $target")
+    public void transferActiveCallUsingDAKey( final String profileName, final String target  )
     {
         DAKey daKey = retrieveDaKey(profileName, target);
-        evaluate( remoteStep( "Transfer active call queue item" )
+        evaluate( remoteStep( "Transfer active call" )
               .scriptOn( profileScriptResolver().map( DragAndClickOnMenuButtonDAKey.class,
                     BookableProfileName.javafx ), assertProfile( profileName ) )
               .input( DragAndClickOnMenuButtonDAKey.IPARAM_MENU_BUTTON_ID, TRANSFER_MENU_BUTTON_ID )
