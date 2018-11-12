@@ -13,6 +13,7 @@ Then waiting for 5 seconds
 Scenario: Download docker image from artifactory and change it for cluster mode
 Then downloading docker image from <<opVoiceDockerImageArtifactoryUri>> to path /configuration-files/<<systemName>>/op-voice-service-docker-image.json
 When SSH host catsMaster executes sed -i '15s/.*/  "type": "cluster", \n"instances": "2"/' /var/lib/docker/volumes/automation/_data/automation/resources/configuration-files/<<systemName>>/op-voice-service-docker-image.json
+When SSH host catsMaster executes sed -i '52s/.*/  "virtualIp": true, \n"virtualIpEnvvar": "XVP_SIP_SIGNALLING_INTERFACE_LOCAL_IP"/' /var/lib/docker/volumes/automation/_data/automation/resources/configuration-files/<<systemName>>/op-voice-service-docker-image.json
 
 Scenario: Upload docker image
 When issuing http POST request to endpoint <<configurationMngEndpoint>> and path configurations/orchestration/groups/images/ with payload /configuration-files/<<systemName>>/op-voice-service-docker-image.json
