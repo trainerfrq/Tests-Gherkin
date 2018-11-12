@@ -3,9 +3,9 @@ package scripts.cats.websocket.parallel
 import com.frequentis.c4i.test.agent.websocket.client.impl.ClientEndpoint
 import com.frequentis.c4i.test.agent.websocket.client.impl.models.ClientEndpointConfiguration
 import com.frequentis.c4i.test.agent.websocket.common.impl.buffer.MessageBuffer
+import com.frequentis.c4i.test.agent.websocket.common.impl.message.TextMessage
 import com.frequentis.c4i.test.model.ExecutionDetails
 import com.frequentis.xvp.tools.cats.websocket.plugin.WebsocketScriptTemplate
-
 /**
  * Created by MAyar on 18.01.2017.
  */
@@ -14,6 +14,8 @@ class OpenWebSocketClientConnection extends WebsocketScriptTemplate {
 
     public static final String IPARAM_ENDPOINTCONFIGURATION = "endpoint-configuration";
     public static final String IPARAM_MULTIPLEENDPOINTNAMES = "multiple-endpointnames";
+
+    public static final String OPARAM_RECEIVEDMESSAGE = "received_message";
 
     @Override
     protected void script() {
@@ -74,11 +76,16 @@ class OpenWebSocketClientConnection extends WebsocketScriptTemplate {
                         .group(endpointName));
 
                 final MessageBuffer buffer = webSocketEndpoint.getMessageBuffer();
+                TextMessage message = buffer.pollTextMessage();
 
                 record(ExecutionDetails.create("Applying JSON message filter")
                         .expected("Filter can be applied to message buffer")
                         .success(buffer != null)
                         .group(endpointName));
+
+                evaluate(ExecutionDetails.create("Printing all received message").success())
+
+                setOutput(OPARAM_RECEIVEDMESSAGE, message.getContent())
             }
         }
     }
