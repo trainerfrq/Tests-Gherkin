@@ -1006,7 +1006,18 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                    </cats:stories>
+                        <cats:story enabled="true">
+                             <cats:storyPath>voice_GG/ui/PhoneBasicCall/DAKeyStateAndType.story</cats:storyPath>
+                             <cats:storyParameters/>
+                             <cats:storyStatistics/>
+                             <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                              <cats:storyPath>voice_GG/ui/PhoneBasicCall/DAKeyConfiguration.story</cats:storyPath>
+                              <cats:storyParameters/>
+                              <cats:storyStatistics/>
+                              <cats:storyDataList/>
+                         </cats:story>
                     <cats:timeout>1800</cats:timeout>
                 </cats:storyList>
             </cats:storyLists>

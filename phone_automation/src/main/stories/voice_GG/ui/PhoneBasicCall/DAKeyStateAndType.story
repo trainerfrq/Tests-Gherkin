@@ -14,7 +14,6 @@ Scenario: Caller establishes an outgoing call
 		  @REQUIREMENTS:GID-3229742
 		  @REQUIREMENTS:GID-3229743
 		  @REQUIREMENTS:GID-3229740
-		  @REQUIREMENTS:GID-4123501
 When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 Then HMI OP1 verifies that the DA key OP2(as OP1) has the displayed call type DA
