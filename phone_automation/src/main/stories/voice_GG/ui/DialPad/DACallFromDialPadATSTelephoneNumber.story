@@ -36,6 +36,11 @@ Scenario: Call is initiated
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
 !-- Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2 Physical
 Then HMI OP2 has the call queue item OP1-OP2 in state ringing
+Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with label mission1
+
+Scenario: Callee accepts call
+Then HMI OP2 accepts the call queue item OP1-OP2
+Then HMI OP2 has the call queue item OP1-OP2 in the active list with label mission1
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP2-OP1
