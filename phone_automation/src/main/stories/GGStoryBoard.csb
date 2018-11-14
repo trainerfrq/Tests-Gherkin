@@ -1018,6 +1018,7 @@
                               <cats:storyStatistics/>
                               <cats:storyDataList/>
                          </cats:story>
+                    </cats:stories>
                     <cats:timeout>1800</cats:timeout>
                 </cats:storyList>
             </cats:storyLists>
