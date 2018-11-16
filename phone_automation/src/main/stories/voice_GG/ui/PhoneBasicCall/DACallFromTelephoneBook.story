@@ -39,7 +39,10 @@ When HMI OP1 initiates a call from the phonebook
 
 Scenario: Call is initiated
 		  @REQUIREMENTS:GID-2932446
+		  @REQUIREMENTS:GID-2536683
+		  @REQUIREMENTS:GID-2535740
 Then HMI OP1 has the call queue item OP3-OP1 in the active list with label Lloyd
+Then HMI OP3 has the call queue item OP1-OP3 in the waiting list with label mission1
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP3-OP1

@@ -58,12 +58,7 @@ Then HMI OP1 has the call queue item OP3-OP1 in the priority list with label op3
 Then HMI OP2 has the call queue item OP1-OP2 in the active list with label OP1
 Then HMI OP1 verifies that the call queue item OP2-OP1 from the priority list has call type DA/IDA
 
-Scenario: Operator verifies the order of call queue items in the priority section
-		  @REQUIREMENTS:GID-3371932
-Then HMI OP1 verifies that the call queue item OP2-OP1 has index 0 in the priority list
-Then HMI OP1 verifies that the call queue item OP3-OP1 has index 1 in the priority list
-
-Scenario: Operator answers first incoming call
+Scenario: Operator answers first incoming priority call
 When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP1 verifies that the call queue item OP2-OP1 was removed from the priority list
 Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2 Physical
@@ -98,10 +93,6 @@ Then HMI OP1 has the call queue item SipContact-OP1 in the waiting list with lab
 Then HMI OP1 has the call queue item OP3-OP1 in the waiting list with label op3
 Then HMI OP1 verifies that the call queue item OP2-OP1 from the hold list has call type DA/IDA
 
-Scenario: Operator verifies the order of call queue items in the waiting section
-Then HMI OP1 verifies that the call queue item SipContact-OP1 has index 0 in the waiting list
-Then HMI OP1 verifies that the call queue item OP3-OP1 has index 1 in the waiting list
-
 Scenario: Operator answers Sip call
 Then HMI OP1 accepts the call queue item SipContact-OP1
 Then HMI OP1 has the call queue item SipContact-OP1 in the active list with label Madoline
@@ -125,11 +116,6 @@ Then HMI OP1 verifies that the call queue item OP3-OP1 was removed from the acti
 Then HMI OP1 has the call queue item OP3-OP1 in the hold list with label op3
 Then HMI OP1 has the call queue item SipContact-OP1 in the hold list with label Madoline
 Then HMI OP1 has the call queue item OP2-OP1 in the hold list with label OP2 Physical
-
-Scenario: Operator verifies the order of call queue items in the hold section
-Then HMI OP1 verifies that the call queue item OP3-OP1 has index 0 in the hold list
-Then HMI OP1 verifies that the call queue item SipContact-OP1 has index 1 in the hold list
-Then HMI OP1 verifies that the call queue item OP2-OP1 has index 2 in the hold list
 
 Scenario: Operator retrieves and terminates all calls
 Then HMI OP1 retrieves from hold the call queue item OP2-OP1

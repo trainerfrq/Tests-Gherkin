@@ -138,6 +138,7 @@ Scenario: Caller redials from CallHistory
 		  @REQUIREMENTS:GID-2535764
 		  @REQUIREMENTS:GID-2535779
 		  @REQUIREMENTS:GID-2535786
+		  @REQUIREMENTS:GID-4084452
 When HMI OP1 redials last number
 Then HMI OP1 has the call queue item OP2-OP1-IA in state connected
 Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected

@@ -38,8 +38,12 @@ When HMI OP1 initiates a call from the phonebook
 
 Scenario: Call is initiated
 		  @REQUIREMENTS:GID-2535717
+		  @REQUIREMENTS:GID-2536683
+		  @REQUIREMENTS:GID-2505643
+		  @REQUIREMENTS:GID-2535740
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
 Then HMI OP1 has the call queue item OP2-OP1 in the active list with label sip:222222@example.com
+Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with label mission1
 Then HMI OP2 has the call queue item OP1-OP2 in state ringing
 
 Scenario: Caller clears outgoing call

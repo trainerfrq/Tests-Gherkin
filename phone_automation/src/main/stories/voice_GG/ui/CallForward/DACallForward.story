@@ -25,6 +25,7 @@ Then HMI OP1 verifies that call queue info container is not visible
 
 Scenario: Op1 chooses Op2 as call forward target
 		  @REQUIREMENTS:GID-2521111
+		  @REQUIREMENTS:GID-2541807
 When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP1 is in forward_active state
 Then HMI OP1 verifies that call queue info container is visible
