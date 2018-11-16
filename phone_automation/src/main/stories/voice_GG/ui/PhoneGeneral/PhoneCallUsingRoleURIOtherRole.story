@@ -24,7 +24,6 @@ When HMI OP2 presses DA key ROLE1(as OP2)
 Then HMI OP2 has the DA key ROLE1(as OP2) in state out_ringing
 
 Scenario: Operators part of called role receive the incoming call
-		  @REQUIREMENTS:GID-2539107
 Then HMI OP1 has the call queue item OP2-Role1 in state ringing
 Then HMI OP3 has the call queue item OP2-Role1 in state ringing
 
