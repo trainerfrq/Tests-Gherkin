@@ -4,7 +4,7 @@
     "opSipProxyListeningPort": 5060
   },
   "hostSpecificConfigurationMap": {
-    "CWP-VST02-15": {
+    "cwp-vst02-15": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
           "opPhysicalHost": "192.168.100.153",
@@ -16,7 +16,7 @@
         "opMaxConcurrentCallsCount": 20
       }
     },
-    "CWP-VST02-16": {
+    "cwp-vst02-16": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
           "opPhysicalHost": "192.168.100.154",
@@ -28,7 +28,7 @@
         "opMaxConcurrentCallsCount": 20
       }
     },
-    "CWP-VST02-14": {
+    "cwp-vst02-14": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
           "opPhysicalHost": "192.168.100.152",

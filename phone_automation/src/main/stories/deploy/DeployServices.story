@@ -45,12 +45,12 @@ When SSH host deploymentServer executes /usr/bin/xvp services remove mission-ser
 Then waiting for 5 seconds
 
 Scenario: Stop audio-app on all hosts
-When SSH host hmiHost1 executes docker rm -f audio-app
-Then waiting for 5 seconds
-When SSH host hmiHost2 executes docker rm -f audio-app
-Then waiting for 5 seconds
-When SSH host hmiHost3 executes docker rm -f audio-app
-Then waiting for 5 seconds
+!-- When SSH host hmiHost1 executes docker rm -f audio-app
+!-- Then waiting for 5 seconds
+!-- When SSH host hmiHost2 executes docker rm -f audio-app
+!-- Then waiting for 5 seconds
+!-- When SSH host hmiHost3 executes docker rm -f audio-app
+!-- Then waiting for 5 seconds
 
 Scenario: Stop all running voice-hmi services
 When SSH host hmiHost1 executes docker rm -f $(docker ps -q -a -f name=${PARTITION_KEY_1})
@@ -65,27 +65,27 @@ Then SSH host deploymentServer executes /usr/bin/xvp services deploy --all -g
 And waiting for 30 seconds
 
 Scenario: Start audio-app on host 1
-When the launch audio app script is copied to hmiHost1 and updated with ${AUDIO_NETWORK_HOST1_IP}
-And SSH host hmiHost1 executes chmod +x launchAudioApp.sh
-And SSH host hmiHost1 executes ./launchAudioApp.sh
+!-- When the launch audio app script is copied to hmiHost1 and updated with ${AUDIO_NETWORK_HOST1_IP}
+!-- And SSH host hmiHost1 executes chmod +x launchAudioApp.sh
+!-- And SSH host hmiHost1 executes ./launchAudioApp.sh
 
 Scenario: Start audio-app on host 2
-When the launch audio app script is copied to hmiHost2 and updated with ${AUDIO_NETWORK_HOST2_IP}
-And SSH host hmiHost2 executes chmod +x launchAudioApp.sh
-And SSH host hmiHost2 executes ./launchAudioApp.sh
+!-- When the launch audio app script is copied to hmiHost2 and updated with ${AUDIO_NETWORK_HOST2_IP}
+!-- And SSH host hmiHost2 executes chmod +x launchAudioApp.sh
+!-- And SSH host hmiHost2 executes ./launchAudioApp.sh
 
 Scenario: Start audio-app on host 3
-When the launch audio app script is copied to hmiHost3 and updated with ${AUDIO_NETWORK_HOST3_IP}
-And SSH host hmiHost3 executes chmod +x launchAudioApp.sh
-And SSH host hmiHost3 executes ./launchAudioApp.sh
-And waiting for 10 seconds
+!-- When the launch audio app script is copied to hmiHost3 and updated with ${AUDIO_NETWORK_HOST3_IP}
+!-- And SSH host hmiHost3 executes chmod +x launchAudioApp.sh
+!-- And SSH host hmiHost3 executes ./launchAudioApp.sh
+!-- And waiting for 10 seconds
 
 Scenario: Verify audio-app is running on hmiHost1
-When SSH host hmiHost1 executes docker inspect -f '{{.State.Status}}' audio-app and the output contains running
+!-- When SSH host hmiHost1 executes docker inspect -f '{{.State.Status}}' audio-app and the output contains running
 
 Scenario: Verify audio-app is running on hmiHost2
-When SSH host hmiHost2 executes docker inspect -f '{{.State.Status}}' audio-app and the output contains running
+!-- When SSH host hmiHost2 executes docker inspect -f '{{.State.Status}}' audio-app and the output contains running
 
 Scenario: Verify audio-app is running on hmiHost3
-When SSH host hmiHost3 executes docker inspect -f '{{.State.Status}}' audio-app and the output contains running
+!-- When SSH host hmiHost3 executes docker inspect -f '{{.State.Status}}' audio-app and the output contains running
 

@@ -1,40 +1,64 @@
 [
   {
-    "opId": "CWP-VST02-14",
+    "opId": "cwp-vst02-14",
     "devices": {
       "gg_input": {
         "type": "ext",
         "id": "handset_0_0"
       },
       "gg_output": {
+        "type": "vp",
+        "id": "gg_Out"
+      },
+      "gg_headset": {
         "type": "ext",
         "id": "handset_0_0"
+      },
+      "gg_lsp": {
+        "type": "ext",
+        "id": "lsp_0_0"
       }
     }
   },
   {
-    "opId": "CWP-VST02-15",
+    "opId": "cwp-vst02-15",
     "devices": {
       "gg_input": {
         "type": "ext",
         "id": "handset_0_0"
       },
       "gg_output": {
+        "type": "vp",
+        "id": "gg_Out"
+      },
+      "gg_headset": {
         "type": "ext",
         "id": "handset_0_0"
+      },
+      "gg_lsp": {
+        "type": "ext",
+        "id": "lsp_0_0"
       }
     }
   },
   {
-    "opId": "CWP-VST02-16",
+    "opId": "cwp-vst02-16",
     "devices": {
       "gg_input": {
         "type": "ext",
         "id": "handset_0_0"
       },
       "gg_output": {
+        "type": "vp",
+        "id": "gg_Out"
+      },
+      "gg_headset": {
         "type": "ext",
         "id": "handset_0_0"
+      },
+      "gg_lsp": {
+        "type": "ext",
+        "id": "lsp_0_0"
       }
     }
   }
