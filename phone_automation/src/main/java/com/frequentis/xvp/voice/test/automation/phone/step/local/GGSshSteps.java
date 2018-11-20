@@ -16,16 +16,14 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step.local;
 
+import com.frequentis.c4i.test.ssh.automation.steps.SshSteps;
+import com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil;
+import org.jbehave.core.annotations.When;
 import static com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil.processConfigurationTemplate;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.jbehave.core.annotations.When;
-
-import com.frequentis.c4i.test.ssh.automation.steps.SshSteps;
-import com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil;
 
 public class GGSshSteps extends SshSteps
 {
@@ -61,12 +59,13 @@ public class GGSshSteps extends SshSteps
    }
 
 
-   @When("the launch audio app script is copied to $connectionName and updated with $audioNetworkIp")
-   public void copyLaunchAudioAppScript( final String connectionName, final String audioNetworkIp ) throws IOException
+   @When("the launch audio app script is copied to $connectionName and updated with $audioMacvlandataIp and $audioMacvlanaudioIp")
+   public void copyLaunchAudioAppScript( final String connectionName, final String audioMacvlandataIp, final String audioMacvlanaudioIp ) throws IOException
    {
 
       final Map<String, String> map = new HashMap<>();
-      map.put( "audio_app_network_ip", audioNetworkIp );
+      map.put( "audio_app_macvlandata_ip", audioMacvlandataIp );
+      map.put( "audio_app_macvlanaudio_ip", audioMacvlanaudioIp );
 
       final String scriptContent =
             processConfigurationTemplate( StepsUtil.getConfigFile( LAUNCH_AUDIO_APP_SCRIPT_DIRECTORY ), map );
