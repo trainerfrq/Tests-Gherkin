@@ -16,35 +16,6 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step.local;
 
-import static com.frequentis.c4i.test.config.AutomationProjectConfig.fromCatsHome;
-import static java.lang.String.format;
-import static java.lang.String.valueOf;
-import static java.net.URLEncoder.encode;
-import static java.time.Instant.now;
-
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.UncheckedIOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
-import org.apache.commons.io.FileUtils;
-import org.glassfish.jersey.client.JerseyClientBuilder;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -63,6 +34,40 @@ import com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil;
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import org.apache.commons.io.FileUtils;
+import org.glassfish.jersey.client.JerseyClientBuilder;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
+import static com.frequentis.c4i.test.config.AutomationProjectConfig.fromCatsHome;
+import static java.lang.String.format;
+import static java.lang.String.valueOf;
+import static java.net.URLEncoder.encode;
+import static java.time.Instant.now;
+
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 public class ConfigurationSteps extends AutomationSteps
 {
@@ -423,15 +428,67 @@ public class ConfigurationSteps extends AutomationSteps
       return SUCCESS_AND_CONFLICT_RESPONSES.contains( response.getStatus() );
    }
 
-
    private WebTarget getConfigurationItemsWebTarget( final String uri )
    {
-      return new JerseyClientBuilder().build().target( uri );
+       final JerseyClientBuilder clientBuilder = ignoreCerts();
+       return clientBuilder.build().target( uri );
    }
+
+    private JerseyClientBuilder ignoreCerts() {
+        final TrustManager[] certs = new TrustManager[] { new X509TrustManager()
+        {
+            @Override
+            public X509Certificate[] getAcceptedIssuers()
+            {
+                return null;
+            }
+
+
+            @Override
+            public void checkServerTrusted( final X509Certificate[] chain, final String authType )
+                    throws CertificateException
+            {
+            }
+
+
+            @Override
+            public void checkClientTrusted( final X509Certificate[] chain, final String authType )
+                    throws CertificateException
+            {
+            }
+        } };
+
+        SSLContext ctx = null;
+        try
+        {
+            ctx = SSLContext.getInstance( "TLS" );
+            ctx.init( null, certs, new SecureRandom() );
+        }
+        catch ( final java.security.GeneralSecurityException e )
+        {
+            System.out.println( "" + e );
+        }
+
+        HttpsURLConnection.setDefaultSSLSocketFactory( ctx.getSocketFactory() );
+
+        final JerseyClientBuilder clientBuilder = new JerseyClientBuilder();
+        try
+        {
+            clientBuilder.sslContext( ctx );
+            clientBuilder.hostnameVerifier( ( hostname, session ) -> true );
+        }
+        catch ( final Exception e )
+        {
+            System.out.println( "" + e );
+        }
+        return clientBuilder;
+    }
 
 
    public static String getCatsResourcesFolderPath()
    {
       return fromCatsHome().getMasterResourcesHome();
    }
+
+
 }

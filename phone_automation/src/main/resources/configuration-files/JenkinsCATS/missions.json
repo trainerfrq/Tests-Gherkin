@@ -1,6 +1,6 @@
 [
   {
-    "missionId": "22e6596e-93d3-4859-ae1e-2009f457f9ae",
+    "missionId": "33bf561e-580f-407d-81ad-63001568c44d",
     "missionName": "MAN-NIGHT-TACT",
     "missionAssignedRoles": [
       "LOWER-EAST-EXEC"
@@ -85,7 +85,7 @@
     "layoutId": "lower-east-exec-layout"
   },
   {
-    "missionId": "4a549394-87fc-4133-8aa9-717fb82f6a66",
+    "missionId": "16e17a93-e942-4990-b24c-6833f649bf13",
     "missionName": "WEST-EXEC",
     "missionAssignedRoles": [
       "LOWER-WEST-EXEC"
@@ -123,7 +123,7 @@
     "layoutId": "lower-west-exec-layout"
   },
   {
-    "missionId": "634070c1-a620-4f0e-b7d4-c0812a4bba10",
+    "missionId": "df77e379-4bd3-4d84-ab4c-1b842eb34ca3",
     "missionName": "EAST-EXEC",
     "missionAssignedRoles": [
       "LOWER-EAST-EXEC"

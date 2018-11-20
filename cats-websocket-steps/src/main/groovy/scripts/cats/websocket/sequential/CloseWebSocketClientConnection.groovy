@@ -7,6 +7,8 @@
 
 package scripts.cats.websocket.sequential
 
+import com.frequentis.c4i.test.agent.websocket.client.impl.ClientEndpoint
+import com.frequentis.c4i.test.agent.websocket.client.impl.ClientEndpointManager
 import com.frequentis.c4i.test.model.ExecutionDetails
 import com.frequentis.xvp.tools.cats.websocket.plugin.WebsocketScriptTemplate
 
@@ -18,11 +20,22 @@ class CloseWebSocketClientConnection extends WebsocketScriptTemplate {
 
     @Override
     protected void script() {
-        final String endpointName = assertInput(IPARAM_ENDPOINTNAME)
+        final String endpointName = assertInput(IPARAM_ENDPOINTNAME) as String
+        evaluate(ExecutionDetails.create("Getting input parameters")
+                .expected("EndpointName input parameter exists or is null.")
+                .received("Target endpoint name: '"+ endpointName + "'")
+                .success(endpointName == null || (endpointName != null && !endpointName.isEmpty())));
 
-        def disposed = getWebSocketEndpointManager().dispose(endpointName)
+        ClientEndpointManager manager = ClientEndpointManager.getInstance();
+        ClientEndpoint endpoint = manager.getWebSocketEndpoint(endpointName);
+
+        evaluate(ExecutionDetails.create("Getting client endpoint with name: [" + endpointName + "]")
+                .received(endpoint.toString())
+                .success(endpoint != null));
+
+        //def disposed = getWebSocketEndpointManager().dispose(endpointName)
         evaluate(ExecutionDetails.create("Verify websocket endpoint disposed")
                 .usedData(IPARAM_ENDPOINTNAME, endpointName)
-                .success(disposed))
+                .success(endpoint.dispose()))
     }
 }
