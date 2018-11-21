@@ -53,7 +53,7 @@ class OpenWebSocketClientConnection extends WebsocketScriptTemplate {
         for (String endpointName : endpointNames) {
             ClientEndpoint webSocketEndpoint = createWebSocketEndpoint(endpointName, config);
 
-            evaluate(ExecutionDetails.create("\"Creating a new WebSocketEndpoint instance" + count++)
+            evaluate(ExecutionDetails.create("Creating a new WebSocketEndpoint instance" + count++)
                     .expected("Instance is not null")
                     .success(webSocketEndpoint != null))
 
