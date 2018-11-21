@@ -40,12 +40,14 @@ import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
 import com.frequentis.xvp.voice.opvoice.config.common.AppId;
 import com.frequentis.xvp.voice.opvoice.config.common.OpId;
 import com.frequentis.xvp.voice.opvoice.config.layout.JsonDaDataElement;
+import com.frequentis.xvp.voice.opvoice.config.layout.JsonWidgetElement;
 import com.frequentis.xvp.voice.opvoice.json.messages.JsonMessage;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.AssociateResponse;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.AssociateResponseResult;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.DisassociateResponse;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.DisassociateResponseResult;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.layout.QueryRolePhoneDataRequest;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.layout.QueryRoleWidgetLayoutRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.missions.ChangeMissionRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.missions.ChangeMissionResponseResult;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.missions.Mission;
@@ -769,6 +771,66 @@ public class GGBasicSteps extends WebsocketAutomationSteps
                   .details( ExecutionDetails.create( "Unknown call party type: " + callPartyType ).failure() ) );
             break;
       }
+   }
+
+   @When("$namedWebSocket requests the layout for role $roleIdName and saves the request $requestIdName")
+   public void sendPhoneBookRequestForAllEntriesWithEmptySearchPattern( final String namedWebSocket, final String roleIdName,
+         final String namedRequestId  )
+   {
+      sendAndReceiveRoleLayoutRequest( namedWebSocket, roleIdName, namedRequestId );
+   }
+
+   @Then("verify that $requestId1 and $requestId2 are equal")
+   public void assertEqualRequests( final String namedRequestId1, final String namedRequestId2 ){
+      evaluate(localStep( "Verify requests are equal" ).details(
+            match( namedRequestId1, equalTo( namedRequestId2 ) ) ) );
+   }
+
+   //not equal
+   @Then("verify that $requestId1 and $requestId2 are different")
+   public void assertDifferentRequests( final String namedRequestId1, final String namedRequestId2 ){
+      evaluate(localStep( "Verify requests are different" ).details(
+            match( namedRequestId1, equalTo( namedRequestId2 ) ) ) );
+   }
+
+
+   private void sendAndReceiveRoleLayoutRequest( final String namedWebSocket, final String roleIdName, final String namedRequestId )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      final String roleId = getStoryData( roleIdName, String.class );
+
+      QueryRoleWidgetLayoutRequest queryRoleWidgetLayoutRequest = new QueryRoleWidgetLayoutRequest( roleId );
+      final JsonMessage request =
+            JsonMessage.builder().withQueryRoleWidgetLayoutRequest( queryRoleWidgetLayoutRequest )
+                  .withCorrelationId( UUID.randomUUID() ).build();
+
+      final RemoteStepResult remoteStepResult =
+            evaluate(
+                  remoteStep( "Querying role phone data for role " + roleId )
+                        .scriptOn( profileScriptResolver().map( SendAndReceiveTextMessage.class,
+                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                        .input( SendAndReceiveTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                        .input( SendAndReceiveTextMessage.IPARAM_RESPONSETYPE, "queryRoleWidgetLayoutResponse" )
+                        .input( SendAndReceiveTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
+
+      final String jsonResponse =
+            ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
+      final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
+
+      evaluate( localStep( "Received query role layout response" )
+            .details( match( "Is query role layout response", jsonMessage.body().isQueryRolePhoneDataResponse(),
+                  equalTo( true ) ) )
+            .details( match( "Response is successful", jsonMessage.body().queryRolePhoneDataResponse().getError(),
+                  nullValue() ) )
+            .details( match( "Phone data is not empty",
+                  jsonMessage.body().queryRolePhoneDataResponse().getPhoneData().getDa(), not( empty() ) ) ) );
+
+      final List<JsonWidgetElement>  jsonWidgetElementList =
+            jsonMessage.body().queryRoleWidgetLayoutResponse().getWidgetLayout().getWidgets();
+
+      setStoryListData( namedRequestId, jsonWidgetElementList.toString() );
    }
 
 

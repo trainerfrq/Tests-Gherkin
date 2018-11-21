@@ -16,16 +16,18 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import scripts.cats.hmi.actions.ClickActivateMission;
+import scripts.cats.hmi.actions.ClickMissionCloseButton;
+import scripts.cats.hmi.actions.SelectMissionFromList;
+import scripts.cats.hmi.asserts.VerifyCurrentRole;
+import scripts.cats.hmi.asserts.VerifyMissionList;
+import scripts.cats.hmi.asserts.VerifyRoleList;
+import scripts.cats.hmi.asserts.VerifyStatusDisplay;
+
 import org.jbehave.core.annotations.Then;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
-
-import scripts.cats.hmi.actions.ClickActivateMission;
-import scripts.cats.hmi.actions.ClickMissionCloseButton;
-import scripts.cats.hmi.actions.SelectMissionFromList;
-import scripts.cats.hmi.asserts.VerifyMissionList;
-import scripts.cats.hmi.asserts.VerifyStatusDisplay;
 
 public class MissionListUISteps extends AutomationSteps
 {
@@ -38,6 +40,26 @@ public class MissionListUISteps extends AutomationSteps
                   .scriptOn( profileScriptResolver().map( VerifyStatusDisplay.class, BookableProfileName.javafx ),
                         assertProfile( profileName ) )
                   .input( VerifyStatusDisplay.IPARAM_STATUS_DISPLAY_TEXT, mission ) );
+   }
+
+   @Then("$profileName has the assigned primary role $role for current mission")
+   public void verifyAssignedPrimaryRole( final String profileName, final String role )
+   {
+      evaluate(
+            remoteStep( "Verify that the user has the correct assigned role" )
+                  .scriptOn( profileScriptResolver().map( VerifyCurrentRole.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                  .input( VerifyCurrentRole.IPARAM_STATUS_DISPLAY_TEXT, role ) );
+   }
+
+
+   @Then("$profileName has a list of $numberOfRoles roles available for current mission")
+   public void verifyListofAvailableRoles( final String profileName, final String numberOfRoles )
+   {
+      evaluate( remoteStep( "Verify that the user has the correct list of alias roles" )
+            .scriptOn( profileScriptResolver().map( VerifyRoleList.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyRoleList.IPARAM_ROLE_LIST_SIZE, numberOfRoles ) );
    }
 
 
