@@ -39,7 +39,7 @@ Then HMI OP3 has the DA key OP1(as OP3) in state out_ringing
 Scenario: Call is automatically forwarded to Op2
 		  @REQUIREMENTS:GID-2521112
 Then HMI OP1 has in the call queue a number of 0 calls
-Then HMI OP2 has the DA key OP3 in state ringing
+Then HMI OP2 has the DA key OP3 in state inc_initiated
 
 Scenario: Op2 client answers the incoming call
 When HMI OP2 presses DA key OP3

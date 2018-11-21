@@ -35,7 +35,7 @@ When HMI OP1 presses DA key OP3(as OP1)
 Then HMI OP1 has the DA key OP3(as OP1) in state out_ringing
 
 Scenario: Op3 receives the incoming call
-Then HMI OP3 has the DA key OP1(as OP3) in state ringing
+Then HMI OP3 has the DA key OP1(as OP3) in state inc_initiated
 
 Scenario: Op3 client answers the incoming call
 When HMI OP3 presses DA key OP1(as OP3)
@@ -59,7 +59,7 @@ When HMI OP1 initiates a priority call on DA key OP3(as OP1)
 Then HMI OP1 has the DA key OP3(as OP1) in state out_ringing
 
 Scenario: Op3 receives the incoming priority call
-Then HMI OP3 has the DA key OP1(as OP3) in state ringing
+Then HMI OP3 has the DA key OP1(as OP3) in state inc_initiated
 Then HMI OP3 has in the call queue the item OP1-OP3 with priority
 
 Scenario: Op3 client answers the incoming call

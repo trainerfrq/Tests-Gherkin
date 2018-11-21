@@ -38,7 +38,7 @@ When SipContact tries to establish call to SIP URI <<OPVOICE1_PHONE_URI>>
 Then waiting for 2 seconds
 
 Scenario: Call is automatically forwarded to Op2
-Then HMI OP2 has the call queue item SipContact-OP1 in state ringing
+Then HMI OP2 has the call queue item SipContact-OP1 in state inc_initiated
 Then HMI OP2 has the call queue item SipContact-OP1 in the waiting list with label Madoline
 
 Scenario: Op2 client answers the incoming call

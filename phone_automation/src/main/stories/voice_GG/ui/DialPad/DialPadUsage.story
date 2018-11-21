@@ -91,7 +91,7 @@ When HMI OP1 initiates a call from the phonebook
 Scenario: Call is initiated
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
 Then HMI OP1 has the call queue item OP2-OP1 in the active list with label sip:222222@example.com
-Then HMI OP2 has the call queue item OP1-OP2 in state ringing
+Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP2-OP1

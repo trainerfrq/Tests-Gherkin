@@ -23,7 +23,7 @@ Then waiting for 3 seconds
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 
 Scenario: Callee client receives the incoming call
-Then HMI OP2 has the DA key OP1 in state ringing
+Then HMI OP2 has the DA key OP1 in state inc_initiated
 
 Scenario: Change mission for HMI OP2
 When HMI OP2 presses function key MISSIONS
@@ -34,7 +34,7 @@ Then waiting for 5 seconds
 Scenario: Verify call state for both operators
 		  @REQUIREMENTS: GID-3005111
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
-Then HMI OP2 has the call queue item OP1-OP2 in state ringing
+Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
 
 Scenario: Callee client answers the incoming call
 Then HMI OP2 accepts the call queue item OP1-OP2

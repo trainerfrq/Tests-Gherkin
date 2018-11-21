@@ -19,7 +19,7 @@ Then HMI OP1 verifies that the DA key OP2(as OP1) has the displayed call type DA
 
 Scenario: Callee client receives and answers the incoming call
 		  @REQUIREMENTS:GID-4086404
-Then HMI OP2 has the DA key OP1 in state ringing
+Then HMI OP2 has the DA key OP1 in state inc_initiated
 Then HMI OP2 verifies that the DA key OP1 has the displayed call type DA
 When HMI OP2 presses DA key OP1
 
@@ -71,7 +71,7 @@ Then HMI OP1 verifies that the DA key OP2(as OP1) has the displayed call type DA
 
 Scenario: Callee client receives and rejects the incoming call
 		  @REQUIREMENTS:GID-4086404
-Then HMI OP2 has the DA key OP1 in state ringing
+Then HMI OP2 has the DA key OP1 in state inc_initiated
 When HMI OP2 declines the call on DA key OP1
 Then HMI OP1 has the DA key OP2(as OP1) in state out_failed
 
