@@ -8,11 +8,13 @@ Scenario: Open Web Socket Client connections
 Given named the websocket configurations:
 | named       | websocket-uri       | text-buffer-size |
 | WS_Config-1 | <<OPVOICE1_WS.URI>> | 1000             |
+| WS_Config-2 | <<OPVOICE2_WS.URI>> | 1000             |
 
 Scenario: Open Web Socket Client connections
 Given applied the websocket configuration:
-| key | profile-name | websocket-config-name |
-| WS1 | WEBSOCKET 1  | WS_Config-1           |
+| profile-name | websocket-config-name |
+| WEBSOCKET 1  | WS_Config-1           |
+| WEBSOCKET 1  | WS_Config-2           |
 
 Scenario: Create the message buffers for missions
 When WS1 opens the message buffer for message type missionsAvailableIndication named MissionsAvailableIndicationBuffer1

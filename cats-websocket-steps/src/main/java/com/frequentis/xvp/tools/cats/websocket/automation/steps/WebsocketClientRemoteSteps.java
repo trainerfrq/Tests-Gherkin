@@ -5,14 +5,6 @@
  */
 package com.frequentis.xvp.tools.cats.websocket.automation.steps;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
-
 import com.frequentis.c4i.test.agent.websocket.client.impl.models.ClientEndpointConfiguration;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStep;
@@ -23,7 +15,11 @@ import com.frequentis.c4i.test.model.parameter.CatsCustomParameterBase;
 import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
-
+import com.frequentis.xvp.voice.opvoice.json.messages.JsonMessage;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.RedundancyState;
+import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
 import scripts.cats.websocket.parallel.OpenWebSocketClientConnection;
 import scripts.cats.websocket.parallel.SendTextMessageAsIsParallel;
 import scripts.cats.websocket.sequential.CloseWebSocketClientConnection;
@@ -33,6 +29,13 @@ import scripts.cats.websocket.sequential.StartClientConnectionRecording;
 import scripts.cats.websocket.sequential.buffer.ClearMessageBuffer;
 import scripts.cats.websocket.sequential.buffer.OpenMessageBuffer;
 import scripts.cats.websocket.sequential.buffer.RemoveCustomMessageBuffer;
+
+import static com.frequentis.c4i.test.model.MatcherDetails.match;
+import static org.hamcrest.Matchers.instanceOf;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by MAyar on 18.01.2017.
@@ -53,28 +56,51 @@ public class WebsocketClientRemoteSteps extends WebsocketAutomationSteps
       }
 
       int i = 1;
-      for ( final ProfileToWebSocketConfigurationReference reference : namedProfileToWebSocketConfigReferences )
-      {
-         // add the named reference between websocket config and profile to the user named parameters
-         setStoryListData( reference.getKey(), reference );
-         final ExecutionData data = new ExecutionData();
-         localStep( "Parsing Table" ).details( ExecutionDetails
-               .create( "Parse data table. Entry " + i++ + " of " + namedProfileToWebSocketConfigReferences.size() )
+          for (final ProfileToWebSocketConfigurationReference reference : namedProfileToWebSocketConfigReferences) {
+              final ExecutionData data = new ExecutionData();
+
+              reference.setKey("WS" + i);
+              localStep( "Parsing Table" ).details( ExecutionDetails
+               .create( "Parse data table. Entry " + i + " of " + namedProfileToWebSocketConfigReferences.size() )
                .expected( "ExamplesTable can be parsed" ).receivedData( reference.getKey(), reference )
                .success( true ) );
-         final ClientEndpointConfiguration config =
-               getStoryListData( reference.getWebSocketConfigurationName(), ClientEndpointConfiguration.class );
+              final ClientEndpointConfiguration config =
+                      getStoryListData(reference.getWebSocketConfigurationName(), ClientEndpointConfiguration.class);
 
-         final ArrayList<String> endpointName = new ArrayList<String>();
-         endpointName.add( reference.getKey() );
+              final ArrayList<String> endpointName = new ArrayList<String>();
+              endpointName.add(reference.getKey());
 
-         evaluate(
-               remStep
-                     .scriptOn( profileScriptResolver().map( OpenWebSocketClientConnection.class,
-                           BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
-                     .input( OpenWebSocketClientConnection.IPARAM_ENDPOINTCONFIGURATION, ( Serializable ) config )
-                     .input( OpenWebSocketClientConnection.IPARAM_MULTIPLEENDPOINTNAMES, endpointName ) );
-      }
+              final RemoteStepResult remoteStepResult =
+                      evaluate(
+                              remStep
+                                      .scriptOn(profileScriptResolver().map(OpenWebSocketClientConnection.class,
+                                              BookableProfileName.websocket), requireProfile(reference.getProfileName()))
+                                      .input(OpenWebSocketClientConnection.IPARAM_ENDPOINTCONFIGURATION, (Serializable) config)
+                                      .input(OpenWebSocketClientConnection.IPARAM_MULTIPLEENDPOINTNAMES, endpointName));
+
+              final String jsonResponse =
+                      (String) remoteStepResult.getOutput(OpenWebSocketClientConnection.OPARAM_RECEIVEDMESSAGE);
+              final JsonMessage jsonMessage = JsonMessage.fromJson(jsonResponse);
+              evaluate(localStep("Received redundancy state")
+                     .details(match(jsonMessage.body().getPayload(), instanceOf(RedundancyState.class))));
+
+              String redundancyState = jsonMessage.body().redundancyState().state().toString();
+              setStoryListData(reference.getWebSocketConfigurationName(), redundancyState);
+
+              if (redundancyState.contains("ACTIVE")) {
+                  // add the named reference between websocket config and profile to the user named parameters
+                  setStoryListData(reference.getKey(), reference);
+                  i++;
+              }
+              else if (redundancyState.contains("PASSIVE")){
+                 evaluate(
+                         remoteStep( "Close passive websocket connection " + reference.getWebSocketConfigurationName() )
+                                 .scriptOn( profileScriptResolver().map( CloseWebSocketClientConnection.class,
+                                         BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                                 .input( CloseWebSocketClientConnection.IPARAM_ENDPOINTNAME, reference.getKey() ) );
+                 endpointName.remove(reference.getKey());
+              }
+          }
    }
 
 

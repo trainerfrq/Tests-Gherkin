@@ -65,17 +65,17 @@ Then SSH host deploymentServer executes /usr/bin/xvp services deploy --all -g
 And waiting for 30 seconds
 
 Scenario: Start audio-app on host 1
-When the launch audio app script is copied to hmiHost1 and updated with ${AUDIO_NETWORK_HOST1_IP}
+When the launch audio app script is copied to hmiHost1 and updated with ${AUDIO_MACVLANDATA_HOST1_IP} and ${AUDIO_MACVLANDAUDIO_HOST1_IP}
 And SSH host hmiHost1 executes chmod +x launchAudioApp.sh
 And SSH host hmiHost1 executes ./launchAudioApp.sh
 
 Scenario: Start audio-app on host 2
-When the launch audio app script is copied to hmiHost2 and updated with ${AUDIO_NETWORK_HOST2_IP}
+When the launch audio app script is copied to hmiHost2 and updated with ${AUDIO_MACVLANDATA_HOST2_IP} and ${AUDIO_MACVLANDAUDIO_HOST2_IP}
 And SSH host hmiHost2 executes chmod +x launchAudioApp.sh
 And SSH host hmiHost2 executes ./launchAudioApp.sh
 
 Scenario: Start audio-app on host 3
-When the launch audio app script is copied to hmiHost3 and updated with ${AUDIO_NETWORK_HOST3_IP}
+When the launch audio app script is copied to hmiHost3 and updated with ${AUDIO_MACVLANDATA_HOST3_IP} and ${AUDIO_MACVLANDAUDIO_HOST3_IP}
 And SSH host hmiHost3 executes chmod +x launchAudioApp.sh
 And SSH host hmiHost3 executes ./launchAudioApp.sh
 And waiting for 10 seconds

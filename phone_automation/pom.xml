@@ -24,6 +24,7 @@
 
       <voice.service.interface.version>0.37.0-SNAPSHOT</voice.service.interface.version>
       <mission-configurator-plugin.version>0.5.0-SNAPSHOT</mission-configurator-plugin.version>
+       <xvp-cats-rest-configuration.version>1.1.0-SNAPSHOT</xvp-cats-rest-configuration.version>
  </properties>
 
    <dependencies>
@@ -34,10 +35,16 @@
       </dependency>
 
       <dependency>
-         <groupId>com.frequentis.xvp.framework</groupId>
-         <artifactId>mission-configurator-plugin</artifactId>
-         <version>${mission-configurator-plugin.version}</version>
-      </dependency>
+          <groupId>com.frequentis.xvp.framework</groupId>
+          <artifactId>mission-configurator-plugin</artifactId>
+          <version>${mission-configurator-plugin.version}</version>
+       </dependency>
+
+       <dependency>
+           <groupId>com.frequentis.xvp.framework.testing</groupId>
+           <artifactId>xvp-cats-rest-configuration</artifactId>
+           <version>${xvp-cats-rest-configuration.version}</version>
+       </dependency>
 
        <dependency>
          <groupId>org.glassfish.jersey.core</groupId>
