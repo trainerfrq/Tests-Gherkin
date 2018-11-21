@@ -65,7 +65,7 @@
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>deploy/DeployOpVoice.story</cats:storyPath>
+                            <cats:storyPath>deploy/DeployOpVoiceCluster.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
