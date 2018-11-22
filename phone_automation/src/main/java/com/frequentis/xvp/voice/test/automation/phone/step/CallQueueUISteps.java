@@ -21,6 +21,7 @@ import scripts.cats.hmi.actions.ClickCallQueueItem;
 import scripts.cats.hmi.actions.ClickOnCallQueueInfoContainer;
 import scripts.cats.hmi.actions.DragAndClickOnMenuButtonFirstCallQueueItem;
 import scripts.cats.hmi.asserts.VerifyCallQueueBarState;
+import scripts.cats.hmi.asserts.VerifyCallQueueCollapsedAreaSize;
 import scripts.cats.hmi.asserts.VerifyCallQueueInfoContainerIfVisible;
 import scripts.cats.hmi.asserts.VerifyCallQueueInfoContainerLabel;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemCallType;
@@ -267,6 +268,14 @@ public class CallQueueUISteps extends AutomationSteps
             .input( VerifyCallQueueSectionLength.IPARAM_LIST_NAME, CALL_QUEUE_LIST_MAP.get( callQueueList ) ) );
    }
 
+   @Then("$profileName has in the collapsed area a number of $numberOfCalls calls")
+   public void verifyCallQueueCollapsedLength( final String profileName, final Integer numberOfCalls )
+   {
+      evaluate( remoteStep( "Verify call queue collapsed area length" )
+            .scriptOn( profileScriptResolver().map( VerifyCallQueueCollapsedAreaSize.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyCallQueueCollapsedAreaSize.IPARAM_QUEUE_MENU_EXPECTED_LENGTH, numberOfCalls ) );
+   }
 
    @When("$profileName puts on hold the active call")
    public void putOnHoldActiveCall( final String profileName )

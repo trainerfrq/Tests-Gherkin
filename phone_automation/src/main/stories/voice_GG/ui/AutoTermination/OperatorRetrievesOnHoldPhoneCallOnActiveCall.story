@@ -52,7 +52,7 @@ When SipContact calls SIP URI <<OPVOICE1_PHONE_URI>>
 Then waiting for 2 seconds
 
 Scenario: Verify calls state for op1 and op2
-Then HMI OP1 has the call queue item SipContact-OP1 in state ringing
+Then HMI OP1 has the call queue item SipContact-OP1 in state inc_initiated
 Then HMI OP1 has the call queue item OP2-OP1 in state hold
 Then HMI OP2 has the call queue item OP1-OP2 in state held
 
@@ -86,7 +86,7 @@ Scenario: Verify calls state for op1, op2 and op3
 Then HMI OP1 has the call queue item OP3-OP1 in state out_ringing
 Then HMI OP1 has in the call queue a number of 1 calls
 Then HMI OP2 has in the call queue a number of 0 calls
-Then HMI OP3 has the call queue item OP1-OP3 in state ringing
+Then HMI OP3 has the call queue item OP1-OP3 in state inc_initiated
 Then HMI OP3 has in the call queue a number of 1 calls
 
 Scenario: Op1 clears the phone call
