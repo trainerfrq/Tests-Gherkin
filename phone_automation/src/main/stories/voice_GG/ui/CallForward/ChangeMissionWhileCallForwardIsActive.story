@@ -17,12 +17,11 @@ Given the call queue items:
 
 Scenario: Op1 activates Call Forward
 When HMI OP1 presses function key CALLFORWARD
-Then HMI OP1 is in forward_ongoing state
-
+Then HMI OP1 has the function key CALLFORWARD in forwardOngoingState state
 Scenario: Op1 chooses Op2 as call forward target
 		  @REQUIREMENTS:GID-2521111
 When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 is in forward_active state
+Then HMI OP1 has the function key CALLFORWARD in forwardActiveState state
 Then HMI OP1 verifies that call queue info container is visible
 
 Scenario: Caller establishes an outgoing call

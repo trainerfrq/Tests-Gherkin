@@ -49,7 +49,8 @@ public class CallUISteps extends AutomationSteps {
 
     private static final String TRANSFER_MENU_BUTTON_ID = "transfer_call_menu_button";
 
-    @Given("the DA keys: $daKeys")
+
+   @Given("the DA keys: $daKeys")
     public void defineDaKeys(final List<DAKey> daKeys) {
         final LocalStep localStep = localStep("Define DA keys");
         for (final DAKey daKey : daKeys) {
@@ -185,12 +186,28 @@ public class CallUISteps extends AutomationSteps {
                          .input(DragAndClickOnMenuButtonDAKey.IPARAM_MENU_BUTTON_ID, PRIORITY_CALL_MENU_BUTTON_ID));
     }
 
-    @Then("$profileName is in $state state")
-    public void verifyTransferState(final String profileName, final String state) {
-        evaluate(remoteStep("Verify operator position is in transfer state").scriptOn(
-                profileScriptResolver().map(VerifyOperatorPositionState.class, BookableProfileName.javafx),
-                assertProfile(profileName)).input(VerifyOperatorPositionState.STATE, state));
+    @Then("$profileName has the DA key $key in $state state")
+    public void verifyTransferState(final String profileName, final String target, final String state) {
+       DAKey key = retrieveDaKey(profileName, target);
+
+       evaluate( remoteStep( "Verify operator position has the " + target +" key in " + state + " state" )
+             .scriptOn(profileScriptResolver().map( VerifyOperatorPositionState.class, BookableProfileName.javafx ),
+                     assertProfile( profileName ) )
+             .input( VerifyOperatorPositionState.IPARAM_KEY_ID, key.getId() )
+             .input( VerifyOperatorPositionState.IPARAM_KEY_STATE, state ) );
     }
+
+
+   @Then("$profileName has the function key $key in $state state")
+   public void verifyForwardState(final String profileName, final String target, final String state) {
+      FunctionKey key = retrieveFunctionKey(target);
+
+      evaluate( remoteStep( "Verify operator position has the "+ target +" key in " + state + " state" )
+            .scriptOn(profileScriptResolver().map( VerifyOperatorPositionState.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyOperatorPositionState.IPARAM_KEY_ID, key.getId() )
+            .input( VerifyOperatorPositionState.IPARAM_KEY_STATE, state ) );
+   }
 
     @When("$profileName puts on hold the active call using DA key $target")
     public void putOnHoldActiveCallOnDAKey( final String profileName, final String target )

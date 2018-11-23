@@ -52,12 +52,12 @@ Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction rx
 
 Scenario: Op1 activates Call Forward
 When HMI OP1 presses function key CALLFORWARD
-Then HMI OP1 is in forward_ongoing state
+Then HMI OP1 has the function key CALLFORWARD in forwardOngoingState state
 
 Scenario: Op1 chooses Op2 as call forward target
 		  @REQUIREMENTS:GID-2521111
 When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 is in forward_active state
+Then HMI OP1 has the function key CALLFORWARD in forwardActiveState state
 Then HMI OP1 verifies that call queue info container is visible
 
 Scenario: Verify calls state on all operators
@@ -85,7 +85,7 @@ When HMI OP2 presses IA key IA - OP1
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Op1 still has Call Forward active
-Then HMI OP1 is in forward_active state
+Then HMI OP1 has the function key CALLFORWARD in forwardActiveState state
 Then HMI OP1 verifies that call queue info container is visible
 
 Scenario: Op1 retrieves call from hold
@@ -94,7 +94,7 @@ Then HMI OP1 has in the call queue a number of 1 calls
 Then HMI OP3 has in the call queue a number of 1 calls
 
 Scenario: Op1 still has Call Forward active
-Then HMI OP1 is in forward_active state
+Then HMI OP1 has the function key CALLFORWARD in forwardActiveState state
 
 Scenario: Op1 client clears the phone call
 When HMI OP1 presses DA key OP3(as OP1)
