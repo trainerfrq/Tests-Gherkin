@@ -30,6 +30,7 @@ import scripts.cats.hmi.asserts.VerifyCallQueueItemLabel;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemNotInList;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemStateIfPresent;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemStyleClass;
+import scripts.cats.hmi.asserts.VerifyCallQueueItemTransferState;
 import scripts.cats.hmi.asserts.VerifyCallQueueLength;
 import scripts.cats.hmi.asserts.VerifyCallQueueSectionLength;
 
@@ -326,6 +327,17 @@ public class CallQueueUISteps extends AutomationSteps
                         BookableProfileName.javafx ), assertProfile( profileName ) )
                 .input( VerifyCallQueueBarState.IPARAM_CALL_QUEUE_STATE, state ) );
     }
+
+   @Then("$profileName has the call queue item $target in $state state")
+   public void verifyTransferState(final String profileName, final String target, final String state) {
+      CallQueueItem callQueueItem = getStoryListData( target, CallQueueItem.class );
+
+      evaluate( remoteStep( "Verify operator position has the " + target +" key in " + state + " state" )
+            .scriptOn(profileScriptResolver().map( VerifyCallQueueItemTransferState.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyCallQueueItemTransferState.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
+            .input( VerifyCallQueueItemTransferState.IPARAM_KEY_STATE, state + "State" ) );
+   }
 
 
    @Then("the call queue item $namedCallQueueItem is $state for only one of the operator positions: $profileNames")

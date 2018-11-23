@@ -23,11 +23,11 @@ Given the call queue items:
 
 Scenario: Op1 activates Call Forward
 When HMI OP1 presses function key CALLFORWARD
-Then HMI OP1 has the function key CALLFORWARD in forwardOngoingState state
+Then HMI OP1 has the function key CALLFORWARD in forwardOngoing state
 
 Scenario: Op1 chooses Op2 as call forward target
 When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 has the function key CALLFORWARD in forwardActiveState state
+Then HMI OP1 has the function key CALLFORWARD in forwardActive state
 Then HMI OP1 verifies that call queue info container is visible
 Then HMI OP1 verifies that call queue info container contains Target: OP2 Physical
 Then HMI OP1 has in the call queue a number of 0 calls
@@ -47,14 +47,14 @@ When HMI OP2 presses the call queue item ipContact-OP1
 Scenario: Verify call is connected for operator Op2
 Then HMI OP2 has the call queue item SipContact-OP1 in state connected
 Then HMI OP1 has in the call queue a number of 0 calls
-Then HMI OP1 has the function key CALLFORWARD in forwardActiveState state
+Then HMI OP1 has the function key CALLFORWARD in forwardActive state
 
 Scenario: Op3 client clears the phone call
 When HMI OP2 terminates the call queue item SipContact-OP1
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Op1 still has Call Forward active
-Then HMI OP1 has the function key CALLFORWARD in forwardActiveState state
+Then HMI OP1 has the function key CALLFORWARD in forwardActive state
 
 Scenario: Op1 deactivates Call Forward
 When HMI OP1 presses function key CALLFORWARD

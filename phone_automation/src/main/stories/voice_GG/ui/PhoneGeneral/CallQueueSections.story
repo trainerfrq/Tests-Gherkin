@@ -140,7 +140,11 @@ Then HMI OP1 retrieves from hold the call queue item OP3-OP1
 Then HMI OP1 verifies that the call queue item OP3-OP1 was removed from the hold list
 Then HMI OP1 has the call queue item OP3-OP1 in the active list with label op3
 Then HMI OP1 terminates the call queue item OP3-OP1
+
+Scenario: Operator retrieves the SIP Call
 Then HMI OP1 retrieves from hold the call queue item SipContact-OP1
+
+Scenario: Operator terminates the SIP Call
 When SipContact terminates calls
 
 Scenario: Verify call is terminated for all operators

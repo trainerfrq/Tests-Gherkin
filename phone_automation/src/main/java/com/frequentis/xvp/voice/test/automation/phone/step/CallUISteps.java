@@ -21,9 +21,9 @@ import scripts.cats.hmi.actions.ClickFunctionKey;
 import scripts.cats.hmi.actions.ClickOnCallHistoryCallButton;
 import scripts.cats.hmi.actions.ClickOnPhoneBookCallButton;
 import scripts.cats.hmi.actions.DragAndClickOnMenuButtonDAKey;
+import scripts.cats.hmi.asserts.VerifyCallForwardState;
 import scripts.cats.hmi.asserts.VerifyDAButtonState;
 import scripts.cats.hmi.asserts.VerifyDAKeyDisplayCallType;
-import scripts.cats.hmi.asserts.VerifyOperatorPositionState;
 
 import java.util.List;
 
@@ -186,27 +186,16 @@ public class CallUISteps extends AutomationSteps {
                          .input(DragAndClickOnMenuButtonDAKey.IPARAM_MENU_BUTTON_ID, PRIORITY_CALL_MENU_BUTTON_ID));
     }
 
-    @Then("$profileName has the DA key $key in $state state")
-    public void verifyTransferState(final String profileName, final String target, final String state) {
-       DAKey key = retrieveDaKey(profileName, target);
-
-       evaluate( remoteStep( "Verify operator position has the " + target +" key in " + state + " state" )
-             .scriptOn(profileScriptResolver().map( VerifyOperatorPositionState.class, BookableProfileName.javafx ),
-                     assertProfile( profileName ) )
-             .input( VerifyOperatorPositionState.IPARAM_KEY_ID, key.getId() )
-             .input( VerifyOperatorPositionState.IPARAM_KEY_STATE, state ) );
-    }
-
 
    @Then("$profileName has the function key $key in $state state")
    public void verifyForwardState(final String profileName, final String target, final String state) {
       FunctionKey key = retrieveFunctionKey(target);
 
       evaluate( remoteStep( "Verify operator position has the "+ target +" key in " + state + " state" )
-            .scriptOn(profileScriptResolver().map( VerifyOperatorPositionState.class, BookableProfileName.javafx ),
+            .scriptOn(profileScriptResolver().map( VerifyCallForwardState.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
-            .input( VerifyOperatorPositionState.IPARAM_KEY_ID, key.getId() )
-            .input( VerifyOperatorPositionState.IPARAM_KEY_STATE, state ) );
+            .input( VerifyCallForwardState.IPARAM_KEY_ID, key.getId() )
+            .input( VerifyCallForwardState.IPARAM_KEY_STATE, state + "State" ) );
    }
 
     @When("$profileName puts on hold the active call using DA key $target")

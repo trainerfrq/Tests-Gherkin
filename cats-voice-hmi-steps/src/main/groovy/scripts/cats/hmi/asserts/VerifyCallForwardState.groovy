@@ -9,7 +9,7 @@ import javafx.css.PseudoClass
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class VerifyOperatorPositionState extends FxScriptTemplate {
+class VerifyCallForwardState extends FxScriptTemplate {
 
     public static final String IPARAM_KEY_ID = "key_id"
     public static final String IPARAM_KEY_STATE = "key_state"
@@ -17,18 +17,18 @@ class VerifyOperatorPositionState extends FxScriptTemplate {
     @Override
     void script() {
 
-        String daKeyId = assertInput(IPARAM_KEY_ID) as String
-        String daKeyState = assertInput(IPARAM_KEY_STATE) as String
+        String KeyId = assertInput(IPARAM_KEY_ID) as String
+        String KeyState = assertInput(IPARAM_KEY_STATE) as String
 
-        final PseudoClass pseudoClassState = PseudoClass.getPseudoClass(daKeyState)
+        final PseudoClass pseudoClassState = PseudoClass.getPseudoClass(KeyState)
 
-        Node daWidget = robot.lookup("#" + daKeyId).queryFirst()
-        evaluate(ExecutionDetails.create("Verify key was found")
-                .expected("Key with id " + daKeyId + " was found")
-                .success(daWidget != null))
+        Node widget = robot.lookup("#" + KeyId).queryFirst()
+        evaluate(ExecutionDetails.create("Verify function key was found")
+                .expected("Function key with id " + KeyId + " was found")
+                .success(widget != null))
 
-        evaluate(ExecutionDetails.create("Verify PseudoClassStates contains: " + daKeyState)
-                .success(verifyNodeHasPseudoClass(daWidget, pseudoClassState, 10000)))
+        evaluate(ExecutionDetails.create("Verify PseudoClassStates contains: " + KeyState)
+                .success(verifyNodeHasPseudoClass(widget, pseudoClassState, 10000)))
     }
 
     protected static boolean verifyNodeHasPseudoClass(Node node, PseudoClass pseudoClassState, long nWait) {
