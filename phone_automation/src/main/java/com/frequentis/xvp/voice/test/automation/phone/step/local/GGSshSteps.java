@@ -87,4 +87,21 @@ public class GGSshSteps extends SshSteps
       executeSshCommand( connectionName,
             "read -d '' hmiUpdate << \\EOF \n" + scriptContent + "\nEOF\n\n echo \"$hmiUpdate\" > /root/hmiUpdate.sh" );
    }
+
+   @When("the update op voice image script executed on $connectionName")
+   public void copyUpdateOpVoiceImageScript( final String connectionName ) throws IOException
+   {
+      final String systemName = StepsUtil.getEnvProperty( "systemName" );
+
+       final Map<String, String> map = new HashMap<>();
+       map.put( "system-name", systemName );
+
+      String filePath = "/configuration-files/" + systemName + "/opVoiceImageUpdate.sh";
+
+       final String scriptContent =
+               processConfigurationTemplate( StepsUtil.getConfigFile( filePath), map );
+
+      executeSshCommand( connectionName,
+              "docker exec -i cats-master bash << \\EOF \n" + scriptContent + "\nEOF" );
+   }
 }
