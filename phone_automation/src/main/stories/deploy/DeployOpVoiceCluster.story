@@ -14,6 +14,7 @@ Scenario: Download docker image from artifactory and change it for cluster mode
 Then downloading docker image from <<opVoiceDockerImageArtifactoryUri>> to path /configuration-files/<<systemName>>/op-voice-service-docker-image.json
 
 Scenario: Update op voice docker image in order to be able to install it in cluster mode
+Given the id of the cats-master docker container is taken from catsMaster
 When the update op voice image script executed on catsMaster
 
 Scenario: Upload docker image

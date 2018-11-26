@@ -18,6 +18,7 @@ package com.frequentis.xvp.voice.test.automation.phone.step.local;
 
 import com.frequentis.c4i.test.ssh.automation.steps.SshSteps;
 import com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil;
+import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.When;
 import static com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil.processConfigurationTemplate;
 
@@ -88,20 +89,34 @@ public class GGSshSteps extends SshSteps
             "read -d '' hmiUpdate << \\EOF \n" + scriptContent + "\nEOF\n\n echo \"$hmiUpdate\" > /root/hmiUpdate.sh" );
    }
 
-   @When("the update op voice image script executed on $connectionName")
-   public void copyUpdateOpVoiceImageScript( final String connectionName ) throws IOException
-   {
-      final String systemName = StepsUtil.getEnvProperty( "systemName" );
+    @When("the update op voice image script executed on $connectionName")
+    public void copyUpdateOpVoiceImageScript( final String connectionName ) throws IOException
+    {
+        final String systemName = StepsUtil.getEnvProperty( "systemName" );
+        String containerId = getStoryListData("container-id", String.class);
 
-       final Map<String, String> map = new HashMap<>();
-       map.put( "system-name", systemName );
+        String shortContainerId = containerId.substring(0,3);
 
-      String filePath = "/configuration-files/" + systemName + "/opVoiceImageUpdate.sh";
+        final Map<String, String> map = new HashMap<>();
+        map.put("system-name", systemName );
 
-       final String scriptContent =
-               processConfigurationTemplate( StepsUtil.getConfigFile( filePath), map );
 
-      executeSshCommand( connectionName,
-              "docker exec -i cats-master bash << \\EOF \n" + scriptContent + "\nEOF" );
-   }
+        String filePath = "/configuration-files/" + systemName + "/opVoiceImageUpdate.sh";
+
+        final String scriptContent =
+                processConfigurationTemplate( StepsUtil.getConfigFile( filePath), map );
+
+        executeSshCommand( connectionName,
+                "docker exec -i "+shortContainerId+" bash << \\EOF\n" + scriptContent + "\nEOF" );
+    }
+
+    @Given("the id of the cats-master docker container is taken from $connectionName")
+    public void getCatMasterContainerId( final String connectionName ) throws IOException
+    {
+
+        String containerId = executeSshCommand(connectionName,
+                "docker ps -q").getStdOut();
+
+        setStoryListData( "container-id", containerId );
+    }
 }
