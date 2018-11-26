@@ -24,8 +24,8 @@ Then HMI OP2 has the call queue item Role1-OP2 in state out_ringing
 
 Scenario: Operators part of called role receive the incoming call
 		  @REQUIREMENTS: GID-2531620
-Then HMI OP1 has the call queue item OP2-Role1 in state ringing
-Then HMI OP3 has the call queue item OP2-Role1 in state ringing
+Then HMI OP1 has the call queue item OP2-Role1 in state inc_initiated
+Then HMI OP3 has the call queue item OP2-Role1 in state inc_initiated
 
 Scenario: Op1 accepts incoming call
 Then HMI OP1 accepts the call queue item OP2-Role1

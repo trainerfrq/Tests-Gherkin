@@ -27,7 +27,7 @@ Scenario: Op1 client verifies that it does not receive the incoming call
 Then HMI OP1 has in the call queue a number of 1 calls
 
 Scenario: Op3 client receives the incoming call
-Then HMI OP3 has the call queue item OP1-Role1 in state ringing
+Then HMI OP3 has the call queue item OP1-Role1 in state inc_initiated
 
 Scenario: Caller clears outgoing call
 When HMI OP1 presses DA key ROLE1(as OP1)

@@ -33,7 +33,7 @@ When HMI OP2 presses DA key OP1
 Then HMI OP2 has the DA key OP1 in state out_ringing
 
 Scenario: Op1 receives incoming call
-Then HMI OP1 has the DA key OP2(as OP1) in state ringing
+Then HMI OP1 has the DA key OP2(as OP1) in state inc_initiated
 
 Scenario: Op1 answers incoming call
 When HMI OP1 presses DA key OP2(as OP1)
@@ -54,7 +54,7 @@ When HMI OP3 presses DA key OP1(as OP3)
 Then HMI OP3 has the DA key OP1(as OP3) in state out_ringing
 
 Scenario: Op1 receives the incoming call
-Then HMI OP1 has the DA key OP3(as OP1) in state ringing
+Then HMI OP1 has the DA key OP3(as OP1) in state inc_initiated
 
 Scenario: Op1 answers incoming call
 When HMI OP1 presses DA key OP3(as OP1)
@@ -77,7 +77,7 @@ When SipContact calls SIP URI <<OPVOICE1_PHONE_URI>>
 Then waiting for 2 seconds
 
 Scenario: Verify calls state for op1
-Then HMI OP1 has the call queue item SipContact-OP1 in state ringing
+Then HMI OP1 has the call queue item SipContact-OP1 in state inc_initiated
 Then HMI OP1 has the call queue item OP2-OP1 in state hold
 Then HMI OP1 has the call queue item OP3-OP1 in state hold
 
@@ -99,7 +99,7 @@ Then HMI OP1 has the call queue item SipContact-OP1 in state connected
 Then HMI OP1 has the call queue item OP3-OP1 in state hold
 Then HMI OP2 has the call queue item OP3-OP2 in state out_ringing
 Then HMI OP3 has the call queue item OP1-OP3 in state held
-Then HMI OP3 has the call queue item OP2-OP3 in state ringing
+Then HMI OP3 has the call queue item OP2-OP3 in state inc_initiated
 Then HMI OP1 has in the call queue a number of 2 calls
 Then HMI OP2 has in the call queue a number of 1 calls
 Then HMI OP3 has in the call queue a number of 2 calls

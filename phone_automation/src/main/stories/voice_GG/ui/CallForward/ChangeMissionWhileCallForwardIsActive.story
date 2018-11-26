@@ -17,12 +17,11 @@ Given the call queue items:
 
 Scenario: Op1 activates Call Forward
 When HMI OP1 presses function key CALLFORWARD
-Then HMI OP1 is in forward_ongoing state
-
+Then HMI OP1 has the function key CALLFORWARD in forwardOngoing state
 Scenario: Op1 chooses Op2 as call forward target
 		  @REQUIREMENTS:GID-2521111
 When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 is in forward_active state
+Then HMI OP1 has the function key CALLFORWARD in forwardActive state
 Then HMI OP1 verifies that call queue info container is visible
 
 Scenario: Caller establishes an outgoing call
@@ -31,7 +30,7 @@ Then waiting for 3 seconds
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 
 Scenario: Callee client receives the incoming call
-Then HMI OP2 has the DA key OP1 in state ringing
+Then HMI OP2 has the DA key OP1 in state inc_initiated
 
 Scenario: Change mission for HMI OP1
 When HMI OP1 presses function key MISSIONS
@@ -42,7 +41,7 @@ Then waiting for 5 seconds
 Scenario: Verify call state for both operators
 Then HMI OP1 verifies that call queue info container is not visible
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
-Then HMI OP2 has the call queue item OP1-OP2 in state ringing
+Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
 
 Scenario: Callee client answers the incoming call
 Then HMI OP2 accepts the call queue item OP1-OP2

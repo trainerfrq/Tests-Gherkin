@@ -20,12 +20,12 @@ Given the call queue items:
 
 Scenario: Op1 activates Call Forward
 When HMI OP1 presses function key CALLFORWARD
-Then HMI OP1 is in forward_ongoing state
+Then HMI OP1 has the function key CALLFORWARD in forwardOngoing state
 
 Scenario: Op1 chooses Op2 as call forward target
 		  @REQUIREMENTS:GID-2521111
 When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 is in forward_active state
+Then HMI OP1 has the function key CALLFORWARD in forwardActive state
 Then HMI OP1 verifies that call queue info container is visible
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP2 has in the call queue a number of 0 calls
@@ -35,7 +35,7 @@ When HMI OP1 presses DA key OP3(as OP1)
 Then HMI OP1 has the DA key OP3(as OP1) in state out_ringing
 
 Scenario: Op3 receives the incoming call
-Then HMI OP3 has the DA key OP1(as OP3) in state ringing
+Then HMI OP3 has the DA key OP1(as OP3) in state inc_initiated
 
 Scenario: Op3 client answers the incoming call
 When HMI OP3 presses DA key OP1(as OP3)
@@ -51,7 +51,7 @@ Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Op1 still has Call Forward active
-Then HMI OP1 is in forward_active state
+Then HMI OP1 has the function key CALLFORWARD in forwardActive state
 Then HMI OP1 verifies that call queue info container is visible
 
 Scenario: Op1 establishes an outgoing priority call
@@ -59,7 +59,7 @@ When HMI OP1 initiates a priority call on DA key OP3(as OP1)
 Then HMI OP1 has the DA key OP3(as OP1) in state out_ringing
 
 Scenario: Op3 receives the incoming priority call
-Then HMI OP3 has the DA key OP1(as OP3) in state ringing
+Then HMI OP3 has the DA key OP1(as OP3) in state inc_initiated
 Then HMI OP3 has in the call queue the item OP1-OP3 with priority
 
 Scenario: Op3 client answers the incoming call
@@ -78,7 +78,7 @@ Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Op1 still has Call Forward active
-Then HMI OP1 is in forward_active state
+Then HMI OP1 has the function key CALLFORWARD in forwardActive state
 Then HMI OP1 verifies that call queue info container is visible
 
 Scenario: Op1 establishes an outgoing IA call
@@ -98,7 +98,7 @@ Scenario: Call is terminated also for op2
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Op1 still has Call Forward active
-Then HMI OP1 is in forward_active state
+Then HMI OP1 has the function key CALLFORWARD in forwardActive state
 
 Scenario: Op1 deactivates Call Forward
 When HMI OP1 presses function key CALLFORWARD

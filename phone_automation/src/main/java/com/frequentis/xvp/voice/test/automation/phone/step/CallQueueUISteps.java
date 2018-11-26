@@ -21,6 +21,7 @@ import scripts.cats.hmi.actions.ClickCallQueueItem;
 import scripts.cats.hmi.actions.ClickOnCallQueueInfoContainer;
 import scripts.cats.hmi.actions.DragAndClickOnMenuButtonFirstCallQueueItem;
 import scripts.cats.hmi.asserts.VerifyCallQueueBarState;
+import scripts.cats.hmi.asserts.VerifyCallQueueCollapsedAreaSize;
 import scripts.cats.hmi.asserts.VerifyCallQueueInfoContainerIfVisible;
 import scripts.cats.hmi.asserts.VerifyCallQueueInfoContainerLabel;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemCallType;
@@ -29,6 +30,7 @@ import scripts.cats.hmi.asserts.VerifyCallQueueItemLabel;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemNotInList;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemStateIfPresent;
 import scripts.cats.hmi.asserts.VerifyCallQueueItemStyleClass;
+import scripts.cats.hmi.asserts.VerifyCallQueueItemTransferState;
 import scripts.cats.hmi.asserts.VerifyCallQueueLength;
 import scripts.cats.hmi.asserts.VerifyCallQueueSectionLength;
 
@@ -196,7 +198,6 @@ public class CallQueueUISteps extends AutomationSteps
    }
 
    @Then("$profileName verifies that the call queue item $callQueueItem was removed from the $callQueueList list")
-
    public void verifyCallQueueItemList( final String profileName, final String namedCallQueueItem,
          final String callQueueList )
    {
@@ -265,9 +266,17 @@ public class CallQueueUISteps extends AutomationSteps
             .scriptOn( profileScriptResolver().map( VerifyCallQueueSectionLength.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
             .input( VerifyCallQueueSectionLength.IPARAM_QUEUE_EXPECTED_LENGTH, numberOfCalls )
-            .input( VerifyCallQueueSectionLength.IPARAM_LIST_NAME, callQueueList ) );
+            .input( VerifyCallQueueSectionLength.IPARAM_LIST_NAME, CALL_QUEUE_LIST_MAP.get( callQueueList ) ) );
    }
 
+   @Then("$profileName has in the collapsed area a number of $numberOfCalls calls")
+   public void verifyCallQueueCollapsedLength( final String profileName, final Integer numberOfCalls )
+   {
+      evaluate( remoteStep( "Verify call queue collapsed area length" )
+            .scriptOn( profileScriptResolver().map( VerifyCallQueueCollapsedAreaSize.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyCallQueueCollapsedAreaSize.IPARAM_QUEUE_MENU_EXPECTED_LENGTH, numberOfCalls ) );
+   }
 
    @When("$profileName puts on hold the active call")
    public void putOnHoldActiveCall( final String profileName )
@@ -318,6 +327,17 @@ public class CallQueueUISteps extends AutomationSteps
                         BookableProfileName.javafx ), assertProfile( profileName ) )
                 .input( VerifyCallQueueBarState.IPARAM_CALL_QUEUE_STATE, state ) );
     }
+
+   @Then("$profileName has the call queue item $target in $state state")
+   public void verifyTransferState(final String profileName, final String target, final String state) {
+      CallQueueItem callQueueItem = getStoryListData( target, CallQueueItem.class );
+
+      evaluate( remoteStep( "Verify operator position has the " + target +" key in " + state + " state" )
+            .scriptOn(profileScriptResolver().map( VerifyCallQueueItemTransferState.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyCallQueueItemTransferState.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
+            .input( VerifyCallQueueItemTransferState.IPARAM_KEY_STATE, state + "State" ) );
+   }
 
 
    @Then("the call queue item $namedCallQueueItem is $state for only one of the operator positions: $profileNames")

@@ -77,7 +77,7 @@ Then HMI OP3 has in the call queue a number of 0 calls
 Scenario: Operator receives a DA call and verifies call queue section (waiting)
 When HMI OP3 presses DA key OP1(as OP3)
 Then HMI OP3 has the DA key OP1(as OP3) in state out_ringing
-Then HMI OP1 has the DA key OP3(as OP1) in state ringing
+Then HMI OP1 has the DA key OP3(as OP1) in state inc_initiated
 Then HMI OP3 has the call queue item OP1-OP3 in the active list with label OP1(as OP3)
 Then HMI OP1 has the call queue item OP3-OP1 in the waiting list with label op3
 Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2 Physical
@@ -140,10 +140,17 @@ Then HMI OP1 retrieves from hold the call queue item OP3-OP1
 Then HMI OP1 verifies that the call queue item OP3-OP1 was removed from the hold list
 Then HMI OP1 has the call queue item OP3-OP1 in the active list with label op3
 Then HMI OP1 terminates the call queue item OP3-OP1
+
+Scenario: Operator retrieves the SIP Call
 Then HMI OP1 retrieves from hold the call queue item SipContact-OP1
-Then HMI OP1 terminates the call queue item SipContact-OP1
+
+Scenario: Operator terminates the SIP Call
+When SipContact terminates calls
 
 Scenario: Verify call is terminated for all operators
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
+
+Scenario: Remove phone
+When SipContact is removed

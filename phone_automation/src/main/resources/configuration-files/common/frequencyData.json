@@ -1,38 +1,5 @@
 {
-  "frequencies": [
-    {
-      "frequencyId": "123.700",
-      "frequencyICAO": "123.700",
-      "nameOnOp": "FRQ123.7",
-      "frequencySignalingId": 0,
-      "destinationSipUri": "sip:ED137B_1@127.0.0.1:5060",
-      "rtpParameters": {}
-    },
-    {
-      "frequencyId": "124.600",
-      "frequencyICAO": "124.600",
-      "nameOnOp": "FRQ124.6",
-      "frequencySignalingId": 1,
-      "destinationSipUri": "sip:ED137B_2@127.0.0.1:5060",
-      "rtpParameters": {}
-    },
-    {
-      "frequencyId": "125.500",
-      "frequencyICAO": "125.500",
-      "nameOnOp": "FRQ125.5",
-      "frequencySignalingId": 2,
-      "destinationSipUri": "sip:ED137B_3@127.0.0.1:5060",
-      "rtpParameters": {}
-    },
-    {
-      "frequencyId": "126.700",
-      "frequencyICAO": "126.700",
-      "nameOnOp": "FRQ126.7",
-      "frequencySignalingId": 3,
-      "destinationSipUri": "sip:ED137B_4@127.0.0.1:5060",
-      "rtpParameters": {}
-    }
-  ],
+  "frequencies": [],
   "rtLogicSignallingParameters": {
     "rtLogicName": "opVoiceRtLogic",
     "inputVirtualDeviceNames": [],
