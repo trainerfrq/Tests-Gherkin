@@ -16,16 +16,20 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step.local;
 
+import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
+import com.frequentis.c4i.test.model.ExecutionDetails;
+import com.frequentis.c4i.test.ssh.automation.steps.SshSteps;
+import com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil;
+import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.When;
+import static com.frequentis.c4i.test.config.AutomationProjectConfig.fromCatsHome;
 import static com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil.processConfigurationTemplate;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.jbehave.core.annotations.When;
-
-import com.frequentis.c4i.test.ssh.automation.steps.SshSteps;
-import com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil;
 
 public class GGSshSteps extends SshSteps
 {
@@ -61,12 +65,13 @@ public class GGSshSteps extends SshSteps
    }
 
 
-   @When("the launch audio app script is copied to $connectionName and updated with $audioNetworkIp")
-   public void copyLaunchAudioAppScript( final String connectionName, final String audioNetworkIp ) throws IOException
+   @When("the launch audio app script is copied to $connectionName and updated with $audioMacvlandataIp and $audioMacvlanaudioIp")
+   public void copyLaunchAudioAppScript( final String connectionName, final String audioMacvlandataIp, final String audioMacvlanaudioIp ) throws IOException
    {
 
       final Map<String, String> map = new HashMap<>();
-      map.put( "audio_app_network_ip", audioNetworkIp );
+      map.put( "audio_app_macvlandata_ip", audioMacvlandataIp );
+      map.put( "audio_app_macvlanaudio_ip", audioMacvlanaudioIp );
 
       final String scriptContent =
             processConfigurationTemplate( StepsUtil.getConfigFile( LAUNCH_AUDIO_APP_SCRIPT_DIRECTORY ), map );
@@ -88,4 +93,45 @@ public class GGSshSteps extends SshSteps
       executeSshCommand( connectionName,
             "read -d '' hmiUpdate << \\EOF \n" + scriptContent + "\nEOF\n\n echo \"$hmiUpdate\" > /root/hmiUpdate.sh" );
    }
+
+    @When("the update op voice image script executed on $connectionName")
+    public void copyUpdateOpVoiceImageScript( final String connectionName ) throws IOException
+    {
+        final LocalStep localStep = localStep( "Modify Op Voice image" );
+
+        final String systemName = StepsUtil.getEnvProperty( "systemName" );
+        String containerId = getStoryListData("container-id", String.class);
+
+        String shortContainerId = containerId.substring(0,3);
+
+        String scriptFilePath = "/configuration-files/" + systemName + "/opVoiceImageUpdate.sh";
+        String imageFilePath = "/configuration-files/" + systemName + "/op-voice-service-docker-image.json";
+
+        final Path path = Paths.get( getCatsResourcesFolderPath(), imageFilePath );
+        localStep.details( ExecutionDetails.create( "Path is: " + path.toString() ).success() );
+
+        final Map<String, String> map = new HashMap<>();
+        map.put("image-file-path", path.toString() );
+
+        final String scriptContent =
+                processConfigurationTemplate( StepsUtil.getConfigFile( scriptFilePath), map );
+
+        executeSshCommand( connectionName,
+                "docker exec -i "+shortContainerId+" bash << \\EOF\n" + scriptContent + "\nEOF" );
+    }
+
+    @Given("the id of the cats-master docker container is taken from $connectionName")
+    public void getCatMasterContainerId( final String connectionName ) throws IOException
+    {
+
+        String containerId = executeSshCommand(connectionName,
+                "docker ps -q").getStdOut();
+
+        setStoryListData( "container-id", containerId );
+    }
+
+    public static String getCatsResourcesFolderPath()
+    {
+        return fromCatsHome().getMasterResourcesHome();
+    }
 }

@@ -21,7 +21,7 @@ Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 
 Scenario: Callee client receives the incoming call
 Then HMI OP2 has the DA key OP1 in state ringing
-Then HMI OP2 has the call queue item OP1-OP2 in state ringing
+Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
 
 Scenario: Caller establishes an outgoing call
 		  @REQUIREMENTS:GID-2510577

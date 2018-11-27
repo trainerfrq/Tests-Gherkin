@@ -1,20 +1,24 @@
 #!/bin/bash
 
-SERVER1="DOC-VST02-11"
-SERVER2="DOC-VST02-12"
-SERVER3="DOC-VST02-13"
+SERVER1="doc-vst02-11"
+SERVER2="doc-vst02-12"
+SERVER3="doc-vst02-13"
 
-MISSION1="DOC-VST02-11"
-MISSION2="DOC-VST02-12"
+MISSION1="doc-vst02-11"
+MISSION2="doc-vst02-12"
 
-CWP1="CWP-VST02-14"
-CWP2="CWP-VST02-15"
-CWP3="CWP-VST02-16"
+CWP1="cwp-vst02-14"
+CWP2="cwp-vst02-15"
+CWP3="cwp-vst02-16"
 
 echo "restart services to update hmi, please be patient"
-ssh $SERVER3 "docker stop op-voice-service-CWP-VST02-14"
-ssh $SERVER3 "docker stop op-voice-service-CWP-VST02-15"
-ssh $SERVER3 "docker stop op-voice-service-CWP-VST02-16"
+ssh $SERVER1 "docker stop op-voice-service-cwp-vst02-14-1"
+ssh $SERVER1 "docker stop op-voice-service-cwp-vst02-15-1"
+ssh $SERVER1 "docker stop op-voice-service-cwp-vst02-16-1"
+ssh $SERVER3 "docker stop op-voice-service-cwp-vst02-14-2"
+ssh $SERVER3 "docker stop op-voice-service-cwp-vst02-15-2"
+ssh $SERVER3 "docker stop op-voice-service-cwp-vst02-16-2"
+
 
 echo "all op voice services are stopped"
 echo "restart mission services"
@@ -33,8 +37,12 @@ ssh $CWP3 "docker restart op-shell-service"
 sleep 10
 echo "restart op voice services"
 
-ssh $SERVER3 "docker start op-voice-service-CWP-VST02-14"
-ssh $SERVER3 "docker start op-voice-service-CWP-VST02-15"
-ssh $SERVER3 "docker start op-voice-service-CWP-VST02-16"
+ssh $SERVER1 "docker start op-voice-service-cwp-vst02-14-1"
+ssh $SERVER1 "docker start op-voice-service-cwp-vst02-15-1"
+ssh $SERVER1 "docker start op-voice-service-cwp-vst02-16-1"
+ssh $SERVER3 "docker start op-voice-service-cwp-vst02-14-2"
+ssh $SERVER3 "docker start op-voice-service-cwp-vst02-15-2"
+ssh $SERVER3 "docker start op-voice-service-cwp-vst02-16-2"
+
 
 echo "done!"

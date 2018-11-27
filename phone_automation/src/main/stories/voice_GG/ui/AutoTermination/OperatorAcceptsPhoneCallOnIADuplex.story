@@ -41,7 +41,7 @@ When HMI OP3 presses DA key OP2(as OP3)
 Then HMI OP3 has the DA key OP2(as OP3) in state out_ringing
 
 Scenario: Op2 receives the incoming call
-Then HMI OP2 has the DA key OP3 in state ringing
+Then HMI OP2 has the DA key OP3 in state inc_initiated
 
 Scenario: Op2 answers the incoming call
 Then HMI OP2 accepts the call queue item OP3-OP2

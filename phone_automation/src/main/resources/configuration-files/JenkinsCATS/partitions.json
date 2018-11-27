@@ -1,10 +1,10 @@
 {
   "partitions": [
     {
-      "partitionKey": "CWP-VST02-15",
+      "partitionKey": "cwp-vst02-15",
       "clients": [
         {
-          "opId": "CWP-VST02-15",
+          "opId": "cwp-vst02-15",
           "radioUserName": "OpVoiceUser02",
           "audioAppUri": "ws://192.168.100.45:8805/ctrlif"
         }
@@ -25,10 +25,10 @@
       }
     },
     {
-      "partitionKey": "CWP-VST02-16",
+      "partitionKey": "cwp-vst02-16",
       "clients": [
         {
-          "opId": "CWP-VST02-16",
+          "opId": "cwp-vst02-16",
           "radioUserName": "OpVoiceUser03",
           "audioAppUri": "ws://192.168.100.46:8805/ctrlif"
         }
@@ -49,10 +49,10 @@
       }
     },
     {
-      "partitionKey": "CWP-VST02-14",
+      "partitionKey": "cwp-vst02-14",
       "clients": [
         {
-          "opId": "CWP-VST02-14",
+          "opId": "cwp-vst02-14",
           "radioUserName": "OpVoiceUser01",
           "audioAppUri": "ws://192.168.100.44:8805/ctrlif"
         }
