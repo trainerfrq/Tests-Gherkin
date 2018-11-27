@@ -32,9 +32,7 @@ Scenario: Callee client receives the incoming call
 		  @REQUIREMENTS:GID-2512204
 		  @REQUIREMENTS:GID-2505646
 		  @REQUIREMENTS:GID-3229739
-Then HMI OP2 has the DA key OP1 in state ringing
-Then HMI OP2 has the call queue item OP1-OP2 in state ringing
-Then HMI OP2 has the DA key OP1 in state inc_initiated
+Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
 
 Scenario: Verify call queue section
 		  @REQUIREMENTS:GID-3371941
