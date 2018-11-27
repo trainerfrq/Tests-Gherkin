@@ -26,7 +26,7 @@ Then waiting for 2 seconds
 
 Scenario: Callee client receives the incoming priority call
 		  @REQUIREMENTS:GID-2877902
-Then HMI OP1 has the call queue item SipContact-OP1 in state ringing
+Then HMI OP1 has the call queue item SipContact-OP1 in state inc_initiated
 Then HMI OP1 has the call queue item SipContact-OP1 in the waiting list with label anonymous
 
 Scenario: Sip phone clears calls

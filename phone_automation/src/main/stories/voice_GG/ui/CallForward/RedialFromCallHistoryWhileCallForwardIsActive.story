@@ -19,12 +19,12 @@ Given the call queue items:
 
 Scenario: Op1 activates Call Forward
 When HMI OP1 presses function key CALLFORWARD
-Then HMI OP1 is in forward_ongoing state
+Then HMI OP1 has the function key CALLFORWARD in forwardOngoing state
 
 Scenario: Op1 chooses Op2 as call forward target
 		  @REQUIREMENTS:GID-2521111
 When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 is in forward_active state
+Then HMI OP1 has the function key CALLFORWARD in forwardActive state
 Then HMI OP1 verifies that call queue info container is visible
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP2 has in the call queue a number of 0 calls
@@ -40,7 +40,7 @@ When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 
 Scenario: Op2 client receives the incoming call
-Then HMI OP2 has the DA key OP1 in state ringing
+Then HMI OP2 has the DA key OP1 in state inc_initiated
 
 Scenario: Op1 client clears the phone call
 When HMI OP1 presses DA key OP2(as OP1)
@@ -52,7 +52,7 @@ When HMI OP1 redials last number
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 
 Scenario: Op2 client receives the incoming call
-Then HMI OP2 has the DA key OP1 in state ringing
+Then HMI OP2 has the DA key OP1 in state inc_initiated
 
 Scenario: Op2 client answers the incoming call
 When HMI OP2 presses DA key OP1
@@ -66,14 +66,14 @@ Scenario: Op1 client clears the phone call
 When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP1 has in the call queue a number of 0 calls
-Then HMI OP1 is in forward_active state
+Then HMI OP1 has the function key CALLFORWARD in forwardActive state
 
 Scenario: Op1 establishes an outgoing priority call
 When HMI OP1 initiates a priority call on DA key OP2(as OP1)
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 
 Scenario: Op2 client receives the incoming call
-Then HMI OP2 has the DA key OP1 in state ringing
+Then HMI OP2 has the DA key OP1 in state inc_initiated
 Then HMI OP2 has in the call queue the item OP1-OP2-DA with priority
 
 Scenario: Op1 client clears the phone call
@@ -98,7 +98,7 @@ Scenario: Op1 client clears the phone call
 When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP1 has in the call queue a number of 0 calls
-Then HMI OP1 is in forward_active state
+Then HMI OP1 has the function key CALLFORWARD in forwardActive state
 Then HMI OP1 verifies that call queue info container is visible
 
 Scenario: Op1 establishes an outgoing IA call
@@ -129,7 +129,7 @@ When HMI OP1 presses IA key IA - OP2(as OP1)
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Op1 still has Call Forward active
-Then HMI OP1 is in forward_active state
+Then HMI OP1 has the function key CALLFORWARD in forwardActive state
 
 Scenario: Op1 deactivates Call Forward
 When HMI OP1 presses function key CALLFORWARD

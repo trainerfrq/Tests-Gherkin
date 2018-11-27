@@ -33,7 +33,7 @@ When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 
 Scenario: OP2 client receives the incoming call
-Then HMI OP2 has the DA key OP1 in state ringing
+Then HMI OP2 has the DA key OP1 in state inc_initiated
 
 Scenario: OP2 client answers the incoming call
 When HMI OP2 presses DA key OP1
@@ -61,7 +61,7 @@ When HMI OP2 initiates a call from the call history
 Then HMI OP2 has the DA key OP1 in state out_ringing
 
 Scenario: OP1 client receives the incoming call
-Then HMI OP1 has the DA key OP2(as OP1) in state ringing
+Then HMI OP1 has the DA key OP2(as OP1) in state inc_initiated
 
 Scenario: OP1 opens call history
 When HMI OP1 presses function key CALLHISTORY

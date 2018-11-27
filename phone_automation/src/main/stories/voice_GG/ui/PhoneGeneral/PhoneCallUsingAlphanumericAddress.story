@@ -16,7 +16,7 @@ When HMI OP1 presses DA key OP3(as OP1)
 Then HMI OP1 has the DA key OP3(as OP1) in state out_ringing
 
 Scenario: Callee client receives the incoming call
-Then HMI OP3 has the DA key OP1(as OP3) in state ringing
+Then HMI OP3 has the DA key OP1(as OP3) in state inc_initiated
 
 Scenario: Caller clears outgoing call
 When HMI OP1 presses DA key OP3(as OP1)

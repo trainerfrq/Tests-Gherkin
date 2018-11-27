@@ -25,7 +25,7 @@ When HMI OP2 presses DA key OP1
 Then HMI OP2 has the DA key OP1 in state out_ringing
 
 Scenario: Transferee receives incoming call
-Then HMI OP1 has the DA key OP2(as OP1) in state ringing
+Then HMI OP1 has the DA key OP2(as OP1) in state inc_initiated
 
 Scenario: Transferee answers incoming call
 When HMI OP1 presses DA key OP2(as OP1)
@@ -42,7 +42,7 @@ Then HMI OP2 has the call queue item OP1-OP2 in state hold
 
 Scenario: Verify call transfer is initiated
 Then HMI OP2 has the call conditional flag set for call queue item OP1-OP2
-Then HMI OP2 is in transfer state
+Then HMI OP2 has the call queue item OP1-OP2 in transfer state
 
 Scenario: Verify call is held for transferee
 Then HMI OP1 has the call queue item OP2-OP1 in state held
@@ -52,7 +52,7 @@ When HMI OP2 presses DA key OP3
 Then HMI OP2 has the DA key OP3 in state out_ringing
 
 Scenario: Transfer target receives incoming call
-Then HMI OP3 has the DA key OP2(as OP3) in state ringing
+Then HMI OP3 has the DA key OP2(as OP3) in state inc_initiated
 
 Scenario: Transfer target answers incoming call
 When HMI OP3 presses DA key OP2(as OP3)
