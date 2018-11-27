@@ -22,8 +22,8 @@ Then HMI OP2 has the DA key ROLE1(as OP2) in state out_ringing
 Then HMI OP2 has the call queue item Role1-OP2 in state out_ringing
 
 Scenario: Operators part of called role receive the incoming call
-Then HMI OP1 has the call queue item OP2-Role1 in state ringing
-Then HMI OP3 has the call queue item OP2-Role1 in state ringing
+Then HMI OP1 has the call queue item OP2-Role1 in state inc_initiated
+Then HMI OP3 has the call queue item OP2-Role1 in state inc_initiated
 
 Scenario: Op2 cancels group call
 Then HMI OP2 cancels the call queue item Role1-OP2

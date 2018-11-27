@@ -25,7 +25,7 @@ When HMI OP1 initiates a call from the phonebook
 
 Scenario: Call is initiated
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
-Then HMI OP2 has the call queue item OP1-OP2-1 in state ringing
+Then HMI OP2 has the call queue item OP1-OP2-1 in state inc_initiated
 Then HMI OP2 has the call queue item OP1-OP2-1 in the waiting list with label mission1
 
 Scenario: Caller clears outgoing call
@@ -49,7 +49,7 @@ Scenario: Caller does call from call history
 		  @REQUIREMENTS:GID-4084452
 When HMI OP1 initiates a call from the call history
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
-Then HMI OP2 has the call queue item OP1-OP2-2 in state ringing
+Then HMI OP2 has the call queue item OP1-OP2-2 in state inc_initiated
 Then HMI OP2 has the call queue item OP1-OP2-2 in the waiting list with label mission2
 
 Scenario: Caller clears outgoing call

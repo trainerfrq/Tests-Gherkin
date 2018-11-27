@@ -23,7 +23,7 @@ Then waiting for 3 seconds
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 
 Scenario: Callee client receives the incoming call
-Then HMI OP2 has the DA key OP1 in state ringing
+Then HMI OP2 has the DA key OP1 in state inc_initiated
 
 Scenario: Callee client answers the incoming call
 When HMI OP2 presses DA key OP1
@@ -58,7 +58,7 @@ Scenario: Caller does call from call history
 		  @REQUIREMENTS:GID-4084452
 When HMI OP1 initiates a call from the call history
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
-Then HMI OP2 has the call queue item OP1-OP2 in state ringing
+Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
 Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with label 111111
 
 Scenario: Callee client answers the incoming call
@@ -95,7 +95,7 @@ Scenario: Caller does call from call history
 		  @REQUIREMENTS:GID-4084452
 When HMI OP1 initiates a call from the call history
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
-Then HMI OP2 has the call queue item OP1-OP2 in state ringing
+Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
 Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with label 111111
 
 Scenario: Callee client answers the incoming call

@@ -23,8 +23,8 @@ Then HMI OP2 has the DA key ROLE1(as OP2) in state out_ringing
 Then HMI OP2 has the call queue item Role1-OP2 in state out_ringing
 
 Scenario: Operators part of called role receive the incoming call
-Then HMI OP1 has the call queue item OP2-Role1 in state ringing
-Then HMI OP3 has the call queue item OP2-Role1 in state ringing
+Then HMI OP1 has the call queue item OP2-Role1 in state inc_initiated
+Then HMI OP3 has the call queue item OP2-Role1 in state inc_initiated
 
 Scenario: Op1 rejects incoming call
 Then HMI OP1 rejects the waiting call queue item
@@ -32,7 +32,7 @@ Then waiting for 1 seconds
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Verify call is still ringing for Op3
-Then HMI OP3 has the call queue item OP2-Role1 in state ringing
+Then HMI OP3 has the call queue item OP2-Role1 in state inc_initiated
 
 Scenario: Op3 accept incoming call
 Then HMI OP3 accepts the call queue item OP2-Role1

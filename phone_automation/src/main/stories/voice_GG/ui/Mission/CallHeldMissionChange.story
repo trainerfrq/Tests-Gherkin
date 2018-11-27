@@ -25,8 +25,8 @@ When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 
 Scenario: Op2 client receives the incoming call
-Then HMI OP2 has the DA key OP1 in state ringing
-Then HMI OP2 has the call queue item OP1-OP2 in state ringing
+Then HMI OP2 has the DA key OP1 in state inc_initiated
+Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
 
 Scenario: Callee client answers the incoming call
 Then HMI OP2 accepts the call queue item OP1-OP2
@@ -56,8 +56,8 @@ When HMI OP3 presses DA key OP2(as OP3)
 Then HMI OP3 has the DA key OP2(as OP3) in state out_ringing
 
 Scenario: Op2 client receives the incoming call
-Then HMI OP2 has the DA key OP3 in state ringing
-Then HMI OP2 has the call queue item OP3-OP2 in state ringing
+Then HMI OP2 has the DA key OP3 in state inc_initiated
+Then HMI OP2 has the call queue item OP3-OP2 in state inc_initiated
 
 Scenario: Callee client answers the incoming call
 Then HMI OP2 accepts the call queue item OP3-OP2

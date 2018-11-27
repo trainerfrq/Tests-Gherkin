@@ -420,6 +420,12 @@
           "target": "sip:222222@example.com",
           "source": "sip:222222@example.com",
           "displayName": "IA - OP2"
+        },
+        {
+          "id": "120",
+          "target": "sip:111111@example.com",
+          "source": "sip:mission2@example.com",
+          "displayName": "OP1-mission"
         }
 
       ]
@@ -523,6 +529,11 @@
         {
           "id": "119",
           "type": "ia",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "120",
+          "type": "da",
           "grid": "applicationGrid"
         }
       ],
@@ -636,6 +647,13 @@
           "id": "119",
           "column": 6,
           "row": 9,
+          "columnSpan": 3,
+          "rowSpan": 3
+        },
+        {
+          "id": "120",
+          "column": 0,
+          "row": 12,
           "columnSpan": 3,
           "rowSpan": 3
         }

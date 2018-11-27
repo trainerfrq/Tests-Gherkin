@@ -24,8 +24,8 @@ When HMI OP2 presses DA key ROLE1(as OP2)
 Then HMI OP2 has the DA key ROLE1(as OP2) in state out_ringing
 
 Scenario: Operators part of called role receive the incoming call
-Then HMI OP1 has the call queue item OP2-Role1 in state ringing
-Then HMI OP3 has the call queue item OP2-Role1 in state ringing
+Then HMI OP1 has the call queue item OP2-Role1 in state inc_initiated
+Then HMI OP3 has the call queue item OP2-Role1 in state inc_initiated
 
 Scenario: Caller clears outgoing call
 When HMI OP2 presses DA key ROLE1(as OP2)
@@ -36,8 +36,8 @@ When HMI OP2 presses DA key ROLE1(as ROLE2)
 Then HMI OP2 has the DA key ROLE1(as ROLE2) in state out_ringing
 
 Scenario: Operators part of called role receive the incoming call
-Then HMI OP1 has the call queue item Role2-Role1 in state ringing
-Then HMI OP3 has the call queue item Role2-Role1 in state ringing
+Then HMI OP1 has the call queue item Role2-Role1 in state inc_initiated
+Then HMI OP3 has the call queue item Role2-Role1 in state inc_initiated
 
 Scenario: Caller clears outgoing call
 When HMI OP2 presses DA key ROLE1(as ROLE2)
@@ -48,8 +48,8 @@ When HMI OP2 presses DA key ROLE1-ALIAS(as OP2)
 Then HMI OP2 has the DA key ROLE1-ALIAS(as OP2) in state out_ringing
 
 Scenario: Operators part of called role receive the incoming call
-Then HMI OP1 has the call queue item OP2-Role1Alias in state ringing
-Then HMI OP3 has the call queue item OP2-Role1Alias in state ringing
+Then HMI OP1 has the call queue item OP2-Role1Alias in state inc_initiated
+Then HMI OP3 has the call queue item OP2-Role1Alias in state inc_initiated
 
 Scenario: Caller clears outgoing call
 When HMI OP2 presses DA key ROLE1-ALIAS(as OP2)
@@ -60,8 +60,8 @@ When HMI OP2 presses DA key ROLE1-ALIAS(as ROLE2)
 Then HMI OP2 has the DA key ROLE1-ALIAS(as ROLE2) in state out_ringing
 
 Scenario: Operators part of called role receive the incoming call
-Then HMI OP1 has the call queue item Role2-Role1Alias in state ringing
-Then HMI OP3 has the call queue item Role2-Role1Alias in state ringing
+Then HMI OP1 has the call queue item Role2-Role1Alias in state inc_initiated
+Then HMI OP3 has the call queue item Role2-Role1Alias in state inc_initiated
 
 Scenario: Caller clears outgoing call
 When HMI OP2 presses DA key ROLE1-ALIAS(as ROLE2)
