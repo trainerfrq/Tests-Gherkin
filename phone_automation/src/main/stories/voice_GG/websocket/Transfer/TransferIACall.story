@@ -34,6 +34,8 @@ Scenario: Caller client receives the incoming call
 When WS1 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer1 with callSourceCalled and callTargetCalled and names incomingPhoneCallId2 and audio direction DUPLEX
 
 Scenario: Callee operator puts the call on hold with call conditional flag
+		  @REQUIREMENTS:GID-2510076
+		  @REQUIREMENTS:GID-2510078
 When WS1 puts the phone call with the callId outgoingPhoneCallId1 on hold with call conditional flag xfr
 
 Scenario: Verify call is not put on hold with call conditional flag

@@ -44,6 +44,8 @@ Then WS1 receives call status indication with call conditional flag xfr on messa
 Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status held
 
 Scenario: Transferor establishes consultation call
+		  @REQUIREMENTS:GID-2510076
+		  @REQUIREMENTS:GID-2510077
 When WS1 establishes an outgoing phone call with call conditional flag xfr using source callSource2 ang target callTarget2 and names outgoingPhoneCallId2
 And waiting for 1 seconds
 Then WS1 receives call status indication with call conditional flag xfr on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status out_trying
