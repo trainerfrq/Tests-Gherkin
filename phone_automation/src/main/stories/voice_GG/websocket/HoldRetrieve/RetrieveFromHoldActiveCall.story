@@ -37,6 +37,7 @@ When WS1 clears all text messages from buffer named CallStatusIndicationBuffer1
 When WS2 clears all text messages from buffer named CallStatusIndicationBuffer2
 
 Scenario: Caller client retrieves call from hold
+		  @REQUIREMENTS:GID-2510075
 When WS1 retrieves the on hold phone call with the callId outgoingPhoneCallId
 And waiting for 1 seconds
 

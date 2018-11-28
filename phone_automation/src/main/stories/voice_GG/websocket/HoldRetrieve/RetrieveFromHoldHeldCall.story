@@ -37,6 +37,7 @@ When WS1 puts the phone call with the callId outgoingPhoneCallId on hold
 And waiting for 2 seconds
 
 Scenario: Verify call is on hold
+		  @REQUIREMENTS:GID-2505734
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status hold
 Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and status held
 
@@ -45,6 +46,7 @@ When WS1 clears all text messages from buffer named CallStatusIndicationBuffer1
 When WS2 clears all text messages from buffer named CallStatusIndicationBuffer2
 
 Scenario: Callee client retrieves call from hold
+		  @REQUIREMENTS:GID-2510075
 When WS2 retrieves the on hold phone call with the callId incomingPhoneCallId
 And waiting for 1 seconds
 
