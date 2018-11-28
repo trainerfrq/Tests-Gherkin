@@ -774,7 +774,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    }
 
    @When("$namedWebSocket requests the layout for role $roleIdName and saves the request $requestIdName")
-   public void sendPhoneBookRequestForAllEntriesWithEmptySearchPattern( final String namedWebSocket, final String roleIdName,
+   public void sendRoleLayoutRequest( final String namedWebSocket, final String roleIdName,
          final String namedRequestId  )
    {
       sendAndReceiveRoleLayoutRequest( namedWebSocket, roleIdName, namedRequestId );
@@ -786,11 +786,10 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             match( namedRequestId1, equalTo( namedRequestId2 ) ) ) );
    }
 
-   //not equal
    @Then("verify that $requestId1 and $requestId2 are different")
    public void assertDifferentRequests( final String namedRequestId1, final String namedRequestId2 ){
       evaluate(localStep( "Verify requests are different" ).details(
-            match( namedRequestId1, equalTo( namedRequestId2 ) ) ) );
+            match( namedRequestId1, not(equalTo( namedRequestId2 ) ) ) ) );
    }
 
 
