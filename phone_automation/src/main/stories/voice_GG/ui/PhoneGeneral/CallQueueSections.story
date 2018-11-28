@@ -113,11 +113,15 @@ Then HMI OP1 has the call queue item OP3-OP1 in the active list with label op3
 Scenario: Operator initiates transfer for the active call
 When HMI OP1 initiates a transfer on the active call
 Then HMI OP1 verifies that the call queue item OP3-OP1 was removed from the active list
+
+Scenario: Operator verifies the items from the hold section
+		  @REQUIREMENTS:GID-3371934
 Then HMI OP1 has the call queue item OP3-OP1 in the hold list with label op3
 Then HMI OP1 has the call queue item SipContact-OP1 in the hold list with label Madoline
 Then HMI OP1 has the call queue item OP2-OP1 in the hold list with label OP2 Physical
 
 Scenario: Operator retrieves and terminates all calls
+		  @REQUIREMENTS:GID-3371935
 Then HMI OP1 retrieves from hold the call queue item OP2-OP1
 Then HMI OP1 verifies that the call queue item OP2-OP1 was removed from the hold list
 Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2 Physical
