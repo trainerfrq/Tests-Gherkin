@@ -76,6 +76,11 @@ class OpenWebSocketClientConnection extends WebsocketScriptTemplate {
                         .group(endpointName));
 
                 final MessageBuffer buffer = webSocketEndpoint.getMessageBuffer();
+                record(ExecutionDetails.create("Message buffer is: ")
+                        .expected("Message buffer is not null")
+                        .received(buffer.toString())
+                        .success(buffer != null));
+
                 TextMessage message = buffer.pollTextMessage();
 
                 record(ExecutionDetails.create("Applying JSON message filter")

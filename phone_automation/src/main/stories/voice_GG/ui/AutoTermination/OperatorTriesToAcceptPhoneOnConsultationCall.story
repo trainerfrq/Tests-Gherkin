@@ -91,7 +91,7 @@ Scenario: Transferor tries to answers the incoming call
 Then HMI OP2 accepts the call queue item SipContact-OP2
 
 Scenario: Verify notification label is displayed correctly for transferor
-Then HMI OP2 has a notification that shows  Call can not be accepted, TRANSFER mode active
+Then HMI OP2 has a notification that shows  Call Transfer in progress
 
 Scenario: Verify calls state for all operators
 Then HMI OP1 has the call queue item OP2-OP1 in state held
