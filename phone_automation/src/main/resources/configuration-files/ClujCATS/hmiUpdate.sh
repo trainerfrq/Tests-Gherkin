@@ -12,9 +12,13 @@ CWP2="cj-gg-cat-cwp-2"
 CWP3="cj-gg-cat-cwp-3"
 
 echo "restart services to update hmi, please be patient"
-ssh $SERVER3 "docker stop op-voice-service-cj-gg-cat-cwp-1"
-ssh $SERVER3 "docker stop op-voice-service-cj-gg-cat-cwp-2"
-ssh $SERVER3 "docker stop op-voice-service-cj-gg-cat-cwp-3"
+ssh $SERVER1 "docker stop op-voice-service-cj-gg-cat-cwp-1-1"
+ssh $SERVER1 "docker stop op-voice-service-cj-gg-cat-cwp-2-1"
+ssh $SERVER1 "docker stop op-voice-service-cj-gg-cat-cwp-3-1"
+ssh $SERVER3 "docker stop op-voice-service-cj-gg-cat-cwp-1-2"
+ssh $SERVER3 "docker stop op-voice-service-cj-gg-cat-cwp-2-2"
+ssh $SERVER3 "docker stop op-voice-service-cj-gg-cat-cwp-3-2"
+
 
 echo "all op voice services are stopped"
 echo "restart mission services"
@@ -33,8 +37,12 @@ ssh $CWP3 "docker restart op-shell-service"
 sleep 10
 echo "restart op voice services"
 
-ssh $SERVER3 "docker start op-voice-service-cj-gg-cat-cwp-1"
-ssh $SERVER3 "docker start op-voice-service-cj-gg-cat-cwp-2"
-ssh $SERVER3 "docker start op-voice-service-cj-gg-cat-cwp-3"
+ssh $SERVER1 "docker start op-voice-service-cj-gg-cat-cwp-1-1"
+ssh $SERVER1 "docker start op-voice-service-cj-gg-cat-cwp-2-1"
+ssh $SERVER1 "docker start op-voice-service-cj-gg-cat-cwp-3-1"
+ssh $SERVER3 "docker start op-voice-service-cj-gg-cat-cwp-1-2"
+ssh $SERVER3 "docker start op-voice-service-cj-gg-cat-cwp-2-2"
+ssh $SERVER3 "docker start op-voice-service-cj-gg-cat-cwp-3-2"
+
 
 echo "done!"
