@@ -1,7 +1,7 @@
 Narrative:
 As an operator
 I want to establish and receive different types of call
-So I can verify that each section shall display the calls in the order of their arrival time into this Call Queue section.
+So I can verify that each section shall display the calls in the order of their arrival time into these Call Queue sections.
 
 Scenario: Booking profiles
 Given booked profiles:

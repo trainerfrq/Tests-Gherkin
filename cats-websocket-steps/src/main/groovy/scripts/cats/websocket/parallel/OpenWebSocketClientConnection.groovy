@@ -1,13 +1,10 @@
 package scripts.cats.websocket.parallel
 
-import com.frequentis.c4i.test.agent.DSLSupport
 import com.frequentis.c4i.test.agent.websocket.client.impl.ClientEndpoint
 import com.frequentis.c4i.test.agent.websocket.client.impl.models.ClientEndpointConfiguration
 import com.frequentis.c4i.test.agent.websocket.common.impl.buffer.MessageBuffer
 import com.frequentis.c4i.test.agent.websocket.common.impl.message.TextMessage
 import com.frequentis.c4i.test.model.ExecutionDetails
-import com.frequentis.c4i.test.util.timer.WaitCondition
-import com.frequentis.c4i.test.util.timer.WaitTimer
 import com.frequentis.xvp.tools.cats.websocket.plugin.WebsocketScriptTemplate
 /**
  * Created by MAyar on 18.01.2017.
@@ -79,8 +76,6 @@ class OpenWebSocketClientConnection extends WebsocketScriptTemplate {
                         .group(endpointName));
 
                 final MessageBuffer buffer = webSocketEndpoint.getMessageBuffer();
-                verifyBufferIsNotNull(buffer, 10000);
-
                 TextMessage message = buffer.pollTextMessage();
 
                 record(ExecutionDetails.create("Applying JSON message filter")
@@ -93,20 +88,5 @@ class OpenWebSocketClientConnection extends WebsocketScriptTemplate {
                 setOutput(OPARAM_RECEIVEDMESSAGE, message.getContent())
             }
         }
-    }
-
-    protected static boolean verifyBufferIsNotNull(MessageBuffer buffer, long nWait) {
-        WaitCondition condition = new WaitCondition("Wait until buffer is not null") {
-            @Override
-            boolean test() {
-                DSLSupport.evaluate(ExecutionDetails.create("Verifying buffer is not null")
-                        .expected("Expected buffer is not null ")
-                        .received("Found buffer: " + buffer.toString())
-                        .success())
-                return buffer != null;
-
-            }
-        }
-        return WaitTimer.pause(condition, nWait, 400);
     }
 }

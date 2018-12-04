@@ -1,6 +1,6 @@
 Narrative:
 As an operator
-I want to establish many calls
+I want read the call history list
 So I can check that the call history list is time sorted
 
 Scenario: Booking profiles
@@ -43,11 +43,11 @@ Then HMI OP3 has the DA key OP2(as OP3) in state inc_initiated
 Scenario: Caller client clears the phone call
 When HMI OP2 presses DA key OP3
 
-Scenario: Operator receives an incoming call
+Scenario: Op1 establishes an outgoing call
 When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 
-Scenario: Operators part of called role receive the incoming call
+Scenario: Op2 receive the incoming call
 Then HMI OP2 has the DA key OP1 in state inc_initiated
 
 Scenario: Caller clears outgoing call
@@ -56,14 +56,15 @@ When HMI OP1 presses DA key OP2(as OP1)
 Scenario: Verify call is terminated for both operators
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP2 has in the call queue a number of 0 calls
+Then HMI OP3 has in the call queue a number of 0 calls
 
-Scenario: Caller opens call history
+Scenario: Op2 opens call history
 When HMI OP2 presses function key CALLHISTORY
 
-Scenario: Caller verifies that call history entries are ordered by time
+Scenario: Op2 verifies that call history entries are ordered by time
             @REQUIREMENTS:GID-3225206
 Then HMI OP2 verifies that call history list contains 3 entries
 Then HMI OP2 verifies call history list is time-sorted
 
-Scenario: Caller closes call history
+Scenario: Op2 closes call history
 Then HMI OP2 closes Call History popup window
