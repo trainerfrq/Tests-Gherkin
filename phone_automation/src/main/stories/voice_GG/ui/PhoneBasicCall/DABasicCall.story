@@ -22,13 +22,17 @@ Scenario: Caller establishes an outgoing call
 		  @REQUIREMENTS:GID-2682478
 		  @REQUIREMENTS:GID-2505643
 		  @REQUIREMENTS:GID-2536683
+		  @REQUIREMENTS:GID-2536683
+		  @REQUIREMENTS:GID-3366402
 When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
+Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
 
 Scenario: Callee client receives the incoming call
 		  @REQUIREMENTS:GID-2512204
 		  @REQUIREMENTS:GID-2505646
-Then HMI OP2 has the DA key OP1 in state inc_initiated
+		  @REQUIREMENTS:GID-3229739
+Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
 
 Scenario: Verify call queue section
 		  @REQUIREMENTS:GID-3371941

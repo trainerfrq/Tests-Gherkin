@@ -26,6 +26,8 @@ And WS2 confirms incoming phone call with callId incomingPhoneCallId1
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status out_ringing
 
 Scenario: Caller operator puts the call on hold with call conditional flag
+		  @REQUIREMENTS:GID-2510076
+		  @REQUIREMENTS:GID-2510078
 When WS1 puts the phone call with the callId outgoingPhoneCallId1 on hold with call conditional flag xfr
 
 Scenario: Verify call is not put on hold with call conditional flag

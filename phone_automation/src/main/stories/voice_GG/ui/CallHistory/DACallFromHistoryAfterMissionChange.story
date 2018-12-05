@@ -93,10 +93,12 @@ Then HMI OP1 verifies that call history call button has label OP2(as OP1)
 Scenario: Caller does call from call history
 		  @REQUIREMENTS:GID-2535764
 		  @REQUIREMENTS:GID-4084452
+		  @REQUIREMENTS:GID-4084452
 When HMI OP1 initiates a call from the call history
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
 Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
 Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with label 111111
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2(as OP1)
 
 Scenario: Callee client answers the incoming call
 Then HMI OP2 accepts the call queue item OP1-OP2

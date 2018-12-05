@@ -63,6 +63,7 @@ Then WS1 receives call status indication verifying all the messages on message b
 Then SipContact DialogState is CONFIRMED within 100 ms
 
 Scenario: Verify first call is NOT terminated
+		  @REQUIREMENTS:GID-2878006
 Then WS1 does NOT receive call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status terminated
 
 Scenario: Callee client clears the phone call
