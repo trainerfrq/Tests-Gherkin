@@ -45,6 +45,8 @@ When define values in story data:
 | callTarget2 | <<SIP_PHONE1>> |
 
 Scenario: Transferor establishes consultation call towards an nonexistent target
+		  @REQUIREMENTS:GID-2510076
+		  @REQUIREMENTS:GID-2510077
 When WS1 establishes an outgoing phone call with call conditional flag xfr using source callSource1 ang target callTarget2 and names outgoingPhoneCallId2
 And waiting for 2 seconds
 

@@ -1,6 +1,7 @@
 package scripts.cats.hmi.asserts
 
 import com.frequentis.c4i.test.model.ExecutionDetails
+import com.frequentis.c4i.test.util.timer.WaitTimer
 import javafx.scene.control.Label
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -23,6 +24,7 @@ class VerifyNotificationLabel extends FxScriptTemplate {
         evaluate(ExecutionDetails.create("Notification label was found")
                 .expected("notificationLabel is not null")
                 .success(notificationLabel != null));
+        WaitTimer.pause(1000);
 
         if(notificationLabel != null){
             String textDisplay = notificationLabel.textProperty().getValue()

@@ -32,7 +32,7 @@ Scenario: Verify call direction
 Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction tx
 Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction rx
 
-Scenario: Callee establishes an outgoing IA call
+Scenario: Callee establishes an outgoing IA call, using the IA key
 		  @REQUIREMENTS:GID-2505705
 		  @REQUIREMENTS:GID-3371939
 When HMI OP2 presses IA key IA - OP1
@@ -58,3 +58,36 @@ Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for callee
 Then HMI OP1 has in the call queue a number of 0 calls
+
+Scenario: Caller establishes an outgoing IA call
+When HMI OP1 presses IA key IA - OP2(as OP1)
+Then HMI OP1 has the call queue item OP2-OP1 in state connected
+Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
+
+Scenario: Callee receives incoming IA call
+Then HMI OP2 has the call queue item OP1-OP2 in state connected
+Then HMI OP2 has the IA key IA - OP1 in state connected
+
+Scenario: Verify call direction
+Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction tx
+Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction rx
+
+Scenario: Callee establishes an outgoing IA call, using the call queue item
+Then HMI OP2 accepts the call queue item OP1-OP2
+
+Scenario: Verify call direction
+Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction duplex
+Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction duplex
+
+Scenario: Caller clears IA call
+When HMI OP1 presses IA key IA - OP2(as OP1)
+
+Scenario: Verify call direction
+Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction rx
+Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction tx
+
+Scenario: Cleanup IA call
+When HMI OP2 presses IA key IA - OP1
+Then HMI OP2 has in the call queue a number of 0 calls
+Then HMI OP1 has in the call queue a number of 0 calls
+

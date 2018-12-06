@@ -20,6 +20,7 @@ Scenario: Search telephone book for first two entries
 When WS1 requests a number of 2 entries starting from index 0 with the search pattern police1 and saves the requestId1
 
 Scenario: Assert entries
+		  @REQUIREMENTS:GID-2877942
 Then WS1 receives phone book response on buffer named PhoneBookResponseBuffer for request with requestId1 with a total number of 2 entries
 Then WS1 receives phone book response on buffer named PhoneBookResponseBuffer for request with requestId1 with entry number 1 matching phone book entry entry1
 Then WS1 receives phone book response on buffer named PhoneBookResponseBuffer for request with requestId1 with entry number 2 matching phone book entry entry2

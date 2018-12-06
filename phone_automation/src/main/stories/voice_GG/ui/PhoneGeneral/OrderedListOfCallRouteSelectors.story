@@ -1,7 +1,7 @@
 Narrative:
 As an operator
 I want to add up to 10 Call Route Selectors
-So I can verify that the Call Route Selector List is ordered
+So I can verify that the Call Route Selector are order in the same manner as they were configured
 
 Scenario: Booking profiles
 Given booked profiles:
