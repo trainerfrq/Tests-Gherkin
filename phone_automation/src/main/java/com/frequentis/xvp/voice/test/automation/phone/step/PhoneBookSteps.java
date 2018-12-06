@@ -224,6 +224,31 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
    }
 
 
+   @Then("$namedWebSocket receives phone book response on buffer named $bufferName for request with $namedRequestId and saves the $response")
+   public void receivePhoneBookResponseSaveResponse( final String namedWebSocket, final String bufferName,
+         final String namedRequestId, final String response )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      final RemoteStepResult remoteStepResult =
+            evaluate(
+                  remoteStep( "Receiving phone book response on buffer named " + bufferName )
+                        .scriptOn( profileScriptResolver().map( ReceiveLastReceivedMessage.class,
+                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                        .input( ReceiveLastReceivedMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                        .input( ReceiveLastReceivedMessage.IPARAM_BUFFERKEY, bufferName )
+                        .input( ReceiveLastReceivedMessage.IPARAM_DISCARDALLMESSAGES, false ) );
+
+      String requestId = getStoryListData( namedRequestId, String.class );
+
+      final String jsonResponse =
+            ( String ) remoteStepResult.getOutput( ReceiveLastReceivedMessage.OPARAM_RECEIVEDMESSAGE );
+      final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
+
+     setStoryListData( response, jsonResponse );
+   }
+
    private void sendPhoneBookRequest( final String namedWebSocket, final Integer nrOfEntries, final Integer startIndex,
          final String searchPattern, final String namedRequestId )
    {

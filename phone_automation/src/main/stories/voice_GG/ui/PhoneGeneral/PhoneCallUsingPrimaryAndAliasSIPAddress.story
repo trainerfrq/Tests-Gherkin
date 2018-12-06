@@ -11,15 +11,15 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key       | source                   | target                      | callType |
-| OP1-OP2-1 | sip:mission1@example.com | sip:role2@example.com       | DA/IDA   |
-| OP2-OP1-1 | sip:222222@example.com   |                             | DA/IDA   |
-| OP1-OP2-2 | sip:mission1@example.com | sip:group1@example.com      | DA/IDA   |
-| OP2-OP1-2 | sip:222222@example.com   |                             | DA/IDA   |
-| OP1-OP2-3 | sip:mission1@example.com | sip:role2alias2@example.com | DA/IDA   |
-| OP2-OP1-3 | sip:222222@example.com   |                             | DA/IDA   |
-| OP1-OP2-4 | sip:mission1@example.com | sip:role2alias1@example.com | DA/IDA   |
-| OP2-OP1-4 | sip:222222@example.com   |                             | DA/IDA   |
+| key       | source                      | target                      | callType |
+| OP1-OP2-1 | sip:mission1@example.com    | sip:role2@example.com       | DA/IDA   |
+| OP2-OP1-1 | sip:role2@example.com       |                             | DA/IDA   |
+| OP1-OP2-2 | sip:mission1@example.com    | sip:group1@example.com      | DA/IDA   |
+| OP2-OP1-2 | sip:group1@example.com      |                             | DA/IDA   |
+| OP1-OP2-3 | sip:mission1@example.com    | sip:role2alias2@example.com | DA/IDA   |
+| OP2-OP1-3 | sip:role2alias2@example.com |                             | DA/IDA   |
+| OP1-OP2-4 | sip:mission1@example.com    | sip:role2alias1@example.com | DA/IDA   |
+| OP2-OP1-4 | sip:role2alias1@example.com |                             | DA/IDA   |
 
 
 Scenario: Caller opens phonebook
@@ -43,7 +43,7 @@ When HMI OP1 initiates a call from the phonebook
 Scenario: Call is initiated
 Then HMI OP1 has the call queue item OP2-OP1-1 in state out_ringing
 Then HMI OP1 has the call queue item OP2-OP1-1 in the active list with label sip:role2@example.com
-Then HMI OP2 has the call queue item OP1-OP2-1 in state ringing
+Then HMI OP2 has the call queue item OP1-OP2-1 in state inc_initiated
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP2-OP1-1
@@ -66,7 +66,7 @@ When HMI OP1 initiates a call from the phonebook
 Scenario: Call is initiated
 Then HMI OP1 has the call queue item OP2-OP1-2 in state out_ringing
 Then HMI OP1 has the call queue item OP2-OP1-2 in the active list with label sip:group1@example.com
-Then HMI OP2 has the call queue item OP1-OP2-2 in state ringing
+Then HMI OP2 has the call queue item OP1-OP2-2 in state inc_initiated
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP2-OP1-2
@@ -89,7 +89,7 @@ When HMI OP1 initiates a call from the phonebook
 Scenario: Call is initiated
 Then HMI OP1 has the call queue item OP2-OP1-3 in state out_ringing
 Then HMI OP1 has the call queue item OP2-OP1-3 in the active list with label sip:role2alias2@example.com
-Then HMI OP2 has the call queue item OP1-OP2-3 in state ringing
+Then HMI OP2 has the call queue item OP1-OP2-3 in state inc_initiated
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP2-OP1-3
@@ -112,7 +112,7 @@ When HMI OP1 initiates a call from the phonebook
 Scenario: Call is initiated
 Then HMI OP1 has the call queue item OP2-OP1-4 in state out_ringing
 Then HMI OP1 has the call queue item OP2-OP1-4 in the active list with label sip:role2alias1@example.com
-Then HMI OP2 has the call queue item OP1-OP2-4 in state ringing
+Then HMI OP2 has the call queue item OP1-OP2-4 in state inc_initiated
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP2-OP1-4

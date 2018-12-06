@@ -781,17 +781,20 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    }
 
    @Then("verify that $requestId1 and $requestId2 are equal")
-   public void assertEqualRequests( final String namedRequestId1, final String namedRequestId2 ){
-      evaluate(localStep( "Verify requests are equal" ).details(
-            match( namedRequestId1, equalTo( namedRequestId2 ) ) ) );
+   public void assertEqualRequests( final String namedResponse1, final String namedResponse2 ){
+      String response1 = getStoryListData( namedResponse1, String.class );
+      String response2 = getStoryListData( namedResponse2, String.class );
+      evaluate(localStep( "Verify request results are equal" ).details(
+            match( response1, equalTo( response2 ) ) ) );
    }
 
    @Then("verify that $requestId1 and $requestId2 are different")
-   public void assertDifferentRequests( final String namedRequestId1, final String namedRequestId2 ){
-      evaluate(localStep( "Verify requests are different" ).details(
-            match( namedRequestId1, not(equalTo( namedRequestId2 ) ) ) ) );
+   public void assertDifferentRequests( final String namedResponse1, final String namedResponse2 ){
+      String response1 = getStoryListData( namedResponse1, String.class );
+      String response2 = getStoryListData( namedResponse2, String.class );
+      evaluate(localStep("Verify request results are different" ).details(
+            match( response1, not(equalTo( response2 ) ) ) ) );
    }
-
 
    private void sendAndReceiveRoleLayoutRequest( final String namedWebSocket, final String roleIdName, final String namedRequestId )
    {
@@ -807,7 +810,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
       final RemoteStepResult remoteStepResult =
             evaluate(
-                  remoteStep( "Querying role phone data for role " + roleId )
+                  remoteStep( "Querying role layout for role " + roleId )
                         .scriptOn( profileScriptResolver().map( SendAndReceiveTextMessage.class,
                               BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
                         .input( SendAndReceiveTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
@@ -818,20 +821,11 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
       final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
 
-      evaluate( localStep( "Received query role layout response" )
-            .details( match( "Is query role layout response", jsonMessage.body().isQueryRolePhoneDataResponse(),
-                  equalTo( true ) ) )
-            .details( match( "Response is successful", jsonMessage.body().queryRolePhoneDataResponse().getError(),
-                  nullValue() ) )
-            .details( match( "Phone data is not empty",
-                  jsonMessage.body().queryRolePhoneDataResponse().getPhoneData().getDa(), not( empty() ) ) ) );
-
       final List<JsonWidgetElement>  jsonWidgetElementList =
             jsonMessage.body().queryRoleWidgetLayoutResponse().getWidgetLayout().getWidgets();
 
       setStoryListData( namedRequestId, jsonWidgetElementList.toString() );
    }
-
 
    private void assertCallingParty( final JsonMessage jsonMessage, final PhoneBookEntry phoneBookEntry )
    {

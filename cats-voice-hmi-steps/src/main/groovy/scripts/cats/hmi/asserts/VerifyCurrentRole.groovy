@@ -13,7 +13,7 @@ class VerifyCurrentRole extends FxScriptTemplate {
 
         String text = assertInput (IPARAM_STATUS_DISPLAY_TEXT) as String
 
-        Label statusDisplay = robot.lookup("#misisonPopup .assignedRoleName").queryFirst()
+        Label statusDisplay = robot.lookup("#misisonPopup #RightPanel").queryFirst()
 
         evaluate(ExecutionDetails.create("Status display was found")
                 .expected("statusDisplay is not null")

@@ -27,7 +27,7 @@ class VerifyRoleList extends FxScriptTemplate {
             evaluate(ExecutionDetails.create("Role list size is the expected one")
                     .received(roleItems.size().toString())
                     .expected(roleListSize.toString() + roleItems.toString())
-                    .success(roleItems.size().equals(roleListSize)))
+                    .success(roleItems.size() == roleListSize))
         }
     }
 }
