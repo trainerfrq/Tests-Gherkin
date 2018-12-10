@@ -7,8 +7,16 @@
         "id": "handset_0_0"
       },
       "gg_output": {
+        "type": "vp",
+        "id": "gg_Out"
+      },
+      "gg_headset": {
         "type": "ext",
         "id": "handset_0_0"
+      },
+      "gg_lsp": {
+        "type": "ext",
+        "id": "lsp_0_0"
       }
     }
   },
@@ -20,8 +28,16 @@
         "id": "handset_0_0"
       },
       "gg_output": {
+        "type": "vp",
+        "id": "gg_Out"
+      },
+      "gg_headset": {
         "type": "ext",
         "id": "handset_0_0"
+      },
+      "gg_lsp": {
+        "type": "ext",
+        "id": "lsp_0_0"
       }
     }
   },
@@ -33,8 +49,16 @@
         "id": "handset_0_0"
       },
       "gg_output": {
+        "type": "vp",
+        "id": "gg_Out"
+      },
+      "gg_headset": {
         "type": "ext",
         "id": "handset_0_0"
+      },
+      "gg_lsp": {
+        "type": "ext",
+        "id": "lsp_0_0"
       }
     }
   }
