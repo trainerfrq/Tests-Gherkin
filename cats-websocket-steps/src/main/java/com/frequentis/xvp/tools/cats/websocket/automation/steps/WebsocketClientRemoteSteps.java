@@ -16,7 +16,6 @@ import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSock
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
 import com.frequentis.xvp.voice.opvoice.json.messages.JsonMessage;
-import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.RedundancyState;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -29,9 +28,6 @@ import scripts.cats.websocket.sequential.StartClientConnectionRecording;
 import scripts.cats.websocket.sequential.buffer.ClearMessageBuffer;
 import scripts.cats.websocket.sequential.buffer.OpenMessageBuffer;
 import scripts.cats.websocket.sequential.buffer.RemoveCustomMessageBuffer;
-
-import static com.frequentis.c4i.test.model.MatcherDetails.match;
-import static org.hamcrest.Matchers.instanceOf;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -81,18 +77,13 @@ public class WebsocketClientRemoteSteps extends WebsocketAutomationSteps
               final String jsonResponse =
                       (String) remoteStepResult.getOutput(OpenWebSocketClientConnection.OPARAM_RECEIVEDMESSAGE);
               final JsonMessage jsonMessage = JsonMessage.fromJson(jsonResponse);
-              evaluate(localStep("Received redundancy state")
-                     .details(match(jsonMessage.body().getPayload(), instanceOf(RedundancyState.class))));
 
-              String redundancyState = jsonMessage.body().redundancyState().state().toString();
-              setStoryListData(reference.getWebSocketConfigurationName(), redundancyState);
-
-              if (redundancyState.contains("ACTIVE")) {
+              if (jsonResponse.contains("Active")) {
                   // add the named reference between websocket config and profile to the user named parameters
                   setStoryListData(reference.getKey(), reference);
                   i++;
               }
-              else if (redundancyState.contains("PASSIVE")){
+              else if (jsonResponse.contains("Passive")){
                  evaluate(
                          remoteStep( "Close passive websocket connection " + reference.getWebSocketConfigurationName() )
                                  .scriptOn( profileScriptResolver().map( CloseWebSocketClientConnection.class,
