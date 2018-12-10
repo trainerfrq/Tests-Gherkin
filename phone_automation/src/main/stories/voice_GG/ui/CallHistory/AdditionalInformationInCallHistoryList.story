@@ -1,7 +1,7 @@
 Narrative:
 As an operator
-I want to establish an outgoing call
-So I can check that the additional information for the call is displayed in call history list
+I want verify a call entry in the history list
+So I can find additional information about the call
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -25,7 +25,7 @@ Then HMI OP2 clears Call History list
 Then HMI OP2 verifies that call history list contains 0 entries
 Then HMI OP2 closes Call History popup window
 
-Scenario: Caller establishes first outgoing call - not established - and verifies additional information
+Scenario: Caller establishes 1st outgoing call - not established - and verifies additional information
             @REQUIREMENTS:GID-3225207
 When HMI OP2 presses DA key OP1
 Then assign date time value for entry entry5
@@ -37,7 +37,7 @@ When HMI OP2 presses function key CALLHISTORY
 Then HMI OP2 verifies call history entry number 0 matches entry5
 Then HMI OP2 closes Call History popup window
 
-Scenario: Caller establishes second outgoing call - established - and verifies additional information
+Scenario: Caller establishes 2nd outgoing call - established - and verifies additional information
 When HMI OP2 presses DA key OP1
 Then assign date time value for entry entry4
 Then HMI OP2 has the DA key OP1 in state out_ringing
@@ -52,7 +52,7 @@ When HMI OP2 presses function key CALLHISTORY
 Then HMI OP2 verifies call history entry number 0 matches entry4
 Then HMI OP2 closes Call History popup window
 
-Scenario: Caller establishes third outgoing call - IA call - and verifies additional information
+Scenario: Caller establishes 3rd outgoing call - IA call - and verifies additional information
 When HMI OP2 presses IA key IA - OP1
 Then assign date time value for entry entry3
 Then HMI OP2 has the IA key IA - OP1 in state connected

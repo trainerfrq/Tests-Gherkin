@@ -7,7 +7,7 @@ Scenario: Booking profiles
 Given booked profiles:
 | profile | group | host           | identifier |
 | javafx  | hmi   | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi   | <<CLIENT3_IP>> | HMI OP2    |
+| javafx  | hmi   | <<CLIENT2_IP>> | HMI OP2    |
 
 Scenario: Define call queue items
 Given the call queue items:
@@ -45,8 +45,10 @@ When HMI OP1 initiates a call from the phonebook
 
 Scenario: Priority call is initiated
 		  @REQUIREMENTS:GID-2932446
+		  @REQUIREMENTS:GID-2535740
 Then HMI OP1 has in the call queue the item OP2-OP1 with priority
 Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2 Physical
+Then HMI OP2 has the call queue item OP1-OP2 in the priority list with label mission1
 
 
 Scenario: Caller clears outgoing call

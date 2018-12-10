@@ -60,6 +60,8 @@ When WS3 clears all text messages from buffer named CallStatusIndicationBuffer3
 When WS3 clears all text messages from buffer named CallIncomingIndicationBuffer3
 
 Scenario: Transferor transfers the call without consultation call to be answered
+		  @REQUIREMENTS: GID-2510078
+		  @REQUIREMENTS: GID-2510076
 When WS1 transfers the phone call with the transferee callId outgoingPhoneCallId1 and transfer target callId outgoingPhoneCallId2
 Then waiting for 2 seconds
 

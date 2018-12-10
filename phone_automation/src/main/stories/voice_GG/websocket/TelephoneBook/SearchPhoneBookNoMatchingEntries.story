@@ -11,6 +11,7 @@ Scenario: Create the message buffers
 When WS1 opens the message buffer for message type phoneBookResponse named PhoneBookResponseBuffer
 
 Scenario: Search telephone book for first two entries
+		  @REQUIREMENTS:GID-2877942
 When WS1 requests a number of 2 entries starting from index 0 with the search pattern anystring and saves the requestId1
 
 Scenario: Assert there are no matching entries

@@ -29,6 +29,7 @@ Then WS1 receives call status indication on message buffer named CallStatusIndic
 Then SipContact DialogState is CONFIRMED within 100 ms
 
 Scenario: Caller client puts the call on hold
+		  @REQUIREMENTS:GID-2505734
 When WS1 puts the phone call with the callId outgoingPhoneCallId on hold
 And waiting for 2 seconds
 

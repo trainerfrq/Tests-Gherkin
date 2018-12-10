@@ -1,6 +1,6 @@
 As an operator
 I want to establish calls using different Call Route Selectors
-So I can verify that the elements of the Call Route Selector respect the conversion rules
+So I can verify that the calls are made according to the conversion rule define for each Call Route Selector
 
 Scenario: Booking profiles
 Given booked profiles:

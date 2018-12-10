@@ -46,6 +46,7 @@ Scenario: Search telephone book for police-a
 When WS1 requests a number of 10 entries starting from index 0 with the search pattern police-a and saves the requestId8
 
 Scenario: Assert entries
+		  @REQUIREMENTS:GID-2877942
 Then WS1 receives phone book response on buffer named PhoneBookResponseBuffer for request with requestId8 with a total number of 3 entries
 Then WS1 receives phone book response on buffer named PhoneBookResponseBuffer for request with requestId8 with entry number 1 matching phone book entry entry5
 Then WS1 receives phone book response on buffer named PhoneBookResponseBuffer for request with requestId8 with entry number 2 matching phone book entry entry6
