@@ -246,7 +246,7 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
             ( String ) remoteStepResult.getOutput( ReceiveLastReceivedMessage.OPARAM_RECEIVEDMESSAGE );
       final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
 
-     setStoryListData( response, jsonResponse );
+     setStoryListData( response, jsonMessage.body().phoneBookResponse().getItems().toString() );
    }
 
    private void sendPhoneBookRequest( final String namedWebSocket, final Integer nrOfEntries, final Integer startIndex,

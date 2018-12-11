@@ -21,6 +21,7 @@ import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -821,10 +822,14 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
       final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
 
-      final List<JsonWidgetElement>  jsonWidgetElementList =
-            jsonMessage.body().queryRoleWidgetLayoutResponse().getWidgetLayout().getWidgets();
-
-      setStoryListData( namedRequestId, jsonWidgetElementList.toString() );
+      List<String> layout = new ArrayList<>(  );
+      for( JsonWidgetElement jsonWidgetElement : jsonMessage.body().queryRoleWidgetLayoutResponse().getWidgetLayout().getWidgets() )
+      {
+         layout.add( jsonWidgetElement.getId() );
+         layout.add( jsonWidgetElement.getGrid() );
+         layout.add( jsonWidgetElement.getType().toString() );
+      }
+      setStoryListData( namedRequestId, layout.toString());
    }
 
    private void assertCallingParty( final JsonMessage jsonMessage, final PhoneBookEntry phoneBookEntry )
