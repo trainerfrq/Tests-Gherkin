@@ -7,7 +7,6 @@ package com.frequentis.xvp.tools.cats.websocket.automation.steps;
 
 import com.frequentis.c4i.test.agent.websocket.client.impl.models.ClientEndpointConfiguration;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
-import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStep;
 import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
 import com.frequentis.c4i.test.model.ExecutionData;
 import com.frequentis.c4i.test.model.ExecutionDetails;
@@ -15,7 +14,6 @@ import com.frequentis.c4i.test.model.parameter.CatsCustomParameterBase;
 import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
-import com.frequentis.xvp.voice.opvoice.json.messages.JsonMessage;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -43,7 +41,6 @@ public class WebsocketClientRemoteSteps extends WebsocketAutomationSteps
    public void openNamedWebSocketConnections(
          final List<ProfileToWebSocketConfigurationReference> namedProfileToWebSocketConfigReferences )
    {
-      final RemoteStep remStep = remoteStep( "Parsing Datatables paralelly" );
       if ( namedProfileToWebSocketConfigReferences.size() == 0 )
       {
          localStep( "looking into tables for parsing" )
@@ -66,9 +63,9 @@ public class WebsocketClientRemoteSteps extends WebsocketAutomationSteps
               final ArrayList<String> endpointName = new ArrayList<String>();
               endpointName.add(reference.getKey());
 
-              final RemoteStepResult remoteStepResult =
+              RemoteStepResult remoteStepResult =
                       evaluate(
-                              remStep
+                              remoteStep( "Open websocket connection " + reference.getWebSocketConfigurationName() )
                                       .scriptOn(profileScriptResolver().map(OpenWebSocketClientConnection.class,
                                               BookableProfileName.websocket), requireProfile(reference.getProfileName()))
                                       .input(OpenWebSocketClientConnection.IPARAM_ENDPOINTCONFIGURATION, (Serializable) config)
@@ -76,7 +73,6 @@ public class WebsocketClientRemoteSteps extends WebsocketAutomationSteps
 
               final String jsonResponse =
                       (String) remoteStepResult.getOutput(OpenWebSocketClientConnection.OPARAM_RECEIVEDMESSAGE);
-              final JsonMessage jsonMessage = JsonMessage.fromJson(jsonResponse);
 
               if (jsonResponse.contains("Active")) {
                   // add the named reference between websocket config and profile to the user named parameters
