@@ -774,30 +774,24 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       }
    }
 
+   @Then("verify that responses for $requestId1 and $requestId2 are $equalOrDifferent")
+   public void assertResponses( final String namedResponse1, final String namedResponse2, final String equalOrDifferent){
+      String response1 = getStoryListData( namedResponse1, String.class );
+      String response2 = getStoryListData( namedResponse2, String.class );
+      switch ( equalOrDifferent ){
+         case "equal":
+            evaluate(localStep( "Verify request results are equal" ).details(
+                  match( response1, equalTo( response2 ) ) ) );
+            break;
+         case "different":
+            evaluate(localStep("Verify request results are different" ).details(
+                  match( response1, not(equalTo( response2 ) ) ) ) );
+            break;
+      }
+   }
+
    @When("$namedWebSocket requests the layout for role $roleIdName and saves the request $requestIdName")
-   public void sendRoleLayoutRequest( final String namedWebSocket, final String roleIdName,
-         final String namedRequestId  )
-   {
-      sendAndReceiveRoleLayoutRequest( namedWebSocket, roleIdName, namedRequestId );
-   }
-
-   @Then("verify that $requestId1 and $requestId2 are equal")
-   public void assertEqualRequests( final String namedResponse1, final String namedResponse2 ){
-      String response1 = getStoryListData( namedResponse1, String.class );
-      String response2 = getStoryListData( namedResponse2, String.class );
-      evaluate(localStep( "Verify request results are equal" ).details(
-            match( response1, equalTo( response2 ) ) ) );
-   }
-
-   @Then("verify that $requestId1 and $requestId2 are different")
-   public void assertDifferentRequests( final String namedResponse1, final String namedResponse2 ){
-      String response1 = getStoryListData( namedResponse1, String.class );
-      String response2 = getStoryListData( namedResponse2, String.class );
-      evaluate(localStep("Verify request results are different" ).details(
-            match( response1, not(equalTo( response2 ) ) ) ) );
-   }
-
-   private void sendAndReceiveRoleLayoutRequest( final String namedWebSocket, final String roleIdName, final String namedRequestId )
+   public void sendAndReceiveRoleLayoutRequest( final String namedWebSocket, final String roleIdName, final String namedRequestId )
    {
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );

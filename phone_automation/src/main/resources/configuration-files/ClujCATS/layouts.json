@@ -382,7 +382,7 @@
         {
           "id": "113",
           "target": "sip:role1@example.com",
-          "source": "{role_primary_sip_address}",
+          "source": "sip:role2@example.com",
           "displayName": "ROLE1(as ROLE2)"
         },
         {
