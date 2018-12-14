@@ -76,6 +76,7 @@
     "schemaVersion": "0.5.0-SNAPSHOT",
     "phoneSettings": {
       "sipAddresses": [
+        "sip:mission1@example.com",
         "sip:role1@example.com",
         "sip:group1@example.com",
         "sip:role1alias2@example.com",
@@ -114,6 +115,7 @@
     "schemaVersion": "0.5.0-SNAPSHOT",
     "phoneSettings": {
       "sipAddresses": [
+        "sip:mission2@example.com",
         "sip:role2@example.com",
         "sip:group1@example.com",
         "sip:role2alias2@example.com",
@@ -151,6 +153,7 @@
     "schemaVersion": "0.5.0-SNAPSHOT",
     "phoneSettings": {
       "sipAddresses": [
+        "sip:mission3@example.com",
         "sip:role1@example.com",
         "sip:group1@example.com",
         "sip:role1alias2@example.com",
