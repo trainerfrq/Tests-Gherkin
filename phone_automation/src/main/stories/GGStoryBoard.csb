@@ -1086,11 +1086,17 @@
                                              <cats:storyDataList/>
                                         </cats:story>
                                         <cats:story enabled="true">
-                                              <cats:storyPath>voice_GG/ui/Role/PhoneCallUsingPrimaryAndAliasSIPAddress.story</cats:storyPath>
+                                              <cats:storyPath>voice_GG/ui/Role/PhoneCallUsingRoleAliasSIPAddresses.story</cats:storyPath>
                                               <cats:storyParameters/>
                                               <cats:storyStatistics/>
                                               <cats:storyDataList/>
                                          </cats:story>
+                                         <cats:story enabled="true">
+                                               <cats:storyPath>voice_GG/ui/Role/PhoneCallFromPrimaryRole.story</cats:storyPath>
+                                               <cats:storyParameters/>
+                                               <cats:storyStatistics/>
+                                               <cats:storyDataList/>
+                                          </cats:story>
                                     </cats:stories>
                                     <cats:timeout>1800</cats:timeout>
                                 </cats:storyList>

@@ -774,7 +774,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       }
    }
 
-   @Then("verify that responses for $requestId1 and $requestId2 are $equalOrDifferent")
+   @Then("verify that responses $requestId1 and $requestId2 are $equalOrDifferent")
    public void assertResponses( final String namedResponse1, final String namedResponse2, final String equalOrDifferent){
       String response1 = getStoryListData( namedResponse1, String.class );
       String response2 = getStoryListData( namedResponse2, String.class );
@@ -790,8 +790,8 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       }
    }
 
-   @When("$namedWebSocket requests the layout for role $roleIdName and saves the request $requestIdName")
-   public void sendAndReceiveRoleLayoutRequest( final String namedWebSocket, final String roleIdName, final String namedRequestId )
+   @When("$namedWebSocket requests the layout for role $roleIdName and saves the response $responseIdName")
+   public void sendAndReceiveRoleLayoutRequest( final String namedWebSocket, final String roleIdName, final String response )
    {
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
@@ -823,8 +823,9 @@ public class GGBasicSteps extends WebsocketAutomationSteps
          layout.add( jsonWidgetElement.getGrid() );
          layout.add( jsonWidgetElement.getType().toString() );
       }
-      setStoryListData( namedRequestId, layout.toString());
+      setStoryListData( response, layout.toString());
    }
+
 
    private void assertCallingParty( final JsonMessage jsonMessage, final PhoneBookEntry phoneBookEntry )
    {

@@ -7,18 +7,19 @@ Meta:
 	  @BeforeStory: ../includes/@PrepareThreeClientsWithMissions.story
 	  @AfterStory: ../includes/@CleanupThreeClients.story
 
-Scenario: Request layout for first operator
-When WS1 requests the layout for role roleId1 and saves the request request1
+Scenario: Request and receive layout for first operator
+When WS1 requests the layout for role roleId1 and saves the response response1
 
-Scenario: Request layout for second operator
-When WS2 requests the layout for role roleId2 and saves the request request2
+Scenario: Request and receive layout for second operator
+When WS2 requests the layout for role roleId2 and saves the response response2
 
-Scenario: Request layout for third operator
-When WS3 requests the layout for role roleId1 and saves the request request3
+Scenario: Request and receive layout for third operator
+When WS3 requests the layout for role roleId3 and saves the response response3
 
 Scenario: Assert that layouts for operators 1 and 3 (same role) are the same
 		  @REQUIREMENTS:GID-2398732
-Then verify that responses for request1 and request3 are equal
+Then verify that responses response1 and response3 are equal
 
 Scenario: Assert that layouts for operators 1 and 2 (different roles) are different
-Then verify that responses for request1 and request2 are different
+Then verify that responses response1 and response2 are different
+
