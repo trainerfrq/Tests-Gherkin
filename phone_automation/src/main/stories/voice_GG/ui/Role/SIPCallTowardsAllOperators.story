@@ -23,6 +23,8 @@ Given the call queue items:
 | SIP-allOp | <<SIP_PHONE2>>              | <<ALL_PHONES>>              | DA/IDA   |
 
 Scenario: SIP group call is initiated to all operators
+		  @REQUIREMENTS:GID-2897826
+		  @REQUIREMENTS:GID-3030985
 When SipContact calls SIP URI <<ALL_PHONES>>
 Then waiting for 2 seconds
 Then HMI OP1 has the call queue item SIP-allOp in the waiting list with label Madoline
