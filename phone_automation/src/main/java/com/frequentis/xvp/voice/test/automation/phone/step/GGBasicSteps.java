@@ -21,6 +21,7 @@ import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -40,12 +41,14 @@ import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
 import com.frequentis.xvp.voice.opvoice.config.common.AppId;
 import com.frequentis.xvp.voice.opvoice.config.common.OpId;
 import com.frequentis.xvp.voice.opvoice.config.layout.JsonDaDataElement;
+import com.frequentis.xvp.voice.opvoice.config.layout.JsonWidgetElement;
 import com.frequentis.xvp.voice.opvoice.json.messages.JsonMessage;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.AssociateResponse;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.AssociateResponseResult;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.DisassociateResponse;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.DisassociateResponseResult;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.layout.QueryRolePhoneDataRequest;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.layout.QueryRoleWidgetLayoutRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.missions.ChangeMissionRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.missions.ChangeMissionResponseResult;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.missions.Mission;
@@ -769,6 +772,58 @@ public class GGBasicSteps extends WebsocketAutomationSteps
                   .details( ExecutionDetails.create( "Unknown call party type: " + callPartyType ).failure() ) );
             break;
       }
+   }
+
+   @Then("verify that responses $requestId1 and $requestId2 are $equalOrDifferent")
+   public void assertResponses( final String namedResponse1, final String namedResponse2, final String equalOrDifferent){
+      String response1 = getStoryListData( namedResponse1, String.class );
+      String response2 = getStoryListData( namedResponse2, String.class );
+      switch ( equalOrDifferent ){
+         case "equal":
+            evaluate(localStep( "Verify request results are equal" ).details(
+                  match( response1, equalTo( response2 ) ) ) );
+            break;
+         case "different":
+            evaluate(localStep("Verify request results are different" ).details(
+                  match( response1, not(equalTo( response2 ) ) ) ) );
+            break;
+      }
+   }
+
+   @When("$namedWebSocket requests the layout for role $roleIdName and saves the response $responseIdName")
+   public void sendAndReceiveRoleLayoutRequest( final String namedWebSocket, final String roleIdName, final String response )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      final String roleId = getStoryData( roleIdName, String.class );
+
+      QueryRoleWidgetLayoutRequest queryRoleWidgetLayoutRequest = new QueryRoleWidgetLayoutRequest( roleId );
+      final JsonMessage request =
+            JsonMessage.builder().withQueryRoleWidgetLayoutRequest( queryRoleWidgetLayoutRequest )
+                  .withCorrelationId( UUID.randomUUID() ).build();
+
+      final RemoteStepResult remoteStepResult =
+            evaluate(
+                  remoteStep( "Querying role layout for role " + roleId )
+                        .scriptOn( profileScriptResolver().map( SendAndReceiveTextMessage.class,
+                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                        .input( SendAndReceiveTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                        .input( SendAndReceiveTextMessage.IPARAM_RESPONSETYPE, "queryRoleWidgetLayoutResponse" )
+                        .input( SendAndReceiveTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
+
+      final String jsonResponse =
+            ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
+      final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
+
+      List<String> layout = new ArrayList<>(  );
+      for( JsonWidgetElement jsonWidgetElement : jsonMessage.body().queryRoleWidgetLayoutResponse().getWidgetLayout().getWidgets() )
+      {
+         layout.add( jsonWidgetElement.getId() );
+         layout.add( jsonWidgetElement.getGrid() );
+         layout.add( jsonWidgetElement.getType().toString() );
+      }
+      setStoryListData( response, layout.toString());
    }
 
 

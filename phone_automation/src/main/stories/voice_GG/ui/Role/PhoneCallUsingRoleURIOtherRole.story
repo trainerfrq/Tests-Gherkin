@@ -32,6 +32,7 @@ When HMI OP2 presses DA key ROLE1(as OP2)
 
 Scenario: Caller establishes an outgoing call towards Role1 as Role2
 		  @REQUIREMENTS:GID-2886201
+		  @REQUIREMENTS:GID-2952544
 When HMI OP2 presses DA key ROLE1(as ROLE2)
 Then HMI OP2 has the DA key ROLE1(as ROLE2) in state out_ringing
 

@@ -28,6 +28,8 @@ import static org.hamcrest.Matchers.notNullValue;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -221,6 +223,41 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
 
       evaluate( localStep( "Check more items available flag" ).details( match( "Verify more items are available",
             phoneBookResponse.areMoreItemsAvailable(), is( moreItemsAvailable ) ) ) );
+   }
+
+
+   @Then("$namedWebSocket receives phone book response on buffer named $bufferName for request with $namedRequestId and saves the entry names in $responseId")
+   public void receivePhoneBookResponse( final String namedWebSocket, final String bufferName,
+         final String namedRequestId, final String response)
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      final RemoteStepResult remoteStepResult =
+            evaluate(
+                  remoteStep( "Receiving phone book response on buffer named " + bufferName )
+                        .scriptOn( profileScriptResolver().map( ReceiveLastReceivedMessage.class,
+                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                        .input( ReceiveLastReceivedMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                        .input( ReceiveLastReceivedMessage.IPARAM_BUFFERKEY, bufferName )
+                        .input( ReceiveLastReceivedMessage.IPARAM_DISCARDALLMESSAGES, false ) );
+
+      String requestId = getStoryListData( namedRequestId, String.class );
+
+      final String jsonResponse =
+            ( String ) remoteStepResult.getOutput( ReceiveLastReceivedMessage.OPARAM_RECEIVEDMESSAGE );
+      final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
+
+      evaluate( localStep( "Received phone book response" )
+            .details( match( jsonMessage.body().getPayload(), instanceOf( PhoneBookResponse.class ) ) ).details( match(
+                  Integer.toString( jsonMessage.body().phoneBookResponse().getRequestId() ), equalTo( requestId ) ) ) );
+
+      List<String> phoneBookNames = new ArrayList<>(  );
+      for( PhoneBookResponseItem phoneBookItem : jsonMessage.body().phoneBookResponse().getItems() )
+      {
+         phoneBookNames.add( phoneBookItem.getName() );
+      }
+      setStoryListData( response, phoneBookNames.toString());
    }
 
 
