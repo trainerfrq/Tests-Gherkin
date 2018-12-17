@@ -80,7 +80,9 @@
         "sip:role1@example.com",
         "sip:group1@example.com",
         "sip:role1alias2@example.com",
-        "sip:role1alias1@example.com"
+        "sip:role1alias1@example.com",
+        "sip:operator1@example.com",
+        "sip:groupall@192.168.10.33:5060"
       ]
     },
     "layoutId": "lower-east-exec-layout"
@@ -119,7 +121,8 @@
         "sip:role2@example.com",
         "sip:group1@example.com",
         "sip:role2alias2@example.com",
-        "sip:role2alias1@example.com"
+        "sip:role2alias1@example.com",
+        "sip:groupall@192.168.10.33:5060"
       ]
     },
     "layoutId": "lower-west-exec-layout"
@@ -157,7 +160,8 @@
         "sip:role1@example.com",
         "sip:group1@example.com",
         "sip:role1alias2@example.com",
-        "sip:role1alias1@example.com"
+        "sip:role1alias1@example.com",
+        "sip:groupall@192.168.10.33:5060"
       ]
     },
     "layoutId": "lower-east-exec-layout"
