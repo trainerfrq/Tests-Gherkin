@@ -9,13 +9,6 @@ Given booked profiles:
 | javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
 | javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
 | javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
-| voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
-
-Scenario: Create sip phone
-Given SipContacts group SipContact:
-| key        | profile | user-entity | sip-uri        |
-| SipContact | VOIP    | 12345       | <<SIP_PHONE2>> |
-And phones for SipContact are created
 
 Scenario: Define call queue items
 Given the call queue items:
@@ -34,7 +27,6 @@ Given the call queue items:
 | OP1-OP2-4 | sip:role1alias1@example.com |                             | DA/IDA   |
 | OP2-OP1-5 | sip:mission2@example.com    | sip:operator1@example.com   | DA/IDA   |
 | OP1-OP2-5 | sip:operator1@example.com   |                             | DA/IDA   |
-| SIP-allOp | <<SIP_PHONE2>>              | <<ALL_PHONES>>              | DA/IDA   |
 
 Scenario: Caller opens phonebook
 When HMI OP2 presses function key PHONEBOOK
@@ -160,21 +152,8 @@ Then HMI OP3 has in the call queue a number of 0 calls
 Scenario: Caller clears outgoing call
 Then HMI OP2 terminates the call queue item OP1-OP2-5
 
-Scenario: SIP group call is initiated to all operators
-When SipContact calls SIP URI <<ALL_PHONES>>
-Then waiting for 2 seconds
-Then HMI OP1 has the call queue item SIP-allOp in the waiting list with label Madoline
-!-- TODO: uncomment after installing new CATS version
-!-- Then HMI OP2 has the call queue item SIP-allOp in the waiting list with label Madoline
-!-- Then HMI OP3 has the call queue item SIP-allOp in the waiting list with label Madoline
-
-Scenario: Operator terminates the SIP Call
-When SipContact terminates calls
-
 Scenario: Call is terminated
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 
-Scenario: Remove phone
-When SipContact is removed
