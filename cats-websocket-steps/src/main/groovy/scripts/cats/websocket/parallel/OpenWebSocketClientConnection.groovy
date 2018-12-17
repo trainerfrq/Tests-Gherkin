@@ -83,10 +83,15 @@ class OpenWebSocketClientConnection extends WebsocketScriptTemplate {
                         .success(buffer != null)
                         .group(endpointName));
 
-                evaluate(ExecutionDetails.create("Printing all received message").success())
-
-                setOutput(OPARAM_RECEIVEDMESSAGE, message.getContent())
+                setOutput(OPARAM_RECEIVEDMESSAGE, reportMessage(message.getContent()))
             }
         }
+    }
+
+    public static String reportMessage(String message) {
+        if (message.length() > 100) {
+            message = message.substring(93, message.length())
+        }
+        return message
     }
 }
