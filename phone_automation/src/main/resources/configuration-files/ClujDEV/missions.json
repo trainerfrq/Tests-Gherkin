@@ -76,10 +76,13 @@
     "schemaVersion": "0.5.0-SNAPSHOT",
     "phoneSettings": {
       "sipAddresses": [
+        "sip:mission1@example.com",
         "sip:role1@example.com",
         "sip:group1@example.com",
         "sip:role1alias2@example.com",
-        "sip:role1alias1@example.com"
+        "sip:role1alias1@example.com",
+        "sip:operator1@example.com",
+        "sip:groupall@192.168.10.33:5060"
       ]
     },
     "layoutId": "lower-east-exec-layout"
@@ -114,10 +117,12 @@
     "schemaVersion": "0.5.0-SNAPSHOT",
     "phoneSettings": {
       "sipAddresses": [
+        "sip:mission2@example.com",
         "sip:role2@example.com",
         "sip:group1@example.com",
         "sip:role2alias2@example.com",
-        "sip:role2alias1@example.com"
+        "sip:role2alias1@example.com",
+        "sip:groupall@192.168.10.33:5060"
       ]
     },
     "layoutId": "lower-west-exec-layout"
@@ -151,10 +156,12 @@
     "schemaVersion": "0.5.0-SNAPSHOT",
     "phoneSettings": {
       "sipAddresses": [
+        "sip:mission3@example.com",
         "sip:role1@example.com",
         "sip:group1@example.com",
         "sip:role1alias2@example.com",
-        "sip:role1alias1@example.com"
+        "sip:role1alias1@example.com",
+        "sip:groupall@192.168.10.33:5060"
       ]
     },
     "layoutId": "lower-east-exec-layout"

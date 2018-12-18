@@ -16,16 +16,16 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import org.jbehave.core.annotations.Then;
-
-import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
-import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
-
 import scripts.cats.hmi.actions.ClickActivateMission;
 import scripts.cats.hmi.actions.ClickMissionCloseButton;
 import scripts.cats.hmi.actions.SelectMissionFromList;
 import scripts.cats.hmi.asserts.VerifyMissionList;
 import scripts.cats.hmi.asserts.VerifyStatusDisplay;
+
+import org.jbehave.core.annotations.Then;
+
+import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
+import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 
 public class MissionListUISteps extends AutomationSteps
 {
