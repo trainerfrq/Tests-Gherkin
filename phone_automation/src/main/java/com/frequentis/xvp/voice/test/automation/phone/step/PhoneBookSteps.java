@@ -18,6 +18,7 @@ package com.frequentis.xvp.voice.test.automation.phone.step;
 
 import scripts.cats.websocket.sequential.SendTextMessage;
 import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
+import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 import static com.frequentis.c4i.test.model.MatcherDetails.match;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
@@ -226,38 +227,37 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
    }
 
 
-   @Then("$namedWebSocket receives phone book response on buffer named $bufferName for request with $namedRequestId and saves the entry names in $responseId")
-   public void receivePhoneBookResponse( final String namedWebSocket, final String bufferName,
-         final String namedRequestId, final String response)
+   @When("$namedWebSocket requests the phone book entry names for role $roleIdName and saves the response $responseId")
+   public void sendAndReceiveRolePhoneBookRequest( final String namedWebSocket, final String roleIdName, final String namedResponseId )
    {
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
 
+      final String roleId = getStoryData( roleIdName, String.class );
+
+      PhoneBookRequest phoneBookRequest = new PhoneBookRequest( new Random().nextInt(), "", 0, MAX_NUMBER_OF_PHONEBOOK_ITEMS );
+      final JsonMessage request =
+            JsonMessage.builder().withCorrelationId( UUID.randomUUID() ).withPhoneBookRequest( phoneBookRequest )
+                  .build();
+
       final RemoteStepResult remoteStepResult =
             evaluate(
-                  remoteStep( "Receiving phone book response on buffer named " + bufferName )
-                        .scriptOn( profileScriptResolver().map( ReceiveLastReceivedMessage.class,
+                  remoteStep( "Querying phone book for role " + roleId )
+                        .scriptOn( profileScriptResolver().map( SendAndReceiveTextMessage.class,
                               BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
-                        .input( ReceiveLastReceivedMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
-                        .input( ReceiveLastReceivedMessage.IPARAM_BUFFERKEY, bufferName )
-                        .input( ReceiveLastReceivedMessage.IPARAM_DISCARDALLMESSAGES, false ) );
-
-      String requestId = getStoryListData( namedRequestId, String.class );
+                        .input( SendAndReceiveTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                        .input( SendAndReceiveTextMessage.IPARAM_RESPONSETYPE, "phoneBookResponse" )
+                        .input( SendAndReceiveTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
 
       final String jsonResponse =
-            ( String ) remoteStepResult.getOutput( ReceiveLastReceivedMessage.OPARAM_RECEIVEDMESSAGE );
+            ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
       final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
-
-      evaluate( localStep( "Received phone book response" )
-            .details( match( jsonMessage.body().getPayload(), instanceOf( PhoneBookResponse.class ) ) ).details( match(
-                  Integer.toString( jsonMessage.body().phoneBookResponse().getRequestId() ), equalTo( requestId ) ) ) );
-
       List<String> phoneBookNames = new ArrayList<>(  );
       for( PhoneBookResponseItem phoneBookItem : jsonMessage.body().phoneBookResponse().getItems() )
       {
          phoneBookNames.add( phoneBookItem.getName() );
       }
-      setStoryListData( response, phoneBookNames.toString());
+      setStoryListData( namedResponseId, phoneBookNames.toString());
    }
 
 

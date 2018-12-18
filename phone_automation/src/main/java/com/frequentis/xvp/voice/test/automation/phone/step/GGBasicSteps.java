@@ -49,7 +49,6 @@ import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.Disassociat
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.DisassociateResponseResult;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.layout.QueryRolePhoneDataRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.layout.QueryRoleWidgetLayoutRequest;
-import com.frequentis.xvp.voice.opvoice.json.messages.payload.layout.QueryRoleWidgetLayoutResponse;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.missions.ChangeMissionRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.missions.ChangeMissionResponseResult;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.missions.Mission;
@@ -792,52 +791,31 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    }
 
 
-   @When("$namedWebSocket requests the layout for role $roleIdName and saves the request $requestIdName")
-   public void sendLayoutRequest( final String namedWebSocket, final String roleIdName, final String namedRequestId )
+   @When("$namedWebSocket requests the layout for role $roleIdName and saves the response $responseIdName")
+   public void sendAndReceiveRoleLayoutRequest( final String namedWebSocket, final String roleIdName, final String response )
    {
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
 
-      QueryRoleWidgetLayoutRequest queryRoleWidgetLayoutRequest = new QueryRoleWidgetLayoutRequest( roleIdName );
+      final String roleId = getStoryData( roleIdName, String.class );
+
+      QueryRoleWidgetLayoutRequest queryRoleWidgetLayoutRequest = new QueryRoleWidgetLayoutRequest( roleId );
       final JsonMessage request =
             JsonMessage.builder().withQueryRoleWidgetLayoutRequest( queryRoleWidgetLayoutRequest )
                   .withCorrelationId( UUID.randomUUID() ).build();
 
-      evaluate( remoteStep( "Sending phone book request " )
-            .scriptOn( profileScriptResolver().map( SendTextMessage.class, BookableProfileName.websocket ),
-                  requireProfile( reference.getProfileName() ) )
-            .input( SendTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
-            .input( SendTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
-
-      setStoryListData( namedRequestId, queryRoleWidgetLayoutRequest.getRoleId()  );
-
-   }
-
-   @Then("$namedWebSocket receives layout response on buffer named $bufferName for request with $namedRequestId and saves the layout in $responseId")
-   public void receivePhoneBookResponse( final String namedWebSocket, final String bufferName,
-         final String namedRequestId, final String response)
-   {
-      final ProfileToWebSocketConfigurationReference reference =
-            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
-
       final RemoteStepResult remoteStepResult =
             evaluate(
-                  remoteStep( "Receiving layout response on buffer named " + bufferName )
-                        .scriptOn( profileScriptResolver().map( ReceiveLastReceivedMessage.class,
+                  remoteStep( "Querying role layout for role " + roleId )
+                        .scriptOn( profileScriptResolver().map( SendAndReceiveTextMessage.class,
                               BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
-                        .input( ReceiveLastReceivedMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
-                        .input( ReceiveLastReceivedMessage.IPARAM_BUFFERKEY, bufferName )
-                        .input( ReceiveLastReceivedMessage.IPARAM_DISCARDALLMESSAGES, false ) );
-
-      String requestId = getStoryListData( namedRequestId, String.class );
+                        .input( SendAndReceiveTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                        .input( SendAndReceiveTextMessage.IPARAM_RESPONSETYPE, "queryRoleWidgetLayoutResponse" )
+                        .input( SendAndReceiveTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
 
       final String jsonResponse =
-            ( String ) remoteStepResult.getOutput( ReceiveLastReceivedMessage.OPARAM_RECEIVEDMESSAGE );
+            ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
       final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
-
-      evaluate( localStep( "Received layout response" )
-            .details( match( jsonMessage.body().getPayload(), instanceOf( QueryRoleWidgetLayoutResponse.class ) ) ).details( match(
-                   jsonMessage.body().queryRoleWidgetLayoutResponse().getRoleId(), equalTo( requestId ) ) ) );
 
       List<String> layout = new ArrayList<>(  );
       for( JsonWidgetElement jsonWidgetElement : jsonMessage.body().queryRoleWidgetLayoutResponse().getWidgetLayout().getWidgets() )
