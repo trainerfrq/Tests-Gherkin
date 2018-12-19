@@ -1,7 +1,7 @@
 Narrative:
-As a callee operator having an incoming call
-I want to have a matching phone book entry for both caller and myself
-So that I can verify that the call incoming indication contains the contact related information of both the caller and myself
+As a caller operator
+I want to establish a call towards a target that has a matching phone book entry
+So that I can verify that the call establish indication contains the contact related information
 
 Meta: @BeforeStory: ../includes/@PrepareTwoClientsWithMissions.story
 	  @AfterStory: ../includes/@CleanupTwoClients.story
