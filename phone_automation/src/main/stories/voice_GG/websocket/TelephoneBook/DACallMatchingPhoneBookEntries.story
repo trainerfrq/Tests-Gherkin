@@ -25,10 +25,10 @@ Scenario: Caller establishes an outgoing call
 When WS1 establishes an outgoing phone call using source callSource ang target calledTarget and names outgoingPhoneCallId
 And waiting for 3 seconds
 
-Scenario: Verify calledParty matches phone book entry
+Scenario: Caller client receives call status indication with calledParty matching phone book entry
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with calledParty matching phone book entry targetEntry
 
-Scenario: Callee client receives the incoming call with calledParty matching phone book entry
+Scenario: Callee client receives call incoming indication with calledParty matching phone book entry
 		  @REQUIREMENTS:GID-2877902
 When WS2 receives call incoming indication on message buffer named CallIncomingIndicationBuffer2 with calledParty matching phone book entry targetEntry
 

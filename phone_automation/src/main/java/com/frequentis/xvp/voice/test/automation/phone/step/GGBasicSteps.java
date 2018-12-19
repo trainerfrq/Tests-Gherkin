@@ -793,7 +793,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
                         .input( ReceiveFirstReceivedMessage.IPARAM_BUFFERKEY, bufferName ) );
 
       final String jsonResponse =
-            ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
+            ( String ) remoteStepResult.getOutput( ReceiveFirstReceivedMessage.OPARAM_RECEIVEDMESSAGE );
       final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
 
       PhoneBookEntry phoneBookEntry = getStoryListData( namedPhoneBookEntry, PhoneBookEntry.class );
