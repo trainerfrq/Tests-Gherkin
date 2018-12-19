@@ -7,6 +7,7 @@ package com.frequentis.xvp.voice.test.automation.phone.step;
 
 import scripts.cats.websocket.sequential.SendTextMessage;
 import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
+import scripts.cats.websocket.sequential.buffer.ReceiveFirstReceivedMessage;
 import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
 import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
 import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
@@ -38,6 +39,7 @@ import com.frequentis.xvp.tools.cats.websocket.automation.model.PhoneBookEntry;
 import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
+import com.frequentis.xvp.voice.controlbase.CorrelationId;
 import com.frequentis.xvp.voice.opvoice.config.common.AppId;
 import com.frequentis.xvp.voice.opvoice.config.common.OpId;
 import com.frequentis.xvp.voice.opvoice.config.layout.JsonDaDataElement;
@@ -45,6 +47,7 @@ import com.frequentis.xvp.voice.opvoice.config.layout.JsonWidgetElement;
 import com.frequentis.xvp.voice.opvoice.json.messages.JsonMessage;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.AssociateResponse;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.AssociateResponseResult;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.ClientId;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.DisassociateResponse;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.DisassociateResponseResult;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.layout.QueryRolePhoneDataRequest;
@@ -74,7 +77,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
 
       final JsonMessage request =
-            JsonMessage.newAssociateRequest( UUID.randomUUID(), OpId.create( opId ), AppId.create( appId ) );
+            JsonMessage.newAssociateRequest( ClientId.fromId( UUID.randomUUID()), OpId.create( opId ), AppId.create( appId ) );
 
       final RemoteStepResult remoteStepResult =
             evaluate(
@@ -169,7 +172,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
       final JsonMessage event =
             JsonMessage.newMissionChangeCompletedEvent( new MissionChangeCompletedEvent( missionId ),
-                  UUID.randomUUID() );
+                  CorrelationId.fromId( UUID.randomUUID() ) );
 
       evaluate( remoteStep( "Sending mission change completed event for mission " + missionId )
             .scriptOn( profileScriptResolver().map( SendTextMessage.class, BookableProfileName.websocket ),
@@ -195,7 +198,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
       final String missionId = availableMissions.get( missionName );
       final JsonMessage request =
-            JsonMessage.newChangeMissionRequest( new ChangeMissionRequest( missionId ), UUID.randomUUID() );
+            JsonMessage.newChangeMissionRequest( new ChangeMissionRequest( missionId ), CorrelationId.fromId( UUID.randomUUID() ) );
 
       final RemoteStepResult remoteStepResult =
             evaluate(
@@ -772,6 +775,52 @@ public class GGBasicSteps extends WebsocketAutomationSteps
                   .details( ExecutionDetails.create( "Unknown call party type: " + callPartyType ).failure() ) );
             break;
       }
+   }
+
+   @Then("$namedWebSocket receives call status indication on message buffer named $bufferName with $callPartyType matching phone book entry $phoneBookEntry")
+   public void receiveCallStatusIndicationMatchingCallParty( final String namedWebSocket, final String bufferName,
+         final String callPartyType, final String namedPhoneBookEntry )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      final RemoteStepResult remoteStepResult =
+            evaluate(
+                  remoteStep( "Receiving call status indication on buffer named " + bufferName )
+                        .scriptOn( profileScriptResolver().map( ReceiveFirstReceivedMessage.class,
+                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                        .input( ReceiveFirstReceivedMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                        .input( ReceiveFirstReceivedMessage.IPARAM_BUFFERKEY, bufferName ) );
+
+      final String jsonResponse =
+            ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
+      final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
+
+      PhoneBookEntry phoneBookEntry = getStoryListData( namedPhoneBookEntry, PhoneBookEntry.class );
+      evaluate( localStep( "Verify called party in call status indication" )
+            .details( match( "Is call status indication", jsonMessage.body().isCallStatusIndication(),
+                  equalTo( true ) ) )
+            .details( match( "Called party uri matches",
+                  jsonMessage.body().callStatusIndication().getCalledParty().getUri(),
+                  equalTo( phoneBookEntry.getUri() ) ) )
+            .details( match( "Called party name matches",
+                  jsonMessage.body().callStatusIndication().getCalledParty().getName(),
+                  equalTo( phoneBookEntry.getName() ) ) )
+            .details( match( "Called party full name matches",
+                  jsonMessage.body().callStatusIndication().getCalledParty().getFullName(),
+                  equalTo( phoneBookEntry.getFullName() ) ) )
+            .details( match( "Called party location matches",
+                  jsonMessage.body().callStatusIndication().getCalledParty().getLocation(),
+                  equalTo( phoneBookEntry.getLocation() ) ) )
+            .details( match( "Called party organization matches",
+                  jsonMessage.body().callStatusIndication().getCalledParty().getOrganization(),
+                  equalTo( phoneBookEntry.getOrganization() ) ) )
+            .details( match( "Called party notes match",
+                  jsonMessage.body().callStatusIndication().getCalledParty().getNotes(),
+                  equalTo( phoneBookEntry.getNotes() ) ) )
+            .details( match( "Called party display addon matches",
+                  jsonMessage.body().callStatusIndication().getCalledParty().getDisplayAddon(),
+                  equalTo( phoneBookEntry.getDisplayAddon() ) ) ) );
    }
 
    @Then("verify that responses $requestId1 and $requestId2 are $equalOrDifferent")
