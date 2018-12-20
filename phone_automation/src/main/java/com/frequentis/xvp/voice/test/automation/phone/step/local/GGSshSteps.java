@@ -21,6 +21,7 @@ import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.c4i.test.ssh.automation.steps.SshSteps;
 import com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil;
 import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import static com.frequentis.c4i.test.config.AutomationProjectConfig.fromCatsHome;
 import static com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil.processConfigurationTemplate;
@@ -118,6 +119,26 @@ public class GGSshSteps extends SshSteps
 
         executeSshCommand( connectionName,
                 "docker exec -i "+shortContainerId+" bash << \\EOF\n" + scriptContent + "\nEOF" );
+    }
+
+    @Then("the timer values are stored outside the container on $connectionName")
+    public void copyMetricValueLocally( final String connectionName ) throws IOException
+    {
+        //final LocalStep localStep = localStep( "Store timer values" );
+
+        String containerId = getStoryListData("container-id", String.class);
+        String shortContainerId = containerId.substring(0,3);
+
+        for (int i=1; i<5; i++){
+            final Path path = Paths.get( getCatsResourcesFolderPath(), "failoverTimerWS"+i );
+            executeSshCommand( connectionName,
+                    "docker cp "+shortContainerId+":"+path.toString()+" /home/cats_metrics" );
+            executeSshCommand( connectionName,
+                    "echo `date -u` >> /home/cats_metrics/TimerWS"+i );
+            executeSshCommand( connectionName,
+                    "cat /home/cats_metrics/failoverTimerWS"+i+" >> /home/cats_metrics/TimerWS"+i );
+
+        }
     }
 
     @Given("the id of the cats-master docker container is taken from $connectionName")

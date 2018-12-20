@@ -15,7 +15,6 @@ class OpenAndVerifyWebSocketClientConnection extends WebsocketScriptTemplate {
 
     public static final String IPARAM_ENDPOINTCONFIGURATION = "endpoint-configuration";
     public static final String IPARAM_MULTIPLEENDPOINTNAMES = "multiple-endpointnames";
-    public static final String IPARAM_STATE = "state";
 
     public static final String OPARAM_RECEIVEDMESSAGE = "received_message";
 
@@ -24,7 +23,6 @@ class OpenAndVerifyWebSocketClientConnection extends WebsocketScriptTemplate {
 
 // get the target endpoint names. Can be null --> default websocket endpoint name is used on creation.
         List<String> endpointNames = assertInput(IPARAM_MULTIPLEENDPOINTNAMES) as List;
-        String state = assertInput(IPARAM_STATE) as String;
 
         if (endpointNames != null) {
             if (endpointNames.size() > 0) {
@@ -56,10 +54,10 @@ class OpenAndVerifyWebSocketClientConnection extends WebsocketScriptTemplate {
         for (String endpointName : endpointNames) {
 
             int i = 1
-            while (!waitForState(endpointName, config, state)){
+            while (!waitForState(endpointName, config)){
                 WaitTimer.pause(250);
                 i++
-                if(waitForState(endpointName, config, state) || i > 15)
+                if(waitForState(endpointName, config) || i > 15)
                     break
             }
             ClientEndpoint webSocketEndpoint = createWebSocketEndpoint(endpointName, config);
@@ -99,7 +97,7 @@ class OpenAndVerifyWebSocketClientConnection extends WebsocketScriptTemplate {
         }
     }
 
-    protected boolean waitForState(String endpointName, ClientEndpointConfiguration config, String state) {
+    protected boolean waitForState(String endpointName, ClientEndpointConfiguration config) {
 
         //open websocket connection
         ClientEndpoint webSocketEndpoint = createWebSocketEndpoint(endpointName, config);
@@ -107,14 +105,14 @@ class OpenAndVerifyWebSocketClientConnection extends WebsocketScriptTemplate {
         TextMessage message = buffer.pollTextMessage();
         String shortenMessage = reportMessage(message.getContent())
         record(ExecutionDetails.create("Redundancy state")
-                .expected("Redundancy state is" + state)
+                .expected("Redundancy state is Active")
                 .received(shortenMessage)
                 .success(true))
 
         //close websocket connection
         webSocketEndpoint.dispose();
 
-        return shortenMessage.contains(state);
+        return shortenMessage.contains("Active");
     }
 
     public static String reportMessage(String message) {

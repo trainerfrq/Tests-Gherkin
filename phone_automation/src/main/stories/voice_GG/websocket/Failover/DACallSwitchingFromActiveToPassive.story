@@ -3,6 +3,7 @@ As a callee operator using a redundant Op Voice service
 I want to make a phone call
 So I can verify that the phone call is always made even when op voice instances are restarted
 
+Meta: @AfterStory: ../includes/@StoreMetrics.story
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -11,7 +12,6 @@ Given booked profiles:
 
 Scenario: Open Web Socket Client connections
 GivenStories: voice_GG/includes/StopOpVoiceActiveOnDockerHost2.story
-When a timer named failoverTimer is started
 Given named the websocket configurations:
 | named       | websocket-uri       | text-buffer-size |
 | WS_Config-1 | <<OPVOICE1_WS.URI>> | 1000             |
@@ -19,7 +19,6 @@ Given named the websocket configurations:
 | WS_Config-3 | <<OPVOICE2_WS.URI>> | 1000             |
 | WS_Config-4 | <<OPVOICE4_WS.URI>> | 1000             |
 
-Then a timer named failoverTimer is stopped
 Scenario: Open Web Socket Client connections
 When a timer named failoverTimerWS1 is started
 Given it is known what op voice instances are Active, the websocket configuration is applied:
@@ -32,6 +31,7 @@ Given it is known what op voice instances are Active, the websocket configuratio
 | key | profile-name | websocket-config-name |
 | WS2 | WEBSOCKET 1  | WS_Config-2           |
 Then a timer named failoverTimerWS2 is stopped
+
 Scenario: Create the message buffers for missions
 When WS1 opens the message buffer for message type missionsAvailableIndication named MissionsAvailableIndicationBuffer1
 When WS1 opens the message buffer for message type missionChangedIndication named MissionChangedIndicationBuffer1
@@ -103,7 +103,7 @@ When the named websocket WS2 removes the message buffer named CallStatusIndicati
 
 Scenario: Wait until passive op voice instances are started properly
 GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost2.story
-When waiting for 50 seconds
+When waiting for 60 seconds
 Given that connection can be open (although instances are Passive) using websocket configuration:
 | key | profile-name | websocket-config-name |
 | WS3 | WEBSOCKET 1  | WS_Config-3           |
@@ -195,7 +195,7 @@ When the named websocket WS4 removes the message buffer named CallStatusIndicati
 
 Scenario: Wait until passive op voice instances are started properly
 GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost1.story
-When waiting for 50 seconds
+When waiting for 60 seconds
 Given that connection can be open (although instances are Passive) using websocket configuration:
 | key | profile-name | websocket-config-name |
 | WS1 | WEBSOCKET 1  | WS_Config-1           |
