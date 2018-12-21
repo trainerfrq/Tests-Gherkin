@@ -1,6 +1,9 @@
 package scripts.cats.hmi.asserts
 
+import com.frequentis.c4i.test.agent.DSLSupport
 import com.frequentis.c4i.test.model.ExecutionDetails
+import com.frequentis.c4i.test.util.timer.WaitCondition
+import com.frequentis.c4i.test.util.timer.WaitTimer
 import javafx.scene.control.Label
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -26,11 +29,31 @@ class VerifyStatusDisplay extends FxScriptTemplate {
                 .success(statusDisplay != null));
 
         if(statusDisplay != null){
-            String textDisplay = statusDisplay.textProperty().getValue()
+            evaluate(ExecutionDetails.create("Verify status display has property: " + text)
+                    .success(verifyNodeHasProperty(statusDisplay, text, 10000)));
+
+           /* String textDisplay = statusDisplay.textProperty().getValue()
             evaluate(ExecutionDetails.create("Status displays the expected text")
                     .received("Received text is: " + textDisplay)
                     .expected("Expected text is: " + text)
-                    .success(statusDisplay.textProperty().getValue().equals(text)));
+                    .success(statusDisplay.textProperty().getValue().equals(text)));*/
         }
+    }
+
+    protected static boolean verifyNodeHasProperty(Label node, String property, long nWait) {
+
+        WaitCondition condition = new WaitCondition("Wait until node has [" + property + "] value") {
+            @Override
+            boolean test() {
+                String receivedProperty = node.textProperty().getValue();
+                DSLSupport.evaluate(ExecutionDetails.create("Verifying has property")
+                        .expected("Expected property: " + property)
+                        .received("Found property: " + receivedProperty)
+                        .success())
+                return receivedProperty.contains(property);
+
+            }
+        }
+        return WaitTimer.pause(condition, nWait, 400);
     }
 }

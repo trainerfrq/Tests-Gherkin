@@ -1,7 +1,7 @@
 Narrative:
-As a caller operator having an active phone call with a callee operator
-I want to clear the phone call
-So I can verify that the phone call is terminated on both sides
+As a caller operator having an call forward active
+I want to verify that if one Op Voice partition is down
+The call forward is still active and the functionality is not affected
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -19,6 +19,8 @@ Given the call queue items:
 | OP3-OP1 | sip:op3@example.com    | sip:111111@example.com | DA/IDA   |
 
 Scenario: Verify displayed status
+GivenStories: voice_GG/includes/StopStartOpVoiceActiveOnDockerHost1.story
+Then waiting for 60 seconds
 Then HMI OP1 has in the display status section connection the state CONNECTED
 Then HMI OP2 has in the display status section connection the state CONNECTED
 Then HMI OP3 has in the display status section connection the state CONNECTED
@@ -60,6 +62,13 @@ Then HMI OP1 has the function key CALLFORWARD in forwardActive state
 
 Scenario: Verify displayed status after the stopping the op voice instances from one partition
 GivenStories: voice_GG/includes/StopOpVoiceActiveOnDockerHost2.story
+Then waiting for 1 seconds
+Then HMI OP1 has in the display status section connection the state DISCONNECTED
+Then HMI OP2 has in the display status section connection the state DISCONNECTED
+Then HMI OP3 has in the display status section connection the state DISCONNECTED
+
+Scenario: Verify displayed status after the stopping the op voice instances from one partition
+Then waiting for 3 seconds
 When HMI OP1 verifies that loading screen is visible
 Then HMI OP1 has in the display status section connection the state DEGRADED
 When HMI OP2 verifies that loading screen is visible
@@ -107,6 +116,8 @@ Then HMI OP1 verifies that call queue info container is not visible
 
 Scenario: Verify displayed status after the starting the op voice instances
 GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost2.story
+Then waiting for 60 seconds
 Then HMI OP1 has in the display status section connection the state CONNECTED
 Then HMI OP2 has in the display status section connection the state CONNECTED
+Then HMI OP3 has in the display status section connection the state CONNECTED
 

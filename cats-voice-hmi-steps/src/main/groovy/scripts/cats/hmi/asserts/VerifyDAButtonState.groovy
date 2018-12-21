@@ -22,17 +22,16 @@ class VerifyDAButtonState extends FxScriptTemplate {
                 .expected("DA key with id " + daKeyId + " was found")
                 .success(daWidget != null));
 
-        WaitTimer.pause(1000);
-
         evaluate(ExecutionDetails.create("Verify DA key has styleClass: " + daKeyState)
                 .success(verifyNodeHasClass(daWidget, daKeyState, 10000)));
     }
 
     protected static boolean verifyNodeHasClass(Node node, String className, long nWait) {
-        String styleClass = node.styleClass.join(" ");
+
         WaitCondition condition = new WaitCondition("Wait until node has [" + className + "] class") {
             @Override
             boolean test() {
+                String styleClass = node.styleClass.join(" ");
                 DSLSupport.evaluate(ExecutionDetails.create("Verifying has class")
                         .expected("Expected class: " + className)
                         .received("Found classes: " + styleClass)
