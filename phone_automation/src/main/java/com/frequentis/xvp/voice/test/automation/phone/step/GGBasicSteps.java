@@ -790,6 +790,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       }
    }
 
+
    @When("$namedWebSocket requests the layout for role $roleIdName and saves the response $responseIdName")
    public void sendAndReceiveRoleLayoutRequest( final String namedWebSocket, final String roleIdName, final String response )
    {
