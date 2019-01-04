@@ -52,7 +52,7 @@ And waiting for 1 seconds
 
 Scenario: Verify call is unchanged
 Then WS1 has on the message buffer named CallStatusIndicationBuffer1 a number of 0 messages
-Then WS2 has on the message buffer named CallStatusIndicationBuffer2 a number of 0 messages
+Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and status held
 
 Scenario: Cleanup call
 When WS1 clears the phone call with the callId outgoingPhoneCallId
