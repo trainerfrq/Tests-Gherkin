@@ -505,13 +505,13 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/HoldRetrieve/RetrieveFromHoldActiveCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/HoldRetrieve/RetrieveFromHoldHeldCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>

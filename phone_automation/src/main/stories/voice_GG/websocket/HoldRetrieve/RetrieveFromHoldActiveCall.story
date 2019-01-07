@@ -42,8 +42,8 @@ When WS1 retrieves the on hold phone call with the callId outgoingPhoneCallId
 And waiting for 1 seconds
 
 Scenario: Verify call is unchanged
-Then WS1 has on the message buffer named CallStatusIndicationBuffer1 a number of 0 messages
 Then WS2 has on the message buffer named CallStatusIndicationBuffer2 a number of 0 messages
+And WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status connected
 
 Scenario: Cleanup call
 When WS1 clears the phone call with the callId outgoingPhoneCallId
