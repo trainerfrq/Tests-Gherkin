@@ -44,6 +44,13 @@
            <groupId>com.frequentis.xvp.framework.testing</groupId>
            <artifactId>xvp-cats-rest-configuration</artifactId>
            <version>${xvp-cats-rest-configuration.version}</version>
+           <exclusions>
+               <exclusion>
+                   <groupId>com.frequentis.xvp.framework.testing</groupId>
+                   <artifactId>xvp-cats-test-system</artifactId>
+               </exclusion>
+           </exclusions>
+
        </dependency>
 
        <dependency>
