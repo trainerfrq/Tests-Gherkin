@@ -24,6 +24,7 @@ Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
 
 Scenario: Callee receives incoming IA call
 		  @REQUIREMENTS:GID-2505708
+		  @REQUIREMENTS:GID-2512204
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Then HMI OP2 has the IA key IA - OP1 in state connected
 

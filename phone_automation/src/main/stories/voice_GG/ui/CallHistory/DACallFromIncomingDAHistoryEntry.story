@@ -57,6 +57,7 @@ Scenario: OP2 does call from call history
 		  @REQUIREMENTS:GID-2535764
 		  @REQUIREMENTS:GID-2536683
 		  @REQUIREMENTS:GID-2656702
+		  @REQUIREMENTS:GID-3366402
 When HMI OP2 initiates a call from the call history
 Then HMI OP2 has the DA key OP1 in state out_ringing
 

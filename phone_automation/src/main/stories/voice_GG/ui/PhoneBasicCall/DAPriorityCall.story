@@ -27,6 +27,8 @@ Scenario: Callee client receives the incoming priority call
 		  @REQUIREMENTS:GID-2505701
 		  @REQUIREMENTS:GID-2505702
 		  @REQUIREMENTS:GID-3685306
+		  @REQUIREMENTS:GID-3229739
+		  @REQUIREMENTS:GID-2512204
 Then HMI OP2 has the DA key OP1 in state inc_initiated
 Then HMI OP2 has in the call queue the item OP1-OP2 with priority
 
