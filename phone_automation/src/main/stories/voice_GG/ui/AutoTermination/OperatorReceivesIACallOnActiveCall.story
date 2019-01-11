@@ -36,7 +36,6 @@ Scenario: Op3 establishes an outgoing IA call towards Op2
 When HMI OP3 presses IA key IA - OP2(as OP3)
 
 Scenario: Verify call state for all operators
-		  @REQUIREMENTS:GID-2682501
 Then HMI OP1 has in the call queue a number of 1 calls
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has in the call queue a number of 1 calls

@@ -50,6 +50,7 @@ Then HMI OP1 verifies that call history redial button has label OP2(as OP1)
 Scenario: Caller redials from CallHistory
 		  @REQUIREMENTS:GID-2535764
 		  @REQUIREMENTS:GID-2535779
+		  @REQUIREMENTS:GID-3366402
 When HMI OP1 redials last number
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 
