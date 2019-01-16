@@ -90,7 +90,6 @@ Then WS2 receives call status indication on message buffer named CallStatusIndic
 And WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status connected
 
 Scenario: Callee client clears the phone call
-		  @REQUIREMENTS:GID-2510109
 When WS2 clears the phone call with the callId incomingPhoneCallId
 And waiting for 3 seconds
 Then WS1 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and terminationDetails normal
@@ -110,6 +109,7 @@ Given that connection can be open (although instances are Passive) using websock
 | WS4 | WEBSOCKET 1  | WS_Config-4           |
 
 Scenario: Open Web Socket Client connections
+		  @REQUIREMENTS:GID-4034511
 		  @REQUIREMENTS:GID-4435108
 GivenStories: voice_GG/includes/StopOpVoiceActiveOnDockerHost1.story
 When a timer named failoverTimerWS3 is started

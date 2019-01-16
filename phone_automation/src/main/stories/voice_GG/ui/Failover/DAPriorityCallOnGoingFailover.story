@@ -66,19 +66,15 @@ Then HMI OP1 has in the display status section connection the state CONNECTED
 Then HMI OP2 has in the display status section connection the state CONNECTED
 
 Scenario: Verify displayed status after the stopping the op voice instances from one partition
+		  @REQUIREMENTS:GID-4034511
 GivenStories: voice_GG/includes/StopOpVoiceActiveOnDockerHost1.story
-Then waiting for 1 seconds
-Then HMI OP1 has in the display status section connection the state DISCONNECTED
-Then HMI OP2 has in the display status section connection the state DISCONNECTED
-
-Scenario: Verify displayed status after the stopping the op voice instances from one partition
-Then waiting for 3 seconds
 When HMI OP1 verifies that loading screen is visible
 Then HMI OP1 has in the display status section connection the state DEGRADED
 When HMI OP2 verifies that loading screen is visible
 Then HMI OP2 has in the display status section connection the state DEGRADED
 
-Scenario: Caller client clears the phone call
+Scenario: Call is terminated for callee
+!-- TODO QXVP-9245 : enable this test after story is done
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for caller
@@ -98,4 +94,10 @@ Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for caller
 Then HMI OP1 has in the call queue a number of 0 calls
+
+Scenario: Verify displayed status after the starting the op voice instances
+GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost1.story
+Then waiting for 60 seconds
+Then HMI OP1 has in the display status section connection the state CONNECTED
+Then HMI OP2 has in the display status section connection the state CONNECTED
 

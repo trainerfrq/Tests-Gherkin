@@ -117,7 +117,7 @@ class OpenAndVerifyWebSocketClientConnection extends WebsocketScriptTemplate {
 
     public static String reportMessage(String message) {
         if (message.length() > 100) {
-            message = message.substring(93, message.length())
+            message = message.substring(message.indexOf("redundancy"), message.length())
         }
         return message
     }

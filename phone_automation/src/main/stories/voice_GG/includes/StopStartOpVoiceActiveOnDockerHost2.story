@@ -1,7 +1,6 @@
 Scenario: Connect to deploymentServer
 Given SSH connections:
 | name             | remote-address       | remotePort | username | password  |
-| dockerHost1      | <<OPVOICE_HOST1_IP>> | 22         | root     | !frqAdmin |
 | dockerHost2      | <<OPVOICE_HOST2_IP>> | 22         | root     | !frqAdmin |
 
 Scenario: Stop Op Voice Services on docker host 2

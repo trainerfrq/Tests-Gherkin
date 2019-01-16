@@ -124,8 +124,6 @@ public class GGSshSteps extends SshSteps
     @Then("the timer values are stored outside the container on $connectionName")
     public void copyMetricValueLocally( final String connectionName ) throws IOException
     {
-        //final LocalStep localStep = localStep( "Store timer values" );
-
         String containerId = getStoryListData("container-id", String.class);
         String shortContainerId = containerId.substring(0,3);
 

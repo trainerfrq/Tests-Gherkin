@@ -31,12 +31,6 @@ class VerifyStatusDisplay extends FxScriptTemplate {
         if(statusDisplay != null){
             evaluate(ExecutionDetails.create("Verify status display has property: " + text)
                     .success(verifyNodeHasProperty(statusDisplay, text, 10000)));
-
-           /* String textDisplay = statusDisplay.textProperty().getValue()
-            evaluate(ExecutionDetails.create("Status displays the expected text")
-                    .received("Received text is: " + textDisplay)
-                    .expected("Expected text is: " + text)
-                    .success(statusDisplay.textProperty().getValue().equals(text)));*/
         }
     }
 

@@ -61,6 +61,7 @@ Scenario: Op1 still has Call Forward active
 Then HMI OP1 has the function key CALLFORWARD in forwardActive state
 
 Scenario: Verify displayed status after the stopping the op voice instances from one partition
+		  @REQUIREMENTS:GID-4034511
 GivenStories: voice_GG/includes/StopOpVoiceActiveOnDockerHost2.story
 Then waiting for 1 seconds
 Then HMI OP1 has in the display status section connection the state DISCONNECTED
