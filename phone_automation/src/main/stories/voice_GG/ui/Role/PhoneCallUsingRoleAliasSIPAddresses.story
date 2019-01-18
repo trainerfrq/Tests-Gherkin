@@ -47,7 +47,7 @@ When HMI OP2 initiates a call from the phonebook
 
 Scenario: Call is initiated
 Then HMI OP2 has the call queue item OP1-OP2-1 in state out_ringing
-Then HMI OP2 has the call queue item OP1-OP2-1 in the active list with label sip:role1@example.com
+Then HMI OP2 has the call queue item OP1-OP2-1 in the active list with label Role 1 (Alice)
 Then HMI OP1 has the call queue item OP2-OP1-1 in state inc_initiated
 Then HMI OP1 has the call queue item OP2-OP1-1 in the waiting list with label mission2
 Then HMI OP3 has the call queue item OP2-OP3-1 in the waiting list with label mission2
@@ -72,7 +72,7 @@ When HMI OP2 initiates a call from the phonebook
 
 Scenario: Call is initiated
 Then HMI OP2 has the call queue item OP1-OP2-2 in state out_ringing
-Then HMI OP2 has the call queue item OP1-OP2-2 in the active list with label sip:group1@example.com
+Then HMI OP2 has the call queue item OP1-OP2-2 in the active list with label Group 1
 Then HMI OP1 has the call queue item OP2-OP1-2 in state inc_initiated
 Then HMI OP1 has the call queue item OP2-OP1-2 in the waiting list with label mission2
 Then HMI OP3 has the call queue item OP2-OP3-2 in the waiting list with label mission2
@@ -97,7 +97,7 @@ When HMI OP2 initiates a call from the phonebook
 
 Scenario: Call is initiated
 Then HMI OP2 has the call queue item OP1-OP2-3 in state out_ringing
-Then HMI OP2 has the call queue item OP1-OP2-3 in the active list with label sip:role1alias2@example.com
+Then HMI OP2 has the call queue item OP1-OP2-3 in the active list with label Role 1 (Alice)
 Then HMI OP1 has the call queue item OP2-OP1-3 in state inc_initiated
 Then HMI OP1 has the call queue item OP2-OP1-3 in the waiting list with label mission2
 Then HMI OP3 has the call queue item OP2-OP3-3 in the waiting list with label mission2
@@ -122,7 +122,7 @@ When HMI OP2 initiates a call from the phonebook
 
 Scenario: Call is initiated
 Then HMI OP2 has the call queue item OP1-OP2-4 in state out_ringing
-Then HMI OP2 has the call queue item OP1-OP2-4 in the active list with label sip:role1alias1@example.com
+Then HMI OP2 has the call queue item OP1-OP2-4 in the active list with label Role 1 (Alice)
 Then HMI OP1 has the call queue item OP2-OP1-4 in state inc_initiated
 Then HMI OP1 has the call queue item OP2-OP1-4 in the waiting list with label mission2
 Then HMI OP3 has the call queue item OP2-OP3-4 in the waiting list with label mission2
