@@ -29,11 +29,6 @@ When HMI OP2 presses DA key OP1
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
-Scenario: Caller puts call on hold
-When HMI OP1 puts on hold the active call
-Then HMI OP1 has the call queue item OP2-OP1 in state hold
-Then HMI OP2 has the call queue item OP1-OP2 in state held
-
 Scenario: Caller activates loudspeaker
 		  @REQUIREMENTS:GID-3005515
 		  @REQUIREMENTS:GID-4231216
@@ -41,18 +36,29 @@ Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled
 When HMI OP1 presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
 
+Scenario: Caller puts call on hold
+When HMI OP1 puts on hold the active call
+Then HMI OP1 has the call queue item OP2-OP1 in state hold
+Then HMI OP2 has the call queue item OP1-OP2 in state held
+
+Scenario: Op1 verifies if Loudspeaker state is unmodified
+Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
+
+Scenario: Op1 deactivates loudspeaker
+When HMI OP1 presses function key LOUDSPEAKER
+Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled
+
 Scenario: Caller retrieves call from hold
 Then HMI OP1 retrieves from hold the call queue item OP2-OP1
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Op1 verifies if Loudspeaker state is unmodified
-Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
+Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled
 
 Scenario: Callee clears outgoing call
 When HMI OP2 presses DA key OP1
+Then HMI OP2 has in the call queue a number of 0 calls
+Then HMI OP1 has in the call queue a number of 0 calls
 
-Scenario: Op1 deactivates loudspeaker
-When HMI OP1 presses function key LOUDSPEAKER
-Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled
 

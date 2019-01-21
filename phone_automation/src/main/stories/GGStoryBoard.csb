@@ -1813,6 +1813,12 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
+                        <cats:story enabled="true">
+                             <cats:storyPath>voice_GG/ui/Failover/LSPStateFailover.story</cats:storyPath>
+                             <cats:storyParameters/>
+                             <cats:storyStatistics/>
+                             <cats:storyDataList/>
+                    </cats:story>
                     </cats:stories>
                     <cats:timeout>3600</cats:timeout>
                 </cats:storyList>
