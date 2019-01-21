@@ -4,7 +4,7 @@
     "devices": {
       "gg_input": {
         "type": "ext",
-        "id": "handset_0_0"
+        "id": "handset_0"
       },
       "gg_output": {
         "type": "vp",
@@ -12,11 +12,11 @@
       },
       "gg_headset": {
         "type": "ext",
-        "id": "handset_0_0"
+        "id": "handset_0"
       },
       "gg_lsp": {
         "type": "ext",
-        "id": "lsp_0_0"
+        "id": "lsp_0"
       }
     }
   },
@@ -25,7 +25,7 @@
     "devices": {
       "gg_input": {
         "type": "ext",
-        "id": "handset_0_0"
+        "id": "handset_0"
       },
       "gg_output": {
         "type": "vp",
@@ -33,11 +33,11 @@
       },
       "gg_headset": {
         "type": "ext",
-        "id": "handset_0_0"
+        "id": "handset_0"
       },
       "gg_lsp": {
         "type": "ext",
-        "id": "lsp_0_0"
+        "id": "lsp_0"
       }
     }
   },
@@ -46,7 +46,7 @@
     "devices": {
       "gg_input": {
         "type": "ext",
-        "id": "handset_0_0"
+        "id": "handset_0"
       },
       "gg_output": {
         "type": "vp",
@@ -54,11 +54,11 @@
       },
       "gg_headset": {
         "type": "ext",
-        "id": "handset_0_0"
+        "id": "handset_0"
       },
       "gg_lsp": {
         "type": "ext",
-        "id": "lsp_0_0"
+        "id": "lsp_0"
       }
     }
   }
