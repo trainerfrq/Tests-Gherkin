@@ -24,6 +24,7 @@ import scripts.cats.hmi.actions.DragAndClickOnMenuButtonDAKey;
 import scripts.cats.hmi.asserts.VerifyCallForwardState;
 import scripts.cats.hmi.asserts.VerifyDAButtonState;
 import scripts.cats.hmi.asserts.VerifyDAKeyDisplayCallType;
+import scripts.cats.hmi.asserts.VerifyFunctionKeyLabel;
 
 import java.util.List;
 
@@ -196,6 +197,17 @@ public class CallUISteps extends AutomationSteps {
                   assertProfile( profileName ) )
             .input( VerifyCallForwardState.IPARAM_KEY_ID, key.getId() )
             .input( VerifyCallForwardState.IPARAM_KEY_STATE, state + "State" ) );
+   }
+
+   @Then("$profileName has the function key $functionKey label $label")
+   public void verifyLoudspeakerState(final String profileName, final String target, final String label) {
+      FunctionKey key = retrieveFunctionKey(target);
+
+      evaluate( remoteStep( "Verify operator position has the loudspeaker in " + label + " state" )
+            .scriptOn(profileScriptResolver().map( VerifyFunctionKeyLabel.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyFunctionKeyLabel.IPARAM_KEY_ID, key.getId())
+            .input( VerifyFunctionKeyLabel.IPARAM_LABEL, label));
    }
 
     @When("$profileName puts on hold the active call using DA key $target")
