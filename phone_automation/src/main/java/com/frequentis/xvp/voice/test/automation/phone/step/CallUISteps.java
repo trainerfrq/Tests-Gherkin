@@ -16,23 +16,6 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import scripts.cats.hmi.actions.ClickDAButton;
-import scripts.cats.hmi.actions.ClickFunctionKey;
-import scripts.cats.hmi.actions.ClickOnCallHistoryCallButton;
-import scripts.cats.hmi.actions.ClickOnPhoneBookCallButton;
-import scripts.cats.hmi.actions.DragAndClickOnMenuButtonDAKey;
-import scripts.cats.hmi.asserts.VerifyCallForwardState;
-import scripts.cats.hmi.asserts.VerifyDAButtonState;
-import scripts.cats.hmi.asserts.VerifyDAKeyDisplayCallType;
-import scripts.cats.hmi.asserts.VerifyFunctionKeyLabel;
-
-import java.util.List;
-
-import org.jbehave.core.annotations.Alias;
-import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
-
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.model.ExecutionDetails;
@@ -40,6 +23,23 @@ import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
 import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
 import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
+import org.jbehave.core.annotations.Alias;
+import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
+import scripts.cats.hmi.actions.ClickDAButton;
+import scripts.cats.hmi.actions.ClickFunctionKey;
+import scripts.cats.hmi.actions.ClickOnCallHistoryCallButton;
+import scripts.cats.hmi.actions.ClickOnPhoneBookCallButton;
+import scripts.cats.hmi.actions.DragAndClickOnMenuButtonDAKey;
+import scripts.cats.hmi.asserts.VerifyCallForwardState;
+import scripts.cats.hmi.asserts.VerifyDAButtonState;
+import scripts.cats.hmi.asserts.VerifyDAButtonUsageReady;
+import scripts.cats.hmi.asserts.VerifyDAKeyDisplayCallType;
+import scripts.cats.hmi.asserts.VerifyLoadingOverlayIsVisible;
+import scripts.cats.hmi.asserts.VerifyFunctionKeyLabel;
+
+import java.util.List;
 
 public class CallUISteps extends AutomationSteps {
     private static final String PRIORITY_CALL_MENU_BUTTON_ID = "priority_call_menu_button";
@@ -136,6 +136,18 @@ public class CallUISteps extends AutomationSteps {
         }
     }
 
+    @Given("$profileName has the DA key $target in ready to be used state")
+    @Alias("$profileName has the IA key $target in ready to be used state")
+    public void verifyDAUsageReady(final String profileName, final String target) {
+        DAKey daKey = retrieveDaKey(profileName, target);
+
+        evaluate(remoteStep("Check application status")
+                .scriptOn(
+                        profileScriptResolver().map(VerifyDAButtonUsageReady.class, BookableProfileName.javafx),
+                        assertProfile(profileName))
+                .input(VerifyDAButtonUsageReady.IPARAM_DA_KEY_ID, daKey.getId()));
+    }
+
     @Then("$profileName has the DA key $target in state $state")
     @Alias("$profileName has the IA key $target in state $state")
     public void verifyDAState(final String profileName, final String target, final String state) {
@@ -230,6 +242,14 @@ public class CallUISteps extends AutomationSteps {
                     BookableProfileName.javafx ), assertProfile( profileName ) )
               .input( DragAndClickOnMenuButtonDAKey.IPARAM_MENU_BUTTON_ID, TRANSFER_MENU_BUTTON_ID )
               .input( DragAndClickOnMenuButtonDAKey.IPARAM_DA_KEY_ID, daKey.getId() ) );
+    }
+
+    @When("$profileName verifies that loading screen is visible")
+    public void transferActiveCallUsingDAKey( final String profileName)
+    {
+        evaluate( remoteStep( "Loading screen is visible" )
+                .scriptOn( profileScriptResolver().map( VerifyLoadingOverlayIsVisible.class,
+                        BookableProfileName.javafx ), assertProfile( profileName ) ));
     }
 
     private DAKey retrieveDaKey(final String source, final String target) {
