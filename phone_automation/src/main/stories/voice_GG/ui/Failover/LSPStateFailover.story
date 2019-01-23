@@ -25,7 +25,6 @@ Then HMI OP1 has in the display status section connection the state CONNECTED
 
 Scenario: Caller activates loudspeaker
 		  @REQUIREMENTS:GID-3005515
-		  @REQUIREMENTS:GID-4231216
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled
 When HMI OP1 presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled

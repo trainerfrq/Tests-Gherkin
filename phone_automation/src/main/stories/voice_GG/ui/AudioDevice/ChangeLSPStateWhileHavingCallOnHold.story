@@ -31,7 +31,6 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Caller activates loudspeaker
 		  @REQUIREMENTS:GID-3005515
-		  @REQUIREMENTS:GID-4231216
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled
 When HMI OP1 presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
