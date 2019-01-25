@@ -8,18 +8,18 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class VerifyConferenceListParticipantStatus extends FxScriptTemplate {
-    private static final Logger LOGGER = LoggerFactory.getLogger(VerifyConferenceListParticipantStatus.class);
+class VerifyConferenceListParticipantName extends FxScriptTemplate {
+    private static final Logger LOGGER = LoggerFactory.getLogger(VerifyConferenceListParticipantName.class);
 
     public static final String IPARAM_CONFERENCE_PARTICIPANT_POSITION = "conference_participant_position"
-    public static final String IPARAM_CONFERENCE_PARTICIPANT_STATUS = "conference_participant_status"
+    public static final String IPARAM_CONFERENCE_PARTICIPANT_NAME = "conference_participant_name"
 
 
     @Override
     void script() {
 
         String participantPosition = assertInput(IPARAM_CONFERENCE_PARTICIPANT_POSITION) as String
-        String participantStatus = assertInput(IPARAM_CONFERENCE_PARTICIPANT_STATUS) as String
+        String participantName = assertInput(IPARAM_CONFERENCE_PARTICIPANT_NAME) as String
 
         Node conferencePopup = robot.lookup("#conferenceListPopup").queryFirst();
 
@@ -29,14 +29,14 @@ class VerifyConferenceListParticipantStatus extends FxScriptTemplate {
 
         if (conferencePopup != null) {
             final TableView conferenceTable = robot.lookup( "#conferenceTable" ).queryFirst()
-            final Node participant = robot.lookup( "#conferenceTable #conferenceEntry_"+participantPosition+" #columnStatus" ).queryFirst()
+            final Node participant = robot.lookup( "#conferenceTable #conferenceEntry_"+participantPosition+" #columnName" ).queryFirst()
             TableCell cell = (TableCell)participant;
-            String status = cell.getText()
+            String name = cell.getText()
 
-            evaluate(ExecutionDetails.create("Conference participant has the expected status")
-                    .received(status)
-                    .expected(participantStatus)
-                    .success(status.contains(participantStatus)))
+            evaluate(ExecutionDetails.create("Conference participant has the expected name")
+                    .received(name)
+                    .expected(participantName)
+                    .success(name.contains(participantName)))
         }
     }
 }

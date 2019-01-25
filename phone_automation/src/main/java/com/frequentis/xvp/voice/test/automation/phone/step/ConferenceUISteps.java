@@ -26,6 +26,7 @@ import scripts.cats.hmi.actions.Conference.ClickOnRemoveConferenceParticipantBut
 import scripts.cats.hmi.actions.Conference.ClickOnTerminateConferenceButton;
 import scripts.cats.hmi.actions.Conference.SelectConferenceListParticipant;
 import scripts.cats.hmi.asserts.Conference.VerifyAddConferenceParticipantButtonState;
+import scripts.cats.hmi.asserts.Conference.VerifyConferenceListParticipantName;
 import scripts.cats.hmi.asserts.Conference.VerifyConferenceListParticipantStatus;
 import scripts.cats.hmi.asserts.Conference.VerifyConferenceListSize;
 import scripts.cats.hmi.asserts.Conference.VerifyRemoveConferenceParticipantButtonState;
@@ -108,11 +109,23 @@ public class ConferenceUISteps extends AutomationSteps
 
     @Then("$profileName verifies in the list that conference participant on position $number has status $status")
     public void verifyConferenceParticipantStatus(final String profileName, final Integer number, final String status) {
+        Integer realPosition = number-1;
         evaluate(remoteStep("Verify conference participant status " + status)
                 .scriptOn(
                         profileScriptResolver().map(VerifyConferenceListParticipantStatus.class, BookableProfileName.javafx),
                         assertProfile(profileName))
-                .input(VerifyConferenceListParticipantStatus.IPARAM_CONFERENCE_PARTICIPANT_POSITION, number-1 )
+                .input(VerifyConferenceListParticipantStatus.IPARAM_CONFERENCE_PARTICIPANT_POSITION, Integer.toString(realPosition) )
                 .input(VerifyConferenceListParticipantStatus.IPARAM_CONFERENCE_PARTICIPANT_STATUS, status));
+    }
+
+    @Then("$profileName verifies in the list that conference participant on position $number has name $name")
+    public void verifyConferenceParticipantName(final String profileName, final Integer number, final String name) {
+        Integer realPosition = number-1;
+        evaluate(remoteStep("Verify conference participant name " + name)
+                .scriptOn(
+                        profileScriptResolver().map(VerifyConferenceListParticipantName.class, BookableProfileName.javafx),
+                        assertProfile(profileName))
+                .input(VerifyConferenceListParticipantName.IPARAM_CONFERENCE_PARTICIPANT_POSITION, Integer.toString(realPosition) )
+                .input(VerifyConferenceListParticipantName.IPARAM_CONFERENCE_PARTICIPANT_NAME, name));
     }
 }

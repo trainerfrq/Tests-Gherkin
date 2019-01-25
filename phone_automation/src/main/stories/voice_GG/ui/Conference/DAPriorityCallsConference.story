@@ -19,8 +19,8 @@ Given the call queue items:
 | OP2-OP1-Conf | <<OPVOICE2_CONF_URI>>  | sip:111111@example.com   | DA/IDA   |
 | OP2-OP3-Conf | <<OPVOICE2_CONF_URI>>  | sip:op3@example.com:5060 | DA/IDA   |
 
-Scenario: Op2 establishes an outgoing call
-When HMI OP2 presses DA key OP1
+Scenario: Op2 establishes an outgoing priority call
+When HMI OP2 initiates a priority call on DA key OP1
 Then HMI OP2 has the DA key OP1 in state out_ringing
 
 Scenario: Op1 client receives the incoming call and answers the call
@@ -40,17 +40,15 @@ Then HMI OP2 has a notification that shows Conference call active
 
 Scenario: Op1 call state verification
 Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
-!-- Then HMI OP1 verifies that the DA key OP2(as OP1) has the info label Conference
 
 Scenario: Op2 verifies conference participants list
 When HMI OP2 opens the conference participants list
 Then HMI OP2 verifies that conference participants list contains 1 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
-Then HMI OP2 verifies in the list that conference participant on position 1 has name $name
 Then HMI OP2 closes Conference list popup window
 
-Scenario: Op2 adds another participant to the conference
-When HMI OP2 presses DA key OP3
+Scenario: Op2 adds another participant to the conference, priority call also
+When HMI OP2 initiates a priority call on DA key OP3
 
 Scenario: Op3 client receives the incoming call and answers the call
 Then HMI OP3 has the call queue item OP2-OP3-Conf in state inc_initiated
@@ -71,7 +69,6 @@ Then HMI OP2 verifies that terminate conference button is enabled
 
 Scenario: Op3 call state verification
 Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
-!-- Then HMI OP3 verifies that the DA key OP2(as OP3) has the info label Conference
 
 Scenario: On Op2 position DA buttons of the participants are correctly signalized
 Then HMI OP2 verifies that the DA key OP1 has the info label Conference
