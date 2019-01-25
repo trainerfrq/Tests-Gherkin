@@ -74,7 +74,7 @@
     "notes": "Language - German",
     "dataSets": [
       {
-        "destination": "sip:police@12.34.56.89",
+        "destination": "sip:222222@192.168.40.129:5060",
         "displayAddon": "Local"
       }
     ]

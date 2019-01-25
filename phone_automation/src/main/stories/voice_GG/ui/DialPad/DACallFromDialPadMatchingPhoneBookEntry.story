@@ -37,7 +37,7 @@ Scenario: Call is initiated
 		  @REQUIREMENTS:GID-2877904
 		  @REQUIREMENTS:GID-2932446
 !-- TODO QXVP-10847 : re-enable this test after bug is fixed
-Then HMI OP1 has the call queue item SipContact-OP1 in the active list with label Lloyd
+Then HMI OP1 has the call queue item SipContact-OP1 in the active list with name label Lloyd
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP3-OP1

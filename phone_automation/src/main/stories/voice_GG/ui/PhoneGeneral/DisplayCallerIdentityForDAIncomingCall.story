@@ -19,13 +19,13 @@ When HMI OP2 presses DA key OP3
 
 Scenario: Callee client receives the incoming call with the identity of the caller
 		  @REQUIREMENTS:GID-3547601
-Then HMI OP3 has the call queue item OP2-OP3 in the waiting list with label OP2 Physical
+Then HMI OP3 has the call queue item OP2-OP3 in the waiting list with name label OP2 Physical
 
 Scenario: Callee client answers the incoming call
 When HMI OP3 presses DA key OP2(as OP3)
 
 Scenario: Verify call is connected and the caller identity is displayed
-Then HMI OP3 has the call queue item OP2-OP3 in the active list with label OP2 Physical
+Then HMI OP3 has the call queue item OP2-OP3 in the active list with name label OP2 Physical
 
 Scenario: Caller client clears the phone call
 When HMI OP2 presses DA key OP3
@@ -45,13 +45,13 @@ Scenario: Caller hits call history call button
 When HMI OP2 initiates a call from the call history
 
 Scenario: Callee client receives the incoming call
-Then HMI OP3 has the call queue item OP2-OP3 in the waiting list with label OP2 Physical
+Then HMI OP3 has the call queue item OP2-OP3 in the waiting list with name label OP2 Physical
 
 Scenario: Callee client answers the incoming call
 When HMI OP3 presses DA key OP2(as OP3)
 
 Scenario: Verify call is connected and the caller identity is displayed
-Then HMI OP3 has the call queue item OP2-OP3 in the active list with label OP2 Physical
+Then HMI OP3 has the call queue item OP2-OP3 in the active list with name label OP2 Physical
 
 Scenario: Caller client clears the phone call
 When HMI OP2 presses DA key OP3

@@ -39,7 +39,7 @@ Then waiting for 2 seconds
 
 Scenario: Call is automatically forwarded to Op2
 Then HMI OP2 has the call queue item SipContact-OP1 in state inc_initiated
-Then HMI OP2 has the call queue item SipContact-OP1 in the waiting list with label Madoline
+Then HMI OP2 has the call queue item SipContact-OP1 in the waiting list with name label Madoline
 
 Scenario: Op2 client answers the incoming call
 When HMI OP2 presses the call queue item ipContact-OP1

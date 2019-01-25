@@ -27,7 +27,7 @@ Scenario: SIP group call is initiated to all operators
 		  @REQUIREMENTS:GID-3030985
 When SipContact calls SIP URI <<ALL_PHONES>>
 Then waiting for 2 seconds
-Then HMI OP1 has the call queue item SIP-allOp in the waiting list with label Madoline
+Then HMI OP1 has the call queue item SIP-allOp in the waiting list with name label Madoline
 !-- TODO: uncomment after installing new CATS version
 !-- Then HMI OP2 has the call queue item SIP-allOp in the waiting list with label Madoline
 !-- Then HMI OP3 has the call queue item SIP-allOp in the waiting list with label Madoline

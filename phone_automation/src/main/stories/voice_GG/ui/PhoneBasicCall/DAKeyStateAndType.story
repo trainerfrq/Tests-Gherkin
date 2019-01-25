@@ -15,19 +15,19 @@ Scenario: Caller establishes an outgoing call
 		  @REQUIREMENTS:GID-3229743
 When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
-Then HMI OP1 verifies that the DA key OP2(as OP1) has the displayed call type DA
+Then HMI OP1 verifies that the DA key OP2(as OP1) has the type label DA
 
 Scenario: Callee client receives and answers the incoming call
 		  @REQUIREMENTS:GID-4086404
 Then HMI OP2 has the DA key OP1 in state inc_initiated
-Then HMI OP2 verifies that the DA key OP1 has the displayed call type DA
+Then HMI OP2 verifies that the DA key OP1 has the type label DA
 When HMI OP2 presses DA key OP1
 
 Scenario: Verify call is connected for both operators
 Then HMI OP1 has the DA key OP2(as OP1) in state connected
-Then HMI OP1 verifies that the DA key OP2(as OP1) has the displayed call type DA
+Then HMI OP1 verifies that the DA key OP2(as OP1) has the type label DA
 Then HMI OP2 has the DA key OP1 in state connected
-Then HMI OP2 verifies that the DA key OP1 has the displayed call type DA
+Then HMI OP2 verifies that the DA key OP1 has the type label DA
 
 Scenario: Operator puts active call on hold, using a DA key
 When HMI OP2 puts on hold the active call using DA key OP1
@@ -41,9 +41,9 @@ When HMI OP2 presses DA key OP1
 
 Scenario: Verify call is connected for both operators
 Then HMI OP1 has the DA key OP2(as OP1) in state connected
-Then HMI OP1 verifies that the DA key OP2(as OP1) has the displayed call type DA
+Then HMI OP1 verifies that the DA key OP2(as OP1) has the type label DA
 Then HMI OP2 has the DA key OP1 in state connected
-Then HMI OP2 verifies that the DA key OP1 has the displayed call type DA
+Then HMI OP2 verifies that the DA key OP1 has the type label DA
 
 Scenario: Operator initiates transfer
 When HMI OP2 initiates a transfer using the DA key OP1
@@ -60,14 +60,14 @@ When HMI OP1 presses DA key OP2(as OP1)
 
 Scenario: Call is terminated for both operators
 Then HMI OP1 has the DA key OP2(as OP1) in state terminated
-Then HMI OP1 verifies that the DA key OP2(as OP1) has the displayed call type DA
+Then HMI OP1 verifies that the DA key OP2(as OP1) has the type label DA
 Then HMI OP2 has the DA key OP1 in state terminated
-Then HMI OP2 verifies that the DA key OP1 has the displayed call type DA
+Then HMI OP2 verifies that the DA key OP1 has the type label DA
 
 Scenario: Caller establishes a priority call, using a DA key
 When HMI OP1 initiates a priority call on DA key OP2(as OP1)
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
-Then HMI OP1 verifies that the DA key OP2(as OP1) has the displayed call type DA
+Then HMI OP1 verifies that the DA key OP2(as OP1) has the type label DA
 
 Scenario: Callee client receives and rejects the incoming call
 		  @REQUIREMENTS:GID-4086404

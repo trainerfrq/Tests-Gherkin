@@ -26,7 +26,7 @@ Then HMI OP2 has the DA key OP1 in state out_ringing
 
 Scenario: Transferee receives incoming call
 Then HMI OP1 has the DA key OP2(as OP1) in state ringing
-Then HMI OP1 has the call queue item OP2-OP1 in the priority list with label OP2 Physical
+Then HMI OP1 has the call queue item OP2-OP1 in the priority list with name label OP2 Physical
 
 Scenario: Transferee answers incoming call
 When HMI OP1 presses DA key OP2(as OP1)
@@ -46,7 +46,7 @@ Scenario: Verify call transfer is initiated
 		  @REQUIREMENTS:GID-2510076
 		  @REQUIREMENTS:GID-2510077
 Then HMI OP2 has the call conditional flag set for call queue item OP1-OP2
-Then HMI OP2 is in transfer state
+Then HMI OP2 has the call queue item OP1-OP2 in transfer state
 
 Scenario: Verify call is held for transferee
 Then HMI OP1 has the call queue item OP2-OP1 in state held

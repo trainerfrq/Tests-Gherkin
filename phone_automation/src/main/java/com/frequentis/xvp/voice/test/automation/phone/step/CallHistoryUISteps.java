@@ -16,28 +16,27 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
-
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallHistoryEntry;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
+import scripts.cats.hmi.actions.CallHistory.ClickOnCallHistoryClearButton;
+import scripts.cats.hmi.actions.CallHistory.ClickOnCallHistoryCloseButton;
+import scripts.cats.hmi.actions.CallHistory.ClickOnRedialCallButton;
+import scripts.cats.hmi.actions.CallHistory.SelectCallHistoryEntry;
+import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryDialButtonLabel;
+import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryEntry;
+import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryListIsTimeSorted;
+import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryListSize;
+import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryRedialBtnLabel;
+import scripts.cats.hmi.asserts.CallHistory.VerifyRedialCallButtonState;
 
-import scripts.cats.hmi.actions.ClickOnCallHistoryClearButton;
-import scripts.cats.hmi.actions.ClickOnCallHistoryCloseButton;
-import scripts.cats.hmi.actions.ClickOnRedialCallButton;
-import scripts.cats.hmi.actions.SelectCallHistoryEntry;
-import scripts.cats.hmi.asserts.VerifyCallHistoryDialButtonLabel;
-import scripts.cats.hmi.asserts.VerifyCallHistoryEntry;
-import scripts.cats.hmi.asserts.VerifyCallHistoryListIsTimeSorted;
-import scripts.cats.hmi.asserts.VerifyCallHistoryListSize;
-import scripts.cats.hmi.asserts.VerifyCallHistoryRedialBtnLabel;
-import scripts.cats.hmi.asserts.VerifyRedialCallButtonState;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class CallHistoryUISteps extends AutomationSteps {
