@@ -65,8 +65,7 @@ Scenario: Verify DA keys state
 Given HMI OP1 has the DA key OP2(as OP1) in ready to be used state
 Given HMI OP2 has the DA key OP1 in ready to be used state
 
-Scenario: Caller clears call history list
-When HMI OP1 presses function key CALLHISTORY
+Scenario: Caller verifies call history list
 Then HMI OP1 verifies that call history list contains 1 entries
 Then HMI OP1 closes Call History popup window
 

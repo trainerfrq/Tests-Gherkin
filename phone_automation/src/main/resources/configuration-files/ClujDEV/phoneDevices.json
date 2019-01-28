@@ -4,11 +4,11 @@
     "devices": {
       "gg_input": {
         "type": "ext",
-        "id": "handset_0_0"
+        "id": "handset_0"
       },
       "gg_output": {
         "type": "ext",
-        "id": "handset_0_0"
+        "id": "handset_0"
       }
     }
   },
@@ -17,11 +17,11 @@
     "devices": {
       "gg_input": {
         "type": "ext",
-        "id": "handset_0_0"
+        "id": "handset_0"
       },
       "gg_output": {
         "type": "ext",
-        "id": "handset_0_0"
+        "id": "handset_0"
       }
     }
   },
@@ -30,11 +30,11 @@
     "devices": {
       "gg_input": {
         "type": "ext",
-        "id": "handset_0_0"
+        "id": "handset_0"
       },
       "gg_output": {
         "type": "ext",
-        "id": "handset_0_0"
+        "id": "handset_0"
       }
     }
   }
