@@ -22,11 +22,21 @@ class VerifyCallHistoryDialButtonState extends FxScriptTemplate {
 
         if (callHistoryPopup != null) {
             final Node redialCallButton = robot.lookup("#callHistoryPopup #initiateCallButton").queryFirst()
-
-            evaluate(ExecutionDetails.create("Verify that dial call button state is: " + state)
-                    .expected("Redial call button state is: " + state)
-                    .success(redialCallButton.getPseudoClassStates().contains(PseudoClass.getPseudoClass(state))))
-
+            switch(state){
+                case "disabled":
+                    evaluate(ExecutionDetails.create("Verify that dial call button state is: " + state)
+                            .expected("Redial call button state is: " + state)
+                            .received(redialCallButton.getPseudoClassStates().toString())
+                            .success(redialCallButton.getPseudoClassStates().contains(PseudoClass.getPseudoClass(state))))
+                    break
+                case "enabled":
+                    evaluate(ExecutionDetails.create("Priority toggle state is: " +state)
+                            .expected("Redial call button state is: " + state)
+                            .success(!redialCallButton.getPseudoClassStates().contains(PseudoClass.getPseudoClass(state))))
+                    break
+                default:
+                    break
+            }
         }
     }
 }
