@@ -16,28 +16,29 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
+import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import org.jbehave.core.annotations.Alias;
+import org.jbehave.core.annotations.Then;
 import scripts.cats.hmi.actions.ClickActivateMission;
 import scripts.cats.hmi.actions.ClickMissionCloseButton;
 import scripts.cats.hmi.actions.SelectMissionFromList;
 import scripts.cats.hmi.asserts.VerifyMissionList;
 import scripts.cats.hmi.asserts.VerifyStatusDisplay;
 
-import org.jbehave.core.annotations.Then;
-
-import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
-import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
-
 public class MissionListUISteps extends AutomationSteps
 {
 
-   @Then("$profileName has the assigned mission $mission")
-   public void verifyAssignedMission( final String profileName, final String mission )
+   @Then("$profileName has in the display status section $label the assigned mission $text")
+   @Alias("$profileName has in the display status section $label the state $text")
+   public void verifyAssignedMission( final String profileName, final String label, final String text )
    {
       evaluate(
             remoteStep( "Verify that the user has the correct assigned mission" )
                   .scriptOn( profileScriptResolver().map( VerifyStatusDisplay.class, BookableProfileName.javafx ),
                         assertProfile( profileName ) )
-                  .input( VerifyStatusDisplay.IPARAM_STATUS_DISPLAY_TEXT, mission ) );
+                    .input(VerifyStatusDisplay.IPARAM_STATUS_DISPLAY_LABEL, label+"Label")
+                  .input( VerifyStatusDisplay.IPARAM_STATUS_DISPLAY_TEXT, text ) );
    }
 
 

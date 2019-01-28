@@ -8,6 +8,7 @@
    <bean id="commonLocalSteps" class="com.frequentis.xvp.voice.test.automation.phone.step.local.CommonLocalSteps"/>
     <bean class="com.frequentis.xvp.voice.test.automation.phone.step.local.ConfigurationSteps"/>
     <bean class="com.frequentis.xvp.voice.test.automation.phone.step.local.GGSshSteps"/>
+    <bean class="com.frequentis.xvp.voice.test.automation.phone.step.local.MetricsSteps"/>
     <bean class="com.frequentis.xvp.voice.test.automation.phone.step.GGBasicSteps"/>
     <bean class="com.frequentis.xvp.voice.test.automation.phone.step.NamingSteps"/>
     <bean class="com.frequentis.xvp.voice.test.automation.phone.step.PhoneBookSteps"/>
