@@ -9,7 +9,6 @@ import javafx.css.PseudoClass
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-
 class VerifyCallQueueItemTransferState extends FxScriptTemplate {
 
     public static final String IPARAM_CALL_QUEUE_ITEM_ID = "call_queue_item_id"
@@ -35,11 +34,10 @@ class VerifyCallQueueItemTransferState extends FxScriptTemplate {
 
     protected static boolean verifyNodeHasPseudoClass(Node node, PseudoClass pseudoClassState, long nWait) {
 
-        ObservableSet<PseudoClass> pseudoClass = node.pseudoClassStates
-
         WaitCondition condition = new WaitCondition("Wait until node has [" + pseudoClassState + "] class") {
             @Override
             boolean test() {
+                ObservableSet<PseudoClass> pseudoClass = node.pseudoClassStates
                 DSLSupport.evaluate(ExecutionDetails.create("Verifying has class")
                         .expected("Expected class: " + pseudoClassState)
                         .received("Found classes: " + pseudoClass)

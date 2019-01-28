@@ -14,9 +14,11 @@ import com.frequentis.c4i.test.model.parameter.CatsCustomParameterBase;
 import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
+import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+import scripts.cats.websocket.parallel.OpenAndVerifyWebSocketClientConnection;
 import scripts.cats.websocket.parallel.OpenWebSocketClientConnection;
 import scripts.cats.websocket.parallel.SendTextMessageAsIsParallel;
 import scripts.cats.websocket.sequential.CloseWebSocketClientConnection;
@@ -88,6 +90,55 @@ public class WebsocketClientRemoteSteps extends WebsocketAutomationSteps
                  endpointName.remove(reference.getKey());
               }
           }
+   }
+
+
+   @Given("it is known what op voice instances are $state, the websocket configuration is applied: $references")
+   @Alias("that connection can be open (although instances are $state) using websocket configuration: $references")
+   public void openNamedActiveWebSocketConnections(final String state,
+                                                   final List<ProfileToWebSocketConfigurationReference> namedProfileToWebSocketConfigReferences )
+   {
+      if ( namedProfileToWebSocketConfigReferences.size() == 0 )
+      {
+         localStep( "looking into tables for parsing" )
+                 .details( ExecutionDetails.create( "Parsing Table" ).expected( "Table contains at least one entry" )
+                         .received( "NO ENTRY FOUND " + namedProfileToWebSocketConfigReferences ).success( false ) );
+      }
+
+      int i = 1;
+      for ( final ProfileToWebSocketConfigurationReference reference : namedProfileToWebSocketConfigReferences ) {
+         final ExecutionData data = new ExecutionData();
+         setStoryListData( reference.getKey(), reference );
+
+         final ClientEndpointConfiguration config =
+                 getStoryListData(reference.getWebSocketConfigurationName(), ClientEndpointConfiguration.class);
+         final ArrayList<String> endpointName = new ArrayList<String>();
+         endpointName.add( reference.getKey());
+
+         final RemoteStepResult remoteStepResult =
+                 evaluate( remoteStep( "Open websocket connection " + reference.getWebSocketConfigurationName() )
+                         .scriptOn(profileScriptResolver().map(OpenAndVerifyWebSocketClientConnection.class,
+                                 BookableProfileName.websocket), requireProfile(reference.getProfileName()))
+                         .input(OpenAndVerifyWebSocketClientConnection.IPARAM_ENDPOINTCONFIGURATION, (Serializable) config)
+                         .input(OpenAndVerifyWebSocketClientConnection.IPARAM_MULTIPLEENDPOINTNAMES, endpointName));
+
+         final String redundancyState =
+                 (String) remoteStepResult.getOutput(OpenAndVerifyWebSocketClientConnection.OPARAM_RECEIVEDMESSAGE);
+         setStoryListData(reference.getWebSocketConfigurationName(), redundancyState);
+         if(redundancyState.contains("Passive")){
+            evaluate(
+                    remoteStep( "Close passive websocket connection " + reference.getWebSocketConfigurationName() )
+                            .scriptOn( profileScriptResolver().map( CloseWebSocketClientConnection.class,
+                                    BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                            .input( CloseWebSocketClientConnection.IPARAM_ENDPOINTNAME, reference.getKey() ) );
+            endpointName.remove(reference.getKey());
+         }
+         final LocalStep step = localStep( "Redundancy state" );
+         step.details( ExecutionDetails.create( "Verify redundancy state " )
+                 .expected( state )
+                 .received( redundancyState)
+                 .success( redundancyState.contains(state) ) );
+      }
    }
 
 
@@ -304,5 +355,29 @@ public class WebsocketClientRemoteSteps extends WebsocketAutomationSteps
                   .scriptOn( profileScriptResolver().map( CloseWebSocketClientConnection.class,
                         BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
                   .input( CloseWebSocketClientConnection.IPARAM_ENDPOINTNAME, reference.getKey() ) );
+   }
+
+
+   private String getOpVoiceServiceRedundancyState(final ProfileToWebSocketConfigurationReference reference )
+   {
+      final ExecutionData data = new ExecutionData();
+      setStoryListData( reference.getKey(), reference );
+
+      final ClientEndpointConfiguration config =
+              getStoryListData(reference.getWebSocketConfigurationName(), ClientEndpointConfiguration.class);
+      final ArrayList<String> endpointName = new ArrayList<String>();
+      endpointName.add( reference.getKey());
+
+      final RemoteStepResult remoteStepResult =
+              evaluate( remoteStep( "Open websocket connection " + reference.getWebSocketConfigurationName() )
+                      .scriptOn(profileScriptResolver().map(OpenAndVerifyWebSocketClientConnection.class,
+                              BookableProfileName.websocket), requireProfile(reference.getProfileName()))
+                      .input(OpenAndVerifyWebSocketClientConnection.IPARAM_ENDPOINTCONFIGURATION, (Serializable) config)
+                      .input(OpenAndVerifyWebSocketClientConnection.IPARAM_MULTIPLEENDPOINTNAMES, endpointName));
+
+      final String jsonResponse =
+              (String) remoteStepResult.getOutput(OpenAndVerifyWebSocketClientConnection.OPARAM_RECEIVEDMESSAGE);
+
+      return jsonResponse;
    }
 }
