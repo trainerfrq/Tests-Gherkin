@@ -1,6 +1,6 @@
 Narrative:
 As an operator
-I want to try to initiate an outgoing call by clicking on the redial button when Call History has only incoming entries
+I want to try redial last number when Call History has only incoming entries
 So I can check that redial of an incoming entry is not possible
 
 Scenario: Booking profiles
@@ -46,8 +46,7 @@ Scenario: Op2 opens call history
 		  @REQUIREMENTS:GID-2535779
 When HMI OP2 presses function key CALLHISTORY
 Then HMI OP2 verifies that call history list contains 1 entries
-Then HMI OP2 verifies that call history redial button is disabled
-Then HMI OP2 verifies that call history redial button has label Nothing to redial
+Then HMI OP2 verifies that call history dial button is disabled
 Then HMI OP2 closes Call History popup window
 
 Scenario: Caller establishes an outgoing priority call
@@ -75,8 +74,7 @@ Scenario: Op2 opens call history
 		  @REQUIREMENTS:GID-2535779
 When HMI OP2 presses function key CALLHISTORY
 Then HMI OP2 verifies that call history list contains 2 entries
-Then HMI OP2 verifies that call history redial button is disabled
-Then HMI OP2 verifies that call history redial button has label Nothing to redial
+Then HMI OP2 verifies that call history dial button is disabled
 Then HMI OP2 closes Call History popup window
 
 Scenario: OP1 establishes an outgoing IA call
@@ -96,6 +94,5 @@ Scenario: Op2 opens call history
 		  @REQUIREMENTS:GID-2535779
 When HMI OP2 presses function key CALLHISTORY
 Then HMI OP2 verifies that call history list contains 3 entries
-Then HMI OP2 verifies that call history redial button is disabled
-Then HMI OP2 verifies that call history redial button has label Nothing to redial
+Then HMI OP2 verifies that call history dial button is disabled
 Then HMI OP2 closes Call History popup window

@@ -5,7 +5,7 @@ import javafx.css.PseudoClass
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class VerifyRedialCallButtonState extends FxScriptTemplate {
+class VerifyCallHistoryDialButtonState extends FxScriptTemplate {
 
     public static final String IPARAM_STATE = "state_mode"
 
@@ -21,9 +21,9 @@ class VerifyRedialCallButtonState extends FxScriptTemplate {
                 .success(callHistoryPopup != null))
 
         if (callHistoryPopup != null) {
-            final Node redialCallButton = robot.lookup("#redialCallButton").queryFirst()
+            final Node redialCallButton = robot.lookup("#callHistoryPopup #initiateCallButton").queryFirst()
 
-            evaluate(ExecutionDetails.create("Verify that redial call button state is: " + state)
+            evaluate(ExecutionDetails.create("Verify that dial call button state is: " + state)
                     .expected("Redial call button state is: " + state)
                     .success(redialCallButton.getPseudoClassStates().contains(PseudoClass.getPseudoClass(state))))
 

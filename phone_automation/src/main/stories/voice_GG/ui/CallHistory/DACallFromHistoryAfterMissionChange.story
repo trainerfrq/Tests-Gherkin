@@ -49,7 +49,7 @@ When HMI OP1 presses function key CALLHISTORY
 
 Scenario: Caller selects first entry from history
 When HMI OP1 selects call history list entry number: 0
-Then HMI OP1 verifies that call history call button has label OP2(as OP1)
+Then HMI OP1 verifies that call history call button has label Call: OP2(as OP1)
 !-- TODO QXVP-11374 : re-enable this step after bug is fixed
 !-- Then HMI OP1 verifies that call history redial button is enabled
 
@@ -86,7 +86,7 @@ When HMI OP1 presses function key CALLHISTORY
 
 Scenario: Caller selects first entry from history
 When HMI OP1 selects call history list entry number: 0
-Then HMI OP1 verifies that call history call button has label OP2(as OP1)
+Then HMI OP1 verifies that call history call button has label Call: OP2(as OP1)
 !-- TODO QXVP-11374 : re-enable this step after bug is fixed
 !-- Then HMI OP1 verifies that call history redial button is enabled
 
