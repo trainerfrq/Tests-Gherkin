@@ -1,2 +1,2 @@
-sed -i '15s/.*/ "type": "cluster", \n"instances": "2", \n"serviceInterfacePort": "8080\/tcp"/' ${image-file-path}
+sed -i '17s/.*/ , \n"serviceInterfacePort": "8080\/tcp" \n},/' ${image-file-path}
 
