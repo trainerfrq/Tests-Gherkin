@@ -16,17 +16,6 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
-import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
-import com.frequentis.c4i.test.model.ExecutionDetails;
-import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
-import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
-import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
-import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
-import org.jbehave.core.annotations.Alias;
-import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.ClickDAButton;
 import scripts.cats.hmi.actions.ClickFunctionKey;
 import scripts.cats.hmi.actions.ClickOnCallHistoryCallButton;
@@ -34,11 +23,25 @@ import scripts.cats.hmi.actions.ClickOnPhoneBookCallButton;
 import scripts.cats.hmi.actions.DragAndClickOnMenuButtonDAKey;
 import scripts.cats.hmi.asserts.VerifyCallForwardState;
 import scripts.cats.hmi.asserts.VerifyDAButtonState;
+import scripts.cats.hmi.asserts.VerifyDAButtonUsageNotReady;
 import scripts.cats.hmi.asserts.VerifyDAButtonUsageReady;
 import scripts.cats.hmi.asserts.VerifyDAKeyDisplayCallType;
 import scripts.cats.hmi.asserts.VerifyLoadingOverlayIsVisible;
 
 import java.util.List;
+
+import org.jbehave.core.annotations.Alias;
+import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
+
+import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
+import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
+import com.frequentis.c4i.test.model.ExecutionDetails;
+import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
+import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
+import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
 
 public class CallUISteps extends AutomationSteps {
     private static final String PRIORITY_CALL_MENU_BUTTON_ID = "priority_call_menu_button";
@@ -146,6 +149,17 @@ public class CallUISteps extends AutomationSteps {
                         assertProfile(profileName))
                 .input(VerifyDAButtonUsageReady.IPARAM_DA_KEY_ID, daKey.getId()));
     }
+
+   @Given("$profileName has the DA key $target disabled")
+   public void verifyDAUsageNotReady(final String profileName, final String target) {
+      DAKey daKey = retrieveDaKey(profileName, target);
+
+      evaluate(remoteStep("Check application status")
+            .scriptOn(
+                  profileScriptResolver().map( VerifyDAButtonUsageNotReady.class, BookableProfileName.javafx),
+                  assertProfile(profileName))
+            .input(VerifyDAButtonUsageNotReady.IPARAM_DA_KEY_ID, daKey.getId()));
+   }
 
     @Then("$profileName has the DA key $target in state $state")
     @Alias("$profileName has the IA key $target in state $state")

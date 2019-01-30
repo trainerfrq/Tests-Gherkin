@@ -38,13 +38,15 @@ import com.frequentis.xvp.tools.cats.websocket.automation.model.PhoneBookEntry;
 import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
-import com.frequentis.xvp.voice.opvoice.config.common.AppId;
-import com.frequentis.xvp.voice.opvoice.config.common.OpId;
+import com.frequentis.xvp.voice.common.op.AppId;
+import com.frequentis.xvp.voice.common.op.OpId;
+import com.frequentis.xvp.voice.controlbase.CorrelationId;
 import com.frequentis.xvp.voice.opvoice.config.layout.JsonDaDataElement;
 import com.frequentis.xvp.voice.opvoice.config.layout.JsonWidgetElement;
 import com.frequentis.xvp.voice.opvoice.json.messages.JsonMessage;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.AssociateResponse;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.AssociateResponseResult;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.ClientId;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.DisassociateResponse;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.common.DisassociateResponseResult;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.layout.QueryRolePhoneDataRequest;
@@ -74,7 +76,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
 
       final JsonMessage request =
-            JsonMessage.newAssociateRequest( UUID.randomUUID(), OpId.create( opId ), AppId.create( appId ) );
+            JsonMessage.newAssociateRequest( ClientId.fromId( UUID.randomUUID() ), OpId.create( opId ), AppId.create( appId ) );
 
       final RemoteStepResult remoteStepResult =
             evaluate(
@@ -195,7 +197,8 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
       final String missionId = availableMissions.get( missionName );
       final JsonMessage request =
-            JsonMessage.newChangeMissionRequest( new ChangeMissionRequest( missionId ), UUID.randomUUID() );
+            JsonMessage.newChangeMissionRequest( new ChangeMissionRequest( missionId ),
+                  CorrelationId.fromId( UUID.randomUUID() ) );
 
       final RemoteStepResult remoteStepResult =
             evaluate(

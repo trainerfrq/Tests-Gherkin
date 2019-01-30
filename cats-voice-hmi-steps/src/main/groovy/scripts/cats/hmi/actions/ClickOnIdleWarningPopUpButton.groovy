@@ -4,7 +4,7 @@ import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class ClickOnOkIdleButton extends FxScriptTemplate {
+class ClickOnIdleWarningPopupButton extends FxScriptTemplate {
 
     public static final String IPARAM_BUTTON_NAME= "button_name"
 
@@ -20,9 +20,7 @@ class ClickOnOkIdleButton extends FxScriptTemplate {
                 .success(unattendedPopup != null))
 
         final Node button
-        if (unattendedPopup != null) {
-
-            switch(buttonName)
+        switch(buttonName)
             {
                 case "Ok":
                     button = robot.lookup("#unattendedPopup #requestIdleState").queryFirst()
@@ -32,13 +30,7 @@ class ClickOnOkIdleButton extends FxScriptTemplate {
                     break
                 default:
                     break
-            }
-
-            evaluate(ExecutionDetails.create("Stay operational button was found")
-                    .expected("Stay operational button is not null")
-                    .success(button != null))
-
-            robot.clickOn(robot.point(button))
         }
+        robot.clickOn(robot.point(button))
     }
 }
