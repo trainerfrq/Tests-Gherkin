@@ -103,7 +103,7 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/websocket/DACalls/CalleeRejectsIncomingCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
@@ -220,7 +220,7 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/websocket/IACalls/SecondIACallTerminatedIfMaxNumberSet.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
@@ -283,7 +283,7 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/websocket/SipPhones/SipPhoneToOperatorCalleeRejectsCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
@@ -1231,7 +1231,7 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/ui/GroupCalls/DARejectGroupCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
