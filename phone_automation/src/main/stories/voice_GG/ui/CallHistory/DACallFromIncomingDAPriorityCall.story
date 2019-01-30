@@ -40,7 +40,7 @@ When HMI OP2 presses function key CALLHISTORY
 
 Scenario: Callee selects first entry from history
 When HMI OP2 selects call history list entry number: 0
-Then HMI OP2 verifies that call history call button has label 111111
+Then HMI OP2 verifies that call history call button has label Call: 111111
 
 Scenario: Callee does call from call history
 		  @REQUIREMENTS:GID-2535764
