@@ -20,6 +20,10 @@
         {
           "id": "f4",
           "type": "forward"
+        },
+        {
+          "id": "f5",
+          "type": "ggAudioOutput"
         }
       ]
     },
@@ -154,6 +158,11 @@
           "grid": "applicationGrid"
         },
         {
+          "id": "f5",
+          "type": "function",
+          "grid": "applicationGrid"
+        },
+        {
           "id": "100",
           "type": "da",
           "grid": "applicationGrid"
@@ -245,6 +254,13 @@
           "column": "3",
           "row": "16",
           "columnSpan": "1",
+          "rowSpan": "2"
+        },
+        {
+          "id": "f5",
+          "column": "4",
+          "row": "16",
+          "columnSpan": "2",
           "rowSpan": "2"
         },
         {
@@ -341,6 +357,10 @@
         {
           "id": "f4",
           "type": "forward"
+        },
+        {
+          "id": "f5",
+          "type": "ggAudioOutput"
         }
       ]
     },
@@ -481,6 +501,11 @@
           "grid": "applicationGrid"
         },
         {
+          "id": "f5",
+          "type": "function",
+          "grid": "applicationGrid"
+        },
+        {
           "id": "110",
           "type": "da",
           "grid": "applicationGrid"
@@ -577,6 +602,13 @@
           "column": "3",
           "row": "16",
           "columnSpan": "1",
+          "rowSpan": "2"
+        },
+        {
+          "id": "f5",
+          "column": "4",
+          "row": "16",
+          "columnSpan": "2",
           "rowSpan": "2"
         },
         {
