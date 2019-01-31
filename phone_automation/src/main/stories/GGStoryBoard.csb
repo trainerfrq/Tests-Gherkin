@@ -1429,7 +1429,7 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/AutoTermination/OperatorAcceptsPhoneCallOnIADuplex.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
@@ -1464,6 +1464,18 @@
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
+                        </cats:story>
+                         <cats:story enabled="true">
+                             <cats:storyPath>voice_GG/ui/AutoTermination/OperatorEstablishesSecondIACall.story</cats:storyPath>
+                             <cats:storyParameters/>
+                             <cats:storyStatistics/>
+                             <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="false">
+                              <cats:storyPath>voice_GG/ui/AutoTermination/OperatorEstablishesIACallOnDuplex.story</cats:storyPath>
+                              <cats:storyParameters/>
+                              <cats:storyStatistics/>
+                              <cats:storyDataList/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
