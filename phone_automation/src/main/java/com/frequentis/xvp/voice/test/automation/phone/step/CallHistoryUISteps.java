@@ -16,36 +16,30 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
-import com.frequentis.c4i.test.model.ExecutionDetails;
-import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
-import com.frequentis.xvp.voice.test.automation.phone.data.CallHistoryEntry;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
-import scripts.cats.hmi.actions.CallHistory.ClickOnCallHistoryClearButton;
-import scripts.cats.hmi.actions.CallHistory.ClickOnCallHistoryCloseButton;
-import scripts.cats.hmi.actions.CallHistory.ClickOnRedialCallButton;
-import scripts.cats.hmi.actions.CallHistory.SelectCallHistoryEntry;
-import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryDialButtonLabel;
-import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryEntry;
-import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryListIsTimeSorted;
-import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryListSize;
-import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryRedialBtnLabel;
-import scripts.cats.hmi.asserts.CallHistory.VerifyRedialCallButtonState;
+import scripts.cats.hmi.actions.ClickOnCallHistoryClearButton;
+import scripts.cats.hmi.actions.ClickOnCallHistoryCloseButton;
+import scripts.cats.hmi.actions.SelectCallHistoryEntry;
+import scripts.cats.hmi.asserts.VerifyCallHistoryDialButtonLabel;
+import scripts.cats.hmi.asserts.VerifyCallHistoryDialButtonState;
+import scripts.cats.hmi.asserts.VerifyCallHistoryEntry;
+import scripts.cats.hmi.asserts.VerifyCallHistoryListIsTimeSorted;
+import scripts.cats.hmi.asserts.VerifyCallHistoryListSize;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
+
+import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
+import com.frequentis.c4i.test.model.ExecutionDetails;
+import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import com.frequentis.xvp.voice.test.automation.phone.data.CallHistoryEntry;
+
 
 public class CallHistoryUISteps extends AutomationSteps {
-    @When("$profileName redials last number")
-    public void redialLastNumber(final String profileName) {
-        evaluate(remoteStep("Redial last number").scriptOn(
-                profileScriptResolver().map(ClickOnRedialCallButton.class, BookableProfileName.javafx),
-                assertProfile(profileName)));
-    }
 
     @Then("$profileName closes Call History popup window")
     public void closeCallHistoryPopup(final String profileName) {
@@ -88,23 +82,14 @@ public class CallHistoryUISteps extends AutomationSteps {
                          .input(VerifyCallHistoryDialButtonLabel.IPARAM_DISPLAY_NAME, label));
     }
 
-    @Then("$profileName verifies that call history redial button has label $label")
-    public void verifyRedialButtonContainsLabel(final String profileName, final String label) {
-        evaluate(remoteStep("Verify call history redial button contains label " + label)
-                         .scriptOn(
-                                 profileScriptResolver().map(VerifyCallHistoryRedialBtnLabel.class, BookableProfileName.javafx),
-                                 assertProfile(profileName))
-                         .input(VerifyCallHistoryRedialBtnLabel.IPARAM_DISPLAY_NAME, label));
-    }
 
-
-    @Then("$profileName verifies that call history redial button is $state")
+    @Then("$profileName verifies that call history dial button is $state")
     public void verifyRedialButtonState(final String profileName, final String state) {
-        evaluate(remoteStep("Verify call history redial button has state " + state)
+        evaluate(remoteStep("Verify call history dial button has state " + state)
                          .scriptOn(
-                                 profileScriptResolver().map(VerifyRedialCallButtonState.class, BookableProfileName.javafx),
+                                 profileScriptResolver().map( VerifyCallHistoryDialButtonState.class, BookableProfileName.javafx),
                                  assertProfile(profileName))
-                         .input(VerifyRedialCallButtonState.IPARAM_STATE, state));
+                         .input(VerifyCallHistoryDialButtonState.IPARAM_STATE, state));
     }
 
     @Then("$profileName verifies call history entry number $entryNumber matches $namedEntry")
