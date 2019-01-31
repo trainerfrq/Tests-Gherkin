@@ -30,6 +30,7 @@ Given the function keys:
 | CALLHISTORY | f2 |
 | MISSIONS    | f3 |
 | CALLFORWARD | f4 |
+| LOUDSPEAKER | f5 |
 
 Scenario: Define call route selectors
 Given the call route selectors:
