@@ -16,26 +16,6 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import scripts.cats.hmi.actions.ClickDAButton;
-import scripts.cats.hmi.actions.ClickFunctionKey;
-import scripts.cats.hmi.actions.CallHistory.ClickOnCallHistoryCallButton;
-import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookCallButton;
-import scripts.cats.hmi.actions.DragAndClickOnMenuButtonDAKey;
-import scripts.cats.hmi.asserts.VerifyCallForwardState;
-import scripts.cats.hmi.asserts.VerifyDAButtonState;
-import scripts.cats.hmi.asserts.VerifyDAKeyLabel;
-import scripts.cats.hmi.asserts.VerifyDAButtonUsageReady;
-import scripts.cats.hmi.asserts.VerifyDAKeyDisplayCallType;
-import scripts.cats.hmi.asserts.VerifyLoadingOverlayIsVisible;
-import scripts.cats.hmi.asserts.VerifyFunctionKeyLabel;
-
-import java.util.List;
-
-import org.jbehave.core.annotations.Alias;
-import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
-
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.model.ExecutionDetails;
@@ -43,6 +23,21 @@ import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
 import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
 import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
+import org.jbehave.core.annotations.Alias;
+import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
+import scripts.cats.hmi.actions.CallHistory.ClickOnCallHistoryCallButton;
+import scripts.cats.hmi.actions.ClickDAButton;
+import scripts.cats.hmi.actions.ClickFunctionKey;
+import scripts.cats.hmi.actions.DragAndClickOnMenuButtonDAKey;
+import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookCallButton;
+import scripts.cats.hmi.asserts.VerifyCallForwardState;
+import scripts.cats.hmi.asserts.VerifyDAButtonState;
+import scripts.cats.hmi.asserts.VerifyDAKeyLabel;
+import scripts.cats.hmi.asserts.VerifyFunctionKeyLabel;
+
+import java.util.List;
 
 public class CallUISteps extends AutomationSteps {
     private static final String PRIORITY_CALL_MENU_BUTTON_ID = "priority_call_menu_button";

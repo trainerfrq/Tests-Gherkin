@@ -46,7 +46,9 @@ Scenario: Op2 verifies conference participants list
 When HMI OP2 opens the conference participants list
 Then HMI OP2 verifies that conference participants list contains 1 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
-Then HMI OP2 verifies in the list that conference participant on position 1 has name $name
+Then HMI OP2 verifies in the list that conference participant on position 1 has name sip:111111@example.com
+
+Scenario: Op2 closes conference participants list
 Then HMI OP2 closes Conference list popup window
 
 Scenario: Op2 adds another participant to the conference
@@ -66,6 +68,7 @@ Scenario: Op2 verifies conference participants list
 When HMI OP2 opens the conference participants list
 Then HMI OP2 verifies that conference participants list contains 2 participants
 Then HMI OP2 verifies in the list that conference participant on position 2 has status connected
+Then HMI OP2 verifies in the list that conference participant on position 2 has name sip:op3@example.com
 Then HMI OP2 verifies that remove conference participant button is disabled
 Then HMI OP2 verifies that terminate conference button is enabled
 
@@ -83,6 +86,7 @@ Then HMI OP2 verifies that remove conference participant button is enabled
 Then HMI OP2 removes conference participant
 Then HMI OP2 verifies that conference participants list contains 1 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
+Then HMI OP2 verifies in the list that conference participant on position 1 has name sip:op3@example.com
 
 Scenario: Call is terminated for the removed participant
 Then HMI OP1 has in the call queue a number of 0 calls
@@ -94,6 +98,7 @@ Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info l
 
 Scenario: Op2 ends the conference
 Then HMI OP2 terminates conference
+Then HMI OP2 has the DA key OP3 in state terminated
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for the left participant

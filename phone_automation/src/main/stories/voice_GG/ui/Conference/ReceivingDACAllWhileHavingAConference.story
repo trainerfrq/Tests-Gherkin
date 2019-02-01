@@ -18,7 +18,8 @@ Given the call queue items:
 | OP2-OP1      | sip:222222@example.com | sip:111111@example.com      | DA/IDA   |
 | OP1-OP2-Conf | sip:111111@example.com | sip:222222@example.com      | CONF     |
 | OP2-OP1-Conf | <<OPVOICE2_CONF_URI>>  | sip:111111@example.com      | DA/IDA   |
-| OP2-OP3-Conf | <<OPVOICE2_CONF_URI>>  | sip:op3@192.168.40.128:5060 | DA/IDA   |
+| OP3-OP2      | sip:op3@example.com    | sip:222222@example.com      | DA/IDA   |
+| OP2-OP3      | sip:222222@example.com | sip:op3@example.com         | DA/IDA   |
 
 Scenario: Create sip phone
 Given SipContacts group SipContact:
@@ -64,58 +65,31 @@ Then HMI OP2 verifies in the list that conference participant on position 1 has 
 Then HMI OP2 verifies in the list that conference participant on position 2 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 2 has name <<SIP_PHONE2>>
 
-Scenario: Op2 adds another participant to the conference
-When HMI OP2 presses function key PHONEBOOK
-When HMI OP2 selects call route selector: none
-When HMI OP2 selects phonebook entry number: 1
-Then HMI OP2 verifies that phone book text box displays text Lloyd
-When HMI OP2 initiates a call from the phonebook
-
-Scenario: Op3 client receives the incoming call
-Then HMI OP3 has the call queue item OP2-OP3-Conf in state inc_initiated
-
-Scenario: Op2 verifies conference state
-Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label OP1
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 3 more participants
-Then HMI OP2 has a notification that shows Conference call active
-
-Scenario: Op2 verifies conference participants list
-When HMI OP2 opens the conference participants list
-Then HMI OP2 verifies that conference participants list contains 3 participants
-Then HMI OP2 verifies in the list that conference participant on position 3 has status ringing
-Then HMI OP2 verifies in the list that conference participant on position 3 has name sip:op3@192.168.40.128
-Then HMI OP2 verifies that remove conference participant button is disabled
-Then HMI OP2 verifies that terminate conference button is enabled
-
-Scenario: Op3 client rejects the call
-Then HMI OP3 rejects the waiting call queue item
-Then wait for 15 seconds
-Then HMI OP3 has in the call queue a number of 0 calls
-
-Scenario: Op2 verifies conference participants list
-When HMI OP2 opens the conference participants list
-Then HMI OP2 verifies that conference participants list contains 3 participants
-Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
-Then HMI OP2 verifies in the list that conference participant on position 1 has name sip:111111@example.com
-Then HMI OP2 verifies in the list that conference participant on position 2 has status connected
-Then HMI OP2 verifies in the list that conference participant on position 2 has name <<SIP_PHONE2>>
-Then HMI OP2 verifies in the list that conference participant on position 3 has status failed
-Then HMI OP2 verifies in the list that conference participant on position 3 has name sip:op3@192.168.40.128
-
 Scenario: Op2 closes conference participants list
 Then HMI OP2 closes Conference list popup window
 
-Scenario: Op2 verifies conference state
-Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label OP1
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 2 more participants
+Scenario: Op3 establishes an outgoing call to Op2
+When HMI OP3 presses DA key OP2(as OP3)
+Then HMI OP3 has the DA key OP2(as OP3) in state out_ringing
 
-Scenario: Op2 terminates the conference from conference participants list
-Then HMI OP2 terminates the call queue item OP1-OP2-Conf
+Scenario: Op2 client receives the incoming call and answers the call
+Then HMI OP2 has the DA key OP3 in state inc_initiated
+When HMI OP2 presses DA key OP3
+
+Scenario: Verify call is connected for both operators
+Then HMI OP2 has in the collapsed area a number of 0 calls
+Then HMI OP3 has the call queue item OP2-OP3 in state connected
+Then HMI OP2 has the call queue item OP3-OP2 in state connected
+
+Scenario: Conference is not terminated also for the other participants
+Then HMI OP1 has in the call queue a number of 1 calls
+
+Scenario: Op2 client clears the phone call
+When HMI OP2 presses DA key OP3
 Then HMI OP2 has in the call queue a number of 0 calls
 
-Scenario: Call is terminated also for the other participants
+Scenario: Op1 client clears the phone call
+Then HMI OP1 terminates the call queue item OP2-OP1-Conf
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Remove phone

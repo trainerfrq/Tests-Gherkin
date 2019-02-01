@@ -17,8 +17,8 @@ class ClickOnTerminateConferenceButton extends FxScriptTemplate {
         if (conferenceListPopup != null) {
             final Node terminateConferenceButton = robot.lookup("#conferenceListPopup #terminateConferenceButton").queryFirst()
 
-            evaluate(ExecutionDetails.create("Close conference list popup button was found")
-                    .expected("Close conference list popup button is not null")
+            evaluate(ExecutionDetails.create("Terminate conference list popup button was found")
+                    .expected("Terminate conference list popup button is not null")
                     .success(terminateConferenceButton != null))
 
             robot.clickOn(robot.point(terminateConferenceButton))
