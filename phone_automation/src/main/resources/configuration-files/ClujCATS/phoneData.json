@@ -3,6 +3,11 @@
     "opSipProxyHost": "192.168.40.119",
     "opSipProxyListeningPort": 5060
   },
+  "conferencer": {
+    "conferencerFactoryUser": "conf",
+    "conferencerFactoryHost": "192.168.40.129",
+    "conferencerFactoryListeningPort": 5060
+  },
   "hostSpecificConfigurationMap": {
     "cj-gg-cat-cwp-1": {
       "opPhysicalEntity": {

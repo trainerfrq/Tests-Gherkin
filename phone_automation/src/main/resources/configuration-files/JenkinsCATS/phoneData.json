@@ -3,6 +3,11 @@
     "opSipProxyHost": "192.168.100.145",
     "opSipProxyListeningPort": 5060
   },
+  "conferencer": {
+    "conferencerFactoryUser": "conf",
+    "conferencerFactoryHost": "192.168.100.157",
+    "conferencerFactoryListeningPort": 5060
+  },
   "hostSpecificConfigurationMap": {
     "cwp-vst02-15": {
       "opPhysicalEntity": {
