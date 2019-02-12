@@ -23,7 +23,7 @@ import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.Conference.ClickOnAddConferenceParticipantButton;
 import scripts.cats.hmi.actions.Conference.ClickOnConferenceListCloseButton;
 import scripts.cats.hmi.actions.Conference.ClickOnRemoveConferenceParticipantButton;
-import scripts.cats.hmi.actions.Conference.ClickOnTerminateConferenceButton;
+import scripts.cats.hmi.actions.Conference.ClickOnLeaveConferenceButton;
 import scripts.cats.hmi.actions.Conference.SelectConferenceListParticipant;
 import scripts.cats.hmi.asserts.Conference.VerifyAddConferenceParticipantButtonState;
 import scripts.cats.hmi.asserts.Conference.VerifyConferenceListParticipantName;
@@ -41,10 +41,10 @@ public class ConferenceUISteps extends AutomationSteps
                 assertProfile(profileName)));
     }
 
-    @Then("$profileName terminates conference")
+    @Then("$profileName leaves conference")
     public void terminateConference(final String profileName) {
         evaluate(remoteStep("Terminate conference").scriptOn(
-                profileScriptResolver().map(ClickOnTerminateConferenceButton.class, BookableProfileName.javafx),
+                profileScriptResolver().map(ClickOnLeaveConferenceButton.class, BookableProfileName.javafx),
                 assertProfile(profileName)));
     }
 

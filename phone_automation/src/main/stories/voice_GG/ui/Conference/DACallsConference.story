@@ -96,8 +96,8 @@ Then HMI OP2 has the DA key OP1 in state terminated
 Then HMI OP2 verifies that the DA key OP3 has the info label Conference
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 1 more participant
 
-Scenario: Op2 ends the conference
-Then HMI OP2 terminates conference
+Scenario: Op2 leaves the conference
+Then HMI OP2 leaves conference
 Then HMI OP2 has the DA key OP3 in state terminated
 Then HMI OP2 has in the call queue a number of 0 calls
 

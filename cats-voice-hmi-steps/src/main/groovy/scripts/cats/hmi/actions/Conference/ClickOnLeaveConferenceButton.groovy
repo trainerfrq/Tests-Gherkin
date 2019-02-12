@@ -4,7 +4,7 @@ import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class ClickOnTerminateConferenceButton extends FxScriptTemplate {
+class ClickOnLeaveConferenceButton extends FxScriptTemplate {
     @Override
     void script() {
 
@@ -15,13 +15,13 @@ class ClickOnTerminateConferenceButton extends FxScriptTemplate {
                 .success(conferenceListPopup != null))
 
         if (conferenceListPopup != null) {
-            final Node terminateConferenceButton = robot.lookup("#conferenceListPopup #terminateConferenceButton").queryFirst()
+            final Node leaveConferenceButton = robot.lookup("#conferenceListPopup #terminateConferenceButton").queryFirst()
 
-            evaluate(ExecutionDetails.create("Terminate conference list popup button was found")
-                    .expected("Terminate conference list popup button is not null")
-                    .success(terminateConferenceButton != null))
+            evaluate(ExecutionDetails.create("Leave conference button was found")
+                    .expected("Leave conference button is not null")
+                    .success(leaveConferenceButton != null))
 
-            robot.clickOn(robot.point(terminateConferenceButton))
+            robot.clickOn(robot.point(leaveConferenceButton))
         }
     }
 }
