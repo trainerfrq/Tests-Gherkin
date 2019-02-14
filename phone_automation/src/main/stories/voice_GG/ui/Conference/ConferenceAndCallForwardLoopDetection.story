@@ -78,6 +78,7 @@ Scenario: Op2 wants to add Op1 as conference participant
 When HMI OP2 presses DA key OP1
 
 Scenario: Call will be forwarded to Op3
+!-- TODO: Enable test when bug QXVP-14167 is fixed
 Then HMI OP3 has the call queue item OP2-OP3-Conf in the waiting list with name label 222222
 
 Scenario: Verify that conference is still on going for Op3
@@ -109,6 +110,7 @@ When HMI OP2 selects conference participant: 2
 Then HMI OP2 removes conference participant
 
 Scenario: Verify that calls are ended for conference participants and initiator
+		  @REQUIREMENTS:GID-2529028
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 

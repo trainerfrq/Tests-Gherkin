@@ -40,7 +40,6 @@ Then HMI OP2 has a notification that shows Conference call active
 
 Scenario: Op1 call state verification
 Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
-!-- Then HMI OP1 verifies that the DA key OP2(as OP1) has the info label Conference
 
 Scenario: Op2 adds another participant to the conference
 When HMI OP2 presses DA key OP3
@@ -62,7 +61,6 @@ Then HMI OP2 verifies that terminate conference button is enabled
 
 Scenario: Op3 call state verification
 Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
-!-- Then HMI OP3 verifies that the DA key OP2(as OP3) has the info label Conference
 
 Scenario: Op1 changes mission
 When HMI OP1 presses function key MISSIONS
@@ -95,7 +93,7 @@ Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
 Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
 
 Scenario: Op2 verifies conference participants list
-Then HMI OP2 verifies that conference participants list contains 3 participants
+Then HMI OP2 verifies that conference participants list contains 2 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 1 has name sip:111111@example.com
 Then HMI OP2 verifies in the list that conference participant on position 2 has status connected

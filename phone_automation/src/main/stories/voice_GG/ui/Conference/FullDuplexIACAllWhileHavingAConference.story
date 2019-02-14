@@ -114,13 +114,6 @@ Scenario: Op1 leaves the conference
 Then HMI OP1 terminates the call queue item OP2-OP1-Conf
 Then HMI OP1 has in the call queue a number of 0 calls
 
-Scenario: Verify conference is not terminated for Op3
-Then HMI OP3 has in the call queue a number of 1 calls
-
-Scenario: Op3 leaves the conference
-Then HMI OP3 terminates the call queue item OP2-OP3-Conf
-Then HMI OP3 has in the call queue a number of 0 calls
-
 Scenario: Op2 and Op3 clear IA call
 When HMI OP3 presses IA key IA - OP2(as OP3)
 When HMI OP2 presses IA key IA - OP3

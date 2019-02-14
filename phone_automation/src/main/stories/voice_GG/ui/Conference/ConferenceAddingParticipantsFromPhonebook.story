@@ -123,7 +123,7 @@ Scenario: Call is not terminated for the other participants
 Then HMI OP1 has in the call queue a number of 1 calls
 
 Scenario: Op1 leaves the conference
-Then HMI OP2 terminates the call queue item OP2-OP1-Conf
+Then HMI OP1 terminates the call queue item OP2-OP1-Conf
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Remove phone

@@ -5,10 +5,11 @@ So I can verify that if I answer the DA call I will automatically leave the conf
 
 Scenario: Booking profiles
 Given booked profiles:
-| profile | group | host           | identifier |
-| javafx  | hmi   | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi   | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi   | <<CLIENT3_IP>> | HMI OP3    |
+| profile | group          | host           | identifier |
+| javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
+| javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
+| voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Define call queue items
 Given the call queue items:
@@ -19,6 +20,12 @@ Given the call queue items:
 | OP2-OP1-Conf   | <<OPVOICE2_CONF_URI>>  | sip:111111@example.com   | DA/IDA   |
 | OP2-OP3-Conf   | <<OPVOICE2_CONF_URI>>  | sip:op3@example.com:5060 | DA/IDA   |
 | SipContact-OP1 | <<SIP_PHONE2>>         | <<OPVOICE1_PHONE_URI>>   | DA/IDA   |
+
+Scenario: Create sip phone
+Given SipContacts group SipContact:
+| key        | profile | user-entity | sip-uri        |
+| SipContact | VOIP    | 12345       | <<SIP_PHONE2>> |
+And phones for SipContact are created
 
 Scenario: Op2 establishes an outgoing call
 When HMI OP2 presses DA key OP1
@@ -41,7 +48,6 @@ Then HMI OP2 has a notification that shows Conference call active
 
 Scenario: Op1 call state verification
 Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
-!-- Then HMI OP1 verifies that the DA key OP2(as OP1) has the info label Conference
 
 Scenario: Op2 adds another participant to the conference
 When HMI OP2 presses DA key OP3
@@ -66,7 +72,7 @@ Scenario: Op1 receives the incoming call
 Then HMI OP1 has the call queue item SipContact-OP1 in state inc_initiated
 Then HMI OP1 has the call queue item SipContact-OP1 in the waiting list with name label Madoline
 Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
-Then HMI OP2 has in the call queue a number of 2 calls
+Then HMI OP1 has in the call queue a number of 2 calls
 
 Scenario: Op1 accepts call
 		  @REQUIREMENTS:GID-2878006
@@ -77,7 +83,8 @@ Then HMI OP1 has in the call queue a number of 1 calls
 Scenario: Op2 verifies conference participants list
 		  @REQUIREMENTS:GID-3229804
 Then HMI OP2 verifies that conference participants list contains 2 participants
-Then HMI OP2 verifies in the list that conference participant on position 1 has status disconnected
+!-- Then HMI OP2 verifies in the list that conference participant on position 1 has status disconnected
+!-- TODO enable step when story QXVP-8656 is implemented
 Then HMI OP2 verifies in the list that conference participant on position 1 has name sip:111111@example.com
 Then HMI OP2 verifies in the list that conference participant on position 2 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 2 has name sip:op3@example.com
