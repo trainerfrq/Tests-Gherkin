@@ -1,7 +1,7 @@
 Narrative:
-As an operator part of an active call
-I want to start a conference
-So I can add more participants to the call
+As an initiator of a conference
+I want to receive an IA call
+So I can verify that if is not a full duplex call I will not automatically leave the conference and I can also hear the IA call
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -89,6 +89,7 @@ When HMI OP3 presses IA key IA - OP2(as OP3)
 Then HMI OP2 has in the call queue a number of 1 calls
 
 Scenario: Op2 adds another participant to the conference
+		  @REQUIREMENTS:GID-2529024
 When HMI OP2 presses DA key OP3
 
 Scenario: Op3 client receives the incoming call and answers the call
@@ -96,6 +97,7 @@ Then HMI OP3 has the call queue item OP2-OP3-Conf in state inc_initiated
 Then HMI OP3 accepts the call queue item OP2-OP3-Conf
 
 Scenario: Op2 verifies conference state
+		  @REQUIREMENTS:GID-3229804
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label OP1
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 3 more participants

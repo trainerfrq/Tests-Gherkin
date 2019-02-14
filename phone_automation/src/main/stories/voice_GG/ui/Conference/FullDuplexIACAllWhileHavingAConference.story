@@ -1,7 +1,7 @@
 Narrative:
-As an operator part of an active call
-I want to start a conference
-So I can add more participants to the call
+As a conference initiator having an active conference
+I want to receive an IA call
+So I can make a full duplex call and verify that conference is ended for the initiator
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -18,10 +18,8 @@ Given the call queue items:
 | OP2-OP1      | sip:222222@example.com | sip:111111@example.com   | DA/IDA   |
 | OP1-OP2-Conf | sip:111111@example.com | sip:222222@example.com   | CONF     |
 | OP2-OP1-Conf | <<OPVOICE2_CONF_URI>>  | sip:111111@example.com   | DA/IDA   |
-| OP2-OP3-Conf | <<OPVOICE2_CONF_URI>>  | sip:op3@example.com:5060 | DA/IDA   |
 | OP3-OP2      | sip:op3@example.com    | sip:222222@example.com   | IA       |
 | OP2-OP3      | sip:222222@example.com | sip:op3@example.com      | IA       |
-
 
 Scenario: Create sip phone
 Given SipContacts group SipContact:
@@ -103,10 +101,12 @@ Then HMI OP3 has the IA call queue item OP2-OP3 with audio direction duplex
 Then HMI OP2 has the IA call queue item OP3-OP2 with audio direction duplex
 
 Scenario: Verify that Op2 left the conference
+		  @REQUIREMENTS:GID-2878006
 Then HMI OP2 has in the collapsed area a number of 0 calls
 Then HMI OP2 has in the call queue a number of 1 calls
 
 Scenario: Verify conference is not terminated for all participants
+		  @REQUIREMENTS:GID-2529028
 Then HMI OP1 has in the call queue a number of 1 calls
 Then HMI OP3 has in the call queue a number of 1 calls
 

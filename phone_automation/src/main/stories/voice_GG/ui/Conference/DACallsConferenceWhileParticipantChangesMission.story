@@ -1,7 +1,7 @@
 Narrative:
-As an operator part of an active call
-I want to start a conference
-So I can add more participants to the call
+As a conference participant in an active conference
+I want to change mission
+So I can verify that the conference is not affected by this action
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -50,6 +50,7 @@ Then HMI OP3 has the call queue item OP2-OP3-Conf in state inc_initiated
 Then HMI OP3 accepts the call queue item OP2-OP3-Conf
 
 Scenario: Op2 verifies conference participants list
+		  @REQUIREMENTS:GID-3229804
 When HMI OP2 opens the conference participants list
 Then HMI OP2 verifies that conference participants list contains 2 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
@@ -69,8 +70,12 @@ Then HMI OP1 changes current mission to mission WEST-EXEC
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
+Scenario: Verify conference participants status
+		  @REQUIREMENTS: GID-3005111
+Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
+Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
+
 Scenario: Op2 verifies conference participants list
-When HMI OP2 opens the conference participants list
 Then HMI OP2 verifies that conference participants list contains 2 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 1 has name sip:111111@example.com
@@ -79,21 +84,17 @@ Then HMI OP2 verifies in the list that conference participant on position 2 has 
 Then HMI OP2 verifies that remove conference participant button is disabled
 Then HMI OP2 verifies that terminate conference button is enabled
 
-Scenario: Op2 closes conference participants list
-Then HMI OP2 closes Conference list popup window
+Scenario: Op1 changes mission
+When HMI OP1 presses function key MISSIONS
+Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
+Then HMI OP1 activates mission
+Then waiting for 5 seconds
 
 Scenario: Verify conference participants status
 Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
 Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
 
-Scenario: Op2 changes mission
-When HMI OP2 presses function key MISSIONS
-Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
-Then HMI OP2 activates mission
-Then waiting for 5 seconds
-
 Scenario: Op2 verifies conference participants list
-When HMI OP2 opens the conference participants list
 Then HMI OP2 verifies that conference participants list contains 3 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 1 has name sip:111111@example.com

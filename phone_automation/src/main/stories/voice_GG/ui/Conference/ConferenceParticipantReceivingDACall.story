@@ -1,7 +1,7 @@
 Narrative:
-As an operator part of an active call
-I want to start a conference
-So I can add more participants to the call
+As a conference participant in an active conference
+I want to receive a DA call
+So I can verify that if I answer the DA call I will automatically leave the conference
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -69,13 +69,15 @@ Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
 Then HMI OP2 has in the call queue a number of 2 calls
 
 Scenario: Op1 accepts call
+		  @REQUIREMENTS:GID-2878006
 Then HMI OP1 accepts the call queue item SipContact-OP1
 Then HMI OP1 has the call queue item SipContact-OP1 in state connected
 Then HMI OP1 has in the call queue a number of 1 calls
 
 Scenario: Op2 verifies conference participants list
+		  @REQUIREMENTS:GID-3229804
 Then HMI OP2 verifies that conference participants list contains 2 participants
-Then HMI OP2 verifies in the list that conference participant on position 1 has status terminated
+Then HMI OP2 verifies in the list that conference participant on position 1 has status disconnected
 Then HMI OP2 verifies in the list that conference participant on position 1 has name sip:111111@example.com
 Then HMI OP2 verifies in the list that conference participant on position 2 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 2 has name sip:op3@example.com

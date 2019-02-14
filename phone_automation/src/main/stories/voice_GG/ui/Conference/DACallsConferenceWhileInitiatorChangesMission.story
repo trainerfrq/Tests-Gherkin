@@ -1,7 +1,7 @@
 Narrative:
-As an operator part of an active call
-I want to start a conference
-So I can add more participants to the call
+As a conference initiator having an active conference
+I want to change mission
+So I can verify that the conference is not affected by this action
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -56,6 +56,7 @@ Then HMI OP3 has the call queue item OP2-OP3-Conf in state inc_initiated
 Then HMI OP3 accepts the call queue item OP2-OP3-Conf
 
 Scenario: Op2 verifies conference participants list
+		  @REQUIREMENTS:GID-3229804
 When HMI OP2 opens the conference participants list
 Then HMI OP2 verifies that conference participants list contains 2 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
@@ -69,11 +70,24 @@ Scenario: Op3 call state verification
 Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
 !-- Then HMI OP3 verifies that the DA key OP2(as OP3) has the info label Conference
 
+Scenario: On Op2 position DA buttons of the participants are correctly signalized
+Then HMI OP2 verifies that the DA key OP1 has the info label Conference
+Then HMI OP2 verifies that the DA key OP3 has the info label Conference
+
 Scenario: Op2 changes mission
 When HMI OP2 presses function key MISSIONS
 Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
+
+Scenario: Verify conference active notification on Op2 position
+Then HMI OP2 has a notification that shows Conference call active
+
+Scenario: Verify the call state for all operators
+		  @REQUIREMENTS: GID-3005111
+Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
+Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
+Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
 
 Scenario: Op2 verifies conference participants list
 When HMI OP2 opens the conference participants list
@@ -88,11 +102,8 @@ Then HMI OP2 verifies that terminate conference button is enabled
 Scenario: Op2 closes conference participants list
 Then HMI OP2 closes Conference list popup window
 
-Scenario: Verify conference participants status
-Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
-Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
-
 Scenario: Op2 adds a conference participant from phonebook
+		  @REQUIREMENTS:GID-2529024
 When HMI OP2 presses function key PHONEBOOK
 When HMI OP2 selects call route selector: none
 When HMI OP2 selects phonebook entry number: 2
@@ -116,6 +127,13 @@ Then HMI OP2 changes current mission to mission WEST-EXEC
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
 
+Scenario: Verify conference active notification on Op2 position
+Then HMI OP2 has a notification that shows Conference call active
+
+Scenario: On Op2 position DA buttons of the participants are correctly signalized
+Then HMI OP2 verifies that the DA key OP1 has the info label Conference
+Then HMI OP2 verifies that the DA key OP3 has the info label Conference
+
 Scenario: Op2 verifies conference participants list
 When HMI OP2 opens the conference participants list
 Then HMI OP2 verifies that conference participants list contains 3 participants
@@ -128,14 +146,25 @@ Then HMI OP2 verifies in the list that conference participant on position 3 has 
 
 Scenario: Op1 leaves the conference
 Then HMI OP1 terminates the call queue item OP2-OP1-Conf
+Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Op3 leaves the conference
 Then HMI OP3 terminates the call queue item OP2-OP3-Conf
-
-Scenario: Calls are terminated for all participants
-Then HMI OP1 has in the call queue a number of 0 calls
-Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
+
+Scenario: Op2 verifies conference participants list
+When HMI OP2 opens the conference participants list
+Then HMI OP2 verifies that conference participants list contains 3 participants
+Then HMI OP2 verifies in the list that conference participant on position 1 has status disconnected
+Then HMI OP2 verifies in the list that conference participant on position 1 has name sip:111111@example.com
+Then HMI OP2 verifies in the list that conference participant on position 2 has status disconnected
+Then HMI OP2 verifies in the list that conference participant on position 2 has name sip:op3@example.com
+Then HMI OP2 verifies in the list that conference participant on position 3 has status connected
+Then HMI OP2 verifies in the list that conference participant on position 3 has name <<SIP_PHONE2>>
+
+Scenario: Op2 leaves the conference
+Then HMI OP1 terminates the call queue item OP1-OP2-Conf
+Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Remove phone
 When SipContact is removed

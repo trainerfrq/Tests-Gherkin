@@ -1,7 +1,7 @@
 Narrative:
-As an operator part of an active call
-I want to start a conference
-So I can add more participants to the call
+As a conference participant in an active conference
+I want to receive an IA call
+So I can verify that if is not a full duplex call I will not automatically leave the conference and I can also hear the IA call
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -34,6 +34,7 @@ Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Op2 starts a conference
+		  @REQUIREMENTS:GID-4021244
 When HMI OP2 starts a conference
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label OP1
@@ -52,14 +53,6 @@ Then HMI OP2 verifies that phone book text box displays text Madoline
 When HMI OP2 initiates a call from the phonebook
 When SipContact answers incoming calls
 
-Scenario: Op2 verifies conference participants list
-When HMI OP2 opens the conference participants list
-Then HMI OP2 verifies that conference participants list contains 2 participants
-Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
-Then HMI OP2 verifies in the list that conference participant on position 1 has name sip:111111@example.com
-Then HMI OP2 verifies in the list that conference participant on position 2 has status connected
-Then HMI OP2 verifies in the list that conference participant on position 2 has name <<SIP_PHONE2>>
-
 Scenario: Op3 establishes an outgoing IA call to Op1
 When HMI OP3 presses IA key IA - OP1(as OP3)
 Then HMI OP3 has the call queue item OP1-OP3 in state connected
@@ -72,6 +65,15 @@ Then HMI OP1 has the call queue item OP3-OP1 in state connected
 Then HMI OP1 has the IA key IA - OP3(as OP1) in state connected
 Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
 
+Scenario: Op2 verifies conference participants list
+		  @REQUIREMENTS:GID-3229804
+When HMI OP2 opens the conference participants list
+Then HMI OP2 verifies that conference participants list contains 2 participants
+Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
+Then HMI OP2 verifies in the list that conference participant on position 1 has name sip:111111@example.com
+Then HMI OP2 verifies in the list that conference participant on position 2 has status connected
+Then HMI OP2 verifies in the list that conference participant on position 2 has name <<SIP_PHONE2>>
+
 Scenario: Op1 answers the IA call
 When HMI OP1 presses IA key IA - OP3(as OP1)
 
@@ -80,8 +82,9 @@ Then HMI OP3 has the IA call queue item OP1-OP3 with audio direction duplex
 Then HMI OP1 has the IA call queue item OP3-OP1 with audio direction duplex
 
 Scenario: Op2 verifies conference participants list
+		  @REQUIREMENTS:GID-2878006
 Then HMI OP2 verifies that conference participants list contains 2 participants
-Then HMI OP2 verifies in the list that conference participant on position 1 has status terminated
+Then HMI OP2 verifies in the list that conference participant on position 1 has status disconnected
 Then HMI OP2 verifies in the list that conference participant on position 1 has name sip:111111@example.com
 Then HMI OP2 verifies in the list that conference participant on position 2 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 2 has name <<SIP_PHONE2>>

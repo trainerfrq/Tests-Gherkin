@@ -1,7 +1,7 @@
 Narrative:
-As an operator part of an active call
+As an operator part of an active DA priority call
 I want to start a conference
-So I can add more participants to the call
+So I can add and/or remove participants to the call
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -32,6 +32,7 @@ Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Op2 starts a conference
+		  @REQUIREMENTS:GID-4021244
 When HMI OP2 starts a conference
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label OP1
@@ -49,6 +50,7 @@ Then HMI OP2 verifies in the list that conference participant on position 1 has 
 Then HMI OP2 closes Conference list popup window
 
 Scenario: Op2 adds another participant to the conference
+		  @REQUIREMENTS:GID-2529024
 When HMI OP2 presses DA key OP3
 
 Scenario: Op3 client receives the incoming call
@@ -61,6 +63,7 @@ Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info l
 Then HMI OP2 has a notification that shows Conference call active
 
 Scenario: Op2 verifies conference participants list
+		  @REQUIREMENTS:GID-3229804
 When HMI OP2 opens the conference participants list
 Then HMI OP2 verifies that conference participants list contains 2 participants
 Then HMI OP2 verifies in the list that conference participant on position 2 has status ringing

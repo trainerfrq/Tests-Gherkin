@@ -1,7 +1,7 @@
 Narrative:
-As an operator part of an active call
-I want to start a conference
-So I can add more participants to the call
+As a conference initiator having an active conference
+I want to invite an operator that has Call Forward active
+So I can make sure that the conference call will be re-directed to selected target
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -45,22 +45,26 @@ Then HMI OP3 has the call queue item OP2-OP3 in state connected
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
 
 Scenario: Op2 starts a conference
+		  @REQUIREMENTS:GID-4021244
 When HMI OP2 starts a conference
 Then HMI OP2 has the call queue item OP3-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP3-OP2-Conf in the active list with name label OP3
 Then HMI OP2 has the call queue item OP3-OP2-Conf in the active list with info label 1 more participant
 Then HMI OP2 has a notification that shows Conference call active
 
-Scenario: Op1 call state verification
+Scenario: Op3 call state verification
 Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
 
 Scenario: Op2 wants to add Op1 as conference participant
 When HMI OP2 presses DA key OP1
 
 Scenario: Call will be forwarded to Sipcontact and will be answered
+		  @REQUIREMENTS:GID-2521112
+Then HMI OP1 has in the call queue a number of 0 calls
 When SipContact answers incoming calls
 
 Scenario: Op2 verifies conference participants list
+		  @REQUIREMENTS:GID-3229804
 When HMI OP2 opens the conference participants list
 Then HMI OP2 verifies that conference participants list contains 2 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected

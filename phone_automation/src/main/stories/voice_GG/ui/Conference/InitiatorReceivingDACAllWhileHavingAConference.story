@@ -1,7 +1,7 @@
 Narrative:
-As an operator part of an active call
-I want to start a conference
-So I can add more participants to the call
+As an initiator of a conference
+I want to receive a DA call
+So I can verify that if I answer the DA call I will automatically leave the conference
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -73,6 +73,7 @@ When HMI OP3 presses DA key OP2(as OP3)
 Then HMI OP3 has the DA key OP2(as OP3) in state out_ringing
 
 Scenario: Op2 client receives the incoming call and answers the call
+		  @REQUIREMENTS:GID-2878006
 Then HMI OP2 has the DA key OP3 in state inc_initiated
 When HMI OP2 presses DA key OP3
 
@@ -82,6 +83,7 @@ Then HMI OP3 has the call queue item OP2-OP3 in state connected
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
 
 Scenario: Conference is not terminated also for the other participants
+		  @REQUIREMENTS:GID-2529028
 Then HMI OP1 has in the call queue a number of 1 calls
 
 Scenario: Op2 client clears the phone call

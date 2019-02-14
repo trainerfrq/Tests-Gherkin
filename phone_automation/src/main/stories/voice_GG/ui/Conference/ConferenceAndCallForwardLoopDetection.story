@@ -1,7 +1,7 @@
 Narrative:
-As an operator part of an active call
-I want to start a conference
-So I can add more participants to the call
+As an operator having an active conference
+I want to add a new participant which is in a call forward loop to the conference
+So I can be informed of the call forward loop and continue the conference
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -44,13 +44,14 @@ Then HMI OP3 has the call queue item OP2-OP3 in state connected
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
 
 Scenario: Op2 starts a conference
+		  @REQUIREMENTS:GID-4021244
 When HMI OP2 starts a conference
 Then HMI OP2 has the call queue item OP3-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP3-OP2-Conf in the active list with name label OP3
 Then HMI OP2 has the call queue item OP3-OP2-Conf in the active list with info label 1 more participant
 Then HMI OP2 has a notification that shows Conference call active
 
-Scenario: Op1 call state verification
+Scenario: Op3 call state verification
 Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
 
 Scenario: Op2 adds a conference participant from phonebook
@@ -62,6 +63,7 @@ When HMI OP2 initiates a call from the phonebook
 When SipContact answers incoming calls
 
 Scenario: Op2 verifies conference participants list
+		  @REQUIREMENTS:GID-3229804
 When HMI OP2 opens the conference participants list
 Then HMI OP2 verifies that conference participants list contains 2 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
@@ -78,20 +80,27 @@ When HMI OP2 presses DA key OP1
 Scenario: Call will be forwarded to Op3
 Then HMI OP3 has the call queue item OP2-OP3-Conf in the waiting list with name label 222222
 
-Scenario: Op3 answers the calls
+Scenario: Verify that conference is still on going for Op3
+Then HMI OP3 has the call queue item OP2-OP3-Conf in the active list with name label 222222
+
+Scenario: Verify that Op1 hasn't any calls in the call queue
+Then HMI OP1 has in the call queue a number of 0 calls
+
+Scenario: Op3 answers the call
 Then HMI OP3 accepts the call queue item OP2-OP3-Conf
 
 Scenario: Op2 verifies conference participants list
+		  @REQUIREMENTS:GID-3657854
 When HMI OP2 opens the conference participants list
 Then HMI OP2 verifies that conference participants list contains 3 participants
-Then HMI OP2 verifies in the list that conference participant on position 1 has status terminated
+Then HMI OP2 verifies in the list that conference participant on position 1 has status disconnected
 Then HMI OP2 verifies in the list that conference participant on position 1 has name sip:op3@example.com
 Then HMI OP2 verifies in the list that conference participant on position 2 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 2 has name <<SIP_PHONE2>>
 Then HMI OP2 verifies in the list that conference participant on position 3 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 3 has name sip:111111@example.com
 
-Scenario: Op2 removes conference participants
+Scenario: Op2 removes active conference participants
 When HMI OP2 selects conference participant: 3
 Then HMI OP2 verifies that remove conference participant button is enabled
 Then HMI OP2 removes conference participant
@@ -99,7 +108,7 @@ Then HMI OP2 verifies that conference participants list contains 2 participants
 When HMI OP2 selects conference participant: 2
 Then HMI OP2 removes conference participant
 
-Scenario: Verify that calls are ended for all conference participants
+Scenario: Verify that calls are ended for conference participants and initiator
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 

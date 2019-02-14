@@ -1,7 +1,7 @@
 Narrative:
-As an operator part of an active call
+As an operator part of an active DA call
 I want to start a conference
-So I can add more participants to the call
+So I can add participants to the call from phone book
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -39,6 +39,7 @@ Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Op2 starts a conference
+		  @REQUIREMENTS:GID-4021244
 When HMI OP2 starts a conference
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label OP1
@@ -49,6 +50,7 @@ Scenario: Op1 call state verification
 Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
 
 Scenario: Op2 adds a conference participant from phonebook
+		  @REQUIREMENTS:GID-2529024
 When HMI OP2 presses function key PHONEBOOK
 When HMI OP2 selects call route selector: none
 When HMI OP2 selects phonebook entry number: 2
@@ -94,6 +96,7 @@ Then wait for 15 seconds
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Op2 verifies conference participants list
+		  @REQUIREMENTS:GID-3229804
 When HMI OP2 opens the conference participants list
 Then HMI OP2 verifies that conference participants list contains 3 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
@@ -111,11 +114,16 @@ Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label OP1
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 2 more participants
 
-Scenario: Op2 terminates the conference from conference participants list
+Scenario: Op2 (conference initiator) leaves the conference
+		  @REQUIREMENTS:GID-2529028
 Then HMI OP2 terminates the call queue item OP1-OP2-Conf
 Then HMI OP2 has in the call queue a number of 0 calls
 
-Scenario: Call is terminated also for the other participants
+Scenario: Call is not terminated for the other participants
+Then HMI OP1 has in the call queue a number of 1 calls
+
+Scenario: Op1 leaves the conference
+Then HMI OP2 terminates the call queue item OP2-OP1-Conf
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Remove phone
