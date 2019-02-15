@@ -426,8 +426,13 @@
           "target": "sip:111111@example.com",
           "source": "sip:mission2@example.com",
           "displayName": "OP1-mission"
+        },
+        {
+          "id": "121",
+          "target": "sip:op3@example.com",
+          "source": "sip:222222@example.com",
+          "displayName": "IA - OP3"
         }
-
       ]
     },
     "statusDisplayData": {
@@ -534,6 +539,11 @@
         {
           "id": "120",
           "type": "da",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "121",
+          "type": "ia",
           "grid": "applicationGrid"
         }
       ],
@@ -653,6 +663,13 @@
         {
           "id": "120",
           "column": 0,
+          "row": 12,
+          "columnSpan": 3,
+          "rowSpan": 3
+        },
+        {
+          "id": "121",
+          "column": 3,
           "row": 12,
           "columnSpan": 3,
           "rowSpan": 3

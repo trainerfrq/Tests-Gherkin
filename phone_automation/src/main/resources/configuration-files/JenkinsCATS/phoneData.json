@@ -3,11 +3,16 @@
     "opSipProxyHost": "192.168.100.145",
     "opSipProxyListeningPort": 5060
   },
+  "conferencer": {
+    "conferencerFactoryUser": "conf",
+    "conferencerFactoryHost": "192.168.100.157",
+    "conferencerFactoryListeningPort": 5060
+  },
   "hostSpecificConfigurationMap": {
     "cwp-vst02-15": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "192.168.100.153",
+          "opPhysicalHost": "192.168.100.156",
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",
@@ -19,7 +24,7 @@
     "cwp-vst02-16": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "192.168.100.154",
+          "opPhysicalHost": "192.168.100.155",
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",
@@ -31,7 +36,7 @@
     "cwp-vst02-14": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "192.168.100.152",
+          "opPhysicalHost": "192.168.100.154",
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",

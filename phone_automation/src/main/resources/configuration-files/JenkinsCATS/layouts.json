@@ -20,6 +20,10 @@
         {
           "id": "f4",
           "type": "forward"
+        },
+        {
+          "id": "f5",
+          "type": "ggAudioOutput"
         }
       ]
     },
@@ -154,6 +158,11 @@
           "grid": "applicationGrid"
         },
         {
+          "id": "f5",
+          "type": "function",
+          "grid": "applicationGrid"
+        },
+        {
           "id": "100",
           "type": "da",
           "grid": "applicationGrid"
@@ -245,6 +254,13 @@
           "column": "3",
           "row": "16",
           "columnSpan": "1",
+          "rowSpan": "2"
+        },
+        {
+          "id": "f5",
+          "column": "4",
+          "row": "16",
+          "columnSpan": "2",
           "rowSpan": "2"
         },
         {
@@ -341,6 +357,10 @@
         {
           "id": "f4",
           "type": "forward"
+        },
+        {
+          "id": "f5",
+          "type": "ggAudioOutput"
         }
       ]
     },
@@ -426,6 +446,12 @@
           "target": "sip:111111@example.com",
           "source": "sip:mission2@example.com",
           "displayName": "OP1-mission"
+        },
+        {
+          "id": "121",
+          "target": "sip:op3@example.com",
+          "source": "sip:222222@example.com",
+          "displayName": "IA - OP3"
         }
       ]
     },
@@ -481,6 +507,11 @@
           "grid": "applicationGrid"
         },
         {
+          "id": "f5",
+          "type": "function",
+          "grid": "applicationGrid"
+        },
+        {
           "id": "110",
           "type": "da",
           "grid": "applicationGrid"
@@ -533,6 +564,11 @@
         {
           "id": "120",
           "type": "da",
+          "grid": "applicationGrid"
+        },
+        {
+          "id": "121",
+          "type": "ia",
           "grid": "applicationGrid"
         }
       ],
@@ -580,6 +616,13 @@
           "rowSpan": "2"
         },
         {
+          "id": "f5",
+          "column": "4",
+          "row": "16",
+          "columnSpan": "2",
+          "rowSpan": "2"
+        },
+        {
           "id": "110",
           "column": 3,
           "row": 0,
@@ -652,6 +695,13 @@
         {
           "id": "120",
           "column": 0,
+          "row": 12,
+          "columnSpan": 3,
+          "rowSpan": 3
+        },
+        {
+          "id": "121",
+          "column": 3,
           "row": 12,
           "columnSpan": 3,
           "rowSpan": 3

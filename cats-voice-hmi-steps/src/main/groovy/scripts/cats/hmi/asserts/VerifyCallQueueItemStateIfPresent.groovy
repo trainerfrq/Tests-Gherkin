@@ -37,10 +37,11 @@ class VerifyCallQueueItemStateIfPresent extends FxScriptTemplate {
     }
 
     protected static boolean verifyNodeHasClass(Node node, String className, long nWait) {
-        String styleClass = node.styleClass.join(" ");
+
         WaitCondition condition = new WaitCondition("Wait until node has [" + className + "] class") {
             @Override
             boolean test() {
+                String styleClass = node.styleClass.join(" ");
                 DSLSupport.evaluate(ExecutionDetails.create("Verifying has class")
                         .expected("Expected class: " + className)
                         .received("Found classes: " + styleClass)

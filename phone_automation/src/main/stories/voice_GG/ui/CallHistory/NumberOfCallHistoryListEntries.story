@@ -34,11 +34,11 @@ When HMI OP2 presses function key CALLHISTORY
 Scenario: Caller verifies the call history list
 Then HMI OP2 verifies that call history list contains 100 entries
 When HMI OP2 selects call history list entry number: 0
-Then HMI OP2 verifies that call history call button has label OP1
+Then HMI OP2 verifies that call history call button has label Call: OP1
 When HMI OP2 selects call history list entry number: 1
-Then HMI OP2 verifies that call history call button has label OP1
+Then HMI OP2 verifies that call history call button has label Call: OP1
 When HMI OP2 selects call history list entry number: 2
-Then HMI OP2 verifies that call history call button has label OP1
+Then HMI OP2 verifies that call history call button has label Call: OP1
 
 Scenario: Caller closes call history
 Then HMI OP2 closes Call History popup window
@@ -61,7 +61,7 @@ Then HMI OP2 verifies that call history list contains 100 entries
 
 Scenario: Caller verifies that the last call is in call history list
 When HMI OP2 selects call history list entry number: 0
-Then HMI OP2 verifies that call history call button has label OP3
+Then HMI OP2 verifies that call history call button has label Call: OP3
 
 Scenario: Caller clears call history list
 Then HMI OP2 clears Call History list

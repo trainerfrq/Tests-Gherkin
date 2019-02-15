@@ -11,4 +11,4 @@ docker run --name audio-app -v /var/log/frequentis:/var/log/frequentis \
 -e NET_DATA=${audio_app_macvlandata_ip} \
 -e NET_AUDIO=${audio_app_macvlanaudio_ip} \
 --restart unless-stopped \
-artidocker.frequentis.frq/fcsc-audio/xvp-audio-service:0.5.0
+artidocker.frequentis.frq/fcsc-audio/xvp-audio-service:0.6.0

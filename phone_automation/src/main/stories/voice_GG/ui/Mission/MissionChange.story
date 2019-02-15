@@ -9,7 +9,7 @@ Given booked profiles:
 | javafx  | hmi   | <<CLIENT1_IP>> | HMI OP1    |
 
 Scenario: Verify operator mission
-Then HMI OP1 has the assigned mission MAN-NIGHT-TACT
+Then HMI OP1 has in the display status section mission the assigned mission MAN-NIGHT-TACT
 
 Scenario: Change mission
 When HMI OP1 presses function key MISSIONS
@@ -19,7 +19,7 @@ Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify operator mission
-Then HMI OP1 has the assigned mission WEST-EXEC
+Then HMI OP1 has in the display status section mission the assigned mission WEST-EXEC
 
 Scenario: Change to previous mission
 When HMI OP1 presses function key MISSIONS
@@ -29,7 +29,7 @@ Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify operator mission
-Then HMI OP1 has the assigned mission MAN-NIGHT-TACT
+Then HMI OP1 has in the display status section mission the assigned mission MAN-NIGHT-TACT
 
 Scenario: Select mission and close pop-up with activating the mission
 When HMI OP1 presses function key MISSIONS
@@ -38,5 +38,5 @@ Then HMI OP1 changes current mission to mission EAST-EXEC
 Then HMI OP1 closes mission popup window
 
 Scenario: Verify operator mission
-Then HMI OP1 has the assigned mission MAN-NIGHT-TACT
+Then HMI OP1 has in the display status section mission the assigned mission MAN-NIGHT-TACT
 

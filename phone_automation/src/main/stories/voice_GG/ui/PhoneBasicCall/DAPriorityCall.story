@@ -27,12 +27,14 @@ Scenario: Callee client receives the incoming priority call
 		  @REQUIREMENTS:GID-2505701
 		  @REQUIREMENTS:GID-2505702
 		  @REQUIREMENTS:GID-3685306
+		  @REQUIREMENTS:GID-3229739
+		  @REQUIREMENTS:GID-2512204
 Then HMI OP2 has the DA key OP1 in state inc_initiated
 Then HMI OP2 has in the call queue the item OP1-OP2 with priority
 
 Scenario: Verify call queue section
 		  @REQUIREMENTS:GID-3371936
-Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2(as OP1)
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2 Physical
 Then HMI OP2 has the call queue item OP1-OP2 in the priority list with label 111111
 
 Scenario: Callee client answers the incoming priority call
@@ -45,7 +47,7 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Scenario: Verify call queue section
 		  @REQUIREMENTS:GID-3371937
 Then HMI OP2 verifies that the call queue item OP1-OP2 was removed from the priority list
-Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2(as OP1)
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2 Physical
 Then HMI OP2 has the call queue item OP1-OP2 in the active list with label 111111
 
 Scenario: Callee terminates call

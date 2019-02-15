@@ -23,7 +23,10 @@ import scripts.cats.hmi.actions.ClickOnPhoneBookCallButton;
 import scripts.cats.hmi.actions.DragAndClickOnMenuButtonDAKey;
 import scripts.cats.hmi.asserts.VerifyCallForwardState;
 import scripts.cats.hmi.asserts.VerifyDAButtonState;
+import scripts.cats.hmi.asserts.VerifyDAButtonUsageReady;
 import scripts.cats.hmi.asserts.VerifyDAKeyDisplayCallType;
+import scripts.cats.hmi.asserts.VerifyLoadingOverlayIsVisible;
+import scripts.cats.hmi.asserts.VerifyFunctionKeyLabel;
 
 import java.util.List;
 
@@ -118,6 +121,7 @@ public class CallUISteps extends AutomationSteps {
     }
 
     @When("$profileName initiates a call from the $functionPopup")
+    @Alias("$profileName redials last number from $functionPopup")
     public void initiateCallFromPhoneBook(final String profileName, final String functionPopup) {
         switch (functionPopup) {
             case "phonebook":
@@ -133,6 +137,18 @@ public class CallUISteps extends AutomationSteps {
             default:
                 break;
         }
+    }
+
+    @Given("$profileName has the DA key $target in ready to be used state")
+    @Alias("$profileName has the IA key $target in ready to be used state")
+    public void verifyDAUsageReady(final String profileName, final String target) {
+        DAKey daKey = retrieveDaKey(profileName, target);
+
+        evaluate(remoteStep("Check application status")
+                .scriptOn(
+                        profileScriptResolver().map(VerifyDAButtonUsageReady.class, BookableProfileName.javafx),
+                        assertProfile(profileName))
+                .input(VerifyDAButtonUsageReady.IPARAM_DA_KEY_ID, daKey.getId()));
     }
 
     @Then("$profileName has the DA key $target in state $state")
@@ -198,6 +214,17 @@ public class CallUISteps extends AutomationSteps {
             .input( VerifyCallForwardState.IPARAM_KEY_STATE, state + "State" ) );
    }
 
+   @Then("$profileName has the function key $functionKey label $label")
+   public void verifyLoudspeakerState(final String profileName, final String target, final String label) {
+      FunctionKey key = retrieveFunctionKey(target);
+
+      evaluate( remoteStep( "Verify operator position has the loudspeaker in " + label + " state" )
+            .scriptOn(profileScriptResolver().map( VerifyFunctionKeyLabel.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyFunctionKeyLabel.IPARAM_KEY_ID, key.getId())
+            .input( VerifyFunctionKeyLabel.IPARAM_LABEL, label));
+   }
+
     @When("$profileName puts on hold the active call using DA key $target")
     public void putOnHoldActiveCallOnDAKey( final String profileName, final String target )
     {
@@ -218,6 +245,14 @@ public class CallUISteps extends AutomationSteps {
                     BookableProfileName.javafx ), assertProfile( profileName ) )
               .input( DragAndClickOnMenuButtonDAKey.IPARAM_MENU_BUTTON_ID, TRANSFER_MENU_BUTTON_ID )
               .input( DragAndClickOnMenuButtonDAKey.IPARAM_DA_KEY_ID, daKey.getId() ) );
+    }
+
+    @When("$profileName verifies that loading screen is visible")
+    public void transferActiveCallUsingDAKey( final String profileName)
+    {
+        evaluate( remoteStep( "Loading screen is visible" )
+                .scriptOn( profileScriptResolver().map( VerifyLoadingOverlayIsVisible.class,
+                        BookableProfileName.javafx ), assertProfile( profileName ) ));
     }
 
     private DAKey retrieveDaKey(final String source, final String target) {
