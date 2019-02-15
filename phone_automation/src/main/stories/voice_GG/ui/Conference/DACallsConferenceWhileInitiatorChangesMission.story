@@ -176,11 +176,13 @@ Then HMI OP2 verifies in the list that conference participant on position 3 has 
 Then HMI OP2 verifies in the list that conference participant on position 3 has name <<SIP_PHONE2>>
 
 Scenario: Op2 closes conference participants list
-Then HMI OP2 closes Conference list popup window
+!-- Then HMI OP2 closes Conference list popup window
 
 Scenario: Op2 leaves the conference
 		  @REQUIREMENTS:GID-2529028
-Then HMI OP2 terminates the call queue item OP2-Conf
+Then HMI OP2 leaves conference
+!-- Then HMI OP2 terminates the call queue item OP2-Conf
+!-- TODO enable steps after bug QXVP-14245 is fixed
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Remove phone
