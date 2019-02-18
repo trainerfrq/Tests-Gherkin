@@ -12,7 +12,7 @@
     "cwp-vst02-15": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "192.168.100.156",
+          "opPhysicalHost": "192.168.100.155",
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",
@@ -24,7 +24,7 @@
     "cwp-vst02-16": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "192.168.100.155",
+          "opPhysicalHost": "192.168.100.156",
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",
