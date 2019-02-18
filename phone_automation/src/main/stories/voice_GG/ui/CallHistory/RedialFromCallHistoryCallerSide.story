@@ -45,7 +45,7 @@ Then HMI OP2 has in the call queue a number of 0 calls
 Scenario: Caller opens call history
 When HMI OP1 presses function key CALLHISTORY
 Then HMI OP1 verifies that call history list contains 1 entries
-Then HMI OP1 verifies that call history call button has label Redial: OP2(as OP1)
+Then HMI OP1 verifies that call history call button has label OP2(as OP1)
 
 Scenario: Caller redials from CallHistory
 		  @REQUIREMENTS:GID-2535764
@@ -95,7 +95,7 @@ Then HMI OP1 has in the call queue a number of 0 calls
 Scenario: Caller opens call history
 When HMI OP1 presses function key CALLHISTORY
 Then HMI OP1 verifies that call history list contains 3 entries
-Then HMI OP1 verifies that call history call button has label Redial: OP2(as OP1)
+Then HMI OP1 verifies that call history call button has label OP2(as OP1)
 
 Scenario: Caller redials from CallHistory
 		  @REQUIREMENTS:GID-2535764
@@ -133,7 +133,7 @@ Then HMI OP1 has in the call queue a number of 0 calls
 Scenario: Caller opens call history
 When HMI OP1 presses function key CALLHISTORY
 Then HMI OP1 verifies that call history list contains 5 entries
-Then HMI OP1 verifies that call history call button has label Redial: IA - OP2(as OP1)
+Then HMI OP1 verifies that call history call button has label IA - OP2(as OP1)
 
 Scenario: Caller redials from CallHistory
 		  @REQUIREMENTS:GID-2535764
