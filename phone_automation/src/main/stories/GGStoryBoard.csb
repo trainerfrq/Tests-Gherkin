@@ -1552,7 +1552,7 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/ui/CallHistory/IACallFromOutgoingIACallHistoryEntry.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
@@ -1582,7 +1582,7 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/ui/CallHistory/RedialFromCallHistoryCallerSide.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
@@ -1744,7 +1744,7 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/ui/CallForward/RedialFromCallHistoryWhileCallForwardIsActive.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>

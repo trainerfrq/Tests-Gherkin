@@ -42,7 +42,7 @@ When HMI OP1 presses function key CALLHISTORY
 
 Scenario: Caller selects first entry from history
 When HMI OP1 selects call history list entry number: 0
-Then HMI OP1 verifies that call history call button has label Call: 222222
+Then HMI OP1 verifies that call history call button has label 222222
 
 Scenario: Caller does call from call history
 		  @REQUIREMENTS:GID-2535764
