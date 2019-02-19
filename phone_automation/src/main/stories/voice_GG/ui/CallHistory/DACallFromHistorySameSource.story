@@ -44,9 +44,9 @@ When HMI OP1 presses function key CALLHISTORY
 Then HMI OP1 verifies that call history list contains 1 entries
 
 Scenario: Caller selects first entry from history
-Then HMI OP1 verifies that call history call button has label Redial: OP2(as OP1)
+Then HMI OP1 verifies that call history call button has label OP2(as OP1)
 When HMI OP1 selects call history list entry number: 0
-Then HMI OP1 verifies that call history call button has label Call: OP2(as OP1)
+Then HMI OP1 verifies that call history call button has label OP2(as OP1)
 
 Scenario: Caller does call from call history
 		  @REQUIREMENTS:GID-2535764

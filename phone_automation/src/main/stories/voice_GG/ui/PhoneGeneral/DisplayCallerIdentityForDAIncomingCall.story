@@ -39,7 +39,7 @@ When HMI OP2 presses function key CALLHISTORY
 When HMI OP2 selects call history list entry number: 0
 
 Scenario: Caller verifies the label on call history button
-Then HMI OP2 verifies that call history call button has label Call: OP3
+Then HMI OP2 verifies that call history call button has label OP3
 
 Scenario: Caller hits call history call button
 When HMI OP2 initiates a call from the call history

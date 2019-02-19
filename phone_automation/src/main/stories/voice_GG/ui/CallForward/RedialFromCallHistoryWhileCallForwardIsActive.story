@@ -117,6 +117,7 @@ Then HMI OP1 has in the call queue a number of 0 calls
 Scenario: Op1 redials from CallHistory
 When HMI OP1 presses function key CALLHISTORY
 When HMI OP1 redials last number from call history
+!-- TODO Disable story until bug QXVP-14263 is fixed
 Then HMI OP1 has the call queue item OP2-OP1-IA in state connected
 Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
 

@@ -40,6 +40,7 @@ When HMI OP1 selects call history list entry number: 0
 Scenario: Caller does call from call history
 		  @REQUIREMENTS:GID-2535764
 		  @REQUIREMENTS:GID-2505706
+!-- TODO Disable story until bug QXVP-14263 is fixed
 When HMI OP1 initiates a call from the call history
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected

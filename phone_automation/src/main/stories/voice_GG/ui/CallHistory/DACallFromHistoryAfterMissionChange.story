@@ -49,7 +49,7 @@ When HMI OP1 presses function key CALLHISTORY
 
 Scenario: Caller selects first entry from history
 When HMI OP1 selects call history list entry number: 0
-Then HMI OP1 verifies that call history call button has label Call: OP2(as OP1)
+Then HMI OP1 verifies that call history call button has label OP2(as OP1)
 !-- TODO QXVP-11374 : re-enable this step after bug is fixed
 !-- Then HMI OP1 verifies that call history redial button is enabled
 
@@ -86,7 +86,7 @@ When HMI OP1 presses function key CALLHISTORY
 
 Scenario: Caller selects first entry from history
 When HMI OP1 selects call history list entry number: 0
-Then HMI OP1 verifies that call history call button has label Call: OP2(as OP1)
+Then HMI OP1 verifies that call history call button has label OP2(as OP1)
 Then HMI OP1 verifies that call history dial button is enabled
 
 Scenario: Caller does call from call history
@@ -97,7 +97,7 @@ When HMI OP1 initiates a call from the call history
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
 Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
 Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with label 111111
-Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2 Physical
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2(as OP1)
 
 Scenario: Callee client answers the incoming call
 Then HMI OP2 accepts the call queue item OP1-OP2

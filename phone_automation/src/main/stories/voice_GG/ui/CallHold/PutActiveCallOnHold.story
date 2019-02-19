@@ -41,7 +41,7 @@ Then HMI OP2 has the call queue item OP1-OP2 in state held
 
 Scenario: Verify call queue section
 		  @REQUIREMENTS:GID-3371934
-Then HMI OP1 has the call queue item OP2-OP1 in the hold list with label OP2 Physical
+Then HMI OP1 has the call queue item OP2-OP1 in the hold list with label OP2(as OP1)
 Then HMI OP2 has the call queue item OP1-OP2 in the active list with label 111111
 
 Scenario: Callee puts the call on hold
@@ -70,7 +70,7 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Scenario: Verify call queue section
 		  @REQUIREMENTS:GID-3371935
 Then HMI OP1 verifies that the call queue item OP2-OP1 was removed from the hold list
-Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2 Physical
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2(as OP1)
 Then HMI OP2 has the call queue item OP1-OP2 in the active list with label 111111
 
 Scenario: Callee clears outgoing call
