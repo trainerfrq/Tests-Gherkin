@@ -140,6 +140,7 @@ Scenario: Caller redials from CallHistory
 		  @REQUIREMENTS:GID-2535779
 		  @REQUIREMENTS:GID-2535786
 		  @REQUIREMENTS:GID-4084452
+!-- TODO Disable story until bug QXVP-14263 is fixed
 When HMI OP1 redials last number from call history
 Then HMI OP1 has the call queue item OP2-OP1-IA in state connected
 Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
