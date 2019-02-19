@@ -30,7 +30,7 @@ import scripts.cats.hmi.asserts.Conference.VerifyConferenceListParticipantName;
 import scripts.cats.hmi.asserts.Conference.VerifyConferenceListParticipantStatus;
 import scripts.cats.hmi.asserts.Conference.VerifyConferenceListSize;
 import scripts.cats.hmi.asserts.Conference.VerifyRemoveConferenceParticipantButtonState;
-import scripts.cats.hmi.asserts.Conference.VerifyTerminateConferenceButtonState;
+import scripts.cats.hmi.asserts.Conference.VerifyLeaveConferenceButtonState;
 
 public class ConferenceUISteps extends AutomationSteps
 {
@@ -102,9 +102,9 @@ public class ConferenceUISteps extends AutomationSteps
     public void verifyTerminateConferenceButtonState(final String profileName, final String state) {
         evaluate(remoteStep("Verify terminate conferencet button has state " + state)
                 .scriptOn(
-                        profileScriptResolver().map(VerifyTerminateConferenceButtonState.class, BookableProfileName.javafx),
+                        profileScriptResolver().map(VerifyLeaveConferenceButtonState.class, BookableProfileName.javafx),
                         assertProfile(profileName))
-                .input(VerifyTerminateConferenceButtonState.IPARAM_STATE, state));
+                .input(VerifyLeaveConferenceButtonState.IPARAM_STATE, state));
     }
 
     @Then("$profileName verifies in the list that conference participant on position $number has status $status")

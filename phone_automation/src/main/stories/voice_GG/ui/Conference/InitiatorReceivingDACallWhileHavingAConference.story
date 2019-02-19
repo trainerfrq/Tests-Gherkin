@@ -1,7 +1,7 @@
 Narrative:
 As an initiator of a conference
-I want to receive an IA call
-So I can verify that if is not a full duplex call I will not automatically leave the conference and I can also hear the IA call
+I want to receive a DA call
+So I can verify that if I answer the DA call I will automatically leave the conference
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -13,15 +13,13 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key          | source                 | target                   | callType |
-| OP1-OP2      | sip:111111@example.com | sip:222222@example.com   | DA/IDA   |
-| OP2-OP1      | sip:222222@example.com | sip:111111@example.com   | DA/IDA   |
-| OP1-OP2-Conf | sip:111111@example.com | sip:222222@example.com   | CONF     |
-| OP2-OP1-Conf | <<OPVOICE2_CONF_URI>>  | sip:111111@example.com   | DA/IDA   |
-| OP2-OP3-Conf | <<OPVOICE2_CONF_URI>>  | sip:op3@example.com:5060 | DA/IDA   |
-| OP3-OP2      | sip:op3@example.com    | sip:222222@example.com   | IA       |
-| OP2-OP3      | sip:222222@example.com | sip:op3@example.com      | IA       |
-
+| key          | source                 | target                      | callType |
+| OP1-OP2      | sip:111111@example.com | sip:222222@example.com      | DA/IDA   |
+| OP2-OP1      | sip:222222@example.com | sip:111111@example.com      | DA/IDA   |
+| OP1-OP2-Conf | sip:111111@example.com | sip:222222@example.com      | CONF     |
+| OP2-OP1-Conf | <<OPVOICE2_CONF_URI>>  | sip:111111@example.com      | DA/IDA   |
+| OP3-OP2      | sip:op3@example.com    | sip:222222@example.com      | DA/IDA   |
+| OP2-OP3      | sip:222222@example.com | sip:op3@example.com         | DA/IDA   |
 
 Scenario: Create sip phone
 Given SipContacts group SipContact:
@@ -41,8 +39,8 @@ Scenario: Verify call is connected for both operators
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
-Scenario: Op2 starts a conference
-When HMI OP2 starts a conference
+Scenario: Op2 starts a conference using an existing active call
+When HMI OP2 starts a conference using an existing active call
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label OP1
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 1 more participant
@@ -70,57 +68,31 @@ Then HMI OP2 verifies in the list that conference participant on position 2 has 
 Scenario: Op2 closes conference participants list
 Then HMI OP2 closes Conference list popup window
 
-Scenario: Op3 establishes an outgoing IA call to Op2
-When HMI OP3 presses IA key IA - OP2(as OP3)
-Then HMI OP3 has the call queue item OP2-OP3 in state connected
-Then HMI OP3 has the IA key IA - OP2(as OP3) in state connected
+Scenario: Op3 establishes an outgoing call to Op2
+When HMI OP3 presses DA key OP2(as OP3)
+Then HMI OP3 has the DA key OP2(as OP3) in state out_ringing
 
-Scenario: Op2 receives incoming IA call
-Then HMI OP2 click on call queue Elements list
-Then HMI OP2 has in the collapsed area a number of 1 calls
-Then HMI OP2 has the call queue item OP3-OP2 in state connected
-Then HMI OP2 has the IA key IA - OP3 in state connected
-
-Scenario: Conference is not terminated also for the other participants
-Then HMI OP1 has in the call queue a number of 1 calls
-
-Scenario: Op3 client clears the phone call
-When HMI OP3 presses IA key IA - OP2(as OP3)
-Then HMI OP2 has in the call queue a number of 1 calls
-
-Scenario: Op2 adds another participant to the conference
-		  @REQUIREMENTS:GID-2529024
+Scenario: Op2 client receives the incoming call and answers the call
+		  @REQUIREMENTS:GID-2878006
+Then HMI OP2 has the DA key OP3 in state inc_initiated
 When HMI OP2 presses DA key OP3
 
-Scenario: Op3 client receives the incoming call and answers the call
-Then HMI OP3 has the call queue item OP2-OP3-Conf in state inc_initiated
-Then HMI OP3 accepts the call queue item OP2-OP3-Conf
+Scenario: Verify call is connected for both operators
+Then HMI OP2 has in the collapsed area a number of 0 calls
+Then HMI OP3 has the call queue item OP2-OP3 in state connected
+Then HMI OP2 has the call queue item OP3-OP2 in state connected
 
-Scenario: Op2 verifies conference state
-		  @REQUIREMENTS:GID-3229804
-Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label OP1
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 3 more participants
-Then HMI OP2 has a notification that shows Conference call active
-
-Scenario: Op2 leaves the conference
-Then HMI OP2 terminates the call queue item OP1-OP2-Conf
-Then HMI OP2 has in the call queue a number of 0 calls
-
-Scenario: Verify conference is not terminated for all participants
+Scenario: Conference is not terminated also for the other participants
+		  @REQUIREMENTS:GID-2529028
 Then HMI OP1 has in the call queue a number of 1 calls
-Then HMI OP3 has in the call queue a number of 1 calls
+
+Scenario: Op2 client clears the phone call
+When HMI OP2 presses DA key OP3
+Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Op1 leaves the conference
 Then HMI OP1 terminates the call queue item OP2-OP1-Conf
 Then HMI OP1 has in the call queue a number of 0 calls
-
-Scenario: Verify conference is not terminated for Op3
-Then HMI OP3 has in the call queue a number of 1 calls
-
-Scenario: Op3 leaves the conference
-Then HMI OP3 terminates the call queue item OP2-OP3-Conf
-Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Remove phone
 When SipContact is removed

@@ -5,7 +5,7 @@ import javafx.css.PseudoClass
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class VerifyTerminateConferenceButtonState extends FxScriptTemplate {
+class VerifyLeaveConferenceButtonState extends FxScriptTemplate {
 
     public static final String IPARAM_STATE = "state_mode"
 

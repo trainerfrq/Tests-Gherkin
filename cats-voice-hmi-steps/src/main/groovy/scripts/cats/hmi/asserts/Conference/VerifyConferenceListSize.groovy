@@ -27,8 +27,8 @@ class VerifyConferenceListSize extends FxScriptTemplate {
             final TableView conferenceTable = robot.lookup( "#conferenceTable" ).queryFirst()
             final ObservableList conferenceItems = conferenceTable.getItems()
             evaluate(ExecutionDetails.create("Conference list size is the expected one")
-                    .received(conferenceItems.size().toString())
-                    .expected(IPARAM_CONFERENCE_LIST_SIZE)
+                    .received("Received conference list size: " + conferenceItems.size().toString())
+                    .expected("Expected conference list size: " + conferenceListSize.toString())
                     .success(conferenceItems.size().equals(conferenceListSize)));
         }
     }

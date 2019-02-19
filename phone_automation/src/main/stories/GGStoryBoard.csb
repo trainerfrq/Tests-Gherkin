@@ -1982,13 +1982,13 @@
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/Conference/InitiatorReceivingDACAllWhileHavingAConference.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/ui/Conference/InitiatorReceivingDACallWhileHavingAConference.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/Conference/InitiatorReceivingIACAllWhileHavingAConference.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/ui/Conference/InitiatorReceivingIACallWhileHavingAConference.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>

@@ -247,11 +247,11 @@ public class CallUISteps extends AutomationSteps {
               .input( DragAndClickOnMenuButtonDAKey.IPARAM_DA_KEY_ID, daKey.getId() ) );
     }
 
-    @When("$profileName initiates a conference using the DA key $target")
+    @When("$profileName convert active call to conference using the DA key $target")
     public void conferenceCallUsingDAKey( final String profileName, final String target  )
     {
         DAKey daKey = retrieveDaKey(profileName, target);
-        evaluate( remoteStep( "Transfer active call" )
+        evaluate( remoteStep( "Convert active call to conference using DA key context menu" )
                 .scriptOn( profileScriptResolver().map( DragAndClickOnMenuButtonDAKey.class,
                         BookableProfileName.javafx ), assertProfile( profileName ) )
                 .input( DragAndClickOnMenuButtonDAKey.IPARAM_MENU_BUTTON_ID, CONFERENCE_MENU_BUTTON_ID )

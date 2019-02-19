@@ -43,9 +43,9 @@ Scenario: Verify call is connected for both operators
 Then HMI OP3 has the call queue item OP2-OP3 in state connected
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
 
-Scenario: Op2 starts a conference
+Scenario: Op2 starts a conference using an existing active call
 		  @REQUIREMENTS:GID-4021244
-When HMI OP2 starts a conference
+When HMI OP2 starts a conference using an existing active call
 Then HMI OP2 has the call queue item OP3-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP3-OP2-Conf in the active list with name label OP3
 Then HMI OP2 has the call queue item OP3-OP2-Conf in the active list with info label 1 more participant

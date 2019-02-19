@@ -36,7 +36,7 @@ class VerifyConferenceListParticipantStatus extends FxScriptTemplate {
             evaluate(ExecutionDetails.create("Conference participant has the expected status")
                     .received(status)
                     .expected(participantStatus)
-                    .success(status.contains(participantStatus)))
+                    .success(status.equals(participantStatus)))
         }
     }
 }

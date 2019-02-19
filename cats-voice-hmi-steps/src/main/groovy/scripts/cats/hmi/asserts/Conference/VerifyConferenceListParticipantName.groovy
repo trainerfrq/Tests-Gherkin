@@ -36,7 +36,7 @@ class VerifyConferenceListParticipantName extends FxScriptTemplate {
             evaluate(ExecutionDetails.create("Conference participant has the expected name")
                     .received(name)
                     .expected(participantName)
-                    .success(name.contains(participantName)))
+                    .success(name.equals(participantName)))
         }
     }
 }

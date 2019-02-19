@@ -43,7 +43,7 @@ import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemStyleClass;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemTransferState;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueLength;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueSectionLength;
-import scripts.cats.hmi.asserts.CallQueue.VerifyMenuButtonFirstCallQueueItemExists;
+import scripts.cats.hmi.asserts.CallQueue.VerifyMenuButtonFirstCallQueueItemIsVisible;
 
 import java.util.HashMap;
 import java.util.List;
@@ -397,7 +397,7 @@ public class CallQueueUISteps extends AutomationSteps
                 .input( VerifyCallQueueInfoContainerLabel.IPARAM_INFO_LABEL, info ) );
     }
 
-   @When("$profileName starts a conference")
+   @When("$profileName starts a conference using an existing active call")
    public void startsConference( final String profileName )
    {
       evaluate( remoteStep( "Starts a conference using call queue context menu" )
@@ -417,26 +417,34 @@ public class CallQueueUISteps extends AutomationSteps
               .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_LIST_NAME, ACTIVE_LIST_NAME ) );
    }
 
-   @Then("$profileName verifies that hold button $presence")
-   public void verifyHoldButtonExistence( final String profileName, final String presence )
+   @Then("$profileName verifies that hold button $exists")
+   public void verifyHoldButtonExistence( final String profileName, final String exists )
    {
+      Boolean isVisible = true;
+      if(exists.contains("not")){
+         isVisible = false;
+      }
       evaluate( remoteStep( "Verify hold button existence" )
-              .scriptOn( profileScriptResolver().map( VerifyMenuButtonFirstCallQueueItemExists.class,
+              .scriptOn( profileScriptResolver().map( VerifyMenuButtonFirstCallQueueItemIsVisible.class,
                       BookableProfileName.javafx ), assertProfile( profileName ) )
-              .input( VerifyMenuButtonFirstCallQueueItemExists.IPARAM_MENU_BUTTON_ID, HOLD_MENU_BUTTON_ID )
-              .input( VerifyMenuButtonFirstCallQueueItemExists.IPARAM_LIST_NAME, ACTIVE_LIST_NAME )
-              . input(VerifyMenuButtonFirstCallQueueItemExists.IPARAM_PRESENCE, presence));
+              .input( VerifyMenuButtonFirstCallQueueItemIsVisible.IPARAM_MENU_BUTTON_ID, HOLD_MENU_BUTTON_ID )
+              .input( VerifyMenuButtonFirstCallQueueItemIsVisible.IPARAM_LIST_NAME, ACTIVE_LIST_NAME )
+              . input(VerifyMenuButtonFirstCallQueueItemIsVisible.IPARAM_IS_VISIBLE, isVisible));
    }
 
-   @Then("$profileName verifies that transfer button $presence")
-   public void verifyTransferButtonExistence( final String profileName, final String presence )
+   @Then("$profileName verifies that transfer button $exists")
+   public void verifyTransferButtonExistence( final String profileName, final String exists )
    {
+      Boolean isVisible = true;
+      if(exists.contains("not")){
+         isVisible = false;
+      }
       evaluate( remoteStep( "Verify transfer button existence" )
-              .scriptOn( profileScriptResolver().map( VerifyMenuButtonFirstCallQueueItemExists.class,
+              .scriptOn( profileScriptResolver().map( VerifyMenuButtonFirstCallQueueItemIsVisible.class,
                       BookableProfileName.javafx ), assertProfile( profileName ) )
-              .input( VerifyMenuButtonFirstCallQueueItemExists.IPARAM_MENU_BUTTON_ID, TRANSFER_MENU_BUTTON_ID )
-              .input( VerifyMenuButtonFirstCallQueueItemExists.IPARAM_LIST_NAME, ACTIVE_LIST_NAME )
-              . input(VerifyMenuButtonFirstCallQueueItemExists.IPARAM_PRESENCE, presence));
+              .input( VerifyMenuButtonFirstCallQueueItemIsVisible.IPARAM_MENU_BUTTON_ID, TRANSFER_MENU_BUTTON_ID )
+              .input( VerifyMenuButtonFirstCallQueueItemIsVisible.IPARAM_LIST_NAME, ACTIVE_LIST_NAME )
+              . input(VerifyMenuButtonFirstCallQueueItemIsVisible.IPARAM_IS_VISIBLE, isVisible));
    }
 
 

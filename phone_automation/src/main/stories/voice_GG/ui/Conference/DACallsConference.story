@@ -31,9 +31,9 @@ Scenario: Verify call is connected for both operators
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
-Scenario: Op2 starts a conference
+Scenario: Op2 starts a conference using an existing active call
 		  @REQUIREMENTS:GID-4021244
-When HMI OP2 starts a conference
+When HMI OP2 starts a conference using an existing active call
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label OP1
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 1 more participant
@@ -42,6 +42,7 @@ Then HMI OP2 has a notification that shows Conference call active
 Scenario: Op1 call state verification
 Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
 !-- Then HMI OP1 verifies that the DA key OP2(as OP1) has the info label Conference
+!-- TODO Enabled when story QXVP-7831 is implemented
 
 Scenario: Op2 verifies conference participants list
 When HMI OP2 opens the conference participants list
