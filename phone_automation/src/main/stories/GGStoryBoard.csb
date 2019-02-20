@@ -593,6 +593,12 @@
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
+                             <cats:storyPath>voice_GG/websocket/TelephoneBook/DACallMatchingPhoneBookEntries.story</cats:storyPath>
+                             <cats:storyParameters/>
+                             <cats:storyStatistics/>
+                             <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookEmptySearchPattern.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
@@ -1627,7 +1633,7 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/DialPad/DACallFromDialPadMatchingPhoneBookEntry.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>

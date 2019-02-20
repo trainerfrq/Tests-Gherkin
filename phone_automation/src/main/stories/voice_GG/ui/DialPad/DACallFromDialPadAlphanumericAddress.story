@@ -43,7 +43,7 @@ Scenario: Call is initiated
 		  @REQUIREMENTS:GID-2535740
 		  @REQUIREMENTS:GID-3366402
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
-Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2(as OP1)
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2 Physical
 Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with label mission1
 Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
 
