@@ -1845,6 +1845,104 @@
                 </cats:storyList>
             </cats:storyLists>
         </cats:storyCollection>
+
+         <cats:storyCollection enabled="true">
+                    <cats:name>Audio - Prepare Tests</cats:name>
+                    <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
+                    <cats:report>
+                        <cats:status>CREATED</cats:status>
+                    </cats:report>
+                    <cats:storyLists>
+                        <cats:storyList enabled="true">
+                            <cats:name>Audio - Prepare Tests</cats:name>
+                            <cats:onErrorOption>ABORT_ENTIRE_STORY_SET</cats:onErrorOption>
+                            <cats:repetitions>1</cats:repetitions>
+                            <cats:report>
+                                <cats:status>CREATED</cats:status>
+                            </cats:report>
+                            <cats:reports/>
+                            <cats:stories>
+                                <cats:story enabled="true">
+                                     <cats:storyPath>deploy/DeployHmi.story</cats:storyPath>
+                                     <cats:storyParameters/>
+                                     <cats:storyStatistics/>
+                                     <cats:storyDataList/>
+                                </cats:story>
+                                <cats:story enabled="true">
+                                    <cats:storyPath>voice_GG/includes/UpdatePartitions.story</cats:storyPath>
+                                    <cats:storyParameters/>
+                                    <cats:storyStatistics/>
+                                    <cats:storyDataList/>
+                                </cats:story>
+                                <cats:story enabled="true">
+                                    <cats:storyPath>deploy/CreateCO.story</cats:storyPath>
+                                    <cats:storyParameters/>
+                                    <cats:storyStatistics/>
+                                    <cats:storyDataList/>
+                                </cats:story>
+                                <cats:story enabled="true">
+                                    <cats:storyPath>deploy/StartProfilesForAudioTests.story</cats:storyPath>
+                                    <cats:storyParameters/>
+                                    <cats:storyStatistics/>
+                                    <cats:storyDataList/>
+                                </cats:story>
+                                <cats:story enabled="true">
+                                    <cats:storyPath>voice_GG/includes/UpdateDescriptorsPositionWithAudioBox.story</cats:storyPath>
+                                    <cats:storyParameters/>
+                                    <cats:storyStatistics/>
+                                    <cats:storyDataList/>
+                                </cats:story>
+                            </cats:stories>
+                            <cats:timeout>1800</cats:timeout>
+                        </cats:storyList>
+                    </cats:storyLists>
+                </cats:storyCollection>
+         <cats:storyCollection enabled="true">
+                    <cats:name>Audio - UnattendedStatus</cats:name>
+                    <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
+                    <cats:report>
+                        <cats:status>CREATED</cats:status>
+                    </cats:report>
+                    <cats:storyLists>
+                        <cats:storyList enabled="true">
+                            <cats:name>Audio - UnattendedStatus</cats:name>
+                            <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
+                            <cats:repetitions>1</cats:repetitions>
+                            <cats:report>
+                                <cats:status>CREATED</cats:status>
+                            </cats:report>
+                            <cats:reports/>
+                            <cats:stories>
+                                <cats:story enabled="true">
+                                    <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
+                                    <cats:storyParameters/>
+                                    <cats:storyStatistics/>
+                                    <cats:storyDataList/>
+                                </cats:story>
+                                <cats:story enabled="true">
+                                    <cats:storyPath>voice_GG/audio/UnattendedStatus/IdleOnPositionUnattended.story</cats:storyPath>
+                                    <cats:storyParameters/>
+                                    <cats:storyStatistics/>
+                                    <cats:storyDataList/>
+                                </cats:story>
+                                <cats:story enabled="true">
+                                     <cats:storyPath>voice_GG/audio/UnattendedStatus/KeepCallForwardIfIdleOnPositionUnattended.story</cats:storyPath>
+                                     <cats:storyParameters/>
+                                     <cats:storyStatistics/>
+                                     <cats:storyDataList/>
+                                 </cats:story>
+                                 <cats:story enabled="true">
+                                      <cats:storyPath>voice_GG/audio/UnattendedStatus/PreventIdleOnPositionUnattended.story</cats:storyPath>
+                                      <cats:storyParameters/>
+                                      <cats:storyStatistics/>
+                                      <cats:storyDataList/>
+                                  </cats:story>
+                            </cats:stories>
+                            <cats:timeout>1800</cats:timeout>
+                        </cats:storyList>
+                    </cats:storyLists>
+                </cats:storyCollection>
+
     </cats:storyCollections>
     <cats:webCenterURL>http://10.254.56.242:8081/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880</cats:webCenterURL>
 </cats:storyBoard>

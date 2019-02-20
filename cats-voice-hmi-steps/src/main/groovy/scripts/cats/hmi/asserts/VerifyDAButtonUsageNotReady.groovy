@@ -14,15 +14,14 @@ class VerifyDAButtonUsageNotReady extends FxScriptTemplate {
 
         Node daWidget = robot.lookup("#" + daKeyId).queryFirst()
 
-        WaitTimer.pause(1000);
+        WaitTimer.pause(1000)
 
         evaluate(ExecutionDetails.create("Verify DA key was found")
                 .expected("DA key with id " + daKeyId + " was found")
                 .success(daWidget != null))
 
-        evaluate(ExecutionDetails.create("Verify DA key is enabled")
-                .expected("DA key with id " + daKeyId + " is enabled")
+        evaluate(ExecutionDetails.create("Verify DA key is disabled")
+                .expected("DA key with id " + daKeyId + " is disabled")
                 .success(daWidget.isDisabled()))
-
     }
 }

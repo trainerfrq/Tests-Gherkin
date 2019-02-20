@@ -174,7 +174,38 @@
                 <scope>test</scope>
                 <version>4.12</version>
             </dependency>
+             <dependency>
+            <groupId>javax.websocket</groupId>
+            <artifactId>javax.websocket-api</artifactId>
+            <version>1.0</version>
+         </dependency>
+         <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-util</artifactId>
+            <version>9.4.7.v20170914</version>
+         </dependency>
+           <dependency>
+         <groupId>com.frequentis.xvp.framework</groupId>
+         <artifactId>websocket-lib</artifactId>
+              <version>1.0.0</version>
+      </dependency>
+           <dependency>
+            <groupId>com.frequentis.xvp.voice</groupId>
+            <artifactId>audio-simulator-service-interface</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>com.frequentis.xvp.voice</groupId>
+            <artifactId>audio-simulator-service</artifactId>
+            <version>0.41.0-SNAPSHOT</version>
+         </dependency>
+         <dependency>
+            <groupId>com.frequentis.xvp.voice</groupId>
+            <artifactId>audio-service-interface</artifactId>
+            <version>0.21.0-SNAPSHOT</version>
+         </dependency>
         </dependencies>
+
     </dependencyManagement>
 
 

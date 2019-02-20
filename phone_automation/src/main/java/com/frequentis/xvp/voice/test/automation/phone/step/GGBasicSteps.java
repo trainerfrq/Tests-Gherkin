@@ -76,7 +76,8 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
 
       final JsonMessage request =
-            JsonMessage.newAssociateRequest( ClientId.fromId( UUID.randomUUID() ), OpId.create( opId ), AppId.create( appId ) );
+            JsonMessage.newAssociateRequest( ClientId.fromId( UUID.randomUUID() ), OpId.create( opId ),
+                  AppId.create( appId ) );
 
       final RemoteStepResult remoteStepResult =
             evaluate(
@@ -110,10 +111,10 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       final RemoteStepResult remoteStepResult =
             evaluate( remoteStep(
                   "Receiving the last message on websocket " + namedWebSocket + " for buffer named " + bufferName )
-                        .scriptOn( profileScriptResolver().map( ReceiveLastReceivedMessage.class,
-                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
-                        .input( ReceiveLastReceivedMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
-                        .input( ReceiveLastReceivedMessage.IPARAM_BUFFERKEY, bufferName ) );
+                  .scriptOn( profileScriptResolver().map( ReceiveLastReceivedMessage.class,
+                        BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                  .input( ReceiveLastReceivedMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                  .input( ReceiveLastReceivedMessage.IPARAM_BUFFERKEY, bufferName ) );
 
       final String jsonResponse =
             ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
@@ -171,7 +172,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
       final JsonMessage event =
             JsonMessage.newMissionChangeCompletedEvent( new MissionChangeCompletedEvent( missionId ),
-                  UUID.randomUUID() );
+                  CorrelationId.fromId( UUID.randomUUID() ) );
 
       evaluate( remoteStep( "Sending mission change completed event for mission " + missionId )
             .scriptOn( profileScriptResolver().map( SendTextMessage.class, BookableProfileName.websocket ),
@@ -226,7 +227,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
    @When("$namedWebSocket loads phone data for role $roleIdName and names $callSourceName and $callTargetName from the entry number $entryNumber")
    public void loadPhoneData( final String namedWebSocket, final String roleIdName, final String callSourceName,
-   final String callTargetName, final Integer entryNumber )
+         final String callTargetName, final Integer entryNumber )
    {
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
@@ -777,25 +778,30 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       }
    }
 
+
    @Then("verify that responses $requestId1 and $requestId2 are $equalOrDifferent")
-   public void assertResponses( final String namedResponse1, final String namedResponse2, final String equalOrDifferent){
+   public void assertResponses( final String namedResponse1, final String namedResponse2,
+         final String equalOrDifferent )
+   {
       String response1 = getStoryListData( namedResponse1, String.class );
       String response2 = getStoryListData( namedResponse2, String.class );
-      switch ( equalOrDifferent ){
+      switch ( equalOrDifferent )
+      {
          case "equal":
-            evaluate(localStep( "Verify request results are equal" ).details(
+            evaluate( localStep( "Verify request results are equal" ).details(
                   match( response1, equalTo( response2 ) ) ) );
             break;
          case "different":
-            evaluate(localStep("Verify request results are different" ).details(
-                  match( response1, not(equalTo( response2 ) ) ) ) );
+            evaluate( localStep( "Verify request results are different" ).details(
+                  match( response1, not( equalTo( response2 ) ) ) ) );
             break;
       }
    }
 
 
    @When("$namedWebSocket requests the layout for role $roleIdName and saves the response $responseIdName")
-   public void sendAndReceiveRoleLayoutRequest( final String namedWebSocket, final String roleIdName, final String response )
+   public void sendAndReceiveRoleLayoutRequest( final String namedWebSocket, final String roleIdName,
+         final String response )
    {
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
@@ -820,14 +826,15 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
       final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
 
-      List<String> layout = new ArrayList<>(  );
-      for( JsonWidgetElement jsonWidgetElement : jsonMessage.body().queryRoleWidgetLayoutResponse().getWidgetLayout().getWidgets() )
+      List<String> layout = new ArrayList<>();
+      for ( JsonWidgetElement jsonWidgetElement : jsonMessage.body().queryRoleWidgetLayoutResponse().getWidgetLayout()
+            .getWidgets() )
       {
          layout.add( jsonWidgetElement.getId() );
          layout.add( jsonWidgetElement.getGrid() );
          layout.add( jsonWidgetElement.getType().toString() );
       }
-      setStoryListData( response, layout.toString());
+      setStoryListData( response, layout.toString() );
    }
 
 
@@ -1030,4 +1037,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
       setStoryData( phoneCallIdName, jsonMessage.body().callEstablishResponse().getCallId() );
    }
+
+
+
 }

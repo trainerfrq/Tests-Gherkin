@@ -13,11 +13,11 @@ class ClickOnIdlePopupButton extends FxScriptTemplate {
 
         String buttonName = assertInput(IPARAM_BUTTON_NAME) as String
 
-        Node unattendedPopup = robot.lookup("#idlePopup").queryFirst()
+        Node idlePopup = robot.lookup("#idlePopup").queryFirst()
 
         evaluate(ExecutionDetails.create("Idle popup was found")
                 .expected("Idle popup is not null")
-                .success(unattendedPopup != null))
+                .success(idlePopup != null))
 
         final Node button
         switch (buttonName) {
