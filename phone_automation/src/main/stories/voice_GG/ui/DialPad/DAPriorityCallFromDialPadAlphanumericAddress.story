@@ -52,13 +52,13 @@ Scenario: Call is initiated
 		  @REQUIREMENTS:GID-2535717
 Then HMI OP1 has the call queue item OP1-SipContact in state out_ringing
 Then HMI OP1 verifies that call queue item bar signals call state priority
-Then HMI OP1 has the call queue item OP1-SipContact in the active list with label Madoline
+Then HMI OP1 has the call queue item OP1-SipContact in the active list with name label Madoline
 
 Scenario: Sip Contact answers call
 When SipContact answers incoming calls
 
 Scenario: Verify call on caller side
-Then HMI OP1 has the call queue item OP1-SipContact in the active list with label Madoline
+Then HMI OP1 has the call queue item OP1-SipContact in the active list with name label Madoline
 Then HMI OP1 verifies that call queue item bar signals call state priority
 
 Scenario: Caller clears outgoing call
