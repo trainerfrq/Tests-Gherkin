@@ -52,7 +52,7 @@ Then HMI OP3 verifies that phone book text box displays text Madoline
 When HMI OP3 initiates a call from the phonebook
 
 Scenario: Call is initiated
-Then HMI OP3 has the call queue item Madoline-OP3 in the active list with label Madoline
+Then HMI OP3 has the call queue item Madoline-OP3 in the active list with name label Madoline
 
 Scenario: Caller clears outgoing call
 Then HMI OP3 terminates the call queue item Madoline-OP3
