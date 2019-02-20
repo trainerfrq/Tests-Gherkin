@@ -153,7 +153,7 @@ public class CallUISteps extends AutomationSteps {
 
     @Given("$profileName has the DA key $target in ready to be used state")
     @Alias("$profileName has the IA key $target in ready to be used state")
-    public void verifyReadyToBeUsedDAState(final String profileName, final String target, final String state) {
+    public void verifyReadyToBeUsedDAState(final String profileName, final String target) {
         DAKey daKey = retrieveDaKey(profileName, target);
 
         evaluate(remoteStep("Check application status")
