@@ -43,7 +43,7 @@ Scenario: Op1 starts a conference using an existing active call
 		  @REQUIREMENTS:GID-4021244
 When HMI OP1 starts a conference using an existing active call
 Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
-Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label OP2 Physical
+Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label OP2(as OP1)
 Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with info label 1 more participant
 Then HMI OP1 has a notification that shows Conference call active
 

@@ -164,7 +164,6 @@ Then HMI OP3 terminates the call queue item OP2-OP3-Conf
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Op2 verifies conference participants list
-When HMI OP2 opens the conference participants list
 Then HMI OP2 verifies that conference participants list contains 3 participants
 !-- Then HMI OP2 verifies in the list that conference participant on position 1 has status disconnected
 !-- TODO enable step when story QXVP-8656 is implemented
