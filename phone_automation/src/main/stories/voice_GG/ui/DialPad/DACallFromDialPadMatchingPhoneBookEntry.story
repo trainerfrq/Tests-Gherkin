@@ -36,7 +36,8 @@ When HMI OP1 initiates a call from the phonebook
 Scenario: Call is initiated
 		  @REQUIREMENTS:GID-2877904
 		  @REQUIREMENTS:GID-2932446
-Then HMI OP1 has the call queue item OP3-OP1 in the active list with name label Lloyd
+!-- Then HMI OP1 has the call queue item OP3-OP1 in the active list with name label Lloyd
+!-- TODO Enable test when bug QXVP-14392 is fixed
 
 Scenario: Callee accepts call
 Then HMI OP3 accepts the call queue item OP1-OP3

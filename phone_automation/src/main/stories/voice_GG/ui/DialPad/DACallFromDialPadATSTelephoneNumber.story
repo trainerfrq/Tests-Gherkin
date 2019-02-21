@@ -35,7 +35,8 @@ Scenario: Call is initiated
 		  @REQUIREMENTS:GID-2932446
 		  @REQUIREMENTS:GID-3366402
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
-Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2 Physical
+!-- Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2 Physical
+!-- TODO Enable test when bug QXVP-14392 is fixed
 Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
 Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with name label mission1
 

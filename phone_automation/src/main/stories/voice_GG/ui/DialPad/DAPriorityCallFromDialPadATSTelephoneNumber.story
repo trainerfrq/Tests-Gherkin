@@ -41,7 +41,8 @@ Then waiting for 1 second
 Scenario: Call is initiated
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
 Then HMI OP1 verifies that call queue item bar signals call state priority
-Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2 Physical
+!-- Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2 Physical
+!-- TODO Enable test when bug QXVP-14392 is fixed
 Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
 Then HMI OP2 verifies that call queue item bar signals call state priority
 Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with name label mission1

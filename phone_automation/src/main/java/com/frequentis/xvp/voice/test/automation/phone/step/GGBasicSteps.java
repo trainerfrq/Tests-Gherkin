@@ -5,34 +5,6 @@
  */
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import scripts.cats.websocket.sequential.SendTextMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
-import scripts.cats.websocket.sequential.buffer.ReceiveFirstReceivedMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
-import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
-import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
-import static com.frequentis.c4i.test.model.MatcherDetails.match;
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.instanceOf;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.hamcrest.Matchers.nullValue;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
-import java.util.UUID;
-import java.util.stream.Collectors;
-
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
-
 import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.automation.model.PhoneBookEntry;
@@ -66,6 +38,32 @@ import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallRetrieve
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallStatusIndication;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallTransferRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallTransferResponse;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
+import scripts.cats.websocket.sequential.SendTextMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
+import scripts.cats.websocket.sequential.buffer.ReceiveFirstReceivedMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
+import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
+import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
+import static com.frequentis.c4i.test.model.MatcherDetails.match;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class GGBasicSteps extends WebsocketAutomationSteps
 {
