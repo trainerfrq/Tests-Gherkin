@@ -16,39 +16,38 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import scripts.cats.hmi.actions.ClickCallQueueElementsList;
-import scripts.cats.hmi.actions.ClickCallQueueItem;
-import scripts.cats.hmi.actions.ClickOnCallQueueInfoContainer;
-import scripts.cats.hmi.actions.DragAndClickOnMenuButtonFirstCallQueueItem;
-import scripts.cats.hmi.asserts.VerifyCallQueueBarState;
-import scripts.cats.hmi.asserts.VerifyCallQueueCollapsedAreaSize;
-import scripts.cats.hmi.asserts.VerifyCallQueueInfoContainerIfVisible;
-import scripts.cats.hmi.asserts.VerifyCallQueueInfoContainerLabel;
-import scripts.cats.hmi.asserts.VerifyCallQueueItemCallType;
-import scripts.cats.hmi.asserts.VerifyCallQueueItemIndexInList;
-import scripts.cats.hmi.asserts.VerifyCallQueueItemLabel;
-import scripts.cats.hmi.asserts.VerifyCallQueueItemNotInList;
-import scripts.cats.hmi.asserts.VerifyCallQueueItemStateIfPresent;
-import scripts.cats.hmi.asserts.VerifyCallQueueItemStyleClass;
-import scripts.cats.hmi.asserts.VerifyCallQueueItemTransferState;
-import scripts.cats.hmi.asserts.VerifyCallQueueLength;
-import scripts.cats.hmi.asserts.VerifyCallQueueSectionLength;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.jbehave.core.annotations.Aliases;
-import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
-
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
+import org.jbehave.core.annotations.Aliases;
+import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
+import scripts.cats.hmi.actions.CallQueue.ClickCallQueueElementsList;
+import scripts.cats.hmi.actions.CallQueue.ClickCallQueueItem;
+import scripts.cats.hmi.actions.CallQueue.ClickOnCallQueueInfoContainer;
+import scripts.cats.hmi.actions.CallQueue.DragAndClickOnMenuButtonFirstCallQueueItem;
+import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueBarState;
+import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueCollapsedAreaSize;
+import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueInfoContainerIfVisible;
+import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueInfoContainerLabel;
+import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemCallType;
+import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemIndexInList;
+import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemLabel;
+import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemNotInList;
+import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemStateIfPresent;
+import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemStyleClass;
+import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemTransferState;
+import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueLength;
+import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueSectionLength;
+import scripts.cats.hmi.asserts.CallQueue.VerifyMenuButtonFirstCallQueueItemIsVisible;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class CallQueueUISteps extends AutomationSteps
 {
@@ -75,6 +74,10 @@ public class CallQueueUISteps extends AutomationSteps
    private static final String DECLINE_CALL_MENU_BUTTON_ID = "decline_call_menu_button";
 
    private static final String TRANSFER_MENU_BUTTON_ID = "transfer_call_menu_button";
+
+   private static final String CONFERENCE_MENU_BUTTON_ID = "conference_call_menu_button";
+
+   private static final String CONFERENCE_LIST_CALL_MENU_BUTTON_ID = "conference_list_call_menu_button";
 
    private static final Map<String, String> CALL_QUEUE_LIST_MAP = new HashMap<>();
 
@@ -168,9 +171,9 @@ public class CallQueueUISteps extends AutomationSteps
    }
 
 
-   @Then("$profileName has the call queue item $callQueueItem in the $callQueueList list with label $label")
+   @Then("$profileName has the call queue item $callQueueItem in the $callQueueList list with $labelType label $label")
    public void verifyCallQueueItemLabelActiveList( final String profileName, final String namedCallQueueItem,
-         final String callQueueList, final String label )
+         final String callQueueList, final String labelType, final String label )
    {
       waitForSeconds( 1 );
       CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
@@ -180,6 +183,7 @@ public class CallQueueUISteps extends AutomationSteps
                   assertProfile( profileName ) )
             .input( VerifyCallQueueItemLabel.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
             .input( VerifyCallQueueItemLabel.IPARAM_DISPLAY_NAME, label )
+            .input( VerifyCallQueueItemLabel.IPARAM_LABEL_TYPE, labelType )
             .input( VerifyCallQueueItemLabel.IPARAM_LIST_NAME, CALL_QUEUE_LIST_MAP.get( callQueueList ) ) );
    }
 
@@ -392,6 +396,56 @@ public class CallQueueUISteps extends AutomationSteps
                         BookableProfileName.javafx ), assertProfile( profileName ) )
                 .input( VerifyCallQueueInfoContainerLabel.IPARAM_INFO_LABEL, info ) );
     }
+
+   @When("$profileName starts a conference using an existing active call")
+   public void startsConference( final String profileName )
+   {
+      evaluate( remoteStep( "Starts a conference using call queue context menu" )
+              .scriptOn( profileScriptResolver().map( DragAndClickOnMenuButtonFirstCallQueueItem.class,
+                      BookableProfileName.javafx ), assertProfile( profileName ) )
+              .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_MENU_BUTTON_ID, CONFERENCE_MENU_BUTTON_ID )
+              .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_LIST_NAME, ACTIVE_LIST_NAME ) );
+   }
+
+   @When("$profileName opens the conference participants list")
+   public void opensListConference( final String profileName )
+   {
+      evaluate( remoteStep( "Opens conference participants list using call queue context menu" )
+              .scriptOn( profileScriptResolver().map( DragAndClickOnMenuButtonFirstCallQueueItem.class,
+                      BookableProfileName.javafx ), assertProfile( profileName ) )
+              .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_MENU_BUTTON_ID, CONFERENCE_LIST_CALL_MENU_BUTTON_ID )
+              .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_LIST_NAME, ACTIVE_LIST_NAME ) );
+   }
+
+   @Then("$profileName verifies that hold button $exists")
+   public void verifyHoldButtonExistence( final String profileName, final String exists )
+   {
+      Boolean isVisible = true;
+      if(exists.contains("not")){
+         isVisible = false;
+      }
+      evaluate( remoteStep( "Verify hold button existence" )
+              .scriptOn( profileScriptResolver().map( VerifyMenuButtonFirstCallQueueItemIsVisible.class,
+                      BookableProfileName.javafx ), assertProfile( profileName ) )
+              .input( VerifyMenuButtonFirstCallQueueItemIsVisible.IPARAM_MENU_BUTTON_ID, HOLD_MENU_BUTTON_ID )
+              .input( VerifyMenuButtonFirstCallQueueItemIsVisible.IPARAM_LIST_NAME, ACTIVE_LIST_NAME )
+              . input(VerifyMenuButtonFirstCallQueueItemIsVisible.IPARAM_IS_VISIBLE, isVisible));
+   }
+
+   @Then("$profileName verifies that transfer button $exists")
+   public void verifyTransferButtonExistence( final String profileName, final String exists )
+   {
+      Boolean isVisible = true;
+      if(exists.contains("not")){
+         isVisible = false;
+      }
+      evaluate( remoteStep( "Verify transfer button existence" )
+              .scriptOn( profileScriptResolver().map( VerifyMenuButtonFirstCallQueueItemIsVisible.class,
+                      BookableProfileName.javafx ), assertProfile( profileName ) )
+              .input( VerifyMenuButtonFirstCallQueueItemIsVisible.IPARAM_MENU_BUTTON_ID, TRANSFER_MENU_BUTTON_ID )
+              .input( VerifyMenuButtonFirstCallQueueItemIsVisible.IPARAM_LIST_NAME, ACTIVE_LIST_NAME )
+              . input(VerifyMenuButtonFirstCallQueueItemIsVisible.IPARAM_IS_VISIBLE, isVisible));
+   }
 
 
    private String reformatSipUris( final String sipUri )

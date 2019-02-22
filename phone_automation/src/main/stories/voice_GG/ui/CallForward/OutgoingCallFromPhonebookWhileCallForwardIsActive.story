@@ -34,7 +34,7 @@ Scenario: Op1 hits phonebook call button
 When HMI OP1 initiates a call from the phonebook
 
 Scenario: Call is initiated
-Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2 Physical
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2 Physical
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP2-OP1
@@ -73,7 +73,7 @@ Scenario: Op1 hits phonebook call button
 When HMI OP1 initiates a call from the phonebook
 
 Scenario: Call is initiated
-Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2 Physical
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2 Physical
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP2-OP1

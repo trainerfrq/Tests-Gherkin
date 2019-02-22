@@ -45,13 +45,13 @@ Then HMI OP2 has in the call queue a number of 0 calls
 Scenario: Caller opens call history
 When HMI OP1 presses function key CALLHISTORY
 Then HMI OP1 verifies that call history list contains 1 entries
-Then HMI OP1 verifies that call history redial button has label OP2(as OP1)
+Then HMI OP1 verifies that call history call button has label OP2(as OP1)
 
 Scenario: Caller redials from CallHistory
 		  @REQUIREMENTS:GID-2535764
 		  @REQUIREMENTS:GID-2535779
 		  @REQUIREMENTS:GID-3366402
-When HMI OP1 redials last number
+When HMI OP1 redials last number from call history
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 
 Scenario: Callee client receives the incoming call
@@ -95,12 +95,12 @@ Then HMI OP1 has in the call queue a number of 0 calls
 Scenario: Caller opens call history
 When HMI OP1 presses function key CALLHISTORY
 Then HMI OP1 verifies that call history list contains 3 entries
-Then HMI OP1 verifies that call history redial button has label OP2(as OP1)
+Then HMI OP1 verifies that call history call button has label OP2(as OP1)
 
 Scenario: Caller redials from CallHistory
 		  @REQUIREMENTS:GID-2535764
 		  @REQUIREMENTS:GID-2535779
-When HMI OP1 redials last number
+When HMI OP1 redials last number from call history
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 
 Scenario: Callee client answers the incoming call
@@ -133,14 +133,15 @@ Then HMI OP1 has in the call queue a number of 0 calls
 Scenario: Caller opens call history
 When HMI OP1 presses function key CALLHISTORY
 Then HMI OP1 verifies that call history list contains 5 entries
-Then HMI OP1 verifies that call history redial button has label IA - OP2(as OP1)
+Then HMI OP1 verifies that call history call button has label IA - OP2(as OP1)
 
 Scenario: Caller redials from CallHistory
 		  @REQUIREMENTS:GID-2535764
 		  @REQUIREMENTS:GID-2535779
 		  @REQUIREMENTS:GID-2535786
 		  @REQUIREMENTS:GID-4084452
-When HMI OP1 redials last number
+!-- TODO Disable story until bug QXVP-14263 is fixed
+When HMI OP1 redials last number from call history
 Then HMI OP1 has the call queue item OP2-OP1-IA in state connected
 Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
 

@@ -5,15 +5,20 @@ So I can check that the outgoing call is initiated
 
 Scenario: Booking profiles
 Given booked profiles:
-| profile | group | host           | identifier |
-| javafx  | hmi   | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi   | <<CLIENT2_IP>> | HMI OP2    |
+| profile | group          | host           | identifier |
+| javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
+| voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
+
+Scenario: Create sip phone
+Given SipContacts group SipContact:
+| key        | profile | user-entity | sip-uri        |
+| SipContact | VOIP    | 12345       | <<SIP_PHONE2>> |
+And phones for SipContact are created
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                   | target                 | callType |
-| OP1-OP2 | sip:mission1@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1 | sip:222222@example.com   |                        | DA/IDA   |
+| key            | source         | target | callType |
+| OP1-SipContact | <<SIP_PHONE2>> |        | DA/IDA   |
 
 Scenario: Caller opens phonebook
 When HMI OP1 presses function key PHONEBOOK
@@ -28,7 +33,7 @@ Then HMI OP1 verifies that phone book call button is disabled
 Then HMI OP1 verifies that phone book priority toggle is inactive
 
 Scenario: Caller writes target address in text box
-When HMI OP1 writes in phonebook text box the address: sip:222222@example.com
+When HMI OP1 writes in phonebook text box the address: <<SIP_PHONE2>>
 Then HMI OP1 verifies that phone book call button is enabled
 
 Scenario: Caller toggles call priority
@@ -43,17 +48,26 @@ Scenario: Caller hits phonebook call button
 		  @REQUIREMENTS:GID-2536682
 When HMI OP1 initiates a call from the phonebook
 
-
 Scenario: Call is initiated
 		  @REQUIREMENTS:GID-2535717
-Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
+Then HMI OP1 has the call queue item OP1-SipContact in state out_ringing
 Then HMI OP1 verifies that call queue item bar signals call state priority
-Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
-Then HMI OP2 verifies that call queue item bar signals call state priority
+!-- Then HMI OP1 has the call queue item OP1-SipContact in the active list with name label Madoline
+!-- TODO Enable test when bug QXVP-14392 is fixed
+
+Scenario: Sip Contact answers call
+When SipContact answers incoming calls
+
+Scenario: Verify call on caller side
+!-- Then HMI OP1 has the call queue item OP1-SipContact in the active list with name label Madoline
+Then HMI OP1 verifies that call queue item bar signals call state priority
 
 Scenario: Caller clears outgoing call
-Then HMI OP1 terminates the call queue item OP2-OP1
+Then HMI OP1 terminates the call queue item OP1-SipContact
 
 Scenario: Call is terminated
 Then HMI OP1 has in the call queue a number of 0 calls
-Then HMI OP2 has in the call queue a number of 0 calls
+
+Scenario: Remove phone
+When SipContact is removed
+

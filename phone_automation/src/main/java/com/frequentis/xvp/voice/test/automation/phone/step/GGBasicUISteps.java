@@ -22,16 +22,28 @@ import org.jbehave.core.annotations.Then;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
+import scripts.cats.hmi.asserts.VerifyLoadingOverlayIsVisible;
+import scripts.cats.hmi.asserts.VerifyNotificationLabel;
 
 public class GGBasicUISteps extends AutomationSteps
 {
    @Then("$profileName has a notification that shows $notification")
-   public void namedCallParties( final String profileName, final String notification )
+   public void namedCallParties( final String profileName, final String notification  )
    {
-      evaluate( remoteStep( "Verify operator position has the correct notificatione" ).scriptOn(
-            profileScriptResolver().map( VerifyNotificationLabel.class, BookableProfileName.javafx ),
-            assertProfile( profileName ) )
-            .input( VerifyNotificationLabel.IPARAM_NOTIFICATION_LABEL_TEXT, notification ) );
+      evaluate( remoteStep( "Verify operator position has the correct notification" ).scriptOn(
+              profileScriptResolver().map( VerifyNotificationLabel.class, BookableProfileName.javafx ),
+              assertProfile( profileName ) )
+              .input(VerifyNotificationLabel.IPARAM_NOTIFICATION_LABEL_TEXT, notification));
+   }
+
+   @When("$profileName verifies that loading screen is visible")
+   public void verifyLoadingScreen( final String profileName)
+   {
+      evaluate( remoteStep( "Verify that loading screen is visible" ).scriptOn(
+              profileScriptResolver().map( VerifyLoadingOverlayIsVisible.class, BookableProfileName.javafx ),
+              assertProfile( profileName ) ));
    }
 
 }

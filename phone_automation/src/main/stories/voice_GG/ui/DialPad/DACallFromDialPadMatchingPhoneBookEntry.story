@@ -11,9 +11,9 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                   | target              | callType |
-| OP1-OP3 | sip:mission1@example.com | sip:op3@example.com | DA/IDA   |
-| OP3-OP1 | sip:op3@example.com      |                     | DA/IDA   |
+| key     | source                       | target                       | callType |
+| OP1-OP3 | sip:mission1@example.com     | sip:op3@192.168.100.156:5060 | DA/IDA   |
+| OP3-OP1 | sip:op3@192.168.100.156:5060 |                              | DA/IDA   |
 
 Scenario: Caller opens phonebook
 When HMI OP1 presses function key PHONEBOOK
@@ -36,8 +36,12 @@ When HMI OP1 initiates a call from the phonebook
 Scenario: Call is initiated
 		  @REQUIREMENTS:GID-2877904
 		  @REQUIREMENTS:GID-2932446
-!-- TODO QXVP-10847 : re-enable this test after bug is fixed
-Then HMI OP1 has the call queue item SipContact-OP1 in the active list with label Lloyd
+!-- Then HMI OP1 has the call queue item OP3-OP1 in the active list with name label Lloyd
+!-- TODO Enable test when bug QXVP-14392 is fixed
+
+Scenario: Callee accepts call
+Then HMI OP3 accepts the call queue item OP1-OP3
+Then HMI OP3 has the call queue item OP1-OP3 in the active list with name label mission1
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP3-OP1

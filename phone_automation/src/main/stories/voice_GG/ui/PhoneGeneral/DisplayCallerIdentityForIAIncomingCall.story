@@ -19,7 +19,7 @@ When HMI OP2 presses IA key IA - OP1
 
 Scenario: Verify call is connected and the caller identity is displayed
 		  @REQUIREMENTS:GID-3547601
-Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2 Physical
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2 Physical
 
 Scenario: Caller client clears the phone call
 When HMI OP2 presses IA key IA - OP1

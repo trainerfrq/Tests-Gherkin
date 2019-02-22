@@ -16,26 +16,26 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import scripts.cats.hmi.actions.ClickOnKeyboard;
-import scripts.cats.hmi.actions.ClickOnPhoneBookCloseButton;
-import scripts.cats.hmi.actions.ClickOnPhoneBookDeleteButton;
-import scripts.cats.hmi.actions.ClickOnPhoneBookForwardButton;
-import scripts.cats.hmi.actions.SelectCallRouteSelector;
-import scripts.cats.hmi.actions.SelectPhoneBookEntry;
-import scripts.cats.hmi.actions.ToggleCallPriority;
-import scripts.cats.hmi.actions.ToggleKeyboard;
-import scripts.cats.hmi.actions.WriteInPhoneBookTextBox;
-import scripts.cats.hmi.asserts.VerifyCallRouteSelector;
-import scripts.cats.hmi.asserts.VerifyCallRouteSelectorList;
-import scripts.cats.hmi.asserts.VerifyKeyboardLayout;
-import scripts.cats.hmi.asserts.VerifyPhoneBookCallButtonState;
-import scripts.cats.hmi.asserts.VerifyPhoneBookForwardButtonIfVisible;
-import scripts.cats.hmi.asserts.VerifyPhoneBookForwardButtonState;
-import scripts.cats.hmi.asserts.VerifyPhoneBookHighlightText;
-import scripts.cats.hmi.asserts.VerifyPhoneBookInputTextBox;
-import scripts.cats.hmi.asserts.VerifyPhoneBookListSize;
-import scripts.cats.hmi.asserts.VerifyPhoneBookSelectionTextBox;
-import scripts.cats.hmi.asserts.VerifyToggleCallPriorityState;
+import scripts.cats.hmi.actions.PhoneBook.ClickOnKeyboard;
+import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookCloseButton;
+import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookDeleteButton;
+import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookForwardButton;
+import scripts.cats.hmi.actions.PhoneBook.SelectCallRouteSelector;
+import scripts.cats.hmi.actions.PhoneBook.SelectPhoneBookEntry;
+import scripts.cats.hmi.actions.PhoneBook.ToggleCallPriority;
+import scripts.cats.hmi.actions.PhoneBook.ToggleKeyboard;
+import scripts.cats.hmi.actions.PhoneBook.WriteInPhoneBookTextBox;
+import scripts.cats.hmi.asserts.PhoneBook.VerifyCallRouteSelector;
+import scripts.cats.hmi.asserts.PhoneBook.VerifyCallRouteSelectorList;
+import scripts.cats.hmi.asserts.PhoneBook.VerifyKeyboardLayout;
+import scripts.cats.hmi.asserts.PhoneBook.VerifyPhoneBookCallButtonState;
+import scripts.cats.hmi.asserts.PhoneBook.VerifyPhoneBookForwardButtonIfVisible;
+import scripts.cats.hmi.asserts.PhoneBook.VerifyPhoneBookForwardButtonState;
+import scripts.cats.hmi.asserts.PhoneBook.VerifyPhoneBookHighlightText;
+import scripts.cats.hmi.asserts.PhoneBook.VerifyPhoneBookInputTextBox;
+import scripts.cats.hmi.asserts.PhoneBook.VerifyPhoneBookListSize;
+import scripts.cats.hmi.asserts.PhoneBook.VerifyPhoneBookSelectionTextBox;
+import scripts.cats.hmi.asserts.PhoneBook.VerifyToggleCallPriorityState;
 
 import java.io.IOException;
 import java.util.ArrayList;

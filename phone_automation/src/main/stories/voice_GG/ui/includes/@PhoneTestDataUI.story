@@ -17,6 +17,7 @@ Given the DA keys:
 | HMI OP2 | IA - OP1              | 118 |
 | HMI OP2 | IA - OP2              | 119 |
 | HMI OP2 | OP1-mission           | 120 |
+| HMI OP2 | IA - OP3              | 121 |
 | HMI OP3 | OP1(as OP3)           | 103 |
 | HMI OP3 | OP2(as OP3)           | 101 |
 | HMI OP3 | IA - OP2(as OP3)      | 108 |
@@ -29,6 +30,7 @@ Given the function keys:
 | CALLHISTORY | f2 |
 | MISSIONS    | f3 |
 | CALLFORWARD | f4 |
+| LOUDSPEAKER | f5 |
 
 Scenario: Define call route selectors
 Given the call route selectors:
