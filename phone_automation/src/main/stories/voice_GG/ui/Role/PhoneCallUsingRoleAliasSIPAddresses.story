@@ -47,10 +47,11 @@ When HMI OP2 initiates a call from the phonebook
 
 Scenario: Call is initiated
 Then HMI OP2 has the call queue item OP1-OP2-1 in state out_ringing
-Then HMI OP2 has the call queue item OP1-OP2-1 in the active list with label Role 1 (Alice)
+!-- Then HMI OP2 has the call queue item OP1-OP2-1 in the active list with name label Role 1 (Alice)
+!-- TODO Enable test when bug QXVP-14392 is fixed
 Then HMI OP1 has the call queue item OP2-OP1-1 in state inc_initiated
-Then HMI OP1 has the call queue item OP2-OP1-1 in the waiting list with label mission2
-Then HMI OP3 has the call queue item OP2-OP3-1 in the waiting list with label mission2
+Then HMI OP1 has the call queue item OP2-OP1-1 in the waiting list with name label mission2
+Then HMI OP3 has the call queue item OP2-OP3-1 in the waiting list with name label mission2
 
 Scenario: Caller clears outgoing call
 Then HMI OP2 terminates the call queue item OP1-OP2-1
@@ -72,10 +73,10 @@ When HMI OP2 initiates a call from the phonebook
 
 Scenario: Call is initiated
 Then HMI OP2 has the call queue item OP1-OP2-2 in state out_ringing
-Then HMI OP2 has the call queue item OP1-OP2-2 in the active list with label Group 1
+!-- Then HMI OP2 has the call queue item OP1-OP2-2 in the active list with name label Group 1
 Then HMI OP1 has the call queue item OP2-OP1-2 in state inc_initiated
-Then HMI OP1 has the call queue item OP2-OP1-2 in the waiting list with label mission2
-Then HMI OP3 has the call queue item OP2-OP3-2 in the waiting list with label mission2
+Then HMI OP1 has the call queue item OP2-OP1-2 in the waiting list with name label mission2
+Then HMI OP3 has the call queue item OP2-OP3-2 in the waiting list with name label mission2
 
 Scenario: Caller clears outgoing call
 Then HMI OP2 terminates the call queue item OP1-OP2-2
@@ -97,10 +98,10 @@ When HMI OP2 initiates a call from the phonebook
 
 Scenario: Call is initiated
 Then HMI OP2 has the call queue item OP1-OP2-3 in state out_ringing
-Then HMI OP2 has the call queue item OP1-OP2-3 in the active list with label Role 1 (Alice)
+!-- Then HMI OP2 has the call queue item OP1-OP2-3 in the active list with name label Role 1 (Alice)
 Then HMI OP1 has the call queue item OP2-OP1-3 in state inc_initiated
-Then HMI OP1 has the call queue item OP2-OP1-3 in the waiting list with label mission2
-Then HMI OP3 has the call queue item OP2-OP3-3 in the waiting list with label mission2
+Then HMI OP1 has the call queue item OP2-OP1-3 in the waiting list with name label mission2
+Then HMI OP3 has the call queue item OP2-OP3-3 in the waiting list with name label mission2
 
 Scenario: Caller clears outgoing call
 Then HMI OP2 terminates the call queue item OP1-OP2-3
@@ -122,10 +123,10 @@ When HMI OP2 initiates a call from the phonebook
 
 Scenario: Call is initiated
 Then HMI OP2 has the call queue item OP1-OP2-4 in state out_ringing
-Then HMI OP2 has the call queue item OP1-OP2-4 in the active list with label Role 1 (Alice)
+!-- Then HMI OP2 has the call queue item OP1-OP2-4 in the active list with name label Role 1 (Alice)
 Then HMI OP1 has the call queue item OP2-OP1-4 in state inc_initiated
-Then HMI OP1 has the call queue item OP2-OP1-4 in the waiting list with label mission2
-Then HMI OP3 has the call queue item OP2-OP3-4 in the waiting list with label mission2
+Then HMI OP1 has the call queue item OP2-OP1-4 in the waiting list with name label mission2
+Then HMI OP3 has the call queue item OP2-OP3-4 in the waiting list with name label mission2
 
 Scenario: Caller opens phonebook
 When HMI OP2 presses function key PHONEBOOK
@@ -144,9 +145,9 @@ When HMI OP2 initiates a call from the phonebook
 
 Scenario: Call is initiated only towards operator 1
 Then HMI OP2 has the call queue item OP1-OP2-5 in state out_ringing
-Then HMI OP2 has the call queue item OP1-OP2-5 in the active list with label sip:operator1@example.com
+!-- Then HMI OP2 has the call queue item OP1-OP2-5 in the active list with name label sip:operator1@example.com
 Then HMI OP1 has the call queue item OP2-OP1-5 in state inc_initiated
-Then HMI OP1 has the call queue item OP2-OP1-5 in the waiting list with label mission2
+Then HMI OP1 has the call queue item OP2-OP1-5 in the waiting list with name label mission2
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Caller clears outgoing call

@@ -34,8 +34,8 @@ Then HMI OP2 has in the call queue the item OP1-OP2 with priority
 
 Scenario: Verify call queue section
 		  @REQUIREMENTS:GID-3371936
-Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2(as OP1)
-Then HMI OP2 has the call queue item OP1-OP2 in the priority list with label 111111
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2(as OP1)
+Then HMI OP2 has the call queue item OP1-OP2 in the priority list with name label 111111
 
 Scenario: Callee client answers the incoming priority call
 When HMI OP2 presses DA key OP1
@@ -47,8 +47,8 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Scenario: Verify call queue section
 		  @REQUIREMENTS:GID-3371937
 Then HMI OP2 verifies that the call queue item OP1-OP2 was removed from the priority list
-Then HMI OP1 has the call queue item OP2-OP1 in the active list with label OP2(as OP1)
-Then HMI OP2 has the call queue item OP1-OP2 in the active list with label 111111
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2(as OP1)
+Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label 111111
 
 Scenario: Callee terminates call
 When HMI OP2 presses DA key OP1

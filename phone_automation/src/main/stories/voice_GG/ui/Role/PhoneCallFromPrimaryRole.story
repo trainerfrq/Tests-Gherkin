@@ -32,11 +32,11 @@ Then HMI OP1 verifies that phone book call button is enabled
 
 Scenario: Caller initiates the call
 When HMI OP1 initiates a call from the phonebook
-Then HMI OP1 has the call queue item OP3-OP1 in the active list with label Lloyd
+Then HMI OP1 has the call queue item OP3-OP1 in the active list with name label Lloyd
 
 Scenario: Verify that the call is initiated using the caller primary SIP address
 		  @REQUIREMENTS:GID-2952544
-Then HMI OP3 has the call queue item OP1-OP3 in the waiting list with label mission1
+Then HMI OP3 has the call queue item OP1-OP3 in the waiting list with name label mission1
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP3-OP1

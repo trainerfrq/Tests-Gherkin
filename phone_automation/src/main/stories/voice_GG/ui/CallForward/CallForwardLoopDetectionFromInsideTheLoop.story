@@ -38,7 +38,7 @@ Then HMI OP2 has the call queue item OP1-OP2 in state out_failed
 
 Scenario: Op2 succeeds to establish an outgoing call towards Op3
 When HMI OP2 presses DA key OP3
-Then HMI OP3 has the call queue item OP2-OP3 in the waiting list with label OP2 Physical
+Then HMI OP3 has the call queue item OP2-OP3 in the waiting list with name label OP2 Physical
 
 Scenario: Op2 clears outgoing call
 Then HMI OP2 terminates the call queue item OP3-OP2

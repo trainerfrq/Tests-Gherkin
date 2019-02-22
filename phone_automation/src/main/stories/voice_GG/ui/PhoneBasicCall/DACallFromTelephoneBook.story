@@ -19,7 +19,6 @@ Scenario: Caller opens phonebook
 When HMI OP1 presses function key PHONEBOOK
 Then HMI OP1 verifies that phone book call button is disabled
 
-
 Scenario: Caller selects call route selector
 		  @REQUIREMENTS:GID-2985359
 Then HMI OP1 verify that call route selector shows Default
@@ -42,8 +41,8 @@ Scenario: Call is initiated
 		  @REQUIREMENTS:GID-2536683
 		  @REQUIREMENTS:GID-2535740
 		  @REQUIREMENTS:GID-3366402
-Then HMI OP1 has the call queue item OP3-OP1 in the active list with label Lloyd
-Then HMI OP3 has the call queue item OP1-OP3 in the waiting list with label mission1
+Then HMI OP1 has the call queue item OP3-OP1 in the active list with name label Lloyd
+Then HMI OP3 has the call queue item OP1-OP3 in the waiting list with name label mission1
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP3-OP1
