@@ -16,17 +16,16 @@
  ************************************************************************/
 package com.frequentis.xvp.tools.cats.websocket.audio;
 
-import java.io.IOException;
-import java.util.List;
-
-import org.eclipse.jetty.websocket.api.RemoteEndpoint;
-
 import com.frequentis.c4i.test.agent.websocket.common.impl.message.TextMessage;
 import com.frequentis.c4i.test.agent.websocket.server.impl.Listener.DefaultWebSocketAdapterIOListener;
 import com.frequentis.xvp.voice.audiointerface.json.messages.JsonMessage;
 import com.frequentis.xvp.voice.audiointerface.json.messages.eplogic.signalling.EpLogicSignalChangedEvent;
 import com.frequentis.xvp.voice.audiointerface.json.messages.eplogic.signalling.InputSignalChangedEvent;
 import com.google.gson.Gson;
+import org.eclipse.jetty.websocket.api.RemoteEndpoint;
+
+import java.io.IOException;
+import java.util.List;
 
 public class Handler extends DefaultWebSocketAdapterIOListener
 {

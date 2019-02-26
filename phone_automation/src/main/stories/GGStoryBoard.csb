@@ -2055,7 +2055,7 @@
                                      <cats:storyDataList/>
                                 </cats:story>
                                 <cats:story enabled="true">
-                                    <cats:storyPath>voice_GG/includes/UpdatePartitions.story</cats:storyPath>
+                                    <cats:storyPath>deploy/UpdatePartitions.story</cats:storyPath>
                                     <cats:storyParameters/>
                                     <cats:storyStatistics/>
                                     <cats:storyDataList/>
@@ -2073,7 +2073,7 @@
                                     <cats:storyDataList/>
                                 </cats:story>
                                 <cats:story enabled="true">
-                                    <cats:storyPath>voice_GG/includes/UpdateDescriptorsPositionWithAudioBox.story</cats:storyPath>
+                                    <cats:storyPath>deploy/UpdateDescriptorsPositionWithAudioBox.story</cats:storyPath>
                                     <cats:storyParameters/>
                                     <cats:storyStatistics/>
                                     <cats:storyDataList/>

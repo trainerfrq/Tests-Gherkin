@@ -16,15 +16,6 @@
  ************************************************************************/
 package com.frequentis.xvp.tools.cats.websocket.audio;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
-
-import org.eclipse.jetty.websocket.api.Session;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.frequentis.c4i.test.agent.websocket.common.impl.message.TextMessage;
 import com.frequentis.c4i.test.agent.websocket.server.impl.Listener.DefaultWebSocketAdapterIOListener;
 import com.frequentis.c4i.test.agent.websocket.server.impl.ServerEndpoint;
@@ -60,6 +51,14 @@ import com.frequentis.xvp.voice.audiointerface.json.messages.tonegeneration.Tone
 import com.frequentis.xvp.voice.audiointerface.json.messages.virtualport.VirtualPortCommonResponse;
 import com.frequentis.xvp.voice.audiointerface.json.messages.virtualport.VirtualPortResult;
 import com.google.gson.JsonSyntaxException;
+import org.eclipse.jetty.websocket.api.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
 
 public class AudioHandler extends DefaultWebSocketAdapterIOListener
 {
@@ -74,12 +73,6 @@ public class AudioHandler extends DefaultWebSocketAdapterIOListener
 
    private static Session session;
 
-
-   @Override
-   public void onWebSocketConnect(final Session sess) {
-      LOGGER.info( "Web session connected {}, {}", sess, this );
-      session = sess;
-   }
 
    public static Session getSession(){
       return session;
@@ -99,6 +92,9 @@ public class AudioHandler extends DefaultWebSocketAdapterIOListener
          switch ( messageType )
          {
             case ASSOCIATE_REQUEST:
+               if (message.body().associateRequest().clientName().equals("op-voice-phone")){
+                  session = endpoint.getSession();
+               }
                sendAssociateResponse( correlationId, endpoint );
                break;
             case DISASSOCIATE_REQUEST:
