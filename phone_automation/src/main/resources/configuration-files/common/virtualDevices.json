@@ -1,13 +1,37 @@
 {
-  "virtualDevices": [
+  "virtualInputDevices": [
     {
-      "virtualDeviceName": "MIC",
-      "direction": "IN",
+      "name": "RadMic1",
+      "logicalPorts": [
+        "RadMic1"
+      ],
+      "rtpParameters": {},
+      "level": 0
+    }
+  ],
+  "virtualOutputDevices": [
+    {
+      "name": "LSP",
+      "physicalDevices": [
+        {
+          "name": "iAux_1_0_Lsp",
+          "level": 0
+        }
+      ],
       "rtpParameters": {}
     },
     {
-      "virtualDeviceName": "LSP",
-      "direction": "OUT",
+      "name": "Headset",
+      "physicalDevices": [
+        {
+          "name": "iAux_0_0_OpSpRight",
+          "level": 0
+        },
+        {
+          "name": "iAux_0_0_OpSpLeft",
+          "level": 0
+        }
+      ],
       "rtpParameters": {}
     }
   ]
