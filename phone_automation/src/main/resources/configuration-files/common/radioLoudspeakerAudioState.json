@@ -1,0 +1,17 @@
+{
+  "radioLoudspeakerAudioStateList": [
+    {
+      "audioState": "ALL",
+      "virtualOutputDevices": [
+        "LSP"
+      ]
+    },
+    {
+      "audioState": "NONE",
+      "virtualOutputDevices": [
+        "Headset"
+      ]
+    }
+  ],
+  "defaultAudioState": "ALL"
+}
