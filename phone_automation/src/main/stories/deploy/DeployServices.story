@@ -24,6 +24,7 @@ And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path c
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/items/radioData.json with payload /configuration-files/<<systemName>>/radioData.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/items/physicalDevices.json with payload /configuration-files/common/physicalDevices.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/items/recordingDevices.json with payload /configuration-files/common/recordingDevices.json
+And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/items/recordingDevices.json with payload /configuration-files/common/radioLoudspeakerAudioState.json
 
 Scenario: Upload configuration files in Configuration Management Service for Phone Routing Service
 When using endpoint <<configurationMngEndpoint>> create configuration id phone-routing
