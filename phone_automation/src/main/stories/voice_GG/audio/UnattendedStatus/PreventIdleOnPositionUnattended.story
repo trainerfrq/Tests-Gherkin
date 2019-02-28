@@ -23,8 +23,8 @@ Given applied the named websocket configuration:
 Scenario: Define call queue items
 Given the call queue items:
 | key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
+| OP1-OP3 | sip:111111@example.com | sip:op3@example.com    | DA/IDA   |
+| OP3-OP1 | sip:op3@example.com    | sip:111111@example.com | DA/IDA   |
 
 Scenario: Op1 establishes a call towards Op2
 When HMI OP1 presses DA key OP2(as OP1)
@@ -43,31 +43,62 @@ Then WS1 sends changed event request - disconnect headsets
 
 Scenario: Verify that Idle Warning Popup is visible
 		  @REQUIREMENTS:GID-2926854
-Then HMI OP1 verifies that warning popup is visible
+Then HMI OP1 verifies that warning popup is visible and contains the text: Position is unattended: all handsets/headsets are unplugged!
+Then HMI OP1 verifies that warning popup is visible and contains the text: Position goes into Idle state in 10 seconds
 
 Scenario: "Position Unattended" as warning state in Notification Bar
 Then HMI OP1 has a notification that shows Position Unattended
 
-Scenario: Verify that Idle Warning Popup is visible
-Then HMI OP1 verifies that warning popup is visible
-
-Scenario: Verify that the active and outgoing calls were cleared
+Scenario: Verify that the active and outgoing calls were not cleared
 		  @REQUIREMENTS:GID-2926857
-Then HMI OP1 has in the call queue a number of 0 calls
-Then HMI OP2 has in the call queue a number of 0 calls
-Then HMI OP3 has in the call queue a number of 0 calls
+Then HMI OP1 has in the call queue a number of 1 calls
+Then HMI OP2 has in the call queue a number of 1 calls
+Then HMI OP3 has in the call queue a number of 1 calls
 
 Scenario: Op1 prevents Idle state
 		  @REQUIREMENTS:GID-2926855
 Then HMI OP1 click on Stay operational button from idle warning popup
 
-Scenario: Verify that Op1 still can establish calls
-When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
-Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
-Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
+Scenario: Op1 verifies that LSP is denabled and can't be disabled
+Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
+When HMI OP1 presses function key LOUDSPEAKER
+Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
 
-Scenario: Op1 client clears the phone call
+Scenario: Verify that the active and outgoing calls were not cleared
+Then HMI OP1 has in the call queue a number of 1 calls
+Then HMI OP2 has in the call queue a number of 1 calls
+Then HMI OP3 has in the call queue a number of 1 calls
+
+Scenario: Op1 client clears the phone calls
 When HMI OP1 presses DA key OP2(as OP1)
+When HMI OP3 presses DA key OP1(as OP3)
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP1 has in the call queue a number of 0 calls
+Then HMI OP3 has in the call queue a number of 0 calls
+
+Scenario: Op1 makes a call from phone book
+When HMI OP1 presses function key PHONEBOOK
+When HMI OP1 selects call route selector: none
+When HMI OP1 selects phonebook entry number: 1
+Then HMI OP1 verifies that phone book text box displays text Lloyd
+When HMI OP1 initiates a call from the phonebook
+
+Scenario: Reconnect headsets
+Then WS1 sends changed event request - reconnect headsets
+
+Scenario: Op1 verifies that LSP is disabled and can be enabled
+Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled
+When HMI OP1 presses function key LOUDSPEAKER
+Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
+When HMI OP1 presses function key LOUDSPEAKER
+Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled
+
+Scenario: Op3 answers call
+Then HMI OP3 accepts the call queue item OP1-OP3
+Then HMI OP1 has in the call queue a number of 1 calls
+Then HMI OP3 has in the call queue a number of 1 calls
+
+Scenario: Op3 clears call
+Then HMI OP3 terminates the call queue item OP1-OP3
+Then HMI OP1 has in the call queue a number of 0 calls
+Then HMI OP3 has in the call queue a number of 0 calls

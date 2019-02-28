@@ -16,13 +16,6 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import scripts.cats.websocket.sequential.SendTextMessage;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.jbehave.core.annotations.Then;
-
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.audio.ChangedEventCommand;
 import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
@@ -30,6 +23,11 @@ import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
 import com.frequentis.xvp.voice.audiointerface.json.messages.eplogic.signalling.InputSignalChangedEvent;
 import com.google.gson.Gson;
+import org.jbehave.core.annotations.Then;
+import scripts.cats.websocket.sequential.SendTextMessage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AudioSteps extends WebsocketAutomationSteps
 {

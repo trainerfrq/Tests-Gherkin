@@ -37,7 +37,10 @@ Then HMI OP1 has the DA key OP3(as OP1) in state out_ringing
 
 Scenario: Op3 answers the incomming call
 When HMI OP3 presses DA key OP1(as OP3)
+
+Scenario: Verify call is connected for both operators
 Then HMI OP1 has the DA key OP3(as OP1) in state connected
+Then HMI OP3 has the DA key OP1(as OP3) in state connected
 
 Scenario: Disconnect headsets for Operator 1
 Then WS1 sends changed event request - disconnect headsets
@@ -48,10 +51,23 @@ Then HMI OP1 has a notification that shows Position Unattended
 Scenario: Verify that Idle Warning Popup is visible
 		  @REQUIREMENTS:GID-2926854
 		  @REQUIREMENTS:GID-2926850
-Then HMI OP1 verifies that warning popup is visible
+Then HMI OP1 verifies that warning popup is visible and contains the text: Position is unattended: all handsets/headsets are unplugged!
+Then HMI OP1 verifies that warning popup is visible and contains the text: Position goes into Idle state in 10 seconds
+
+Scenario: Verify call is still connected for both operators
+Then HMI OP1 has the DA key OP3(as OP1) in state connected
+Then HMI OP3 has the DA key OP1(as OP3) in state connected
+
+Scenario: Verify that call is still ringing
+Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 
 Scenario: Op1 wait for 10 sec, without any interaction with Idle Warning Popup
 Then waiting for 10 seconds
+
+Scenario: Verify Idle Popup is visible and displays the corresponding text
+		  @REQUIREMENTS:GID-2926866
+Then HMI OP1 verifies that idle popup is visible and contains the text: Position is in Idle state: all handsets/headsets are unplugged!
+Then HMI OP1 verifies that idle popup is visible and contains the text: Connect a handset or headset to continue.
 
 Scenario: Verify that the active and outgoing calls were cleared
 		  @REQUIREMENTS:GID-2926857
@@ -59,7 +75,7 @@ Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 
-Scenario: Op3 establishes a call towards Op1
+Scenario: Op3 tries to establish a call to Op1
 When HMI OP3 presses DA key OP1(as OP3)
 
 Scenario: Verify that incomming call is rejected
@@ -68,12 +84,7 @@ And wait for 1 seconds
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 
-Scenario: Verify Idle Popup is visible and displays the corresponding text
-		  @REQUIREMENTS:GID-2926866
-Then HMI OP1 verifies that idle popup is visible and contains the text: Position is in Idle state: all handsets/headsets are unplugged!
-Then HMI OP1 verifies that idle popup is visible and contains the text: Connect a handset or headset to continue.
-
-Scenario: Check that calls can't be established
+Scenario: Verify that Op1 can't establish calls
 Given HMI OP1 has the DA key OP2(as OP1) disabled
 Given HMI OP1 has the DA key OP3(as OP1) disabled
 

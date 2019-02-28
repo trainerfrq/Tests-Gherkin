@@ -29,7 +29,7 @@ import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryDialButtonLabel;
 import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryEntry;
 import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryListIsTimeSorted;
 import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryListSize;
-import scripts.cats.hmi.asserts.VerifyCallHistoryDialButtonState;
+import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryDialButtonState;
 
 import java.time.Duration;
 import java.time.LocalDateTime;

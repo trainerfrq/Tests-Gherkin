@@ -1,10 +1,10 @@
 package scripts.cats.hmi.actions
 
 import com.frequentis.c4i.test.model.ExecutionDetails
-import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class ClickOnIdleWarningPopupButton extends FxScriptTemplate {
+
+class ClickOnWarningPopupButton extends FxScriptTemplate {
 
     public static final String IPARAM_BUTTON_NAME= "button_name"
 
@@ -21,15 +21,15 @@ class ClickOnIdleWarningPopupButton extends FxScriptTemplate {
 
         final Node button
         switch(buttonName)
-            {
-                case "Ok":
-                    button = robot.lookup("#unattendedPopup #requestIdleState").queryFirst()
-                    break
-                case "Stay operational":
-                    button = robot.lookup("#unattendedPopup #stayOperationButton").queryFirst()
-                    break
-                default:
-                    break
+        {
+            case "Ok":
+                button = robot.lookup("#unattendedPopup #requestIdleState").queryFirst()
+                break
+            case "Stay operational":
+                button = robot.lookup("#unattendedPopup #stayOperationButton").queryFirst()
+                break
+            default:
+                break
         }
         robot.clickOn(robot.point(button))
     }

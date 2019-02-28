@@ -5,7 +5,7 @@ import javafx.scene.Node
 import javafx.scene.control.Label
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class VerifyIdlePopupText extends FxScriptTemplate {
+class VerifyIdlePopupVisibleAndText extends FxScriptTemplate {
 
     public static final String IPARAM_IDLE_POPUP_TEXT = "idle_popup_text"
 
@@ -20,11 +20,11 @@ class VerifyIdlePopupText extends FxScriptTemplate {
                 .expected("Idle popup is not null")
                 .success(idlePopup != null))
 
-        Label IdlePopupLabel = robot.lookup("#idlePopup #notificationLabel").queryFirst()
+        Label idlePopupLabel = robot.lookup("#idlePopup #notificationLabel").queryFirst()
 
-        evaluate(ExecutionDetails.create("Assert call queue info label")
-                .expected("Call queue info expected is: " + text)
-                .received("Call queue info received is: " + IdlePopupLabel.getText())
-                .success(IdlePopupLabel.getText().contains(text)))
+        evaluate(ExecutionDetails.create("Assert idle popup text")
+                .expected("Idle popup expected text is: " + text)
+                .received("Idle popup received text is: " + idlePopupLabel.getText())
+                .success(idlePopupLabel.getText().contains(text)))
     }
 }

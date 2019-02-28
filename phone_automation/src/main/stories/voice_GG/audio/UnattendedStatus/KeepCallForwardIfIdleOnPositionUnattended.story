@@ -46,7 +46,8 @@ Then HMI OP1 has a notification that shows Position Unattended
 
 Scenario: Verify that Idle Warning Popup is visible
 		  @REQUIREMENTS:GID-2926854
-Then HMI OP1 verifies that warning popup is visible
+Then HMI OP1 verifies that warning popup is visible and contains the text: Position is unattended: all handsets/headsets are unplugged!
+Then HMI OP1 verifies that warning popup is visible and contains the text: Position goes into Idle state in 10 seconds
 
 Scenario: Op1 clicks "Ok" button from warning idle popup
 Then HMI OP1 click on Ok button from idle warning popup
@@ -74,6 +75,11 @@ When HMI OP3 presses DA key OP1(as OP3)
 Scenario: Reconnect headsets for Operator 1
 Then WS1 sends changed event request - reconnect headsets
 
+Scenario: Check if call forward state is still active
+		  @REQUIREMENTS:GID-2926857
+Then HMI OP1 has the function key CALLFORWARD in forwardActive state
+Then HMI OP1 verifies that call queue info container is visible
+
 Scenario: Verify that Op1 can establish calls again
 		  @REQUIREMENTS:GID-3281917
 When HMI OP1 presses DA key OP2(as OP1)
@@ -84,4 +90,18 @@ Scenario: Op1 client clears the phone call
 When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP1 has in the call queue a number of 0 calls
+
+Scenario: Op3 establishes a call towards Op1
+When HMI OP3 presses DA key OP1(as OP3)
+
+Scenario: Verify call is forwarded towards Op2
+Then HMI OP2 has the call queue item OP3-OP2 in state inc_initiated
+Then HMI OP3 has the call queue item OP3-OP3 in state out_ringing
+
+Scenario: Op3 clears the call towards Op1
+When HMI OP3 presses DA key OP1(as OP3)
+
+Scenario: Op1 deactivates Call Forward
+When HMI OP1 presses function key CALLFORWARD
+Then HMI OP1 verifies that call queue info container is not visible
 

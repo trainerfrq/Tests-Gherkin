@@ -32,10 +32,11 @@ import scripts.cats.hmi.actions.ClickDAButton;
 import scripts.cats.hmi.actions.ClickFunctionKey;
 import scripts.cats.hmi.actions.DragAndClickOnMenuButtonDAKey;
 import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookCallButton;
+import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonState;
+import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonUsageNotReady;
+import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonUsageReady;
+import scripts.cats.hmi.asserts.DAKey.VerifyDAKeyLabel;
 import scripts.cats.hmi.asserts.VerifyCallForwardState;
-import scripts.cats.hmi.asserts.VerifyDAButtonState;
-import scripts.cats.hmi.asserts.VerifyDAButtonUsageReady;
-import scripts.cats.hmi.asserts.VerifyDAKeyLabel;
 import scripts.cats.hmi.asserts.VerifyFunctionKeyLabel;
 
 import java.util.List;
@@ -156,11 +157,23 @@ public class CallUISteps extends AutomationSteps {
     public void verifyReadyToBeUsedDAState(final String profileName, final String target) {
         DAKey daKey = retrieveDaKey(profileName, target);
 
-        evaluate(remoteStep("Check application status")
+        evaluate(remoteStep("Check DA key is enabled")
                 .scriptOn(
                         profileScriptResolver().map(VerifyDAButtonUsageReady.class, BookableProfileName.javafx),
                         assertProfile(profileName))
                 .input(VerifyDAButtonUsageReady.IPARAM_DA_KEY_ID, daKey.getId()));
+    }
+
+    @Given("$profileName has the DA key $target disabled")
+    @Alias("$profileName has the IA key $target disabled")
+    public void verifyNOTReadyToBeUsedDAState(final String profileName, final String target) {
+        DAKey daKey = retrieveDaKey(profileName, target);
+
+        evaluate(remoteStep("Check DA key is disabled")
+                .scriptOn(
+                        profileScriptResolver().map(VerifyDAButtonUsageNotReady.class, BookableProfileName.javafx),
+                        assertProfile(profileName))
+                .input(VerifyDAButtonUsageNotReady.IPARAM_DA_KEY_ID, daKey.getId()));
     }
 
     @Then("$profileName verifies that the DA key $target has the $labelType label $givenCallType")
