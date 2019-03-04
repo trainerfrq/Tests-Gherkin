@@ -30,10 +30,10 @@ Scenario: Verify that Idle Warning Popup is visible
 		  @REQUIREMENTS:GID-2926854
 		  @REQUIREMENTS:GID-2926850
 Then HMI OP1 verifies that warning popup is visible and contains the text: Position is unattended: all handsets/headsets are unplugged!
-Then HMI OP1 verifies that warning popup is visible and contains the text: Position goes into Idle state in 10 seconds
+Then HMI OP1 verifies that warning popup is visible and contains the text: Position goes into Idle state in
 
-Scenario: Op1 presses button Stay operational
-Then HMI OP1 click on OK button from idle warning popup
+Scenario: Op1 presses button go Idle
+Then HMI OP1 click on go Idle button from idle warning popup
 
 Scenario: Verify that Idle Popup is visible
 		  @REQUIREMENTS:GID-2926866

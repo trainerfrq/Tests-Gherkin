@@ -1,10 +1,11 @@
 package scripts.cats.hmi.asserts
 
 import com.frequentis.c4i.test.model.ExecutionDetails
+import javafx.scene.control.Label
 import javafx.scene.layout.Pane
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class VerifyWarningPopupVisibleAndText extends FxScriptTemplate {
+class VerifyWarningPopupCountDownIsVisible extends FxScriptTemplate {
 
     public static final String IPARAM_WARNING_POPUP_TEXT = "warning_popup_text"
 
@@ -19,11 +20,11 @@ class VerifyWarningPopupVisibleAndText extends FxScriptTemplate {
                 .expected("Unattended popup is not null")
                 .success(unattendedPopup != null))
 
-        String receivedInfo = unattendedPopup.getChildren().toString()
+        Label countDownLabel = robot.lookup("#unattendedPopup #unattendedRemainingTime").queryFirst()
 
         evaluate(ExecutionDetails.create("Assert warning popup text")
                 .expected("Warning popup expected text is: " + text)
-                .received("Warning popup received text is: " + receivedInfo)
-                .success(receivedInfo.contains(text)))
+                .received("Warning popup received text is: " + countDownLabel.getText())
+                .success(countDownLabel.getText().contains(text)))
     }
 }

@@ -2,6 +2,7 @@ package scripts.cats.hmi.actions
 
 import com.frequentis.c4i.test.model.ExecutionDetails
 import scripts.agent.testfx.automation.FxScriptTemplate
+import javafx.scene.Node
 
 
 class ClickOnWarningPopupButton extends FxScriptTemplate {
@@ -22,7 +23,7 @@ class ClickOnWarningPopupButton extends FxScriptTemplate {
         final Node button
         switch(buttonName)
         {
-            case "Ok":
+            case "go Idle":
                 button = robot.lookup("#unattendedPopup #requestIdleState").queryFirst()
                 break
             case "Stay operational":
@@ -32,5 +33,6 @@ class ClickOnWarningPopupButton extends FxScriptTemplate {
                 break
         }
         robot.clickOn(robot.point(button))
+
     }
 }

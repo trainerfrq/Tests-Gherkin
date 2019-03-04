@@ -25,9 +25,9 @@ When SSH host deploymentServer executes sed -i '4s/.*/  "tag" : "${op.voice.vers
 When SSH host deploymentServer executes sed -i '4s/.*/  "tag" : "${op.voice.version}",/' /var/opt/frequentis/xvp/orchestration-agent/daemon/data/descriptors/*${OP_VOICE_PARTITION_KEY_3}.json
 
 Scenario: Change environment variable POSITIONS_WITHOUT_AUDIOBOX in deployed service descriptors
-!-- When SSH host deploymentServer executes sed -i '60s/.*/  "POSITIONS_WITHOUT_AUDIOBOX" : "${OP_VOICE_PARTITION_KEY_1},${OP_VOICE_PARTITION_KEY_2},${OP_VOICE_PARTITION_KEY_3}"/' /var/opt/frequentis/xvp/orchestration-agent/daemon/data/descriptors/*${OP_VOICE_PARTITION_KEY_1}.json
-!-- When SSH host deploymentServer executes sed -i '60s/.*/  "POSITIONS_WITHOUT_AUDIOBOX" : "${OP_VOICE_PARTITION_KEY_1},${OP_VOICE_PARTITION_KEY_2},${OP_VOICE_PARTITION_KEY_3}"/' /var/opt/frequentis/xvp/orchestration-agent/daemon/data/descriptors/*${OP_VOICE_PARTITION_KEY_2}.json
-!-- When SSH host deploymentServer executes sed -i '60s/.*/  "POSITIONS_WITHOUT_AUDIOBOX" : "${OP_VOICE_PARTITION_KEY_1},${OP_VOICE_PARTITION_KEY_2},${OP_VOICE_PARTITION_KEY_3}"/' /var/opt/frequentis/xvp/orchestration-agent/daemon/data/descriptors/*${OP_VOICE_PARTITION_KEY_3}.json
+When SSH host deploymentServer executes sed -i '57s/.*/  "POSITIONS_WITHOUT_AUDIOBOX" : "${OP_VOICE_PARTITION_KEY_1},${OP_VOICE_PARTITION_KEY_2},${OP_VOICE_PARTITION_KEY_3}",/' /var/opt/frequentis/xvp/orchestration-agent/daemon/data/descriptors/*${OP_VOICE_PARTITION_KEY_1}.json
+When SSH host deploymentServer executes sed -i '57s/.*/  "POSITIONS_WITHOUT_AUDIOBOX" : "${OP_VOICE_PARTITION_KEY_1},${OP_VOICE_PARTITION_KEY_2},${OP_VOICE_PARTITION_KEY_3}",/' /var/opt/frequentis/xvp/orchestration-agent/daemon/data/descriptors/*${OP_VOICE_PARTITION_KEY_2}.json
+When SSH host deploymentServer executes sed -i '57s/.*/  "POSITIONS_WITHOUT_AUDIOBOX" : "${OP_VOICE_PARTITION_KEY_1},${OP_VOICE_PARTITION_KEY_2},${OP_VOICE_PARTITION_KEY_3}",/' /var/opt/frequentis/xvp/orchestration-agent/daemon/data/descriptors/*${OP_VOICE_PARTITION_KEY_3}.json
 
 Scenario: Publish the service descriptors and start services
 Then SSH host deploymentServer executes /usr/bin/xvp descriptors download -g

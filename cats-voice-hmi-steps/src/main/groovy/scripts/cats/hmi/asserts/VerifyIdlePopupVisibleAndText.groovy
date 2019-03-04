@@ -1,8 +1,8 @@
 package scripts.cats.hmi.asserts
 
 import com.frequentis.c4i.test.model.ExecutionDetails
-import javafx.scene.Node
 import javafx.scene.control.Label
+import javafx.scene.layout.Pane
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 class VerifyIdlePopupVisibleAndText extends FxScriptTemplate {
@@ -14,7 +14,7 @@ class VerifyIdlePopupVisibleAndText extends FxScriptTemplate {
 
         String text = assertInput(IPARAM_IDLE_POPUP_TEXT) as String
 
-        Node idlePopup = robot.lookup("#idlePopup").queryFirst()
+        Pane idlePopup = robot.lookup("#idlePopup").queryFirst()
 
         evaluate(ExecutionDetails.create("Idle popup was found")
                 .expected("Idle popup is not null")

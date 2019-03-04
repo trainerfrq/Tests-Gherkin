@@ -6,9 +6,9 @@ Given SSH connections:
 | dockerHost2      | <<OPVOICE_HOST2_IP>> | 22         | root     | !frqAdmin |
 
 Scenario: Update POSITIONS_WITHOUT_AUDIOBOX to contain only 2 positions
-When SSH host deploymentServer executes sed -i '60s/.*/    "POSITIONS_WITHOUT_AUDIOBOX" : "${OP_VOICE_PARTITION_KEY_2},${OP_VOICE_PARTITION_KEY_3}"/' /var/opt/frequentis/xvp/orchestration-agent/daemon/data/descriptors/*${OP_VOICE_PARTITION_KEY_1}.json
-When SSH host deploymentServer executes sed -i '60s/.*/    "POSITIONS_WITHOUT_AUDIOBOX" : "${OP_VOICE_PARTITION_KEY_2},${OP_VOICE_PARTITION_KEY_3}"/' /var/opt/frequentis/xvp/orchestration-agent/daemon/data/descriptors/*${OP_VOICE_PARTITION_KEY_2}.json
-When SSH host deploymentServer executes sed -i '60s/.*/    "POSITIONS_WITHOUT_AUDIOBOX" : "${OP_VOICE_PARTITION_KEY_2},${OP_VOICE_PARTITION_KEY_3}"/' /var/opt/frequentis/xvp/orchestration-agent/daemon/data/descriptors/*${OP_VOICE_PARTITION_KEY_3}.json
+When SSH host deploymentServer executes sed -i '57s/.*/    "POSITIONS_WITHOUT_AUDIOBOX" : "${OP_VOICE_PARTITION_KEY_2},${OP_VOICE_PARTITION_KEY_3}",/' /var/opt/frequentis/xvp/orchestration-agent/daemon/data/descriptors/*${OP_VOICE_PARTITION_KEY_1}.json
+When SSH host deploymentServer executes sed -i '57s/.*/    "POSITIONS_WITHOUT_AUDIOBOX" : "${OP_VOICE_PARTITION_KEY_2},${OP_VOICE_PARTITION_KEY_3}",/' /var/opt/frequentis/xvp/orchestration-agent/daemon/data/descriptors/*${OP_VOICE_PARTITION_KEY_2}.json
+When SSH host deploymentServer executes sed -i '57s/.*/    "POSITIONS_WITHOUT_AUDIOBOX" : "${OP_VOICE_PARTITION_KEY_2},${OP_VOICE_PARTITION_KEY_3}",/' /var/opt/frequentis/xvp/orchestration-agent/daemon/data/descriptors/*${OP_VOICE_PARTITION_KEY_3}.json
 
 Scenario: Publish the service descriptors and redeploy op-voice-service
 Then SSH host deploymentServer executes /usr/bin/xvp services remove op-voice-service -g

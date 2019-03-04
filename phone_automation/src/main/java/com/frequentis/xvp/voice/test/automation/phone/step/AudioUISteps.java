@@ -72,7 +72,7 @@ public class AudioUISteps extends AutomationSteps
    public void clickOnWarningPopupButton( final String profileName, final String buttonName )
    {
       evaluate( remoteStep( "Choose option " + buttonName + " from idle warning popup" ).scriptOn(
-            profileScriptResolver().map( ClickOnIdlePopupButton.class, BookableProfileName.javafx ),
+            profileScriptResolver().map( ClickOnWarningPopupButton.class, BookableProfileName.javafx ),
             assertProfile( profileName ) )
             .input( ClickOnWarningPopupButton.IPARAM_BUTTON_NAME, buttonName ) );
    }
