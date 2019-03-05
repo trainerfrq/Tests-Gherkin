@@ -130,210 +130,216 @@
         {
           "id": "cq1",
           "type": "callQueue",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": "9",
+            "row": "0",
+            "columnSpan": "3",
+            "rowSpan": "18"
+          }
         },
         {
           "id": "status1",
           "type": "status",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": "0",
+            "row": "0",
+            "columnSpan": "3",
+            "rowSpan": "4"
+          }
         },
         {
           "id": "f1",
           "type": "function",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": "0",
+            "row": "16",
+            "columnSpan": "1",
+            "rowSpan": "2"
+          }
         },
         {
           "id": "f2",
           "type": "function",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": "1",
+            "row": "16",
+            "columnSpan": "1",
+            "rowSpan": "2"
+          }
         },
         {
           "id": "f3",
           "type": "function",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": "2",
+            "row": "16",
+            "columnSpan": "1",
+            "rowSpan": "2"
+          }
         },
         {
           "id": "f4",
           "type": "function",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": "3",
+            "row": "16",
+            "columnSpan": "1",
+            "rowSpan": "2"
+          }
         },
         {
           "id": "f5",
           "type": "function",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": "4",
+            "row": "16",
+            "columnSpan": "2",
+            "rowSpan": "2"
+          }
         },
         {
           "id": "100",
           "type": "da",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": 3,
+            "row": 0,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
         },
         {
           "id": "101",
           "type": "da",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": 6,
+            "row": 0,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
         },
         {
           "id": "102",
           "type": "da",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": 3,
+            "row": 3,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
         },
         {
           "id": "103",
           "type": "da",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": 6,
+            "row": 3,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
         },
         {
           "id": "104",
           "type": "da",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 6,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
         },
         {
           "id": "105",
           "type": "da",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": 3,
+            "row": 6,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
         },
         {
           "id": "106",
           "type": "da",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": 6,
+            "row": 6,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
         },
         {
           "id": "107",
           "type": "ia",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 9,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
         },
         {
           "id": "108",
           "type": "ia",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": 3,
+            "row": 9,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
         },
         {
           "id": "109",
           "type": "ia",
-          "grid": "applicationGrid"
-        }
-      ],
-      "positions": [
-        {
-          "id": "cq1",
-          "column": "9",
-          "row": "0",
-          "columnSpan": "3",
-          "rowSpan": "18"
-        },
-        {
-          "id": "status1",
-          "column": "0",
-          "row": "0",
-          "columnSpan": "3",
-          "rowSpan": "4"
-        },
-        {
-          "id": "f1",
-          "column": "0",
-          "row": "16",
-          "columnSpan": "1",
-          "rowSpan": "2"
-        },
-        {
-          "id": "f2",
-          "column": "1",
-          "row": "16",
-          "columnSpan": "1",
-          "rowSpan": "2"
-        },
-        {
-          "id": "f3",
-          "column": "2",
-          "row": "16",
-          "columnSpan": "1",
-          "rowSpan": "2"
-        },
-        {
-          "id": "f4",
-          "column": "3",
-          "row": "16",
-          "columnSpan": "1",
-          "rowSpan": "2"
-        },
-        {
-          "id": "f5",
-          "column": "4",
-          "row": "16",
-          "columnSpan": "2",
-          "rowSpan": "2"
-        },
-        {
-          "id": "100",
-          "column": 3,
-          "row": 0,
-          "columnSpan": 3,
-          "rowSpan": 3
-        },
-        {
-          "id": "101",
-          "column": 6,
-          "row": 0,
-          "columnSpan": 3,
-          "rowSpan": 3
-        },
-        {
-          "id": "102",
-          "column": 3,
-          "row": 3,
-          "columnSpan": 3,
-          "rowSpan": 3
-        },
-        {
-          "id": "103",
-          "column": 6,
-          "row": 3,
-          "columnSpan": 3,
-          "rowSpan": 3
-        },
-        {
-          "id": "104",
-          "column": 0,
-          "row": 6,
-          "columnSpan": 3,
-          "rowSpan": 3
-        },
-        {
-          "id": "105",
-          "column": 3,
-          "row": 6,
-          "columnSpan": 3,
-          "rowSpan": 3
-        },
-        {
-          "id": "106",
-          "column": 6,
-          "row": 6,
-          "columnSpan": 3,
-          "rowSpan": 3
-        },
-        {
-          "id": "107",
-          "column": 0,
-          "row": 9,
-          "columnSpan": 3,
-          "rowSpan": 3
-        },
-        {
-          "id": "108",
-          "column": 3,
-          "row": 9,
-          "columnSpan": 3,
-          "rowSpan": 3
-        },
-        {
-          "id": "109",
-          "column": 6,
-          "row": 9,
-          "columnSpan": 3,
-          "rowSpan": 3
+          "grid": "applicationGrid",
+          "position": {
+            "column": 6,
+            "row": 9,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
         }
       ]
+    },
+    "settingData": {
+      "missionSettings": {
+        "soundSettings": {
+          "keyClickTone": "input_02.wav",
+          "maxChimeVolume": 100,
+          "maxUserInputVolume": 100,
+          "minChimeVolume": 0,
+          "minUserInputVolume": 0,
+          "priorityCallConfiguration": {
+            "audio": "default_priority_chime",
+            "pause": 2,
+            "repetition": 0
+          },
+          "standardCallConfiguration": {
+            "audio": "chime_02.wav",
+            "pause": 2,
+            "repetition": 2
+          },
+          "swipeTone": "input_03.wav"
+        },
+        "timeoutSettings": {
+          "cleanPanelModeCallTimeout": 20
+        }
+      }
     }
   },
   {
@@ -479,232 +485,211 @@
         {
           "id": "cq1",
           "type": "callQueue",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": "9",
+            "row": "0",
+            "columnSpan": "3",
+            "rowSpan": "18"
+          }
         },
         {
           "id": "status1",
           "type": "status",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": "0",
+            "row": "0",
+            "columnSpan": "3",
+            "rowSpan": "4"
+          }
         },
         {
           "id": "f1",
           "type": "function",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": "0",
+            "row": "16",
+            "columnSpan": "1",
+            "rowSpan": "2"
+          }
         },
         {
           "id": "f2",
           "type": "function",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": "1",
+            "row": "16",
+            "columnSpan": "1",
+            "rowSpan": "2"
+          }
         },
         {
           "id": "f3",
           "type": "function",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": "2",
+            "row": "16",
+            "columnSpan": "1",
+            "rowSpan": "2"
+          }
         },
         {
           "id": "f4",
           "type": "function",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": "3",
+            "row": "16",
+            "columnSpan": "1",
+            "rowSpan": "2"
+          }
         },
         {
           "id": "f5",
           "type": "function",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": "4",
+            "row": "16",
+            "columnSpan": "2",
+            "rowSpan": "2"
+          }
         },
         {
           "id": "110",
           "type": "da",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": 3,
+            "row": 0,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
         },
         {
           "id": "111",
           "type": "da",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": 6,
+            "row": 0,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
         },
         {
           "id": "112",
           "type": "da",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": 3,
+            "row": 3,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
         },
         {
           "id": "113",
           "type": "da",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": 6,
+            "row": 3,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
         },
         {
           "id": "114",
           "type": "da",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 6,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
         },
         {
           "id": "115",
           "type": "da",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": 3,
+            "row": 6,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
         },
         {
           "id": "116",
           "type": "da",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": 6,
+            "row": 6,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
         },
         {
           "id": "117",
           "type": "ia",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 9,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
         },
         {
           "id": "118",
           "type": "ia",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": 3,
+            "row": 9,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
         },
         {
           "id": "119",
           "type": "ia",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": 6,
+            "row": 9,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
         },
         {
           "id": "120",
           "type": "da",
-          "grid": "applicationGrid"
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 12,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
         },
         {
           "id": "121",
           "type": "ia",
-          "grid": "applicationGrid"
-        }
-      ],
-      "positions": [
-        {
-          "id": "cq1",
-          "column": "9",
-          "row": "0",
-          "columnSpan": "3",
-          "rowSpan": "18"
-        },
-        {
-          "id": "status1",
-          "column": "0",
-          "row": "0",
-          "columnSpan": "3",
-          "rowSpan": "4"
-        },
-        {
-          "id": "f1",
-          "column": "0",
-          "row": "16",
-          "columnSpan": "1",
-          "rowSpan": "2"
-        },
-        {
-          "id": "f2",
-          "column": "1",
-          "row": "16",
-          "columnSpan": "1",
-          "rowSpan": "2"
-        },
-        {
-          "id": "f3",
-          "column": "2",
-          "row": "16",
-          "columnSpan": "1",
-          "rowSpan": "2"
-        },
-        {
-          "id": "f4",
-          "column": "3",
-          "row": "16",
-          "columnSpan": "1",
-          "rowSpan": "2"
-        },
-        {
-          "id": "f5",
-          "column": "4",
-          "row": "16",
-          "columnSpan": "2",
-          "rowSpan": "2"
-        },
-        {
-          "id": "110",
-          "column": 3,
-          "row": 0,
-          "columnSpan": 3,
-          "rowSpan": 3
-        },
-        {
-          "id": "111",
-          "column": 6,
-          "row": 0,
-          "columnSpan": 3,
-          "rowSpan": 3
-        },
-        {
-          "id": "112",
-          "column": 3,
-          "row": 3,
-          "columnSpan": 3,
-          "rowSpan": 3
-        },
-        {
-          "id": "113",
-          "column": 6,
-          "row": 3,
-          "columnSpan": 3,
-          "rowSpan": 3
-        },
-        {
-          "id": "114",
-          "column": 0,
-          "row": 6,
-          "columnSpan": 3,
-          "rowSpan": 3
-        },
-        {
-          "id": "115",
-          "column": 3,
-          "row": 6,
-          "columnSpan": 3,
-          "rowSpan": 3
-        },
-        {
-          "id": "116",
-          "column": 6,
-          "row": 6,
-          "columnSpan": 3,
-          "rowSpan": 3
-        },
-        {
-          "id": "117",
-          "column": 0,
-          "row": 9,
-          "columnSpan": 3,
-          "rowSpan": 3
-        },
-        {
-          "id": "118",
-          "column": 3,
-          "row": 9,
-          "columnSpan": 3,
-          "rowSpan": 3
-        },
-        {
-          "id": "119",
-          "column": 6,
-          "row": 9,
-          "columnSpan": 3,
-          "rowSpan": 3
-        },
-        {
-          "id": "120",
-          "column": 0,
-          "row": 12,
-          "columnSpan": 3,
-          "rowSpan": 3
-        },
-        {
-          "id": "121",
-          "column": 3,
-          "row": 12,
-          "columnSpan": 3,
-          "rowSpan": 3
+          "grid": "applicationGrid",
+          "position": {
+            "column": 3,
+            "row": 12,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
         }
       ]
     }
