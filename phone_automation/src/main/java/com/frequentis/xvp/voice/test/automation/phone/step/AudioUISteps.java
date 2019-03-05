@@ -22,29 +22,54 @@ import org.jbehave.core.annotations.Then;
 import scripts.cats.hmi.actions.ClickOnIdlePopupButton;
 import scripts.cats.hmi.actions.ClickOnPopupCloseButton;
 import scripts.cats.hmi.actions.ClickOnWarningPopupButton;
-import scripts.cats.hmi.asserts.VerifyIdlePopupVisibleAndText;
-import scripts.cats.hmi.asserts.VerifyWarningPopupVisibleAndText;
+import scripts.cats.hmi.asserts.Attended.VerifyIdlePopupText;
+import scripts.cats.hmi.asserts.Attended.VerifyPositionUnattendedPopupVisible;
+import scripts.cats.hmi.asserts.Attended.VerifyWarningPopupCountDownIsVisible;
+import scripts.cats.hmi.asserts.Attended.VerifyWarningPopupText;
 
 public class AudioUISteps extends AutomationSteps
 {
 
-   @Then("$profileName verifies that idle popup is visible and contains the text: $text")
+   @Then("$profileName verifies that idle popup contains the text: $text")
    public void verifyIdlePopupText( final String profileName, final String text )
    {
-      evaluate( remoteStep( "Verify idle popup is visible and contains the expected text" ).scriptOn(
-            profileScriptResolver().map( VerifyIdlePopupVisibleAndText.class, BookableProfileName.javafx ),
+      evaluate( remoteStep( "Verify idle popup contains the expected text" ).scriptOn(
+            profileScriptResolver().map( VerifyIdlePopupText.class, BookableProfileName.javafx ),
             assertProfile( profileName ) )
-            .input( VerifyIdlePopupVisibleAndText.IPARAM_IDLE_POPUP_TEXT, text ) );
+            .input( VerifyIdlePopupText.IPARAM_IDLE_POPUP_TEXT, text ) );
    }
 
 
-   @Then("$profileName verifies that warning popup is visible and contains the text: $text")
+   @Then("$profileName verifies that warning popup contains the text: $text")
    public void verifyWarningPopupVisibility( final String profileName, final String text )
    {
-      evaluate( remoteStep( "Verify warning popup is visible" ).scriptOn(
-            profileScriptResolver().map( VerifyWarningPopupVisibleAndText.class, BookableProfileName.javafx ),
+      evaluate( remoteStep( "Verify warning popup contains: " + text ).scriptOn(
+            profileScriptResolver().map( VerifyWarningPopupText.class, BookableProfileName.javafx ),
             assertProfile( profileName ) )
-              .input( VerifyWarningPopupVisibleAndText.IPARAM_WARNING_POPUP_TEXT, text ));
+              .input( VerifyWarningPopupText.IPARAM_WARNING_POPUP_TEXT, text ));
+   }
+
+
+   @Then("$profileName verifies warning popup countdown is visible")
+   public void verifyWarningPopupCountVisibility( final String profileName )
+   {
+      evaluate( remoteStep( "Verify warning popup is visible" ).scriptOn(
+              profileScriptResolver().map( VerifyWarningPopupCountDownIsVisible.class, BookableProfileName.javafx ),
+              assertProfile( profileName ) ));
+   }
+
+   @Then("$profileName verifies that popup $popupName is $exists")
+   public void verifyHoldButtonExistence( final String profileName, final String popupName, final String exists )
+   {
+      Boolean isVisible = true;
+      if(exists.contains("not")){
+         isVisible = false;
+      }
+      evaluate( remoteStep( "Verify popup visible" )
+              .scriptOn( profileScriptResolver().map( VerifyPositionUnattendedPopupVisible.class,
+                      BookableProfileName.javafx ), assertProfile( profileName ) )
+              .input( VerifyPositionUnattendedPopupVisible.IPARAM_POPUP_NAME, popupName )
+              . input(VerifyPositionUnattendedPopupVisible.IPARAM_IS_VISIBLE, isVisible));
    }
 
 

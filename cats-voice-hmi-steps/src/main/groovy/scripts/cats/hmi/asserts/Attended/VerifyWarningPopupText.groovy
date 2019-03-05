@@ -1,10 +1,10 @@
-package scripts.cats.hmi.asserts
+package scripts.cats.hmi.asserts.Attended
 
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.layout.Pane
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class VerifyWarningPopupVisibleAndText extends FxScriptTemplate {
+class VerifyWarningPopupText extends FxScriptTemplate {
 
     public static final String IPARAM_WARNING_POPUP_TEXT = "warning_popup_text"
 

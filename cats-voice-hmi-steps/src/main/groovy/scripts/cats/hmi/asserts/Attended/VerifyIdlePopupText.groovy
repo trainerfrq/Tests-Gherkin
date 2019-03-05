@@ -1,11 +1,10 @@
-package scripts.cats.hmi.asserts
+package scripts.cats.hmi.asserts.Attended
 
 import com.frequentis.c4i.test.model.ExecutionDetails
-import javafx.scene.control.Label
 import javafx.scene.layout.Pane
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class VerifyIdlePopupVisibleAndText extends FxScriptTemplate {
+class VerifyIdlePopupText extends FxScriptTemplate {
 
     public static final String IPARAM_IDLE_POPUP_TEXT = "idle_popup_text"
 
@@ -20,11 +19,11 @@ class VerifyIdlePopupVisibleAndText extends FxScriptTemplate {
                 .expected("Idle popup is not null")
                 .success(idlePopup != null))
 
-        Label idlePopupLabel = robot.lookup("#idlePopup #notificationLabel").queryFirst()
+        String receivedInfo = idlePopup.getChildren().toString()
 
         evaluate(ExecutionDetails.create("Assert idle popup text")
                 .expected("Idle popup expected text is: " + text)
-                .received("Idle popup received text is: " + idlePopupLabel.getText())
-                .success(idlePopupLabel.getText().contains(text)))
+                .received("Idle popup received text is: " + receivedInfo)
+                .success(receivedInfo.contains(text)))
     }
 }

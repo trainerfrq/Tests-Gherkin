@@ -26,23 +26,22 @@ Then WS1 sends changed event request - disconnect headsets
 Scenario: "Position Unattended" as warning state in Notification Bar
 Then HMI OP1 has a notification that shows Position Unattended
 
-Scenario: Verify that Idle Warning Popup is visible
+Scenario: Verify that Idle Warning Popup is visible and contains expected text
 		  @REQUIREMENTS:GID-2926854
 		  @REQUIREMENTS:GID-2926850
-Then HMI OP1 verifies that warning popup is visible and contains the text: Position is unattended: all handsets/headsets are unplugged!
-Then HMI OP1 verifies that warning popup is visible and contains the text: Position goes into Idle state in
+Then HMI OP1 verifies that popup unattended is visible
+Then HMI OP1 verifies that warning popup contains the text: Position is unattended: all handsets/headsets are unplugged!
+Then HMI OP1 verifies warning popup countdown is visible
 
 Scenario: Op1 presses button go Idle
 Then HMI OP1 click on go Idle button from idle warning popup
 
-Scenario: Verify that Idle Popup is visible
+Scenario: Verify that Idle Popup is visible and contains expected text
 		  @REQUIREMENTS:GID-2926866
-Then HMI OP1 verifies that idle popup is visible and contains the text: Position is in Idle state: all handsets/headsets are unplugged!
-Then HMI OP1 verifies that idle popup is visible and contains the text: Connect a handset or headset to continue.
-
-Scenario: Op1 verifies that DA keys are disabled
-Given HMI OP1 has the DA key OP2(as OP1) disabled
-Given HMI OP1 has the DA key OP3(as OP1) disabled
+Then HMI OP1 verifies that popup idle is visible
+Then HMI OP1 verifies that idle popup contains the text: idle
+!-- Then HMI OP1 verifies that idle popup contains the text: Position is in Idle state: all handsets/headsets are unplugged!
+!-- Then HMI OP1 verifies that idle popup contains the text: Connect a handset or headset to continue.
 
 Scenario: Check that interaction with settings and maintenance is allowed
 Then HMI OP1 opens Maintenance panel from idle popup
@@ -52,6 +51,9 @@ Then HMI OP1 closes settings
 
 Scenario: Reconnect headsets
 Then WS1 sends changed event request - reconnect headsets
+
+Scenario: Verify that Idle Popup is not visible
+Then HMI OP1 verifies that popup idle is not visible
 
 Scenario: Op1 verifies that DA keys are enabled
 Given HMI OP1 has the DA key OP2(as OP1) in ready to be used state
@@ -65,7 +67,7 @@ Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Op1 verifies that calls can be received
 When HMI OP3 presses DA key OP1(as OP3)
-Then HMI OP1 has the DA key OP3(as OP1) in state out_initiated
+Then HMI OP1 has the DA key OP3(as OP1) in state inc_initiated
 When HMI OP3 presses DA key OP1(as OP3)
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
