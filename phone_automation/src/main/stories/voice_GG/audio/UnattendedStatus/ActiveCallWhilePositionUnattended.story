@@ -3,6 +3,8 @@ As an operator having configured "Idle on Position Unattended" set to enabled
 I want to wait the time span for the Warning message to expire without any user interaction
 So I can verify that Idle status is activated
 
+GivenStories: voice_GG/audio/UnattendedStatus/PrepareAudioSimulator.story
+
 Scenario: Booking profiles
 Given booked profiles:
 | profile   | group | host           | identifier |

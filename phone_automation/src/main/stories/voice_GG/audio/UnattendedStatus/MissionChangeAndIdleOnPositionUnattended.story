@@ -3,6 +3,8 @@ As an operator having configured "Idle on Position Unattended" set to enabled
 I want to wait the time span for the Warning message to expire without any user interaction
 So I can verify that Idle status is activated
 
+GivenStories: voice_GG/audio/UnattendedStatus/PrepareAudioSimulator.story
+
 Scenario: Booking profiles
 Given booked profiles:
 | profile   | group | host           | identifier |
@@ -33,6 +35,10 @@ Then HMI OP1 verifies that popup unattended is visible
 Then HMI OP1 verifies that warning popup contains the text: Position is unattended: all handsets/headsets are unplugged!
 Then HMI OP1 verifies warning popup countdown is visible
 
+Scenario: Op1 prevents Idle state
+		  @REQUIREMENTS:GID-2926855
+Then HMI OP1 click on Stay operational button from idle warning popup
+
 Scenario: Op1 changes to mission WEST-EXEC
 When HMI OP1 presses function key MISSIONS
 Then HMI OP1 has a list of 3 missions available
@@ -56,9 +62,9 @@ When HMI OP1 presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
 
 Scenario: Op1 verifies that calls can be sent
-When HMI OP1 presses DA key OP1
-Then HMI OP1 has the DA key OP1 in state out_ringing
-When HMI OP1 presses DA key OP1
+When HMI OP1 presses DA key OP3
+Then HMI OP1 has the DA key OP3 in state out_ringing
+When HMI OP1 presses DA key OP3
 
 Scenario: Op1 changes to mission MAN-NIGHT-TACT
 When HMI OP1 presses function key MISSIONS
@@ -70,10 +76,6 @@ Then waiting for 5 seconds
 Scenario: Verify that Idle Popup is visible and contains expected text
 Then HMI OP1 verifies that popup idle is visible
 Then HMI OP1 verifies that idle popup contains the text: idle
-
-Scenario: Op1 verifies that DA keys are disabled
-Given HMI OP1 has the DA key OP2(as OP1) disabled
-Given HMI OP1 has the DA key OP3(as OP1) disabled
 
 Scenario: Check that interaction with settings and maintenance is allowed
 Then HMI OP1 opens Maintenance panel from idle popup
@@ -96,14 +98,12 @@ Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Op1 verifies that calls can be received
 When HMI OP3 presses DA key OP1(as OP3)
-Then HMI OP1 has the DA key OP3(as OP1) in state out_initiated
+Then HMI OP1 has the DA key OP3(as OP1) in state inc_initiated
 When HMI OP3 presses DA key OP1(as OP3)
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 
-Scenario: Op1 verifies that LSP is disabled and can be enabled
-Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled
-When HMI OP1 presses function key LOUDSPEAKER
+Scenario: Op1 verifies that LSP is enabled and can be disabled
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
 When HMI OP1 presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled

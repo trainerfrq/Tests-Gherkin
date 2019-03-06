@@ -3,6 +3,8 @@ As an operator having configured "Idle on Position Unattended" set to enabled an
 I want to click the "Ok" button from the warning pop-up window
 So I can verify that Idle status is activated but the incoming calls are forwarded
 
+GivenStories: voice_GG/audio/UnattendedStatus/PrepareAudioSimulator.story
+
 Scenario: Booking profiles
 Given booked profiles:
 | profile   | group | host           | identifier |
@@ -25,9 +27,9 @@ Scenario: Define call queue items
 Given the call queue items:
 | key     | source                 | target                 | callType |
 | OP3-OP2 | sip:op3@example.com    | sip:222222@example.com | DA/IDA   |
-| OP2-OP3 | sip:222222@example.com | sip:op3@example.com    | DA/IDA   |
 | OP1-OP3 | sip:111111@example.com | sip:op3@example.com    | DA/IDA   |
-| OP3-OP1 | sip:op3@example.com    | sip:111111@example.com | DA/IDA   |
+| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
+| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
 
 Scenario: Op1 activates Call Forward
 When HMI OP1 presses function key CALLFORWARD
@@ -50,8 +52,8 @@ Then HMI OP1 verifies that popup unattended is visible
 Then HMI OP1 verifies that warning popup contains the text: Position is unattended: all handsets/headsets are unplugged!
 Then HMI OP1 verifies warning popup countdown is visible
 
-Scenario: Op1 clicks "Ok" button from warning idle popup
-Then HMI OP1 click on Ok button from idle warning popup
+Scenario: Op1 clicks "go Idle" button from warning idle popup
+Then HMI OP1 click on go Idle button from idle warning popup
 
 Scenario: Verify that Idle Popup is visible and contains expected text
 		  @REQUIREMENTS:GID-2926866
@@ -68,7 +70,7 @@ When HMI OP3 presses DA key OP1(as OP3)
 
 Scenario: Verify call is forwarded towards Op2
 Then HMI OP2 has the call queue item OP3-OP2 in state inc_initiated
-Then HMI OP3 has the call queue item OP3-OP3 in state out_ringing
+Then HMI OP3 has the call queue item OP1-OP3 in state out_ringing
 
 Scenario: Op3 clears the call towards Op1
 When HMI OP3 presses DA key OP1(as OP3)
@@ -97,7 +99,7 @@ When HMI OP3 presses DA key OP1(as OP3)
 
 Scenario: Verify call is forwarded towards Op2
 Then HMI OP2 has the call queue item OP3-OP2 in state inc_initiated
-Then HMI OP3 has the call queue item OP3-OP3 in state out_ringing
+Then HMI OP3 has the call queue item OP1-OP3 in state out_ringing
 
 Scenario: Op3 clears the call towards Op1
 When HMI OP3 presses DA key OP1(as OP3)

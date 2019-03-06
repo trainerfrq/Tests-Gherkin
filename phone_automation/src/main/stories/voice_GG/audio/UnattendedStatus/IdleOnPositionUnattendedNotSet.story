@@ -3,6 +3,8 @@ As an operator having configured "Idle on Position Unattended" set to enabled
 I want to wait the time span for the Warning message to expire without any user interaction
 So I can verify that Idle status is activated
 
+GivenStories: voice_GG/audio/UnattendedStatus/PrepareAudioSimulator.story
+
 Scenario: Booking profiles
 Given booked profiles:
 | profile   | group | host           | identifier |
@@ -13,14 +15,14 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                   | target                 | callType |
-| OP1-OP2 | sip:mission1@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1 | sip:222222@example.com   |                        | DA/IDA   |
+| key     | source                         | target                         | callType |
+| OP1-OP2 | sip:111111@192.168.40.126:5060 |                                | DA/IDA   |
+| OP2-OP1 | sip:mission1@example.com       | sip:111111@192.168.40.126:5060 | DA/IDA   |
 
 Scenario: Open Web Socket Client connections
 Given named the websocket configurations:
-| named       | websocket-uri       | text-buffer-size |
-| WS_Config-1 | <<WS-Server.URI>>   | 1000             |
+| named       | websocket-uri     | text-buffer-size |
+| WS_Config-1 | <<WS-Server.URI>> | 1000             |
 
 Scenario: Open Web Socket Client connections
 Given applied the named websocket configuration:
@@ -73,15 +75,14 @@ When HMI OP2 presses function key PHONEBOOK
 When HMI OP2 selects phonebook entry number: 3
 Then HMI OP2 verifies that phone book text box displays text OP1 Physical
 When HMI OP2 initiates a call from the phonebook
-Then HMI OP1 has the call queue item OP2-OP1 in the waiting list with name label mission1
+Then HMI OP2 has the call queue item OP1-OP2 in state out_ringing
+Then HMI OP1 has the call queue item OP2-OP1 in state inc_initiated
 Then HMI OP1 terminates the call queue item OP2-OP1
 
 Scenario: Reconnect headsets
 Then WS1 sends changed event request - reconnect headsets
 
-Scenario: Op1 verifies that LSP is disabled and can be disabled
-Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled
-When HMI OP1 presses function key LOUDSPEAKER
+Scenario: Op1 verifies that LSP is enabled and can be disabled
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
 When HMI OP1 presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled

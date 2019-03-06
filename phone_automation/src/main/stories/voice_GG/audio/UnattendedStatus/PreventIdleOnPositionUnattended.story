@@ -3,17 +3,20 @@ As an operator having configured "Idle on Position Unattended" set to enabled
 I want to click the "Stay operational" button
 So I can verify that Idle status is prevented
 
+GivenStories: voice_GG/audio/UnattendedStatus/PrepareAudioSimulator.story
+
 Scenario: Booking profiles
 Given booked profiles:
 | profile   | group | host           | identifier |
 | javafx    | hmi   | <<CLIENT1_IP>> | HMI OP1    |
 | javafx    | hmi   | <<CLIENT2_IP>> | HMI OP2    |
+| javafx    | hmi   | <<CLIENT3_IP>> | HMI OP3    |
 | websocket | hmi   | <<CO3_IP>>     |            |
 
 Scenario: Open Web Socket Client connections
 Given named the websocket configurations:
-| named       | websocket-uri       | text-buffer-size |
-| WS_Config-1 | <<WS-Server.URI>>   | 1000             |
+| named       | websocket-uri     | text-buffer-size |
+| WS_Config-1 | <<WS-Server.URI>> | 1000             |
 
 Scenario: Open Web Socket Client connections
 Given applied the named websocket configuration:
@@ -22,13 +25,12 @@ Given applied the named websocket configuration:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP3 | sip:111111@example.com | sip:op3@example.com    | DA/IDA   |
-| OP3-OP1 | sip:op3@example.com    | sip:111111@example.com | DA/IDA   |
+| key     | source                   | target                      | callType |
+| OP1-OP3 | sip:mission1@example.com | sip:op3@192.168.40.128:5060 | DA/IDA   |
 
-Scenario: Op1 establishes a call towards Op2
-When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
+Scenario: Op2 establishes a call towards Op1
+When HMI OP2 presses DA key OP1
+Then HMI OP1 has the DA key OP2(as OP1) in state inc_initiated
 
 Scenario: Op1 establishes a call towards Op3
 When HMI OP1 presses DA key OP3(as OP1)
@@ -52,7 +54,7 @@ Then HMI OP1 has a notification that shows Position Unattended
 
 Scenario: Verify that the active and outgoing calls were not cleared
 		  @REQUIREMENTS:GID-2926857
-Then HMI OP1 has in the call queue a number of 1 calls
+Then HMI OP1 has in the call queue a number of 2 calls
 Then HMI OP2 has in the call queue a number of 1 calls
 Then HMI OP3 has in the call queue a number of 1 calls
 
@@ -66,13 +68,14 @@ When HMI OP1 presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
 
 Scenario: Verify that the active and outgoing calls were not cleared
-Then HMI OP1 has in the call queue a number of 1 calls
+Then HMI OP1 has in the call queue a number of 2 calls
 Then HMI OP2 has in the call queue a number of 1 calls
 Then HMI OP3 has in the call queue a number of 1 calls
 
 Scenario: Op1 client clears the phone calls
-When HMI OP1 presses DA key OP2(as OP1)
 When HMI OP3 presses DA key OP1(as OP3)
+When HMI OP1 presses DA key OP2(as OP1)
+When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
@@ -87,9 +90,7 @@ When HMI OP1 initiates a call from the phonebook
 Scenario: Reconnect headsets
 Then WS1 sends changed event request - reconnect headsets
 
-Scenario: Op1 verifies that LSP is disabled and can be enabled
-Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled
-When HMI OP1 presses function key LOUDSPEAKER
+Scenario: Op1 verifies that LSP is enabled and can be disabled
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
 When HMI OP1 presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled

@@ -3,6 +3,8 @@ As an operator having configured "Idle on Position Unattended" set to enabled
 I want to wait the time span for the Warning message to expire without any user interaction
 So I can verify that Idle status is activated
 
+GivenStories: voice_GG/audio/UnattendedStatus/PrepareAudioSimulator.story
+
 Scenario: Booking profiles
 Given booked profiles:
 | profile   | group | host           | identifier |
@@ -40,6 +42,7 @@ Scenario: Verify that Idle Popup is visible and contains expected text
 		  @REQUIREMENTS:GID-2926866
 Then HMI OP1 verifies that popup idle is visible
 Then HMI OP1 verifies that idle popup contains the text: idle
+!-- TODO Enable steps when HMI ids are available
 !-- Then HMI OP1 verifies that idle popup contains the text: Position is in Idle state: all handsets/headsets are unplugged!
 !-- Then HMI OP1 verifies that idle popup contains the text: Connect a handset or headset to continue.
 
