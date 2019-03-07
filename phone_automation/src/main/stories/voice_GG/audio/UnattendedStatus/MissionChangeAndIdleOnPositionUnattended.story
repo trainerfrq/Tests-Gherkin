@@ -1,7 +1,7 @@
 Narrative:
-As an operator having configured "Idle on Position Unattended" set to enabled
-I want to wait the time span for the Warning message to expire without any user interaction
-So I can verify that Idle status is activated
+As an operator using mission with a role that has "Idle on Position Unattended" set to enabled
+I want to change to a mission with a role that hasn't "Idle on Position Unattended" set to enabled
+So I can verify that Idle status is not activated
 
 GivenStories: voice_GG/audio/UnattendedStatus/PrepareAudioSimulator.story
 
@@ -30,9 +30,9 @@ Then HMI OP1 has a notification that shows Position Unattended
 
 Scenario: Verify that Idle Warning Popup is visible and contains expected text
 		  @REQUIREMENTS:GID-2926854
-		  @REQUIREMENTS:GID-2926850
 Then HMI OP1 verifies that popup unattended is visible
 Then HMI OP1 verifies that warning popup contains the text: Position is unattended: all handsets/headsets are unplugged!
+Then HMI OP1 verifies that warning popup contains the text: Position goes into Idle state
 Then HMI OP1 verifies warning popup countdown is visible
 
 Scenario: Op1 prevents Idle state
@@ -50,6 +50,7 @@ Scenario: "Position Unattended" as warning state in Notification Bar
 Then HMI OP1 has a notification that shows Position Unattended
 
 Scenario: Verify that Idle Warning Popup is not visible
+		  @REQUIREMENTS:GID-2926850
 Then HMI OP1 verifies that popup unattended is not visible
 
 Scenario: Op1 wait for 10 sec and verifies that Idle Popup is not visible either
@@ -57,6 +58,7 @@ Then waiting for 10 seconds
 Then HMI OP1 verifies that popup idle is not visible
 
 Scenario: Op1 verifies that LSP is enabled and can't be disabled
+		  @REQUIREMENTS:GID-2926852
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
 When HMI OP1 presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
@@ -75,9 +77,11 @@ Then waiting for 5 seconds
 
 Scenario: Verify that Idle Popup is visible and contains expected text
 Then HMI OP1 verifies that popup idle is visible
-Then HMI OP1 verifies that idle popup contains the text: idle
+Then HMI OP1 verifies that idle popup contains the text: Position is in Idle state: all handsets/headsets are unplugged!
+Then HMI OP1 verifies that idle popup contains the text: Connect a handset or headset to continue.
 
 Scenario: Check that interaction with settings and maintenance is allowed
+		  @REQUIREMENTS:GID-2926857
 Then HMI OP1 opens Maintenance panel from idle popup
 Then HMI OP1 closes maintenance
 Then HMI OP1 opens Settings panel from idle popup
@@ -103,7 +107,9 @@ When HMI OP3 presses DA key OP1(as OP3)
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 
-Scenario: Op1 verifies that LSP is enabled and can be disabled
+Scenario: Op1 verifies that LSP is disabled and can be enabled
+Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled
+When HMI OP1 presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
 When HMI OP1 presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled

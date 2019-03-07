@@ -1,7 +1,7 @@
 Narrative:
-As an operator having configured "Idle on Position Unattended" set to enabled
-I want to wait the time span for the Warning message to expire without any user interaction
-So I can verify that Idle status is activated
+As an operator using mission with a role that has "Idle on Position Unattended" set to enabled
+I want to have the Idle status is activated
+So I can verify calls can't be done and when switch to attended position becomes fully operational again
 
 GivenStories: voice_GG/audio/UnattendedStatus/PrepareAudioSimulator.story
 
@@ -33,6 +33,7 @@ Scenario: Verify that Idle Warning Popup is visible and contains expected text
 		  @REQUIREMENTS:GID-2926850
 Then HMI OP1 verifies that popup unattended is visible
 Then HMI OP1 verifies that warning popup contains the text: Position is unattended: all handsets/headsets are unplugged!
+Then HMI OP1 verifies that warning popup contains the text: Position goes into Idle state in
 Then HMI OP1 verifies warning popup countdown is visible
 
 Scenario: Op1 presses button go Idle
@@ -41,12 +42,11 @@ Then HMI OP1 click on go Idle button from idle warning popup
 Scenario: Verify that Idle Popup is visible and contains expected text
 		  @REQUIREMENTS:GID-2926866
 Then HMI OP1 verifies that popup idle is visible
-Then HMI OP1 verifies that idle popup contains the text: idle
-!-- TODO Enable steps when HMI ids are available
-!-- Then HMI OP1 verifies that idle popup contains the text: Position is in Idle state: all handsets/headsets are unplugged!
-!-- Then HMI OP1 verifies that idle popup contains the text: Connect a handset or headset to continue.
+Then HMI OP1 verifies that idle popup contains the text: Position is in Idle state: all handsets/headsets are unplugged!
+Then HMI OP1 verifies that idle popup contains the text: Connect a handset or headset to continue.
 
 Scenario: Check that interaction with settings and maintenance is allowed
+		  @REQUIREMENTS:GID-2926857
 Then HMI OP1 opens Maintenance panel from idle popup
 Then HMI OP1 closes maintenance
 Then HMI OP1 opens Settings panel from idle popup
@@ -56,6 +56,7 @@ Scenario: Reconnect headsets
 Then WS1 sends changed event request - reconnect headsets
 
 Scenario: Verify that Idle Popup is not visible
+		  @REQUIREMENTS:GID-3281917
 Then HMI OP1 verifies that popup idle is not visible
 
 Scenario: Op1 verifies that DA keys are enabled

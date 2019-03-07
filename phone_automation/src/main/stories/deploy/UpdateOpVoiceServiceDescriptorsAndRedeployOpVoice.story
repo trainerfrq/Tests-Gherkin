@@ -4,11 +4,15 @@ Given SSH connections:
 | deploymentServer | <<DEP_SERVER_IP>>    | 22         | root     | !frqAdmin |
 | dockerHost1      | <<OPVOICE_HOST1_IP>> | 22         | root     | !frqAdmin |
 | dockerHost2      | <<OPVOICE_HOST2_IP>> | 22         | root     | !frqAdmin |
+| hmiHost1         | <<CLIENT1_IP>>       | 22         | root     | !frqAdmin |
 
 Scenario: Update POSITIONS_WITHOUT_AUDIOBOX to contain only 2 positions
 When SSH host deploymentServer executes sed -i '57s/.*/    "POSITIONS_WITHOUT_AUDIOBOX" : "${OP_VOICE_PARTITION_KEY_2},${OP_VOICE_PARTITION_KEY_3}",/' /var/opt/frequentis/xvp/orchestration-agent/daemon/data/descriptors/*${OP_VOICE_PARTITION_KEY_1}.json
 When SSH host deploymentServer executes sed -i '57s/.*/    "POSITIONS_WITHOUT_AUDIOBOX" : "${OP_VOICE_PARTITION_KEY_2},${OP_VOICE_PARTITION_KEY_3}",/' /var/opt/frequentis/xvp/orchestration-agent/daemon/data/descriptors/*${OP_VOICE_PARTITION_KEY_2}.json
 When SSH host deploymentServer executes sed -i '57s/.*/    "POSITIONS_WITHOUT_AUDIOBOX" : "${OP_VOICE_PARTITION_KEY_2},${OP_VOICE_PARTITION_KEY_3}",/' /var/opt/frequentis/xvp/orchestration-agent/daemon/data/descriptors/*${OP_VOICE_PARTITION_KEY_3}.json
+
+Scenario: Stop audio-app on all host1
+When SSH host hmiHost1 executes docker rm -f audio-app
 
 Scenario: Publish the service descriptors and redeploy op-voice-service
 Then SSH host deploymentServer executes /usr/bin/xvp services remove op-voice-service -g

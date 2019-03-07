@@ -1,7 +1,7 @@
 Narrative:
-As an operator having configured "Idle on Position Unattended" set to enabled and having Call Forward active
-I want to click the "Ok" button from the warning pop-up window
-So I can verify that Idle status is activated but the incoming calls are forwarded
+As an operator using mission with a role that has "Idle on Position Unattended" set to enabled and having Call Forward active
+I want to have the Idle status is activated
+So I can verify that the incoming calls are still forwarded
 
 GivenStories: voice_GG/audio/UnattendedStatus/PrepareAudioSimulator.story
 
@@ -50,6 +50,7 @@ Scenario: Verify that Idle Warning Popup is visible and contains expected text
 		  @REQUIREMENTS:GID-2926854
 Then HMI OP1 verifies that popup unattended is visible
 Then HMI OP1 verifies that warning popup contains the text: Position is unattended: all handsets/headsets are unplugged!
+Then HMI OP1 verifies that warning popup contains the text: Position goes into Idle state
 Then HMI OP1 verifies warning popup countdown is visible
 
 Scenario: Op1 clicks "go Idle" button from warning idle popup
@@ -58,7 +59,8 @@ Then HMI OP1 click on go Idle button from idle warning popup
 Scenario: Verify that Idle Popup is visible and contains expected text
 		  @REQUIREMENTS:GID-2926866
 Then HMI OP1 verifies that popup idle is visible
-Then HMI OP1 verifies that idle popup contains the text: idle
+Then HMI OP1 verifies that idle popup contains the text: Position is in Idle state: all handsets/headsets are unplugged!
+Then HMI OP1 verifies that idle popup contains the text: Connect a handset or headset to continue.
 
 Scenario: Check if call forward state is still active
 		  @REQUIREMENTS:GID-2926857

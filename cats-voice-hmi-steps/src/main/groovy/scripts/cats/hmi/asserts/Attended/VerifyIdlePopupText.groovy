@@ -1,6 +1,7 @@
 package scripts.cats.hmi.asserts.Attended
 
 import com.frequentis.c4i.test.model.ExecutionDetails
+import javafx.scene.control.Label
 import javafx.scene.layout.Pane
 import scripts.agent.testfx.automation.FxScriptTemplate
 
@@ -19,11 +20,20 @@ class VerifyIdlePopupText extends FxScriptTemplate {
                 .expected("Idle popup is not null")
                 .success(idlePopup != null))
 
-        String receivedInfo = idlePopup.getChildren().toString()
+        Label label1 = robot.lookup("#idlePopup #idleText_1").queryFirst()
+        Label label2 = robot.lookup("#idlePopup #idleText_2").queryFirst()
 
-        evaluate(ExecutionDetails.create("Assert idle popup text")
-                .expected("Idle popup expected text is: " + text)
-                .received("Idle popup received text is: " + receivedInfo)
-                .success(receivedInfo.contains(text)))
+        if(text.contains("Idle state")){
+            evaluate(ExecutionDetails.create("Assert idle popup text on first row")
+                    .expected("Idle popup expected text is: " + text)
+                    .received("Idle popup received text is: " + label1.getText())
+                    .success(label1.getText().equals(text)))
+        }
+        else if(text.contains("Connect a handset")){
+            evaluate(ExecutionDetails.create("Assert idle popup text on second row")
+                    .expected("Idle popup expected text is: " + text)
+                    .received("Idle popup received text is: " + label2.getText())
+                    .success(label2.getText().equals(text)))
+        }
     }
 }

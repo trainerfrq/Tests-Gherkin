@@ -1,7 +1,7 @@
 Narrative:
-As an operator having configured "Idle on Position Unattended" set to enabled
-I want to click the "Stay operational" button
-So I can verify that Idle status is prevented
+As an operator using mission with a role that has "Idle on Position Unattended" set to enabled
+I want to stay operational in unattended mode
+So I can verify that Idle status is prevented and calls can be done
 
 GivenStories: voice_GG/audio/UnattendedStatus/PrepareAudioSimulator.story
 
@@ -28,6 +28,9 @@ Given the call queue items:
 | key     | source                   | target                      | callType |
 | OP1-OP3 | sip:mission1@example.com | sip:op3@192.168.40.128:5060 | DA/IDA   |
 
+Scenario: Op1 verifies LSP state
+Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled
+
 Scenario: Op2 establishes a call towards Op1
 When HMI OP2 presses DA key OP1
 Then HMI OP1 has the DA key OP2(as OP1) in state inc_initiated
@@ -47,6 +50,7 @@ Scenario: Verify that Idle Warning Popup is visible and contains expected text
 		  @REQUIREMENTS:GID-2926854
 Then HMI OP1 verifies that popup unattended is visible
 Then HMI OP1 verifies that warning popup contains the text: Position is unattended: all handsets/headsets are unplugged!
+Then HMI OP1 verifies that warning popup contains the text: Position goes into Idle state in
 Then HMI OP1 verifies warning popup countdown is visible
 
 Scenario: "Position Unattended" as warning state in Notification Bar
@@ -62,7 +66,8 @@ Scenario: Op1 prevents Idle state
 		  @REQUIREMENTS:GID-2926855
 Then HMI OP1 click on Stay operational button from idle warning popup
 
-Scenario: Op1 verifies that LSP is denabled and can't be disabled
+Scenario: Op1 verifies that LSP is enabled and can't be disabled
+		  @REQUIREMENTS:GID-2926852
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
 When HMI OP1 presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
@@ -90,7 +95,9 @@ When HMI OP1 initiates a call from the phonebook
 Scenario: Reconnect headsets
 Then WS1 sends changed event request - reconnect headsets
 
-Scenario: Op1 verifies that LSP is enabled and can be disabled
+Scenario: Op1 verifies that LSP has the previous state (before unattended happened)
+Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled
+When HMI OP1 presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
 When HMI OP1 presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled

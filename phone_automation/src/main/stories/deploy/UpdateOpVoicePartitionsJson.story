@@ -1,8 +1,6 @@
 Scenario: Connect to deploymentServer
 Given SSH connections:
 | name             | remote-address       | remotePort | username | password  |
-| dockerHost1      | <<OPVOICE_HOST1_IP>> | 22         | root     | !frqAdmin |
-| dockerHost2      | <<OPVOICE_HOST2_IP>> | 22         | root     | !frqAdmin |
 | catsMaster       | <<CATS_MASTER_IP>>   | 22         | root     | !frqAdmin |
 
 Scenario: Upload updated configuration file in Configuration Management Service for Op Voice Service

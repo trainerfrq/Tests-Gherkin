@@ -1,5 +1,5 @@
 Narrative:
-As an operator having configured "Idle on Position Unattended" set to enabled
+As an operator using mission with a role that has "Idle on Position Unattended" set to enabled
 I want to wait the time span for the Warning message to expire without any user interaction
 So I can verify that Idle status is activated
 
@@ -52,6 +52,7 @@ Scenario: Verify that Idle Warning Popup is visible and contains expected text
 		  @REQUIREMENTS:GID-2926850
 Then HMI OP1 verifies that popup unattended is visible
 Then HMI OP1 verifies that warning popup contains the text: Position is unattended: all handsets/headsets are unplugged!
+Then HMI OP1 verifies that warning popup contains the text: Position goes into Idle state in
 Then HMI OP1 verifies warning popup countdown is visible
 
 Scenario: Verify call is still connected for both operators
@@ -62,9 +63,11 @@ Scenario: Op1 wait for 10 sec, without any interaction with Idle Warning Popup
 Then waiting for 10 seconds
 
 Scenario: Verify that Idle Popup is visible and contains expected text
+		  @REQUIREMENTS:GID-2926856
 		  @REQUIREMENTS:GID-2926866
 Then HMI OP1 verifies that popup idle is visible
-Then HMI OP1 verifies that idle popup contains the text: idle
+Then HMI OP1 verifies that idle popup contains the text: Position is in Idle state: all handsets/headsets are unplugged!
+Then HMI OP1 verifies that idle popup contains the text: Connect a handset or headset to continue.
 
 Scenario: Verify that the active and outgoing calls were cleared
 		  @REQUIREMENTS:GID-2926857
@@ -89,8 +92,11 @@ Then HMI OP1 closes settings
 Scenario: Reconnect headsets
 Then WS1 sends changed event request - reconnect headsets
 
-Scenario: Verify that Op1 can establish calls again
+Scenario: Verify that Idle Popup is not visible
 		  @REQUIREMENTS:GID-3281917
+Then HMI OP1 verifies that popup idle is not visible
+
+Scenario: Verify that Op1 can establish calls again
 When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
 Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated

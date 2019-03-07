@@ -5,7 +5,7 @@ When installing profiles:
 | <<CO3_IP>> | websocket/hmi   |
 
 Scenario: Start profiles
-Given running profiles:
+When starting profiles:
 | hostIp     | profile         | timeout        | nr |
 | <<CO3_IP>> | websocket/audio | <<Timeout|60>> | 1  |
 | <<CO3_IP>> | websocket/hmi   | <<Timeout|60>> | 1  |

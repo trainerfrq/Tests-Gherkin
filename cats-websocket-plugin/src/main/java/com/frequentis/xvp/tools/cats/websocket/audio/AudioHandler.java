@@ -27,6 +27,7 @@ import com.frequentis.xvp.voice.audiointerface.json.messages.MessageType;
 import com.frequentis.xvp.voice.audiointerface.json.messages.ResultCode;
 import com.frequentis.xvp.voice.audiointerface.json.messages.client.AssociateResponse;
 import com.frequentis.xvp.voice.audiointerface.json.messages.client.DisassociateResponse;
+import com.frequentis.xvp.voice.audiointerface.json.messages.conference.AudioPortPair;
 import com.frequentis.xvp.voice.audiointerface.json.messages.conference.AudioPortPairWithLevel;
 import com.frequentis.xvp.voice.audiointerface.json.messages.eplogic.EpLogicPortMappingResponse;
 import com.frequentis.xvp.voice.audiointerface.json.messages.eplogic.LogicPortMapping;
@@ -121,6 +122,9 @@ public class AudioHandler extends DefaultWebSocketAdapterIOListener
             case CONNECT_PORT_REQUEST:
                sendConferenceCommonResponse( message, correlationId, endpoint );
                break;
+            case DISCONNECT_PORT_REQUEST:
+               sendConferenceCommonResponseForDisconnect( message, correlationId, endpoint );
+               break;
             case SESSION_RESOURCE_REQUEST:
                sendSessionResourceResponse( message, correlationId, endpoint );
                break;
@@ -211,13 +215,28 @@ public class AudioHandler extends DefaultWebSocketAdapterIOListener
          final ServerEndpoint endpoint )
    {
       final List<AudioInterfaceResponseResult> conferenceResults = new ArrayList<>();
-      for ( AudioPortPairWithLevel results : message.body().connectPortRequest().getConnections() )
+      for ( AudioPortPairWithLevel results : message.body().connectPortRequest().getConnections())
       {
          conferenceResults.add( RESPONSE_RESULT );
       }
       JsonMessage jsonResponse = JsonMessage.builder().withConferenceCommonResponse( ConferenceCommonResponse
             .create( conferenceResults, RESPONSE_RESULT ) )
             .withCorrelationId( correlationId ).build();
+      endpoint.sendText( new TextMessage( jsonResponse.toString() ) );
+   }
+
+
+   private void sendConferenceCommonResponseForDisconnect( final JsonMessage message, final UUID correlationId,
+                                              final ServerEndpoint endpoint )
+   {
+      final List<AudioInterfaceResponseResult> conferenceResults = new ArrayList<>();
+      for ( AudioPortPair results : message.body().disconnectPortRequest().getConnections())
+      {
+         conferenceResults.add( RESPONSE_RESULT );
+      }
+      JsonMessage jsonResponse = JsonMessage.builder().withConferenceCommonResponse( ConferenceCommonResponse
+              .create( conferenceResults, RESPONSE_RESULT ) )
+              .withCorrelationId( correlationId ).build();
       endpoint.sendText( new TextMessage( jsonResponse.toString() ) );
    }
 

@@ -1,6 +1,7 @@
 package scripts.cats.hmi.asserts.Attended
 
 import com.frequentis.c4i.test.model.ExecutionDetails
+import javafx.scene.control.Label
 import javafx.scene.layout.Pane
 import scripts.agent.testfx.automation.FxScriptTemplate
 
@@ -19,11 +20,22 @@ class VerifyWarningPopupText extends FxScriptTemplate {
                 .expected("Unattended popup is not null")
                 .success(unattendedPopup != null))
 
-        String receivedInfo = unattendedPopup.getChildren().toString()
+        Label label1 = robot.lookup("#unattendedPopup #unattendedText_1").queryFirst()
+        Label label2 = robot.lookup("#unattendedPopup #unattendedText_2").queryFirst()
 
-        evaluate(ExecutionDetails.create("Assert warning popup text")
-                .expected("Warning popup expected text is: " + text)
-                .received("Warning popup received text is: " + receivedInfo)
-                .success(receivedInfo.contains(text)))
+        if(text.contains("is unattended")){
+            evaluate(ExecutionDetails.create("Assert warning popup text on first row")
+                    .expected("Warning popup expected text is: " + text)
+                    .received("Warning popup received text is: " + label1.getText())
+                    .success(label1.getText().equals(text)))
+        }
+        else if(text.contains("goes into Idle")){
+            evaluate(ExecutionDetails.create("Assert warning popup text on second row")
+                    .expected("Warning popup expected text is: " + text)
+                    .received("Warning popup received text is: " + label2.getText())
+                    .success(label2.getText().contains(text)))
+        }
+
+
     }
 }

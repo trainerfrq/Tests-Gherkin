@@ -4,7 +4,7 @@ When stopping profiles:
 | <<CO3_IP>> | websocket/audio | <<Timeout|60>> | 1  |
 
 Scenario: Start profiles
-Given running profiles:
+When starting profiles:
 | hostIp     | profile         | timeout        | nr |
 | <<CO3_IP>> | websocket/audio | <<Timeout|60>> | 1  |
 Then waiting for 10 seconds
