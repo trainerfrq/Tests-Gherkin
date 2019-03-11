@@ -4,7 +4,7 @@ When stopping profiles:
 | <<CO3_IP>> | websocket/audio | <<Timeout|60>> | 1  |
 
 Scenario: Start profiles
-When starting profiles:
+Given running profiles:
 | hostIp     | profile         | timeout        | nr |
 | <<CO3_IP>> | websocket/audio | <<Timeout|60>> | 1  |
 Then waiting for 10 seconds
@@ -28,5 +28,5 @@ Given applied the named websocket configuration:
 | profile-name | websocket-config-name |
 | WEBSOCKET 1  | WS_Config-1           |
 
-Scenario: Reconnect headsets
-Then WS1 sends changed event request - reconnect headsets
+Scenario: Connect headsets
+Then WS1 sends changed event request - connect headsets

@@ -84,3 +84,6 @@ Scenario: Cleanup IA call
 When HMI OP1 presses IA key IA - OP2(as OP1)
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP2 has in the call queue a number of 0 calls
+
+Scenario: Wait a few seconds for clean-up purposes
+Then waiting for 10 seconds

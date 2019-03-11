@@ -92,8 +92,8 @@ When HMI OP1 selects phonebook entry number: 1
 Then HMI OP1 verifies that phone book text box displays text Lloyd
 When HMI OP1 initiates a call from the phonebook
 
-Scenario: Reconnect headsets
-Then WS1 sends changed event request - reconnect headsets
+Scenario: Connect headsets
+Then WS1 sends changed event request - connect headsets
 
 Scenario: Op1 verifies that LSP has the previous state (before unattended happened)
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled

@@ -44,7 +44,7 @@ public class AudioSteps extends WebsocketAutomationSteps
             inputSignals.add( InputSignalChangedEvent.builder().withSignalId( "Op1Att" ).withState( 0 ).build() );
             inputSignals.add( InputSignalChangedEvent.builder().withSignalId( "Co1Att" ).withState( 0 ).build() );
             break;
-         case "reconnect":
+         case "connect":
             inputSignals.add( InputSignalChangedEvent.builder().withSignalId( "Op1Att" ).withState( 1 ).build() );
             inputSignals.add( InputSignalChangedEvent.builder().withSignalId( "Co1Att" ).withState( 1 ).build() );
             break;
@@ -55,7 +55,7 @@ public class AudioSteps extends WebsocketAutomationSteps
       }
       String request = new Gson().toJson( new ChangedEventCommand( inputSignals ) );
 
-      evaluate( remoteStep( "Sending sends changed event request - disconnect headsets " )
+      evaluate( remoteStep( "Sending changed event request - " + action +" headsets " )
             .scriptOn( profileScriptResolver().map( SendTextMessage.class, BookableProfileName.websocket ),
                   requireProfile( reference.getProfileName() ) )
             .input( SendTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )

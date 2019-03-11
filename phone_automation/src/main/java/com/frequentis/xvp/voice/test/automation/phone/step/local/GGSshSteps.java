@@ -16,6 +16,13 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step.local;
 
+import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
+import com.frequentis.c4i.test.model.ExecutionDetails;
+import com.frequentis.c4i.test.ssh.automation.steps.SshSteps;
+import com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil;
+import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
 import static com.frequentis.c4i.test.config.AutomationProjectConfig.fromCatsHome;
 import static com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil.processConfigurationTemplate;
 
@@ -24,15 +31,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
-
-import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
-import com.frequentis.c4i.test.model.ExecutionDetails;
-import com.frequentis.c4i.test.ssh.automation.steps.SshSteps;
-import com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil;
 
 public class GGSshSteps extends SshSteps
 {
@@ -122,33 +120,6 @@ public class GGSshSteps extends SshSteps
         executeSshCommand( connectionName,
                 "docker exec -i "+shortContainerId+" bash << \\EOF\n" + scriptContent + "\nEOF" );
     }
-
-   @When("updating audioAppUri in partitions.json executed on $connectionName using file $fileName")
-   public void  updateAudioAppURI( final String connectionName, final String fileName ) throws IOException
-   {
-      final LocalStep localStep = localStep( "Modify json" );
-
-      final String systemName = StepsUtil.getEnvProperty( "systemName" );
-      String containerId = getStoryListData("container-id", String.class);
-
-      String shortContainerId = containerId.substring(0,3);
-
-      String scriptFilePath = "/configuration-files/" + systemName + "/" + fileName;
-      String imageFilePath = "/configuration-files/" + systemName + "/partitions.json";
-
-      final Path path = Paths.get( getCatsResourcesFolderPath(), imageFilePath );
-      localStep.details( ExecutionDetails.create( "Path is: " + path.toString() ).success() );
-
-      final Map<String, String> map = new HashMap<>();
-      map.put("image-file-path", path.toString() );
-
-      final String scriptContent =
-            processConfigurationTemplate( StepsUtil.getConfigFile( scriptFilePath), map );
-
-      executeSshCommand( connectionName,
-            "docker exec -i "+shortContainerId+" bash << \\EOF\n" + scriptContent + "\nEOF" );
-   }
-
 
     @Then("the timer values are stored outside the container on $connectionName")
     public void copyMetricValueLocally( final String connectionName ) throws IOException

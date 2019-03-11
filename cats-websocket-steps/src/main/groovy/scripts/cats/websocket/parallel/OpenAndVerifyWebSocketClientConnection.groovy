@@ -7,9 +7,7 @@ import com.frequentis.c4i.test.agent.websocket.common.impl.message.TextMessage
 import com.frequentis.c4i.test.model.ExecutionDetails
 import com.frequentis.c4i.test.util.timer.WaitTimer
 import com.frequentis.xvp.tools.cats.websocket.plugin.WebsocketScriptTemplate
-/**
- * Created by MAyar on 18.01.2017.
- */
+
 
 class OpenAndVerifyWebSocketClientConnection extends WebsocketScriptTemplate {
 

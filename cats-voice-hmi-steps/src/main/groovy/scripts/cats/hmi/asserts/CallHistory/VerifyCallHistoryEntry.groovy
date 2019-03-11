@@ -1,17 +1,15 @@
 package scripts.cats.hmi.asserts.CallHistory
 
-
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
 import javafx.scene.control.Label
+import javafx.scene.layout.Pane
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 import java.time.Duration
 import java.time.LocalTime
-import java.time.format.DateTimeFormatter
-
 
 class VerifyCallHistoryEntry extends FxScriptTemplate {
 
@@ -43,11 +41,11 @@ class VerifyCallHistoryEntry extends FxScriptTemplate {
                 .received(nameText)
                 .success(nameText == callHistoryEntryDisplayName))
 
-        String direction = (callHistoryEntry).lookup("#callDirection").toString()
-        evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for call direction")
+        Pane typeLabel = robot.lookup("#callHistoryList #callHistoryType").selectAt(callHistoryEntryNumber).queryFirst()
+        evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for direction")
                 .expected(callHistoryEntryDirection)
-                .received(direction)
-                .success(direction.contains(callHistoryEntryDirection)))
+                .received(typeLabel.getStyleClass().toString())
+                .success(typeLabel.getStyleClass().toString().equals(callHistoryEntryDirection)))
 
         String statusConnection = (callHistoryEntry).lookup("#callConnectionStatus").toString()
         evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for status connection")

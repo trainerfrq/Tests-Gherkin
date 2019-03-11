@@ -1,6 +1,6 @@
 Narrative:
 As an operator using mission with a role that has "Idle on Position Unattended" set to enabled and having Call Forward active
-I want to have the Idle status is activated
+I want to have the Idle status activated
 So I can verify that the incoming calls are still forwarded
 
 GivenStories: voice_GG/audio/UnattendedStatus/PrepareAudioSimulator.story
@@ -77,8 +77,8 @@ Then HMI OP3 has the call queue item OP1-OP3 in state out_ringing
 Scenario: Op3 clears the call towards Op1
 When HMI OP3 presses DA key OP1(as OP3)
 
-Scenario: Reconnect headsets for Operator 1
-Then WS1 sends changed event request - reconnect headsets
+Scenario: Connect headsets for Operator 1
+Then WS1 sends changed event request - connect headsets
 
 Scenario: Check if call forward state is still active
 		  @REQUIREMENTS:GID-2926857
@@ -109,4 +109,3 @@ When HMI OP3 presses DA key OP1(as OP3)
 Scenario: Op1 deactivates Call Forward
 When HMI OP1 presses function key CALLFORWARD
 Then HMI OP1 verifies that call queue info container is not visible
-

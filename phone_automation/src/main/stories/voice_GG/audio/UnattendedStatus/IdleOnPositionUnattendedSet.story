@@ -1,6 +1,6 @@
 Narrative:
 As an operator using mission with a role that has "Idle on Position Unattended" set to enabled
-I want to have the Idle status is activated
+I want to have the Idle status activated
 So I can verify calls can't be done and when switch to attended position becomes fully operational again
 
 GivenStories: voice_GG/audio/UnattendedStatus/PrepareAudioSimulator.story
@@ -52,8 +52,8 @@ Then HMI OP1 closes maintenance
 Then HMI OP1 opens Settings panel from idle popup
 Then HMI OP1 closes settings
 
-Scenario: Reconnect headsets
-Then WS1 sends changed event request - reconnect headsets
+Scenario: Connect headsets
+Then WS1 sends changed event request - connect headsets
 
 Scenario: Verify that Idle Popup is not visible
 		  @REQUIREMENTS:GID-3281917
@@ -82,8 +82,3 @@ When HMI OP1 presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
 When HMI OP1 presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled
-
-
-
-
-

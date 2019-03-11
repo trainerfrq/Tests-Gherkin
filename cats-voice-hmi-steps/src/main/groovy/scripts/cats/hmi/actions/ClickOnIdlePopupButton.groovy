@@ -30,6 +30,10 @@ class ClickOnIdlePopupButton extends FxScriptTemplate {
             default:
                 break
         }
+        evaluate(ExecutionDetails.create("Button was found")
+                .expected("Button is not null")
+                .success(button != null))
+
         robot.clickOn(robot.point(button))
     }
 }

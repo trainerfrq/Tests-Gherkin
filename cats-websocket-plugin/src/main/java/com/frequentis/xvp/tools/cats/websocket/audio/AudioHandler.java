@@ -72,6 +72,8 @@ public class AudioHandler extends DefaultWebSocketAdapterIOListener
 
    private static final String AUDIO_MACVLANDAUDIO_HOST1_IP = "192.168.60.94";
 
+   private static final int AUDIO_PORT = 3058;
+
    private static Session session;
 
 
@@ -321,11 +323,12 @@ public class AudioHandler extends DefaultWebSocketAdapterIOListener
    private void sendSessionResourceResponse( final JsonMessage message, final UUID correlationId,
          final ServerEndpoint endpoint )
    {
-      int port = 3058;
+      int port = AUDIO_PORT;
       final List<SinkPortWithResult> sinkPortsResults = new ArrayList<>();
-      for ( SinkPort sinkPort : message.body().sessionResourceRequest().sinkPorts() )
-         sinkPortsResults.add( SinkPortWithResult.builder().withPrivateId( sinkPort.privateId() )
-               .withPort( port += 2 ).withResult( RESPONSE_RESULT ).build() );
+      for ( SinkPort sinkPort : message.body().sessionResourceRequest().sinkPorts() ) {
+         sinkPortsResults.add(SinkPortWithResult.builder().withPrivateId(sinkPort.privateId())
+                 .withPort(port += 2).withResult(RESPONSE_RESULT).build());
+      }
       List<NetworkInterface> networkResults = Arrays.asList(
             new NetworkInterface( AudioNetworkId.LAN_A, AUDIO_MACVLANDAUDIO_HOST1_IP ),
             new NetworkInterface( AudioNetworkId.DATA_NETWORK, AUDIO_NETWORK_HOST1_IP ) );

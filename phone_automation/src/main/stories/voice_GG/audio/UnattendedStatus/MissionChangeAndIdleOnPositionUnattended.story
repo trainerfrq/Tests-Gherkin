@@ -87,8 +87,8 @@ Then HMI OP1 closes maintenance
 Then HMI OP1 opens Settings panel from idle popup
 Then HMI OP1 closes settings
 
-Scenario: Reconnect headsets
-Then WS1 sends changed event request - reconnect headsets
+Scenario: Connect headsets
+Then WS1 sends changed event request - connect headsets
 
 Scenario: Op1 verifies that DA keys are enabled
 Given HMI OP1 has the DA key OP2(as OP1) in ready to be used state

@@ -89,8 +89,8 @@ Then HMI OP1 closes maintenance
 Then HMI OP1 opens Settings panel from idle popup
 Then HMI OP1 closes settings
 
-Scenario: Reconnect headsets
-Then WS1 sends changed event request - reconnect headsets
+Scenario: Connect headsets
+Then WS1 sends changed event request - connect headsets
 
 Scenario: Verify that Idle Popup is not visible
 		  @REQUIREMENTS:GID-3281917

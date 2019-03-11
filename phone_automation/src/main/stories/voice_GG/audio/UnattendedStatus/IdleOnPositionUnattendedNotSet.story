@@ -70,7 +70,7 @@ Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
 When HMI OP1 presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
 
-Scenario: Op1 verifies that calls can be sent
+Scenario: Op1 verifies that call can be initiated
 When HMI OP1 presses DA key OP3
 Then HMI OP1 has the DA key OP3 in state out_ringing
 When HMI OP3 presses DA key OP2(as OP3)
@@ -86,8 +86,8 @@ Then HMI OP2 has the call queue item OP1-OP2 in state out_ringing
 Then HMI OP1 has the call queue item OP2-OP1 in state inc_initiated
 Then HMI OP2 terminates the call queue item OP1-OP2
 
-Scenario: Reconnect headsets
-Then WS1 sends changed event request - reconnect headsets
+Scenario: Connect headsets
+Then WS1 sends changed event request - connect headsets
 
 Scenario: Op1 verifies that LSP is enabled and can be disabled
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
@@ -116,8 +116,3 @@ Then HMI OP2 has a list of 3 missions available
 Then HMI OP2 changes current mission to mission WEST-EXEC
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
-
-
-
-
-

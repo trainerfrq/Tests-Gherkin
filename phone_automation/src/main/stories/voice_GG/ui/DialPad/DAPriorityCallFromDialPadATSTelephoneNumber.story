@@ -45,7 +45,7 @@ Then HMI OP1 verifies that call queue item bar signals call state priority
 !-- TODO Enable test when bug QXVP-14392 is fixed
 Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
 Then HMI OP2 verifies that call queue item bar signals call state priority
-Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with name label mission1
+Then HMI OP2 has the call queue item OP1-OP2 in the priority list with name label mission1
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP2-OP1

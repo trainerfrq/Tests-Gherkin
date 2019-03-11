@@ -4,9 +4,6 @@ import com.frequentis.c4i.test.agent.websocket.client.impl.ClientEndpoint
 import com.frequentis.c4i.test.agent.websocket.client.impl.models.ClientEndpointConfiguration
 import com.frequentis.c4i.test.model.ExecutionDetails
 import com.frequentis.xvp.tools.cats.websocket.plugin.WebsocketScriptTemplate
-/**
- * Created by MAyar on 18.01.2017.
- */
 
 class OpenWebSocketClientConnectionToAudio extends WebsocketScriptTemplate {
 
