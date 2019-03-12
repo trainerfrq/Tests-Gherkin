@@ -33,11 +33,6 @@
          <artifactId>op-voice-service-interface</artifactId>
          <version>${voice.service.interface.version}</version>
       </dependency>
-      <dependency>
-         <groupId>com.frequentis.xvp.voice</groupId>
-         <artifactId>op-voice-integration-test</artifactId>
-         <version>${voice.service.interface.version}</version>
-      </dependency>
 
       <dependency>
           <groupId>com.frequentis.xvp.framework</groupId>
