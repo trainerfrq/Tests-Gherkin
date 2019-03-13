@@ -15,9 +15,9 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                         | target                         | callType |
-| OP1-OP2 | sip:111111@192.168.40.126:5060 |                                | DA/IDA   |
-| OP2-OP1 | sip:mission1@example.com       | sip:111111@192.168.40.126:5060 | DA/IDA   |
+| key     | source                   | target                 | callType |
+| OP1-OP2 | <<>OPVOICE1_PHONE_URI>   |                        | DA/IDA   |
+| OP2-OP1 | sip:mission1@example.com | <<OPVOICE1_PHONE_URI>> | DA/IDA   |
 
 Scenario: Open Web Socket Client connections
 Given named the websocket configurations:

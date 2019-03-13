@@ -26,7 +26,7 @@ Given applied the named websocket configuration:
 Scenario: Define call queue items
 Given the call queue items:
 | key     | source                   | target                      | callType |
-| OP1-OP3 | sip:mission1@example.com | sip:op3@192.168.40.128:5060 | DA/IDA   |
+| OP1-OP3 | sip:mission1@example.com | <<OPVOICE3_PHONE_URI>> | DA/IDA   |
 
 Scenario: Op1 verifies LSP state
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled

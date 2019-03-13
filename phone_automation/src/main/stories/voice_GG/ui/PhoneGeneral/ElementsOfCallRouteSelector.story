@@ -35,7 +35,7 @@ Then HMI OP1 verify that call route selector shows Default
 When HMI OP1 writes in phonebook text box the address: 222222
 When HMI OP1 initiates a call from the phonebook
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
-Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label 222222
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2 Physical
 Then HMI OP1 terminates the call queue item OP2-OP1
 Then HMI OP1 has in the call queue a number of 0 calls
 
@@ -46,7 +46,7 @@ Then HMI OP1 verify that call route selector shows FrqUser
 When HMI OP1 writes in phonebook text box the address: 22222
 When HMI OP1 initiates a call from the phonebook
 Then HMI OP1 has the call queue item 2-OP1 in state out_ringing
-Then HMI OP1 has the call queue item 2-OP1 in the active list with name label 22222
+Then HMI OP1 has the call queue item 2-OP1 in the active list with name label OP2 Physical
 Then HMI OP1 terminates the call queue item 2-OP1
 Then HMI OP1 has in the call queue a number of 0 calls
 
@@ -57,7 +57,7 @@ Then HMI OP1 verify that call route selector shows Gmail
 When HMI OP1 writes in phonebook text box the address: 2222
 When HMI OP1 initiates a call from the phonebook
 Then HMI OP1 has the call queue item 22-OP1 in state out_ringing
-Then HMI OP1 has the call queue item 22-OP1 in the active list with name label 2222
+Then HMI OP1 has the call queue item 22-OP1 in the active list with name label OP2 Physical
 Then HMI OP1 terminates the call queue item 22-OP1
 Then HMI OP1 has in the call queue a number of 0 calls
 
@@ -68,7 +68,7 @@ Then HMI OP1 verify that call route selector shows Admin
 When HMI OP1 writes in phonebook text box the address: 222
 When HMI OP1 initiates a call from the phonebook
 Then HMI OP1 has the call queue item 222-OP1 in state out_ringing
-Then HMI OP1 has the call queue item 222-OP1 in the active list with name label 222
+Then HMI OP1 has the call queue item 222-OP1 in the active list with name label OP2 Physical
 Then HMI OP1 terminates the call queue item 222-OP1
 Then HMI OP1 has in the call queue a number of 0 calls
 
@@ -79,7 +79,7 @@ Then HMI OP1 verify that call route selector shows Super
 When HMI OP1 writes in phonebook text box the address: 22
 When HMI OP1 initiates a call from the phonebook
 Then HMI OP1 has the call queue item 2222-OP1 in state out_ringing
-Then HMI OP1 has the call queue item 2222-OP1 in the active list with name label 22
+Then HMI OP1 has the call queue item 2222-OP1 in the active list with name label OP2 Physical
 Then HMI OP1 terminates the call queue item 2222-OP1
 Then HMI OP1 has in the call queue a number of 0 calls
 
@@ -90,7 +90,7 @@ Then HMI OP1 verify that call route selector shows Student
 When HMI OP1 writes in phonebook text box the address: 2
 When HMI OP1 initiates a call from the phonebook
 Then HMI OP1 has the call queue item 22222-OP1 in state out_ringing
-Then HMI OP1 has the call queue item 22222-OP1 in the active list with name label 2
+Then HMI OP1 has the call queue item 22222-OP1 in the active list with name label OP2 Physical
 Then HMI OP1 terminates the call queue item 22222-OP1
 Then HMI OP1 has in the call queue a number of 0 calls
 
