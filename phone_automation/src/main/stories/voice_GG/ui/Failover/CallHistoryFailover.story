@@ -67,6 +67,8 @@ Given HMI OP2 has the DA key OP1 in ready to be used state
 
 Scenario: Caller verifies call history list
 Then HMI OP1 verifies that call history list contains 1 entries
+
+Scenario: Caller closes call history list
 Then HMI OP1 closes Call History popup window
 
 Scenario: Verify displayed status after the starting the op voice instances

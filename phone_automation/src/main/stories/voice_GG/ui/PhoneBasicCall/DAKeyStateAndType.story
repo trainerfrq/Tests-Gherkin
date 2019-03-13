@@ -82,6 +82,7 @@ Then HMI OP2 has the IA key IA - OP1 in state connected
 
 Scenario: Cleanup IA call
 When HMI OP1 presses IA key IA - OP2(as OP1)
+Then waiting for 1 seconds
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP2 has in the call queue a number of 0 calls
 

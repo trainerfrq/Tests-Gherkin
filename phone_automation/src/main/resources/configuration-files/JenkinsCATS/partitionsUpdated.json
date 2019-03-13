@@ -54,7 +54,7 @@
         {
           "opId": "cwp-vst02-14",
           "radioUserName": "OpVoiceUser01",
-          "audioAppUri": "ws://10.17.15.47:8805/ctrlif"
+          "audioAppUri": "ws://10.17.15.48:8085/ctrlif"
         }
       ],
       "audioServiceConnections": {
