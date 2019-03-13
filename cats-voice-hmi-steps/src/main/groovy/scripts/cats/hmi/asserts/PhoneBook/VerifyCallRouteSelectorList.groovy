@@ -19,6 +19,9 @@ class VerifyCallRouteSelectorList extends FxScriptTemplate {
                 .success(phoneBookPopup != null))
 
         if (phoneBookPopup != null) {
+            final Node callRouteSelectorComboBox = robot.lookup("#callRouteComboBox").queryFirst()
+
+            robot.clickOn(robot.point(callRouteSelectorComboBox ))
 
             final Set<ListCell> listCell = robot.lookup( "#callRouteComboBox .list-cell" ).queryAll();
             List<String> list = new ArrayList<>()
