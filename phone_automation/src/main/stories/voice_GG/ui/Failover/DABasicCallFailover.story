@@ -41,7 +41,7 @@ Scenario: Callee client receives the incoming call
 Then HMI OP2 has the DA key OP1 in state inc_initiated
 
 Scenario: Verify call queue section
-Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2(as OP1)
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2 Physical
 Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with name label 111111
 
 Scenario: Callee client answers the incoming call
@@ -53,7 +53,7 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Verify call queue section
 Then HMI OP2 verifies that the call queue item OP1-OP2 was removed from the waiting list
-Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2(as OP1)
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2 Physical
 Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label 111111
 
 Scenario: Caller client clears the phone call

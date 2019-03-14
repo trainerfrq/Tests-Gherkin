@@ -16,6 +16,19 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
+import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
+import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
+import com.frequentis.c4i.test.model.ExecutionDetails;
+import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
+import com.frequentis.xvp.voice.test.automation.phone.data.Mission;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+import org.apache.commons.io.FileUtils;
+import org.jbehave.core.annotations.Alias;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.PhoneBook.ClickOnKeyboard;
 import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookCloseButton;
 import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookDeleteButton;
@@ -43,21 +56,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import org.apache.commons.io.FileUtils;
-import org.jbehave.core.annotations.Alias;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
-
-import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
-import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
-import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
-import com.frequentis.c4i.test.model.ExecutionDetails;
-import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
-import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
-import com.frequentis.xvp.voice.test.automation.phone.data.Mission;
-import com.google.common.reflect.TypeToken;
-import com.google.gson.Gson;
 
 public class PhoneBookUISteps extends AutomationSteps
 {
@@ -284,7 +282,7 @@ public class PhoneBookUISteps extends AutomationSteps
 
       final String response = ( String ) remoteStepResult.getOutput(
             VerifyCallRouteSelectorList.OPARAM_RECEIVED_CALL_ROUTE_SELECTORS );
-      List<String> responseList = new ArrayList<>( Arrays.asList( response.split( "]," ) ) );
+      List<String> responseList = new ArrayList<>( Arrays.asList( response.split( ",") ) );
 
       for ( int i = 0; i < callRouteSelectorNameList.size(); i++ )
       {

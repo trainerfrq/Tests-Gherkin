@@ -97,7 +97,7 @@ When HMI OP1 initiates a call from the call history
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
 Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
 Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with name label 111111
-Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2(as OP1)
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2 Physical
 
 Scenario: Callee client answers the incoming call
 Then HMI OP2 accepts the call queue item OP1-OP2

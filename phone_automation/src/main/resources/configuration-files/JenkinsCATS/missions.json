@@ -85,6 +85,12 @@
         "sip:groupall@192.168.100.152:5060"
       ]
     },
+    "unattendedSettings": {
+      "opUnattendedWarningTimeSpanSeconds": 10,
+      "permissions": {
+        "idleOnPositionUnattendedAllowed": true
+      }
+    },
     "layoutId": "lower-east-exec-layout"
   },
   {

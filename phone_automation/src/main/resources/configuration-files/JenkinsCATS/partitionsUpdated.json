@@ -1,0 +1,76 @@
+{
+  "partitions": [
+    {
+      "partitionKey": "cwp-vst02-15",
+      "clients": [
+        {
+          "opId": "cwp-vst02-15",
+          "radioUserName": "OpVoiceUser02",
+          "audioAppUri": "ws://192.168.100.45:8805/ctrlif"
+        }
+      ],
+      "audioServiceConnections": {
+        "connectionTimeout": 2000,
+        "requestTimeout": 1000,
+        "connections": [
+          {
+            "mediaPlane": "A",
+            "uri": "ws://172.1.1.1:8805/ctrlif"
+          },
+          {
+            "mediaPlane": "B",
+            "uri": "ws://172.1.1.2:8805/ctrlif"
+          }
+        ]
+      }
+    },
+    {
+      "partitionKey": "cwp-vst02-16",
+      "clients": [
+        {
+          "opId": "cwp-vst02-16",
+          "radioUserName": "OpVoiceUser03",
+          "audioAppUri": "ws://192.168.100.46:8805/ctrlif"
+        }
+      ],
+      "audioServiceConnections": {
+        "connectionTimeout": 2000,
+        "requestTimeout": 1000,
+        "connections": [
+          {
+            "mediaPlane": "A",
+            "uri": "ws://172.1.1.1:8805/ctrlif"
+          },
+          {
+            "mediaPlane": "B",
+            "uri": "ws://172.1.1.2:8805/ctrlif"
+          }
+        ]
+      }
+    },
+    {
+      "partitionKey": "cwp-vst02-14",
+      "clients": [
+        {
+          "opId": "cwp-vst02-14",
+          "radioUserName": "OpVoiceUser01",
+          "audioAppUri": "ws://10.17.15.48:8085/ctrlif"
+        }
+      ],
+      "audioServiceConnections": {
+        "connectionTimeout": 2000,
+        "requestTimeout": 1000,
+        "connections": [
+          {
+            "mediaPlane": "A",
+            "uri": "ws://172.1.1.1:8805/ctrlif"
+          },
+          {
+            "mediaPlane": "B",
+            "uri": "ws://172.1.1.2:8805/ctrlif"
+          }
+        ]
+      }
+    }
+  ]
+}

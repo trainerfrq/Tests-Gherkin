@@ -26,10 +26,6 @@
             <groupId>com.frequentis.c4i.test</groupId>
             <artifactId>cats-bdd</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.frequentis.c4i.test</groupId>
-            <artifactId>cats-agent-websocket</artifactId>
-        </dependency>
 
        <!-- Test dependencies -->
        <dependency>

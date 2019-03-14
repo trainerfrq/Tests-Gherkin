@@ -7,6 +7,7 @@ Given the DA keys:
 | HMI OP1 | ROLE1(as OP1)         | 105 |
 | HMI OP1 | IA - OP2(as OP1)      | 107 |
 | HMI OP1 | IA - PHONE2           | 109 |
+| HMI OP1 | OP3                   | 111 |
 | HMI OP2 | OP1                   | 110 |
 | HMI OP2 | OP3                   | 111 |
 | HMI OP2 | ROLE1(as OP2)         | 112 |

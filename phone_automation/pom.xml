@@ -22,7 +22,7 @@
       <dslHome>${project.build.directory}/automation/dsl</dslHome>
       <!--available.profiles>${project.basedir}/src/main/resources/profiles/</available.profiles-->
 
-      <voice.service.interface.version>0.109.0-SNAPSHOT</voice.service.interface.version>
+      <voice.service.interface.version>0.127.0-SNAPSHOT</voice.service.interface.version>
       <mission-configurator-plugin.version>0.5.0-SNAPSHOT</mission-configurator-plugin.version>
        <xvp-cats-rest-configuration.version>1.1.0-SNAPSHOT</xvp-cats-rest-configuration.version>
  </properties>
@@ -100,15 +100,16 @@
          <version>${cats.version}</version>
       </dependency>
       <!-- DOMAIN PACKAGE WEBSOCKET -->
-      <dependency>
-         <groupId>com.frequentis.c4i.test</groupId>
-         <artifactId>cats-agent-websocket</artifactId>
-         <version>${cats.version}</version>
-      </dependency>
+
       <dependency>
          <groupId>com.frequentis.xvp.voice.phone</groupId>
          <artifactId>cats-websocket-steps</artifactId>
       </dependency>
+      <dependency>
+         <groupId>com.frequentis.xvp.voice.phone</groupId>
+         <artifactId>cats-websocket-plugin</artifactId>
+      </dependency>
+
       <!--SSH STEPS -->
       <dependency>
          <groupId>com.frequentis.c4i.test</groupId>
@@ -158,6 +159,25 @@
            <artifactId>guava</artifactId>
            <version>23.0</version>
        </dependency>
+           <dependency>
+         <groupId>javax.websocket</groupId>
+         <artifactId>javax.websocket-api</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.eclipse.jetty</groupId>
+         <artifactId>jetty-util</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>com.frequentis.xvp.framework</groupId>
+         <artifactId>websocket-lib</artifactId>
+         <!-- remove this exclusion once QXVP-12348 is resolved -->
+         <exclusions>
+            <exclusion>
+               <artifactId>javax.websocket-client-api</artifactId>
+               <groupId>javax.websocket</groupId>
+            </exclusion>
+         </exclusions>
+      </dependency>
 
    </dependencies>
 

@@ -5,21 +5,9 @@
  */
 package com.frequentis.xvp.tools.cats.websocket.automation.steps;
 
-import com.frequentis.c4i.test.agent.websocket.client.impl.models.ClientEndpointConfiguration;
-import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
-import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
-import com.frequentis.c4i.test.model.ExecutionData;
-import com.frequentis.c4i.test.model.ExecutionDetails;
-import com.frequentis.c4i.test.model.parameter.CatsCustomParameterBase;
-import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
-import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
-import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
-import org.jbehave.core.annotations.Alias;
-import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
 import scripts.cats.websocket.parallel.OpenAndVerifyWebSocketClientConnection;
 import scripts.cats.websocket.parallel.OpenWebSocketClientConnection;
+import scripts.cats.websocket.parallel.OpenWebSocketClientConnectionToAudio;
 import scripts.cats.websocket.parallel.SendTextMessageAsIsParallel;
 import scripts.cats.websocket.sequential.CloseWebSocketClientConnection;
 import scripts.cats.websocket.sequential.ReceiveMessageAsIs;
@@ -32,6 +20,21 @@ import scripts.cats.websocket.sequential.buffer.RemoveCustomMessageBuffer;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.jbehave.core.annotations.Alias;
+import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
+
+import com.frequentis.c4i.test.agent.websocket.client.impl.models.ClientEndpointConfiguration;
+import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
+import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
+import com.frequentis.c4i.test.model.ExecutionData;
+import com.frequentis.c4i.test.model.ExecutionDetails;
+import com.frequentis.c4i.test.model.parameter.CatsCustomParameterBase;
+import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
+import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
 
 /**
  * Created by MAyar on 18.01.2017.
@@ -90,6 +93,45 @@ public class WebsocketClientRemoteSteps extends WebsocketAutomationSteps
                  endpointName.remove(reference.getKey());
               }
           }
+   }
+
+
+   @Given("applied the named websocket configuration: $references")
+   public void openNamedWebSocketConnectionsToAudio(
+         final List<ProfileToWebSocketConfigurationReference> namedProfileToWebSocketConfigReferences )
+   {
+      if ( namedProfileToWebSocketConfigReferences.size() == 0 )
+      {
+         localStep( "looking into tables for parsing" )
+               .details( ExecutionDetails.create( "Parsing Table" ).expected( "Table contains at least one entry" )
+                     .received( "NO ENTRY FOUND " + namedProfileToWebSocketConfigReferences ).success( false ) );
+      }
+
+      int i = 1;
+      for (final ProfileToWebSocketConfigurationReference reference : namedProfileToWebSocketConfigReferences) {
+         final ExecutionData data = new ExecutionData();
+
+         reference.setKey("WS" + i);
+         localStep( "Parsing Table" ).details( ExecutionDetails
+               .create( "Parse data table. Entry " + i + " of " + namedProfileToWebSocketConfigReferences.size() )
+               .expected( "ExamplesTable can be parsed" ).receivedData( reference.getKey(), reference )
+               .success( true ) );
+         final ClientEndpointConfiguration config =
+               getStoryListData(reference.getWebSocketConfigurationName(), ClientEndpointConfiguration.class);
+
+         final ArrayList<String> endpointName = new ArrayList<String>();
+         endpointName.add(reference.getKey());
+
+         RemoteStepResult remoteStepResult =
+               evaluate(
+                     remoteStep( "Open websocket connection " + reference.getWebSocketConfigurationName() )
+                           .scriptOn(profileScriptResolver().map( OpenWebSocketClientConnectionToAudio.class,
+                                 BookableProfileName.websocket), requireProfile(reference.getProfileName()))
+                           .input(OpenWebSocketClientConnectionToAudio.IPARAM_ENDPOINTCONFIGURATION, config)
+                           .input(OpenWebSocketClientConnectionToAudio.IPARAM_MULTIPLEENDPOINTNAMES, endpointName));
+         setStoryListData(reference.getKey(), reference);
+         i++;
+      }
    }
 
 

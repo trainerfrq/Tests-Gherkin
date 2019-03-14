@@ -19,6 +19,7 @@
 
     <properties>
         <lib.dir>${project.artifactId}-${project.version}/${project.artifactId}/${project.version}/lib</lib.dir>
+        <voice.service.interface.version>0.127.0-SNAPSHOT</voice.service.interface.version>
     </properties>
 
 
@@ -131,6 +132,14 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.frequentis.xvp.voice</groupId>
+            <artifactId>audio-simulator-service-interface</artifactId>
+      </dependency>
+      <dependency>
+            <groupId>com.frequentis.xvp.voice</groupId>
+            <artifactId>audio-service-interface</artifactId>
+      </dependency>
+        <dependency>
             <groupId>com.frequentis.c4i.test</groupId>
             <artifactId>cats-platform</artifactId>
             <type>zip</type>
@@ -156,6 +165,16 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.frequentis.xvp.voice</groupId>
+            <artifactId>audio-simulator-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.frequentis.xvp.voice</groupId>
+            <artifactId>op-voice-service-interface</artifactId>
+            <version>${voice.service.interface.version}</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

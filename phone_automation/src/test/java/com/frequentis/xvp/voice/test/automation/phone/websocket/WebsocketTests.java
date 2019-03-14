@@ -17,14 +17,14 @@ import java.util.List;
 @RunWith(CatsJunitRunner.class)
 @CatsRunConfiguration(
         stories = {
-                "voice_GG/websocket/noCommit/test.story",
+                "voice_GG/audio/UnattendedStatus/Test.story",
         },
         catsHomeLocation = ".",
-        name = "WebsocketFunctionalTests")
+        name = "WebsocketTests")
 
-public class WebsocketFunctionalTests implements CatsJunitTest {
+public class WebsocketTests implements CatsJunitTest {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(WebsocketFunctionalTests.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(WebsocketTests.class);
 
     @BeforeClass
     public static void beforeStories() {
