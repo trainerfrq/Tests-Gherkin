@@ -15,7 +15,7 @@
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-      <xvp-cats-mixin.version>2.0.0</xvp-cats-mixin.version>
+      <xvp-cats-mixin.version>5.0.0</xvp-cats-mixin.version>
       <mixin-maven-plugin.version>0.1-alpha-39</mixin-maven-plugin.version>
       <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
       <reqpro-trace-importer.version>1.19.1</reqpro-trace-importer.version>
@@ -34,7 +34,7 @@
       <echo-maven-plugin.version>1.2.0</echo-maven-plugin.version>
       <maven-enforcer-plugin.version>3.0.0-M1</maven-enforcer-plugin.version>
       <fabric8-docker-maven-plugin.version>0.16.8</fabric8-docker-maven-plugin.version>
-      <xvp-test-automation.version>1.5.0-SNAPSHOT</xvp-test-automation.version>
+      <!--xvp-test-automation.version>1.5.0-SNAPSHOT</xvp-test-automation.version-->
       <guava.version>23.0</guava.version>
 
       <cats.version>4.13.0</cats.version>
@@ -260,11 +260,11 @@
                   <artifactId>maven-enforcer-plugin</artifactId>
                   <version>${maven-enforcer-plugin.version}</version>
                </plugin>
-               <plugin>
+               <!--plugin>
                   <groupId>com.frequentis.xvp.framework.testing</groupId>
                   <artifactId>xvp-cats-maven-plugin</artifactId>
                   <version>${xvp-test-automation.version}</version>
-               </plugin>
+               </plugin-->
             </plugins>
         </pluginManagement>
 

@@ -127,8 +127,8 @@
                </plugin>
 
                <plugin>
-                  <groupId>com.frequentis.xvp.framework.testing</groupId>
-                  <artifactId>xvp-cats-maven-plugin</artifactId>
+                  <groupId>com.frequentis.xvp.dockerbuild</groupId>
+                  <artifactId>xvp-cats-mixin</artifactId>
                   <executions>
                      <execution>
                         <id>Launch remote CATS tests</id>
