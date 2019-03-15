@@ -125,7 +125,7 @@
                      </images>
                   </configuration>
                </plugin>
-               <plugin>
+               <!--plugin>
                   <groupId>com.frequentis.xvp.framework.testing</groupId>
                   <artifactId>xvp-cats-maven-plugin</artifactId>
                   <executions>
@@ -150,6 +150,33 @@
                      <webappPath>/cats-master</webappPath>
                      <storyBoard>${storyBoard}</storyBoard>
                      <reportDirectory>${project.build.directory}/cats-reports</reportDirectory>
+                  </configuration>
+               </plugin-->
+
+               <plugin>
+                  <groupId>com.frequentis.c4i.test</groupId>
+                  <artifactId>cats-maven-integration-plugin</artifactId>
+                  <executions>
+                     <execution>
+                        <phase>integration-test</phase>
+                        <goals>
+                           <goal>execute-story-board</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+                  <configuration>
+                     <serviceUrl>http://${cats-master.host}:8081</serviceUrl>
+                     <catsHome>resources</catsHome>
+                     <storyBoard>#{stories.home}/${storyBoard}</storyBoard>
+                     <username>xvp</username>
+                     <password>mysecretpassword</password>
+                     <downloadReport>true</downloadReport>
+                     <reportServer>${env.CATS_REPORT_URL}</reportServer>
+                     <enableJUnitReport>true</enableJUnitReport>
+                     <attachReport>true</attachReport>
+                     <failOnError>true</failOnError>
+                     <failOnTestError>false</failOnTestError>
+                     <testErrorLevel>ERROR</testErrorLevel>
                   </configuration>
                </plugin>
 
