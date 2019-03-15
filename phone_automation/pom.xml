@@ -24,7 +24,7 @@
 
       <voice.service.interface.version>0.127.0-SNAPSHOT</voice.service.interface.version>
       <mission-configurator-plugin.version>0.5.0-SNAPSHOT</mission-configurator-plugin.version>
-       <xvp-cats-rest-configuration.version>1.1.0-SNAPSHOT</xvp-cats-rest-configuration.version>
+       <xvp-cats-rest-configuration.version>1.2.0-SNAPSHOT</xvp-cats-rest-configuration.version>
  </properties>
 
    <dependencies>
