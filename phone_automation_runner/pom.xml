@@ -168,9 +168,6 @@
                      <serviceUrl>http://${cats-master.host}:8081</serviceUrl>
                      <catsHome>resources</catsHome>
                      <storyBoard>#{stories.home}/${storyBoard}</storyBoard>
-                     <username>xvp</username>
-                     <password>mysecretpassword</password>
-                     <downloadReport>true</downloadReport>
                      <reportServer>${env.CATS_REPORT_URL}</reportServer>
                      <enableJUnitReport>true</enableJUnitReport>
                      <attachReport>true</attachReport>
