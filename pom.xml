@@ -204,6 +204,13 @@
             <artifactId>audio-service-interface</artifactId>
             <version>0.21.0-SNAPSHOT</version>
          </dependency>
+            <dependency>
+                <groupId>com.frequentis.xvp.dockerbuild</groupId>
+                <artifactId>xvp-cats-mixin</artifactId>
+                <version>${xvp-cats-mixin.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
 
     </dependencyManagement>

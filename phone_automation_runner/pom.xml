@@ -127,30 +127,29 @@
                </plugin>
 
                <plugin>
-                  <groupId>com.frequentis.xvp.dockerbuild</groupId>
-                  <artifactId>xvp-cats-mixin</artifactId>
+                  <groupId>com.frequentis.c4i.test</groupId>
+                  <artifactId>cats-maven-integration-plugin</artifactId>
                   <executions>
                      <execution>
-                        <id>Launch remote CATS tests</id>
-                        <goals>
-                           <goal>execute-remote</goal>
-                        </goals>
                         <phase>integration-test</phase>
-                     </execution>
-                     <execution>
-                        <id>Verify results</id>
                         <goals>
-                           <goal>verify</goal>
+                           <goal>execute-story-board</goal>
                         </goals>
-                        <phase>verify</phase>
                      </execution>
                   </executions>
                   <configuration>
-                     <catsServer>${cats-master.host}</catsServer>
-                     <catsPort>${cats-master.port}</catsPort>
-                     <webappPath>/cats-master</webappPath>
-                     <storyBoard>${storyBoard}</storyBoard>
-                     <reportDirectory>${project.build.directory}/cats-reports</reportDirectory>
+                     <serviceUrl>${cats-master.url}</serviceUrl>
+                     <catsHome>resources</catsHome>
+                     <storyBoard>#{stories.home}/${storyBoard}</storyBoard>
+                     <username>xvp</username>
+                     <password>mysecretpassword</password>
+                     <downloadReport>true</downloadReport>
+                     <reportServer>${reportsURL}</reportServer>
+                     <enableJUnitReport>true</enableJUnitReport>
+                     <attachReport>true</attachReport>
+                     <failOnError>true</failOnError>
+                     <failOnTestError>false</failOnTestError>
+                     <testErrorLevel>ERROR</testErrorLevel>
                   </configuration>
                </plugin>
 
