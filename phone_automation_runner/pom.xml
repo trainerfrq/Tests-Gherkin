@@ -139,7 +139,7 @@
                   </executions>
                   <configuration>
                      <serviceUrl>${cats-master.url}</serviceUrl>
-                     <catsHome>/cats/phone_automation-0.1.0-SNAPSHOT</catsHome>
+                     <catsHome>${project.build.directory}/automation/resources</catsHome>
                      <storyBoard>#{stories.home}/${storyBoard}</storyBoard>
                      <username>xvp</username>
                      <password>mysecretpassword</password>
