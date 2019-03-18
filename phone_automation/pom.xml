@@ -351,6 +351,25 @@
                </mixins>
             </configuration>
          </plugin>
+          <plugin>
+              <groupId>com.frequentis.c4i.test</groupId>
+              <artifactId>cats-maven-plugin</artifactId>
+              <version>${cats.version}</version>
+              <executions>
+                  <execution>
+                      <id>copy-cats-domain-dependencies</id>
+                      <phase>generate-resources</phase>
+                      <goals>
+                          <goal>copy-domain-dependencies</goal>
+                      </goals>
+                  </execution>
+              </executions>
+              <configuration>
+                  <libsHome>${automation.target}/lib</libsHome>
+                  <pluginsHome>${automation.target}/plugins</pluginsHome>
+                  <agentsHome>${automation.target}/agents</agentsHome>
+              </configuration>
+          </plugin>
          <plugin>
             <artifactId>maven-resources-plugin</artifactId>
             <version>${maven.resources.plugin.version}</version>
