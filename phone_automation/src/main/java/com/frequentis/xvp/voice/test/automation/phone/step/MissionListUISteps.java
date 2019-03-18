@@ -16,12 +16,16 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
-import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
+
+import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
+import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+
 import scripts.cats.hmi.actions.ClickActivateMission;
 import scripts.cats.hmi.actions.ClickMissionCloseButton;
+import scripts.cats.hmi.actions.ClickMissionLabel;
 import scripts.cats.hmi.actions.SelectMissionFromList;
 import scripts.cats.hmi.asserts.VerifyMissionList;
 import scripts.cats.hmi.asserts.VerifyStatusDisplay;
@@ -33,12 +37,11 @@ public class MissionListUISteps extends AutomationSteps
    @Alias("$profileName has in the display status section $label the state $text")
    public void verifyAssignedMission( final String profileName, final String label, final String text )
    {
-      evaluate(
-            remoteStep( "Verify that the user has the correct assigned mission" )
-                  .scriptOn( profileScriptResolver().map( VerifyStatusDisplay.class, BookableProfileName.javafx ),
-                        assertProfile( profileName ) )
-                    .input(VerifyStatusDisplay.IPARAM_STATUS_DISPLAY_LABEL, label+"Label")
-                  .input( VerifyStatusDisplay.IPARAM_STATUS_DISPLAY_TEXT, text ) );
+      evaluate( remoteStep( "Verify that the user has the correct assigned mission" )
+            .scriptOn( profileScriptResolver().map( VerifyStatusDisplay.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyStatusDisplay.IPARAM_STATUS_DISPLAY_LABEL, label + "Label" )
+            .input( VerifyStatusDisplay.IPARAM_STATUS_DISPLAY_TEXT, text ) );
    }
 
 
@@ -77,6 +80,16 @@ public class MissionListUISteps extends AutomationSteps
       evaluate( remoteStep( "user clicks Close Mission" ).scriptOn(
             profileScriptResolver().map( ClickMissionCloseButton.class, BookableProfileName.javafx ),
             assertProfile( profileName ) ) );
+   }
+
+
+   @When("$profileName clicks on mission label $label")
+   public void clickMissionLabel( final String profileName, final String label )
+   {
+      evaluate( remoteStep( "sser clicks mission label" )
+            .scriptOn( profileScriptResolver().map( ClickMissionLabel.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( ClickMissionLabel.IPARAM_MISSION_DISPLAY_LABEL, label ) );
    }
 
 }
