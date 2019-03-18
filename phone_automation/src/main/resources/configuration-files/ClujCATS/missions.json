@@ -74,6 +74,12 @@
       }
     ],
     "schemaVersion": "0.5.0-SNAPSHOT",
+    "unattendedSettings": {
+      "opUnattendedWarningTimeSpanSeconds": 10,
+      "permissions": {
+        "idleOnPositionUnattendedAllowed": true
+      }
+    },
     "phoneSettings": {
       "sipAddresses": [
         "sip:mission1@example.com",

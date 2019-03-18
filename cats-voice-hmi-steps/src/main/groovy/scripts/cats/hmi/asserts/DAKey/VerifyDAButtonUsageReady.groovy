@@ -1,4 +1,4 @@
-package scripts.cats.hmi.asserts
+package scripts.cats.hmi.asserts.DAKey
 
 import com.frequentis.c4i.test.model.ExecutionDetails
 import com.frequentis.c4i.test.util.timer.WaitTimer

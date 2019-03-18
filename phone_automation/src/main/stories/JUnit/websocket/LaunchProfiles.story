@@ -10,5 +10,5 @@ Scenario: Launching WebSocket Profiles via CATS Runtime
 Given a <profile> profile is available within <timeout> millis via provided runtime <runtime>
 
 Examples:
-| profile   | timeout | runtime         |
-| websocket/hmi | 25000   | profileLauncher |
+| profile         | timeout | runtime         |
+| websocket/hmi   | 25000   | profileLauncher |

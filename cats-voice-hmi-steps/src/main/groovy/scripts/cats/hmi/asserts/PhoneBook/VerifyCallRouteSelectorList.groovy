@@ -2,7 +2,7 @@ package scripts.cats.hmi.asserts.PhoneBook
 
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
-import javafx.scene.control.ComboBox
+import javafx.scene.control.ListCell
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 class VerifyCallRouteSelectorList extends FxScriptTemplate {
@@ -19,11 +19,18 @@ class VerifyCallRouteSelectorList extends FxScriptTemplate {
                 .success(phoneBookPopup != null))
 
         if (phoneBookPopup != null) {
+            final Node callRouteSelectorComboBox = robot.lookup("#callRouteComboBox").queryFirst()
 
-            final ComboBox callRouteSelector = robot.lookup("#callRouteComboBox ").queryFirst()
-            robot.clickOn(robot.point(callRouteSelector))
+            robot.clickOn(robot.point(callRouteSelectorComboBox ))
 
-            List<String> list = callRouteSelector.items
+            final Set<ListCell> listCell = robot.lookup( "#callRouteComboBox .list-cell" ).queryAll();
+            List<String> list = new ArrayList<>()
+
+            for(ListCell cell : listCell){
+                String cellName = cell.getText()
+                if(cellName != null && !list.contains(cellName))
+                list.add(cellName)
+            }
 
             evaluate(ExecutionDetails.create("Call route selector list")
                     .received(list.toString())

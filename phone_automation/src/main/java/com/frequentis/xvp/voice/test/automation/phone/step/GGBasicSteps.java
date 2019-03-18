@@ -33,9 +33,9 @@ import com.frequentis.xvp.tools.cats.websocket.automation.model.PhoneBookEntry;
 import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
+import com.frequentis.xvp.voice.common.op.AppId;
+import com.frequentis.xvp.voice.common.op.OpId;
 import com.frequentis.xvp.voice.controlbase.CorrelationId;
-import com.frequentis.xvp.voice.opvoice.config.common.AppId;
-import com.frequentis.xvp.voice.opvoice.config.common.OpId;
 import com.frequentis.xvp.voice.opvoice.config.layout.JsonDaDataElement;
 import com.frequentis.xvp.voice.opvoice.config.layout.JsonWidgetElement;
 import com.frequentis.xvp.voice.opvoice.json.messages.JsonMessage;
@@ -62,13 +62,32 @@ import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallRetrieve
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallStatusIndication;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallTransferRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallTransferResponse;
-
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
 import scripts.cats.websocket.sequential.SendTextMessage;
 import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
 import scripts.cats.websocket.sequential.buffer.ReceiveFirstReceivedMessage;
 import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
 import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
 import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
+import static com.frequentis.c4i.test.model.MatcherDetails.match;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class GGBasicSteps extends WebsocketAutomationSteps
 {
@@ -128,7 +147,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             .details( match( jsonMessage.body().isMissionsAvailableIndication(), equalTo( true ) ) ) );
 
       final HashMap<String, String> missions = new HashMap<>();
-      for ( final Mission mission : jsonMessage.body().missionsAvailableIndication().getMissions() )
+      for ( Mission mission : jsonMessage.body().missionsAvailableIndication().getMissions() )
       {
          missions.put( mission.getMissionName(), mission.getMissionId() );
       }
@@ -172,7 +191,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
 
-      final String missionId = getStoryData( missionIdName, String.class );
+      String missionId = getStoryData( missionIdName, String.class );
 
       final JsonMessage event =
             JsonMessage.newMissionChangeCompletedEvent( new MissionChangeCompletedEvent( missionId ),
@@ -231,13 +250,13 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
    @When("$namedWebSocket loads phone data for role $roleIdName and names $callSourceName and $callTargetName from the entry number $entryNumber")
    public void loadPhoneData( final String namedWebSocket, final String roleIdName, final String callSourceName,
-         final String callTargetName, final Integer entryNumber )
+   final String callTargetName, final Integer entryNumber )
    {
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
 
       final String roleId = getStoryData( roleIdName, String.class );
-      final QueryRolePhoneDataRequest queryRolePhoneDataRequest = new QueryRolePhoneDataRequest( roleId );
+      QueryRolePhoneDataRequest queryRolePhoneDataRequest = new QueryRolePhoneDataRequest( roleId );
       final JsonMessage request =
             JsonMessage.builder().withQueryRolePhoneDataRequest( queryRolePhoneDataRequest )
                   .withCorrelationId( UUID.randomUUID() ).build();
@@ -272,49 +291,48 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       setStoryData( callTargetName, dataElement.getTarget() );
    }
 
+    @When("$namedWebSocket loads phone data for role $roleIdName and same names for $callSourceName and $callTargetName from the entry number $entryNumber")
+    public void loadPhoneDataForSameSourceAndTarget( final String namedWebSocket, final String roleIdName, final String callSourceName,
+                               final String callTargetName, final Integer entryNumber )
+    {
+        final ProfileToWebSocketConfigurationReference reference =
+                getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
 
-   @When("$namedWebSocket loads phone data for role $roleIdName and same names for $callSourceName and $callTargetName from the entry number $entryNumber")
-   public void loadPhoneDataForSameSourceAndTarget( final String namedWebSocket, final String roleIdName,
-         final String callSourceName, final String callTargetName, final Integer entryNumber )
-   {
-      final ProfileToWebSocketConfigurationReference reference =
-            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+        final String roleId = getStoryData( roleIdName, String.class );
+        QueryRolePhoneDataRequest queryRolePhoneDataRequest = new QueryRolePhoneDataRequest( roleId );
+        final JsonMessage request =
+                JsonMessage.builder().withQueryRolePhoneDataRequest( queryRolePhoneDataRequest )
+                           .withCorrelationId( UUID.randomUUID() ).build();
 
-      final String roleId = getStoryData( roleIdName, String.class );
-      final QueryRolePhoneDataRequest queryRolePhoneDataRequest = new QueryRolePhoneDataRequest( roleId );
-      final JsonMessage request =
-            JsonMessage.builder().withQueryRolePhoneDataRequest( queryRolePhoneDataRequest )
-                  .withCorrelationId( UUID.randomUUID() ).build();
+        final RemoteStepResult remoteStepResult =
+                evaluate(
+                        remoteStep( "Querying role phone data for role " + roleId )
+                                .scriptOn( profileScriptResolver().map( SendAndReceiveTextMessage.class,
+                                                                        BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                                .input( SendAndReceiveTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                                .input( SendAndReceiveTextMessage.IPARAM_RESPONSETYPE, "queryRolePhoneDataResponse" )
+                                .input( SendAndReceiveTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
 
-      final RemoteStepResult remoteStepResult =
-            evaluate(
-                  remoteStep( "Querying role phone data for role " + roleId )
-                        .scriptOn( profileScriptResolver().map( SendAndReceiveTextMessage.class,
-                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
-                        .input( SendAndReceiveTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
-                        .input( SendAndReceiveTextMessage.IPARAM_RESPONSETYPE, "queryRolePhoneDataResponse" )
-                        .input( SendAndReceiveTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
+        final String jsonResponse =
+                ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
+        final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
 
-      final String jsonResponse =
-            ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
-      final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
+        evaluate( localStep( "Received query role phone data response" )
+                          .details( match( "Is query role phone data response", jsonMessage.body().isQueryRolePhoneDataResponse(),
+                                           equalTo( true ) ) )
+                          .details( match( "Response is successful", jsonMessage.body().queryRolePhoneDataResponse().getError(),
+                                           nullValue() ) )
+                          .details( match( "Phone data is not empty",
+                                           jsonMessage.body().queryRolePhoneDataResponse().getPhoneData().getDa(), not( empty() ) ) )
+                          .details( match( "Entry of given number is present",
+                                           jsonMessage.body().queryRolePhoneDataResponse().getPhoneData().getDa().size(),
+                                           greaterThanOrEqualTo( entryNumber ) ) ) );
 
-      evaluate( localStep( "Received query role phone data response" )
-            .details( match( "Is query role phone data response", jsonMessage.body().isQueryRolePhoneDataResponse(),
-                  equalTo( true ) ) )
-            .details( match( "Response is successful", jsonMessage.body().queryRolePhoneDataResponse().getError(),
-                  nullValue() ) )
-            .details( match( "Phone data is not empty",
-                  jsonMessage.body().queryRolePhoneDataResponse().getPhoneData().getDa(), not( empty() ) ) )
-            .details( match( "Entry of given number is present",
-                  jsonMessage.body().queryRolePhoneDataResponse().getPhoneData().getDa().size(),
-                  greaterThanOrEqualTo( entryNumber ) ) ) );
-
-      final JsonDaDataElement dataElement =
-            jsonMessage.body().queryRolePhoneDataResponse().getPhoneData().getDa().get( entryNumber - 1 );
-      setStoryData( callSourceName, dataElement.getSource() );
-      setStoryData( callTargetName, dataElement.getSource() );
-   }
+        final JsonDaDataElement dataElement =
+                jsonMessage.body().queryRolePhoneDataResponse().getPhoneData().getDa().get( entryNumber - 1 );
+        setStoryData( callSourceName, dataElement.getSource() );
+        setStoryData( callTargetName, dataElement.getSource() );
+    }
 
 
    @When("$namedWebSocket establishes an outgoing phone call using source $callSourceName ang target $callTargetName and names $phoneCallIdName")
@@ -771,7 +789,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
       final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
 
-      final PhoneBookEntry phoneBookEntry = getStoryListData( namedPhoneBookEntry, PhoneBookEntry.class );
+      PhoneBookEntry phoneBookEntry = getStoryListData( namedPhoneBookEntry, PhoneBookEntry.class );
       evaluate( localStep( "Check phone book entry" ).details(
             ExecutionDetails.create( "Verify phone book entry is defined" ).success( phoneBookEntry != null ) ) );
 
@@ -790,84 +808,32 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       }
    }
 
-
-   @Then("$namedWebSocket receives call status indication on message buffer named $bufferName with $callPartyType matching phone book entry $phoneBookEntry")
-   public void receiveCallStatusIndicationMatchingCallParty( final String namedWebSocket, final String bufferName,
-         final String callPartyType, final String namedPhoneBookEntry )
-   {
-      final ProfileToWebSocketConfigurationReference reference =
-            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
-
-      final RemoteStepResult remoteStepResult =
-            evaluate(
-                  remoteStep( "Receiving call status indication on buffer named " + bufferName )
-                        .scriptOn( profileScriptResolver().map( ReceiveFirstReceivedMessage.class,
-                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
-                        .input( ReceiveFirstReceivedMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
-                        .input( ReceiveFirstReceivedMessage.IPARAM_BUFFERKEY, bufferName ) );
-
-      final String jsonResponse =
-            ( String ) remoteStepResult.getOutput( ReceiveFirstReceivedMessage.OPARAM_RECEIVEDMESSAGE );
-      final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
-
-      final PhoneBookEntry phoneBookEntry = getStoryListData( namedPhoneBookEntry, PhoneBookEntry.class );
-      evaluate( localStep( "Verify called party in call status indication" )
-            .details(
-                  match( "Is call status indication", jsonMessage.body().isCallStatusIndication(), equalTo( true ) ) )
-            .details( match( "Called party uri matches",
-                  jsonMessage.body().callStatusIndication().getCalledParty().getUri(),
-                  equalTo( phoneBookEntry.getUri() ) ) )
-            .details( match( "Called party name matches",
-                  jsonMessage.body().callStatusIndication().getCalledParty().getName(),
-                  equalTo( phoneBookEntry.getName() ) ) )
-            .details( match( "Called party full name matches",
-                  jsonMessage.body().callStatusIndication().getCalledParty().getFullName(),
-                  equalTo( phoneBookEntry.getFullName() ) ) )
-            .details( match( "Called party location matches",
-                  jsonMessage.body().callStatusIndication().getCalledParty().getLocation(),
-                  equalTo( phoneBookEntry.getLocation() ) ) )
-            .details( match( "Called party organization matches",
-                  jsonMessage.body().callStatusIndication().getCalledParty().getOrganization(),
-                  equalTo( phoneBookEntry.getOrganization() ) ) )
-            .details( match( "Called party notes match",
-                  jsonMessage.body().callStatusIndication().getCalledParty().getNotes(),
-                  equalTo( phoneBookEntry.getNotes() ) ) )
-            .details( match( "Called party display addon matches",
-                  jsonMessage.body().callStatusIndication().getCalledParty().getDisplayAddon(),
-                  equalTo( phoneBookEntry.getDisplayAddon() ) ) ) );
-   }
-
-
    @Then("verify that responses $requestId1 and $requestId2 are $equalOrDifferent")
-   public void assertResponses( final String namedResponse1, final String namedResponse2,
-         final String equalOrDifferent )
-   {
-      final String response1 = getStoryListData( namedResponse1, String.class );
-      final String response2 = getStoryListData( namedResponse2, String.class );
-      switch ( equalOrDifferent )
-      {
+   public void assertResponses( final String namedResponse1, final String namedResponse2, final String equalOrDifferent){
+      String response1 = getStoryListData( namedResponse1, String.class );
+      String response2 = getStoryListData( namedResponse2, String.class );
+      switch ( equalOrDifferent ){
          case "equal":
-            evaluate(
-                  localStep( "Verify request results are equal" ).details( match( response1, equalTo( response2 ) ) ) );
+            evaluate(localStep( "Verify request results are equal" ).details(
+                  match( response1, equalTo( response2 ) ) ) );
             break;
          case "different":
-            evaluate( localStep( "Verify request results are different" )
-                  .details( match( response1, not( equalTo( response2 ) ) ) ) );
+            evaluate(localStep("Verify request results are different" ).details(
+                  match( response1, not(equalTo( response2 ) ) ) ) );
             break;
       }
    }
 
 
    @When("$namedWebSocket requests the layout for role $roleIdName and saves the response $responseIdName")
-   public void sendAndReceiveRoleLayoutRequest( final String namedWebSocket, final String roleIdName,
-         final String response )
+   public void sendAndReceiveRoleLayoutRequest( final String namedWebSocket, final String roleIdName, final String response )
    {
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
 
       final String roleId = getStoryData( roleIdName, String.class );
 
-      final QueryRoleWidgetLayoutRequest queryRoleWidgetLayoutRequest = new QueryRoleWidgetLayoutRequest( roleId );
+      QueryRoleWidgetLayoutRequest queryRoleWidgetLayoutRequest = new QueryRoleWidgetLayoutRequest( roleId );
       final JsonMessage request =
             JsonMessage.builder().withQueryRoleWidgetLayoutRequest( queryRoleWidgetLayoutRequest )
                   .withCorrelationId( UUID.randomUUID() ).build();
@@ -885,15 +851,15 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
       final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
 
-      final List<String> layout = new ArrayList<>();
-      for ( final JsonWidgetElement jsonWidgetElement : jsonMessage.body().queryRoleWidgetLayoutResponse()
-            .getWidgetLayout().getWidgets() )
+      List<String> layout = new ArrayList<>();
+      for ( JsonWidgetElement jsonWidgetElement : jsonMessage.body().queryRoleWidgetLayoutResponse().getWidgetLayout()
+            .getWidgets() )
       {
          layout.add( jsonWidgetElement.getId() );
          layout.add( jsonWidgetElement.getGrid() );
          layout.add( jsonWidgetElement.getType().toString() );
       }
-      setStoryListData( response, layout.toString() );
+      setStoryListData( response, layout.toString());
    }
 
 

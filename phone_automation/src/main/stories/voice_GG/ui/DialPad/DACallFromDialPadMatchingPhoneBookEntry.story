@@ -11,9 +11,9 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                       | target                       | callType |
-| OP1-OP3 | sip:mission1@example.com     | sip:op3@192.168.100.156:5060 | DA/IDA   |
-| OP3-OP1 | sip:op3@192.168.100.156:5060 |                              | DA/IDA   |
+| key     | source                   | target                 | callType |
+| OP1-OP3 | sip:mission1@example.com | <<OPVOICE3_PHONE_URI>> | DA/IDA   |
+| OP3-OP1 | <<OPVOICE3_PHONE_URI>>   |                        | DA/IDA   |
 
 Scenario: Caller opens phonebook
 When HMI OP1 presses function key PHONEBOOK

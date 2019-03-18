@@ -34,7 +34,7 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Scenario: Op2 starts a conference using an existing active call
 When HMI OP2 starts a conference using an existing active call
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label OP1
+Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label CONF
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 1 more participant
 Then HMI OP2 has a notification that shows Conference call active
 
@@ -106,6 +106,7 @@ Scenario: Op3 leaves the conference
 Then HMI OP3 terminates the call queue item OP2-OP3-Conf
 
 Scenario: Calls are terminated for all participants
+Then waiting for 1 seconds
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls

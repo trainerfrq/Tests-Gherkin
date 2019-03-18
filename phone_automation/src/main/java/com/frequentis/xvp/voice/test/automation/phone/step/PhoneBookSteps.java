@@ -44,12 +44,12 @@ import com.frequentis.xvp.tools.cats.websocket.automation.model.PhoneBookEntry;
 import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
+import com.frequentis.xvp.voice.common.sip.SipURI;
+import com.frequentis.xvp.voice.common.sip.SipUser;
 import com.frequentis.xvp.voice.opvoice.json.messages.JsonMessage;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookResponse;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookResponseItem;
-import com.frequentis.xvp.voice.sip.SipURI;
-import com.frequentis.xvp.voice.sip.SipUser;
 import com.google.common.collect.ImmutableList;
 
 public class PhoneBookSteps extends WebsocketAutomationSteps

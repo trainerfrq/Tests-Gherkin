@@ -1,4 +1,4 @@
-package scripts.cats.hmi.asserts
+package scripts.cats.hmi.asserts.CallHistory
 
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.css.PseudoClass

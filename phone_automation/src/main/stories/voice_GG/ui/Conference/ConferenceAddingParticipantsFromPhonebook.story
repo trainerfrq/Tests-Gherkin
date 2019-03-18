@@ -42,7 +42,7 @@ Scenario: Op2 starts a conference using an existing active call
 		  @REQUIREMENTS:GID-4021244
 When HMI OP2 starts a conference using an existing active call
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label OP1
+Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label CONF
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 1 more participant
 Then HMI OP2 has a notification that shows Conference call active
 
@@ -78,7 +78,7 @@ Then HMI OP3 has the call queue item OP2-OP3-Conf in state inc_initiated
 
 Scenario: Op2 verifies conference state
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label OP1
+Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label CONF
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 3 more participants
 Then HMI OP2 has a notification that shows Conference call active
 
@@ -111,7 +111,7 @@ Then HMI OP2 closes Conference list popup window
 
 Scenario: Op2 verifies conference state
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label OP1
+Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label CONF
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 2 more participants
 
 Scenario: Op2 (conference initiator) leaves the conference
