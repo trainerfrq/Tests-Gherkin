@@ -36,6 +36,7 @@
       <fabric8-docker-maven-plugin.version>0.16.8</fabric8-docker-maven-plugin.version>
       <!--xvp-test-automation.version>1.5.0-SNAPSHOT</xvp-test-automation.version-->
       <guava.version>23.0</guava.version>
+       <iso.name>xvp-deployment-rhel7.4.4-ggd-jenkins-cats.iso</iso.name>
 
       <cats.version>4.13.0</cats.version>
       <jersey-client.version>2.27</jersey-client.version>

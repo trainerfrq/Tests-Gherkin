@@ -179,6 +179,12 @@
                                     must be set and point to the CATS
                                     csb file to execute</message>
                               </requireProperty>
+                              <requireProperty>
+                                 <property>iso.name</property>
+                                 <message>The property ${iso.name}
+                                    must be set and point to the .iso image used
+                                    for deployment the xvp system</message>
+                              </requireProperty>
                               <requireEnvironmentVariable>
                                  <variableName>XVP_SYSTEM_PROPERTIES_FILENAME</variableName>
                                  <message>The
