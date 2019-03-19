@@ -236,7 +236,8 @@
             <build>
                 <plugins>
                     <plugin>
-                        <artifactId>maven-assembly-plugin</artifactId>
+                        <groupId>com.frequentis.c4i.test</groupId>
+                        <artifactId>cats-maven-assembly-plugin</artifactId>
                         <configuration>
                             <descriptors>
                                 <descriptors>src/main/assembly/distribution.xml</descriptors>
@@ -351,7 +352,7 @@
                </mixins>
             </configuration>
          </plugin>
-          <plugin>
+          <!--plugin>
               <groupId>com.frequentis.c4i.test</groupId>
               <artifactId>cats-maven-plugin</artifactId>
               <version>${cats.version}</version>
@@ -369,7 +370,7 @@
                   <pluginsHome>${automation.target}/plugins</pluginsHome>
                   <agentsHome>${automation.target}/agents</agentsHome>
               </configuration>
-          </plugin>
+          </plugin-->
          <plugin>
             <artifactId>maven-resources-plugin</artifactId>
             <version>${maven.resources.plugin.version}</version>
