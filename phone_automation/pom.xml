@@ -25,6 +25,7 @@
       <voice.service.interface.version>0.127.0-SNAPSHOT</voice.service.interface.version>
       <mission-configurator-plugin.version>0.5.0-SNAPSHOT</mission-configurator-plugin.version>
        <xvp-cats-rest-configuration.version>1.2.0-SNAPSHOT</xvp-cats-rest-configuration.version>
+       <automation.target>${project.build.directory}/automation</automation.target>
  </properties>
 
    <dependencies>
@@ -238,6 +239,7 @@
                     <plugin>
                         <groupId>com.frequentis.c4i.test</groupId>
                         <artifactId>cats-maven-assembly-plugin</artifactId>
+                        <version>${cats.version}</version>
                         <configuration>
                             <descriptors>
                                 <descriptors>src/main/assembly/distribution.xml</descriptors>
@@ -337,7 +339,7 @@
                  </execution>
              </executions>
          </plugin>
-         <plugin>
+         <!--plugin>
             <groupId>com.github.odavid.maven.plugins</groupId>
             <artifactId>mixin-maven-plugin</artifactId>
             <version>${mixin-maven-plugin.version}</version>
@@ -351,7 +353,7 @@
                   </mixin>
                </mixins>
             </configuration>
-         </plugin>
+         </plugin-->
           <!--plugin>
               <groupId>com.frequentis.c4i.test</groupId>
               <artifactId>cats-maven-plugin</artifactId>
@@ -393,9 +395,45 @@
                      </resources>
                   </configuration>
                </execution>
+                <execution>
+                    <id>copy-resources-to-cats-home</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>copy-resources</goal>
+                    </goals>
+                    <configuration>
+                        <overwrite>true</overwrite>
+                        <outputDirectory>${automation.target}/resources</outputDirectory>
+                        <resources>
+                            <resource>
+                                <directory>src/main/resources/</directory>
+                                <exclude>.frequentis-cats/**</exclude>
+                            </resource>
+                            <resource>
+                                <directory>src/main/groovy</directory>
+                            </resource>
+                        </resources>
+                    </configuration>
+                </execution>
+                <execution>
+                    <id>create-cats-home</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>copy-resources</goal>
+                    </goals>
+                    <configuration>
+                        <includeEmptyDirs>true</includeEmptyDirs>
+                        <outputDirectory>${automation.target}/.frequentis-cats</outputDirectory>
+                        <resources>
+                            <resource>
+                                <directory>src/main/resources/.frequentis-cats</directory>
+                                <filtering>true</filtering>
+                            </resource>
+                        </resources>
+                    </configuration>
+                </execution>
             </executions>
          </plugin>
       </plugins>
    </build>
-
 </project>
