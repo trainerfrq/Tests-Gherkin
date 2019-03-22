@@ -247,8 +247,8 @@
                         </configuration>
                         <executions>
                             <execution>
-                                <id>make-assembly</id>
-                                <phase>post-integration-test</phase>
+                                <id>package-automation-project</id>
+                                <phase>package</phase>
                                 <goals>
                                     <goal>single</goal>
                                 </goals>
@@ -345,7 +345,7 @@
             <extensions>true</extensions>
             <configuration>
                <mixins>
-                  <mixin>
+                   <mixin>
                      <groupId>com.frequentis.xvp.dockerbuild</groupId>
                      <artifactId>xvp-cats-mixin</artifactId>
                      <version>${xvp-cats-mixin.version}</version>

@@ -15,7 +15,7 @@
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-      <xvp-cats-mixin.version>5.0.0</xvp-cats-mixin.version>
+      <xvp-cats-mixin.version>5.0.1</xvp-cats-mixin.version>
       <mixin-maven-plugin.version>0.1-alpha-39</mixin-maven-plugin.version>
       <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
       <reqpro-trace-importer.version>1.19.1</reqpro-trace-importer.version>
