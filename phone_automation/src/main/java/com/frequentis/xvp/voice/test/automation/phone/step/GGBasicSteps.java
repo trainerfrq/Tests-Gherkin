@@ -149,14 +149,13 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             verifyMissionChangedIndicationReceived( namedWebSocket, bufferName );
 
       evaluate( localStep( "Verify mission changed indication" )
-            .details( match( "Mission id does not match", missionChangedIndication.getMissionId(),
+            .details( match( "Mission id does not match", missionChangedIndication.getMissionId().getId(),
                   equalTo( getStoryData( missionIdToChangeName, String.class ) ) ) )
-            .details( match( "List of assigned roles is empty", missionChangedIndication.getAssignedRoles(),
+            .details( match( "List of assigned roles is empty", missionChangedIndication.getMasterRoleId(),
                   not( empty() ) ) ) );
 
       setStoryData( missionIdName, missionChangedIndication.getMissionId().getId() );
-      setStoryData( roleIdName, missionChangedIndication.getAssignedRoles().stream()
-            .map( roleElement -> roleElement.getRoleId() ).findFirst().get() );
+      setStoryData( roleIdName, missionChangedIndication.getMasterRoleId() );
    }
 
 
