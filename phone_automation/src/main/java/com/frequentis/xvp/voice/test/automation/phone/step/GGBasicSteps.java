@@ -42,7 +42,6 @@ import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import scripts.cats.websocket.sequential.SendTextMessage;
 import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
-import scripts.cats.websocket.sequential.buffer.ReceiveFirstReceivedMessage;
 import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
 import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
 import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
@@ -125,7 +124,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       final HashMap<String, String> missions = new HashMap<>();
       for ( Mission mission : jsonMessage.body().missionsAvailableIndication().getMissions() )
       {
-         missions.put( mission.getMissionName(), mission.getMissionId() );
+         missions.put( mission.getMissionName(), mission.getMissionId().getId() );
       }
 
       setStoryData( availableMissionIdsName, missions );
@@ -138,7 +137,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    {
       final MissionChangedIndication missionChangedIndication =
             verifyMissionChangedIndicationReceived( namedWebSocket, bufferName );
-      setStoryData( missionIdName, missionChangedIndication.getMissionId() );
+      setStoryData( missionIdName, missionChangedIndication.getMissionId().getId() );
    }
 
 
@@ -155,7 +154,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             .details( match( "List of assigned roles is empty", missionChangedIndication.getAssignedRoles(),
                   not( empty() ) ) ) );
 
-      setStoryData( missionIdName, missionChangedIndication.getMissionId() );
+      setStoryData( missionIdName, missionChangedIndication.getMissionId().getId() );
       setStoryData( roleIdName, missionChangedIndication.getAssignedRoles().stream()
             .map( roleElement -> roleElement.getRoleId() ).findFirst().get() );
    }
