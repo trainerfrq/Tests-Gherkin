@@ -72,9 +72,9 @@ Then adding to layout voice on endpoint <<configurationMngEndpoint>> the followi
 | xvp-voice/voice-hmi-service  | ${voice.hmi.version} | 1          | 0          | 7          | 6           |
 
 Scenario: Commit and activate configuration
-When using endpoint <<configurationMngEndpoint>> commit the configuration and name version versionId
+When using endpoint <<configurationMngEndpoint>> commit the configuration and name commit commitId
 Then waiting for 1 seconds
-When activating version versionId to endpoint <<configurationMngEndpoint>> and path configurations/activate
+When activating commit commitId to endpoint <<configurationMngEndpoint>> and path configurations/activate
 Then waiting for 3 seconds
 
 Scenario: Update voice hmi service instances

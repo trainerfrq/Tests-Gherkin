@@ -129,6 +129,7 @@
                <plugin>
                   <groupId>com.frequentis.c4i.test</groupId>
                   <artifactId>cats-maven-integration-plugin</artifactId>
+                  <version>${cats.version}</version>
                   <executions>
                      <execution>
                         <phase>integration-test</phase>

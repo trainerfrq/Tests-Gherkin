@@ -197,8 +197,8 @@ public class ConfigurationSteps extends AutomationSteps
    }
 
 
-   @When("using endpoint $endpointUri commit the configuration and name version $versionIdName")
-   public void commitConfiguration( final String endpointUri, final String versionIdName ) throws Throwable
+   @When("using endpoint $endpointUri commit the configuration and name commit $commitIdName")
+   public void commitConfiguration( final String endpointUri, final String commitIdName ) throws Throwable
    {
       final LocalStep localStep = localStep( "Committing configuration" );
 
@@ -214,8 +214,8 @@ public class ConfigurationSteps extends AutomationSteps
                .success( requestWithSuccess( response ) ) );
 
          final JsonObject jsonObj = new Gson().fromJson( responseBody, JsonObject.class );
-         final String version = jsonObj.get( "version" ).toString();
-         setStoryData( versionIdName, version );
+         final String commit = jsonObj.get( "version" ).toString();
+         setStoryData( commitIdName, commit );
       }
       else
       {
@@ -225,19 +225,19 @@ public class ConfigurationSteps extends AutomationSteps
    }
 
 
-   @When("activating version $versionIdName to endpoint $endpointUri and path $resourcePath")
-   public void activateVersion( final String versionIdName, final String endpointUri, final String resourcePath )
+   @When("activating commit $commitIdName to endpoint $endpointUri and path $resourcePath")
+   public void activateCommit( final String commitIdName, final String endpointUri, final String resourcePath )
       throws Throwable
    {
       final LocalStep localStep = localStep( "Activating version" );
 
       if ( endpointUri != null )
       {
-         String version = getStoryData( versionIdName, String.class );
+         String commit = getStoryData( commitIdName, String.class );
          Response response =
-               getConfigurationItemsWebTarget( endpointUri + resourcePath ).path( version )
+               getConfigurationItemsWebTarget( endpointUri + resourcePath ).path( commit )
                      .request( MediaType.APPLICATION_JSON ).post( Entity.text( "" ) );
-         localStep.details( ExecutionDetails.create( "Activated version: " + version ).expected( "200" )
+         localStep.details( ExecutionDetails.create( "Activated version: " + commit ).expected( "200" )
                .received( Integer.toString( response.getStatus() ) ).success( requestWithSuccess( response ) ) );
       }
       else

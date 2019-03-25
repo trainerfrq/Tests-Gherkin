@@ -33,9 +33,9 @@ Then waiting for 3 seconds
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/phone-routing/items/kamailio.cfg with payload /configuration-files/common/kamailio.cfg
 
 Scenario: Commit and activate configuration
-When using endpoint <<configurationMngEndpoint>> commit the configuration and name version versionId
+When using endpoint <<configurationMngEndpoint>> commit the configuration and name commit commitId
 Then waiting for 1 seconds
-When activating version versionId to endpoint <<configurationMngEndpoint>> and path configurations/activate
+When activating commit commitId to endpoint <<configurationMngEndpoint>> and path configurations/activate
 Then waiting for 3 seconds
 
 Scenario: Stop services
