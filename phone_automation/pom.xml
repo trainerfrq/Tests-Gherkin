@@ -247,8 +247,8 @@
                         </configuration>
                         <executions>
                             <execution>
-                                <id>package-automation-project</id>
-                                <phase>package</phase>
+                              <id>make-assembly</id>
+                                <phase>post-integration-test</phase>
                                 <goals>
                                     <goal>single</goal>
                                 </goals>
