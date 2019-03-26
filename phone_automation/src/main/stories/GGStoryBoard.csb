@@ -709,7 +709,7 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferRingingCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
@@ -721,31 +721,31 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferToGroup.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferToTargetHavingCallOnHoldWithTransferee.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferToTargetHavingCallOnHoldWithTransferor.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferWithConsultation.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferWithoutConsultation.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
@@ -763,8 +763,8 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="false">
-                            <cats:storyPath>voice_GG/websocket/Transfer/TransferorAcceptCallWhileTransferInProgress.story</cats:storyPath>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/Transfer/TransferorCanNotAcceptCallWhileTransferInProgress.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
