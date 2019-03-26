@@ -5,6 +5,19 @@
  */
 package com.frequentis.xvp.tools.cats.websocket.automation.steps;
 
+import com.frequentis.c4i.test.agent.websocket.client.impl.models.ClientEndpointConfiguration;
+import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
+import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
+import com.frequentis.c4i.test.model.ExecutionData;
+import com.frequentis.c4i.test.model.ExecutionDetails;
+import com.frequentis.c4i.test.model.parameter.CatsCustomParameterBase;
+import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
+import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
+import org.jbehave.core.annotations.Alias;
+import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
 import scripts.cats.websocket.parallel.OpenAndVerifyWebSocketClientConnection;
 import scripts.cats.websocket.parallel.OpenWebSocketClientConnection;
 import scripts.cats.websocket.parallel.OpenWebSocketClientConnectionToAudio;
@@ -21,21 +34,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jbehave.core.annotations.Alias;
-import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
-
-import com.frequentis.c4i.test.agent.websocket.client.impl.models.ClientEndpointConfiguration;
-import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
-import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
-import com.frequentis.c4i.test.model.ExecutionData;
-import com.frequentis.c4i.test.model.ExecutionDetails;
-import com.frequentis.c4i.test.model.parameter.CatsCustomParameterBase;
-import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
-import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
-import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
-
 /**
  * Created by MAyar on 18.01.2017.
  */
@@ -43,6 +41,7 @@ public class WebsocketClientRemoteSteps extends WebsocketAutomationSteps
 {
 
    @Given("applied the websocket configuration: $references")
+   @Alias("the opened websocket configuration: $references")
    public void openNamedWebSocketConnections(
          final List<ProfileToWebSocketConfigurationReference> namedProfileToWebSocketConfigReferences )
    {
