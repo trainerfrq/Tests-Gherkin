@@ -99,8 +99,9 @@ Scenario: Transferor answers the incoming SIP call
 Then HMI OP2 accepts the call queue item SipContact-OP2
 Then HMI OP2 has the call queue item SipContact-OP2 in state connected
 
-Scenario: Remove sip phone
-When SipContact is removed
+Scenario: Sip phone terminates the phone call
+When SipContact terminates calls
+And waiting for 2 seconds
 Then HMI OP2 has in the active list a number of 0 calls
 
 Scenario: Cleanup call
@@ -109,4 +110,5 @@ And waiting for 1 seconds
 Then HMI OP1 has in the active list a number of 0 calls
 Then HMI OP3 has in the active list a number of 0 calls
 
-
+Scenario: Remove sip phone
+When SipContact is removed
