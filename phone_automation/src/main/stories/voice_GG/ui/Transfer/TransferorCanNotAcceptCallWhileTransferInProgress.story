@@ -5,10 +5,10 @@ So I can verify that the call was transferred successfully
 
 Scenario: Booking profiles
 Given booked profiles:
-| profile | group | host           | identifier |
-| javafx  | hmi   | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi   | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi   | <<CLIENT3_IP>> | HMI OP3    |
+| profile | group          | host           | identifier |
+| javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
+| javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
 | voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Create sip phone
@@ -20,14 +20,14 @@ And phones for SipContact are created
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
-| OP3-OP2 | sip:op3@example.com    | sip:222222@example.com | DA/IDA   |
-| OP2-OP3 | sip:222222@example.com | sip:op3@example.com    | DA/IDA   |
-| OP1-OP3 | sip:111111@example.com | sip:op3@example.com    | DA/IDA   |
-| OP3-OP1 | sip:op3@example.com    | sip:111111@example.com | DA/IDA   |
-| SipContact-OP2 | <<SIP_PHONE2>>  | <<OPVOICE2_PHONE_URI>> | DA/IDA   |
+| key            | source                 | target                 | callType |
+| OP1-OP2        | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
+| OP2-OP1        | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
+| OP3-OP2        | sip:op3@example.com    | sip:222222@example.com | DA/IDA   |
+| OP2-OP3        | sip:222222@example.com | sip:op3@example.com    | DA/IDA   |
+| OP1-OP3        | sip:111111@example.com | sip:op3@example.com    | DA/IDA   |
+| OP3-OP1        | sip:op3@example.com    | sip:111111@example.com | DA/IDA   |
+| SipContact-OP2 | <<SIP_PHONE2>>         | <<OPVOICE2_PHONE_URI>> | DA/IDA   |
 
 Scenario: Transferor establishes an outgoing call towards transferee
 When HMI OP2 presses DA key OP1
@@ -78,12 +78,12 @@ Scenario: Sip phone calls transferor
 When SipContact calls SIP URI <<OPVOICE2_PHONE_URI>>
 Then waiting for 2 seconds
 
-Scenario: Transferor receives the incoming priority call and attempts to answer
+Scenario: Transferor receives the incoming call and attempts to answer
 Then HMI OP2 has the call queue item SipContact-OP2 in state inc_initiated
 Then HMI OP2 accepts the call queue item SipContact-OP2
 Then HMI OP2 has the call queue item SipContact-OP2 in state inc_initiated
 
-Scenario: Verify answer call not possible
+Scenario: Verify answer call is not possible
 Then HMI OP2 has a notification that shows Call can not be accepted, TRANSFER mode active
 
 Scenario: Transferor finishes transfer
