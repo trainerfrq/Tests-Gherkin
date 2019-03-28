@@ -48,6 +48,9 @@ Then HMI OP2 changes current mission to mission WEST-EXEC
 Then HMI OP2 activates mission
 Then wait for 5 seconds
 
+Scenario: Verify mission change
+Then HMI OP2 has in the display status section mission the assigned mission WEST-EXEC
+
 Scenario: Callee Op2 remains connected in both IA calls
 Then HMI OP2 has the IA key IA - OP1 in state connected
 Then HMI OP2 has the IA key IA - OP3 in state connected
@@ -66,7 +69,6 @@ Then HMI OP2 has in the active list a number of 1 calls
 Scenario: Op3 cleans up the outgoing call
 When HMI OP3 presses IA key IA - OP2(as OP3)
 Then HMI OP3 has in the call queue a number of 0 calls
-Then wait for 6 seconds
 
 Scenario: Call is also terminated for callee
 Then HMI OP2 has in the active list a number of 0 calls
