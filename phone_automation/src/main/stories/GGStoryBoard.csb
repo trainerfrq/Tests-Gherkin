@@ -1287,7 +1287,7 @@
                 </cats:storyList>
             </cats:storyLists>
         </cats:storyCollection>
-        <cats:storyCollection enabled="false">
+        <cats:storyCollection enabled="true">
             <cats:name>UI - Transfer</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
