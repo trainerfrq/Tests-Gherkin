@@ -25,7 +25,7 @@
       <voice.service.interface.version>0.129.0-SNAPSHOT</voice.service.interface.version>
       <mission-configurator-plugin.version>0.5.0-SNAPSHOT</mission-configurator-plugin.version>
       <xvp-cats-rest-configuration.version>1.2.0-SNAPSHOT</xvp-cats-rest-configuration.version>
-       <xvp-cats-rest-ssh.version>1.2.0-SNAPSHOT</xvp-cats-rest-ssh.version>
+       <xvp-cats-ssh.version>1.2.0-SNAPSHOT</xvp-cats-ssh.version>
  </properties>
 
    <dependencies>
@@ -56,8 +56,8 @@
 
        <dependency>
        <groupId>com.frequentis.xvp.framework.testing</groupId>
-       <artifactId>xvp-cats-rest-ssh</artifactId>
-       <version>${xvp-cats-rest-ssh.version}</version>
+       <artifactId>xvp-cats-ssh</artifactId>
+       <version>${xvp-cats-ssh.version}</version>
        </dependency>
 
        <dependency>
