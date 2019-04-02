@@ -51,7 +51,6 @@ And waiting for 1 seconds
 Then WS1 receives call status indication with call conditional flag xfr on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status out_trying
 
 Scenario: Operators part of target role get incoming call
-When WS1 receives call incoming indication on message buffer named CallIncomingIndicationBuffer1 with callSourceRoleAlias and callTargetRoleAlias and names incomingPhoneCallId2
 When WS3 receives call incoming indication on message buffer named CallIncomingIndicationBuffer3 with callSourceRoleAlias and callTargetRoleAlias and names incomingPhoneCallId3
 
 Scenario: Transfer target confirms the incoming call
@@ -63,7 +62,6 @@ When WS3 answers the incoming phone call with the callId incomingPhoneCallId3
 And waiting for 1 seconds
 Then WS3 receives call status indication on message buffer named CallStatusIndicationBuffer3 with callId incomingPhoneCallId3 and status connected
 And WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status connected
-And WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId incomingPhoneCallId2 and status terminated
 
 Scenario: Empty buffers
 When WS1 clears all text messages from buffer named CallStatusIndicationBuffer1
@@ -73,12 +71,11 @@ When WS3 clears all text messages from buffer named CallStatusIndicationBuffer3
 When WS3 clears all text messages from buffer named CallIncomingIndicationBuffer3
 
 Scenario: Transferor transfers the call
-!-- TODO QXVP-8545 : re-enable this test after bug is fixed
 When WS1 transfers the phone call with the transferee callId outgoingPhoneCallId1 and transfer target callId outgoingPhoneCallId2
 Then waiting for 2 seconds
 
 Scenario: Verify messages on transferor side
-!-- TODO QXVP-8546 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status hold
+Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status hold
 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status terminated
 Then WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status terminated
 
@@ -87,9 +84,9 @@ Then WS2 receives call status indication verifying all the messages on message b
 When WS2 receives connected call incoming indication on message buffer named CallIncomingIndicationBuffer2 with callTargetRoleAlias and callTarget1 and names transferCallId1
 
 Scenario: Verify messages on transfer target side
-!-- TODO QXVP-8546 Then WS3 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer3 with callId incomingPhoneCallId2 and status held
+Then WS3 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer3 with callId incomingPhoneCallId3 and status held
 Then WS3 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer3 with callId incomingPhoneCallId3 and status terminated
-When WS3 receives connected call incoming indication on message buffer named CallIncomingIndicationBuffer3 with callTarget1 and callTarget2 and names transferCallId2
+When WS3 receives connected call incoming indication on message buffer named CallIncomingIndicationBuffer3 with callTarget1 and callTargetRoleAlias and names transferCallId2
 
 Scenario: Cleanup call
 When WS2 clears the phone call with the callId transferCallId1
