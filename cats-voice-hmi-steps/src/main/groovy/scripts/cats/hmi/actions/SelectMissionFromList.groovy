@@ -18,7 +18,8 @@ class SelectMissionFromList extends FxScriptTemplate {
         String missionListName = assertInput(IPARAM_MISSION_NAME) as String
 
         final ListView items = robot.lookup("#missionPopup #missionList").queryFirst()
-        evaluate(ExecutionDetails.create("Verify mission is the one expected:  " + items.toString())
+        evaluate(ExecutionDetails.create("Verify mission is the one expected:  " + items.getItems().toString())
+                .received(items.getItems().toString())
                 .expected("mission item exists")
                 .success(items != null));
 

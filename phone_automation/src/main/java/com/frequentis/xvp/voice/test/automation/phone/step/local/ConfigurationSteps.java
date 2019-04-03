@@ -250,7 +250,7 @@ public class ConfigurationSteps extends AutomationSteps
 
          final JsonObject jsonObj = new Gson().fromJson( responseBody, JsonObject.class );
          final String commit = jsonObj.get( "version" ).toString();
-         setStoryData( commitIdName, commit );
+         setStoryListData( commitIdName, commit );
       }
       else
       {
@@ -268,7 +268,7 @@ public class ConfigurationSteps extends AutomationSteps
 
       if ( endpointUri != null )
       {
-         String commit = getStoryData( commitIdName, String.class );
+         String commit = getStoryListData( commitIdName, String.class );
          Response response =
                getConfigurationItemsWebTarget( endpointUri + resourcePath ).path( commit )
                      .request( MediaType.APPLICATION_JSON ).post( Entity.text( "" ) );
