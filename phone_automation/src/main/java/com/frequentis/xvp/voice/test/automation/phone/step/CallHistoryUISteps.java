@@ -26,10 +26,11 @@ import scripts.cats.hmi.actions.CallHistory.ClickOnCallHistoryClearButton;
 import scripts.cats.hmi.actions.CallHistory.ClickOnCallHistoryCloseButton;
 import scripts.cats.hmi.actions.CallHistory.SelectCallHistoryEntry;
 import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryDialButtonLabel;
+import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryDialButtonState;
 import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryEntry;
+import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryEntryDate;
 import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryListIsTimeSorted;
 import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryListSize;
-import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryDialButtonState;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -91,22 +92,36 @@ public class CallHistoryUISteps extends AutomationSteps {
     }
 
     @Then("$profileName verifies call history entry number $entryNumber matches $namedEntry")
-    public void verifyCallHistoryEntry(final String profileName, final String entryNumber, String namedEntry) {
+    public void verifyCallHistoryEntry(final String profileName, int entryNumber, String namedEntry) {
         CallHistoryEntry callHistoryEntry = getStoryListData(namedEntry, CallHistoryEntry.class );
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm:ss");
+
+        int entry = entryNumber -1;
 
         evaluate(remoteStep("Verify call history entry number " + entryNumber )
                          .scriptOn(
                                  profileScriptResolver().map(VerifyCallHistoryEntry.class, BookableProfileName.javafx),
                                  assertProfile(profileName))
-                         .input(VerifyCallHistoryEntry.IPARAM_CALL_HISTORY_ENTRY_NUMBER, entryNumber)
+                         .input(VerifyCallHistoryEntry.IPARAM_CALL_HISTORY_ENTRY_NUMBER, entry)
                          .input(VerifyCallHistoryEntry.IPARAM_CALL_HISTORY_ENTRY_DISPLAY_NAME, callHistoryEntry.getRemoteDisplayName())
                          .input(VerifyCallHistoryEntry.IPARAM_CALL_HISTORY_ENTRY_DIRECTION, callHistoryEntry.getCallDirection())
                          .input(VerifyCallHistoryEntry.IPARAM_CALL_HISTORY_ENTRY_CONNECTION_STATUS, callHistoryEntry.getCallConnectionStatus())
                          .input(VerifyCallHistoryEntry.IPARAM_CALL_HISTORY_ENTRY_DURATION,callHistoryEntry.getDuration())
-                         .input(VerifyCallHistoryEntry.IPARAM_CALL_HISTORY_ENTRY_TIME, callHistoryEntry.getInitiationTime().format(timeFormatter))
-                         .input(VerifyCallHistoryEntry.IPARAM_CALL_HISTORY_ENTRY_DATE, callHistoryEntry.getInitiationTime().format(dateFormatter)));
+                         .input(VerifyCallHistoryEntry.IPARAM_CALL_HISTORY_ENTRY_TIME, callHistoryEntry.getInitiationTime().format(timeFormatter)));
+    }
+
+    @Then("$profileName verifies call history entry date format $dateFormat for entry $entryNumber matches date format for $namedEntry")
+    public void verifyCallHistoryEntryDate(final String profileName, final String dateFormat, int entryNumber, String namedEntry) {
+        CallHistoryEntry callHistoryEntry = getStoryListData(namedEntry, CallHistoryEntry.class );
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(dateFormat);
+        int entry = entryNumber -1;
+
+        evaluate(remoteStep("Verify call history entry number " + entryNumber )
+                .scriptOn(
+                        profileScriptResolver().map(VerifyCallHistoryEntryDate.class, BookableProfileName.javafx),
+                        assertProfile(profileName))
+                .input(VerifyCallHistoryEntryDate.IPARAM_CALL_HISTORY_ENTRY_NUMBER, entry)
+                .input(VerifyCallHistoryEntryDate.IPARAM_CALL_HISTORY_ENTRY_DATE, callHistoryEntry.getInitiationTime().format(dateFormatter)));
     }
 
     @Then("assign date time value for entry $namedEntry")
@@ -139,12 +154,13 @@ public class CallHistoryUISteps extends AutomationSteps {
 
     }
 
-    @Then("$profileName verifies call history list is time-sorted")
-    public void verifyCallHistoryTimeSorted(final String profileName) {
+    @Then("$profileName using format $dateFormat verifies call history list is time-sorted")
+    public void verifyCallHistoryTimeSorted(final String profileName, final String dateFormat) {
 
         evaluate(remoteStep("Verify call history list is time sorted " )
                          .scriptOn(
                                  profileScriptResolver().map(VerifyCallHistoryListIsTimeSorted.class, BookableProfileName.javafx),
-                                 assertProfile(profileName)));
+                                 assertProfile(profileName))
+                .input(VerifyCallHistoryListIsTimeSorted.IPARAM_DATE_FORMAT, dateFormat));
     }
 }
