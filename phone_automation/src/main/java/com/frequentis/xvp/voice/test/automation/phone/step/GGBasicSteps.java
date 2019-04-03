@@ -935,7 +935,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             .details( match( "Call priority matches", jsonMessage.body().callIncomingIndication().getCallPriority(),
                   equalTo( priority ) ) ) );
 
-      setStoryData( phoneCallIdName, jsonMessage.body().callIncomingIndication().getCallId() );
+      setStoryListData( phoneCallIdName, jsonMessage.body().callIncomingIndication().getCallId() );
    }
 
 
