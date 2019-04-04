@@ -14,7 +14,8 @@ Then HMI OP1 has in the display status section mission the assigned mission MAN-
 Scenario: Change mission
 When HMI OP1 presses function key MISSIONS
 Then HMI OP1 has a list of 3 missions available
-Then HMI OP1 changes current mission to mission WEST-EXEC
+!-- Then HMI OP1 changes current mission to mission WEST-EXEC
+Then HMI OP1 chooses to change current mission to mission from position 2
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 

@@ -1,7 +1,7 @@
 package scripts.cats.hmi.actions
 
+import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
-import javafx.scene.control.ListView
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import scripts.agent.testfx.automation.FxScriptTemplate
@@ -16,12 +16,13 @@ class SelectMissionFromListByPosition extends FxScriptTemplate {
 
         Integer missionPosition = assertInput(IPARAM_MISSION_POSITION) as Integer
 
-        final ListView missionList = robot.lookup("#missionPopup #missionList").queryFirst()
-        ObservableList items =  missionList.getItems()
-        List<Node> itemsList = new ArrayList<>(items)
-        Node item = itemsList.get(missionPosition)
+        final Set<Node> missionItems = robot.lookup("#missionPopup #missionList .missionListItem").queryAll()
 
-        robot.clickOn(robot.point(item))
+        evaluate(ExecutionDetails.create("Verify mission list exists")
+                .expected("mission items exist")
+                .success(missionItems != null));
+
+        robot.clickOn(robot.point(missionItems.getAt(missionPosition)))
 
     }
 }
