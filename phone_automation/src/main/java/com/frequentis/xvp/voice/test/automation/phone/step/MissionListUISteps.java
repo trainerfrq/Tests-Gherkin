@@ -23,6 +23,7 @@ import org.jbehave.core.annotations.Then;
 import scripts.cats.hmi.actions.ClickActivateMission;
 import scripts.cats.hmi.actions.ClickMissionCloseButton;
 import scripts.cats.hmi.actions.SelectMissionFromList;
+import scripts.cats.hmi.actions.SelectMissionFromListByPosition;
 import scripts.cats.hmi.asserts.VerifyMissionList;
 import scripts.cats.hmi.asserts.VerifyStatusDisplay;
 
@@ -59,6 +60,17 @@ public class MissionListUISteps extends AutomationSteps
             .scriptOn( profileScriptResolver().map( SelectMissionFromList.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
             .input( SelectMissionFromList.IPARAM_MISSION_NAME, mission ) );
+   }
+
+
+   @Then("$profileName chooses to change current mission to mission from position $position")
+   public void changeMissionByPosition( final String profileName, final int position )
+   {
+      int pos = position-1;
+      evaluate( remoteStep( "user selects mission: " + position )
+              .scriptOn( profileScriptResolver().map( SelectMissionFromList.class, BookableProfileName.javafx ),
+                      assertProfile( profileName ) )
+              .input( SelectMissionFromListByPosition.IPARAM_MISSION_POSITION, position ) );
    }
 
 
