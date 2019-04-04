@@ -68,7 +68,7 @@ public class MissionListUISteps extends AutomationSteps
    {
       int pos = position-1;
       evaluate( remoteStep( "user selects mission: " + position )
-              .scriptOn( profileScriptResolver().map( SelectMissionFromList.class, BookableProfileName.javafx ),
+              .scriptOn( profileScriptResolver().map( SelectMissionFromListByPosition.class, BookableProfileName.javafx ),
                       assertProfile( profileName ) )
               .input( SelectMissionFromListByPosition.IPARAM_MISSION_POSITION, position ) );
    }
