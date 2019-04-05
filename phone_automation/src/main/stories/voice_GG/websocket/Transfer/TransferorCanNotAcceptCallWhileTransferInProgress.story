@@ -92,8 +92,8 @@ Then WS3 receives call status indication on message buffer named CallStatusIndic
 
 Scenario: Transferor answers the incoming call
 When WS1 answers the incoming phone call with the callId phoneIncomingCallId
-Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId phoneIncomingCallId and status connected
-Then SipContact DialogState is CONFIRMED within 100 ms
+Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId phoneIncomingCallId and status inc_ringing
+Then SipContact DialogState is EARLY within 100 ms
 
 Scenario: Verify consultation call is not auto-terminated
 Then WS1 has on the message buffer named CallStatusIndicationBuffer1 a number of 0 messages

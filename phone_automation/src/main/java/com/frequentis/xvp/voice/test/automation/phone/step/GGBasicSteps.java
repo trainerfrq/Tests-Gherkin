@@ -62,6 +62,8 @@ import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallRetrieve
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallStatusIndication;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallTransferRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallTransferResponse;
+import com.hazelcast.com.eclipsesource.json.Json;
+
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import scripts.cats.websocket.sequential.SendTextMessage;
@@ -71,6 +73,7 @@ import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
 import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
 import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
 import static com.frequentis.c4i.test.model.MatcherDetails.match;
+import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.equalTo;
@@ -594,6 +597,16 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    }
 
 
+   @When("$namedWebSocket receives an indication with $callStatus1 or $callStatus2 on message buffer named $bufferName with $callSource and $callTarget and names $incomingPhoneCallId")
+   public void receiveConnectedCallIncomingIndications( final String namedWebSocket, final String callStatus1, final String callStatus2,
+         final String bufferName, final String callSourceName, final String callTargetName,
+         final String phoneCallIdName )
+   {
+      receiveTwoCallIncomingIndications( namedWebSocket, callStatus1, callStatus2, bufferName, callSourceName, callTargetName, phoneCallIdName,
+            "DA/IDA", null, "NON-URGENT" );
+   }
+
+
    @When("$namedWebSocket receives call incoming indication for priority call on message buffer named $bufferName with $callSource and $callTarget and names $incomingPhoneCallId")
    public void receiveCallIncomingIndicationForPriorityCall( final String namedWebSocket, final String bufferName,
          final String callSourceName, final String callTargetName, final String phoneCallIdName )
@@ -970,6 +983,46 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             .details( match( "Called party display addon matches",
                   jsonMessage.body().callIncomingIndication().getCalledParty().getDisplayAddon(),
                   equalTo( phoneBookEntry.getDisplayAddon() ) ) ) );
+   }
+
+   private void receiveTwoCallIncomingIndications( final String namedWebSocket, final String callStatus1, final String callStatus2, final String bufferName,
+         final String callSourceName, final String callTargetName, final String phoneCallIdName, final String callType,
+         final Object audioDirection, final String priority )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData(namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      final RemoteStepResult remoteStepResult =
+            evaluate(
+                  remoteStep( "Receiving call incoming indication on buffer named " + bufferName )
+                        .scriptOn( profileScriptResolver().map( ReceiveLastReceivedMessage.class,
+                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                        .input( ReceiveLastReceivedMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                        .input( ReceiveLastReceivedMessage.IPARAM_BUFFERKEY, bufferName) );
+
+      final String jsonResponse =
+            ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
+      final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
+
+      evaluate( localStep( "Verify call incoming indication" )
+            .details( match("Is call incoming indication", jsonMessage.body().isCallIncomingIndication(),
+                  equalTo( true ) ) )
+            .details( match( "Call status matches", jsonMessage.body().callIncomingIndication().getCallStatus(),
+                  anyOf( equalTo( callStatus1 ), equalTo( callStatus2 ) ) ) )
+            .details( match("Call type matches", jsonMessage.body().callIncomingIndication().getCallType(),
+                  equalTo( callType )) )
+            .details( match("Calling party matches",
+                  jsonMessage.body().callIncomingIndication().getCallingParty().getUri(),
+                  containsString( getStoryData( callSourceName, String.class ) ) ) )
+            .details(
+                  match( "Called party matches", jsonMessage.body().callIncomingIndication().getCalledParty().getUri(),
+                        containsString( getStoryData( callTargetName, String.class ) ) ) )
+            .details( match( "AudioDirection matches", jsonMessage.body().callIncomingIndication().getAudioDirection(),
+                  equalTo( audioDirection ) ) )
+            .details( match( "Call priority matches", jsonMessage.body().callIncomingIndication().getCallPriority(),
+                  equalTo( priority ) ) ) );
+
+      setStoryData( phoneCallIdName, jsonMessage.body().callIncomingIndication().getCallId() );
    }
 
 
