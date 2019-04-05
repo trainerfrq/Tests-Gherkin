@@ -1,40 +1,64 @@
 [
   {
-    "missionId": "fd339e14-1d9f-4f61-b936-00f813d37276",
+    "missionId": "33bf561e-580f-407d-81ad-63001568c44d",
     "frequencies": [
       {
         "frequencyId": "123.700",
-        "couplingAllowed": true
+        "couplingAllowed": true,
+        "keyInMode": {
+          "maxAllowed": "Rx",
+          "initial": "Idle"
+        }
       },
       {
         "frequencyId": "125.500",
-        "couplingAllowed": false
+        "couplingAllowed": false,
+        "keyInMode": {
+          "maxAllowed": "Rx",
+          "initial": "Idle"
+        }
       }
     ]
   },
   {
-    "missionId": "8b75e49e-1a23-4e13-8db9-f0563adfb55d",
+    "missionId": "16e17a93-e942-4990-b24c-6833f649bf13",
     "frequencies": [
       {
         "frequencyId": "123.700",
-        "couplingAllowed": true
+        "couplingAllowed": true,
+        "keyInMode": {
+          "maxAllowed": "Rx",
+          "initial": "Idle"
+        }
       },
       {
         "frequencyId": "125.500",
-        "couplingAllowed": false
+        "couplingAllowed": false,
+        "keyInMode": {
+          "maxAllowed": "Rx",
+          "initial": "Idle"
+        }
       }
     ]
   },
   {
-    "missionId": "4826ac35-ed86-4cf9-bafe-6bf6f49b3f4a",
+    "missionId": "df77e379-4bd3-4d84-ab4c-1b842eb34ca3",
     "frequencies": [
       {
         "frequencyId": "123.700",
-        "couplingAllowed": true
+        "couplingAllowed": true,
+        "keyInMode": {
+          "maxAllowed": "Rx",
+          "initial": "Idle"
+        }
       },
       {
         "frequencyId": "125.500",
-        "couplingAllowed": false
+        "couplingAllowed": false,
+        "keyInMode": {
+          "maxAllowed": "Rx",
+          "initial": "Idle"
+        }
       }
     ]
   }

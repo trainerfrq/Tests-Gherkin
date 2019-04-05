@@ -12,6 +12,7 @@ When WS1 sends a call forward request to another operator with callTarget
 Then WS1 receives a call forward status on message buffer named callForwardStatusBuffer with status active
 
 Scenario: Create the message buffers for call
+When WS1 opens the message buffer for message type callIncomingIndication named CallIncomingIndicationBuffer1
 When WS2 opens the message buffer for message type callIncomingIndication named CallIncomingIndicationBuffer2
 When WS2 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer2
 When WS3 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer3
@@ -25,6 +26,7 @@ And waiting for 6 seconds
 Then WS3 receives call status indication on message buffer named CallStatusIndicationBuffer3 with callId outgoingPhoneCallId and status out_trying
 
 Scenario: Second callee client receives the incoming call and confirms it
+Then WS1 does NOT any message on buffer name CallIncomingIndicationBuffer1
 When WS2 receives call incoming indication on message buffer named CallIncomingIndicationBuffer2 with callSource3 and callTarget3 and names incomingPhoneCallId
 And WS2 confirms incoming phone call with callId incomingPhoneCallId
 Then WS3 receives call status indication on message buffer named CallStatusIndicationBuffer3 with callId outgoingPhoneCallId and status out_ringing

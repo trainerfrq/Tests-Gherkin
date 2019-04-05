@@ -463,6 +463,25 @@ public class GGBasicSteps extends WebsocketAutomationSteps
                   desiredMessage.orElse( "Message was not found!" ) ) ) );
    }
 
+   @Then("$namedWebSocket does NOT any message on buffer name $bufferName")
+   public void doesNotReceiveAnyMessage(final String namedWebSocket, final String bufferName)
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData(namedWebSocket, ProfileToWebSocketConfigurationReference.class);
+
+      final RemoteStepResult remoteStepResult =
+            evaluate(
+                  remoteStep( "Does not receive any message on buffer named " + bufferName )
+                        .scriptOn( profileScriptResolver().map( ReceiveAllReceivedMessages.class, BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                        .input( ReceiveAllReceivedMessages.IPARAM_ENDPOINTNAME, reference.getKey() )
+                        .input( ReceiveAllReceivedMessages.IPARAM_BUFFERKEY, bufferName ) );
+
+      final List<String> receivedMessagesList =  ( List<String> ) remoteStepResult.getOutput( ReceiveAllReceivedMessages.OPARAM_RECEIVEDMESSAGES );
+
+      evaluate( localStep("Verify if the message list is empty or null")
+            .details(match("Buffer should be empty or null", receivedMessagesList.isEmpty(), equalTo( true ))));
+   }
+
 
    @Then("$namedWebSocket is receiving call status indication on message buffer named $bufferName with callId $phoneCallIdName and status $callStatus and audio direction $audioDirection")
    public void receiveCallStatusIndicationOpt( final String namedWebSocket, final String bufferName,
