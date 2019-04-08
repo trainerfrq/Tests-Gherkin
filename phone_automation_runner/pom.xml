@@ -145,7 +145,7 @@
                      <username>xvp</username>
                      <password>mysecretpassword</password>
                      <downloadReport>true</downloadReport>
-                     <reportServer>${reportsURL}</reportServer>
+                     <reportServer>${env.CATS_REPORT_URL}</reportServer>
                      <enableJUnitReport>true</enableJUnitReport>
                      <attachReport>true</attachReport>
                      <failOnError>true</failOnError>
