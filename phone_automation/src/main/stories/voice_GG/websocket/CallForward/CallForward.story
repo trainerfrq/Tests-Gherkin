@@ -12,33 +12,34 @@ Scenario: Send Call Forward Request
 When WS1 sends a call forward request to another operator with callTarget
 Then WS1 receives a call forward status on message buffer named callForwardStatusBuffer with status active
 
-Scenario: Create the message buffers for call
+Scenario: Create the message buffer to check if the first operator doesn't receive any call
 When WS1 opens the message buffer for message type callIncomingIndication named CallIncomingIndicationBuffer1
-When WS1 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer1
+
+Scenario: Create the message buffers for call
 When WS2 opens the message buffer for message type callIncomingIndication named CallIncomingIndicationBuffer2
 When WS2 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer2
 When WS3 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer3
 
-Scenario: Third caller retrieves phone data
+Scenario: Caller retrieves phone data
 When WS3 loads phone data for role roleId1 and names callSource3 and callTarget3 from the entry number 2
 
-Scenario: Third caller establishes an outgoing call
+Scenario: Caller establishes an outgoing call
 When WS3 establishes an outgoing phone call using source callSource3 ang target callSource and names outgoingPhoneCallId
 And waiting for 6 seconds
 Then WS3 receives call status indication on message buffer named CallStatusIndicationBuffer3 with callId outgoingPhoneCallId and status out_trying
 
-Scenario: Second callee client receives the incoming call and confirms it
+Scenario: Callee client receives the incoming call and confirms it
 Then WS1 has on the message buffer named CallIncomingIndicationBuffer1 a number of 0 messages
 When WS2 receives call incoming indication on message buffer named CallIncomingIndicationBuffer2 with callSource3 and callTarget3 and names incomingPhoneCallId
 And WS2 confirms incoming phone call with callId incomingPhoneCallId
 Then WS3 receives call status indication on message buffer named CallStatusIndicationBuffer3 with callId outgoingPhoneCallId and status out_ringing
 
-Scenario: Second callee client answers the incoming call
+Scenario: Callee client answers the incoming call
 When WS2 answers the incoming phone call with the callId incomingPhoneCallId
 Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and status connected
 And WS3 receives call status indication on message buffer named CallStatusIndicationBuffer3 with callId outgoingPhoneCallId and status connected
 
-Scenario: Second callee client clears the phone call
+Scenario: Callee client clears the phone call
 When WS2 clears the phone call with the callId incomingPhoneCallId
 And waiting for 3 seconds
 Then WS3 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer3 with callId outgoingPhoneCallId and terminationDetails normal
@@ -48,22 +49,25 @@ Scenario: Client cancels the call forward
 When WS1 sends a call forward cancel request
 Then WS1 receives a call forward status on message buffer named callForwardStatusBuffer with status inactive
 
-Scenario: Third caller establishes an outgoing call
+Scenario: Create message buffer for call
+When WS1 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer1
+
+Scenario: Caller establishes an outgoing call
 When WS3 establishes an outgoing phone call using source callSource3 ang target callSource and names outgoingPhoneCallId2
 And waiting for 6 seconds
 Then WS3 receives call status indication on message buffer named CallStatusIndicationBuffer3 with callId outgoingPhoneCallId2 and status out_trying
 
-Scenario: First callee client receives the incoming call and confirms it
+Scenario: Callee client receives the incoming call and confirms it
 When WS1 receives call incoming indication on message buffer named CallIncomingIndicationBuffer1 with callSource3 and callSource and names incomingPhoneCallId1
 And WS1 confirms incoming phone call with callId incomingPhoneCallId1
 Then WS3 receives call status indication on message buffer named CallStatusIndicationBuffer3 with callId outgoingPhoneCallId2 and status out_ringing
 
-Scenario: First callee client answers the incoming call
+Scenario: Callee client answers the incoming call
 When WS1 answers the incoming phone call with the callId incomingPhoneCallId1
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId incomingPhoneCallId1 and status connected
 And WS3 receives call status indication on message buffer named CallStatusIndicationBuffer3 with callId outgoingPhoneCallId2 and status connected
 
-Scenario: First callee client clears the phone call
+Scenario: Callee client clears the phone call
 When WS1 clears the phone call with the callId incomingPhoneCallId1
 And waiting for 3 seconds
 Then WS3 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer3 with callId outgoingPhoneCallId2 and terminationDetails normal
