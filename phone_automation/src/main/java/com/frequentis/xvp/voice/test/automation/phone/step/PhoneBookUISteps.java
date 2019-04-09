@@ -33,6 +33,7 @@ import scripts.cats.hmi.actions.PhoneBook.ClickOnKeyboard;
 import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookCloseButton;
 import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookDeleteButton;
 import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookForwardButton;
+import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookScrollDownButton;
 import scripts.cats.hmi.actions.PhoneBook.SelectCallRouteSelector;
 import scripts.cats.hmi.actions.PhoneBook.SelectPhoneBookEntry;
 import scripts.cats.hmi.actions.PhoneBook.ToggleCallPriority;
@@ -49,6 +50,7 @@ import scripts.cats.hmi.asserts.PhoneBook.VerifyPhoneBookInputTextBox;
 import scripts.cats.hmi.asserts.PhoneBook.VerifyPhoneBookListSize;
 import scripts.cats.hmi.asserts.PhoneBook.VerifyPhoneBookSelectionTextBox;
 import scripts.cats.hmi.asserts.PhoneBook.VerifyToggleCallPriorityState;
+import scripts.cats.hmi.asserts.PhoneBook.VerifyTotalNumberOfEntries;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -208,6 +210,14 @@ public class PhoneBookUISteps extends AutomationSteps
             assertProfile( profileName ) ) );
    }
 
+   @When("$profileName scrolls down in phonebook")
+   public void scrollDownPhonebook(final String profileName)
+   {
+      evaluate( remoteStep( "Scroll down phonebook" ).scriptOn(
+            profileScriptResolver().map( ClickOnPhoneBookScrollDownButton.class, BookableProfileName.javafx ),
+            assertProfile( profileName ) ) );
+   }
+
 
    @When("$profileName presses key $key")
    public void clicksOnKey( final String profileName, final String key )
@@ -258,6 +268,16 @@ public class PhoneBookUISteps extends AutomationSteps
                   profileScriptResolver().map( VerifyPhoneBookListSize.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
             .input( VerifyPhoneBookListSize.IPARAM_PHONEBOOK_LIST_SIZE, number ) );
+   }
+
+   @Then("$profileName verifies that the total number of phonebook entries is $number")
+   public void verifyTotalNumberOfEntriesInPhonebook(final String profileName, final String number)
+   {
+      evaluate( remoteStep( "Verify total number of entries is the expected one" )
+            .scriptOn(
+                  profileScriptResolver().map( VerifyTotalNumberOfEntries.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyTotalNumberOfEntries.IPARAM_TOTAL_ENTRIES_NUMBER, number ) );
    }
 
 

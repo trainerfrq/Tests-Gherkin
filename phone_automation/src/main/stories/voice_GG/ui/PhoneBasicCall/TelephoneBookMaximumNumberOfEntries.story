@@ -1,7 +1,6 @@
 Narrative:
 As an operator
-I want to search as I type in the telephone book
-So I can easily and quickly find a telephone book entry I want to call
+I want to check the number of phonebook entries
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -13,5 +12,8 @@ When HMI OP1 presses function key PHONEBOOK
 Then HMI OP1 verifies that phone book call button is disabled
 Then HMI OP1 verify that call route selector shows Default
 
-Scenario: Caller checks if the phone book contains the specified number of entries
-Then HMI OP1 verifies that phonebook list has 1000 items
+Scenario: Operator checks if the phone book contains the specified number of entries
+Then HMI OP1 verifies that the total number of phonebook entries is 1008
+
+Scenario: Operator closes phonebook
+Then HMI OP1 closes phonebook
