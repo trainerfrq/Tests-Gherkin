@@ -73,6 +73,7 @@ Then adding to layout voice on endpoint <<configurationMngEndpoint>> the followi
 
 Scenario: Commit and activate configuration
 When using endpoint <<configurationMngEndpoint>> commit and activate the configuration in path configurations/activate
+!-- TODO Uncomment steps when CATS is upgraded to 5.4 version
 !-- When using endpoint <<configurationMngEndpoint>> commit the configuration and name commit commitId
 !-- Then waiting for 1 seconds
 !-- When activating commit commitId to endpoint <<configurationMngEndpoint>> and path configurations/activate

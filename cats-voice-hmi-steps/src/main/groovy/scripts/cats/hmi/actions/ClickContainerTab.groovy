@@ -23,12 +23,9 @@ class ClickContainerTab extends FxScriptTemplate {
                 .received("container exists " )
                 .success(container != null));
 
-        if (container != null) {
             ObservableList tabs =  container.getChildren()
             List<Node> tabsList = new ArrayList<>(tabs)
             Node tab = tabsList.get(tabPosition)
             robot.clickOn(robot.point(tab))
-        }
-
     }
 }

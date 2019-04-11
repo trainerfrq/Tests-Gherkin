@@ -22,7 +22,8 @@ class SelectMissionFromListByPosition extends FxScriptTemplate {
                 .expected("mission items exist")
                 .success(missionItems != null));
 
-        robot.clickOn(robot.point(missionItems.getAt(missionPosition)))
+        Node mission = missionItems.getAt(missionPosition)
+        robot.clickOn(robot.point(mission))
 
     }
 }
