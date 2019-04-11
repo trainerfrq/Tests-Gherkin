@@ -21,7 +21,6 @@ import com.frequentis.c4i.test.config.AutomationProjectConfig;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.c4i.test.ssh.automation.steps.SshSteps;
 import com.frequentis.xvp.testing.common.SerializableWrapper;
-import com.frequentis.xvp.tools.ssh.CommandExecutor;
 import com.frequentis.xvp.tools.ssh.RemoteHost;
 import com.frequentis.xvp.tools.ssh.SshSession;
 import com.frequentis.xvp.tools.testsystem.TestSystem;
@@ -46,7 +45,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 public class GGSshSteps extends SshSteps
 {
@@ -194,43 +192,6 @@ public class GGSshSteps extends SshSteps
     public void connectSSHto( final String host ) throws Throwable
     {
         tryGGSSHConnection( host, 1 );
-    }
-
-
-    @Then("running $command on GG SSH session $sshSessionName")
-    @When("running $command on GG SSH session $sshSessionName")
-    public void executeCommand( String command, final String sshSessionName ) throws Throwable
-    {
-        CommandExecutor commExec = null;
-
-        final LocalStep localStep = localStep( "Executing commands " );
-
-        final Optional<SshSession> sshSession = tryCreateGGSshSession( sshSessionName, 1 );
-        try
-        {
-            localStep.details( ExecutionDetails.create( "Verify ssh connection to: " + sshSessionName )
-                    .expected( "Connected via SSH " ).received( "Is connected: " + sshSession.get().isConnected() )
-                    .success( sshSession.get().isConnected() ) );
-            commExec = sshSession.get().executeAndWait( command, 10000 );
-
-            serverOutput = commExec.processOutput( lines -> lines.collect( Collectors.toList() ) );
-
-            final int exitStatus = commExec.hasSucceeded() ? 1 : 0;
-
-            localStep.details( ExecutionDetails.create( "Executed SSH command" ).usedData( "Command", command )
-                    .receivedData( "Exit status", String.valueOf( exitStatus ) )
-                    .receivedData( "STDOUT", serverOutput.toString() ).success() );
-        }
-        catch ( final Throwable e )
-        {
-            localStep.details(
-                    ExecutionDetails.create( "Verify ssh connection to: " + sshSessionName ).expected( "Connected via SSH " )
-                            .received( "Is connected: " + sshSession.get().isConnected() ).failure() );
-        }
-        finally
-        {
-            sshSession.get().close();
-        }
     }
 
 
