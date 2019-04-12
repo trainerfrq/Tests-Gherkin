@@ -19,7 +19,6 @@ class VerifyCallHistoryEntry extends FxScriptTemplate {
     public static final String IPARAM_CALL_HISTORY_ENTRY_CONNECTION_STATUS = "call_history_entry_connection_status"
     public static final String IPARAM_CALL_HISTORY_ENTRY_DURATION = "call_history_entry_duration"
     public static final String IPARAM_CALL_HISTORY_ENTRY_TIME = "call_history_entry_time"
-    public static final String IPARAM_CALL_HISTORY_ENTRY_DATE = "call_history_entry_data"
 
     @Override
     void script() {
@@ -29,7 +28,6 @@ class VerifyCallHistoryEntry extends FxScriptTemplate {
         String callHistoryEntryDirection = assertInput(IPARAM_CALL_HISTORY_ENTRY_DIRECTION) as String
         String callHistoryEntryConnectionStatus = assertInput(IPARAM_CALL_HISTORY_ENTRY_CONNECTION_STATUS) as String
         String callHistoryEntryDuration = assertInput(IPARAM_CALL_HISTORY_ENTRY_DURATION) as String
-        String callHistoryEntryDate = assertInput(IPARAM_CALL_HISTORY_ENTRY_DATE) as String
         String callHistoryEntryTime = assertInput(IPARAM_CALL_HISTORY_ENTRY_TIME) as String
 
         final Node callHistoryEntry = robot.lookup("#callHistoryList .list-cell").selectAt(callHistoryEntryNumber).queryFirst()
@@ -61,13 +59,6 @@ class VerifyCallHistoryEntry extends FxScriptTemplate {
                 .expected(callHistoryEntryDuration)
                 .received(durationText)
                 .success(receivedDuration <= givenDuration))
-
-        Label dateLabel = robot.lookup("#callHistoryList #dateLabel").selectAt(callHistoryEntryNumber).queryFirst()
-        String dateText = dateLabel.getText()
-        evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for date")
-                .expected(callHistoryEntryDate)
-                .received(dateText)
-                .success(dateText == callHistoryEntryDate))
 
         Label timeLabel = robot.lookup("#callHistoryList #timeLabel").selectAt(callHistoryEntryNumber).queryFirst()
         DateTime received = DateTime.parse(timeLabel.getText(), DateTimeFormat.forPattern("hh:mm:ss"))

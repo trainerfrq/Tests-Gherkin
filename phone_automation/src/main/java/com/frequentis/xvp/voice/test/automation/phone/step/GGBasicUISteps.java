@@ -16,14 +16,11 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import scripts.cats.hmi.asserts.VerifyNotificationLabel;
-
-import org.jbehave.core.annotations.Then;
-
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+import scripts.cats.hmi.actions.ClickContainerTab;
 import scripts.cats.hmi.asserts.VerifyLoadingOverlayIsVisible;
 import scripts.cats.hmi.asserts.VerifyNotificationLabel;
 
@@ -44,6 +41,15 @@ public class GGBasicUISteps extends AutomationSteps
       evaluate( remoteStep( "Verify that loading screen is visible" ).scriptOn(
               profileScriptResolver().map( VerifyLoadingOverlayIsVisible.class, BookableProfileName.javafx ),
               assertProfile( profileName ) ));
+   }
+
+   @When("$profileName selects grid tab $tabPosition")
+   public void clicksOnKey( final String profileName, Integer tabPosition )
+   {
+      evaluate( remoteStep( "Presses key" ).scriptOn(
+              profileScriptResolver().map( ClickContainerTab.class, BookableProfileName.javafx ),
+              assertProfile( profileName ) )
+              .input(ClickContainerTab.IPARAM_TAB_POSITION, tabPosition-1));
    }
 
 }

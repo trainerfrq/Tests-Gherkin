@@ -12,12 +12,12 @@ Given booked profiles:
 Scenario: Define call history entries
 Given the following call history entries:
 | key     | remoteDisplayName | callDirection | callConnectionStatus|
-| entry5  | OP1               | outgoing      | not_established     |
-| entry4  | OP1               | outgoing      | established         |
-| entry3  | IA - OP1          | outgoing      | established         |
-| entry2  | 111111            | incoming      | not_established     |
-| entry1  | 111111            | incoming      | established         |
-| entry0  | OP1               | outgoing      | established         |
+| entry6  | OP1               | outgoing      | not_established     |
+| entry5  | OP1               | outgoing      | established         |
+| entry4  | IA - OP1          | outgoing      | established         |
+| entry3  | 111111            | incoming      | not_established     |
+| entry2  | 111111            | incoming      | established         |
+| entry1  | OP1               | outgoing      | established         |
 
 Scenario: Caller clears call history list
 When HMI OP2 presses function key CALLHISTORY
@@ -34,7 +34,8 @@ Then HMI OP1 has the DA key OP2(as OP1) in state inc_initiated
 When HMI OP2 presses DA key OP1
 Then call duration for entry entry5 is calculated
 When HMI OP2 presses function key CALLHISTORY
-Then HMI OP2 verifies call history entry number 0 matches entry5
+Then HMI OP2 verifies call history entry number 1 matches entry6
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 matches date format for entry6
 
 Scenario: Op2 closes Call History window
 Then HMI OP2 closes Call History popup window
@@ -51,7 +52,9 @@ And wait for 5 seconds
 When HMI OP2 presses DA key OP1
 Then call duration for entry entry4 is calculated
 When HMI OP2 presses function key CALLHISTORY
-Then HMI OP2 verifies call history entry number 0 matches entry4
+Then HMI OP2 verifies call history entry number 1 matches entry5
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 matches date format for entry5
+
 
 Scenario: Op2 closes Call History window
 Then HMI OP2 closes Call History popup window
@@ -63,7 +66,8 @@ Then HMI OP2 has the IA key IA - OP1 in state connected
 When HMI OP2 presses IA key IA - OP1
 Then call duration for entry entry3 is calculated
 When HMI OP2 presses function key CALLHISTORY
-Then HMI OP2 verifies call history entry number 0 matches entry3
+Then HMI OP2 verifies call history entry number 1 matches entry4
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 matches date format for entry4
 
 Scenario: Op2 closes Call History window
 Then HMI OP2 closes Call History popup window
@@ -77,7 +81,8 @@ Then HMI OP2 has the DA key OP1 in state inc_initiated
 Then call duration for entry entry2 is calculated
 When HMI OP1 presses DA key OP2(as OP1)
 When HMI OP2 presses function key CALLHISTORY
-Then HMI OP2 verifies call history entry number 0 matches entry2
+Then HMI OP2 verifies call history entry number 1 matches entry3
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 matches date format for entry3
 
 Scenario: Op2 closes Call History window
 Then HMI OP2 closes Call History popup window
@@ -90,7 +95,8 @@ And wait for 3 seconds
 Then call duration for entry entry1 is calculated
 When HMI OP1 presses IA key IA - OP2(as OP1)
 When HMI OP2 presses function key CALLHISTORY
-Then HMI OP2 verifies call history entry number 0 matches entry1
+Then HMI OP2 verifies call history entry number 1 matches entry2
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 matches date format for entry2
 
 Scenario: Op2 closes Call History window
 Then HMI OP2 closes Call History popup window
@@ -106,7 +112,8 @@ Then call duration for entry entry0 is calculated
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP2 has in the call queue a number of 0 calls
 When HMI OP2 presses function key CALLHISTORY
-Then HMI OP2 verifies call history entry number 0 matches entry0
+Then HMI OP2 verifies call history entry number 1 matches entry1
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 matches date format for entry1
 
 Scenario: Op2 closes Call History window
 Then HMI OP2 closes Call History popup window
