@@ -4,11 +4,19 @@
     "frequencies": [
       {
         "frequencyId": "123.700",
-        "couplingAllowed": true
+        "couplingAllowed": true,
+        "keyInMode": {
+          "maxAllowed": "Rx",
+          "initial": "Idle"
+        }
       },
       {
         "frequencyId": "125.500",
-        "couplingAllowed": false
+        "couplingAllowed": false,
+        "keyInMode": {
+          "maxAllowed": "Rx",
+          "initial": "Idle"
+        }
       }
     ]
   },
@@ -17,11 +25,19 @@
     "frequencies": [
       {
         "frequencyId": "123.700",
-        "couplingAllowed": true
+        "couplingAllowed": true,
+        "keyInMode": {
+          "maxAllowed": "Rx",
+          "initial": "Idle"
+        }
       },
       {
         "frequencyId": "125.500",
-        "couplingAllowed": false
+        "couplingAllowed": false,
+        "keyInMode": {
+          "maxAllowed": "Rx",
+          "initial": "Idle"
+        }
       }
     ]
   },
@@ -30,11 +46,19 @@
     "frequencies": [
       {
         "frequencyId": "123.700",
-        "couplingAllowed": true
+        "couplingAllowed": true,
+        "keyInMode": {
+          "maxAllowed": "Rx",
+          "initial": "Idle"
+        }
       },
       {
         "frequencyId": "125.500",
-        "couplingAllowed": false
+        "couplingAllowed": false,
+        "keyInMode": {
+          "maxAllowed": "Rx",
+          "initial": "Idle"
+        }
       }
     ]
   }

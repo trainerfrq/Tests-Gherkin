@@ -14,4 +14,14 @@
             <outputDirectory>/</outputDirectory>
         </fileSet>
     </fileSets>
+
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>lib</outputDirectory>
+        </dependencySet>
+    </dependencySets>
+    <cats>
+        <agentOutputDirectory>agents</agentOutputDirectory>
+        <pluginOutputDirectory>plugins</pluginOutputDirectory>
+    </cats>
 </assembly>

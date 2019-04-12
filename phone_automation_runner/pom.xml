@@ -125,31 +125,32 @@
                      </images>
                   </configuration>
                </plugin>
+
                <plugin>
-                  <groupId>com.frequentis.xvp.framework.testing</groupId>
-                  <artifactId>xvp-cats-maven-plugin</artifactId>
+                  <groupId>com.frequentis.c4i.test</groupId>
+                  <artifactId>cats-maven-integration-plugin</artifactId>
+                  <version>${cats.version}</version>
                   <executions>
                      <execution>
-                        <id>Launch remote CATS tests</id>
-                        <goals>
-                           <goal>execute-remote</goal>
-                        </goals>
                         <phase>integration-test</phase>
-                     </execution>
-                     <execution>
-                        <id>Verify results</id>
                         <goals>
-                           <goal>verify</goal>
+                           <goal>execute-story-board</goal>
                         </goals>
-                        <phase>verify</phase>
                      </execution>
                   </executions>
                   <configuration>
-                     <catsServer>${cats-master.host}</catsServer>
-                     <catsPort>${cats-master.port}</catsPort>
-                     <webappPath>/cats-master</webappPath>
-                     <storyBoard>${storyBoard}</storyBoard>
-                     <reportDirectory>${project.build.directory}/cats-reports</reportDirectory>
+                     <serviceUrl>${cats-master.url}</serviceUrl>
+                     <catsHome>${project.build.directory}/automation/resources</catsHome>
+                     <storyBoard>#{stories.home}/${storyBoard}</storyBoard>
+                     <username>xvp</username>
+                     <password>mysecretpassword</password>
+                     <downloadReport>true</downloadReport>
+                     <reportServer>${reportsURL}</reportServer>
+                     <enableJUnitReport>true</enableJUnitReport>
+                     <attachReport>true</attachReport>
+                     <failOnError>true</failOnError>
+                     <failOnTestError>false</failOnTestError>
+                     <testErrorLevel>ERROR</testErrorLevel>
                   </configuration>
                </plugin>
 
@@ -178,6 +179,12 @@
                                  <message>The property ${storyBoard}
                                     must be set and point to the CATS
                                     csb file to execute</message>
+                              </requireProperty>
+                              <requireProperty>
+                                 <property>iso.name</property>
+                                 <message>The property ${iso.name}
+                                    must be set and point to the .iso image used
+                                    for deployment the xvp system</message>
                               </requireProperty>
                               <requireEnvironmentVariable>
                                  <variableName>XVP_SYSTEM_PROPERTIES_FILENAME</variableName>

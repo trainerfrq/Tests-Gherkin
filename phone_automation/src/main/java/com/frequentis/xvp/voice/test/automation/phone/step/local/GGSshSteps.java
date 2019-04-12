@@ -17,25 +17,43 @@
 package com.frequentis.xvp.voice.test.automation.phone.step.local;
 
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
+import com.frequentis.c4i.test.config.AutomationProjectConfig;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.c4i.test.ssh.automation.steps.SshSteps;
+import com.frequentis.xvp.testing.common.SerializableWrapper;
+import com.frequentis.xvp.tools.ssh.RemoteHost;
+import com.frequentis.xvp.tools.ssh.SshSession;
+import com.frequentis.xvp.tools.testsystem.TestSystem;
 import com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil;
+import com.google.common.util.concurrent.Uninterruptibles;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import static com.frequentis.c4i.test.config.AutomationProjectConfig.fromCatsHome;
 import static com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil.processConfigurationTemplate;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class GGSshSteps extends SshSteps
 {
 
    public static final String LAUNCH_AUDIO_APP_SCRIPT_DIRECTORY = "/configuration-files/common/launchAudioApp.sh";
+
+    protected static List<String> serverOutput = new ArrayList<>();
+
+    static final String SYSTEM_KEY = "_bareMetalSystem";
 
 
    @When("the start case officer script is copied to $connectionName")
@@ -140,17 +158,116 @@ public class GGSshSteps extends SshSteps
     }
 
     @Given("the id of the cats-master docker container is taken from $connectionName")
-    public void getCatMasterContainerId( final String connectionName ) throws IOException
+    public void getCatsMasterContainerId( final String connectionName ) throws IOException
     {
 
         String containerId = executeSshCommand(connectionName,
                 "docker ps -q").getStdOut();
 
+
         setStoryListData( "container-id", containerId );
     }
+
 
     public static String getCatsResourcesFolderPath()
     {
         return fromCatsHome().getMasterResourcesHome();
     }
+
+    //// steps that are using XVP FW libraries and are needed for SSH connection with sudo
+
+    @Given("GG MosaiX test system")
+    public void givenTestSystem() throws Throwable
+    {
+        final LocalStep localStep = localStep( "Intialize gg test system..." );
+
+        final TestSystem testSystem = getTestSystem();
+
+        localStep.details( ExecutionDetails.create( "Intialized gg test system." )
+                .usedData( "Used data", testSystem.toString() ).success( testSystem != null ) );
+    }
+
+
+    @Given("gg ssh connection to host $hostName")
+    public void connectSSHto( final String host ) throws Throwable
+    {
+        tryGGSSHConnection( host, 1 );
+    }
+
+
+    private void tryGGSSHConnection( final String host, final int minutes ) throws Throwable
+    {
+        final LocalStep localStep = localStep( "Try SSH connection to " + host );
+
+        final Optional<SshSession> sshSession = tryCreateGGSshSession( host, minutes );
+
+        final boolean isConnected = sshSession.isPresent() && sshSession.get().isConnected();
+        localStep.details( ExecutionDetails.create( "Getting SSH connection to " + host )
+                .expected( "Connection successful!" ).received( "Connected: " + isConnected ).success( isConnected ) );
+    }
+
+
+    public Optional<SshSession> tryCreateGGSshSession( final String hostName, final int minutes )
+            throws FileNotFoundException, IOException, InterruptedException
+    {
+        final TestSystem testSystem = getTestSystem();
+        final TestSystem.HostProperties hp = testSystem.new HostProperties( hostName );
+        SshSession sshSession = null;
+
+            try
+            {
+                final RemoteHost remoteHost =
+                        new RemoteHost( hp.getProperty( TestSystem.IP ), hp.getProperty( TestSystem.USER ), 22 );
+
+                remoteHost.setSudo( Boolean.valueOf( hp.getProperty( TestSystem.USE_SUDO ) ) );
+                sshSession = SshSession.connect( remoteHost, hp.getProperty( TestSystem.PASS ), 15000 );
+            }
+            catch ( final IOException ioe )
+            {
+                Uninterruptibles.sleepUninterruptibly( 8, TimeUnit.SECONDS );
+            }
+
+        return Optional.ofNullable( sshSession );
+    }
+
+
+    public TestSystem getTestSystem() throws FileNotFoundException, IOException
+    {
+            final TestSystem testSystem = createTestSystem();
+            setStoryListData( "_bareMetalSystem", SerializableWrapper.wrap( testSystem ) );
+            return testSystem;
+
+    }
+
+
+    private TestSystem createTestSystem() throws FileNotFoundException, IOException
+    {
+        final Properties properties = new Properties();
+        try (FileInputStream fis =
+                     new FileInputStream( new File( AutomationProjectConfig.fromCatsHome().getEnvironmentConfig() ) ))
+        {
+            properties.load( fis );
+        }
+        final TestSystem testSystemInstance = new TestSystem( properties );
+        return testSystemInstance;
+    }
+
+
+    protected <T> Optional<T> getFromContext( final String key, final Class<T> type )
+    {
+        final SerializableWrapper<T> instance = getStoryListData( key, SerializableWrapper.class );
+        if ( type.isInstance( instance ) )
+        {
+            return Optional.of( type.cast( instance ) );
+        }
+        else if ( SerializableWrapper.class.isInstance( instance ) )
+        {
+            return Optional.of( instance.get() );
+        }
+        else
+        {
+            return Optional.empty();
+        }
+    }
+
 }

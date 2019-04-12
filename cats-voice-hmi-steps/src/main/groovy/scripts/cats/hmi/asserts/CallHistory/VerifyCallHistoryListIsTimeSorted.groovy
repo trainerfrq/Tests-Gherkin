@@ -15,9 +15,12 @@ import java.time.format.DateTimeFormatter
 
 class VerifyCallHistoryListIsTimeSorted extends FxScriptTemplate {
 
+    public static final String IPARAM_DATE_FORMAT = "date_format"
 
     @Override
     void script() {
+
+        String dateFormat = assertInput(IPARAM_DATE_FORMAT) as String
 
         Node callHistoryPopup = robot.lookup("#callHistoryPopup").queryFirst()
 
@@ -31,7 +34,7 @@ class VerifyCallHistoryListIsTimeSorted extends FxScriptTemplate {
 
             List<LocalDateTime> dateTimeList = new ArrayList<LocalDateTime>()
 
-            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd")
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(dateFormat)
 
             for(int i = 0;i<receivedCallHistoryListSize;i++){
 

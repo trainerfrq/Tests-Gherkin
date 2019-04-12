@@ -16,12 +16,11 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step.local;
 
-import java.util.List;
-
-import org.jbehave.core.annotations.When;
-
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.xvp.voice.test.automation.phone.data.NameValuePair;
+import org.jbehave.core.annotations.When;
+
+import java.util.List;
 
 /**
  * @author mayar
@@ -33,7 +32,7 @@ public class CommonLocalSteps extends AutomationSteps
    {
       for ( NameValuePair pair : pairs )
       {
-         setStoryData( pair.getName(), pair.getValue() );
+         setStoryListData( pair.getName(), pair.getValue() );
       }
    }
 }
