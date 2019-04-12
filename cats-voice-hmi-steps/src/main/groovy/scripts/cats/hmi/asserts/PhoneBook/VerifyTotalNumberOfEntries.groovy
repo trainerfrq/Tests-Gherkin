@@ -27,6 +27,7 @@ class VerifyTotalNumberOfEntries extends FxScriptTemplate {
             final Node scrollDownButton = robot.lookup("#phonebookPopup #scrollDown").queryFirst()
             for (Integer index = 0; index < totalNumberOfEntries/10; index++) {
                 robot.clickOn(robot.point(scrollDownButton))
+                WaitTimer.pause(1000);
             }
 
             final TableView phonebookTable = robot.lookup( "#phonebookTable" ).queryFirst()

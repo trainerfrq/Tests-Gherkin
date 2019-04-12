@@ -13,6 +13,7 @@ Then HMI OP1 verifies that phone book call button is disabled
 Then HMI OP1 verify that call route selector shows Default
 
 Scenario: Operator checks if the phone book contains the specified number of entries
+		  @REQUIREMENTS:GID-2877942
 Then HMI OP1 verifies that the total number of phonebook entries is 1008
 
 Scenario: Operator closes phonebook
