@@ -213,7 +213,7 @@
            <dependency>
             <groupId>com.frequentis.xvp.voice</groupId>
             <artifactId>audio-simulator-service-interface</artifactId>
-            <version>${project.version}</version>
+            <version>${audio-simulator-service.version}</version>
          </dependency>
          <dependency>
             <groupId>com.frequentis.xvp.voice</groupId>
