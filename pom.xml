@@ -4,7 +4,7 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>com.frequentis.xvp.voice.phone</groupId>
    <artifactId>phone-test-automation</artifactId>
-   <version>0.1.0-SNAPSHOT</version>
+   <version>0.2.0-SNAPSHOT</version>
    <packaging>pom</packaging>
    <url>http://www.frequentis.com</url>
    <organization>
@@ -97,32 +97,32 @@
            <dependency>
                 <groupId>com.frequentis.xvp.voice.phone</groupId>
                 <artifactId>cats-websocket-dto</artifactId>
-                <version>${project.version}</version>
+                <version>0.2.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.frequentis.xvp.voice.phone</groupId>
                 <artifactId>cats-websocket-plugin</artifactId>
-                <version>${project.version}</version>
+                <version>0.2.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.frequentis.xvp.voice.phone</groupId>
                 <artifactId>cats-websocket-steps</artifactId>
-                <version>${project.version}</version>
+                <version>0.2.0-SNAPSHOT</version>
             </dependency>
            <dependency>
                 <groupId>com.frequentis.xvp.voice.phone</groupId>
                 <artifactId>cats-voice-hmi-steps</artifactId>
-                <version>${project.version}</version>
+                <version>0.2.0-SNAPSHOT</version>
             </dependency>
            <dependency>
                <groupId>com.frequentis.xvp.voice.phone</groupId>
                <artifactId>voice-hmi-dsl</artifactId>
-              <version>${project.version}</version>
+              <version>0.2.0-SNAPSHOT</version>
            </dependency>
            <dependency>
                <groupId>com.frequentis.xvp.voice.phone</groupId>
                <artifactId>voice-hmi-dsl-co-support</artifactId>
-              <version>${project.version}</version>
+              <version>0.2.0-SNAPSHOT</version>
            </dependency>
 
            <!-- General CATS dependencies -->
