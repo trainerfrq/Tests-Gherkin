@@ -21,12 +21,7 @@
       <agentsHome>${project.build.directory}/automation/agents</agentsHome>
       <dslHome>${project.build.directory}/automation/dsl</dslHome>
       <!--available.profiles>${project.basedir}/src/main/resources/profiles/</available.profiles-->
-
-      <voice.service.interface.version>0.129.0-SNAPSHOT</voice.service.interface.version>
-      <mission-configurator-plugin.version>0.5.0-SNAPSHOT</mission-configurator-plugin.version>
-      <xvp-cats-rest-configuration.version>1.2.0-SNAPSHOT</xvp-cats-rest-configuration.version>
-       <xvp-cats-ssh.version>1.2.0-SNAPSHOT</xvp-cats-ssh.version>
- </properties>
+  </properties>
 
    <dependencies>
       <dependency>

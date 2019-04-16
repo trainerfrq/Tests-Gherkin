@@ -18,10 +18,6 @@
     </organization>
 
 
-    <properties>
-        <voice.service.interface.version>0.129.0-SNAPSHOT</voice.service.interface.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.frequentis.c4i.test</groupId>
@@ -34,7 +30,6 @@
         <dependency>
             <groupId>com.frequentis.xvp.voice</groupId>
             <artifactId>op-voice-service-interface</artifactId>
-            <version>${voice.service.interface.version}</version>
         </dependency>
         <dependency>
           <groupId>com.frequentis.c4i.test</groupId>
