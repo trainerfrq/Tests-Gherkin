@@ -172,6 +172,7 @@
         <dependency>
             <groupId>com.frequentis.xvp.voice</groupId>
             <artifactId>op-voice-service-interface</artifactId>
+            <version>${voice.service.interface.version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

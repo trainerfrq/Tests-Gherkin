@@ -21,7 +21,8 @@
       <agentsHome>${project.build.directory}/automation/agents</agentsHome>
       <dslHome>${project.build.directory}/automation/dsl</dslHome>
       <!--available.profiles>${project.basedir}/src/main/resources/profiles/</available.profiles-->
-  </properties>
+
+   </properties>
 
    <dependencies>
       <dependency>
