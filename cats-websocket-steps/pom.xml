@@ -17,11 +17,6 @@
         <url>http://www.frequentis.com</url>
     </organization>
 
-
-    <properties>
-        <voice.service.interface.version>0.129.0-SNAPSHOT</voice.service.interface.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.frequentis.c4i.test</groupId>

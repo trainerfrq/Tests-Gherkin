@@ -14,11 +14,34 @@
 
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <iso.name>xvp-deployment-rhel7.4.4-ggd-jenkins-cats.iso</iso.name>
 
+      <!-- CATS VERSION -->
+      <cats.version>4.13.0</cats.version>
+      
+      <!-- DEPENDENCY VERSIONS -->
+      <voice.service.interface.version>0.138.5</voice.service.interface.version>
+      <audio-simulator-service.version>0.47.0</audio-simulator-service.version>
+      <audio-service-interface.version>0.24.0</audio-service-interface.version>
+
+      <!-- FW DEPENDENCY VERSIONS -->
+      <mission-configurator-plugin.version>1.0.0</mission-configurator-plugin.version>
+      <websocket-lib.version>1.0.0</websocket-lib.version>
+      <xvp-cats-rest-configuration.version>1.1.0</xvp-cats-rest-configuration.version>
+      <xvp-cats-ssh.version>1.1.0</xvp-cats-ssh.version>
+
+      <!-- 3RD PARTY VERSIONS -->
+      <guava.version>23.0</guava.version>
+      <jersey-client.version>2.27</jersey-client.version>
+      <slf4j.version>1.7.18</slf4j.version>
+      <junit.version>4.12</junit.version>
+      <websocket-api.version>1.0</websocket-api.version>
+      <jetty.version>9.4.7.v20170914</jetty.version>
+
+      <!-- PLUGIN VERSIONS -->
       <xvp-cats-mixin.version>5.0.1</xvp-cats-mixin.version>
       <mixin-maven-plugin.version>0.1-alpha-39</mixin-maven-plugin.version>
       <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
-      <reqpro-trace-importer.version>1.19.1</reqpro-trace-importer.version>
       <exec-maven-plugin.version>1.5.0</exec-maven-plugin.version>
       <maven-dependency-plugin>3.0.0</maven-dependency-plugin>
       <maven.resources.plugin.version>3.0.0</maven.resources.plugin.version>
@@ -34,13 +57,8 @@
       <echo-maven-plugin.version>1.2.0</echo-maven-plugin.version>
       <maven-enforcer-plugin.version>3.0.0-M1</maven-enforcer-plugin.version>
       <fabric8-docker-maven-plugin.version>0.16.8</fabric8-docker-maven-plugin.version>
-      <!--xvp-test-automation.version>1.5.0-SNAPSHOT</xvp-test-automation.version-->
-      <guava.version>23.0</guava.version>
-       <iso.name>xvp-deployment-rhel7.4.4-ggd-jenkins-cats.iso</iso.name>
 
-      <cats.version>4.13.0</cats.version>
-      <jersey-client.version>2.27</jersey-client.version>
-      <slf4j.version>1.7.18</slf4j.version>
+      <reqpro-trace-importer.version>1.19.1</reqpro-trace-importer.version>
    </properties>
 
     <profiles>
@@ -173,23 +191,25 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <scope>test</scope>
-                <version>4.12</version>
+                <version>${junit.version}</version>
             </dependency>
              <dependency>
             <groupId>javax.websocket</groupId>
             <artifactId>javax.websocket-api</artifactId>
-            <version>1.0</version>
+            <version>${websocket-api.version}</version>
          </dependency>
          <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-util</artifactId>
-            <version>9.4.7.v20170914</version>
+            <version>${jetty.version}</version>
          </dependency>
            <dependency>
          <groupId>com.frequentis.xvp.framework</groupId>
          <artifactId>websocket-lib</artifactId>
-              <version>1.0.0</version>
-      </dependency>
+         <version>${websocket-lib.version}</version>
+
+        <!-- Test dependencies -->
+        </dependency>
            <dependency>
             <groupId>com.frequentis.xvp.voice</groupId>
             <artifactId>audio-simulator-service-interface</artifactId>
@@ -198,15 +218,21 @@
          <dependency>
             <groupId>com.frequentis.xvp.voice</groupId>
             <artifactId>audio-simulator-service</artifactId>
-            <version>0.41.0-SNAPSHOT</version>
+            <version>${audio-simulator-service.version}</version>
          </dependency>
          <dependency>
             <groupId>com.frequentis.xvp.voice</groupId>
             <artifactId>audio-service-interface</artifactId>
-            <version>0.21.0-SNAPSHOT</version>
+            <version>${audio-service-interface.version}</version>
          </dependency>
+         <dependency>
+            <groupId>com.frequentis.xvp.voice</groupId>
+            <artifactId>op-voice-service-interface</artifactId>
+            <version>${voice.service.interface.version}</version>
+            <scope>compile</scope>
+        </dependency>
+         
         </dependencies>
-
     </dependencyManagement>
 
 
@@ -261,11 +287,6 @@
                   <artifactId>maven-enforcer-plugin</artifactId>
                   <version>${maven-enforcer-plugin.version}</version>
                </plugin>
-               <!--plugin>
-                  <groupId>com.frequentis.xvp.framework.testing</groupId>
-                  <artifactId>xvp-cats-maven-plugin</artifactId>
-                  <version>${xvp-test-automation.version}</version>
-               </plugin-->
             </plugins>
         </pluginManagement>
 

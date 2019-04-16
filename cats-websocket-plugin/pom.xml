@@ -19,7 +19,6 @@
 
     <properties>
         <lib.dir>${project.artifactId}-${project.version}/${project.artifactId}/${project.version}/lib</lib.dir>
-        <voice.service.interface.version>0.129.0-SNAPSHOT</voice.service.interface.version>
     </properties>
 
 
