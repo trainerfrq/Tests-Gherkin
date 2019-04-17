@@ -196,9 +196,44 @@ public class ConfigurationSteps extends AutomationSteps
       }
    }
 
+   @When("using endpoint $endpointUri commit and activate the configuration in path $resourcePath")
+   public void commitAndActivateConfiguration( final String endpointUri, final String resourcePath ) throws Throwable
+   {
+      final LocalStep localStep = localStep( "Committing configuration" );
 
-   @When("using endpoint $endpointUri commit the configuration and name version $versionIdName")
-   public void commitConfiguration( final String endpointUri, final String versionIdName ) throws Throwable
+      if ( endpointUri != null )
+      {
+         Response responseCommit =
+                 getConfigurationItemsWebTarget( endpointUri + "configurations/commit" )
+                         .request( MediaType.APPLICATION_JSON ).post( Entity
+                         .json( "{\"name\": \"CATS configuration\",  \"comments\": \"CATS test configuration\"}" ) );
+         final String responseBody = responseCommit.readEntity( String.class );
+         localStep.details( ExecutionDetails.create( "Executed POST request! " ).expected( "200, 201" )
+                 .received( Integer.toString( responseCommit.getStatus() ) ).receivedData( "response", responseBody )
+                 .success( requestWithSuccess( responseCommit ) ) );
+
+         final JsonObject jsonObj = new Gson().fromJson( responseBody, JsonObject.class );
+         final String commit = jsonObj.get( "version" ).toString();
+
+         waitForSeconds( 1 );
+
+         Response responseActivate =
+                 getConfigurationItemsWebTarget( endpointUri + resourcePath ).path( commit )
+                         .request( MediaType.APPLICATION_JSON ).post( Entity.text( "" ) );
+         localStep.details( ExecutionDetails.create( "Activated version: " + commit ).expected( "200" )
+                 .received( Integer.toString( responseActivate.getStatus() ) ).success( requestWithSuccess( responseActivate ) ) );
+
+      }
+      else
+      {
+         localStep.details( ExecutionDetails.create( "Executed POST request! " ).expected( "Success" )
+                 .received( "Endpoint is not present", endpointUri != null ).failure() );
+      }
+   }
+
+
+  /* @When("using endpoint $endpointUri commit the configuration and name commit $commitIdName")
+   public void commitConfiguration( final String endpointUri, final String commitIdName ) throws Throwable
    {
       final LocalStep localStep = localStep( "Committing configuration" );
 
@@ -214,8 +249,8 @@ public class ConfigurationSteps extends AutomationSteps
                .success( requestWithSuccess( response ) ) );
 
          final JsonObject jsonObj = new Gson().fromJson( responseBody, JsonObject.class );
-         final String version = jsonObj.get( "version" ).toString();
-         setStoryData( versionIdName, version );
+         final String commit = jsonObj.get( "version" ).toString();
+         setStoryListData( commitIdName, commit );
       }
       else
       {
@@ -225,19 +260,19 @@ public class ConfigurationSteps extends AutomationSteps
    }
 
 
-   @When("activating version $versionIdName to endpoint $endpointUri and path $resourcePath")
-   public void activateVersion( final String versionIdName, final String endpointUri, final String resourcePath )
+   @When("activating commit $commitIdName to endpoint $endpointUri and path $resourcePath")
+   public void activateCommit( final String commitIdName, final String endpointUri, final String resourcePath )
       throws Throwable
    {
       final LocalStep localStep = localStep( "Activating version" );
 
       if ( endpointUri != null )
       {
-         String version = getStoryData( versionIdName, String.class );
+         String commit = getStoryListData( commitIdName, String.class );
          Response response =
-               getConfigurationItemsWebTarget( endpointUri + resourcePath ).path( version )
+               getConfigurationItemsWebTarget( endpointUri + resourcePath ).path( commit )
                      .request( MediaType.APPLICATION_JSON ).post( Entity.text( "" ) );
-         localStep.details( ExecutionDetails.create( "Activated version: " + version ).expected( "200" )
+         localStep.details( ExecutionDetails.create( "Activated version: " + commit ).expected( "200" )
                .received( Integer.toString( response.getStatus() ) ).success( requestWithSuccess( response ) ) );
       }
       else
@@ -245,7 +280,7 @@ public class ConfigurationSteps extends AutomationSteps
          localStep.details( ExecutionDetails.create( "Executed POST request! " ).expected( "Success" )
                .received( "Endpoint is not present", endpointUri != null ).failure() );
       }
-   }
+   }*/
 
 
    @When("deleting all previous versions of image descriptors for service $serviceName on endpoint $endpointUri")
@@ -488,6 +523,24 @@ public class ConfigurationSteps extends AutomationSteps
    public static String getCatsResourcesFolderPath()
    {
       return fromCatsHome().getMasterResourcesHome();
+   }
+
+   public void waitForSeconds( final double secs )
+   {
+      final LocalStep step = localStep( "Wait for " + secs + " seconds" );
+
+      try
+      {
+         Thread.sleep( (int) secs * 1000 );
+         step.details(
+                 ExecutionDetails.create( "Wait for " + secs + " seconds" ).received( "Waited" ).success( true ) );
+      }
+      catch ( final Exception ex )
+      {
+         step.details( ExecutionDetails.create( "Wait for " + secs + " seconds" ).received( "Waited with error" )
+                 .success( false ) );
+      }
+      record( step );
    }
 
 

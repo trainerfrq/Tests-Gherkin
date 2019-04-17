@@ -1031,6 +1031,12 @@
                             <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/PhoneBasicCall/TelephoneBookMaximumNumberOfEntries.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneBasicCall/DACallMatchingPhoneBookEntry.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>

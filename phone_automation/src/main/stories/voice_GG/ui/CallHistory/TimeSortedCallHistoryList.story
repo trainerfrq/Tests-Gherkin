@@ -64,7 +64,7 @@ When HMI OP2 presses function key CALLHISTORY
 Scenario: Op2 verifies that call history entries are ordered by time
             @REQUIREMENTS:GID-3225206
 Then HMI OP2 verifies that call history list contains 3 entries
-Then HMI OP2 verifies call history list is time-sorted
+Then HMI OP2 using format <<dateFormat>> verifies call history list is time-sorted
 
 Scenario: Op2 closes call history
 Then HMI OP2 closes Call History popup window

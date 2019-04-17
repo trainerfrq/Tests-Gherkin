@@ -23,16 +23,26 @@ import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
 import com.frequentis.xvp.voice.test.automation.phone.data.Mission;
+import com.google.common.base.Charsets;
+import com.google.common.io.Resources;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+
 import org.apache.commons.io.FileUtils;
 import org.jbehave.core.annotations.Alias;
+import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import retrofit2.http.Url;
 import scripts.cats.hmi.actions.PhoneBook.ClickOnKeyboard;
 import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookCloseButton;
 import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookDeleteButton;
 import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookForwardButton;
+import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookScrollDownButton;
 import scripts.cats.hmi.actions.PhoneBook.SelectCallRouteSelector;
 import scripts.cats.hmi.actions.PhoneBook.SelectPhoneBookEntry;
 import scripts.cats.hmi.actions.PhoneBook.ToggleCallPriority;
@@ -49,13 +59,17 @@ import scripts.cats.hmi.asserts.PhoneBook.VerifyPhoneBookInputTextBox;
 import scripts.cats.hmi.asserts.PhoneBook.VerifyPhoneBookListSize;
 import scripts.cats.hmi.asserts.PhoneBook.VerifyPhoneBookSelectionTextBox;
 import scripts.cats.hmi.asserts.PhoneBook.VerifyToggleCallPriorityState;
+import scripts.cats.hmi.asserts.PhoneBook.VerifyTotalNumberOfEntries;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import javax.annotation.Resource;
 
 public class PhoneBookUISteps extends AutomationSteps
 {
@@ -109,6 +123,28 @@ public class PhoneBookUISteps extends AutomationSteps
                   profileScriptResolver().map( SelectCallRouteSelector.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
             .input( SelectCallRouteSelector.IPARAM_CALL_ROUTE_SELECTOR_ID, callRouteSelector ) );
+   }
+
+   @Given("the $number of phonebook entries from $resourcePath")
+   public void countPhonebookEntries(String number, String resourcePath)
+   {
+      Integer numberOfEntries = 0;
+      try
+      {
+         JSONArray jsonArray = new JSONArray( FileUtils.readFileToString( StepsUtil.getConfigFile( resourcePath ) ));
+         for (int i = 0; i < jsonArray.length(); i++)
+         {
+            JSONObject jsonObject = jsonArray.getJSONObject( i );
+            JSONArray dataSetsArray = jsonObject.getJSONArray( "dataSets" );
+            numberOfEntries = numberOfEntries + dataSetsArray.length();
+         }
+      }
+      catch ( IOException e )
+      {
+         e.printStackTrace();
+      }
+
+      setStoryListData( number, String.valueOf( numberOfEntries ) );
    }
 
 
@@ -208,6 +244,14 @@ public class PhoneBookUISteps extends AutomationSteps
             assertProfile( profileName ) ) );
    }
 
+   @When("$profileName scrolls down in phonebook")
+   public void scrollDownPhonebook(final String profileName)
+   {
+      evaluate( remoteStep( "Scroll down phonebook" ).scriptOn(
+            profileScriptResolver().map( ClickOnPhoneBookScrollDownButton.class, BookableProfileName.javafx ),
+            assertProfile( profileName ) ) );
+   }
+
 
    @When("$profileName presses key $key")
    public void clicksOnKey( final String profileName, final String key )
@@ -258,6 +302,18 @@ public class PhoneBookUISteps extends AutomationSteps
                   profileScriptResolver().map( VerifyPhoneBookListSize.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
             .input( VerifyPhoneBookListSize.IPARAM_PHONEBOOK_LIST_SIZE, number ) );
+   }
+
+   @Then("$profileName verifies that the total number of phonebook entries is $number")
+   public void verifyTotalNumberOfEntriesInPhonebook(final String profileName, final String totalNumber)
+   {
+      String phoneBookEntriesNumber = getStoryListData( totalNumber, String.class );
+
+      evaluate( remoteStep( "Verify total number of entries is the expected one" )
+            .scriptOn(
+                  profileScriptResolver().map( VerifyTotalNumberOfEntries.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyTotalNumberOfEntries.IPARAM_TOTAL_ENTRIES_NUMBER, phoneBookEntriesNumber ) );
    }
 
 

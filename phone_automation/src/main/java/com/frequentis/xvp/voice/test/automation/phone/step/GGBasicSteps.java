@@ -29,7 +29,6 @@ import org.jbehave.core.annotations.When;
 
 import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
 import com.frequentis.c4i.test.model.ExecutionDetails;
-import com.frequentis.xvp.tools.cats.websocket.automation.model.PhoneBookEntry;
 import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
@@ -62,13 +61,10 @@ import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallRetrieve
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallStatusIndication;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallTransferRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallTransferResponse;
-import com.hazelcast.com.eclipsesource.json.Json;
-
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import scripts.cats.websocket.sequential.SendTextMessage;
 import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
-import scripts.cats.websocket.sequential.buffer.ReceiveFirstReceivedMessage;
 import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
 import scripts.cats.websocket.sequential.buffer.ReceiveMessageCount;
 import scripts.cats.websocket.sequential.buffer.SendAndReceiveTextMessage;
@@ -152,10 +148,10 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       final HashMap<String, String> missions = new HashMap<>();
       for ( Mission mission : jsonMessage.body().missionsAvailableIndication().getMissions() )
       {
-         missions.put( mission.getMissionName(), mission.getMissionId() );
+         missions.put( mission.getMissionName(), mission.getMissionId().getId() );
       }
 
-      setStoryData( availableMissionIdsName, missions );
+      setStoryListData( availableMissionIdsName, missions );
    }
 
 
@@ -165,7 +161,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    {
       final MissionChangedIndication missionChangedIndication =
             verifyMissionChangedIndicationReceived( namedWebSocket, bufferName );
-      setStoryData( missionIdName, missionChangedIndication.getMissionId() );
+      setStoryListData( missionIdName, missionChangedIndication.getMissionId().getId() );
    }
 
 
@@ -177,14 +173,13 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             verifyMissionChangedIndicationReceived( namedWebSocket, bufferName );
 
       evaluate( localStep( "Verify mission changed indication" )
-            .details( match( "Mission id does not match", missionChangedIndication.getMissionId(),
-                  equalTo( getStoryData( missionIdToChangeName, String.class ) ) ) )
-            .details( match( "List of assigned roles is empty", missionChangedIndication.getAssignedRoles(),
+            .details( match( "Mission id does not match", missionChangedIndication.getMissionId().getId(),
+                  equalTo( getStoryListData( missionIdToChangeName, String.class ) ) ) )
+            .details( match( "List of assigned roles is empty", missionChangedIndication.getMasterRoleId(),
                   not( empty() ) ) ) );
 
-      setStoryData( missionIdName, missionChangedIndication.getMissionId() );
-      setStoryData( roleIdName, missionChangedIndication.getAssignedRoles().stream()
-            .map( roleElement -> roleElement.getRoleId() ).findFirst().get() );
+      setStoryListData( missionIdName, missionChangedIndication.getMissionId().getId() );
+      setStoryListData( roleIdName, missionChangedIndication.getMasterRoleId() );
    }
 
 
@@ -194,7 +189,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
 
-      String missionId = getStoryData( missionIdName, String.class );
+      String missionId = getStoryListData( missionIdName, String.class );
 
       final JsonMessage event =
             JsonMessage.newMissionChangeCompletedEvent( new MissionChangeCompletedEvent( missionId ),
@@ -215,7 +210,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
 
-      final HashMap<String, String> availableMissions = getStoryData( availableMissionsName, HashMap.class );
+      final HashMap<String, String> availableMissions = getStoryListData( availableMissionsName, HashMap.class );
 
       evaluate( localStep( "Retrieving missions from story data" ).details( ExecutionDetails
             .create( "Available missions contains given mission name" )
@@ -247,7 +242,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
                   match( "Response is successful", jsonMessage.body().changeMissionResponse().getResult().resultCode(),
                         equalTo( ChangeMissionResponseResult.ResultCode.OK ) ) ) );
 
-      setStoryData( missionIdToChangeName, missionId );
+      setStoryListData( missionIdToChangeName, missionId );
    }
 
 
@@ -258,7 +253,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
 
-      final String roleId = getStoryData( roleIdName, String.class );
+      final String roleId = getStoryListData( roleIdName, String.class );
       QueryRolePhoneDataRequest queryRolePhoneDataRequest = new QueryRolePhoneDataRequest( roleId );
       final JsonMessage request =
             JsonMessage.builder().withQueryRolePhoneDataRequest( queryRolePhoneDataRequest )
@@ -290,8 +285,8 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
       final JsonDaDataElement dataElement =
             jsonMessage.body().queryRolePhoneDataResponse().getPhoneData().getDa().get( entryNumber - 1 );
-      setStoryData( callSourceName, dataElement.getSource() );
-      setStoryData( callTargetName, dataElement.getTarget() );
+      setStoryListData( callSourceName, dataElement.getSource() );
+      setStoryListData( callTargetName, dataElement.getTarget() );
    }
 
     @When("$namedWebSocket loads phone data for role $roleIdName and same names for $callSourceName and $callTargetName from the entry number $entryNumber")
@@ -301,7 +296,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
         final ProfileToWebSocketConfigurationReference reference =
                 getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
 
-        final String roleId = getStoryData( roleIdName, String.class );
+        final String roleId = getStoryListData( roleIdName, String.class );
         QueryRolePhoneDataRequest queryRolePhoneDataRequest = new QueryRolePhoneDataRequest( roleId );
         final JsonMessage request =
                 JsonMessage.builder().withQueryRolePhoneDataRequest( queryRolePhoneDataRequest )
@@ -333,8 +328,8 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
         final JsonDaDataElement dataElement =
                 jsonMessage.body().queryRolePhoneDataResponse().getPhoneData().getDa().get( entryNumber - 1 );
-        setStoryData( callSourceName, dataElement.getSource() );
-        setStoryData( callTargetName, dataElement.getSource() );
+        setStoryListData( callSourceName, dataElement.getSource() );
+        setStoryListData( callTargetName, dataElement.getSource() );
     }
 
 
@@ -421,7 +416,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             receivedMessagesList.stream().map( JsonMessage::fromJson ).collect( Collectors.toList() ).stream()
                   .filter( jsonMessage -> jsonMessage.body().isCallStatusIndication() )
                   .filter( jsonMessage -> jsonMessage.body().callStatusIndication().getCallId()
-                        .equals( getStoryData( phoneCallIdName, String.class ) ) )
+                        .equals( getStoryListData( phoneCallIdName, String.class ) ) )
                   .filter(
                         jsonMessage -> jsonMessage.body().callStatusIndication().getCallStatus().equals( callStatus ) )
                   .findFirst().map( JsonMessage::toString );
@@ -455,7 +450,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             receivedMessagesList.stream().map( JsonMessage::fromJson ).collect( Collectors.toList() ).stream()
                   .filter( jsonMessage -> jsonMessage.body().isCallStatusIndication() )
                   .filter( jsonMessage -> jsonMessage.body().callStatusIndication().getCallId()
-                        .equals( getStoryData( phoneCallIdName, String.class ) ) )
+                        .equals( getStoryListData( phoneCallIdName, String.class ) ) )
                   .filter(
                         jsonMessage -> jsonMessage.body().callStatusIndication().getCallStatus().equals( callStatus ) )
                   .findFirst().map( JsonMessage::toString );
@@ -490,7 +485,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             .details(
                   match( "Is call status indication", jsonMessage.body().isCallStatusIndication(), equalTo( true ) ) )
             .details( match( "Phone call id matches", jsonMessage.body().callStatusIndication().getCallId(),
-                  equalTo( getStoryData( phoneCallIdName, String.class ) ) ) )
+                  equalTo( getStoryListData( phoneCallIdName, String.class ) ) ) )
             .details( match( "Call status does not match", jsonMessage.body().callStatusIndication().getCallStatus(),
                   equalTo( callStatus ) ) )
             .details( match( "Audio Direction does not match",
@@ -521,7 +516,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             .details(
                   match( "Is call status indication", jsonMessage.body().isCallStatusIndication(), equalTo( true ) ) )
             .details( match( "Phone call id matches", jsonMessage.body().callStatusIndication().getCallId(),
-                  equalTo( getStoryData( phoneCallIdName, String.class ) ) ) )
+                  equalTo( getStoryListData( phoneCallIdName, String.class ) ) ) )
             .details( match( "Call status matches", jsonMessage.body().callStatusIndication().getCallStatus(),
                   equalTo( callStatus ) ) )
             .details( match( "Termination details is not null",
@@ -605,7 +600,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
       final JsonMessage request =
             JsonMessage.builder().withCorrelationId( UUID.randomUUID() )
-                  .withPayload( new CallIncomingConfirmation( getStoryData( phoneCallIdName, String.class ) ) ).build();
+                  .withPayload( new CallIncomingConfirmation( getStoryListData( phoneCallIdName, String.class ) ) ).build();
 
       evaluate( remoteStep( "Confirming incoming phone call" )
             .scriptOn( profileScriptResolver().map( SendTextMessage.class, BookableProfileName.websocket ),
@@ -623,7 +618,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
       final JsonMessage request =
             JsonMessage.builder().withCorrelationId( UUID.randomUUID() )
-                  .withPayload( new CallAcceptRequest( getStoryData( phoneCallIdName, String.class ) ) ).build();
+                  .withPayload( new CallAcceptRequest( getStoryListData( phoneCallIdName, String.class ) ) ).build();
       evaluate( remoteStep( "Answering incoming phone call" )
             .scriptOn( profileScriptResolver().map( SendTextMessage.class, BookableProfileName.websocket ),
                   requireProfile( reference.getProfileName() ) )
@@ -640,7 +635,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
       final JsonMessage request =
             JsonMessage.builder().withCorrelationId( UUID.randomUUID() )
-                  .withPayload( new CallClearRequest( getStoryData( phoneCallIdName, String.class ) ) ).build();
+                  .withPayload( new CallClearRequest( getStoryListData( phoneCallIdName, String.class ) ) ).build();
       evaluate( remoteStep( "Clearing the phone call" )
             .scriptOn( profileScriptResolver().map( SendTextMessage.class, BookableProfileName.websocket ),
                   requireProfile( reference.getProfileName() ) )
@@ -673,7 +668,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
       final JsonMessage request =
             JsonMessage.builder().withCorrelationId( UUID.randomUUID() )
-                  .withPayload( new CallRetrieveRequest( getStoryData( phoneCallIdName, String.class ) ) ).build();
+                  .withPayload( new CallRetrieveRequest( getStoryListData( phoneCallIdName, String.class ) ) ).build();
       evaluate( remoteStep( "Holding the phone call" )
             .scriptOn( profileScriptResolver().map( SendTextMessage.class, BookableProfileName.websocket ),
                   requireProfile( reference.getProfileName() ) )
@@ -698,8 +693,8 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
 
-      final String transfereeCallId = getStoryData( transfereeCallIdName, String.class );
-      final String transferTargetCallId = getStoryData( transferTargetCallIdName, String.class );
+      final String transfereeCallId = getStoryListData( transfereeCallIdName, String.class );
+      final String transferTargetCallId = getStoryListData( transferTargetCallIdName, String.class );
 
       final CallTransferRequest callTransferRequest =
             new CallTransferRequest( new Random().nextInt(), transfereeCallId, transferTargetCallId );
@@ -782,45 +777,6 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    }
 
 
-   @When("$namedWebSocket receives call incoming indication on message buffer named $bufferName with $callPartyType matching phone book entry $phoneBookEntry")
-   public void receiveCallIncomingIndicationMatchingCallParty( final String namedWebSocket, final String bufferName,
-         final String callPartyType, final String namedPhoneBookEntry )
-   {
-      final ProfileToWebSocketConfigurationReference reference =
-            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
-
-      final RemoteStepResult remoteStepResult =
-            evaluate(
-                  remoteStep( "Receiving call incoming indication on buffer named " + bufferName )
-                        .scriptOn( profileScriptResolver().map( ReceiveLastReceivedMessage.class,
-                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
-                        .input( ReceiveLastReceivedMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
-                        .input( ReceiveLastReceivedMessage.IPARAM_BUFFERKEY, bufferName )
-                        .input( ReceiveLastReceivedMessage.IPARAM_DISCARDALLMESSAGES, false ) );
-
-      final String jsonResponse =
-            ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
-      final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
-
-      PhoneBookEntry phoneBookEntry = getStoryListData( namedPhoneBookEntry, PhoneBookEntry.class );
-      evaluate( localStep( "Check phone book entry" ).details(
-            ExecutionDetails.create( "Verify phone book entry is defined" ).success( phoneBookEntry != null ) ) );
-
-      switch ( callPartyType )
-      {
-         case "calledParty":
-            assertCalledParty( jsonMessage, phoneBookEntry );
-            break;
-         case "callingParty":
-            assertCallingParty( jsonMessage, phoneBookEntry );
-            break;
-         default:
-            evaluate( localStep( "Check call party type" )
-                  .details( ExecutionDetails.create( "Unknown call party type: " + callPartyType ).failure() ) );
-            break;
-      }
-   }
-
    @Then("verify that responses $requestId1 and $requestId2 are $equalOrDifferent")
    public void assertResponses( final String namedResponse1, final String namedResponse2, final String equalOrDifferent){
       String response1 = getStoryListData( namedResponse1, String.class );
@@ -844,7 +800,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
 
-      final String roleId = getStoryData( roleIdName, String.class );
+      final String roleId = getStoryListData( roleIdName, String.class );
 
       QueryRoleWidgetLayoutRequest queryRoleWidgetLayoutRequest = new QueryRoleWidgetLayoutRequest( roleId );
       final JsonMessage request =
@@ -909,62 +865,10 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    }
 
 
-   private void assertCallingParty( final JsonMessage jsonMessage, final PhoneBookEntry phoneBookEntry )
-   {
-      evaluate( localStep( "Verify calling party in call incoming indication" )
-            .details( match( "Is call incoming indication", jsonMessage.body().isCallIncomingIndication(),
-                  equalTo( true ) ) )
-            .details( match( "Calling party uri matches",
-                  jsonMessage.body().callIncomingIndication().getCallingParty().getUri(),
-                  equalTo( phoneBookEntry.getUri() ) ) )
-            .details( match( "Calling party name matches",
-                  jsonMessage.body().callIncomingIndication().getCallingParty().getName(),
-                  equalTo( phoneBookEntry.getName() ) ) )
-            .details( match( "Calling party full name matches",
-                  jsonMessage.body().callIncomingIndication().getCallingParty().getFullName(),
-                  equalTo( phoneBookEntry.getFullName() ) ) )
-            .details( match( "Calling party location matches",
-                  jsonMessage.body().callIncomingIndication().getCallingParty().getLocation(),
-                  equalTo( phoneBookEntry.getLocation() ) ) )
-            .details( match( "Calling party organization matches",
-                  jsonMessage.body().callIncomingIndication().getCallingParty().getOrganization(),
-                  equalTo( phoneBookEntry.getOrganization() ) ) )
-            .details( match( "Calling party notes match",
-                  jsonMessage.body().callIncomingIndication().getCallingParty().getNotes(),
-                  equalTo( phoneBookEntry.getNotes() ) ) )
-            .details( match( "Calling party display addon matches",
-                  jsonMessage.body().callIncomingIndication().getCallingParty().getDisplayAddon(),
-                  equalTo( phoneBookEntry.getDisplayAddon() ) ) ) );
-   }
 
 
-   private void assertCalledParty( final JsonMessage jsonMessage, final PhoneBookEntry phoneBookEntry )
-   {
-      evaluate( localStep( "Verify called party in call incoming indication" )
-            .details( match( "Is call incoming indication", jsonMessage.body().isCallIncomingIndication(),
-                  equalTo( true ) ) )
-            .details( match( "Called party uri matches",
-                  jsonMessage.body().callIncomingIndication().getCalledParty().getUri(),
-                  equalTo( phoneBookEntry.getUri() ) ) )
-            .details( match( "Called party name matches",
-                  jsonMessage.body().callIncomingIndication().getCalledParty().getName(),
-                  equalTo( phoneBookEntry.getName() ) ) )
-            .details( match( "Called party full name matches",
-                  jsonMessage.body().callIncomingIndication().getCalledParty().getFullName(),
-                  equalTo( phoneBookEntry.getFullName() ) ) )
-            .details( match( "Called party location matches",
-                  jsonMessage.body().callIncomingIndication().getCalledParty().getLocation(),
-                  equalTo( phoneBookEntry.getLocation() ) ) )
-            .details( match( "Called party organization matches",
-                  jsonMessage.body().callIncomingIndication().getCalledParty().getOrganization(),
-                  equalTo( phoneBookEntry.getOrganization() ) ) )
-            .details( match( "Called party notes match",
-                  jsonMessage.body().callIncomingIndication().getCalledParty().getNotes(),
-                  equalTo( phoneBookEntry.getNotes() ) ) )
-            .details( match( "Called party display addon matches",
-                  jsonMessage.body().callIncomingIndication().getCalledParty().getDisplayAddon(),
-                  equalTo( phoneBookEntry.getDisplayAddon() ) ) ) );
-   }
+
+
 
    private void receiveTwoCallIncomingIndications( final String namedWebSocket, final String callStatus1, final String callStatus2, final String bufferName,
          final String callSourceName, final String callTargetName, final String phoneCallIdName, final String callType,
@@ -994,16 +898,16 @@ public class GGBasicSteps extends WebsocketAutomationSteps
                   equalTo( callType )) )
             .details( match("Calling party matches",
                   jsonMessage.body().callIncomingIndication().getCallingParty().getUri(),
-                  containsString( getStoryData( callSourceName, String.class ) ) ) )
+                  containsString( getStoryListData( callSourceName, String.class ) ) ) )
             .details(
                   match( "Called party matches", jsonMessage.body().callIncomingIndication().getCalledParty().getUri(),
-                        containsString( getStoryData( callTargetName, String.class ) ) ) )
+                        containsString( getStoryListData( callTargetName, String.class ) ) ) )
             .details( match( "AudioDirection matches", jsonMessage.body().callIncomingIndication().getAudioDirection(),
                   equalTo( audioDirection ) ) )
             .details( match( "Call priority matches", jsonMessage.body().callIncomingIndication().getCallPriority(),
                   equalTo( priority ) ) ) );
 
-      setStoryData( phoneCallIdName, jsonMessage.body().callIncomingIndication().getCallId() );
+      setStoryListData( phoneCallIdName, jsonMessage.body().callIncomingIndication().getCallId() );
    }
 
 
@@ -1035,16 +939,16 @@ public class GGBasicSteps extends WebsocketAutomationSteps
                   equalTo( callType ) ) )
             .details( match( "Calling party matches",
                   jsonMessage.body().callIncomingIndication().getCallingParty().getUri(),
-                  containsString( getStoryData( callSourceName, String.class ) ) ) )
+                  containsString( getStoryListData( callSourceName, String.class ) ) ) )
             .details(
                   match( "Called party matches", jsonMessage.body().callIncomingIndication().getCalledParty().getUri(),
-                        containsString( getStoryData( callTargetName, String.class ) ) ) )
+                        containsString( getStoryListData( callTargetName, String.class ) ) ) )
             .details( match( "AudioDirection matches", jsonMessage.body().callIncomingIndication().getAudioDirection(),
                   equalTo( audioDirection ) ) )
             .details( match( "Call priority matches", jsonMessage.body().callIncomingIndication().getCallPriority(),
                   equalTo( priority ) ) ) );
 
-      setStoryData( phoneCallIdName, jsonMessage.body().callIncomingIndication().getCallId() );
+      setStoryListData( phoneCallIdName, jsonMessage.body().callIncomingIndication().getCallId() );
    }
 
 
@@ -1070,7 +974,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             .details(
                   match( "Is call status indication", jsonMessage.body().isCallStatusIndication(), equalTo( true ) ) )
             .details( match( "Phone call id matches", jsonMessage.body().callStatusIndication().getCallId(),
-                  equalTo( getStoryData( phoneCallIdName, String.class ) ) ) )
+                  equalTo( getStoryListData( phoneCallIdName, String.class ) ) ) )
             .details( match( "Call status does not match", jsonMessage.body().callStatusIndication().getCallStatus(),
                   equalTo( callStatus ) ) )
             .details( match( "Call conditional flag does not match",
@@ -1086,8 +990,8 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
 
-      final String callingParty = getStoryData( callSourceName, String.class );
-      final String calledParty = getStoryData( callTargetName, String.class );
+      final String callingParty = getStoryListData( callSourceName, String.class );
+      final String calledParty = getStoryListData( callTargetName, String.class );
 
       final CallEstablishRequest callEstablishRequest =
             CallEstablishRequest.builder( new Random().nextInt(), calledParty ).withCallType( callType )
@@ -1118,7 +1022,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
 
-      final CallHoldRequest.Builder builder = CallHoldRequest.builder( getStoryData( phoneCallIdName, String.class ) );
+      final CallHoldRequest.Builder builder = CallHoldRequest.builder( getStoryListData( phoneCallIdName, String.class ) );
 
       if ( callConditionalFlag != null )
       {
@@ -1146,7 +1050,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             .details( match( "Call status is " + callStatus, jsonMessage.body().callEstablishResponse().getCallStatus(),
                   equalTo( callStatus ) ) ) );
 
-      setStoryData( phoneCallIdName, jsonMessage.body().callEstablishResponse().getCallId() );
+      setStoryListData( phoneCallIdName, jsonMessage.body().callEstablishResponse().getCallId() );
    }
 
 

@@ -15,12 +15,12 @@ Given booked profiles:
 Scenario: Define call history entries
 Given the following call history entries:
 | key     | remoteDisplayName | callDirection | callConnectionStatus|
-| entry5  | OP1               | outgoing      | not_established     |
-| entry4  | OP1               | outgoing      | established         |
-| entry3  | IA - OP1          | outgoing      | established         |
-| entry2  | 111111            | incoming      | not_established     |
-| entry1  | 111111            | incoming      | established         |
-| entry0  | OP1               | outgoing      | established         |
+| entry6  | OP1               | outgoing      | not_established     |
+| entry5  | OP1               | outgoing      | established         |
+| entry4  | IA - OP1          | outgoing      | established         |
+| entry3  | 111111            | incoming      | not_established     |
+| entry2  | 111111            | incoming      | established         |
+| entry1  | OP1               | outgoing      | established         |
 
 Scenario: Caller clears call history list
 When HMI OP2 presses function key CALLHISTORY
@@ -87,12 +87,18 @@ When HMI OP2 presses function key CALLHISTORY
 
 Scenario: Caller verifies the call history list
 Then HMI OP2 verifies that call history list contains 6 entries
-Then HMI OP2 verifies call history entry number 0 matches entry0
 Then HMI OP2 verifies call history entry number 1 matches entry1
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 matches date format for entry1
 Then HMI OP2 verifies call history entry number 2 matches entry2
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 2 matches date format for entry2
 Then HMI OP2 verifies call history entry number 3 matches entry3
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 3 matches date format for entry3
 Then HMI OP2 verifies call history entry number 4 matches entry4
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 4 matches date format for entry4
 Then HMI OP2 verifies call history entry number 5 matches entry5
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 5 matches date format for entry5
+Then HMI OP2 verifies call history entry number 6 matches entry6
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 6 matches date format for entry6
 
 Scenario: Caller closes call history
 Then HMI OP2 closes Call History popup window
@@ -109,12 +115,18 @@ When HMI OP2 presses function key CALLHISTORY
 Scenario: Caller verifies that call history list is the same after mission change
 		  @REQUIREMENTS:GID-4084003
 Then HMI OP2 verifies that call history list contains 6 entries
-Then HMI OP2 verifies call history entry number 0 matches entry0
 Then HMI OP2 verifies call history entry number 1 matches entry1
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 matches date format for entry1
 Then HMI OP2 verifies call history entry number 2 matches entry2
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 2 matches date format for entry2
 Then HMI OP2 verifies call history entry number 3 matches entry3
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 3 matches date format for entry3
 Then HMI OP2 verifies call history entry number 4 matches entry4
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 4 matches date format for entry4
 Then HMI OP2 verifies call history entry number 5 matches entry5
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 5 matches date format for entry5
+Then HMI OP2 verifies call history entry number 6 matches entry6
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 6 matches date format for entry6
 
 Scenario: Caller closes call history
 Then HMI OP2 closes Call History popup window
