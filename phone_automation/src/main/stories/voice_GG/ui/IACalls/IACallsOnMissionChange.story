@@ -14,6 +14,7 @@ Given the call queue items:
 | OP3-OP2 | sip:op3@example.com    | sip:222222@example.com | IA       |
 
 Scenario: Op1 establishes an outgoing IA call towards Op2
+		  @REQUIREMENTS:GID-3236103
 When HMI OP1 presses IA key IA - OP2(as OP1)
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
