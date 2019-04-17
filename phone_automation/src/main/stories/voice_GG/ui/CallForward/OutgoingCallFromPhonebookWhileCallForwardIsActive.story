@@ -53,7 +53,7 @@ Then HMI OP1 has the function key CALLFORWARD in forwardOngoing state
 Scenario: Op1 activates call forward
 		  @REQUIREMENTS:GID-2521111
 When HMI OP1 activates call forward from phonebook
-Then HMI OP1 has the function key CALLFORWARD in forwardActive state
+Then HMI OP1 has the function key CALLFORWARD in active state
 Then HMI OP1 verifies that call queue info container is visible
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP2 has in the call queue a number of 0 calls
@@ -67,7 +67,7 @@ Scenario: Op1 selects an item from phonebook for the call forward action
 When HMI OP1 selects phonebook entry number: 4
 Then HMI OP1 verifies that phone book call button is enabled
 Then HMI OP1 checks that phone book forward button is invisible
-Then HMI OP1 has the function key CALLFORWARD in forwardActive state
+Then HMI OP1 has the function key CALLFORWARD in active state
 
 Scenario: Op1 hits phonebook call button
 When HMI OP1 initiates a call from the phonebook
@@ -79,7 +79,7 @@ Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP2-OP1
 
 Scenario: Op1 still has Call Forward active
-Then HMI OP1 has the function key CALLFORWARD in forwardActive state
+Then HMI OP1 has the function key CALLFORWARD in active state
 
 Scenario: Op1 deactivates Call Forward
 When HMI OP1 presses function key CALLFORWARD
