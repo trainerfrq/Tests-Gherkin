@@ -208,7 +208,7 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/DACalls/CalleeRejectsIncomingCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
@@ -388,7 +388,7 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/SipPhones/SipPhoneToOperatorCalleeRejectsCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
@@ -1243,7 +1243,7 @@
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/GroupCalls/DARejectGroupCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
@@ -1786,93 +1786,6 @@
             </cats:storyLists>
         </cats:storyCollection>
         <cats:storyCollection enabled="true">
-            <cats:name>UI - Failover</cats:name>
-            <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
-            <cats:report>
-                <cats:status>CREATED</cats:status>
-            </cats:report>
-            <cats:storyLists>
-                <cats:storyList enabled="true">
-                    <cats:name>UI - Failover</cats:name>
-                    <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
-                    <cats:repetitions>1</cats:repetitions>
-                    <cats:report>
-                        <cats:status>CREATED</cats:status>
-                    </cats:report>
-                    <cats:reports/>
-                    <cats:stories>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/Failover/CallHistoryFailover.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/Failover/DABasicCallFailover.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="false">
-                            <cats:storyPath>voice_GG/ui/Failover/DABasicCallOnGoingFailover.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/Failover/DACallForwardFailover.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/Failover/DAPriorityCallFailover.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="false">
-                            <cats:storyPath>voice_GG/ui/Failover/DAPriorityCallOnGoingFailover.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/Failover/IACallFailover.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="false">
-                            <cats:storyPath>voice_GG/ui/Failover/IACallOnGoingFailover.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/Failover/MissionChangeFailover.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/Failover/LSPStateFailover.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyStatistics/>
-                            <cats:storyDataList/>
-                        </cats:story>
-                    </cats:stories>
-                    <cats:timeout>3600</cats:timeout>
-                </cats:storyList>
-            </cats:storyLists>
-        </cats:storyCollection>
-        <cats:storyCollection enabled="true">
             <cats:name>UI - Audio Device</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
@@ -2013,6 +1926,93 @@
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
+                </cats:storyList>
+            </cats:storyLists>
+        </cats:storyCollection>
+        <cats:storyCollection enabled="true">
+            <cats:name>UI - Failover</cats:name>
+            <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
+            <cats:report>
+                <cats:status>CREATED</cats:status>
+            </cats:report>
+            <cats:storyLists>
+                <cats:storyList enabled="true">
+                    <cats:name>UI - Failover</cats:name>
+                    <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
+                    <cats:repetitions>1</cats:repetitions>
+                    <cats:report>
+                        <cats:status>CREATED</cats:status>
+                    </cats:report>
+                    <cats:reports/>
+                    <cats:stories>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/Failover/CallHistoryFailover.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/Failover/DABasicCallFailover.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="false">
+                            <cats:storyPath>voice_GG/ui/Failover/DABasicCallOnGoingFailover.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/Failover/DACallForwardFailover.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/Failover/DAPriorityCallFailover.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="false">
+                            <cats:storyPath>voice_GG/ui/Failover/DAPriorityCallOnGoingFailover.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/Failover/IACallFailover.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="false">
+                            <cats:storyPath>voice_GG/ui/Failover/IACallOnGoingFailover.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/Failover/MissionChangeFailover.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/Failover/LSPStateFailover.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyStatistics/>
+                            <cats:storyDataList/>
+                        </cats:story>
+                    </cats:stories>
+                    <cats:timeout>3600</cats:timeout>
                 </cats:storyList>
             </cats:storyLists>
         </cats:storyCollection>

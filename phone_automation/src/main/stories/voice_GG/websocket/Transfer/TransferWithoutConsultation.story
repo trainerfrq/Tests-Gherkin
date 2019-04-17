@@ -84,7 +84,6 @@ When WS3 answers the incoming phone call with the callId transferCallId2
 And waiting for 1 seconds
 Then WS3 receives call status indication on message buffer named CallStatusIndicationBuffer3 with callId transferCallId2 and status connected
 And WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId transferCallId1 and status connected
-Then WS3 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer3 with callId incomingPhoneCallId2 and status terminated
 
 Scenario: Cleanup call
 When WS2 clears the phone call with the callId transferCallId1
