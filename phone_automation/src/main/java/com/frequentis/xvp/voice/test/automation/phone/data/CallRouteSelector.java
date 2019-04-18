@@ -17,38 +17,49 @@ public class CallRouteSelector extends CatsCustomParameterBase implements Serial
    @CatsCustomParameter
    private String pattern;
 
-   public String getId() {
-      return id;
+
+   public String getId()
+   {
+      return this.id;
    }
 
-   public void setId(final String id) {
+
+   public void setId( final String id )
+   {
       this.id = id;
    }
 
-   public String getName() {
-      return name;
+
+   public String getName()
+   {
+      return this.name;
    }
 
-   public void setName(final String name) {
+
+   public void setName( final String name )
+   {
       this.name = name;
    }
 
-   public String getPattern() {
-      return pattern;
+
+   public String getPattern()
+   {
+      return this.pattern;
    }
 
-   public void setPattern(final String pattern) {
+
+   public void setPattern( final String pattern )
+   {
       this.pattern = pattern;
    }
 
+
    @Override
-   public String toString() {
-      return "CallRouteSelector{"
-             + " id='" + id + '\''
-             + ", name='" + name + '\''
-             + ", pattern='" + pattern + '\''
-             + '}'
-             +'\n' ;
+   public String toString()
+   {
+      return "CallRouteSelector{" + " id='" + this.id + '\'' + ", name='" + this.name + '\'' + ", pattern='"
+            + this.pattern + '\'' + '}' + '\n';
+
    }
 
 }

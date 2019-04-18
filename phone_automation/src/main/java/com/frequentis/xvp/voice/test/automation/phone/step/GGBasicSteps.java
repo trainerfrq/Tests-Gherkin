@@ -5,6 +5,28 @@
  */
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import static com.frequentis.c4i.test.model.MatcherDetails.match;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
+
 import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
@@ -31,6 +53,8 @@ import com.frequentis.xvp.voice.opvoice.json.messages.payload.missions.MissionCh
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallAcceptRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallClearRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallEstablishRequest;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallForwardCancelRequest;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallForwardRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallHoldRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallIncomingConfirmation;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallRetrieveRequest;
@@ -343,6 +367,13 @@ public class GGBasicSteps extends WebsocketAutomationSteps
    {
       establishOutgoingCall( namedWebSocket, callSourceName, callTargetName, phoneCallIdName, "IA", null,
             CallStatusIndication.OUT_INITIATING, null );
+   }
+
+
+   @When("$namedWebSocket sends a call forward request to another operator with $callTargetName")
+   public void configureCallForward( final String namedWebSocket, final String callTargetName )
+   {
+      sendCallForwardRequest( namedWebSocket, callTargetName );
    }
 
 
@@ -797,7 +828,40 @@ public class GGBasicSteps extends WebsocketAutomationSteps
          layout.add( jsonWidgetElement.getGrid() );
          layout.add( jsonWidgetElement.getType().toString() );
       }
-      setStoryListData( response, layout.toString() );
+      setStoryListData( response, layout.toString());
+   }
+
+
+   @Then("$namedWebSocket receives a call forward status on message buffer named $bufferName with status $callForwardStatus")
+   public void receiveCallForwardStatus( final String namedWebSocket, final String bufferName,
+         final String callForwardStatus )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      final RemoteStepResult remoteStepResult =
+            evaluate(
+                  remoteStep( "Receiving call forward status on buffer named " + bufferName )
+                        .scriptOn( profileScriptResolver().map( ReceiveLastReceivedMessage.class,
+                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                        .input( ReceiveLastReceivedMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                        .input( ReceiveLastReceivedMessage.IPARAM_BUFFERKEY, bufferName ) );
+
+      final String jsonResponse =
+            ( String ) remoteStepResult.getOutput( ReceiveLastReceivedMessage.OPARAM_RECEIVEDMESSAGE );
+      final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
+
+      evaluate( localStep( "Verify status in call forward status" )
+            .details( match( "Is call forward status", jsonMessage.body().isCallForwardStatus(), equalTo( true ) ) )
+            .details( match( "Call forward status " + callForwardStatus,
+                  jsonMessage.body().callForwardStatus().getStatus(), equalTo( callForwardStatus ) ) ) );
+   }
+
+
+   @When("$namedWebSocket sends a call forward cancel request")
+   public void sendCallForwardCancelRequest( final String namedWebSocket )
+   {
+      sendCallForwardCancel( namedWebSocket );
    }
 
 
@@ -987,5 +1051,73 @@ public class GGBasicSteps extends WebsocketAutomationSteps
                   equalTo( callStatus ) ) ) );
 
       setStoryListData( phoneCallIdName, jsonMessage.body().callEstablishResponse().getCallId() );
+   }
+
+
+   private void sendCallForwardRequest( final String namedWebSocket, final String callTargetName )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      final String forwardParty = getStoryData( callTargetName, String.class );
+
+      final Integer transactionId = new Integer( 1234 );
+
+      final CallForwardRequest callForwardRequest = new CallForwardRequest( transactionId, forwardParty );
+      final JsonMessage request =
+            new JsonMessage.Builder().withCorrelationId( UUID.randomUUID() ).withPayload( callForwardRequest ).build();
+
+      final RemoteStepResult remoteStepResult =
+            evaluate(
+                  remoteStep( "Establishing call forward to " + forwardParty )
+                        .scriptOn( profileScriptResolver().map( SendAndReceiveTextMessage.class,
+                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                        .input( SendAndReceiveTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                        .input( SendAndReceiveTextMessage.IPARAM_RESPONSETYPE, "callForwardConfirmation" )
+                        .input( SendAndReceiveTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
+
+      final String jsonResponse =
+            ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
+      assertThatCallForwardConfirmationWasReceived( transactionId, jsonResponse );
+   }
+
+
+   private void sendCallForwardCancel( final String namedWebSocket )
+   {
+      final ProfileToWebSocketConfigurationReference reference =
+            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+      final Integer transactionId = new Integer( 1234 );
+      final CallForwardCancelRequest callForwardCancelRequest = new CallForwardCancelRequest( transactionId );
+      final JsonMessage request = new JsonMessage.Builder().withPayload( callForwardCancelRequest ).build();
+
+      final RemoteStepResult remoteStepResult =
+            evaluate(
+                  remoteStep( "Establishing call forward cancel" )
+                        .scriptOn( profileScriptResolver().map( SendAndReceiveTextMessage.class,
+                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                        .input( SendAndReceiveTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                        .input( SendAndReceiveTextMessage.IPARAM_RESPONSETYPE, "callForwardCancelConfirmation" )
+                        .input( SendAndReceiveTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
+
+      final String jsonResponse =
+            ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
+
+      final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
+      evaluate( localStep( "Received call forward cancel confirmation response" )
+            .details( match( "Is call forward cancel confirmation response ",
+                  jsonMessage.body().isCallForwardCancelConfirmation(), equalTo( true ) ) ) );
+   }
+
+
+   private void assertThatCallForwardConfirmationWasReceived( final Integer transactionId, final String jsonResponse )
+   {
+      final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
+
+      evaluate( localStep( "Received call forward response" )
+            .details( match( "Is call forward confirmation response", jsonMessage.body().isCallForwardConfirmation(),
+                  equalTo( true ) ) )
+            .details( match( "Transaction id is " + transactionId,
+                  jsonMessage.body().callForwardConfirmation().getTransactionId(), equalTo( transactionId ) ) ) );
    }
 }
