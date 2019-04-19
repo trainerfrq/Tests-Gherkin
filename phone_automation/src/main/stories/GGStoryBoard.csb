@@ -521,7 +521,7 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/websocket/DACalls/CallForward.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/websocket/CallForward/CallForward.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyStatistics/>
                             <cats:storyDataList/>
