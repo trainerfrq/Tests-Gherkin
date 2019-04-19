@@ -154,10 +154,10 @@
           "type": "function",
           "grid": "applicationGrid",
           "position": {
-              "column": "0",
-              "row": "16",
-              "columnSpan": "1",
-              "rowSpan": "2"
+            "column": "0",
+            "row": "16",
+            "columnSpan": "1",
+            "rowSpan": "2"
           }
         },
         {
@@ -316,31 +316,6 @@
           }
         }
       ]
-    },
-    "settingData": {
-      "missionSettings": {
-        "soundSettings": {
-          "keyClickTone": "input_02.wav",
-          "maxChimeVolume": 100,
-          "maxUserInputVolume": 100,
-          "minChimeVolume": 0,
-          "minUserInputVolume": 0,
-          "priorityCallConfiguration": {
-            "audio": "default_priority_chime",
-            "pause": 2,
-            "repetition": 0
-          },
-          "standardCallConfiguration": {
-            "audio": "chime_02.wav",
-            "pause": 2,
-            "repetition": 2
-          },
-          "swipeTone": "input_03.wav"
-        },
-        "timeoutSettings": {
-          "cleanPanelModeCallTimeout": 20
-        }
-      }
     }
   },
   {
@@ -693,31 +668,6 @@
           }
         }
       ]
-    },
-    "settingData": {
-      "missionSettings": {
-        "soundSettings": {
-          "keyClickTone": "input_02.wav",
-          "maxChimeVolume": 100,
-          "maxUserInputVolume": 100,
-          "minChimeVolume": 0,
-          "minUserInputVolume": 0,
-          "priorityCallConfiguration": {
-            "audio": "default_priority_chime",
-            "pause": 2,
-            "repetition": 0
-          },
-          "standardCallConfiguration": {
-            "audio": "chime_02.wav",
-            "pause": 2,
-            "repetition": 2
-          },
-          "swipeTone": "input_03.wav"
-        },
-        "timeoutSettings": {
-          "cleanPanelModeCallTimeout": 20
-        }
-      }
     }
   }
 ]
