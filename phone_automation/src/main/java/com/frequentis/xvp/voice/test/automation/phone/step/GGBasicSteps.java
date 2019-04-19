@@ -1059,7 +1059,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
 
-      final String forwardParty = getStoryData( callTargetName, String.class );
+      final String forwardParty = getStoryListData( callTargetName, String.class );
 
       final Integer transactionId = new Integer( 1234 );
 
