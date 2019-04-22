@@ -26,6 +26,7 @@ import org.jbehave.core.annotations.Aliases;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+import scripts.cats.hmi.actions.CallQueue.CleanUpCallQueue;
 import scripts.cats.hmi.actions.CallQueue.ClickCallQueueElementsList;
 import scripts.cats.hmi.actions.CallQueue.ClickCallQueueItem;
 import scripts.cats.hmi.actions.CallQueue.ClickOnCallQueueInfoContainer;
@@ -445,6 +446,18 @@ public class CallQueueUISteps extends AutomationSteps
               .input( VerifyMenuButtonFirstCallQueueItemIsVisible.IPARAM_MENU_BUTTON_ID, TRANSFER_MENU_BUTTON_ID )
               .input( VerifyMenuButtonFirstCallQueueItemIsVisible.IPARAM_LIST_NAME, ACTIVE_LIST_NAME )
               . input(VerifyMenuButtonFirstCallQueueItemIsVisible.IPARAM_IS_VISIBLE, isVisible));
+   }
+
+   @Then("$profileName cleans the call queue item $callQueueItem from the call queue list $callQueueItemList")
+   public void cleanUpCallQueueItem( final String profileName, final String namedCallQueueItem, final String callQueueItemList )
+   {
+      CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
+
+      evaluate( remoteStep( "Click call queue item" )
+              .scriptOn( profileScriptResolver().map( CleanUpCallQueue.class, BookableProfileName.javafx ),
+                      assertProfile( profileName ) )
+              .input( CleanUpCallQueue.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
+              .input(CleanUpCallQueue.IPARAM_LIST_NAME, callQueueItemList));
    }
 
 

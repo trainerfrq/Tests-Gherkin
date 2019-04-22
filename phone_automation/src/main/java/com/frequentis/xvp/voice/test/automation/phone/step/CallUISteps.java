@@ -16,13 +16,6 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import java.util.List;
-
-import org.jbehave.core.annotations.Alias;
-import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
-
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.model.ExecutionDetails;
@@ -30,11 +23,15 @@ import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
 import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
 import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
-
+import org.jbehave.core.annotations.Alias;
+import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
+import scripts.cats.hmi.actions.CallHistory.ClickOnCallHistoryCallButton;
+import scripts.cats.hmi.actions.CleanUpFunctionKey;
 import scripts.cats.hmi.actions.ClickDAButton;
 import scripts.cats.hmi.actions.ClickFunctionKey;
 import scripts.cats.hmi.actions.DragAndClickOnMenuButtonDAKey;
-import scripts.cats.hmi.actions.CallHistory.ClickOnCallHistoryCallButton;
 import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookCallButton;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonState;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonUsageNotReady;
@@ -273,6 +270,17 @@ public class CallUISteps extends AutomationSteps {
                         BookableProfileName.javafx ), assertProfile( profileName ) )
                 .input( DragAndClickOnMenuButtonDAKey.IPARAM_MENU_BUTTON_ID, CONFERENCE_MENU_BUTTON_ID )
                 .input( DragAndClickOnMenuButtonDAKey.IPARAM_DA_KEY_ID, daKey.getId() ) );
+    }
+
+    @Then("$profileName does a clean up for function key $key if the state is $state")
+    public void cleanUpFunctionKey(final String profileName, final String target, final String state) {
+        FunctionKey key = retrieveFunctionKey(target);
+
+        evaluate( remoteStep( "Verify operator position has the "+ target +" key in " + state + " state" )
+                .scriptOn(profileScriptResolver().map( CleanUpFunctionKey.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input( CleanUpFunctionKey.IPARAM_FUNCTION_KEY_ID, key.getId() )
+                .input( CleanUpFunctionKey.IPARAM_KEY_STATE, state + "State" ) );
     }
 
     private DAKey retrieveDaKey(final String source, final String target) {

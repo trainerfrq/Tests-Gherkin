@@ -23,11 +23,11 @@ import org.jbehave.core.annotations.When;
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 
-import scripts.cats.hmi.actions.ClickActivateMission;
-import scripts.cats.hmi.actions.ClickMissionCloseButton;
-import scripts.cats.hmi.actions.ClickMissionLabel;
-import scripts.cats.hmi.actions.SelectMissionFromList;
-import scripts.cats.hmi.actions.SelectMissionFromListByPosition;
+import scripts.cats.hmi.actions.Mission.ClickActivateMission;
+import scripts.cats.hmi.actions.Mission.ClickMissionCloseButton;
+import scripts.cats.hmi.actions.Mission.ClickMissionLabel;
+import scripts.cats.hmi.actions.Mission.SelectMissionFromList;
+import scripts.cats.hmi.actions.Mission.SelectMissionFromListByPosition;
 import scripts.cats.hmi.asserts.VerifyMissionList;
 import scripts.cats.hmi.asserts.VerifyStatusDisplay;
 

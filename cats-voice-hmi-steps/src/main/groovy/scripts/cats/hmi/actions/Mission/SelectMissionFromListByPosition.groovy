@@ -1,4 +1,4 @@
-package scripts.cats.hmi.actions
+package scripts.cats.hmi.actions.Mission
 
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
