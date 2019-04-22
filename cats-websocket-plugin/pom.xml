@@ -3,7 +3,7 @@
     <parent>
         <groupId>com.frequentis.xvp.voice.phone</groupId>
         <artifactId>phone-test-automation</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
+        <version>0.2.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -19,7 +19,6 @@
 
     <properties>
         <lib.dir>${project.artifactId}-${project.version}/${project.artifactId}/${project.version}/lib</lib.dir>
-        <voice.service.interface.version>0.129.0-SNAPSHOT</voice.service.interface.version>
     </properties>
 
 
@@ -115,10 +114,10 @@
                             <target>
                                 <delete>
                                     <fileset dir="${project.build.directory}/${lib.dir}" id="also-in-platform">
-                                        <present targetdir="${project.build.directory}/${lib.dir}/platform"/>
+                                        <present targetdir="${project.build.directory}/${lib.dir}/platform" />
                                     </fileset>
                                 </delete>
-                                <delete dir="${project.build.directory}/${lib.dir}/platform/"/>
+                                <delete dir="${project.build.directory}/${lib.dir}/platform/" />
                             </target>
                         </configuration>
                         <goals>
@@ -178,5 +177,3 @@
         </dependency>
     </dependencies>
 </project>
-
-
