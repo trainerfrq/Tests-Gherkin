@@ -73,5 +73,9 @@
             <groupId>com.frequentis.c4i.test</groupId>
             <artifactId>cats-case-officer-support</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.frequentis.c4i.test</groupId>
+            <artifactId>cats-case-officer-component</artifactId>
+        </dependency>
     </dependencies>
 </project>
