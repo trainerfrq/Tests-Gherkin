@@ -1,6 +1,6 @@
 {
   "sipProxy": {
-    "opSipProxyHost": "192.168.40.119",
+    "opSipProxyHost": "192.168.40.132",
     "opSipProxyListeningPort": 5060
   },
   "conferencer": {
