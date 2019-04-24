@@ -15,6 +15,15 @@ class CleanUpPopupWindow extends FxScriptTemplate {
 
         Node requestedPopup = robot.lookup("#"+ popupName +"Popup").queryFirst()
         Node closePopupButton = robot.lookup("#"+ popupName +"Popup #closePopupButton").queryFirst()
+        Node parentNode = requestedPopup.getParent();
+        Set<Node> setNodes = robot.fromAll().queryAll()
+
+        evaluate(ExecutionDetails.create("all nodes")
+                .expected("all nodes"+parentNode.toString())
+                .success(true))
+        evaluate(ExecutionDetails.create("all nodes")
+                .expected("all nodes"+setNodes.toString())
+                .success(true))
 
         if (requestedPopup == null) {
             evaluate(ExecutionDetails.create("Popup window was not found")
