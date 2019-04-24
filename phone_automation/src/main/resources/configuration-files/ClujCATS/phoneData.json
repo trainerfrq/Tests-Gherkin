@@ -1,6 +1,6 @@
 {
   "sipProxy": {
-    "opSipProxyHost": "192.168.40.119",
+    "opSipProxyHost": "192.168.40.132",
     "opSipProxyListeningPort": 5060
   },
   "conferencer": {
@@ -12,7 +12,7 @@
     "cj-gg-cat-cwp-1": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "192.168.40.126",
+          "opPhysicalHost": "192.168.40.131",
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",
@@ -24,7 +24,7 @@
     "cj-gg-cat-cwp-2": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "192.168.40.127",
+          "opPhysicalHost": "192.168.40.133",
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",
@@ -36,7 +36,7 @@
     "cj-gg-cat-cwp-3": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "192.168.40.128",
+          "opPhysicalHost": "192.168.40.134",
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",
