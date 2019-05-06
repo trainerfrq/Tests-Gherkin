@@ -221,11 +221,18 @@ public class CallUISteps extends AutomationSteps {
    public void verifyForwardState(final String profileName, final String target, final String state) {
       FunctionKey key = retrieveFunctionKey(target);
 
+      String stateParam = state;
+
+      if (!state.equals( "active" ))
+      {
+         stateParam = state + "State";
+      }
+
       evaluate( remoteStep( "Verify operator position has the "+ target +" key in " + state + " state" )
             .scriptOn(profileScriptResolver().map( VerifyCallForwardState.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
             .input( VerifyCallForwardState.IPARAM_KEY_ID, key.getId() )
-            .input( VerifyCallForwardState.IPARAM_KEY_STATE, state + "State" ) );
+            .input( VerifyCallForwardState.IPARAM_KEY_STATE, stateParam ) );
    }
 
    @Then("$profileName has the function key $functionKey label $label")

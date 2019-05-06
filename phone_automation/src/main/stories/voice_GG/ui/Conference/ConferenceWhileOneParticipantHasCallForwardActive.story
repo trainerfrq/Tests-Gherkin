@@ -30,7 +30,7 @@ When HMI OP1 presses function key CALLFORWARD
 When HMI OP1 presses function key PHONEBOOK
 When HMI OP1 selects phonebook entry number: 2
 When HMI OP1 activates call forward from phonebook
-Then HMI OP1 has the function key CALLFORWARD in forwardActive state
+Then HMI OP1 has the function key CALLFORWARD in active state
 
 Scenario: Op2 establishes an outgoing call
 When HMI OP2 presses DA key OP3
