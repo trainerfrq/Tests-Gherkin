@@ -2,8 +2,8 @@ Scenario: Connect to deploymentServer
 Given SSH connections:
 | name             | remote-address       | remotePort | username | password  |
 | deploymentServer | <<DEP_SERVER_IP>>    | 22         | root     | !frqAdmin |
-| dockerHost1      | <<OPVOICE_HOST1_IP>> | 22         | root     | !frqAdmin |
-| dockerHost2      | <<OPVOICE_HOST2_IP>> | 22         | root     | !frqAdmin |
+| dockerHost2      | <<OPVOICE_HOST1_IP>> | 22         | root     | !frqAdmin |
+| dockerHost1      | <<OPVOICE_HOST2_IP>> | 22         | root     | !frqAdmin |
 | catsMaster       | <<CATS_MASTER_IP>>   | 22         | root     | !frqAdmin |
 
 Scenario: Stop running Op Voice Services
