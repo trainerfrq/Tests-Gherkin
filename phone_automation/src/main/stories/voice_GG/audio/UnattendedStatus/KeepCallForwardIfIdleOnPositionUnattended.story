@@ -37,7 +37,7 @@ Then HMI OP1 has the function key CALLFORWARD in forwardOngoing state
 
 Scenario: Op1 chooses Op2 as call forward target
 When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 has the function key CALLFORWARD in forwardActive state
+Then HMI OP1 has the function key CALLFORWARD in active state
 Then HMI OP1 verifies that call queue info container is visible
 
 Scenario: Disconnect headsets for Operator 1
@@ -64,7 +64,7 @@ Then HMI OP1 verifies that idle popup contains the text: Connect a handset or he
 
 Scenario: Check if call forward state is still active
 		  @REQUIREMENTS:GID-2926857
-Then HMI OP1 has the function key CALLFORWARD in forwardActive state
+Then HMI OP1 has the function key CALLFORWARD in active state
 Then HMI OP1 verifies that call queue info container is visible
 
 Scenario: Op3 establishes a call towards Op1
@@ -82,7 +82,7 @@ Then WS1 sends changed event request - connect headsets
 
 Scenario: Check if call forward state is still active
 		  @REQUIREMENTS:GID-2926857
-Then HMI OP1 has the function key CALLFORWARD in forwardActive state
+Then HMI OP1 has the function key CALLFORWARD in active state
 Then HMI OP1 verifies that call queue info container is visible
 
 Scenario: Verify that Op1 can establish calls again

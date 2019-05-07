@@ -5,7 +5,7 @@
   },
   "conferencer": {
     "conferencerFactoryUser": "conf",
-    "conferencerFactoryHost": "192.168.100.157",
+    "conferencerFactoryHost": "192.168.100.159",
     "conferencerFactoryListeningPort": 5060
   },
   "hostSpecificConfigurationMap": {
