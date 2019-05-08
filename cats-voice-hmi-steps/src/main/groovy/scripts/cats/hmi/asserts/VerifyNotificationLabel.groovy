@@ -31,7 +31,8 @@ class VerifyNotificationLabel extends FxScriptTemplate {
             evaluate(ExecutionDetails.create("Notification label displays the expected message")
                     .received("Received text is: " + textDisplay)
                     .expected("Expected text is: " + text)
-                    .success(notificationLabel.textProperty().getValue().equals(text)));
+                    .success(notificationLabel.textProperty().getValue().contains(text)));
+            //using "contains" instead of "equals" since this notification label can contain more then one notification at the time
         }
     }
 }

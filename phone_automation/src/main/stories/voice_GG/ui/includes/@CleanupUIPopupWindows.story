@@ -6,25 +6,10 @@ Given booked profiles:
 | javafx  | hmi   | <<CLIENT3_IP>> | HMI OP3    |
 
 Scenario: OP1 closes all popup windows if they are still open
-Then HMI OP1 does a clean up by closing callHistory window
-Then HMI OP1 does a clean up by closing mission window
-Then HMI OP1 does a clean up by closing phonebook window
-Then HMI OP1 does a clean up by closing conferenceList window
-Then HMI OP1 does a clean up by closing maintenance window
-Then HMI OP1 does a clean up by closing settings window
+Then if HMI OP1 has notification Conference call active it does a clean up by closing conferenceList window
 
 Scenario: OP2 closes all popup windows if they are still open
-Then HMI OP2 does a clean up by closing callHistory window
-Then HMI OP2 does a clean up by closing mission window
-Then HMI OP2 does a clean up by closing phonebook window
-Then HMI OP2 does a clean up by closing conferenceList window
-Then HMI OP2 does a clean up by closing maintenance window
-Then HMI OP2 does a clean up by closing settings window
+Then if HMI OP2 has notification Conference call active it does a clean up by closing conferenceList window
 
 Scenario: OP3 closes all popup windows if they are still open
-Then HMI OP3 does a clean up by closing callHistory window
-Then HMI OP3 does a clean up by closing mission window
-Then HMI OP3 does a clean up by closing phonebook window
-Then HMI OP3 does a clean up by closing conferenceList window
-Then HMI OP3 does a clean up by closing maintenance window
-Then HMI OP3 does a clean up by closing settings window
+Then if HMI OP3 has notification Conference call active it does a clean up by closing conferenceList window

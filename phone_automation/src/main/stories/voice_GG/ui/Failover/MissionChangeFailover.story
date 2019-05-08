@@ -25,13 +25,13 @@ Scenario: Verify operator mission
 Then HMI OP1 has in the display status section mission the assigned mission WEST-EXEC
 
 Scenario: Verify displayed status after stopping and starting op voice instances from one partition
-GivenStories: voice_GG/includes/StopStartOpVoiceActiveOnDockerHost1.story
+GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost1.story
 Then waiting for 60 seconds
 Then HMI OP1 has in the display status section connection the state CONNECTED
 
 Scenario: Verify displayed status after the stopping the op voice instances from one partition
 		  @REQUIREMENTS:GID-4034511
-GivenStories: voice_GG/includes/StopOpVoiceActiveOnDockerHost2.story
+GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost2.story
 When HMI OP1 verifies that loading screen is visible
 Then HMI OP1 has in the display status section connection the state DEGRADED
 

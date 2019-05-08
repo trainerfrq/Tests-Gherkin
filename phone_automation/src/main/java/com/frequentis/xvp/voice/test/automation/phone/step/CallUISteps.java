@@ -37,7 +37,7 @@ import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonState;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonUsageNotReady;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonUsageReady;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAKeyLabel;
-import scripts.cats.hmi.asserts.VerifyCallForwardState;
+import scripts.cats.hmi.asserts.VerifyFunctionKeyState;
 import scripts.cats.hmi.asserts.VerifyFunctionKeyLabel;
 
 import java.util.List;
@@ -229,10 +229,10 @@ public class CallUISteps extends AutomationSteps {
       }
 
       evaluate( remoteStep( "Verify operator position has the "+ target +" key in " + state + " state" )
-            .scriptOn(profileScriptResolver().map( VerifyCallForwardState.class, BookableProfileName.javafx ),
+            .scriptOn(profileScriptResolver().map( VerifyFunctionKeyState.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
-            .input( VerifyCallForwardState.IPARAM_KEY_ID, key.getId() )
-            .input( VerifyCallForwardState.IPARAM_KEY_STATE, stateParam ) );
+            .input( VerifyFunctionKeyState.IPARAM_KEY_ID, key.getId() )
+            .input( VerifyFunctionKeyState.IPARAM_KEY_STATE, stateParam ) );
    }
 
    @Then("$profileName has the function key $functionKey label $label")

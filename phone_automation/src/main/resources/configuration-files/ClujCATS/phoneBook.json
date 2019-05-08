@@ -7,7 +7,7 @@
     "notes": "This is the physical identity of the first operating position",
     "dataSets": [
       {
-        "destination": "sip:111111@192.168.40.131:5060"
+        "destination": "sip:111111@192.168.40.126:5060"
       }
     ]
   },
@@ -31,7 +31,7 @@
     "notes": "Language - English",
     "dataSets": [
       {
-        "destination": "sip:op3@192.168.40.134:5060",
+        "destination": "sip:op3@192.168.40.128:5060",
         "displayAddon": "Ground2Ground"
       }
     ]
@@ -74,7 +74,7 @@
     "notes": "Language - German",
     "dataSets": [
       {
-        "destination": "sip:222222@192.168.40.129:5060",
+        "destination": "sip:222222@192.168.40.127:5060",
         "displayAddon": "Local"
       }
     ]

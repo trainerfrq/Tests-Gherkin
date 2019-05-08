@@ -53,12 +53,13 @@ public class GGBasicUISteps extends AutomationSteps
               .input(ClickContainerTab.IPARAM_TAB_POSITION, tabPosition-1));
    }
 
-   @Then("$profileName does a clean up by closing $popupName window")
-   public void cleaUpClosePopup( final String profileName, final String popupName )
+   @Then("if $profileName has notification $text it does a clean up by closing $popupName window")
+   public void cleaUpClosePopup( final String profileName, final String text, final String popupName )
    {
       evaluate( remoteStep( "ClickOnCloseButton" ).scriptOn(
               profileScriptResolver().map( CleanUpPopupWindow.class, BookableProfileName.javafx ),
               assertProfile( profileName ) )
+              .input( CleanUpPopupWindow.IPARAM_NOTIFICATION_LABEL_TEXT, text)
               .input( CleanUpPopupWindow.IPARAM_POPUP_NAME, popupName ) );
    }
 

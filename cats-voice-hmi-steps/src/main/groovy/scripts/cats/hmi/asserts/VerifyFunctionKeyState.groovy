@@ -9,7 +9,7 @@ import javafx.css.PseudoClass
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class VerifyCallForwardState extends FxScriptTemplate {
+class VerifyFunctionKeyState extends FxScriptTemplate {
 
     public static final String IPARAM_KEY_ID = "key_id"
     public static final String IPARAM_KEY_STATE = "key_state"
