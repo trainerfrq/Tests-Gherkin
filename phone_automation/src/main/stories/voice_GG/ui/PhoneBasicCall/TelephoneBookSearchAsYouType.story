@@ -21,7 +21,7 @@ Then HMI OP1 verifies that phone book call button is disabled
 Then HMI OP1 verify that call route selector shows Default
 
 Scenario: Caller does several searches in the phone book
-		  @REQUIREMENTS:GID-2985359
+		  @REQUIREMENTS:3003014
 When HMI OP1 writes in phonebook text box: op
 Then HMI OP1 verifies that all phonebook entries have text op highlighted
 Then HMI OP1 verifies that phonebook list has 2 items

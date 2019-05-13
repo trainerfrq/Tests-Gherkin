@@ -57,6 +57,7 @@ Scenario: Caller opens call history
 When HMI OP2 presses function key CALLHISTORY
 
 Scenario: Caller verifies that the call history list still has 100 entries
+		  @REQUIREMENTS:GID-2600304
 Then HMI OP2 verifies that call history list contains 100 entries
 
 Scenario: Caller verifies that the last call is in call history list
@@ -64,6 +65,7 @@ When HMI OP2 selects call history list entry number: 0
 Then HMI OP2 verifies that call history call button has label OP3
 
 Scenario: Caller clears call history list
+		  @REQUIREMENTS:GID-4695014
 Then HMI OP2 clears Call History list
 Then HMI OP2 verifies that call history list contains 0 entries
 Then HMI OP2 closes Call History popup window

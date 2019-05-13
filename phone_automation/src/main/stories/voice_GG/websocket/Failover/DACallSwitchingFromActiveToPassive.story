@@ -20,6 +20,7 @@ Given named the websocket configurations:
 | WS_Config-4 | <<OPVOICE4_WS.URI>> | 1000             |
 
 Scenario: Open Web Socket Client connections
+		  @REQUIREMENTS:GID-4461959
 When a timer named failoverTimerWS1 is started
 Given it is known what op voice instances are Active, the websocket configuration is applied:
 | key | profile-name | websocket-config-name |
