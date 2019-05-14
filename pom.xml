@@ -58,7 +58,7 @@
       <maven-enforcer-plugin.version>3.0.0-M1</maven-enforcer-plugin.version>
       <fabric8-docker-maven-plugin.version>0.16.8</fabric8-docker-maven-plugin.version>
 
-      <reqpro-trace-importer.version>1.19.1</reqpro-trace-importer.version>
+      <reqpro-trace-importer.version>1.21.0</reqpro-trace-importer.version>
    </properties>
 
     <profiles>

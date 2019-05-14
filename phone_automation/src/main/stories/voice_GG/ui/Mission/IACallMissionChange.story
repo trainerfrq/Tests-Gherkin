@@ -33,7 +33,6 @@ Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify call state for both operators
-		  @REQUIREMENTS: GID-3005111
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
