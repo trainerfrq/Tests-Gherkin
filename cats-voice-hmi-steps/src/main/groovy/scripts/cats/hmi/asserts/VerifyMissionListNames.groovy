@@ -18,13 +18,13 @@ class VerifyMissionListNames extends FxScriptTemplate {
 
         String missionListNames = assertInput(IPARAM_MISSION_LIST_NAMES) as String
 
-        List<String> listNames = Arrays.asList(missionListNames.split("\\s*,\\s*"));
+        List<String> missionNames = Arrays.asList(missionListNames.split("\\s*,\\s*"));
 
         final ListView items = robot.lookup("#missionPopup #missionList").queryFirst()
         evaluate(ExecutionDetails.create("Verify mission list exists")
                 .expected("mission item exists")
                 .success(items != null));
-        for(String missionName : listNames){
+        for(String missionName : missionNames){
             final Node mission = robot.lookup(missionName).queryFirst()
             evaluate(ExecutionDetails.create("Verify mission name exists")
                     .expected("mission name exists in the list")
