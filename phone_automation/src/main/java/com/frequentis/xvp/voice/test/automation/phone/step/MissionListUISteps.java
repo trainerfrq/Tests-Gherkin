@@ -16,19 +16,18 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
+import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-
-import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
-import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
-
 import scripts.cats.hmi.actions.ClickActivateMission;
 import scripts.cats.hmi.actions.ClickMissionCloseButton;
 import scripts.cats.hmi.actions.ClickMissionLabel;
 import scripts.cats.hmi.actions.SelectMissionFromList;
 import scripts.cats.hmi.actions.SelectMissionFromListByPosition;
-import scripts.cats.hmi.asserts.VerifyMissionList;
+import scripts.cats.hmi.asserts.VerifyMissionListNames;
+import scripts.cats.hmi.asserts.VerifyMissionListSize;
 import scripts.cats.hmi.asserts.VerifyStatusDisplay;
 
 public class MissionListUISteps extends AutomationSteps
@@ -50,9 +49,18 @@ public class MissionListUISteps extends AutomationSteps
    public void verifyListofAvailableMissions( final String profileName, final String numberOfMissions )
    {
       evaluate( remoteStep( "Verify that the user has the correct list of missions" )
-            .scriptOn( profileScriptResolver().map( VerifyMissionList.class, BookableProfileName.javafx ),
+            .scriptOn( profileScriptResolver().map( VerifyMissionListSize.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
-            .input( VerifyMissionList.IPARAM_MISSION_LIST_SIZE, numberOfMissions ) );
+            .input( VerifyMissionListSize.IPARAM_MISSION_LIST_SIZE, numberOfMissions ) );
+   }
+
+   @Then("$profileName has missions $missionNames available in the missions list")
+   public void verifyNamesOfAvailableMissions( final String profileName, final String missionNames )
+   {
+      evaluate( remoteStep( "Verify that the user has the correct list of mission names" )
+              .scriptOn( profileScriptResolver().map( VerifyMissionListNames.class, BookableProfileName.javafx ),
+                      assertProfile( profileName ) )
+              .input( VerifyMissionListNames.IPARAM_MISSION_LIST_NAMES, missionNames ) );
    }
 
 
