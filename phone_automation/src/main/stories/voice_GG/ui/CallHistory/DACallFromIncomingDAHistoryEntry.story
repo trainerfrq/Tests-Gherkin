@@ -16,17 +16,11 @@ Given the call queue items:
 | OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
 
 Scenario: OP2 clears call history list
+		  @REQUIREMENTS:GID-4695014
 When HMI OP2 presses function key CALLHISTORY
 Then HMI OP2 clears Call History list
 Then HMI OP2 verifies that call history list contains 0 entries
 Then HMI OP2 closes Call History popup window
-
-Scenario: OP1 clears call history list
-When HMI OP1 presses function key CALLHISTORY
-Then HMI OP1 clears Call History list
-Then HMI OP1 verifies that call history list contains 0 entries
-Then HMI OP1 closes Call History popup window
-
 
 Scenario: OP1 establishes an outgoing call
 When HMI OP1 presses DA key OP2(as OP1)
