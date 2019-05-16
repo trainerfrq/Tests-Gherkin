@@ -287,7 +287,7 @@ public class CallUISteps extends AutomationSteps {
                 .scriptOn(profileScriptResolver().map( CleanUpFunctionKey.class, BookableProfileName.javafx ),
                         assertProfile( profileName ) )
                 .input( CleanUpFunctionKey.IPARAM_FUNCTION_KEY_ID, key.getId() )
-                .input( CleanUpFunctionKey.IPARAM_KEY_STATE, state + "State" ) );
+                .input( CleanUpFunctionKey.IPARAM_KEY_STATE, state ) );
     }
 
     private DAKey retrieveDaKey(final String source, final String target) {

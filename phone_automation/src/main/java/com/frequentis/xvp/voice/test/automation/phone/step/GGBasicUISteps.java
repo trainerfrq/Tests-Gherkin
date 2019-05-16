@@ -20,7 +20,6 @@ import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import scripts.cats.hmi.actions.CleanUpPopupWindow;
 import scripts.cats.hmi.actions.ClickContainerTab;
 import scripts.cats.hmi.asserts.VerifyLoadingOverlayIsVisible;
 import scripts.cats.hmi.asserts.VerifyNotificationLabel;
@@ -51,16 +50,6 @@ public class GGBasicUISteps extends AutomationSteps
               profileScriptResolver().map( ClickContainerTab.class, BookableProfileName.javafx ),
               assertProfile( profileName ) )
               .input(ClickContainerTab.IPARAM_TAB_POSITION, tabPosition-1));
-   }
-
-   @Then("if $profileName has notification $text it does a clean up by closing $popupName window")
-   public void cleaUpClosePopup( final String profileName, final String text, final String popupName )
-   {
-      evaluate( remoteStep( "ClickOnCloseButton" ).scriptOn(
-              profileScriptResolver().map( CleanUpPopupWindow.class, BookableProfileName.javafx ),
-              assertProfile( profileName ) )
-              .input( CleanUpPopupWindow.IPARAM_NOTIFICATION_LABEL_TEXT, text)
-              .input( CleanUpPopupWindow.IPARAM_POPUP_NAME, popupName ) );
    }
 
 }
