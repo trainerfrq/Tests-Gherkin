@@ -1,10 +1,3 @@
-Scenario: Booking profiles
-Given booked profiles:
-| profile | group | host           | identifier |
-| javafx  | hmi   | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi   | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi   | <<CLIENT3_IP>> | HMI OP3    |
-
 Scenario: Define call queue items
 Given the call queue items:
 | key              | source                 | target                 | callType |

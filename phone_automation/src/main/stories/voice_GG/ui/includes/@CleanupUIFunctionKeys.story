@@ -1,10 +1,3 @@
-Scenario: Booking profiles
-Given booked profiles:
-| profile | group | host           | identifier |
-| javafx  | hmi   | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi   | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi   | <<CLIENT3_IP>> | HMI OP3    |
-
 Scenario: OP1 cleans up function keys if needed
 Then HMI OP1 does a clean up for function key PHONEBOOK if the state is active
 Then HMI OP1 does a clean up for function key CALLHISTORY if the state is active
