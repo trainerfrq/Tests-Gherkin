@@ -196,43 +196,8 @@ public class ConfigurationSteps extends AutomationSteps
       }
    }
 
-   @When("using endpoint $endpointUri commit and activate the configuration in path $resourcePath")
-   public void commitAndActivateConfiguration( final String endpointUri, final String resourcePath ) throws Throwable
-   {
-      final LocalStep localStep = localStep( "Committing configuration" );
 
-      if ( endpointUri != null )
-      {
-         Response responseCommit =
-                 getConfigurationItemsWebTarget( endpointUri + "configurations/commit" )
-                         .request( MediaType.APPLICATION_JSON ).post( Entity
-                         .json( "{\"name\": \"CATS configuration\",  \"comments\": \"CATS test configuration\"}" ) );
-         final String responseBody = responseCommit.readEntity( String.class );
-         localStep.details( ExecutionDetails.create( "Executed POST request! " ).expected( "200, 201" )
-                 .received( Integer.toString( responseCommit.getStatus() ) ).receivedData( "response", responseBody )
-                 .success( requestWithSuccess( responseCommit ) ) );
-
-         final JsonObject jsonObj = new Gson().fromJson( responseBody, JsonObject.class );
-         final String commit = jsonObj.get( "version" ).toString();
-
-         waitForSeconds( 1 );
-
-         Response responseActivate =
-                 getConfigurationItemsWebTarget( endpointUri + resourcePath ).path( commit )
-                         .request( MediaType.APPLICATION_JSON ).post( Entity.text( "" ) );
-         localStep.details( ExecutionDetails.create( "Activated version: " + commit ).expected( "200" )
-                 .received( Integer.toString( responseActivate.getStatus() ) ).success( requestWithSuccess( responseActivate ) ) );
-
-      }
-      else
-      {
-         localStep.details( ExecutionDetails.create( "Executed POST request! " ).expected( "Success" )
-                 .received( "Endpoint is not present", endpointUri != null ).failure() );
-      }
-   }
-
-
-  /* @When("using endpoint $endpointUri commit the configuration and name commit $commitIdName")
+  @When("using endpoint $endpointUri commit the configuration and name commit $commitIdName")
    public void commitConfiguration( final String endpointUri, final String commitIdName ) throws Throwable
    {
       final LocalStep localStep = localStep( "Committing configuration" );
@@ -280,7 +245,7 @@ public class ConfigurationSteps extends AutomationSteps
          localStep.details( ExecutionDetails.create( "Executed POST request! " ).expected( "Success" )
                .received( "Endpoint is not present", endpointUri != null ).failure() );
       }
-   }*/
+   }
 
 
    @When("deleting all previous versions of image descriptors for service $serviceName on endpoint $endpointUri")

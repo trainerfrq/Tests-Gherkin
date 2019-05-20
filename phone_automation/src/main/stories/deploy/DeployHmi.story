@@ -87,11 +87,9 @@ Then adding to layout voice on endpoint <<configurationMngEndpoint>> the followi
 | xvp-voice/voice-hmi-service  | ${voice.hmi.version} | 1          | 0          | 7          | 6           |
 
 Scenario: Commit and activate configuration
-When using endpoint <<configurationMngEndpoint>> commit and activate the configuration in path configurations/activate
-!-- TODO Uncomment steps when CATS is upgraded to 5.4 version
-!-- When using endpoint <<configurationMngEndpoint>> commit the configuration and name commit commitId
-!-- Then waiting for 1 seconds
-!-- When activating commit commitId to endpoint <<configurationMngEndpoint>> and path configurations/activate
+When using endpoint <<configurationMngEndpoint>> commit the configuration and name commit commitId
+Then waiting for 1 seconds
+When activating commit commitId to endpoint <<configurationMngEndpoint>> and path configurations/activate
 Then waiting for 3 seconds
 
 Scenario: Update voice hmi service instances
