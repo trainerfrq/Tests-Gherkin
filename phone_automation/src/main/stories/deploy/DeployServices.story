@@ -67,7 +67,7 @@ And waiting for 5 seconds
 When SSH host hmiHost3 executes docker rm -f $(docker ps -q -a -f name=${PARTITION_KEY_3})
 And waiting for 5 seconds
 
-Scenario: Start servies
+Scenario: Start services
 Then SSH host deploymentServer executes /usr/bin/xvp services deploy --all -g
 And waiting for 30 seconds
 
