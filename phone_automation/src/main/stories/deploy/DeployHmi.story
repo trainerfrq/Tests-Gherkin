@@ -38,8 +38,8 @@ And SSH host hmiHost1 executes sed -i 's/javafx;hmi/javafx\/hmi -DCATS_PUBLIC_IP
 
 Scenario: Open port 5701 used by the CATS hazelcat cluster on host 2
 When the script addToFirewall from /configuration-files/common/ is copied to hmiHost2
-And SSH host hmiHost1 executes chmod +x addToFirewall.sh
-And SSH host hmiHost1 executes ./addToFirewall.sh catsHazelcast 5701
+And SSH host hmiHost2 executes chmod +x addToFirewall.sh
+And SSH host hmiHost2 executes ./addToFirewall.sh catsHazelcast 5701
 
 Scenario: Start provision agent on host 2
 !-- Remove exited container that could be previous provision agent containers
@@ -57,8 +57,8 @@ And SSH host hmiHost2 executes sed -i 's/javafx;hmi/javafx\/hmi -DCATS_PUBLIC_IP
 
 Scenario: Open port 5701 used by the CATS hazelcat cluster on host 3
 When the script addToFirewall from /configuration-files/common/ is copied to hmiHost3
-And SSH host hmiHost1 executes chmod +x addToFirewall.sh
-And SSH host hmiHost1 executes ./addToFirewall.sh catsHazelcast 5701
+And SSH host hmiHost2 executes chmod +x addToFirewall.sh
+And SSH host hmiHost2 executes ./addToFirewall.sh catsHazelcast 5701
 
 Scenario: Start provision agent on host 3
 !-- Remove exited container that could be previous provision agent containers
