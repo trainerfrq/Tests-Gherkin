@@ -10,24 +10,24 @@
        <join>
           <multicast enabled="false"/>
           <tcp-ip enabled="true">
-             <member>192.168.100.10:5701</member>
-             <member>192.168.100.13:5701</member>
-             <member>10.31.205.90:5701</member>
-             <member>10.31.205.97:5701</member>
-             <member>10.31.205.94:5701</member>
-             <member>10.31.205.95:5701</member>
-             <member>10.31.205.96:5701</member>
-             <member>10.31.205.92:5701</member>
-             <member>10.17.15.47:5701</member>
-             <member>10.17.15.44:5701</member>
-             <member>10.17.15.45:5701</member>
-             <member>10.17.15.46:5701</member>
-             <member>10.17.15.48:5701</member>
-             <member>10.31.205.11:5701</member>
-             <member>10.31.205.12:5701</member>
-             <member>10.31.205.14:5701</member>
-             <member>10.31.205.15:5701</member>
-             <member>10.31.205.16:5701</member>
+             <member>192.168.100.10:${CATS_HAZELCAST_PORT}</member>
+             <member>192.168.100.13:${CATS_HAZELCAST_PORT}</member>
+             <member>10.31.205.90:${CATS_HAZELCAST_PORT}</member>
+             <member>10.31.205.97:${CATS_HAZELCAST_PORT}</member>
+             <member>10.31.205.94:${CATS_HAZELCAST_PORT}</member>
+             <member>10.31.205.95:${CATS_HAZELCAST_PORT}</member>
+             <member>10.31.205.96:${CATS_HAZELCAST_PORT}</member>
+             <member>10.31.205.92:${CATS_HAZELCAST_PORT}</member>
+             <member>10.17.15.47:${CATS_HAZELCAST_PORT}</member>
+             <member>10.17.15.44:${CATS_HAZELCAST_PORT}</member>
+             <member>10.17.15.45:${CATS_HAZELCAST_PORT}</member>
+             <member>10.17.15.46:${CATS_HAZELCAST_PORT}</member>
+             <member>10.17.15.48:${CATS_HAZELCAST_PORT}</member>
+             <member>10.31.205.11:${CATS_HAZELCAST_PORT}</member>
+             <member>10.31.205.12:${CATS_HAZELCAST_PORT}</member>
+             <member>10.31.205.14:${CATS_HAZELCAST_PORT}</member>
+             <member>10.31.205.15:${CATS_HAZELCAST_PORT}</member>
+             <member>10.31.205.16:${CATS_HAZELCAST_PORT}</member>
           </tcp-ip>
        </join>
     </network>
