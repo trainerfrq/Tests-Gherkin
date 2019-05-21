@@ -17,10 +17,15 @@ And waiting for 5 seconds
 When SSH host hmiHost3 executes docker rm -f $(docker ps -q -a -f name=${PARTITION_KEY_3})
 And waiting for 5 seconds
 
+Scenario: Open port 5701 used by the CATS hazelcat cluster on host 1
+When the script addToFirewall from /configuration-files/common/ is copied to hmiHost1
+And SSH host hmiHost1 executes chmod +x addToFirewall.sh
+And SSH host hmiHost1 executes ./addToFirewall.sh catsHazelcast 5701
+
 Scenario: Start provision agent on host 1
 !-- Remove exited container that could be previous provision agent containers
 When SSH host hmiHost1 executes docker rm $(docker ps -q -a -f status=exited)
-And the start provisioning agent script is copied to hmiHost1
+When the script runPA from /configuration-files/<<systemName>>/ is copied to hmiHost1
 And SSH host hmiHost1 executes chmod +x runPA.sh
 And SSH host hmiHost1 executes ./runPA.sh
 Then waiting for 30 seconds
@@ -31,10 +36,15 @@ When SSH host hmiHost1 executes sed -i '/'CATS_PUBLIC_IP'/d' /var/lib/docker/vol
 !-- Add CATS_PUBLIC_IP and CATS_HAZELCAST_PORT environment variables to start.sh script (workaround for ICATS-2611)
 And SSH host hmiHost1 executes sed -i 's/javafx;hmi/javafx\/hmi -DCATS_PUBLIC_IP=${CATS_MASTER_IP} -DCATS_HAZELCAST_PORT=5701/' /var/lib/docker/volumes/sharedVolume/_data/cats/start.sh
 
+Scenario: Open port 5701 used by the CATS hazelcat cluster on host 2
+When the script addToFirewall from /configuration-files/common/ is copied to hmiHost2
+And SSH host hmiHost2 executes chmod +x addToFirewall.sh
+And SSH host hmiHost2 executes ./addToFirewall.sh catsHazelcast 5701
+
 Scenario: Start provision agent on host 2
 !-- Remove exited container that could be previous provision agent containers
 When SSH host hmiHost2 executes docker rm $(docker ps -q -a -f status=exited)
-And the start provisioning agent script is copied to hmiHost2
+When the script runPA from /configuration-files/<<systemName>>/ is copied to hmiHost2
 And SSH host hmiHost2 executes chmod +x runPA.sh
 And SSH host hmiHost2 executes ./runPA.sh
 Then waiting for 30 seconds
@@ -45,10 +55,15 @@ When SSH host hmiHost2 executes sed -i '/'CATS_PUBLIC_IP'/d' /var/lib/docker/vol
 !-- Add CATS_PUBLIC_IP and CATS_HAZELCAST_PORT environment variables to start.sh script (workaround for ICATS-2611)
 And SSH host hmiHost2 executes sed -i 's/javafx;hmi/javafx\/hmi -DCATS_PUBLIC_IP=${CATS_MASTER_IP} -DCATS_HAZELCAST_PORT=5701/' /var/lib/docker/volumes/sharedVolume/_data/cats/start.sh
 
+Scenario: Open port 5701 used by the CATS hazelcat cluster on host 3
+When the script addToFirewall from /configuration-files/common/ is copied to hmiHost3
+And SSH host hmiHost2 executes chmod +x addToFirewall.sh
+And SSH host hmiHost2 executes ./addToFirewall.sh catsHazelcast 5701
+
 Scenario: Start provision agent on host 3
 !-- Remove exited container that could be previous provision agent containers
 When SSH host hmiHost3 executes docker rm $(docker ps -q -a -f status=exited)
-And the start provisioning agent script is copied to hmiHost3
+When the script runPA from /configuration-files/<<systemName>>/ is copied to hmiHost3
 And SSH host hmiHost3 executes chmod +x runPA.sh
 And SSH host hmiHost3 executes ./runPA.sh
 Then waiting for 30 seconds
@@ -72,15 +87,13 @@ Then adding to layout voice on endpoint <<configurationMngEndpoint>> the followi
 | xvp-voice/voice-hmi-service  | ${voice.hmi.version} | 1          | 0          | 7          | 6           |
 
 Scenario: Commit and activate configuration
-When using endpoint <<configurationMngEndpoint>> commit and activate the configuration in path configurations/activate
-!-- TODO Uncomment steps when CATS is upgraded to 5.4 version
-!-- When using endpoint <<configurationMngEndpoint>> commit the configuration and name commit commitId
-!-- Then waiting for 1 seconds
-!-- When activating commit commitId to endpoint <<configurationMngEndpoint>> and path configurations/activate
+When using endpoint <<configurationMngEndpoint>> commit the configuration and name commit commitId
+Then waiting for 1 seconds
+When activating commit commitId to endpoint <<configurationMngEndpoint>> and path configurations/activate
 Then waiting for 3 seconds
 
 Scenario: Update voice hmi service instances
-When the update voice hmi script is copied to deploymentServer
+When the script hmiUpdate from /configuration-files/<<systemName>>/ is copied to deploymentServer
 And SSH host deploymentServer executes chmod +x hmiUpdate.sh
 And SSH host deploymentServer executes ./hmiUpdate.sh
 And waiting for 60 seconds

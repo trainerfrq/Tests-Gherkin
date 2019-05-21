@@ -1,0 +1,406 @@
+[
+  {
+    "sliderPositionPercent": 0,
+    "leveldB": -80
+  },
+  {
+    "sliderPositionPercent": 1,
+    "leveldB": -39.5
+  },
+  {
+    "sliderPositionPercent": 2,
+    "leveldB": -39
+  },
+  {
+    "sliderPositionPercent": 3,
+    "leveldB": -38.5
+  },
+  {
+    "sliderPositionPercent": 4,
+    "leveldB": -38
+  },
+  {
+    "sliderPositionPercent": 5,
+    "leveldB": -37.5
+  },
+  {
+    "sliderPositionPercent": 6,
+    "leveldB": -37
+  },
+  {
+    "sliderPositionPercent": 7,
+    "leveldB": -36.5
+  },
+  {
+    "sliderPositionPercent": 8,
+    "leveldB": -36
+  },
+  {
+    "sliderPositionPercent": 9,
+    "leveldB": -35.5
+  },
+  {
+    "sliderPositionPercent": 10,
+    "leveldB": -35
+  },
+  {
+    "sliderPositionPercent": 11,
+    "leveldB": -34.5
+  },
+  {
+    "sliderPositionPercent": 12,
+    "leveldB": -34
+  },
+  {
+    "sliderPositionPercent": 13,
+    "leveldB": -33.5
+  },
+  {
+    "sliderPositionPercent": 14,
+    "leveldB": -33
+  },
+  {
+    "sliderPositionPercent": 15,
+    "leveldB": -32.5
+  },
+  {
+    "sliderPositionPercent": 16,
+    "leveldB": -32
+  },
+  {
+    "sliderPositionPercent": 17,
+    "leveldB": -31.5
+  },
+  {
+    "sliderPositionPercent": 18,
+    "leveldB": -31
+  },
+  {
+    "sliderPositionPercent": 19,
+    "leveldB": -30.5
+  },
+  {
+    "sliderPositionPercent": 20,
+    "leveldB": -30
+  },
+  {
+    "sliderPositionPercent": 21,
+    "leveldB": -29.5
+  },
+  {
+    "sliderPositionPercent": 22,
+    "leveldB": -29
+  },
+  {
+    "sliderPositionPercent": 23,
+    "leveldB": -28.5
+  },
+  {
+    "sliderPositionPercent": 24,
+    "leveldB": -28
+  },
+  {
+    "sliderPositionPercent": 25,
+    "leveldB": -27.5
+  },
+  {
+    "sliderPositionPercent": 26,
+    "leveldB": -27
+  },
+  {
+    "sliderPositionPercent": 27,
+    "leveldB": -26.5
+  },
+  {
+    "sliderPositionPercent": 28,
+    "leveldB": -26
+  },
+  {
+    "sliderPositionPercent": 29,
+    "leveldB": -25.5
+  },
+  {
+    "sliderPositionPercent": 30,
+    "leveldB": -25
+  },
+  {
+    "sliderPositionPercent": 31,
+    "leveldB": -24.5
+  },
+  {
+    "sliderPositionPercent": 32,
+    "leveldB": -24
+  },
+  {
+    "sliderPositionPercent": 33,
+    "leveldB": -23.5
+  },
+  {
+    "sliderPositionPercent": 34,
+    "leveldB": -23
+  },
+  {
+    "sliderPositionPercent": 35,
+    "leveldB": -22.5
+  },
+  {
+    "sliderPositionPercent": 36,
+    "leveldB": -22
+  },
+  {
+    "sliderPositionPercent": 37,
+    "leveldB": -21.5
+  },
+  {
+    "sliderPositionPercent": 38,
+    "leveldB": -21
+  },
+  {
+    "sliderPositionPercent": 39,
+    "leveldB": -20.5
+  },
+  {
+    "sliderPositionPercent": 40,
+    "leveldB": -20
+  },
+  {
+    "sliderPositionPercent": 41,
+    "leveldB": -19.5
+  },
+  {
+    "sliderPositionPercent": 42,
+    "leveldB": -19
+  },
+  {
+    "sliderPositionPercent": 43,
+    "leveldB": -18.5
+  },
+  {
+    "sliderPositionPercent": 44,
+    "leveldB": -18
+  },
+  {
+    "sliderPositionPercent": 45,
+    "leveldB": -17.5
+  },
+  {
+    "sliderPositionPercent": 46,
+    "leveldB": -17
+  },
+  {
+    "sliderPositionPercent": 47,
+    "leveldB": -16.5
+  },
+  {
+    "sliderPositionPercent": 48,
+    "leveldB": -16
+  },
+  {
+    "sliderPositionPercent": 49,
+    "leveldB": -15.5
+  },
+  {
+    "sliderPositionPercent": 50,
+    "leveldB": -15
+  },
+  {
+    "sliderPositionPercent": 51,
+    "leveldB": -14.5
+  },
+  {
+    "sliderPositionPercent": 52,
+    "leveldB": -14
+  },
+  {
+    "sliderPositionPercent": 53,
+    "leveldB": -13.5
+  },
+  {
+    "sliderPositionPercent": 54,
+    "leveldB": -13
+  },
+  {
+    "sliderPositionPercent": 55,
+    "leveldB": -12.5
+  },
+  {
+    "sliderPositionPercent": 56,
+    "leveldB": -12
+  },
+  {
+    "sliderPositionPercent": 57,
+    "leveldB": -11.5
+  },
+  {
+    "sliderPositionPercent": 58,
+    "leveldB": -11
+  },
+  {
+    "sliderPositionPercent": 59,
+    "leveldB": -10.5
+  },
+  {
+    "sliderPositionPercent": 60,
+    "leveldB": -10
+  },
+  {
+    "sliderPositionPercent": 61,
+    "leveldB": -9.5
+  },
+  {
+    "sliderPositionPercent": 62,
+    "leveldB": -9
+  },
+  {
+    "sliderPositionPercent": 63,
+    "leveldB": -8.5
+  },
+  {
+    "sliderPositionPercent": 64,
+    "leveldB": -8
+  },
+  {
+    "sliderPositionPercent": 65,
+    "leveldB": -7.5
+  },
+  {
+    "sliderPositionPercent": 66,
+    "leveldB": -7
+  },
+  {
+    "sliderPositionPercent": 67,
+    "leveldB": -6.5
+  },
+  {
+    "sliderPositionPercent": 68,
+    "leveldB": -6
+  },
+  {
+    "sliderPositionPercent": 69,
+    "leveldB": -5.5
+  },
+  {
+    "sliderPositionPercent": 70,
+    "leveldB": -5
+  },
+  {
+    "sliderPositionPercent": 71,
+    "leveldB": -4.5
+  },
+  {
+    "sliderPositionPercent": 72,
+    "leveldB": -4
+  },
+  {
+    "sliderPositionPercent": 73,
+    "leveldB": -3.5
+  },
+  {
+    "sliderPositionPercent": 74,
+    "leveldB": -3
+  },
+  {
+    "sliderPositionPercent": 75,
+    "leveldB": -2.5
+  },
+  {
+    "sliderPositionPercent": 76,
+    "leveldB": -2
+  },
+  {
+    "sliderPositionPercent": 77,
+    "leveldB": -1.5
+  },
+  {
+    "sliderPositionPercent": 78,
+    "leveldB": -1
+  },
+  {
+    "sliderPositionPercent": 79,
+    "leveldB": -0.5
+  },
+  {
+    "sliderPositionPercent": 80,
+    "leveldB": 0
+  },
+  {
+    "sliderPositionPercent": 81,
+    "leveldB": 0.5
+  },
+  {
+    "sliderPositionPercent": 82,
+    "leveldB": 1
+  },
+  {
+    "sliderPositionPercent": 83,
+    "leveldB": 1.5
+  },
+  {
+    "sliderPositionPercent": 84,
+    "leveldB": 2
+  },
+  {
+    "sliderPositionPercent": 85,
+    "leveldB": 2.5
+  },
+  {
+    "sliderPositionPercent": 86,
+    "leveldB": 3
+  },
+  {
+    "sliderPositionPercent": 87,
+    "leveldB": 3.5
+  },
+  {
+    "sliderPositionPercent": 88,
+    "leveldB": 4
+  },
+  {
+    "sliderPositionPercent": 89,
+    "leveldB": 4.5
+  },
+  {
+    "sliderPositionPercent": 90,
+    "leveldB": 5
+  },
+  {
+    "sliderPositionPercent": 91,
+    "leveldB": 5.5
+  },
+  {
+    "sliderPositionPercent": 92,
+    "leveldB": 6
+  },
+  {
+    "sliderPositionPercent": 93,
+    "leveldB": 6.5
+  },
+  {
+    "sliderPositionPercent": 94,
+    "leveldB": 7
+  },
+  {
+    "sliderPositionPercent": 95,
+    "leveldB": 7.5
+  },
+  {
+    "sliderPositionPercent": 96,
+    "leveldB": 8
+  },
+  {
+    "sliderPositionPercent": 97,
+    "leveldB": 8.5
+  },
+  {
+    "sliderPositionPercent": 98,
+    "leveldB": 9
+  },
+  {
+    "sliderPositionPercent": 99,
+    "leveldB": 9.5
+  },
+  {
+    "sliderPositionPercent": 100,
+    "leveldB": 10
+  }
+]
