@@ -453,7 +453,7 @@ public class CallQueueUISteps extends AutomationSteps
    {
       CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
 
-      evaluate( remoteStep( "Click call queue item" )
+      evaluate( remoteStep( "Cleanup call queue item" )
               .scriptOn( profileScriptResolver().map( CleanUpCallQueue.class, BookableProfileName.javafx ),
                       assertProfile( profileName ) )
               .input( CleanUpCallQueue.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )

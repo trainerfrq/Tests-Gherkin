@@ -33,7 +33,7 @@ And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path c
 Scenario: Upload configuration files in Configuration Management Service for Phone Routing Service
 When using endpoint <<configurationMngEndpoint>> create configuration id phone-routing-service
 Then waiting for 3 seconds
-And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/phone-routing-service/generic/items/callRoutes.json with payload /configuration-files/common/callRoutes.json
+And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/phone-routing-service/items/callRoutes.json with payload /configuration-files/common/callRoutes.json
 
 Scenario: Commit and activate configuration
 When using endpoint <<configurationMngEndpoint>> commit the configuration and name commit commitId

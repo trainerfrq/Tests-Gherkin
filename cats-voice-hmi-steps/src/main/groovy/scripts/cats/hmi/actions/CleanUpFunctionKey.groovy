@@ -24,14 +24,14 @@ class CleanUpFunctionKey extends FxScriptTemplate {
         ObservableSet<PseudoClass> pseudoClass = functionKeyWidget.getPseudoClassStates()
 
         if (pseudoClass.contains(pseudoClassState)){
-            evaluate(ExecutionDetails.create("Button is in the expected state")
+            evaluate(ExecutionDetails.create("Asserting that button is in expected state")
                     .received("Received state is: " + pseudoClass.toString())
                     .expected("Expected state is: "+keyState)
                     .success(true))
             robot.clickOn(robot.point(functionKeyWidget));
         }
         else{
-            evaluate(ExecutionDetails.create("Button is in the expected state")
+            evaluate(ExecutionDetails.create("Asserting that button is in expected state")
                     .received("Received state is not: "+pseudoClass.toString())
                     .expected("Expected state is not: "+keyState)
                     .success(true))
