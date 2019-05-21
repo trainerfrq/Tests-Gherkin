@@ -59,34 +59,6 @@ public class GGSshSteps extends SshSteps
     static final String SYSTEM_KEY = "_bareMetalSystem";
 
 
-   @When("the start case officer script is copied to $connectionName")
-   public void copyStartCaseOfficerScript( final String connectionName ) throws IOException
-   {
-      final String systemName = StepsUtil.getEnvProperty( "systemName" );
-
-      String filePath = "/configuration-files/" + systemName + "/runCO.sh";
-
-      final String scriptContent = processConfigurationTemplate( StepsUtil.getConfigFile( filePath ), new HashMap<>() );
-
-      executeSshCommand( connectionName,
-            "read -d '' runCO << \\EOF \n" + scriptContent + "\nEOF\n\n echo \"$runCO\" > /root/runCO.sh" );
-   }
-
-
-   @When("the start provisioning agent script is copied to $connectionName")
-   public void copyProvisioningAgentScript( final String connectionName ) throws IOException
-   {
-      final String systemName = StepsUtil.getEnvProperty( "systemName" );
-
-      String filePath = "/configuration-files/" + systemName + "/runPA.sh";
-
-      final String scriptContent = processConfigurationTemplate( StepsUtil.getConfigFile( filePath ), new HashMap<>() );
-
-      executeSshCommand( connectionName,
-            "read -d '' runPA << \\EOF \n" + scriptContent + "\nEOF\n\n echo \"$runPA\" > /root/runPA.sh" );
-   }
-
-
    @When("the launch audio app script is copied to $connectionName and updated with $audioMacvlandataIp and $audioMacvlanaudioIp")
    public void copyLaunchAudioAppScript( final String connectionName, final String audioMacvlandataIp, final String audioMacvlanaudioIp ) throws IOException
    {
@@ -102,19 +74,17 @@ public class GGSshSteps extends SshSteps
             + "\nEOF\n\n echo \"$launchAudioApp\" > /root/launchAudioApp.sh" );
    }
 
+    @When("the script $script from $path is copied to $connectionName")
+    public void copyScript( final String script, final String path, final String connectionName ) throws IOException
+    {
+        String filePath = path + script + ".sh";
 
-   @When("the update voice hmi script is copied to $connectionName")
-   public void copyUpdateVoiceHmiScript( final String connectionName ) throws IOException
-   {
-      final String systemName = StepsUtil.getEnvProperty( "systemName" );
+        final String scriptContent = processConfigurationTemplate( StepsUtil.getConfigFile( filePath ), new HashMap<>() );
 
-      String filePath = "/configuration-files/" + systemName + "/hmiUpdate.sh";
+        executeSshCommand( connectionName,
+                "read -d '' "+script+ "<< \\EOF \n" + scriptContent + "\nEOF\n\n echo \"$"+script+"\" > /root/"+script+".sh" );
+    }
 
-      final String scriptContent = processConfigurationTemplate( StepsUtil.getConfigFile( filePath ), new HashMap<>() );
-
-      executeSshCommand( connectionName,
-            "read -d '' hmiUpdate << \\EOF \n" + scriptContent + "\nEOF\n\n echo \"$hmiUpdate\" > /root/hmiUpdate.sh" );
-   }
 
     @When("the update op voice image script executed on $connectionName")
     public void copyUpdateOpVoiceImageScript( final String connectionName ) throws IOException
