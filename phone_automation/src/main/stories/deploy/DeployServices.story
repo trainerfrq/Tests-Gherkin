@@ -33,6 +33,7 @@ And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path c
 Scenario: Upload configuration files in Configuration Management Service for Phone Routing Service
 When using endpoint <<configurationMngEndpoint>> create configuration id phone-routing-service
 Then waiting for 3 seconds
+!-- The path will have to be changed to when the phone routing services has a version higher then 0.9.0
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/phone-routing-service/items/callRoutes.json with payload /configuration-files/common/callRoutes.json
 
 Scenario: Commit and activate configuration
