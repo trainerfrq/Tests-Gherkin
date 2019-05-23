@@ -67,7 +67,7 @@ And waiting for 5 seconds
 
 Scenario: Start services
 Then SSH host deploymentServer executes /usr/bin/xvp services deploy --all -g
-And waiting for 30 seconds
+And waiting for 60 seconds
 
 Scenario: Start audio-app on host 1
 When the launch audio app script is copied to hmiHost1 and updated with ${AUDIO_MACVLANDATA_HOST1_IP} and ${AUDIO_MACVLANDAUDIO_HOST1_IP}
