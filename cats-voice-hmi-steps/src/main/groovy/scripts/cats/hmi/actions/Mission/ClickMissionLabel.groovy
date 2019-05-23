@@ -1,4 +1,4 @@
-package scripts.cats.hmi.actions
+package scripts.cats.hmi.actions.Mission
 
 import javafx.scene.control.Label
 import scripts.agent.testfx.automation.FxScriptTemplate

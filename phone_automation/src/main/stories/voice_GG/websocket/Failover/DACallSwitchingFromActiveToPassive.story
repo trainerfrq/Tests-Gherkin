@@ -11,7 +11,7 @@ Given booked profiles:
 | websocket | hmi   | <<CO3_IP>> |
 
 Scenario: Open Web Socket Client connections
-GivenStories: voice_GG/includes/StopOpVoiceActiveOnDockerHost2.story
+GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost2.story
 Given named the websocket configurations:
 | named       | websocket-uri       | text-buffer-size |
 | WS_Config-1 | <<OPVOICE1_WS.URI>> | 1000             |
@@ -112,7 +112,7 @@ Given that connection can be open (although instances are Passive) using websock
 Scenario: Open Web Socket Client connections
 		  @REQUIREMENTS:GID-4034511
 		  @REQUIREMENTS:GID-4435108
-GivenStories: voice_GG/includes/StopOpVoiceActiveOnDockerHost1.story
+GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost1.story
 When a timer named failoverTimerWS3 is started
 Given it is known what op voice instances are Active, the websocket configuration is applied:
 | key | profile-name | websocket-config-name |

@@ -5,14 +5,30 @@
   },
   "conferencer": {
     "conferencerFactoryUser": "conf",
-    "conferencerFactoryHost": "192.168.40.129",
-    "conferencerFactoryListeningPort": 5060
+    "conferencerFactoryHost": "192.168.40.119",
+    "conferencerFactoryListeningPort": 5060,
+    "conferencerFocuses": {
+      "presetConferences": [
+        "sip:preset@192.168.40.119:5060",
+        "sip:preset@example.com"
+      ],
+      "broadcastConferences": [
+        "sip:broadcast@192.168.40.119:5060",
+        "sip:conf@192.168.40.119:5060",
+        "sip:broadcast@example.com",
+        "sip:conf@example.com"
+      ],
+      "mdDaIdaCalls": [
+        "sip:mdcall@10.254.54.89:5060",
+        "sip:mdcall@example.com"
+      ]
+    }
   },
   "hostSpecificConfigurationMap": {
     "cj-gg-cat-cwp-1": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "192.168.40.131",
+          "opPhysicalHost": "192.168.40.126",
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",
@@ -24,7 +40,7 @@
     "cj-gg-cat-cwp-2": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "192.168.40.133",
+          "opPhysicalHost": "192.168.40.127",
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",
@@ -36,7 +52,7 @@
     "cj-gg-cat-cwp-3": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "192.168.40.134",
+          "opPhysicalHost": "192.168.40.128",
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",

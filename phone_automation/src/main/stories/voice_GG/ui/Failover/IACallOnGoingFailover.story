@@ -16,13 +16,13 @@ Given the call queue items:
 | OP2-OP1 | sip:222222@example.com | sip:111111@example.com | IA       |
 
 Scenario: Verify displayed status after stopping and starting op voice instances from one partition
-GivenStories: voice_GG/includes/StopStartOpVoiceActiveOnDockerHost1.story
+GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost1.story
 Then waiting for 60 seconds
 Then HMI OP1 has in the display status section connection the state CONNECTED
 Then HMI OP2 has in the display status section connection the state CONNECTED
 
 Scenario: Verify displayed status after the stopping the op voice instances from one partition
-GivenStories: voice_GG/includes/StopOpVoiceActiveOnDockerHost2.story
+GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost2.story
 Then HMI OP1 has in the display status section connection the state DISCONNECTED
 Then HMI OP2 has in the display status section connection the state DISCONNECTED
 
@@ -55,7 +55,7 @@ Then HMI OP2 has in the display status section connection the state CONNECTED
 
 Scenario: Verify displayed status after the stopping the op voice instances from one partition
 		  @REQUIREMENTS:GID-4034511
-GivenStories: voice_GG/includes/StopOpVoiceActiveOnDockerHost1.story
+GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost1.story
 When HMI OP1 verifies that loading screen is visible
 Then HMI OP1 has in the display status section connection the state DEGRADED
 When HMI OP2 verifies that loading screen is visible

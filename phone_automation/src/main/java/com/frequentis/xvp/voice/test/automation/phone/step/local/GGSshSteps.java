@@ -26,6 +26,9 @@ import com.frequentis.xvp.tools.ssh.SshSession;
 import com.frequentis.xvp.tools.testsystem.TestSystem;
 import com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil;
 import com.google.common.util.concurrent.Uninterruptibles;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -165,6 +168,13 @@ public class GGSshSteps extends SshSteps
     }
 
 
+    @Given("gg ssh connection is closed for host $hostName")
+    public void disconnectSSH( final String host ) throws Throwable
+    {
+        disconnectGGSSHConnection( host );
+    }
+
+
     private void tryGGSSHConnection( final String host, final int minutes ) throws Throwable
     {
         final LocalStep localStep = localStep( "Try SSH connection to " + host );
@@ -174,6 +184,21 @@ public class GGSshSteps extends SshSteps
         final boolean isConnected = sshSession.isPresent() && sshSession.get().isConnected();
         localStep.details( ExecutionDetails.create( "Getting SSH connection to " + host )
                 .expected( "Connection successful!" ).received( "Connected: " + isConnected ).success( isConnected ) );
+    }
+
+
+    private void disconnectGGSSHConnection( final String host ) throws Throwable
+    {
+        final LocalStep localStep = localStep( "Disconnect SSH connection to " + host );
+
+        final TestSystem testSystem = getTestSystem();
+        final TestSystem.HostProperties hp = testSystem.new HostProperties( host );
+        final RemoteHost remoteHost =
+                new RemoteHost( hp.getProperty( TestSystem.IP ), hp.getProperty( TestSystem.USER ), 22 );
+
+        final boolean isDisconnected = disconnect( remoteHost );
+        localStep.details( ExecutionDetails.create( "Close SSH connection to " + host )
+                .expected( "SSH connection closed successful!" ).received( "Disconnected: " + isDisconnected ).success( isDisconnected ) );
     }
 
 
@@ -220,6 +245,23 @@ public class GGSshSteps extends SshSteps
         }
         final TestSystem testSystemInstance = new TestSystem( properties );
         return testSystemInstance;
+    }
+
+    private boolean disconnect( final RemoteHost host ) throws IOException
+    {
+        boolean connectionDropped;
+        try
+        {
+            final JSch ssh = new JSch();
+            final Session session = ssh.getSession( host.username, host.hostname, host.port );
+            session.disconnect();
+            connectionDropped = !session.isConnected();
+        }
+        catch ( final JSchException e )
+        {
+            throw new IOException( String.format( "Could not disconnect to %s: %s", host, e.getMessage() ), e );
+        }
+        return connectionDropped;
     }
 
 

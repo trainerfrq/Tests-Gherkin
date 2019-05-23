@@ -12,7 +12,6 @@ Given SSH connections:
 Scenario: Upload configuration files in Configuration Management Service for Op Voice Service
 When using endpoint <<configurationMngEndpoint>> create configuration id op-voice-service
 Then waiting for 3 seconds
-And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/audioAppClient.json with payload /configuration-files/common/audioAppClient.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/frequencyData.json with payload /configuration-files/common/frequencyData.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/virtualDevices.json with payload /configuration-files/common/virtualDevices.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/missions.json with payload /configuration-files/<<systemName>>/missions.json
@@ -31,9 +30,10 @@ And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path c
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/volumeSliderLevelAdjustments.json with payload /configuration-files/common/volumeSliderLevelAdjustments.json
 
 Scenario: Upload configuration files in Configuration Management Service for Phone Routing Service
-When using endpoint <<configurationMngEndpoint>> create configuration id phone-routing-service
-Then waiting for 3 seconds
-And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/phone-routing-service/generic/items/callRoutes.json with payload /configuration-files/common/callRoutes.json
+!-- When using endpoint <<configurationMngEndpoint>> create configuration id phone-routing-service
+!-- Then waiting for 3 seconds
+!-- The path will have to be changed to when the phone routing services has a version higher then 0.9.0
+!-- And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/phone-routing-service/items/callRoutes.json with payload /configuration-files/common/callRoutes.json
 
 Scenario: Commit and activate configuration
 When using endpoint <<configurationMngEndpoint>> commit the configuration and name commit commitId
@@ -67,7 +67,7 @@ And waiting for 5 seconds
 
 Scenario: Start services
 Then SSH host deploymentServer executes /usr/bin/xvp services deploy --all -g
-And waiting for 30 seconds
+And waiting for 60 seconds
 
 Scenario: Start audio-app on host 1
 When the launch audio app script is copied to hmiHost1 and updated with ${AUDIO_MACVLANDATA_HOST1_IP} and ${AUDIO_MACVLANDAUDIO_HOST1_IP}

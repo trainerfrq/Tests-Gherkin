@@ -21,13 +21,13 @@ import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import scripts.cats.hmi.actions.ClickActivateMission;
-import scripts.cats.hmi.actions.ClickMissionCloseButton;
-import scripts.cats.hmi.actions.ClickMissionLabel;
-import scripts.cats.hmi.actions.SelectMissionFromList;
-import scripts.cats.hmi.actions.SelectMissionFromListByPosition;
-import scripts.cats.hmi.asserts.VerifyMissionListNames;
-import scripts.cats.hmi.asserts.VerifyMissionListSize;
+import scripts.cats.hmi.actions.Mission.ClickActivateMission;
+import scripts.cats.hmi.actions.Mission.ClickMissionCloseButton;
+import scripts.cats.hmi.actions.Mission.ClickMissionLabel;
+import scripts.cats.hmi.actions.Mission.SelectMissionFromList;
+import scripts.cats.hmi.actions.Mission.SelectMissionFromListByPosition;
+import scripts.cats.hmi.asserts.Mission.VerifyMissionListNames;
+import scripts.cats.hmi.asserts.Mission.VerifyMissionListSize;
 import scripts.cats.hmi.asserts.VerifyStatusDisplay;
 
 public class MissionListUISteps extends AutomationSteps
