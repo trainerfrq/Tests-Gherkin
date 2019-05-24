@@ -102,7 +102,7 @@ Then HMI OP1 verifies that the call queue item OP2-OP1 was removed from the acti
 Then HMI OP1 has the call queue item OP2-OP1 in the hold list with name label OP2 Physical
 Then HMI OP1 has the call queue item SipContact-OP1 in the waiting list with name label Madoline
 Then HMI OP1 has the call queue item OP3-OP1 in the waiting list with name label op3
-Then HMI OP1 verifies that the call queue item OP2-OP1 from the hold list has call type DA/IDA
+Then HMI OP1 verifies that the call queue item OP2-OP1 from the hold list has call type DA
 
 Scenario: Op1 answers Sip call
 Then HMI OP1 accepts the call queue item SipContact-OP1
