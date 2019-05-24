@@ -58,7 +58,7 @@ public class CallQueueUISteps extends AutomationSteps
 
    private static final String PRIORITY_CALL_STYLE_CLASS_NAME = "priority";
 
-   private static final String CALL_CONDITIONAL_FLAG = "xfr";
+   private static final String CALL_CONDITIONAL_FLAG = "hold";
 
    private static final String IA_CALL_TYPE = "ia";
 
