@@ -20,9 +20,9 @@
       <cats.version>5.4.0</cats.version>
       
       <!-- DEPENDENCY VERSIONS -->
-      <voice.service.interface.version>0.138.5</voice.service.interface.version>
-      <audio-simulator-service.version>0.47.0</audio-simulator-service.version>
-      <audio-service-interface.version>0.24.0</audio-service-interface.version>
+      <voice.service.interface.version>0.4.1</voice.service.interface.version>
+      <audio-simulator-service.version>0.56.0</audio-simulator-service.version>
+      <audio-service-interface.version>0.30.0</audio-service-interface.version>
 
       <!-- FW DEPENDENCY VERSIONS -->
       <mission-configurator-plugin.version>1.0.0</mission-configurator-plugin.version>
