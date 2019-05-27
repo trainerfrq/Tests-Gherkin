@@ -29,12 +29,6 @@ And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path c
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/couplingGroups.json with payload /configuration-files/common/couplingGroups.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/volumeSliderLevelAdjustments.json with payload /configuration-files/common/volumeSliderLevelAdjustments.json
 
-Scenario: Upload configuration files in Configuration Management Service for Phone Routing Service
-!-- When using endpoint <<configurationMngEndpoint>> create configuration id phone-routing-service
-!-- Then waiting for 3 seconds
-!-- The path will have to be changed to when the phone routing services has a version higher then 0.9.0
-!-- And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/phone-routing-service/items/callRoutes.json with payload /configuration-files/common/callRoutes.json
-
 Scenario: Commit and activate configuration
 When using endpoint <<configurationMngEndpoint>> commit the configuration and name commit commitId
 Then waiting for 1 seconds
@@ -42,7 +36,7 @@ When activating commit commitId to endpoint <<configurationMngEndpoint>> and pat
 Then waiting for 3 seconds
 
 Scenario: Stop services
-When SSH host deploymentServer executes /usr/bin/xvp services remove phone-routing -g
+When SSH host deploymentServer executes /usr/bin/xvp services remove phone-routing-service -g
 Then waiting for 5 seconds
 When SSH host deploymentServer executes /usr/bin/xvp services remove audio-service -g
 Then waiting for 5 seconds

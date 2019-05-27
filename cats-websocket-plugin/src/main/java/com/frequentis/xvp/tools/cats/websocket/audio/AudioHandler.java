@@ -30,6 +30,7 @@ import com.frequentis.xvp.voice.audiointerface.json.messages.client.Disassociate
 import com.frequentis.xvp.voice.audiointerface.json.messages.conference.AudioPortPair;
 import com.frequentis.xvp.voice.audiointerface.json.messages.conference.AudioPortPairWithLevel;
 import com.frequentis.xvp.voice.audiointerface.json.messages.eplogic.EpLogicPortMappingResponse;
+import com.frequentis.xvp.voice.audiointerface.json.messages.eplogic.LogicDevicePortMapping;
 import com.frequentis.xvp.voice.audiointerface.json.messages.eplogic.LogicPortMapping;
 import com.frequentis.xvp.voice.audiointerface.json.messages.eplogic.LogicPortMappingResult;
 import com.frequentis.xvp.voice.audiointerface.json.messages.eplogic.signalling.EpLogicSignalEventResponse;
@@ -49,6 +50,7 @@ import com.frequentis.xvp.voice.audiointerface.json.messages.sounddevice.SoundDe
 import com.frequentis.xvp.voice.audiointerface.json.messages.tonegeneration.ToneGenCommonResponse;
 import com.frequentis.xvp.voice.audiointerface.json.messages.tonegeneration.ToneGenResult;
 import com.frequentis.xvp.voice.audiointerface.json.messages.tonegeneration.ToneGenerator;
+import com.frequentis.xvp.voice.audiointerface.json.messages.virtualport.SharedVirtualPortResult;
 import com.frequentis.xvp.voice.audiointerface.json.messages.virtualport.VirtualPortCommonResponse;
 import com.frequentis.xvp.voice.audiointerface.json.messages.virtualport.VirtualPortResult;
 import com.google.gson.JsonSyntaxException;
@@ -185,7 +187,7 @@ public class AudioHandler extends DefaultWebSocketAdapterIOListener
       {
          portMappingResults.add( LogicPortMappingResult.create( logicPortMapping.logicPortId(), RESPONSE_RESULT ) );
       }
-      for ( LogicPortMapping logicPortMapping : message.body().epLogicPortMappingUpdateRequest()
+      for ( LogicDevicePortMapping logicPortMapping : message.body().epLogicPortMappingUpdateRequest()
             .logicDevicePortMappings() )
       {
          devicePortMappingResults.add(
@@ -253,7 +255,7 @@ public class AudioHandler extends DefaultWebSocketAdapterIOListener
       {
          portMappingResults.add( LogicPortMappingResult.create( logicPortMapping.logicPortId(), RESPONSE_RESULT ) );
       }
-      for ( LogicPortMapping logicPortMapping : message.body().epLogicPortMappingRequest().logicDevicePortMappings() )
+      for ( LogicDevicePortMapping logicPortMapping : message.body().epLogicPortMappingRequest().logicDevicePortMappings() )
       {
          devicePortMappingResults.add(
                LogicPortMappingResult.create( logicPortMapping.logicPortId(), RESPONSE_RESULT ) );
@@ -312,9 +314,15 @@ public class AudioHandler extends DefaultWebSocketAdapterIOListener
       {
          virtualPortResults.add( VirtualPortResult.create( RESPONSE_RESULT, virtualPortId ) );
       }
+
+      final List<SharedVirtualPortResult> sharedVirtualPortResults = new ArrayList<>();
+      for ( String sharedVirtualPortId : message.body().virtualPortCreateRequest().getSharedVirtualPortIds() )
+      {
+         sharedVirtualPortResults.add( SharedVirtualPortResult.create( RESPONSE_RESULT, sharedVirtualPortId ) );
+      }
       JsonMessage jsonResponse = JsonMessage.builder()
             .withVirtualPortCommonResponse( VirtualPortCommonResponse
-                  .create( RESPONSE_RESULT, virtualPortResults ) )
+                  .create( RESPONSE_RESULT, virtualPortResults, sharedVirtualPortResults ) )
             .withCorrelationId( correlationId ).build();
       endpoint.sendText( new TextMessage( jsonResponse.toString() ) );
    }

@@ -42,7 +42,7 @@ Then HMI OP2 has the call queue item OP1-OP2 in state hold
 
 Scenario: Verify call transfer is initiated
 Then HMI OP2 has the call conditional flag set for call queue item OP1-OP2
-Then HMI OP2 has the call queue item OP1-OP2 in transfer state
+Then HMI OP2 has the call queue item OP1-OP2 in the hold list with info label XFR Hold
 
 Scenario: Verify call is held for transferee
 Then HMI OP1 has the call queue item OP2-OP1 in state held

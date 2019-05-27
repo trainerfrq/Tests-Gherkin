@@ -31,7 +31,8 @@ When HMI OP1 presses function key MISSIONS
 Then HMI OP1 has a list of 3 missions available
 Then HMI OP1 has missions EAST-EXEC, MAN-NIGHT-TACT, WEST-EXEC available in the missions list
 Then HMI OP1 changes current mission to mission EAST-EXEC
-Then HMI OP1 closes mission popup window
+Then HMI OP1 activates mission
+Then waiting for 5 seconds
 
 Scenario: Verify operator mission
 Then HMI OP1 has in the display status section mission the assigned mission EAST-EXEC
