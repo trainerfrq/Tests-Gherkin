@@ -83,9 +83,9 @@ Then HMI OP1 verifies that idle popup contains the text: Connect a handset or he
 Scenario: Check that interaction with settings and maintenance is allowed
 		  @REQUIREMENTS:GID-2926857
 Then HMI OP1 opens Maintenance panel from idle popup
-Then HMI OP1 closes maintenance
+Then HMI OP1 closes maintenance popup
 Then HMI OP1 opens Settings panel from idle popup
-Then HMI OP1 closes settings
+Then HMI OP1 closes settings popup
 
 Scenario: Connect headsets
 Then WS1 sends changed event request - connect headsets
