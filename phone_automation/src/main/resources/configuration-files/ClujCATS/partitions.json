@@ -6,7 +6,10 @@
         {
           "opId": "cj-gg-cat-cwp-2",
           "radioUserName": "OpVoiceUser02",
-          "audioAppUri": "ws://192.168.40.95:8805/ctrlif"
+          "audioAppUri": "ws://192.168.40.95:8805/ctrlif",
+          "voIpRecordingClusterId": "myRecordingCluster",
+          "voIpRecordingRadioSessionId": "radio_recording",
+          "voIpRecordingRadioSessionConnRef": "af962717-3b14-46b8-a7d8-5ae0eb3eeabb"
         }
       ],
       "audioServiceConnections": {
@@ -30,7 +33,10 @@
         {
           "opId": "cj-gg-cat-cwp-3",
           "radioUserName": "OpVoiceUser03",
-          "audioAppUri": "ws://192.168.40.96:8805/ctrlif"
+          "audioAppUri": "ws://192.168.40.96:8805/ctrlif",
+          "voIpRecordingClusterId": "myRecordingCluster",
+          "voIpRecordingRadioSessionId": "radio_recording",
+          "voIpRecordingRadioSessionConnRef": "853f2318-2268-4e51-b2f2-be9b10343057"
         }
       ],
       "audioServiceConnections": {
@@ -54,7 +60,10 @@
         {
           "opId": "cj-gg-cat-cwp-1",
           "radioUserName": "OpVoiceUser01",
-          "audioAppUri": "ws://192.168.40.94:8805/ctrlif"
+          "audioAppUri": "ws://192.168.40.94:8805/ctrlif",
+          "voIpRecordingClusterId": "myRecordingCluster",
+          "voIpRecordingRadioSessionId": "radio_recording",
+          "voIpRecordingRadioSessionConnRef": "bc04eaa1-81f9-4dcf-9b4d-d7f143661dbb"
         }
       ],
       "audioServiceConnections": {
