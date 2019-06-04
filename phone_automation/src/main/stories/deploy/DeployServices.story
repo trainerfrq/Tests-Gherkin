@@ -28,6 +28,8 @@ And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path c
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/footSwitch.json with payload /configuration-files/common/footSwitch.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/couplingGroups.json with payload /configuration-files/common/couplingGroups.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/volumeSliderLevelAdjustments.json with payload /configuration-files/common/volumeSliderLevelAdjustments.json
+And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/voipRecording.json with payload /configuration-files/common/voipRecording.json
+And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/recordedVirtualDevices.json with payload /configuration-files/common/recordedVirtualDevices.json
 
 Scenario: Commit and activate configuration
 When using endpoint <<configurationMngEndpoint>> commit the configuration and name commit commitId
