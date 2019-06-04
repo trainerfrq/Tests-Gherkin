@@ -31,12 +31,12 @@ Scenario: Caller operator puts the call on hold with call conditional flag
 When WS1 puts the phone call with the callId outgoingPhoneCallId1 on hold with call conditional flag xfr
 
 Scenario: Verify call is not put on hold with call conditional flag
-Then WS1 has on the message buffer named CallStatusIndicationBuffer1 a number of 0 messages
+Then WS1 has on the message buffer named CallStatusIndicationBuffer1 a number of 1 messages
+Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status out_ringing
 Then WS2 has on the message buffer named CallStatusIndicationBuffer2 a number of 0 messages
 Then WS2 has on the message buffer named CallIncomingIndicationBuffer2 a number of 0 messages
 
 Scenario: Verify call can be answered by callee operator
-!-- TODO QXVP-9274 re-enable test when bug is fixed
 When WS2 answers the incoming phone call with the callId incomingPhoneCallId1
 And waiting for 1 seconds
 Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status connected
