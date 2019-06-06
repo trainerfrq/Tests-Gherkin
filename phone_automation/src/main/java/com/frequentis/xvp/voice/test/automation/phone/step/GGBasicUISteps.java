@@ -17,7 +17,11 @@
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
+import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
+import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import com.frequentis.xvp.voice.test.automation.phone.data.NotificationDisplayEntry;
+import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.ClickContainerTab;
@@ -26,9 +30,13 @@ import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationDisplay;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationTab;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationLabel;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListIsTimeSorted;
+import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListSeverity;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListSize;
+import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListText;
 import scripts.cats.hmi.asserts.VerifyLoadingOverlayIsVisible;
 import scripts.cats.hmi.asserts.VerifyPopupVisible;
+
+import java.util.List;
 
 public class GGBasicUISteps extends AutomationSteps
 {
@@ -109,6 +117,26 @@ public class GGBasicUISteps extends AutomationSteps
                 .input(VerifyNotificationListSize.IPARAM_LIST_SIZE, number));
     }
 
+    @Then("$profileName verifies that $entry from list $listName has the expected text and severity")
+    public void verifiesNotificationEntryText( final String profileName, final String entry, final String listName)
+    {
+        NotificationDisplayEntry notificationDisplayEntry = getStoryListData(entry, NotificationDisplayEntry.class );
+        String text = notificationDisplayEntry.getNotificationText();
+        String severity = notificationDisplayEntry.getSeverity();
+
+        evaluate( remoteStep( "Verify Notification Display list " +listName+ " text" )
+                .scriptOn(profileScriptResolver().map( VerifyNotificationListText.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input(VerifyNotificationListText.IPARAM_LIST_NAME, listName)
+                .input(VerifyNotificationListText.IPARAM_TEXT, text));
+
+        evaluate( remoteStep( "Verify Notification Display list " +listName+ " severity" )
+                .scriptOn(profileScriptResolver().map( VerifyNotificationListSeverity.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input(VerifyNotificationListSeverity.IPARAM_LIST_NAME, listName)
+                .input(VerifyNotificationListSeverity.IPARAM_SEVERITY, severity));
+    }
+
 
     @Then("$profileName using format $dateFormat verifies that Notification Display list $listName is time-sorted")
     public void verifyNotificationListTimeSorted(final String profileName, final String dateFormat, final String listName) {
@@ -119,6 +147,21 @@ public class GGBasicUISteps extends AutomationSteps
                         assertProfile(profileName))
                 .input(VerifyNotificationListIsTimeSorted.IPARAM_DATE_FORMAT, dateFormat)
                 .input(VerifyNotificationListIsTimeSorted.IPARAM_LIST_NAME, listName));
+    }
+
+    @Given("the following notification entries: $notificationEntries")
+    public void namedNotificationEntries( final List<NotificationDisplayEntry> notificationEntries )
+    {
+        final LocalStep localStep = localStep( "Define the notification entries" );
+        for ( final NotificationDisplayEntry notificationEntry : notificationEntries )
+        {
+            final String key = notificationEntry.getKey();
+            setStoryListData( key, notificationEntry );
+            localStep
+                    .details( ExecutionDetails.create( "Define the notification entries" ).usedData( key, notificationEntry ) );
+        }
+
+        record( localStep );
     }
 
 }
