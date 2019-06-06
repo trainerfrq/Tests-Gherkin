@@ -42,6 +42,7 @@ Then HMI OP1 has the call queue item OP3-OP1 in the priority list with name labe
 Then HMI OP1 verifies that the call queue item OP3-OP1 from the priority list has call type DA
 
 Scenario: Op2 initiates an IA call
+When HMI OP2 selects grid tab 2
 When HMI OP2 presses IA key IA - OP1
 Then HMI OP2 has the call queue item IA-OP1-OP2 in the active list with name label IA - OP1
 
@@ -55,6 +56,7 @@ When HMI OP2 presses IA key IA - OP1
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Op2 initiates a priority call
+When HMI OP2 selects grid tab 1
 When HMI OP2 initiates a priority call on DA key OP1
 Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label OP1
 
@@ -155,3 +157,6 @@ Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Remove phone
 When SipContact is removed
+
+Scenario: Cleanup - always select first tab
+When HMI OP2 selects grid tab 1

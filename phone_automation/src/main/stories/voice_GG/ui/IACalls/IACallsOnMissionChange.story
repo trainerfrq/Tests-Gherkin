@@ -14,16 +14,18 @@ Given the call queue items:
 | OP3-OP2 | sip:op3@example.com    | sip:222222@example.com | IA       |
 
 Scenario: Op1 establishes an outgoing IA call towards Op2
+When HMI OP1 selects grid tab 2
 When HMI OP1 presses IA key IA - OP2(as OP1)
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
 
 Scenario: Callee Op2 receives incoming IA call from Op1
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
+When HMI OP2 selects grid tab 2
 Then HMI OP2 has the IA key IA - OP1 in state connected
 
 Scenario: Callee Op2 changes the mission
-When HMI OP2 clicks on mission label missionLabel
+When HMI OP2 clicks on label mission
 Then HMI OP2 has a list of 3 missions available
 Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP2 activates mission
@@ -33,6 +35,7 @@ Scenario: Verify mission change
 Then HMI OP2 has in the display status section mission the assigned mission MAN-NIGHT-TACT
 
 Scenario: Op3 establishes an outgoing IA call towards Op2
+When HMI OP3 selects grid tab 2
 When HMI OP3 presses IA key IA - OP2(as OP3)
 Then HMI OP3 has the call queue item OP2-OP3 in state connected
 Then HMI OP3 has the IA key IA - OP2(as OP3) in state connected
@@ -44,7 +47,7 @@ Then HMI OP2 has the call queue item OP3-OP2 in state connected
 Then HMI OP2 has in the call queue a number of 2 calls
 
 Scenario: Callee Op2 changes to previous mission
-When HMI OP2 clicks on mission label missionLabel
+When HMI OP2 clicks on label mission
 Then HMI OP2 has a list of 3 missions available
 Then HMI OP2 changes current mission to mission WEST-EXEC
 Then HMI OP2 activates mission
@@ -54,6 +57,7 @@ Scenario: Verify mission change
 Then HMI OP2 has in the display status section mission the assigned mission WEST-EXEC
 
 Scenario: Callee Op2 remains connected in both IA calls
+When HMI OP2 selects grid tab 2
 Then HMI OP2 has the IA key IA - OP1 in state connected
 Then HMI OP2 has the IA key IA - OP3 in state connected
 Then HMI OP2 click on call queue Elements list
@@ -75,6 +79,11 @@ Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Call is also terminated for callee
 Then HMI OP2 has in the active list a number of 0 calls
+
+Scenario: Cleanup - always select first tab
+When HMI OP1 selects grid tab 1
+When HMI OP2 selects grid tab 1
+When HMI OP3 selects grid tab 1
 
 
 

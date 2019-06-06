@@ -59,11 +59,13 @@ When HMI OP1 initiates a call from the phonebook
 When SipContact answers incoming calls
 
 Scenario: Op3 establishes an outgoing IA call to Op2
+When HMI OP3 selects grid tab 2
 When HMI OP3 presses IA key IA - OP2(as OP3)
 Then HMI OP3 has the call queue item OP2-OP3 in state connected
 Then HMI OP3 has the IA key IA - OP2(as OP3) in state connected
 
 Scenario: Op2 receives incoming IA call
+When HMI OP2 selects grid tab 2
 Then HMI OP2 click on call queue Elements list
 Then HMI OP2 has in the collapsed area a number of 1 calls
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
@@ -109,4 +111,6 @@ Then HMI OP1 has in the call queue a number of 0 calls
 Scenario: Remove phone
 When SipContact is removed
 
-
+Scenario: Cleanup - always select first tab
+When HMI OP3 selects grid tab 1
+When HMI OP2 selects grid tab 1

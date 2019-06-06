@@ -102,11 +102,13 @@ Then HMI OP1 has the function key CALLFORWARD in active state
 Then HMI OP1 verifies that call queue info container is visible
 
 Scenario: Op1 establishes an outgoing IA call
+When HMI OP1 selects grid tab 2
 When HMI OP1 presses IA key IA - OP2(as OP1)
 Then HMI OP1 has the call queue item OP2-OP1-IA in state connected
 Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
 
 Scenario: Op2 receives incoming IA call
+When HMI OP2 selects grid tab 2
 Then HMI OP2 has the call queue item OP1-OP2-IA in state connected
 Then HMI OP2 has the IA key IA - OP1 in state connected
 
@@ -135,3 +137,7 @@ Then HMI OP1 has the function key CALLFORWARD in active state
 Scenario: Op1 deactivates Call Forward
 When HMI OP1 presses function key CALLFORWARD
 Then HMI OP1 verifies that call queue info container is not visible
+
+Scenario: Cleanup - always select first tab
+When HMI OP1 selects grid tab 1
+When HMI OP2 selects grid tab 1

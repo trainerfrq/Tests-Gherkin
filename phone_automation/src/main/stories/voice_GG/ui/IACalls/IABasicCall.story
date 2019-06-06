@@ -18,7 +18,7 @@ Given the call queue items:
 Scenario: Caller establishes an outgoing IA call
 		  @REQUIREMENTS:GID-2505705
 		  @REQUIREMENTS:GID-2505706
-When HMI OP1 presses IA key IA - OP2(as OP1)
+When HMI OP1 selects grid tab 2
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
 
@@ -26,6 +26,7 @@ Scenario: Callee receives incoming IA call
 		  @REQUIREMENTS:GID-2505708
 		  @REQUIREMENTS:GID-2512204
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
+When HMI OP2 selects grid tab 2
 Then HMI OP2 has the IA key IA - OP1 in state connected
 
 Scenario: Cleanup IA call
@@ -34,3 +35,7 @@ Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for callee
 Then HMI OP2 has in the call queue a number of 0 calls
+
+Scenario: Cleanup - always select first tab
+When HMI OP1 selects grid tab 1
+When HMI OP2 selects grid tab 1

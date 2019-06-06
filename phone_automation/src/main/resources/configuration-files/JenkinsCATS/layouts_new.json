@@ -1,0 +1,756 @@
+[
+  {
+    "layoutId": "580a5ad0-d448-42eb-9d35-0fb825d0f4ab",
+    "name": "lower-east-exec-layout",
+    "layoutInitData": {
+      "columnNumber": 1,
+      "rowNumber": 1,
+      "column": 0,
+      "row": 0,
+      "usedColumnNumber": 1,
+      "usedRowNumber": 1
+    },
+    "gridInitData": {
+      "columnNumber": 12,
+      "rowNumber": 18
+    },
+    "widgetLayout": {
+      "widgets": [
+        {
+          "id": "107",
+          "type": "ia",
+          "grid": "1559721399523_IA",
+          "position": {
+            "column": 0,
+            "row": 0,
+            "columnSpan": 1,
+            "rowSpan": 1
+          }
+        },
+        {
+          "id": "108",
+          "type": "ia",
+          "grid": "1559721399523_IA",
+          "position": {
+            "column": 1,
+            "row": 0,
+            "columnSpan": 1,
+            "rowSpan": 1
+          }
+        },
+        {
+          "id": "109",
+          "type": "ia",
+          "grid": "1559721399523_IA",
+          "position": {
+            "column": 2,
+            "row": 0,
+            "columnSpan": 1,
+            "rowSpan": 1
+          }
+        },
+        {
+          "id": "f1",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 16,
+            "columnSpan": 1,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "f2",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 1,
+            "row": 16,
+            "columnSpan": 1,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "f3",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 2,
+            "row": 16,
+            "columnSpan": 1,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "f4",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 3,
+            "row": 16,
+            "columnSpan": 1,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "f5",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 4,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "cq1",
+          "type": "callQueue",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 9,
+            "row": 4,
+            "columnSpan": 3,
+            "rowSpan": 14
+          }
+        },
+        {
+          "id": "status1",
+          "type": "status",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 9,
+            "row": 0,
+            "columnSpan": 3,
+            "rowSpan": 4
+          }
+        },
+        {
+          "id": "1559721399523",
+          "type": "grid",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 0,
+            "columnSpan": 9,
+            "rowSpan": 16
+          }
+        },
+        {
+          "id": "100",
+          "type": "da",
+          "grid": "1559721399523_DA",
+          "position": {
+            "column": 1,
+            "row": 0,
+            "columnSpan": 1,
+            "rowSpan": 1
+          }
+        },
+        {
+          "id": "101",
+          "type": "da",
+          "grid": "1559721399523_DA",
+          "position": {
+            "column": 0,
+            "row": 0,
+            "columnSpan": 1,
+            "rowSpan": 1
+          }
+        },
+        {
+          "id": "102",
+          "type": "da",
+          "grid": "1559721399523_DA",
+          "position": {
+            "column": 2,
+            "row": 0,
+            "columnSpan": 1,
+            "rowSpan": 1
+          }
+        },
+        {
+          "id": "103",
+          "type": "da",
+          "grid": "1559721399523_DA",
+          "position": {
+            "column": 0,
+            "row": 1,
+            "columnSpan": 1,
+            "rowSpan": 1
+          }
+        },
+        {
+          "id": "104",
+          "type": "da",
+          "grid": "1559721399523_DA",
+          "position": {
+            "column": 1,
+            "row": 1,
+            "columnSpan": 1,
+            "rowSpan": 1
+          }
+        },
+        {
+          "id": "105",
+          "type": "da",
+          "grid": "1559721399523_DA",
+          "position": {
+            "column": 2,
+            "row": 1,
+            "columnSpan": 1,
+            "rowSpan": 1
+          }
+        },
+        {
+          "id": "106",
+          "type": "da",
+          "grid": "1559721399523_DA",
+          "position": {
+            "column": 2,
+            "row": 2,
+            "columnSpan": 1,
+            "rowSpan": 1
+          }
+        }
+      ],
+      "positions": []
+    },
+    "gridWidgetData": {
+      "grid": [
+        {
+          "id": "1559721399523",
+          "gridTitle": "grid",
+          "columnNumber": 3,
+          "rowNumber": 3,
+          "gridPages": [
+            {
+              "id": "1559721399523_DA",
+              "displayName": "DA"
+            },
+            {
+              "id": "1559721399523_IA",
+              "displayName": "IA"
+            }
+          ]
+        }
+      ]
+    },
+    "phoneData": {
+      "da": [
+        {
+          "id": "100",
+          "target": "sip:222222@example.com",
+          "source": "sip:111111@example.com",
+          "displayName": "OP2 Physical",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "101",
+          "target": "sip:222222@example.com",
+          "source": "sip:op3@example.com",
+          "displayName": "OP2 Physical",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "102",
+          "target": "sip:op3@example.com",
+          "source": "sip:111111@example.com",
+          "displayName": "Operator3",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "103",
+          "target": "sip:111111@example.com",
+          "source": "sip:op3@example.com",
+          "displayName": "Operator1",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "104",
+          "target": "sip:role2@example.com",
+          "source": "sip:role1@example.com",
+          "displayName": "Role2",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "105",
+          "target": "sip:role1@example.com",
+          "source": "sip:111111@example.com",
+          "displayName": "Role1",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "106",
+          "target": "sip:role2alias1@example.com",
+          "source": "sip:role1@example.com",
+          "displayName": "Role2Alias1",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "107",
+          "target": "sip:222222@example.com",
+          "source": "sip:111111@example.com",
+          "displayName": "OP2 Physical",
+          "callPriority": "URGENT"
+        },
+        {
+          "id": "108",
+          "target": "sip:222222@example.com",
+          "source": "sip:op3@example.com",
+          "displayName": "OP2 Physical",
+          "callPriority": "URGENT"
+        },
+        {
+          "id": "109",
+          "target": "sip:12345@192.168.100.48:5070",
+          "source": "sip:111111@example.com",
+          "displayName": "Madoline",
+          "callPriority": "URGENT"
+        }
+      ]
+    },
+    "functionData": {
+      "functionData": [
+        {
+          "id": "f1",
+          "type": "phonebook"
+        },
+        {
+          "id": "f2",
+          "type": "history"
+        },
+        {
+          "id": "f3",
+          "type": "mission"
+        },
+        {
+          "id": "f4",
+          "type": "forward"
+        },
+        {
+          "id": "f5",
+          "type": "ggAudioOutput"
+        }
+      ]
+    },
+    "statusDisplayData": {
+      "statusDisplay": [
+        {
+          "id": "status0",
+          "time": "%H:%M",
+          "date": "MM/dd/yy",
+          "showClock": true,
+          "showDate": true,
+          "showMission": true,
+          "showConnectionStatus": true
+        },
+        {
+          "id": "status1",
+          "time": "hh:mm:ss a",
+          "date": "MM/dd/yy",
+          "showClock": true,
+          "showDate": true,
+          "showMission": true,
+          "showConnectionStatus": true
+        }
+      ]
+    }
+  },
+  {
+    "layoutId": "53b1dd6a-6582-4899-a459-1fc4e8e4e3a0",
+    "name": "lower-west-exec-layout",
+    "layoutInitData": {
+      "columnNumber": 1,
+      "rowNumber": 1,
+      "column": 0,
+      "row": 0,
+      "usedColumnNumber": 1,
+      "usedRowNumber": 1
+    },
+    "gridInitData": {
+      "columnNumber": 12,
+      "rowNumber": 18
+    },
+    "widgetLayout": {
+      "widgets": [
+        {
+          "id": "110",
+          "type": "da",
+          "grid": "1559732038213_DA",
+          "position": {
+            "column": 0,
+            "row": 0,
+            "columnSpan": 1,
+            "rowSpan": 1
+          }
+        },
+        {
+          "id": "111",
+          "type": "da",
+          "grid": "1559732038213_DA",
+          "position": {
+            "column": 1,
+            "row": 0,
+            "columnSpan": 1,
+            "rowSpan": 1
+          }
+        },
+        {
+          "id": "112",
+          "type": "da",
+          "grid": "1559732038213_DA",
+          "position": {
+            "column": 2,
+            "row": 0,
+            "columnSpan": 1,
+            "rowSpan": 1
+          }
+        },
+        {
+          "id": "113",
+          "type": "da",
+          "grid": "1559732038213_DA",
+          "position": {
+            "column": 0,
+            "row": 1,
+            "columnSpan": 1,
+            "rowSpan": 1
+          }
+        },
+        {
+          "id": "114",
+          "type": "da",
+          "grid": "1559732038213_DA",
+          "position": {
+            "column": 1,
+            "row": 1,
+            "columnSpan": 1,
+            "rowSpan": 1
+          }
+        },
+        {
+          "id": "115",
+          "type": "da",
+          "grid": "1559732038213_DA",
+          "position": {
+            "column": 2,
+            "row": 1,
+            "columnSpan": 1,
+            "rowSpan": 1
+          }
+        },
+        {
+          "id": "116",
+          "type": "da",
+          "grid": "1559732038213_DA",
+          "position": {
+            "column": 0,
+            "row": 2,
+            "columnSpan": 1,
+            "rowSpan": 1
+          }
+        },
+        {
+          "id": "120",
+          "type": "da",
+          "grid": "1559732038213_DA",
+          "position": {
+            "column": 1,
+            "row": 2,
+            "columnSpan": 1,
+            "rowSpan": 1
+          }
+        },
+        {
+          "id": "f1",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 16,
+            "columnSpan": 1,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "f2",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 1,
+            "row": 16,
+            "columnSpan": 1,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "f3",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 2,
+            "row": 16,
+            "columnSpan": 1,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "f4",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 3,
+            "row": 16,
+            "columnSpan": 1,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "f5",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 4,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "cq1",
+          "type": "callQueue",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 9,
+            "row": 4,
+            "columnSpan": 3,
+            "rowSpan": 14
+          }
+        },
+        {
+          "id": "status1",
+          "type": "status",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 9,
+            "row": 0,
+            "columnSpan": 3,
+            "rowSpan": 4
+          }
+        },
+        {
+          "id": "1559732038213",
+          "type": "grid",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 0,
+            "columnSpan": 9,
+            "rowSpan": 16
+          }
+        },
+        {
+          "id": "117",
+          "type": "ia",
+          "grid": "1559732038213_IA",
+          "position": {
+            "column": 0,
+            "row": 1,
+            "columnSpan": 1,
+            "rowSpan": 1
+          }
+        },
+        {
+          "id": "118",
+          "type": "ia",
+          "grid": "1559732038213_IA",
+          "position": {
+            "column": 0,
+            "row": 0,
+            "columnSpan": 1,
+            "rowSpan": 1
+          }
+        },
+        {
+          "id": "119",
+          "type": "ia",
+          "grid": "1559732038213_IA",
+          "position": {
+            "column": 1,
+            "row": 0,
+            "columnSpan": 1,
+            "rowSpan": 1
+          }
+        },
+        {
+          "id": "121",
+          "type": "ia",
+          "grid": "1559732038213_IA",
+          "position": {
+            "column": 2,
+            "row": 0,
+            "columnSpan": 1,
+            "rowSpan": 1
+          }
+        }
+      ],
+      "positions": []
+    },
+    "gridWidgetData": {
+      "grid": [
+        {
+          "id": "1559732038213",
+          "gridTitle": "grid",
+          "columnNumber": 3,
+          "rowNumber": 3,
+          "gridPages": [
+            {
+              "id": "1559732038213_DA",
+              "displayName": "DA"
+            },
+            {
+              "id": "1559732038213_IA",
+              "displayName": "IA"
+            }
+          ]
+        }
+      ]
+    },
+    "phoneData": {
+      "da": [
+        {
+          "id": "110",
+          "target": "sip:111111@example.com",
+          "source": "{role_primary_sip_address}",
+          "displayName": "Operator1",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "121",
+          "target": "sip:op3@example.com",
+          "source": "{role_primary_sip_address}",
+          "displayName": "IA - OP3",
+          "callPriority": "URGENT"
+        },
+        {
+          "id": "111",
+          "target": "sip:op3@example.com",
+          "source": "{role_primary_sip_address}",
+          "displayName": "Operator3",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "112",
+          "target": "sip:role1@example.com",
+          "source": "{role_primary_sip_address}",
+          "displayName": "Role1",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "113",
+          "target": "sip:role1@example.com",
+          "source": "sip:role2@example.com",
+          "displayName": "Role1",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "114",
+          "target": "sip:role1alias1@example.com",
+          "source": "{role_primary_sip_address}",
+          "displayName": "Role1Alias1",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "115",
+          "target": "sip:role1alias1@example.com",
+          "source": "sip:role2@example.com",
+          "displayName": "Role1Alias1",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "116",
+          "target": "sip:role1alias1@example.com",
+          "source": "sip:role2alias1@example.com",
+          "displayName": "Role1Alias1",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "117",
+          "target": "sip:role1@example.com",
+          "source": "{role_primary_sip_address}",
+          "displayName": "IA - ROLE1",
+          "callPriority": "URGENT"
+        },
+        {
+          "id": "118",
+          "target": "sip:111111@example.com",
+          "source": "sip:222222@example.com",
+          "displayName": "IA - OP1",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "119",
+          "target": "sip:222222@example.com",
+          "source": "sip:222222@example.com",
+          "displayName": "IA - OP2",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "120",
+          "target": "sip:111111@example.com",
+          "source": "sip:mission2@example.com",
+          "displayName": "Operator1",
+          "callPriority": "NON-URGENT"
+        }
+      ]
+    },
+    "functionData": {
+      "functionData": [
+        {
+          "id": "f1",
+          "type": "phonebook"
+        },
+        {
+          "id": "f2",
+          "type": "history"
+        },
+        {
+          "id": "f3",
+          "type": "mission"
+        },
+        {
+          "id": "f4",
+          "type": "forward"
+        },
+        {
+          "id": "f5",
+          "type": "ggAudioOutput"
+        }
+      ]
+    },
+    "statusDisplayData": {
+      "statusDisplay": [
+        {
+          "id": "status0",
+          "time": "%H:%M",
+          "date": "MM/dd/yy",
+          "showClock": true,
+          "showDate": true,
+          "showMission": true,
+          "showConnectionStatus": true
+        },
+        {
+          "id": "status1",
+          "time": "hh:mm:ss a",
+          "date": "MM/dd/yy",
+          "showClock": true,
+          "showDate": true,
+          "showMission": true,
+          "showConnectionStatus": true
+        }
+      ]
+    }
+  }
+]

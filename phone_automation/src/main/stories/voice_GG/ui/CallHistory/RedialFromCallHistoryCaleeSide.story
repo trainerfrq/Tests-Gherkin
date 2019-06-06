@@ -78,11 +78,13 @@ Then HMI OP2 verifies that call history dial button is disabled
 Then HMI OP2 closes Call History popup window
 
 Scenario: OP1 establishes an outgoing IA call
+When HMI OP1 selects grid tab 2
 When HMI OP1 presses IA key IA - OP2(as OP1)
 Then HMI OP1 has the call queue item OP2-OP1-IA in state connected
 Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
 
 Scenario: OP2 receives incoming IA call
+When HMI OP2 selects grid tab 2
 Then HMI OP2 has the call queue item OP1-OP2-IA in state connected
 Then HMI OP2 has the IA key IA - OP1 in state connected
 
@@ -96,3 +98,7 @@ When HMI OP2 presses function key CALLHISTORY
 Then HMI OP2 verifies that call history list contains 3 entries
 Then HMI OP2 verifies that call history dial button is disabled
 Then HMI OP2 closes Call History popup window
+
+Scenario: Cleanup - always select first tab
+When HMI OP1 selects grid tab 1
+When HMI OP2 selects grid tab 1

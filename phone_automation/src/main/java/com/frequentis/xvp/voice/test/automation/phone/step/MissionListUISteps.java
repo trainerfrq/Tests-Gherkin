@@ -20,10 +20,8 @@ import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.Mission.ClickActivateMission;
 import scripts.cats.hmi.actions.Mission.ClickMissionCloseButton;
-import scripts.cats.hmi.actions.Mission.ClickMissionLabel;
 import scripts.cats.hmi.actions.Mission.SelectMissionFromList;
 import scripts.cats.hmi.actions.Mission.SelectMissionFromListByPosition;
 import scripts.cats.hmi.asserts.Mission.VerifyMissionListNames;
@@ -100,16 +98,6 @@ public class MissionListUISteps extends AutomationSteps
       evaluate( remoteStep( "user clicks Close Mission" ).scriptOn(
             profileScriptResolver().map( ClickMissionCloseButton.class, BookableProfileName.javafx ),
             assertProfile( profileName ) ) );
-   }
-
-
-   @When("$profileName clicks on mission label $label")
-   public void clickMissionLabel( final String profileName, final String label )
-   {
-      evaluate( remoteStep( "sser clicks mission label" )
-            .scriptOn( profileScriptResolver().map( ClickMissionLabel.class, BookableProfileName.javafx ),
-                  assertProfile( profileName ) )
-            .input( ClickMissionLabel.IPARAM_MISSION_DISPLAY_LABEL, label ) );
    }
 
 }

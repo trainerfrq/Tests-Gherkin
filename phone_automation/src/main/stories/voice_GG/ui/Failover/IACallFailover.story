@@ -29,6 +29,9 @@ Then HMI OP1 has in the display status section connection the state DEGRADED
 When HMI OP2 verifies that loading screen is visible
 Then HMI OP2 has in the display status section connection the state DEGRADED
 
+Scenario: Select second tab to make IA buttons visible
+When HMI OP1 selects grid tab 2
+When HMI OP2 selects grid tab 2
 Scenario: Verify IA keys state
 Given HMI OP1 has the IA key IA - OP2(as OP1) in ready to be used state
 Given HMI OP2 has the IA key IA - OP1 in ready to be used state
@@ -56,3 +59,7 @@ GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost2.story
 Then waiting for 60 seconds
 Then HMI OP1 has in the display status section connection the state CONNECTED
 Then HMI OP2 has in the display status section connection the state CONNECTED
+
+Scenario: Cleanup - always select first tab
+When HMI OP1 selects grid tab 1
+When HMI OP2 selects grid tab 1

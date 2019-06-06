@@ -21,6 +21,7 @@ import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.ClickContainerTab;
+import scripts.cats.hmi.actions.ClickStatusLabel;
 import scripts.cats.hmi.asserts.VerifyLoadingOverlayIsVisible;
 import scripts.cats.hmi.asserts.VerifyNotificationLabel;
 
@@ -50,6 +51,15 @@ public class GGBasicUISteps extends AutomationSteps
               profileScriptResolver().map( ClickContainerTab.class, BookableProfileName.javafx ),
               assertProfile( profileName ) )
               .input(ClickContainerTab.IPARAM_TAB_POSITION, tabPosition-1));
+   }
+
+   @When("$profileName clicks on label $label")
+   public void clicksOnLabel( final String profileName, final String label )
+   {
+      evaluate( remoteStep( "user clicks on "+label+" label" )
+              .scriptOn( profileScriptResolver().map( ClickStatusLabel.class, BookableProfileName.javafx ),
+                      assertProfile( profileName ) )
+              .input( ClickStatusLabel.IPARAM_DISPLAY_LABEL, label ) );
    }
 
 }

@@ -55,11 +55,11 @@ When HMI OP2 presses function key CALLHISTORY
 Then HMI OP2 verifies call history entry number 1 matches entry5
 Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 matches date format for entry5
 
-
 Scenario: Op2 closes Call History window
 Then HMI OP2 closes Call History popup window
 
 Scenario: Caller establishes 3rd outgoing call - IA call - and verifies additional information
+When HMI OP2 selects grid tab 2
 When HMI OP2 presses IA key IA - OP1
 Then assign date time value for entry entry4
 Then HMI OP2 has the IA key IA - OP1 in state connected
@@ -72,8 +72,8 @@ Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 
 Scenario: Op2 closes Call History window
 Then HMI OP2 closes Call History popup window
 
-
 Scenario: Caller establishes 4th outgoing call - incoming for OP2 - and verifies additional information
+When HMI OP2 selects grid tab 1
 When HMI OP1 presses DA key OP2(as OP1)
 Then assign date time value for entry entry3
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
@@ -88,6 +88,7 @@ Scenario: Op2 closes Call History window
 Then HMI OP2 closes Call History popup window
 
 Scenario: Caller establishes 5th outgoing IA call and verifies additional information
+When HMI OP1 selects grid tab 2
 When HMI OP1 presses IA key IA - OP2(as OP1)
 Then assign date time value for entry entry2
 Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
@@ -117,3 +118,7 @@ Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 
 
 Scenario: Op2 closes Call History window
 Then HMI OP2 closes Call History popup window
+
+Scenario: Cleanup - always select first tab
+When HMI OP1 selects grid tab 1
+When HMI OP2 selects grid tab 1
