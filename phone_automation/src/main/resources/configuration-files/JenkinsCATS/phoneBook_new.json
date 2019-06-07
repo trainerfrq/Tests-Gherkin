@@ -1,6 +1,6 @@
 [
   {
-    "fullName": "1Physical Identity OP1",
+    "fullName": "0Physical Identity OP1",
     "displayName": "OP1 Physical",
     "location": "XVP Lab",
     "organization": "FRQ XVP GG-Team",
@@ -13,7 +13,7 @@
     ]
   },
   {
-    "fullName": "2Physical Identity OP2",
+    "fullName": "1Physical Identity OP2",
     "displayName": "OP2 Physical",
     "location": "XVP Lab",
     "organization": "FRQ XVP GG-Team",
@@ -26,7 +26,7 @@
     ]
   },
   {
-    "fullName": "3Lloyd Ripley",
+    "fullName": "2Lloyd Ripley",
     "displayName": "Lloyd",
     "location": "123 6th St. Melbourne, FL 32904",
     "organization": "European Applications",
@@ -40,7 +40,7 @@
     ]
   },
   {
-    "fullName": "4Madoline Katharyn",
+    "fullName": "3Madoline Katharyn",
     "displayName": "Madoline",
     "location": "71 Pilgrim Avenue Chevy Chase, MD 20815",
     "organization": "Chinese Metals",
@@ -54,7 +54,7 @@
     ]
   },
   {
-    "fullName": "5Wien Police",
+    "fullName": "4Wien Police",
     "displayName": "Police1",
     "location": "Spiegelsberg 18, 4753 ALTMANNSDORF",
     "organization": "Vienna Police",
@@ -68,7 +68,7 @@
     ]
   },
   {
-    "fullName": "6Wien Police",
+    "fullName": "5Wien Police",
     "displayName": "Police2",
     "location": "Annenstrasse 2, 4972 GUNDERPOLLING",
     "organization": "Vienna Police",
@@ -77,12 +77,12 @@
       {
         "destination": "sip:police@12.34.56.89",
         "callType": "DA/IDA",
-        "displayAddon": "Local"
+        "displayAddon": "Autobahn"
       }
     ]
   },
   {
-    "fullName": "7Wien Police",
+    "fullName": "6Wien Police",
     "displayName": "Police3",
     "location": "Lerchenfelder Straße 19, 3195 LAHNSATTEL",
     "organization": "Vienna Police",
@@ -96,7 +96,7 @@
     ]
   },
   {
-    "fullName": "8Wien Police",
+    "fullName": "7Wien Police",
     "displayName": "Police-Ambulance1",
     "location": "Hubatschstrasse 44, 8010 SCHAFTAL",
     "organization": "Vienna Police",
@@ -105,12 +105,12 @@
       {
         "destination": "sip:police@78.56.43.21",
         "callType": "DA/IDA",
-        "displayAddon": "Local"
+        "displayAddon": "Autobahn"
       }
     ]
   },
   {
-    "fullName": "9Wien Police",
+    "fullName": "8Wien Police",
     "displayName": "Police-Ambulance2",
     "location": "Lendplatz 80, 8967 HAUS",
     "organization": "Vienna Police",
@@ -124,52 +124,7 @@
     ]
   },
   {
-    "fullName": "A10Role2",
-    "displayName": "Role2",
-    "location": "",
-    "organization": "",
-    "notes": "",
-    "dataSets": [
-      {
-        "destination": "sip:role2@example.com",
-        "callType": "DA/IDA",
-        "priority": "normal",
-        "displayAddon": ""
-      }
-    ]
-  },
-  {
-    "fullName": "A11Role2Alias1",
-    "displayName": "Role2Alias1",
-    "location": "",
-    "organization": "",
-    "notes": "",
-    "dataSets": [
-      {
-        "destination": "sip:role2alias1@example.com",
-        "callType": "DA/IDA",
-        "priority": "normal",
-        "displayAddon": ""
-      }
-    ]
-  },
-  {
-    "fullName": "A12Role2Alias2",
-    "displayName": "Role2Alias2",
-    "location": "",
-    "organization": "",
-    "notes": "",
-    "dataSets": [
-      {
-        "destination": "sip:role2alias2@example.com",
-        "callType": "DA/IDA",
-        "priority": "normal",
-        "displayAddon": ""
-      }
-    ]
-  },
-  {
-    "fullName": "A1Snom 370 SIP Phone",
+    "fullName": "9Snom 370 SIP Phone",
     "displayName": "Snom 370 (Carol)",
     "location": "XVP Lab",
     "organization": "FRQ XVP GG-Team",
@@ -182,7 +137,7 @@
     ]
   },
   {
-    "fullName": "A4Call Group 1",
+    "fullName": "A1Call Group 1",
     "displayName": "Group 1",
     "location": "XVP Lab",
     "organization": "FRQ XVP GG-Team",
@@ -195,7 +150,7 @@
     ]
   },
   {
-    "fullName": "A5Operator3",
+    "fullName": "A2Operator3",
     "displayName": "Operator3",
     "location": "",
     "organization": "",
@@ -210,7 +165,7 @@
     ]
   },
   {
-    "fullName": "A6Operator1",
+    "fullName": "A3Operator1",
     "displayName": "Operator1",
     "location": "",
     "organization": "",
@@ -225,7 +180,7 @@
     ]
   },
   {
-    "fullName": "A7Role1",
+    "fullName": "A4Role1",
     "displayName": "Role1",
     "location": "",
     "organization": "",
@@ -240,7 +195,7 @@
     ]
   },
   {
-    "fullName": "A8Role1Alias1",
+    "fullName": "A5Role1Alias1",
     "displayName": "Role1Alias1",
     "location": "",
     "organization": "",
@@ -255,7 +210,7 @@
     ]
   },
   {
-    "fullName": "A9Role1Alias2",
+    "fullName": "A6Role1Alias2",
     "displayName": "Role1Alias2",
     "location": "",
     "organization": "",
@@ -263,6 +218,51 @@
     "dataSets": [
       {
         "destination": "sip:role1alias2@example.com",
+        "callType": "DA/IDA",
+        "priority": "normal",
+        "displayAddon": ""
+      }
+    ]
+  },
+  {
+    "fullName": "A7Role2",
+    "displayName": "Role2",
+    "location": "",
+    "organization": "",
+    "notes": "",
+    "dataSets": [
+      {
+        "destination": "sip:role2@example.com",
+        "callType": "DA/IDA",
+        "priority": "normal",
+        "displayAddon": ""
+      }
+    ]
+  },
+  {
+    "fullName": "A8Role2Alias1",
+    "displayName": "Role2Alias1",
+    "location": "",
+    "organization": "",
+    "notes": "",
+    "dataSets": [
+      {
+        "destination": "sip:role2alias1@example.com",
+        "callType": "DA/IDA",
+        "priority": "normal",
+        "displayAddon": ""
+      }
+    ]
+  },
+  {
+    "fullName": "A9Role2Alias2",
+    "displayName": "Role2Alias2",
+    "location": "",
+    "organization": "",
+    "notes": "",
+    "dataSets": [
+      {
+        "destination": "sip:role2alias2@example.com",
         "callType": "DA/IDA",
         "priority": "normal",
         "displayAddon": ""
@@ -10756,32 +10756,6 @@
     "dataSets": [
       {
         "destination": "sip:322636@example.com",
-        "callType": "DA/IDA"
-      }
-    ]
-  },
-  {
-    "fullName": "Role 1 - Alice",
-    "displayName": "Role 1 (Alice)",
-    "location": "XVP Lab",
-    "organization": "FRQ XVP GG-Team",
-    "notes": "",
-    "dataSets": [
-      {
-        "destination": "sip:role1@example.com",
-        "callType": "DA/IDA"
-      }
-    ]
-  },
-  {
-    "fullName": "Role 2 - Bob",
-    "displayName": "Role 2 (Bob)",
-    "location": "XVP Lab",
-    "organization": "FRQ XVP GG-Team",
-    "notes": "",
-    "dataSets": [
-      {
-        "destination": "sip:role2@example.com",
         "callType": "DA/IDA"
       }
     ]
