@@ -34,6 +34,7 @@ When HMI OP1 opens Notification Display list
 Then HMI OP1 verifies that popup notification is visible
 
 Scenario: Operator verifies the size of state and events lists
+		  @REQUIREMENTS: GID-3281816
 Then HMI OP1 verifies that Notification Display list State has 0 items
 When HMI OP1 selects tab event from notification display popup
 Then HMI OP1 verifies that Notification Display list Event has 1 items
@@ -59,6 +60,7 @@ When HMI OP1 selects tab event from notification display popup
 Then HMI OP1 verifies that Notification Display list Event has 1 items
 
 Scenario: Operator clears the event list
+		  @REQUIREMENTS: GID-4308969
 When HMI OP1 clears the notification events from list
 Then HMI OP1 verifies that Notification Display list Event has 0 items
 When HMI OP1 selects tab state from notification display popup

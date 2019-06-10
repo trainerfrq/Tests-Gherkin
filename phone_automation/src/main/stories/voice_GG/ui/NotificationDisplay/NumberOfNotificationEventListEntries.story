@@ -32,6 +32,7 @@ Scenario: Verify call is terminated for both operators
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Operator opens Notification Display popup and verifies the Event list
+		  @REQUIREMENTS: GID-3281817
 When HMI OP1 opens Notification Display list
 Then HMI OP1 verifies that popup notification is visible
 When HMI OP1 selects tab event from notification display popup

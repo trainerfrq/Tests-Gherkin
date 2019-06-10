@@ -113,20 +113,25 @@ Then HMI OP2 has a notification that shows Hold limit exceeded
 Scenario: Op2 ends active call
 When HMI OP2 presses DA key OP3
 
-Scenario: Operator opens Notification Display popup
+Scenario: Op2 opens Notification Display popup
 When HMI OP2 opens Notification Display list
 Then HMI OP2 verifies that popup notification is visible
 
-Scenario: Operator verifies the size of events list
+Scenario: Op2 verifies the size of events list
+		  @REQUIREMENTS: GID-3281816
 When HMI OP2 selects tab event from notification display popup
 Then HMI OP2 verifies that Notification Display list Event has 5 items
 
-Scenario: Operator verifies the events list is time sorted
+Scenario: Op2 verifies the events list is time sorted
 Then HMI OP2 using format <<dateFormat>> verifies that Notification Display list event is time-sorted
 
-Scenario: Operator verifies the events list is time sorted
+Scenario: Operator verifies the events in list have the expected text and severity
 Then HMI OP2 verifies that entry1 from list event has the expected text and severity
 Then HMI OP2 verifies that entry2 from list event has the expected text and severity
 Then HMI OP2 verifies that entry3 from list event has the expected text and severity
 Then HMI OP2 verifies that entry4 from list event has the expected text and severity
 Then HMI OP2 verifies that entry5 from list event has the expected text and severity
+
+Scenario: Op2 closes Notification Display popup
+Then HMI OP1 closes notification popup
+Then HMI OP1 verifies that popup notification is not visible
