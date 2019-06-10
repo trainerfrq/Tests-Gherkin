@@ -41,7 +41,7 @@ When HMI OP1 presses IA key IA - OP2(as OP1)
 
 Scenario: Verify call queue section
 Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label IA - OP2(as OP1)
-Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label 111111
+Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label Operator1
 
 Scenario: Verify call is connected for both operators
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
