@@ -30,7 +30,7 @@ Given the call queue items:
 
 Scenario: Op3 initiates a priority call
 When HMI OP3 initiates a priority call on DA key OP1(as OP3)
-Then HMI OP3 has the call queue item OP1-OP3 in the active list with name label OP1(as OP3)
+Then HMI OP3 has the call queue item OP1-OP3 in the active list with name label Operator1
 
 Scenario: Op1 receives a priority call and verifies call queue section (priority)
 		  @REQUIREMENTS:GID-3371933
@@ -38,7 +38,7 @@ Scenario: Op1 receives a priority call and verifies call queue section (priority
  		  @REQUIREMENTS:GID-3371943
  		  @REQUIREMENTS:GID-3490383
 Then HMI OP1 has in the call queue the item OP3-OP1 with priority
-Then HMI OP1 has the call queue item OP3-OP1 in the priority list with name label op3
+Then HMI OP1 has the call queue item OP3-OP1 in the priority list with name label Operator3
 Then HMI OP1 verifies that the call queue item OP3-OP1 from the priority list has call type DA
 
 Scenario: Op2 initiates an IA call

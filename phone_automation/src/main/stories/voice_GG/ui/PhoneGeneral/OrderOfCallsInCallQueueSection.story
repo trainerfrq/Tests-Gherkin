@@ -53,7 +53,7 @@ Then waiting for 2 seconds
 
 Scenario: Op1 verifies call queue sections
 Then HMI OP1 has the call queue item SipContact-OP1 in the waiting list with name label Madoline
-Then HMI OP1 has the call queue item OP3-OP1 in the waiting list with name label op3
+Then HMI OP1 has the call queue item OP3-OP1 in the waiting list with name label Operator3
 Then HMI OP1 has the call queue item OP2-OP1 in the priority list with name label OP2 Physical
 
 Scenario: Operator verifies the order of call queue items in the waiting section
