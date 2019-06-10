@@ -24,7 +24,7 @@ Scenario: Caller does several searches in the phone book
 		  @REQUIREMENTS:3003014
 When HMI OP1 writes in phonebook text box: op
 Then HMI OP1 verifies that all phonebook entries have text op highlighted
-Then HMI OP1 verifies that phonebook list has 2 items
+Then HMI OP1 verifies that phonebook list has 4 items
 Then HMI OP1 verifies that phone book call button is enabled
 
 When HMI OP1 writes in phonebook text box: 3
@@ -44,7 +44,7 @@ Then HMI OP1 verifies that phonebook list has 1 items
 When HMI OP1 deletes a character from text box
 Then HMI OP1 checks that input text box displays op text
 Then HMI OP1 verifies that all phonebook entries have text op highlighted
-Then HMI OP1 verifies that phonebook list has 2 items
+Then HMI OP1 verifies that phonebook list has 4 items
 
 Scenario: Caller does a call from phone book
 When HMI OP1 selects phonebook entry number: 1
