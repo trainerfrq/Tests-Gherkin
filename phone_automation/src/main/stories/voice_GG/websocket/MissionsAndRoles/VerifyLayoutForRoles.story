@@ -8,13 +8,13 @@ Meta:
 	  @AfterStory: ../includes/@CleanupThreeClients.story
 
 Scenario: Request and receive layout for first operator
-When WS1 requests the layout for role roleId1 and saves the response response1
+When WS1 requests the layout for mission missionId1 and saves the response response1
 
 Scenario: Request and receive layout for second operator
-When WS2 requests the layout for role roleId2 and saves the response response2
+When WS2 requests the layout for mission missionId2 and saves the response response2
 
 Scenario: Request and receive layout for third operator
-When WS3 requests the layout for role roleId3 and saves the response response3
+When WS3 requests the layout for mission missionId3 and saves the response response3
 
 Scenario: Assert that layouts for operators 1 and 3 (same role) are the same
 		  @REQUIREMENTS:GID-2398732
