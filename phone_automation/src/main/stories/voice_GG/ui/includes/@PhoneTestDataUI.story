@@ -23,7 +23,6 @@ Given the DA keys:
 | HMI OP3 | OP2(as OP3)           | 101 |
 | HMI OP3 | IA - OP2(as OP3)      | 108 |
 
-
 Scenario: Define function keys
 Given the function keys:
 | key         | id |
@@ -32,6 +31,12 @@ Given the function keys:
 | MISSIONS    | f3 |
 | CALLFORWARD | f4 |
 | LOUDSPEAKER | f5 |
+| SETTINGS    | f6 |
+
+Scenario: Define status keys
+Given the status keys:
+| key    | id      |
+| STATUS | status0 |
 
 Scenario: Define call route selectors
 Given the call route selectors:

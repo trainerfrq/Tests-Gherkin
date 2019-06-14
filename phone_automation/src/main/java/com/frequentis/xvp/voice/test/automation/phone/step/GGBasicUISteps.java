@@ -17,7 +17,9 @@
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
+import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import com.frequentis.xvp.voice.test.automation.phone.data.StatusKey;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.ClickContainerTab;
@@ -53,13 +55,22 @@ public class GGBasicUISteps extends AutomationSteps
               .input(ClickContainerTab.IPARAM_TAB_POSITION, tabPosition-1));
    }
 
-   @When("$profileName clicks on label $label")
-   public void clicksOnLabel( final String profileName, final String label )
+   @When("$profileName clicks on $status label $label")
+   public void clicksOnLabel( final String profileName, final String status, final String label )
    {
+      StatusKey statusKey = retrieveStatusKey(status);
       evaluate( remoteStep( "user clicks on "+label+" label" )
               .scriptOn( profileScriptResolver().map( ClickStatusLabel.class, BookableProfileName.javafx ),
                       assertProfile( profileName ) )
+              .input(ClickStatusLabel.IPARAM_STATUS_KEY_ID, statusKey.getId())
               .input( ClickStatusLabel.IPARAM_DISPLAY_LABEL, label ) );
+   }
+
+   private StatusKey retrieveStatusKey(final String key) {
+      final StatusKey statusKey = getStoryListData(key, StatusKey.class);
+      evaluate(localStep("Check Status Key").details(ExecutionDetails.create("Verify Status key is defined")
+              .usedData("key", key).success(statusKey.getId() != null)));
+      return statusKey;
    }
 
 }
