@@ -16,11 +16,11 @@
  ************************************************************************/
 package com.frequentis.xvp.tools.cats.websocket.automation.model;
 
-import java.io.Serializable;
-
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameter;
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameterBase;
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameterClass;
+
+import java.io.Serializable;
 
 @CatsCustomParameterClass
 public class PhoneBookEntry extends CatsCustomParameterBase implements Serializable
@@ -72,7 +72,9 @@ public class PhoneBookEntry extends CatsCustomParameterBase implements Serializa
 
 
    public String getFullName()
-   {
+   {if(fullName == null){
+      fullName = "";
+   }
       return fullName;
    }
 
@@ -84,7 +86,9 @@ public class PhoneBookEntry extends CatsCustomParameterBase implements Serializa
 
 
    public String getLocation()
-   {
+   {if(location == null){
+      location = "";
+   }
       return location;
    }
 
@@ -96,7 +100,9 @@ public class PhoneBookEntry extends CatsCustomParameterBase implements Serializa
 
 
    public String getOrganization()
-   {
+   { if(organization == null){
+      organization = "";
+   }
       return organization;
    }
 
@@ -108,7 +114,9 @@ public class PhoneBookEntry extends CatsCustomParameterBase implements Serializa
 
 
    public String getNotes()
-   {
+   {if(notes == null){
+      notes = "";
+   }
       return notes;
    }
 
@@ -120,7 +128,9 @@ public class PhoneBookEntry extends CatsCustomParameterBase implements Serializa
 
 
    public String getDisplayAddon()
-   {
+   {if(displayAddon == null){
+      displayAddon = "";
+   }
       return displayAddon;
    }
 
