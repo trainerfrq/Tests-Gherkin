@@ -34,8 +34,10 @@ Given the function keys:
 
 Scenario: Define status key
 Given the status key:
-| key            | id      |
-| DISPLAY STATUS | status1 |
+| source  | key            | id      |
+| HMI OP1 | DISPLAY STATUS | status1 |
+| HMI OP2 | DISPLAY STATUS | status1 |
+| HMI OP3 | DISPLAY STATUS | status1 |
 
 Scenario: Define call route selectors
 Given the call route selectors:

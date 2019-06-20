@@ -83,7 +83,7 @@ public class CallUISteps extends AutomationSteps {
     public void defineStatusKey(final List<StatusKey> statusKeys) {
         final LocalStep localStep = localStep("Define status keys");
         for (final StatusKey statusKey : statusKeys) {
-            final String key = statusKey.getKey();
+            final String key = statusKey.getSource() + "-" + statusKey.getKey();
             setStoryListData(key, statusKey);
             localStep.details(ExecutionDetails.create("Define status key").usedData(key, statusKey));
         }
