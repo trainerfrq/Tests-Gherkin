@@ -39,7 +39,7 @@ public class MissionListUISteps extends AutomationSteps
    @Alias("$profileName has in the $key section $label the state $text")
    public void verifyAssignedMission( final String profileName, final String key, final String label, final String text )
    {
-      StatusKey statusKey = retrieveStatusKey(key);
+      StatusKey statusKey = retrieveStatusKey(profileName, key);
       evaluate( remoteStep( "Verify that the user has the correct assigned mission" )
             .scriptOn( profileScriptResolver().map( VerifyStatusDisplay.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
@@ -116,10 +116,10 @@ public class MissionListUISteps extends AutomationSteps
             .input( ClickMissionLabel.IPARAM_MISSION_DISPLAY_LABEL, label ) );
    }
 
-    private StatusKey retrieveStatusKey(final String key) {
-        final StatusKey statusKey = getStoryListData(key, StatusKey.class);
+    private StatusKey retrieveStatusKey(final String source, final String key) {
+        final StatusKey statusKey = getStoryListData(source + "-" + key, StatusKey.class);
         evaluate(localStep("Check Status Key").details(ExecutionDetails.create("Verify Status key is defined")
-                .usedData("key", key).success(statusKey.getId() != null)));
+                .usedData("source", source).usedData("key", key).success(statusKey.getId() != null)));
         return statusKey;
     }
 

@@ -7,9 +7,22 @@ import java.io.Serializable;
 
 public class StatusKey extends CatsCustomParameterBase implements Serializable
 {
+   @CatsCustomParameter
+   private String source;
 
    @CatsCustomParameter
    private String id;
+
+    public String getSource()
+    {
+        return source;
+    }
+
+
+    public void setSource( final String source )
+    {
+        this.source = source;
+    }
 
 
    public String getId()
