@@ -67,7 +67,7 @@ public class GGBasicUISteps extends AutomationSteps
    }
 
    @Then("$profileName verifies that popup $popupName is $exists")
-   public void verifyHoldButtonExistence( final String profileName, final String popupName, final String exists )
+   public void verifyPopupExistence( final String profileName, final String popupName, final String exists )
    {
       Boolean isVisible = true;
       if(exists.contains("not")){
