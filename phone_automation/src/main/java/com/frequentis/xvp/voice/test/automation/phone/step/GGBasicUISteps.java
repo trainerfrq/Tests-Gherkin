@@ -30,6 +30,7 @@ import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationDisplay;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationTab;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationLabel;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListIsTimeSorted;
+import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListLastEntryText;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListSeverity;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListSize;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListText;
@@ -135,6 +136,16 @@ public class GGBasicUISteps extends AutomationSteps
                         assertProfile( profileName ) )
                 .input(VerifyNotificationListSeverity.IPARAM_LIST_NAME, listName)
                 .input(VerifyNotificationListSeverity.IPARAM_SEVERITY, severity));
+    }
+
+    @Then("$profileName verifies that list $listName contains text $text")
+    public void verifiesNotificationListText( final String profileName, final String listName, final String text)
+    {
+              evaluate( remoteStep( "Verify Notification Display list last entry " +listName+ " text" )
+                .scriptOn(profileScriptResolver().map( VerifyNotificationListLastEntryText.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input(VerifyNotificationListLastEntryText.IPARAM_LIST_NAME, listName)
+                .input(VerifyNotificationListLastEntryText.IPARAM_TEXT, text));
     }
 
 
