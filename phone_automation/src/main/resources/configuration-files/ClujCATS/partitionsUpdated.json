@@ -54,7 +54,7 @@
         {
           "opId": "cj-gg-cat-cwp-1",
           "radioUserName": "OpVoiceUser01",
-          "audioAppUri": "ws://10.31.205.97:8085/ctrlif/"
+          "audioAppUri": "ws://10.31.205.9:8085/ctrlif/"
         }
       ],
       "audioServiceConnections": {

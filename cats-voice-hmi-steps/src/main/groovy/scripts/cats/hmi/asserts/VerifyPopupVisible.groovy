@@ -1,10 +1,10 @@
-package scripts.cats.hmi.asserts.Attended
+package scripts.cats.hmi.asserts
 
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.layout.Pane
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class VerifyPositionUnattendedPopupVisible extends FxScriptTemplate {
+class VerifyPopupVisible extends FxScriptTemplate {
 
     public static final String IPARAM_POPUP_NAME = "popup_name"
     public static final String IPARAM_IS_VISIBLE= "is_visible";
