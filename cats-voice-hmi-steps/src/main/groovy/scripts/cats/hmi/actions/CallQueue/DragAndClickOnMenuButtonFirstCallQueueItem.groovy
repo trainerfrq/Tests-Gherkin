@@ -24,7 +24,7 @@ class DragAndClickOnMenuButtonFirstCallQueueItem extends FxScriptTemplate {
             PointQuery pointQuery = robot.point(callQueueItem)
             robot.drag(pointQuery)
             robot.dropBy(pointQuery.getPosition().getX() - 100, pointQuery.getPosition().getY())
-            Thread.sleep(1000)
+            Thread.sleep(3000)
             robot.clickOn(robot.point("#" + menuButtonId))
         }
     }
