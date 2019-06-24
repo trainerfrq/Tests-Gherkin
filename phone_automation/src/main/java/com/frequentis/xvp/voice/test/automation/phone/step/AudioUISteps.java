@@ -23,7 +23,6 @@ import scripts.cats.hmi.actions.ClickOnIdlePopupButton;
 import scripts.cats.hmi.actions.ClickOnPopupCloseButton;
 import scripts.cats.hmi.actions.ClickOnWarningPopupButton;
 import scripts.cats.hmi.asserts.Attended.VerifyIdlePopupText;
-import scripts.cats.hmi.asserts.Attended.VerifyPositionUnattendedPopupVisible;
 import scripts.cats.hmi.asserts.Attended.VerifyWarningPopupCountDownIsVisible;
 import scripts.cats.hmi.asserts.Attended.VerifyWarningPopupText;
 
@@ -58,22 +57,7 @@ public class AudioUISteps extends AutomationSteps
               assertProfile( profileName ) ));
    }
 
-   @Then("$profileName verifies that popup $popupName is $exists")
-   public void verifyHoldButtonExistence( final String profileName, final String popupName, final String exists )
-   {
-      Boolean isVisible = true;
-      if(exists.contains("not")){
-         isVisible = false;
-      }
-      evaluate( remoteStep( "Verify popup visible" )
-              .scriptOn( profileScriptResolver().map( VerifyPositionUnattendedPopupVisible.class,
-                      BookableProfileName.javafx ), assertProfile( profileName ) )
-              .input( VerifyPositionUnattendedPopupVisible.IPARAM_POPUP_NAME, popupName )
-              . input(VerifyPositionUnattendedPopupVisible.IPARAM_IS_VISIBLE, isVisible));
-   }
-
-
-   @Then("$profileName closes $popupName")
+   @Then("$profileName closes $popupName popup")
    public void closePopup( final String profileName, final String popupName )
    {
       evaluate( remoteStep( "ClickOnCloseButton" ).scriptOn(
