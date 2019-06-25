@@ -85,9 +85,9 @@ Then HMI OP3 has in the call queue a number of 1 calls
 
 Scenario: Check that interaction with settings and maintenance is allowed
 Then HMI OP1 opens Maintenance panel from idle popup
-Then HMI OP1 closes maintenance
+Then HMI OP1 closes maintenance popup
 Then HMI OP1 opens Settings panel from idle popup
-Then HMI OP1 closes settings
+Then HMI OP1 closes settings popup
 
 Scenario: Connect headsets
 Then WS1 sends changed event request - connect headsets
