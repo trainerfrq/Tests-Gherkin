@@ -15,9 +15,9 @@ class ClickOnCallQueueItemList extends FxScriptTemplate {
 
         String callQueueListName = assertInput(IPARAM_LIST_NAME) as String
 
-        Node listItem = robot.lookup("#" + callQueueListName + " .callQueueItem").queryFirst()
+        Set<Node> listItems = robot.lookup("#" + callQueueListName + " .callQueueItem").queryAll()
 
-        if (listItem != null) {
+        for (Node listItem : listItems){
             robot.clickOn(robot.point(listItem));
             LOGGER.debug("Click on Call queue list item: [{}]", callQueueListName);
         }
