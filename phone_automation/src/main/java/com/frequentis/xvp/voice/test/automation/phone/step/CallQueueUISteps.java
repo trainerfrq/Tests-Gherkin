@@ -30,7 +30,6 @@ import scripts.cats.hmi.actions.CallQueue.CleanUpCallQueue;
 import scripts.cats.hmi.actions.CallQueue.ClickCallQueueElementsList;
 import scripts.cats.hmi.actions.CallQueue.ClickCallQueueItem;
 import scripts.cats.hmi.actions.CallQueue.ClickOnCallQueueInfoContainer;
-import scripts.cats.hmi.actions.CallQueue.ClickOnCallQueueItemList;
 import scripts.cats.hmi.actions.CallQueue.DragAndClickOnMenuButtonFirstCallQueueItem;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueBarState;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueCollapsedAreaSize;
@@ -253,16 +252,6 @@ public class CallQueueUISteps extends AutomationSteps
             .scriptOn( profileScriptResolver().map( ClickCallQueueElementsList.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) ) );
    }
-
-
-    @Then("$profileName clicks on call queue item in $listType list")
-    public void clickCallQueueList( final String profileName, final String listType )
-    {
-        evaluate( remoteStep( "Click call queue item in list " + listType)
-                .scriptOn( profileScriptResolver().map( ClickOnCallQueueItemList.class, BookableProfileName.javafx ),
-                        assertProfile( profileName ))
-                .input(ClickOnCallQueueItemList.IPARAM_LIST_NAME, listType) );
-    }
 
 
    @Then("$profileName has in the call queue a number of $numberOfCalls calls")
