@@ -27,12 +27,12 @@ class VerifyMuteButtonState extends FxScriptTemplate {
             case "muted":
                 evaluate(ExecutionDetails.create("Verify that mute button state is: " + state)
                         .expected("Mute button state is: " + state)
-                        .success(!muteButton.getPseudoClassStates().contains(PseudoClass.getPseudoClass("muted"))))
+                        .success(muteButton.getPseudoClassStates().contains(PseudoClass.getPseudoClass("muted"))))
                 break
             case "unmuted":
                 evaluate(ExecutionDetails.create("Verify that mute button state is: " + state)
                         .expected("Mute button state is: " + state)
-                        .success(muteButton.getPseudoClassStates().contains(PseudoClass.getPseudoClass("unmuted"))))
+                        .success(!muteButton.getPseudoClassStates().contains(PseudoClass.getPseudoClass("muted"))))
                 break
             default:
                 break

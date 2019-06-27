@@ -76,7 +76,7 @@ public class GGBasicUISteps extends AutomationSteps
       evaluate( remoteStep( "user clicks on "+label+" label" )
               .scriptOn( profileScriptResolver().map( ClickStatusLabel.class, BookableProfileName.javafx ),
                       assertProfile( profileName ) )
-              .input(ClickStatusLabel.IPARAM_STATUS_KEY_ID, statusKey.getId())
+              .input( ClickStatusLabel.IPARAM_STATUS_KEY_ID, statusKey.getId())
               .input( ClickStatusLabel.IPARAM_DISPLAY_LABEL, label ) );
    }
 

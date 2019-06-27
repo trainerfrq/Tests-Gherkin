@@ -20,9 +20,7 @@ class ClickOnVolumeSlider extends FxScriptTemplate {
                 .expected("Volume slider is not null")
                 .success(volumeSlider != null))
 
-        robot.drag(robot.point(volumeSlider))
-
-
+        robot.drag(robot.point(volumeSlider));
     }
 }
 
