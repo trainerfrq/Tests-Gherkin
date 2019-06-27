@@ -13,16 +13,18 @@ class VerifyStatusDisplay extends FxScriptTemplate {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(VerifyStatusDisplay.class);
 
+    public static final String IPARAM_STATUS_DISPLAY_KEY = "status_key";
     public static final String IPARAM_STATUS_DISPLAY_TEXT = "status_display_text";
     public static final String IPARAM_STATUS_DISPLAY_LABEL = "status_display_label";
 
     @Override
     void script() {
 
+        String key = assertInput (IPARAM_STATUS_DISPLAY_KEY) as String;
         String text = assertInput (IPARAM_STATUS_DISPLAY_TEXT) as String;
         String label = assertInput (IPARAM_STATUS_DISPLAY_LABEL) as String;
 
-        Label statusDisplay = robot.lookup("#status1 #"+label).queryFirst();
+        Label statusDisplay = robot.lookup("#"+key+" #"+label).queryFirst();
 
         evaluate(ExecutionDetails.create("Status display was found")
                 .expected("statusDisplay is not null")

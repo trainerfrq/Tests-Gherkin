@@ -18,19 +18,19 @@ Given the call queue items:
 Scenario: Verify displayed status after stopping and starting op voice instances from one partition
 GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost1.story
 Then waiting for 60 seconds
-Then HMI OP1 has in the display status section connection the state CONNECTED
-Then HMI OP2 has in the display status section connection the state CONNECTED
+Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
+Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 
 Scenario: Verify displayed status after the stopping the op voice instances from one partition
 GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost2.story
-Then HMI OP1 has in the display status section connection the state DISCONNECTED
-Then HMI OP2 has in the display status section connection the state DISCONNECTED
+Then HMI OP1 has in the DISPLAY STATUS section connection the state DISCONNECTED
+Then HMI OP2 has in the DISPLAY STATUS section connection the state DISCONNECTED
 
 Scenario: Verify displayed status after the stopping the op voice instances from one partition
 When HMI OP1 verifies that loading screen is visible
-Then HMI OP1 has in the display status section connection the state DEGRADED
+Then HMI OP1 has in the DISPLAY STATUS section connection the state DEGRADED
 When HMI OP2 verifies that loading screen is visible
-Then HMI OP2 has in the display status section connection the state DEGRADED
+Then HMI OP2 has in the DISPLAY STATUS section connection the state DEGRADED
 
 Scenario: Verify IA keys state
 Given HMI OP1 has the IA key IA - OP2(as OP1) in ready to be used state
@@ -50,16 +50,16 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Scenario: Verify displayed status after the starting the op voice instances
 GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost2.story
 Then waiting for 60 seconds
-Then HMI OP1 has in the display status section connection the state CONNECTED
-Then HMI OP2 has in the display status section connection the state CONNECTED
+Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
+Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 
 Scenario: Verify displayed status after the stopping the op voice instances from one partition
 		  @REQUIREMENTS:GID-4034511
 GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost1.story
 When HMI OP1 verifies that loading screen is visible
-Then HMI OP1 has in the display status section connection the state DEGRADED
+Then HMI OP1 has in the DISPLAY STATUS section connection the state DEGRADED
 When HMI OP2 verifies that loading screen is visible
-Then HMI OP2 has in the display status section connection the state DEGRADED
+Then HMI OP2 has in the DISPLAY STATUS section connection the state DEGRADED
 
 Scenario: Call is terminated for calee
 !-- TODO QXVP-9245 : enable this test after story is done
@@ -91,8 +91,8 @@ Then HMI OP1 has in the call queue a number of 0 calls
 Scenario: Verify displayed status after the starting the op voice instances
 GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost1.story
 Then waiting for 60 seconds
-Then HMI OP1 has in the display status section connection the state CONNECTED
-Then HMI OP2 has in the display status section connection the state CONNECTED
+Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
+Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 
 
 

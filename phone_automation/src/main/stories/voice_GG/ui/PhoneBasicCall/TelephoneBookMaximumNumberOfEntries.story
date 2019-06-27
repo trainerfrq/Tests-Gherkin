@@ -19,4 +19,4 @@ Given the totalNumber of phonebook entries from /configuration-files/<<systemNam
 Then HMI OP2 verifies that the total number of phonebook entries is totalNumber
 
 Scenario: Operator closes phonebook
-Then HMI OP2 closes phonebook
+Then HMI OP2 closes phonebook popup

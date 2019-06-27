@@ -23,6 +23,7 @@ import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
 import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
 import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
+import com.frequentis.xvp.voice.test.automation.phone.data.StatusKey;
 import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
@@ -37,8 +38,8 @@ import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonState;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonUsageNotReady;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonUsageReady;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAKeyLabel;
-import scripts.cats.hmi.asserts.VerifyFunctionKeyState;
 import scripts.cats.hmi.asserts.VerifyFunctionKeyLabel;
+import scripts.cats.hmi.asserts.VerifyFunctionKeyState;
 
 import java.util.List;
 
@@ -73,6 +74,18 @@ public class CallUISteps extends AutomationSteps {
             final String key = functionKey.getKey();
             setStoryListData(key, functionKey);
             localStep.details(ExecutionDetails.create("Define function key").usedData(key, functionKey));
+        }
+
+        record(localStep);
+    }
+
+    @Given("the status key: $statusKeys")
+    public void defineStatusKey(final List<StatusKey> statusKeys) {
+        final LocalStep localStep = localStep("Define status keys");
+        for (final StatusKey statusKey : statusKeys) {
+            final String key = statusKey.getSource() + "-" + statusKey.getKey();
+            setStoryListData(key, statusKey);
+            localStep.details(ExecutionDetails.create("Define status key").usedData(key, statusKey));
         }
 
         record(localStep);

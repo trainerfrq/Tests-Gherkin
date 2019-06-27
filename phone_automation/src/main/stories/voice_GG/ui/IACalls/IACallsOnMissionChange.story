@@ -30,7 +30,7 @@ Then HMI OP2 activates mission
 Then wait for 5 seconds
 
 Scenario: Verify mission change
-Then HMI OP2 has in the display status section mission the assigned mission MAN-NIGHT-TACT
+Then HMI OP2 has in the DISPLAY STATUS section mission the assigned mission MAN-NIGHT-TACT
 
 Scenario: Op3 establishes an outgoing IA call towards Op2
 When HMI OP3 presses IA key IA - OP2(as OP3)
@@ -51,7 +51,7 @@ Then HMI OP2 activates mission
 Then wait for 5 seconds
 
 Scenario: Verify mission change
-Then HMI OP2 has in the display status section mission the assigned mission WEST-EXEC
+Then HMI OP2 has in the DISPLAY STATUS section mission the assigned mission WEST-EXEC
 
 Scenario: Callee Op2 remains connected in both IA calls
 Then HMI OP2 has the IA key IA - OP1 in state connected
