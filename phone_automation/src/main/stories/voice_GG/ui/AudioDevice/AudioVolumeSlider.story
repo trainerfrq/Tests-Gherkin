@@ -12,4 +12,4 @@ Scenario: Op1 opens settings tab
 When HMI OP1 presses function key SETTINGS
 
 Scenario: Op1 adjust the volume slider for user input
-When HMI OP1 clicks on volume slider userInput
+When HMI OP1 drags volume slider userInput to Y value 50

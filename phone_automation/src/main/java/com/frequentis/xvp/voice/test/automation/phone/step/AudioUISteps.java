@@ -54,13 +54,15 @@ public class AudioUISteps extends AutomationSteps
             .input( ClickOnMuteSideToneButton.IPARAM_MUTE_SIDETONE_BUTTON_NAME, buttonName ) );
    }
 
-   @When("$profileName clicks on volume slider $volumeSlider")
-   public void clickOnVolumeSlider(final String profileName, final String volumeSlider)
+   @When("$profileName drags volume slider $volumeSlider to Y value $yValue")
+   public void clickOnVolumeSlider(final String profileName, final String volumeSlider, final String yValue)
    {
       evaluate(remoteStep( "Click on volume slider" ).scriptOn(
             profileScriptResolver().map( ClickOnVolumeSlider.class, BookableProfileName.javafx ),
             assertProfile( profileName ) )
-            .input( ClickOnVolumeSlider.IPARAM_SLIDER_NAME, volumeSlider ) );
+            .input( ClickOnVolumeSlider.IPARAM_SLIDER_NAME, volumeSlider )
+            .input( ClickOnVolumeSlider.IPARAM_SLIDER_LEVEL, yValue )
+      );
    }
 
    @Then("$profileName verifies that mute button $buttonName is in $muteState state")
