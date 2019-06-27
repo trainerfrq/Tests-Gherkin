@@ -25,10 +25,9 @@ class VerifyNotificationListLastEntryText extends FxScriptTemplate {
 
         if (notificationPopup != null) {
             final ListView list = robot.lookup( "#notification"+listName+"List" ).queryFirst()
-            int receivedListSize = list.getItems().size();
-            int i = receivedListSize - 1;
+            int lastEntryIndex = list.getItems().size() -1;
 
-            Label textLabel = robot.lookup("#notification"+listName+"List #notificationEntry_"+i+" #notificationTextLabel").queryFirst()
+            Label textLabel = robot.lookup("#notification"+listName+"List #notificationEntry_"+lastEntryIndex+" #notificationTextLabel").queryFirst()
 
                 evaluate(ExecutionDetails.create("Notification list "+listName+" text is the expected one")
                         .received(textLabel.toString())

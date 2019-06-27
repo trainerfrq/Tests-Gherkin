@@ -36,10 +36,11 @@ public class StatusKey extends CatsCustomParameterBase implements Serializable
       this.id = id;
    }
 
-
-   @Override
-   public String toString()
-   {
-      return "StatusKey{" + "id='" + id + '\'' + '}';
-   }
+    @Override
+    public String toString() {
+        return "StatusKey{" +
+                "source='" + source + '\'' +
+                ", id='" + id + '\'' +
+                '}';
+    }
 }
