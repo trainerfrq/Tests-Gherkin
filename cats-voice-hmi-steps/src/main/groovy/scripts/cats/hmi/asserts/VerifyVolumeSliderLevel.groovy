@@ -24,7 +24,7 @@ class VerifyVolumeSliderLevel extends FxScriptTemplate {
 
         Slider slider = (Slider) volumeSlider;
 
-        Double receivedSliderValue = slider.getValue();
+        Double receivedSliderValue = slider.getValue().round();
 
         evaluate(ExecutionDetails.create("Volume slider value is the expected one")
                 .expected("Expected volume slider value is "+sliderValue)

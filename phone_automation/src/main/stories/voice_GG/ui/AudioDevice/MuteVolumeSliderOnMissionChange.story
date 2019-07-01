@@ -1,0 +1,95 @@
+Narrative:
+As an operator
+I want the audio to be on mute state after changing mission
+So I won't need to modify again
+
+Scenario: Booking profiles
+Given booked profiles:
+| profile | group | host           | identifier |
+| javafx  | hmi   | <<CLIENT1_IP>> | HMI OP1    |
+
+Scenario: Op1 opens settings tab
+When HMI OP1 presses function key SETTINGS
+
+Scenario: Op1 mutes all the volume sliders
+When HMI OP1 drags volume slider userInput to Y value 186
+Then HMI OP1 verifies that volume slider userInput is set to level 0
+When HMI OP1 drags volume slider chime to Y value 186
+Then HMI OP1 verifies that volume slider chime is set to level 0
+When HMI OP1 drags volume slider coach to Y value 186
+Then HMI OP1 verifies that volume slider coach is set to level 0
+When HMI OP1 drags volume slider operator to Y value 186
+Then HMI OP1 verifies that volume slider operator is set to level 0
+
+Scenario: Op1 opens audio settings tab
+When HMI OP1 presses function key AUDIOSETTINGS
+
+Scenario: Op1 mutes all the volume sliders from audio settings
+When HMI OP1 drags volume slider coachSidetone to Y value 186
+Then HMI OP1 verifies that volume slider coachSidetone is set to level 0
+When HMI OP1 drags volume slider operatorSidetone to Y value 186
+Then HMI OP1 verifies that volume slider operatorSidetone is set to level 0
+When HMI OP1 drags volume slider notificationError to Y value 186
+Then HMI OP1 verifies that volume slider notificationError is set to level 0
+
+Scenario: Op1 closes audio settings tab
+Then HMI OP1 closes volumeControl popup
+
+Scenario: Op1 changes mission
+When HMI OP1 presses function key MISSIONS
+Then HMI OP1 changes current mission to mission EAST-EXEC
+Then HMI OP1 activates mission
+Then waiting for 5 seconds
+
+Scenario: Op1 opens settings tab
+When HMI OP1 presses function key SETTINGS
+
+Scenario: Op1 verifies all the volume sliders are muted
+Then HMI OP1 verifies that volume slider userInput is set to level 0
+Then HMI OP1 verifies that volume slider chime is set to level 0
+Then HMI OP1 verifies that volume slider coach is set to level 0
+Then HMI OP1 verifies that volume slider operator is set to level 0
+
+Scenario: Op1 opens audio settings tab
+When HMI OP1 presses function key AUDIOSETTINGS
+
+Scenario: Op1 verifies all the volume sliders from audio settings are muted
+Then HMI OP1 verifies that volume slider coachSidetone is set to level 0
+Then HMI OP1 verifies that volume slider operatorSidetone is set to level 0
+Then HMI OP1 verifies that volume slider notificationError is set to level 0
+
+Scenario: Op1 closes audio settings tab
+Then HMI OP1 closes volumeControl popup
+
+Scenario: Op1 changes to initial mission
+When HMI OP1 presses function key MISSIONS
+Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
+Then HMI OP1 activates mission
+Then waiting for 5 seconds
+
+Scenario: Op1 opens settings tab
+When HMI OP1 presses function key SETTINGS
+
+Scenario: Op1 unmutes all the volume sliders
+When HMI OP1 drags volume slider userInput to Y value -186
+Then HMI OP1 verifies that volume slider userInput is set to level 100
+When HMI OP1 drags volume slider chime to Y value -186
+Then HMI OP1 verifies that volume slider chime is set to level 100
+When HMI OP1 drags volume slider coach to Y value -186
+Then HMI OP1 verifies that volume slider coach is set to level 100
+When HMI OP1 drags volume slider operator to Y value -186
+Then HMI OP1 verifies that volume slider operator is set to level 100
+
+Scenario: Op1 opens audio settings tab
+When HMI OP1 presses function key AUDIOSETTINGS
+
+Scenario: Op1 unmutes all the volume sliders from audio settings
+When HMI OP1 drags volume slider coachSidetone to Y value -190
+Then HMI OP1 verifies that volume slider coachSidetone is set to level 100
+When HMI OP1 drags volume slider operatorSidetone to Y value -190
+Then HMI OP1 verifies that volume slider operatorSidetone is set to level 100
+When HMI OP1 drags volume slider notificationError to Y value -190
+Then HMI OP1 verifies that volume slider notificationError is set to level 100
+
+Scenario: Op1 closes audio settings tab
+Then HMI OP1 closes volumeControl popup

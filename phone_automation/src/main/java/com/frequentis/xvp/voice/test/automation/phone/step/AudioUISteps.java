@@ -33,6 +33,7 @@ import scripts.cats.hmi.asserts.Attended.VerifyWarningPopupCountDownIsVisible;
 import scripts.cats.hmi.asserts.Attended.VerifyWarningPopupText;
 import scripts.cats.hmi.asserts.VerifyMuteButtonState;
 import scripts.cats.hmi.asserts.VerifyMuteSidetoneButtonState;
+import scripts.cats.hmi.asserts.VerifyVolumeSliderLevel;
 
 public class AudioUISteps extends AutomationSteps
 {
@@ -84,6 +85,17 @@ public class AudioUISteps extends AutomationSteps
             assertProfile( profileName ) )
             .input( VerifyMuteSidetoneButtonState.IPARAM_MUTE_SIDFETONE_BUTTON_NAME, buttonName )
             .input( VerifyMuteSidetoneButtonState.IPARAM_STATE, muteState )
+      );
+   }
+
+   @Then("$profileName verifies that volume slider $volumeSlider is set to level $levelValue")
+   public void verifyVolumeSliderLevel(final String profileName, final String volumeSlider, final String levelValue)
+   {
+      evaluate( remoteStep("Verify volume slider level is at the expected level").scriptOn(
+            profileScriptResolver().map( VerifyVolumeSliderLevel.class, BookableProfileName.javafx ),
+            assertProfile( profileName ) )
+            .input( VerifyVolumeSliderLevel.IPARAM_SLIDER_NAME, volumeSlider )
+            .input( VerifyVolumeSliderLevel.IPARAM_SLIDER_VALUE, levelValue )
       );
    }
 
