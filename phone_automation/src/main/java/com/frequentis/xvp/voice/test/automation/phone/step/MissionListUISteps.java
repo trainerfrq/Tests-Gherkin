@@ -17,7 +17,9 @@
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
+import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import com.frequentis.xvp.voice.test.automation.phone.data.StatusKey;
 import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Then;
 import scripts.cats.hmi.actions.Mission.ClickActivateMission;
@@ -31,13 +33,15 @@ import scripts.cats.hmi.asserts.VerifyStatusDisplay;
 public class MissionListUISteps extends AutomationSteps
 {
 
-   @Then("$profileName has in the display status section $label the assigned mission $text")
-   @Alias("$profileName has in the display status section $label the state $text")
-   public void verifyAssignedMission( final String profileName, final String label, final String text )
+   @Then("$profileName has in the $key section $label the assigned mission $text")
+   @Alias("$profileName has in the $key section $label the state $text")
+   public void verifyAssignedMission( final String profileName, final String key, final String label, final String text )
    {
+      StatusKey statusKey = retrieveStatusKey(profileName, key);
       evaluate( remoteStep( "Verify that the user has the correct assigned mission" )
             .scriptOn( profileScriptResolver().map( VerifyStatusDisplay.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
+            .input(VerifyStatusDisplay.IPARAM_STATUS_DISPLAY_KEY, statusKey.getId())
             .input( VerifyStatusDisplay.IPARAM_STATUS_DISPLAY_LABEL, label + "Label" )
             .input( VerifyStatusDisplay.IPARAM_STATUS_DISPLAY_TEXT, text ) );
    }
@@ -99,5 +103,22 @@ public class MissionListUISteps extends AutomationSteps
             profileScriptResolver().map( ClickMissionCloseButton.class, BookableProfileName.javafx ),
             assertProfile( profileName ) ) );
    }
+
+
+   @When("$profileName clicks on mission label $label")
+   public void clickMissionLabel( final String profileName, final String label )
+   {
+      evaluate( remoteStep( "sser clicks mission label" )
+            .scriptOn( profileScriptResolver().map( ClickMissionLabel.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( ClickMissionLabel.IPARAM_MISSION_DISPLAY_LABEL, label ) );
+   }
+
+    private StatusKey retrieveStatusKey(final String source, final String key) {
+        final StatusKey statusKey = getStoryListData(source + "-" + key, StatusKey.class);
+        evaluate(localStep("Check Status Key").details(ExecutionDetails.create("Verify Status key is defined")
+                .usedData("source", source).usedData("key", key).success(statusKey.getId() != null)));
+        return statusKey;
+    }
 
 }

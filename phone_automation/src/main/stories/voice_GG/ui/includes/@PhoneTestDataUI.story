@@ -39,6 +39,13 @@ Given the status keys:
 | key    | id      |
 | STATUS | status0 |
 
+Scenario: Define status key
+Given the status key:
+| source  | key            | id      |
+| HMI OP1 | DISPLAY STATUS | status1 |
+| HMI OP2 | DISPLAY STATUS | status1 |
+| HMI OP3 | DISPLAY STATUS | status1 |
+
 Scenario: Define call route selectors
 Given the call route selectors:
 | key       | id      |

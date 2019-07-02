@@ -21,7 +21,7 @@ Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled
 Scenario: Verify displayed status
 GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost1.story
 Then waiting for 60 seconds
-Then HMI OP1 has in the display status section connection the state CONNECTED
+Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
 
 Scenario: Caller activates loudspeaker
 		  @REQUIREMENTS:GID-3005515
@@ -33,7 +33,7 @@ Scenario: Verify displayed status after the stopping the op voice instances from
 		  @REQUIREMENTS:GID-4034511
 GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost2.story
 When HMI OP1 verifies that loading screen is visible
-Then HMI OP1 has in the display status section connection the state DEGRADED
+Then HMI OP1 has in the DISPLAY STATUS section connection the state DEGRADED
 
 Scenario: Op1 verifies that Loudspeaker state is unchanged
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
@@ -68,7 +68,7 @@ Then HMI OP2 has in the call queue a number of 0 calls
 Scenario: Verify displayed status after the starting the op voice instances
 GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost2.story
 Then waiting for 60 seconds
-Then HMI OP1 has in the display status section connection the state CONNECTED
+Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
 
 Scenario: Op1 deactivates loudspeaker
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled

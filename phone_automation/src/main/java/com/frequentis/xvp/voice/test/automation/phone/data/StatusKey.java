@@ -23,27 +23,40 @@ import java.io.Serializable;
 
 public class StatusKey extends CatsCustomParameterBase implements Serializable
 {
+   @CatsCustomParameter
+   private String source;
 
-    @CatsCustomParameter
-    private String id;
+   @CatsCustomParameter
+   private String id;
 
-
-    public String getId()
+    public String getSource()
     {
-        return id;
+        return source;
     }
 
 
-    public void setId( final String id )
+    public void setSource( final String source )
     {
-        this.id = id;
+        this.source = source;
     }
 
+
+   public String getId()
+   {
+      return id;
+   }
+
+
+   public void setId( final String id )
+   {
+      this.id = id;
+   }
 
     @Override
-    public String toString()
-    {
-        return "StatusKey{" + "id='" + id + '\'' + '}';
+    public String toString() {
+        return "StatusKey{" +
+                "source='" + source + '\'' +
+                ", id='" + id + '\'' +
+                '}';
     }
 }
-

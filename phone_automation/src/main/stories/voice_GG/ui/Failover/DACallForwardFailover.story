@@ -21,9 +21,9 @@ Given the call queue items:
 Scenario: Verify displayed status
 GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost1.story
 Then waiting for 60 seconds
-Then HMI OP1 has in the display status section connection the state CONNECTED
-Then HMI OP2 has in the display status section connection the state CONNECTED
-Then HMI OP3 has in the display status section connection the state CONNECTED
+Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
+Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
+Then HMI OP3 has in the DISPLAY STATUS section connection the state CONNECTED
 
 Scenario: Op1 activates Call Forward and chooses Op2 as call forward target
 When HMI OP1 presses function key CALLFORWARD
@@ -64,11 +64,11 @@ Scenario: Verify displayed status after the stopping the op voice instances from
 		  @REQUIREMENTS:GID-4034511
 GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost2.story
 When HMI OP1 verifies that loading screen is visible
-Then HMI OP1 has in the display status section connection the state DEGRADED
+Then HMI OP1 has in the DISPLAY STATUS section connection the state DEGRADED
 When HMI OP2 verifies that loading screen is visible
-Then HMI OP2 has in the display status section connection the state DEGRADED
+Then HMI OP2 has in the DISPLAY STATUS section connection the state DEGRADED
 When HMI OP3 verifies that loading screen is visible
-Then HMI OP3 has in the display status section connection the state DEGRADED
+Then HMI OP3 has in the DISPLAY STATUS section connection the state DEGRADED
 
 Scenario: Op1 still has Call Forward active
 Then HMI OP1 has the function key CALLFORWARD in active state
@@ -111,7 +111,7 @@ Then HMI OP1 verifies that call queue info container is not visible
 Scenario: Verify displayed status after the starting the op voice instances
 GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost2.story
 Then waiting for 60 seconds
-Then HMI OP1 has in the display status section connection the state CONNECTED
-Then HMI OP2 has in the display status section connection the state CONNECTED
-Then HMI OP3 has in the display status section connection the state CONNECTED
+Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
+Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
+Then HMI OP3 has in the DISPLAY STATUS section connection the state CONNECTED
 

@@ -104,7 +104,7 @@ Then HMI OP3 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify operator mission
-Then HMI OP3 has in the display status section mission the assigned mission EAST-EXEC
+Then HMI OP3 has in the DISPLAY STATUS section mission the assigned mission EAST-EXEC
 
 Scenario: Verify call is connected for both operators
 Then HMI OP3 has the call queue item OP2-OP3 in state connected

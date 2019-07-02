@@ -73,9 +73,9 @@ public class PhoneBookEntry extends CatsCustomParameterBase implements Serializa
 
    public String getFullName()
    {if(fullName == null){
-       fullName = "";
+      fullName = "";
    }
-       return fullName;
+      return fullName;
    }
 
 
@@ -101,7 +101,7 @@ public class PhoneBookEntry extends CatsCustomParameterBase implements Serializa
 
    public String getOrganization()
    { if(organization == null){
-       organization = "";
+      organization = "";
    }
       return organization;
    }
@@ -115,7 +115,7 @@ public class PhoneBookEntry extends CatsCustomParameterBase implements Serializa
 
    public String getNotes()
    {if(notes == null){
-       notes = "";
+      notes = "";
    }
       return notes;
    }
@@ -129,7 +129,7 @@ public class PhoneBookEntry extends CatsCustomParameterBase implements Serializa
 
    public String getDisplayAddon()
    {if(displayAddon == null){
-       displayAddon = "";
+      displayAddon = "";
    }
       return displayAddon;
    }
