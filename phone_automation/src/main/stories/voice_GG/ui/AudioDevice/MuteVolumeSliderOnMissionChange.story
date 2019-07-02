@@ -13,24 +13,24 @@ When HMI OP1 presses function key SETTINGS
 
 Scenario: Op1 mutes all the volume sliders
 		  @REQUIREMENTS:GID-4231218
-When HMI OP1 drags volume slider userInput to Y value 186
+When HMI OP1 drags volume slider userInput to muted level
 Then HMI OP1 verifies that volume slider userInput is set to level 0
-When HMI OP1 drags volume slider chime to Y value 186
+When HMI OP1 drags volume slider chime to muted level
 Then HMI OP1 verifies that volume slider chime is set to level 0
-When HMI OP1 drags volume slider coach to Y value 186
+When HMI OP1 drags volume slider coach to muted level
 Then HMI OP1 verifies that volume slider coach is set to level 0
-When HMI OP1 drags volume slider operator to Y value 186
+When HMI OP1 drags volume slider operator to muted level
 Then HMI OP1 verifies that volume slider operator is set to level 0
 
 Scenario: Op1 opens audio settings tab
 When HMI OP1 presses function key AUDIOSETTINGS
 
 Scenario: Op1 mutes all the volume sliders from audio settings
-When HMI OP1 drags volume slider coachSidetone to Y value 186
+When HMI OP1 drags volume slider coachSidetone to mute level
 Then HMI OP1 verifies that volume slider coachSidetone is set to level 0
-When HMI OP1 drags volume slider operatorSidetone to Y value 186
+When HMI OP1 drags volume slider operatorSidetone to mute level
 Then HMI OP1 verifies that volume slider operatorSidetone is set to level 0
-When HMI OP1 drags volume slider notificationError to Y value 186
+When HMI OP1 drags volume slider notificationError to mute level
 Then HMI OP1 verifies that volume slider notificationError is set to level 0
 
 Scenario: Op1 closes audio settings tab
@@ -78,13 +78,13 @@ Then HMI OP1 verifies that volume slider coach is set to level 0
 Then HMI OP1 verifies that volume slider operator is set to level 0
 
 Scenario: Op1 unmutes all the volume sliders
-When HMI OP1 drags volume slider userInput to Y value -186
+When HMI OP1 drags volume slider userInput to maximum level
 Then HMI OP1 verifies that volume slider userInput is set to level 100
-When HMI OP1 drags volume slider chime to Y value -186
+When HMI OP1 drags volume slider chime to maximum level
 Then HMI OP1 verifies that volume slider chime is set to level 100
-When HMI OP1 drags volume slider coach to Y value -186
+When HMI OP1 drags volume slider coach to maximum level
 Then HMI OP1 verifies that volume slider coach is set to level 100
-When HMI OP1 drags volume slider operator to Y value -186
+When HMI OP1 drags volume slider operator to maximum level
 Then HMI OP1 verifies that volume slider operator is set to level 100
 
 Scenario: Op1 opens audio settings tab
@@ -96,11 +96,11 @@ Then HMI OP1 verifies that volume slider operatorSidetone is set to level 0
 Then HMI OP1 verifies that volume slider notificationError is set to level 0
 
 Scenario: Op1 unmutes all the volume sliders from audio settings
-When HMI OP1 drags volume slider coachSidetone to Y value -190
+When HMI OP1 drags volume slider coachSidetone to maximum level
 Then HMI OP1 verifies that volume slider coachSidetone is set to level 100
-When HMI OP1 drags volume slider operatorSidetone to Y value -190
+When HMI OP1 drags volume slider operatorSidetone to maximum level
 Then HMI OP1 verifies that volume slider operatorSidetone is set to level 100
-When HMI OP1 drags volume slider notificationError to Y value -190
+When HMI OP1 drags volume slider notificationError to maximum level
 Then HMI OP1 verifies that volume slider notificationError is set to level 100
 
 Scenario: Op1 closes audio settings tab

@@ -15,7 +15,22 @@ class ClickOnVolumeSlider extends FxScriptTemplate {
     void script() {
 
         String sliderName = assertInput(IPARAM_SLIDER_NAME) as String
-        Integer sliderLevel = assertInput(IPARAM_SLIDER_LEVEL) as Integer
+        String sliderLevel = assertInput(IPARAM_SLIDER_LEVEL) as String
+        Integer dragPosition = 0;
+
+        switch(sliderLevel) {
+            case "muted":
+                dragPosition = 190;
+                break;
+            case "middle":
+                dragPosition = -14;
+                break;
+            case "maximum":
+                dragPosition = -190;
+                break;
+            default:
+                break;
+        }
 
         Node volumeSlider = robot.lookup("#"+sliderName+"VolumeSlider").queryFirst()
 
@@ -23,7 +38,7 @@ class ClickOnVolumeSlider extends FxScriptTemplate {
                 .expected("Volume slider is not null")
                 .success(volumeSlider != null))
 
-        robot.drag(robot.point(volumeSlider)).clickOn(robot.offset(volumeSlider, 0, sliderLevel));
+        robot.drag(robot.point(volumeSlider)).clickOn(robot.offset(volumeSlider, 0, dragPosition));
     }
 }
 
