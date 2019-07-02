@@ -1,5 +1,5 @@
 Narrative:
-As an operator
+As an operator or coach
 I want to use the volume slider
 So I can adjust the sound level
 
