@@ -1,7 +1,7 @@
 Narrative:
 As an operator
-I want the audio to be on mute state after changing mission
-So I won't need to modify again
+I want to mute the volume sliders and change mission
+So I can verify the sliders remain on mute state after mission change
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -12,6 +12,7 @@ Scenario: Op1 opens settings tab
 When HMI OP1 presses function key SETTINGS
 
 Scenario: Op1 mutes all the volume sliders
+		  @REQUIREMENTS:GID-4231218
 When HMI OP1 drags volume slider userInput to Y value 186
 Then HMI OP1 verifies that volume slider userInput is set to level 0
 When HMI OP1 drags volume slider chime to Y value 186
@@ -70,6 +71,12 @@ Then waiting for 5 seconds
 Scenario: Op1 opens settings tab
 When HMI OP1 presses function key SETTINGS
 
+Scenario: Op1 verifies all the volume sliders remain muted
+Then HMI OP1 verifies that volume slider userInput is set to level 0
+Then HMI OP1 verifies that volume slider chime is set to level 0
+Then HMI OP1 verifies that volume slider coach is set to level 0
+Then HMI OP1 verifies that volume slider operator is set to level 0
+
 Scenario: Op1 unmutes all the volume sliders
 When HMI OP1 drags volume slider userInput to Y value -186
 Then HMI OP1 verifies that volume slider userInput is set to level 100
@@ -82,6 +89,11 @@ Then HMI OP1 verifies that volume slider operator is set to level 100
 
 Scenario: Op1 opens audio settings tab
 When HMI OP1 presses function key AUDIOSETTINGS
+
+Scenario: Op1 verifies all the volume sliders from audio settings remain muted
+Then HMI OP1 verifies that volume slider coachSidetone is set to level 0
+Then HMI OP1 verifies that volume slider operatorSidetone is set to level 0
+Then HMI OP1 verifies that volume slider notificationError is set to level 0
 
 Scenario: Op1 unmutes all the volume sliders from audio settings
 When HMI OP1 drags volume slider coachSidetone to Y value -190

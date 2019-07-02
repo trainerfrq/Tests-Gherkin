@@ -12,6 +12,7 @@ Scenario: Op1 opens settings tab
 When HMI OP1 presses function key SETTINGS
 
 Scenario: Op1 adjust the volume slider for user input
+		  @REQUIREMENTS:GID-4231218
 When HMI OP1 drags volume slider userInput to Y value 186
 Then HMI OP1 verifies that volume slider userInput is set to level 0
 When HMI OP1 drags volume slider userInput to Y value -14

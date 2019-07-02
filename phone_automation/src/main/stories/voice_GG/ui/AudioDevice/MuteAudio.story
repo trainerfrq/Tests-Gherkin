@@ -1,7 +1,7 @@
 Narrative:
 As an operator
 I want to mute the audio
-So I can verify the sound is working properly
+So I can verify the mute buttons display the state correctly after muting
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -12,6 +12,8 @@ Scenario: Op1 opens settings tab
 When HMI OP1 presses function key SETTINGS
 
 Scenario: Op1 mutes the chime button
+		  @REQUIREMENTS:GID-4309053
+		  @REQUIREMENTS:GID-4231218
 When HMI OP1 clicks on mute button Chime
 Then HMI OP1 has a notification that shows Chime muted
 Then HMI OP1 verifies that mute button Chime is in muted state
