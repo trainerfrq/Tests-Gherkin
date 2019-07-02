@@ -19,6 +19,7 @@ Scenario: Caller establishes an outgoing IA call
 		  @REQUIREMENTS:GID-2505705
 		  @REQUIREMENTS:GID-2505706
 When HMI OP1 selects grid tab 2
+When HMI OP1 presses IA key IA - OP2(as OP1)
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
 
