@@ -34,10 +34,6 @@ Given the function keys:
 | SETTINGS      | 1561462433938            |
 | AUDIOSETTINGS | volumeControlPanelSymbol |
 
-Scenario: Define status keys
-Given the status keys:
-| key    | id      |
-| STATUS | status0 |
 
 Scenario: Define status key
 Given the status key:
