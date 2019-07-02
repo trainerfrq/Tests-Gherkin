@@ -25,13 +25,14 @@ Given the DA keys:
 
 Scenario: Define function keys
 Given the function keys:
-| key         | id |
-| PHONEBOOK   | f1 |
-| CALLHISTORY | f2 |
-| MISSIONS    | f3 |
-| CALLFORWARD | f4 |
-| LOUDSPEAKER | f5 |
-| SETTINGS    | f6 |
+| key           | id                       |
+| PHONEBOOK     | f1                       |
+| CALLHISTORY   | f2                       |
+| MISSIONS      | f3                       |
+| CALLFORWARD   | f4                       |
+| LOUDSPEAKER   | f5                       |
+| SETTINGS      | 1561462433938            |
+| AUDIOSETTINGS | volumeControlPanelSymbol |
 
 Scenario: Define status keys
 Given the status keys:
