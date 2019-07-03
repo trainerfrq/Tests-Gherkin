@@ -31,6 +31,7 @@ And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path c
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/voipRecording.json with payload /configuration-files/common/voipRecording.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/recordedVirtualDevices.json with payload /configuration-files/common/recordedVirtualDevices.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/available_sound_settings.json with payload /configuration-files/common/available_sound_settings.json
+And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/rtLogicSignallingParameters.json with payload /configuration-files/common/rtLogicSignallingParameters.json
 
 Scenario: Commit and activate configuration
 When using endpoint <<configurationMngEndpoint>> commit the configuration and name commit commitId
