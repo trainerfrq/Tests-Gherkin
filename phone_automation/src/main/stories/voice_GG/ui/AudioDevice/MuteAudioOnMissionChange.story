@@ -89,6 +89,18 @@ Then HMI OP1 verifies that mute button Coach is in unmuted state
 When HMI OP1 clicks on mute button Operator
 Then HMI OP1 verifies that mute button Operator is in unmuted state
 
+Scenario: Op1 closes settings tab
+When HMI OP1 presses function key SETTINGS
+
+Scenario: Op1 reopens settings tab
+When HMI OP1 presses function key SETTINGS
+
+Scenario: Op1 verifies all buttons remain in unmuted state
+Then HMI OP1 verifies that mute button Chime is in unmuted state
+Then HMI OP1 verifies that mute button UserInput is in unmuted state
+Then HMI OP1 verifies that mute button Coach is in unmuted state
+Then HMI OP1 verifies that mute button Operator is in unmuted state
+
 Scenario: Op1 opens audio settings tab
 When HMI OP1 presses function key AUDIOSETTINGS
 
@@ -103,6 +115,20 @@ Then HMI OP1 verifies that mute sidetone button coach is in unmuted state
 When HMI OP1 clicks on side tone mute button operator
 Then HMI OP1 verifies that mute sidetone button operator is in unmuted state
 When HMI OP1 clicks on mute button NotificationError
+Then HMI OP1 verifies that mute button NotificationError is in unmuted state
+
+Scenario: Op1 closes audio settings tab
+Then HMI OP1 closes volumeControl popup
+
+Scenario: Op1 reopens settings tab
+When HMI OP1 presses function key SETTINGS
+
+Scenario: Op1 reopens audio settings tab
+When HMI OP1 presses function key AUDIOSETTINGS
+
+Scenario: Op1 verifies all buttons from audio settings remain in unmuted state
+Then HMI OP1 verifies that mute sidetone button coach is in unmuted state
+Then HMI OP1 verifies that mute sidetone button operator is in unmuted state
 Then HMI OP1 verifies that mute button NotificationError is in unmuted state
 
 Scenario: Op1 closes audio settings tab

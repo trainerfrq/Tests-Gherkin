@@ -23,6 +23,7 @@ import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
 import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
 import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
+import com.frequentis.xvp.voice.test.automation.phone.data.GridWidgetKey;
 import com.frequentis.xvp.voice.test.automation.phone.data.StatusKey;
 import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Given;
@@ -103,6 +104,20 @@ public class CallUISteps extends AutomationSteps {
 
         record(localStep);
     }
+
+   @Given("the grid widget keys: $gridWidgetKeys")
+   public void defineGridWidgetKeys(final List<GridWidgetKey> gridWidgetKeys)
+   {
+      final LocalStep localStep = localStep( "Define grid widget keys" );
+      for (final GridWidgetKey gridWidgetKey: gridWidgetKeys)
+      {
+         final String key = gridWidgetKey.getSource();
+         setStoryListData( key, gridWidgetKey );
+         localStep.details( ExecutionDetails.create( "Define grid widget key" ).usedData( key, gridWidgetKey ) );
+      }
+
+      record( localStep );
+   }
 
     @When("$profileName presses DA key $target")
     @Alias("$profileName presses IA key $target")

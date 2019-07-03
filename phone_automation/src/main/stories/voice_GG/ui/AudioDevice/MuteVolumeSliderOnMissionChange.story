@@ -26,11 +26,11 @@ Scenario: Op1 opens audio settings tab
 When HMI OP1 presses function key AUDIOSETTINGS
 
 Scenario: Op1 mutes all the volume sliders from audio settings
-When HMI OP1 drags volume slider coachSidetone to mute level
+When HMI OP1 drags volume slider coachSidetone to muted level
 Then HMI OP1 verifies that volume slider coachSidetone is set to level 0
-When HMI OP1 drags volume slider operatorSidetone to mute level
+When HMI OP1 drags volume slider operatorSidetone to muted level
 Then HMI OP1 verifies that volume slider operatorSidetone is set to level 0
-When HMI OP1 drags volume slider notificationError to mute level
+When HMI OP1 drags volume slider notificationError to muted level
 Then HMI OP1 verifies that volume slider notificationError is set to level 0
 
 Scenario: Op1 closes audio settings tab
@@ -87,6 +87,18 @@ Then HMI OP1 verifies that volume slider coach is set to level 100
 When HMI OP1 drags volume slider operator to maximum level
 Then HMI OP1 verifies that volume slider operator is set to level 100
 
+Scenario: Op1 closes settings tab
+When HMI OP1 presses function key SETTINGS
+
+Scenario: Op1 reopens settings tab
+When HMI OP1 presses function key SETTINGS
+
+Scenario: Op1 verifies all the volume sliders from settings are at maximum level
+Then HMI OP1 verifies that volume slider userInput is set to level 100
+Then HMI OP1 verifies that volume slider chime is set to level 100
+Then HMI OP1 verifies that volume slider coach is set to level 100
+Then HMI OP1 verifies that volume slider operator is set to level 100
+
 Scenario: Op1 opens audio settings tab
 When HMI OP1 presses function key AUDIOSETTINGS
 
@@ -101,6 +113,20 @@ Then HMI OP1 verifies that volume slider coachSidetone is set to level 100
 When HMI OP1 drags volume slider operatorSidetone to maximum level
 Then HMI OP1 verifies that volume slider operatorSidetone is set to level 100
 When HMI OP1 drags volume slider notificationError to maximum level
+Then HMI OP1 verifies that volume slider notificationError is set to level 100
+
+Scenario: Op1 closes audio settings tab
+Then HMI OP1 closes volumeControl popup
+
+Scenario: Op1 reopens settings tab
+When HMI OP1 presses function key SETTINGS
+
+Scenario: Op1 reopens audio settings tab
+When HMI OP1 presses function key AUDIOSETTINGS
+
+Scenario: Op1 verifies all the volume sliders from audio settings are at maximum level
+Then HMI OP1 verifies that volume slider coachSidetone is set to level 100
+Then HMI OP1 verifies that volume slider operatorSidetone is set to level 100
 Then HMI OP1 verifies that volume slider notificationError is set to level 100
 
 Scenario: Op1 closes audio settings tab

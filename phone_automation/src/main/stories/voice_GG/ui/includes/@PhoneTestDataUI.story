@@ -23,6 +23,13 @@ Given the DA keys:
 | HMI OP3 | OP2(as OP3)           | 101 |
 | HMI OP3 | IA - OP2(as OP3)      | 108 |
 
+Scenario: Define grid widget keys
+Given the grid widget keys:
+| source  | id            |
+| HMI OP1 | 1559721399523 |
+| HMI OP2 | 1559732038213 |
+| HMI OP3 | 1559721399523 |
+
 Scenario: Define function keys
 Given the function keys:
 | key           | id                       |
