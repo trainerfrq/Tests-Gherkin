@@ -21,6 +21,7 @@ import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import com.frequentis.xvp.voice.test.automation.phone.data.GridWidgetKey;
 import com.frequentis.xvp.voice.test.automation.phone.data.StatusKey;
 import com.frequentis.xvp.voice.test.automation.phone.data.NotificationDisplayEntry;
 import org.jbehave.core.annotations.Given;
@@ -62,12 +63,24 @@ public class GGBasicUISteps extends AutomationSteps
    }
 
    @When("$profileName selects grid tab $tabPosition")
-   public void clicksOnKey( final String profileName, Integer tabPosition )
+   public void clicksOnGridWidgetKey( final String profileName, Integer tabPosition )
    {
+      GridWidgetKey gridWidgetKey = retrieveGridWidgetKey(profileName);
+
       evaluate( remoteStep( "Presses key" ).scriptOn(
-              profileScriptResolver().map( ClickContainerTab.class, BookableProfileName.javafx ),
-              assertProfile( profileName ) )
-              .input(ClickContainerTab.IPARAM_TAB_POSITION, tabPosition-1));
+            profileScriptResolver().map( ClickContainerTab.class, BookableProfileName.javafx ),
+            assertProfile( profileName ) )
+            .input( ClickContainerTab.IPARAM_GRID_WIDGET_ID, gridWidgetKey.getId() )
+            .input(ClickContainerTab.IPARAM_TAB_POSITION, tabPosition-1));
+   }
+
+   private GridWidgetKey retrieveGridWidgetKey( final String source )
+   {
+      final GridWidgetKey gridWidgetKey = getStoryListData(source, GridWidgetKey.class);
+      evaluate(localStep("Check Grid Widget key").details( ExecutionDetails.create("Verify Grid Widget key is defined")
+            .usedData("source", source).success(gridWidgetKey != null)));
+
+      return gridWidgetKey;
    }
 
    @When("$profileName clicks on $status label $label")
