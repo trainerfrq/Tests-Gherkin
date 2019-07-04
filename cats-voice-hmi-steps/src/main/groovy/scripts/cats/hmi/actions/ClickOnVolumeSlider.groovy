@@ -26,7 +26,7 @@ class ClickOnVolumeSlider extends FxScriptTemplate {
                 dragPosition = -14;
                 break;
             case "maximum":
-                dragPosition = -190;
+                dragPosition = -210;
                 break;
             default:
                 break;

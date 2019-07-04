@@ -62,10 +62,10 @@ public class GGBasicUISteps extends AutomationSteps
               assertProfile( profileName ) ));
    }
 
-   @When("$profileName selects grid tab $tabPosition")
-   public void clicksOnGridWidgetKey( final String profileName, Integer tabPosition )
+   @When("$profileName with layout $layoutName selects grid tab $tabPosition")
+   public void clicksOnGridWidgetKey( final String profileName, final String layoutName, Integer tabPosition )
    {
-      GridWidgetKey gridWidgetKey = retrieveGridWidgetKey(profileName);
+      GridWidgetKey gridWidgetKey = retrieveGridWidgetKey(layoutName);
 
       evaluate( remoteStep( "Presses key" ).scriptOn(
             profileScriptResolver().map( ClickContainerTab.class, BookableProfileName.javafx ),

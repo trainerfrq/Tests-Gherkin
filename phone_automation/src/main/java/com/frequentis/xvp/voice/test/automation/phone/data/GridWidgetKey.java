@@ -24,20 +24,20 @@ import com.frequentis.c4i.test.model.parameter.CatsCustomParameterBase;
 public class GridWidgetKey extends CatsCustomParameterBase implements Serializable
 {
    @CatsCustomParameter
-   private String source;
+   private String layout;
 
    @CatsCustomParameter
    private String id;
 
-   public String getSource()
+   public String getLayout()
    {
-      return source;
+      return layout;
    }
 
 
-   public void setSource( final String source )
+   public void setLayout( final String layout )
    {
-      this.source = source;
+      this.layout = layout;
    }
 
 
@@ -57,7 +57,7 @@ public class GridWidgetKey extends CatsCustomParameterBase implements Serializab
    public String toString()
    {
       return "GridWidgetKey{" +
-            "source='" + source + '\'' +
+            "source='" + layout + '\'' +
             ", id='" + id + '\'' +
             '}';
    }

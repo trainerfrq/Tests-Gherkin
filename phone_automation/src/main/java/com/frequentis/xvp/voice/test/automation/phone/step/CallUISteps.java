@@ -72,7 +72,7 @@ public class CallUISteps extends AutomationSteps {
     public void defineFunctionKeys(final List<FunctionKey> functionKeys) {
         final LocalStep localStep = localStep("Define function keys");
         for (final FunctionKey functionKey : functionKeys) {
-            final String key = functionKey.getKey();
+            final String key = functionKey.getLayout() + "-" + functionKey.getKey();
             setStoryListData(key, functionKey);
             localStep.details(ExecutionDetails.create("Define function key").usedData(key, functionKey));
         }
@@ -111,7 +111,7 @@ public class CallUISteps extends AutomationSteps {
       final LocalStep localStep = localStep( "Define grid widget keys" );
       for (final GridWidgetKey gridWidgetKey: gridWidgetKeys)
       {
-         final String key = gridWidgetKey.getSource();
+         final String key = gridWidgetKey.getLayout();
          setStoryListData( key, gridWidgetKey );
          localStep.details( ExecutionDetails.create( "Define grid widget key" ).usedData( key, gridWidgetKey ) );
       }
@@ -138,9 +138,10 @@ public class CallUISteps extends AutomationSteps {
         }
     }
 
-    @When("$profileName presses function key $type")
-    public void clickFunctionKey(final String profileName, final String type) {
-        FunctionKey functionKey = retrieveFunctionKey(type);
+    @When("$profileName with layout $layoutName presses function key $type")
+    public void clickFunctionKey(final String profileName, final String layoutName, final String type) {
+        String key = layoutName + "-" + type;
+        FunctionKey functionKey = retrieveFunctionKey(key);
 
         evaluate(remoteStep("Click on a function key")
                          .scriptOn(
