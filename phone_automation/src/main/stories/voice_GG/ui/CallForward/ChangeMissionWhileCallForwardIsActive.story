@@ -57,7 +57,7 @@ Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Change mission for HMI OP1
-When HMI OP1 with layout lower-east-exec-layout presses function key MISSIONS
+When HMI OP1 with layout lower-west-exec-layout presses function key MISSIONS
 Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP1 activates mission
 Then waiting for 5 seconds

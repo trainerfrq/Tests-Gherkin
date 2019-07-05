@@ -32,6 +32,7 @@ Scenario: Op3 establishes another outgoing IA call towards Op2
 		  @REQUIREMENTS:GID-2505707
 		  @REQUIREMENTS:GID-3236103
 When HMI OP3 with layout upper-east-exec-layout selects grid tab 2
+When HMI OP3 presses IA key IA - OP2(as OP3)
 Then HMI OP3 has the call queue item OP2-OP3 in state out_failed
 Then HMI OP3 has the IA key IA - OP2(as OP3) in state out_failed
 
