@@ -51,7 +51,7 @@ Scenario: Op2 call state verification
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
 
 Scenario: Op1 adds a conference participant from phonebook
-When HMI OP1 presses function key PHONEBOOK
+When HMI OP1 with layout lower-east-exec-layout presses function key PHONEBOOK
 When HMI OP1 selects call route selector: none
 When HMI OP1 selects phonebook entry number: 2
 Then HMI OP1 verifies that phone book text box displays text Madoline
@@ -59,13 +59,13 @@ When HMI OP1 initiates a call from the phonebook
 When SipContact answers incoming calls
 
 Scenario: Op3 establishes an outgoing IA call to Op2
-When HMI OP3 selects grid tab 2
+When HMI OP3 with layout upper-east-exec-layout selects grid tab 2
 When HMI OP3 presses IA key IA - OP2(as OP3)
 Then HMI OP3 has the call queue item OP2-OP3 in state connected
 Then HMI OP3 has the IA key IA - OP2(as OP3) in state connected
 
 Scenario: Op2 receives incoming IA call
-When HMI OP2 selects grid tab 2
+When HMI OP2 with layout lower-west-exec-layout selects grid tab 2
 Then HMI OP2 click on call queue Elements list
 Then HMI OP2 has in the collapsed area a number of 1 calls
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
@@ -112,5 +112,5 @@ Scenario: Remove phone
 When SipContact is removed
 
 Scenario: Cleanup - always select first tab
-When HMI OP3 selects grid tab 1
-When HMI OP2 selects grid tab 1
+When HMI OP3 with layout upper-east-exec-layout selects grid tab 1
+When HMI OP2 with layout lower-west-exec-layout selects grid tab 1

@@ -19,7 +19,7 @@ Given the call queue items:
 | OP3-OP1 | sip:op3@example.com    | sip:111111@example.com | DA/IDA   |
 
 Scenario: Op1 activates Call Forward
-When HMI OP1 presses function key CALLFORWARD
+When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
 Then HMI OP1 has the function key CALLFORWARD in forwardOngoing state
 Then HMI OP1 verifies that call queue info container is not visible
 
@@ -62,7 +62,7 @@ Scenario: Op1 still has Call Forward active
 Then HMI OP1 has the function key CALLFORWARD in active state
 
 Scenario: Op1 deactivates Call Forward
-When HMI OP1 presses function key CALLFORWARD
+When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
 Then HMI OP1 verifies that call queue info container is not visible
 
 

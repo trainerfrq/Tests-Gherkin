@@ -26,7 +26,7 @@ Given SipContacts group SipContact:
 And phones for SipContact are created
 
 Scenario: Op1 activates Call Forward
-When HMI OP1 presses function key CALLFORWARD
+When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
 When HMI OP1 presses DA key OP3(as OP1)
 Then HMI OP1 verifies that call queue info container contains Target: op3
 Then HMI OP1 has the function key CALLFORWARD in active state
@@ -55,7 +55,7 @@ Scenario: Op3 call state verification
 Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
 
 Scenario: Op2 adds a conference participant from phonebook
-When HMI OP2 presses function key PHONEBOOK
+When HMI OP2 with layout lower-west-exec-layout presses function key PHONEBOOK
 When HMI OP2 selects call route selector: none
 When HMI OP2 selects phonebook entry number: 2
 Then HMI OP2 verifies that phone book text box displays text Madoline
@@ -118,7 +118,7 @@ Scenario: Verify that Op1 hasn't any calls
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Op1 deactivates Call Forward
-When HMI OP1 presses function key CALLFORWARD
+When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
 Then HMI OP1 verifies that call queue info container is not visible
 
 Scenario: Remove phone

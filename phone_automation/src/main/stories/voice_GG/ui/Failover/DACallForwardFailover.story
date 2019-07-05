@@ -26,7 +26,7 @@ Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 Then HMI OP3 has in the DISPLAY STATUS section connection the state CONNECTED
 
 Scenario: Op1 activates Call Forward and chooses Op2 as call forward target
-When HMI OP1 presses function key CALLFORWARD
+When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
 Then HMI OP1 has the function key CALLFORWARD in forwardOngoing state
 When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP1 has the function key CALLFORWARD in active state
@@ -105,7 +105,7 @@ Scenario: Op1 still has Call Forward active
 Then HMI OP1 has the function key CALLFORWARD in active state
 
 Scenario: Op1 deactivates Call Forward
-When HMI OP1 presses function key CALLFORWARD
+When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
 Then HMI OP1 verifies that call queue info container is not visible
 
 Scenario: Verify displayed status after the starting the op voice instances

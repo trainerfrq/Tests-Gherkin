@@ -16,7 +16,7 @@ Given the call queue items:
 | OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
 
 Scenario: Op1 activates Call Forward
-When HMI OP1 presses function key CALLFORWARD
+When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
 Then HMI OP1 has the function key CALLFORWARD in forwardOngoing state
 Scenario: Op1 chooses Op2 as call forward target
 		  @REQUIREMENTS:GID-2521111
@@ -33,7 +33,7 @@ Scenario: Callee client receives the incoming call
 Then HMI OP2 has the DA key OP1 in state inc_initiated
 
 Scenario: Change mission for HMI OP1
-When HMI OP1 presses function key MISSIONS
+When HMI OP1 with layout lower-east-exec-layout presses function key MISSIONS
 Then HMI OP1 changes current mission to mission WEST-EXEC
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
@@ -57,7 +57,7 @@ Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Change mission for HMI OP1
-When HMI OP1 presses function key MISSIONS
+When HMI OP1 with layout lower-east-exec-layout presses function key MISSIONS
 Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP1 activates mission
 Then waiting for 5 seconds

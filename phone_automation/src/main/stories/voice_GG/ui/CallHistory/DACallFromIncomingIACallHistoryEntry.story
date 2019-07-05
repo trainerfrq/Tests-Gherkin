@@ -18,13 +18,13 @@ Given the call queue items:
 | OP2-OP1-DA | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
 
 Scenario: OP1 establishes an outgoing IA call
-When HMI OP1 selects grid tab 2
+When HMI OP1 with layout lower-east-exec-layout selects grid tab 2
 When HMI OP1 presses IA key IA - OP2(as OP1)
 Then HMI OP1 has the call queue item OP2-OP1-IA in state connected
 Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
 
 Scenario: OP2 receives incoming IA call
-When HMI OP2 selects grid tab 2
+When HMI OP2 with layout lower-west-exec-layout selects grid tab 2
 Then HMI OP2 has the call queue item OP1-OP2-IA in state connected
 Then HMI OP2 has the IA key IA - OP1 in state connected
 
@@ -36,7 +36,7 @@ Scenario: Call is terminated also for callee
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: OP2 opens call history
-When HMI OP2 presses function key CALLHISTORY
+When HMI OP2 with layout lower-west-exec-layout presses function key CALLHISTORY
 
 Scenario: OP2 selects first entry from history
 When HMI OP2 selects call history list entry number: 0
@@ -45,12 +45,12 @@ Scenario: OP2 does call from call history
 		  @REQUIREMENTS:GID-2535764
 		  @REQUIREMENTS:GID-2536683
 		  @REQUIREMENTS:GID-2656702
-When HMI OP2 selects grid tab 1
+When HMI OP2 with layout lower-west-exec-layout selects grid tab 1
 When HMI OP2 initiates a call from the call history
 Then HMI OP2 has the DA key OP1 in state out_ringing
 
 Scenario: OP1 client receives the incoming call
-When HMI OP1 selects grid tab 1
+When HMI OP1 with layout lower-east-exec-layout selects grid tab 1
 Then HMI OP1 has the DA key OP2(as OP1) in state inc_initiated
 
 Scenario: OP1 client answers the incoming call
@@ -68,5 +68,5 @@ Scenario: Call is terminated also for caller
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Cleanup - always select first tab
-When HMI OP1 selects grid tab 1
-When HMI OP2 selects grid tab 1
+When HMI OP1 with layout lower-east-exec-layout selects grid tab 1
+When HMI OP2 with layout lower-west-exec-layout selects grid tab 1

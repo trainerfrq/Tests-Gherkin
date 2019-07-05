@@ -33,11 +33,11 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Op1 activates loudspeaker
 		  @REQUIREMENTS:GID-3005515
-When HMI OP1 presses function key LOUDSPEAKER
+When HMI OP1 with layout lower-east-exec-layout presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP on
 
 Scenario: Op1 changes mission
-When HMI OP1 presses function key MISSIONS
+When HMI OP1 with layout lower-east-exec-layout presses function key MISSIONS
 Then HMI OP1 changes current mission to mission WEST-EXEC
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
@@ -50,11 +50,11 @@ Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Op1 deactivates loudspeaker
-When HMI OP1 presses function key LOUDSPEAKER
+When HMI OP1 with layout lower-west-exec-layout presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP off
 
 Scenario: Op1 changes to initial mission
-When HMI OP1 presses function key MISSIONS
+When HMI OP1 with layout lower-west-exec-layout presses function key MISSIONS
 Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP1 activates mission
 Then waiting for 5 seconds

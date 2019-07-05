@@ -22,7 +22,7 @@ Given the call queue items:
 | SipContact-OP1 | <<SIP_PHONE2>>         | <<OPVOICE1_PHONE_URI>> | DA/IDA   |
 
 Scenario: Op1 activates Call Forward
-When HMI OP1 presses function key CALLFORWARD
+When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
 Then HMI OP1 has the function key CALLFORWARD in forwardOngoing state
 
 Scenario: Op1 chooses Op2 as call forward target
@@ -57,7 +57,7 @@ Scenario: Op1 still has Call Forward active
 Then HMI OP1 has the function key CALLFORWARD in active state
 
 Scenario: Op1 deactivates Call Forward
-When HMI OP1 presses function key CALLFORWARD
+When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
 Then HMI OP1 verifies that call queue info container is not visible
 
 Scenario: Remove phone

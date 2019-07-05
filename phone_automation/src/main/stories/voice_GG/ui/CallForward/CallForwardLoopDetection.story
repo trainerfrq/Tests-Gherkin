@@ -19,12 +19,12 @@ Given the call queue items:
 | Madoline-OP3 | <<SIP_PHONE2>>         |                        | DA/IDA   |
 
 Scenario: Op1 activates Call Forward with Op2 as call forward target
-When HMI OP1 presses function key CALLFORWARD
+When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
 When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP1 has the function key CALLFORWARD in active state
 
 Scenario: Op2 activates Call Forward with Op1 as call forward target
-When HMI OP2 presses function key CALLFORWARD
+When HMI OP2 with layout lower-west-exec-layout presses function key CALLFORWARD
 When HMI OP2 presses DA key OP1
 Then HMI OP2 has the function key CALLFORWARD in active state
 
@@ -46,7 +46,7 @@ Then wait for 15 seconds
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Op3 establishes an outgoing call towards someone that is not in call forward loop
-When HMI OP3 presses function key PHONEBOOK
+When HMI OP3 with layout upper-east-exec-layout presses function key PHONEBOOK
 When HMI OP3 selects phonebook entry number: 2
 Then HMI OP3 verifies that phone book text box displays text Madoline
 When HMI OP3 initiates a call from the phonebook
@@ -59,9 +59,9 @@ Then HMI OP3 terminates the call queue item Madoline-OP3
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Op1 deactivates Call Forward
-When HMI OP1 presses function key CALLFORWARD
+When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
 Then HMI OP1 verifies that call queue info container is not visible
 
 Scenario: Op2 deactivates Call Forward
-When HMI OP2 presses function key CALLFORWARD
+When HMI OP2 with layout lower-west-exec-layout presses function key CALLFORWARD
 Then HMI OP2 verifies that call queue info container is not visible

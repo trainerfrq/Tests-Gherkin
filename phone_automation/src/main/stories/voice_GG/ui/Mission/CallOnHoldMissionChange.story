@@ -48,7 +48,7 @@ Then HMI OP2 has the DA key OP1 in state inc_initiated
 Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
 
 Scenario: Change mission for HMI OP2
-When HMI OP2 presses function key MISSIONS
+When HMI OP2 with layout lower-west-exec-layout presses function key MISSIONS
 Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
@@ -70,7 +70,7 @@ When HMI OP2 puts on hold the active call
 Then HMI OP2 has the call queue item OP1-OP2 in state hold
 
 Scenario: Change mission for HMI OP2
-When HMI OP2 presses function key MISSIONS
+When HMI OP2 with layout lower-east-exec-layout presses function key MISSIONS
 Then HMI OP2 changes current mission to mission WEST-EXEC
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
@@ -100,7 +100,7 @@ When HMI OP2 puts on hold the active call
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
 
 Scenario: Change mission for HMI OP2
-When HMI OP2 presses function key MISSIONS
+When HMI OP2 with layout lower-west-exec-layout presses function key MISSIONS
 Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
@@ -116,7 +116,7 @@ When HMI OP2 puts on hold the active call
 Then HMI OP2 has the call queue item OP3-OP2 in state hold
 
 Scenario: Change mission for HMI OP2
-When HMI OP2 presses function key MISSIONS
+When HMI OP2 with layout lower-east-exec-layout presses function key MISSIONS
 Then HMI OP2 changes current mission to mission WEST-EXEC
 Then HMI OP2 activates mission
 Then waiting for 5 seconds

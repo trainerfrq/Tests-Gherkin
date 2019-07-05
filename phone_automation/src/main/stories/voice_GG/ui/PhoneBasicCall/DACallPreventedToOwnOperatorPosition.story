@@ -14,7 +14,7 @@ Given the call queue items:
 | OP1-OP1 | 111111   |        | DA/IDA   |
 
 Scenario: Caller opens phonebook
-When HMI OP1 presses function key PHONEBOOK
+When HMI OP1 with layout lower-east-exec-layout presses function key PHONEBOOK
 
 Scenario: Caller writes target address in text box
 When HMI OP1 writes in phonebook text box the address: 111111

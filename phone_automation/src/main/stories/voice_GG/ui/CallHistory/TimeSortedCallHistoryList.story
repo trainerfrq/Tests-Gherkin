@@ -18,7 +18,7 @@ Given the call queue items:
 | OP2-Role1 | sip:222222@example.com | sip:role1@example.com  | DA/IDA   |
 
 Scenario: Caller clears call history list
-When HMI OP2 presses function key CALLHISTORY
+When HMI OP2 with layout lower-west-exec-layout presses function key CALLHISTORY
 Then HMI OP2 clears Call History list
 Then HMI OP2 verifies that call history list contains 0 entries
 Then HMI OP2 closes Call History popup window
@@ -59,7 +59,7 @@ Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Op2 opens call history
-When HMI OP2 presses function key CALLHISTORY
+When HMI OP2 with layout lower-west-exec-layout presses function key CALLHISTORY
 
 Scenario: Op2 verifies that call history entries are ordered by time
             @REQUIREMENTS:GID-3225206

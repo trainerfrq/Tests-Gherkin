@@ -35,7 +35,7 @@ Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Caller selects first entry from history
-When HMI OP2 presses function key CALLHISTORY
+When HMI OP2 with layout lower-west-exec-layout presses function key CALLHISTORY
 When HMI OP2 selects call history list entry number: 0
 
 Scenario: Caller verifies the label on call history button

@@ -14,7 +14,7 @@ Given the call queue items:
 | OP2-OP2 | sip:222222@example.com | sip:222222@example.com | IA       |
 
 Scenario: Caller establishes an outgoing IA call
-When HMI OP2 selects grid tab 2
+When HMI OP2 with layout lower-west-exec-layout selects grid tab 2
 When HMI OP2 presses IA key IA - OP2
 
 Scenario: Verify call is received and call status is failed
@@ -30,4 +30,4 @@ Scenario: Call is terminated
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Cleanup - always select first tab
-When HMI OP2 selects grid tab 1
+When HMI OP2 with layout lower-west-exec-layout selects grid tab 1

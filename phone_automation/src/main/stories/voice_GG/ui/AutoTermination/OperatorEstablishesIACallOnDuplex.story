@@ -19,7 +19,7 @@ Given the call queue items:
 | OP2-OP3 | sip:222222@example.com | sip:op3@example.com    | IA       |
 
 Scenario: Op2 establishes an outgoing IA call
-When HMI OP2 selects grid tab 2
+When HMI OP2 with layout lower-west-exec-layout selects grid tab 2
 When HMI OP2 presses IA key IA - OP1
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
@@ -27,7 +27,7 @@ Scenario: Op1 receives incoming IA call
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 
 Scenario: Op1 also initiate a IA call, transforming the existing IA half duplex call in a full duplex
-When HMI OP1 selects grid tab 2
+When HMI OP1 with layout lower-east-exec-layout selects grid tab 2
 When HMI OP1 presses IA key IA - OP2(as OP1)
 
 Scenario: Verify calls state on all operators
@@ -60,7 +60,7 @@ Then HMI OP2 has in the call queue a number of 2 calls
 Then HMI OP3 has in the call queue a number of 1 calls
 
 Scenario: Op3 also initiate a IA call, transforming the existing IA half duplex call in a full duplex
-When HMI OP3 selects grid tab 2
+When HMI OP3 with layout upper-east-exec-layout selects grid tab 2
 When HMI OP3 presses IA key IA - OP2(as OP3)
 
 Scenario: Verify calls state on all operators
@@ -83,6 +83,6 @@ Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Cleanup - always select first tab
-When HMI OP1 selects grid tab 1
-When HMI OP2 selects grid tab 1
-When HMI OP3 selects grid tab 1
+When HMI OP1 with layout lower-east-exec-layout selects grid tab 1
+When HMI OP2 with layout lower-west-exec-layout selects grid tab 1
+When HMI OP3 with layout upper-east-exec-layout selects grid tab 1

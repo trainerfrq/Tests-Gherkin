@@ -26,7 +26,7 @@ Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
 Scenario: Caller activates loudspeaker
 		  @REQUIREMENTS:GID-3005515
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled
-When HMI OP1 presses function key LOUDSPEAKER
+When HMI OP1 with layout lower-east-exec-layout presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
 
 Scenario: Verify displayed status after the stopping the op voice instances from one partition
@@ -48,7 +48,7 @@ Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 Then HMI OP2 has the DA key OP1 in state inc_initiated
 
 Scenario: Op1 deactivates loudspeaker
-When HMI OP1 presses function key LOUDSPEAKER
+When HMI OP1 with layout lower-east-exec-layout presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled
 
 Scenario: Callee client answers the incoming call
@@ -57,7 +57,7 @@ Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Caller activates loudspeaker
-When HMI OP1 presses function key LOUDSPEAKER
+When HMI OP1 with layout lower-east-exec-layout presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
 
 Scenario: Caller client clears the phone call
@@ -72,6 +72,6 @@ Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
 
 Scenario: Op1 deactivates loudspeaker
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
-When HMI OP1 presses function key LOUDSPEAKER
+When HMI OP1 with layout lower-east-exec-layout presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled
 
