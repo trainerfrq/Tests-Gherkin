@@ -140,7 +140,7 @@ When HMI OP1 drags volume slider operator to maximum level
 Then HMI OP1 verifies that volume slider operator is set to level 100
 
 Scenario: Op1 opens audio settings tab
-When HMI OP1 with layout lower-east-exec-layout presses function key AUDIOSETTINGS
+When HMI OP1 clicks on volumeControlPanel symbol
 
 Scenario: Op1 checks the coach sidetone volume slider level
 Then HMI OP1 verifies that volume slider coachSidetone is set to level 100

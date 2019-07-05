@@ -28,6 +28,7 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.ClickContainerTab;
+import scripts.cats.hmi.actions.ClickOnSymbolButton;
 import scripts.cats.hmi.actions.ClickStatusLabel;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationClearEventButton;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationDisplay;
@@ -52,6 +53,16 @@ public class GGBasicUISteps extends AutomationSteps
               profileScriptResolver().map( VerifyNotificationLabel.class, BookableProfileName.javafx ),
               assertProfile( profileName ) )
               .input(VerifyNotificationLabel.IPARAM_NOTIFICATION_LABEL_TEXT, notification));
+   }
+
+   @When("$profileName clicks on $symbolName symbol")
+   public void clickOnSymbolKey(final String profileName, final String symbolName)
+   {
+      evaluate( remoteStep( "User clicks on " + symbolName + "symbol" ).scriptOn(
+            profileScriptResolver().map( ClickOnSymbolButton.class, BookableProfileName.javafx ),
+            assertProfile( profileName ) )
+            .input( ClickOnSymbolButton.IPARAM_SETTINGS_BUTTON_NAME, symbolName )
+      );
    }
 
    @When("$profileName verifies that loading screen is visible")

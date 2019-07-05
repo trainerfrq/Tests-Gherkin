@@ -39,21 +39,18 @@ Given the function keys:
 | lower-east-exec-layout  | CALLFORWARD   | f4                       |
 | lower-east-exec-layout  | LOUDSPEAKER   | f5                       |
 | lower-east-exec-layout  | SETTINGS      | 1561462433938            |
-| lower-east-exec-layout  | AUDIOSETTINGS | volumeControlPanelSymbol |
 | lower-west-exec-layout  | PHONEBOOK     | f1                       |
 | lower-west-exec-layout  | CALLHISTORY   | f2                       |
 | lower-west-exec-layout  | MISSIONS      | f3                       |
 | lower-west-exec-layout  | CALLFORWARD   | f4                       |
 | lower-west-exec-layout  | LOUDSPEAKER   | f5                       |
 | lower-west-exec-layout  | SETTINGS      | 1562069304363            |
-| lower-west-exec-layout  | AUDIOSETTINGS | volumeControlPanelSymbol |
 | upper-east-exec-layout  | PHONEBOOK     | f1                       |
 | upper-east-exec-layout  | CALLHISTORY   | f2                       |
 | upper-east-exec-layout  | MISSIONS      | f3                       |
 | upper-east-exec-layout  | CALLFORWARD   | f4                       |
 | upper-east-exec-layout  | LOUDSPEAKER   | f5                       |
 | upper-east-exec-layout  | SETTINGS      | 1562069583716            |
-| upper-east-exec-layout  | AUDIOSETTINGS | volumeControlPanelSymbol |
 
 Scenario: Define status key
 Given the status key:

@@ -25,7 +25,7 @@ When HMI OP1 clicks on mute button Operator
 Then HMI OP1 verifies that mute button Operator is in muted state
 
 Scenario: Op1 opens audio settings tab
-When HMI OP1 with layout lower-east-exec-layout presses function key AUDIOSETTINGS
+When HMI OP1 clicks on volumeControlPanel symbol
 
 Scenario: Op1 mutes all audio buttons from audio settings
 When HMI OP1 clicks on side tone mute button coach
@@ -60,7 +60,7 @@ Then HMI OP1 verifies that mute button Coach is in muted state
 Then HMI OP1 verifies that mute button Operator is in muted state
 
 Scenario: Op1 opens audio settings tab
-When HMI OP1 with layout upper-east-exec-layout presses function key AUDIOSETTINGS
+When HMI OP1 clicks on volumeControlPanel symbol
 
 Scenario: Op1 verifies all buttons from audio settings are in muted state
 Then HMI OP1 verifies that mute sidetone button coach is in muted state
@@ -112,7 +112,7 @@ Then HMI OP1 verifies that mute button Coach is in unmuted state
 Then HMI OP1 verifies that mute button Operator is in unmuted state
 
 Scenario: Op1 opens audio settings tab
-When HMI OP1 with layout lower-east-exec-layout presses function key AUDIOSETTINGS
+When HMI OP1 clicks on volumeControlPanel symbol
 
 Scenario: Op1 verifies all buttons from audio settings remain in muted state
 Then HMI OP1 verifies that mute sidetone button coach is in muted state
@@ -137,7 +137,7 @@ Scenario: Op1 reopens settings tab
 When HMI OP1 with layout lower-east-exec-layout presses function key SETTINGS
 
 Scenario: Op1 reopens audio settings tab
-When HMI OP1 with layout lower-east-exec-layout presses function key AUDIOSETTINGS
+When HMI OP1 clicks on volumeControlPanel symbol
 
 Scenario: Op1 verifies all buttons from audio settings remain in unmuted state
 Then HMI OP1 verifies that mute sidetone button coach is in unmuted state
