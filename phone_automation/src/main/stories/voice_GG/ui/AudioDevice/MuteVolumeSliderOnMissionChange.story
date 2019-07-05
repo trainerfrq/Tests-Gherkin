@@ -23,7 +23,7 @@ When HMI OP1 drags volume slider operator to muted level
 Then HMI OP1 verifies that volume slider operator is set to level 0
 
 Scenario: Op1 opens audio settings tab
-When HMI OP1 clicks on volumeControlPanel symbol
+When HMI OP1 clicks on volumeControlPanel button
 
 Scenario: Op1 mutes all the volume sliders from audio settings
 When HMI OP1 drags volume slider coachSidetone to muted level
@@ -55,7 +55,7 @@ Then HMI OP1 verifies that volume slider coach is set to level 0
 Then HMI OP1 verifies that volume slider operator is set to level 0
 
 Scenario: Op1 opens audio settings tab
-When HMI OP1 clicks on volumeControlPanel symbol
+When HMI OP1 clicks on volumeControlPanel button
 
 Scenario: Op1 verifies all the volume sliders from audio settings are muted
 Then HMI OP1 verifies that volume slider coachSidetone is set to level 0
@@ -106,7 +106,7 @@ Then HMI OP1 verifies that volume slider coach is set to level 100
 Then HMI OP1 verifies that volume slider operator is set to level 100
 
 Scenario: Op1 opens audio settings tab
-When HMI OP1 clicks on volumeControlPanel symbol
+When HMI OP1 clicks on volumeControlPanel button
 
 Scenario: Op1 verifies all the volume sliders from audio settings remain muted
 Then HMI OP1 verifies that volume slider coachSidetone is set to level 0
@@ -131,7 +131,7 @@ Scenario: Op1 reopens settings tab
 When HMI OP1 with layout lower-east-exec-layout presses function key SETTINGS
 
 Scenario: Op1 reopens audio settings tab
-When HMI OP1 clicks on volumeControlPanel symbol
+When HMI OP1 clicks on volumeControlPanel button
 
 Scenario: Op1 verifies all the volume sliders from audio settings are at maximum level
 Then HMI OP1 verifies that volume slider coachSidetone is set to level 100

@@ -55,13 +55,13 @@ public class GGBasicUISteps extends AutomationSteps
               .input(VerifyNotificationLabel.IPARAM_NOTIFICATION_LABEL_TEXT, notification));
    }
 
-   @When("$profileName clicks on $symbolName symbol")
-   public void clickOnSymbolKey(final String profileName, final String symbolName)
+   @When("$profileName clicks on $buttonName button")
+   public void clickOnSymbolButton(final String profileName, final String buttonName)
    {
-      evaluate( remoteStep( "User clicks on " + symbolName + "symbol" ).scriptOn(
+      evaluate( remoteStep( "User clicks on " + buttonName + "button" ).scriptOn(
             profileScriptResolver().map( ClickOnSymbolButton.class, BookableProfileName.javafx ),
             assertProfile( profileName ) )
-            .input( ClickOnSymbolButton.IPARAM_SETTINGS_BUTTON_NAME, symbolName )
+            .input( ClickOnSymbolButton.IPARAM_SETTINGS_BUTTON_NAME, buttonName )
       );
    }
 
