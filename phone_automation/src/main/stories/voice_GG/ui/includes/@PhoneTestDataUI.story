@@ -25,32 +25,32 @@ Given the DA keys:
 
 Scenario: Define grid widget keys
 Given the grid widget keys:
-| layout                 | id            |
-| lower-east-exec-layout | 1562068499071 |
-| lower-west-exec-layout | 1562069020988 |
-| upper-east-exec-layout | 1562069616787 |
+| layout                 | id                          |
+| lower-east-exec-layout | <<GRID_ID_LOWER_EAST_EXEC>> |
+| lower-west-exec-layout | <<GRID_ID_LOWER_WEST_EXEC>> |
+| upper-east-exec-layout | <<GRID_ID_UPPER_EAST_EXEC>> |
 
 Scenario: Define function keys
 Given the function keys:
-| layout                  | key           | id                       |
-| lower-east-exec-layout  | PHONEBOOK     | f1                       |
-| lower-east-exec-layout  | CALLHISTORY   | f2                       |
-| lower-east-exec-layout  | MISSIONS      | f3                       |
-| lower-east-exec-layout  | CALLFORWARD   | f4                       |
-| lower-east-exec-layout  | LOUDSPEAKER   | f5                       |
-| lower-east-exec-layout  | SETTINGS      | 1561462433938            |
-| lower-west-exec-layout  | PHONEBOOK     | f1                       |
-| lower-west-exec-layout  | CALLHISTORY   | f2                       |
-| lower-west-exec-layout  | MISSIONS      | f3                       |
-| lower-west-exec-layout  | CALLFORWARD   | f4                       |
-| lower-west-exec-layout  | LOUDSPEAKER   | f5                       |
-| lower-west-exec-layout  | SETTINGS      | 1562069304363            |
-| upper-east-exec-layout  | PHONEBOOK     | f1                       |
-| upper-east-exec-layout  | CALLHISTORY   | f2                       |
-| upper-east-exec-layout  | MISSIONS      | f3                       |
-| upper-east-exec-layout  | CALLFORWARD   | f4                       |
-| upper-east-exec-layout  | LOUDSPEAKER   | f5                       |
-| upper-east-exec-layout  | SETTINGS      | 1562069583716            |
+| layout                  | key           | id                              |
+| lower-east-exec-layout  | PHONEBOOK     | f1                              |
+| lower-east-exec-layout  | CALLHISTORY   | f2                              |
+| lower-east-exec-layout  | MISSIONS      | f3                              |
+| lower-east-exec-layout  | CALLFORWARD   | f4                              |
+| lower-east-exec-layout  | LOUDSPEAKER   | f5                              |
+| lower-east-exec-layout  | SETTINGS      | <<SETTINGS_ID_LOWER_EAST_EXEC>> |
+| lower-west-exec-layout  | PHONEBOOK     | f1                              |
+| lower-west-exec-layout  | CALLHISTORY   | f2                              |
+| lower-west-exec-layout  | MISSIONS      | f3                              |
+| lower-west-exec-layout  | CALLFORWARD   | f4                              |
+| lower-west-exec-layout  | LOUDSPEAKER   | f5                              |
+| lower-west-exec-layout  | SETTINGS      | <<SETTINGS_ID_LOWER_WEST_EXEC>> |
+| upper-east-exec-layout  | PHONEBOOK     | f1                              |
+| upper-east-exec-layout  | CALLHISTORY   | f2                              |
+| upper-east-exec-layout  | MISSIONS      | f3                              |
+| upper-east-exec-layout  | CALLFORWARD   | f4                              |
+| upper-east-exec-layout  | LOUDSPEAKER   | f5                              |
+| upper-east-exec-layout  | SETTINGS      | <<SETTINGS_ID_UPPER_EAST_EXEC>> |
 
 Scenario: Define status key
 Given the status key:
