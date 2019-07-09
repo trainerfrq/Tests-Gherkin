@@ -119,6 +119,12 @@ When HMI OP2 drags volume slider notificationError to maximum level
 Then HMI OP2 verifies that volume slider notificationError is set to level 100
 Then HMI OP2 verifies that mute button NotificationError is in unmuted state
 
+Scenario: Close audio settings tab
+Then HMI OP2 closes volumeControl popup
+
+Scenario: Close settings tab
+Then HMI OP2 closes settings popup
+
 Scenario: Verify displayed status after the starting the op voice instances
 GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost2.story
 Then waiting for 60 seconds
