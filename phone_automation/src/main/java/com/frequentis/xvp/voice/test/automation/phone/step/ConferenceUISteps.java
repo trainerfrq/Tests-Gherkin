@@ -25,7 +25,7 @@ import scripts.cats.hmi.actions.Conference.ClickOnConferenceListCloseButton;
 import scripts.cats.hmi.actions.Conference.ClickOnRemoveConferenceParticipantButton;
 import scripts.cats.hmi.actions.Conference.ClickOnLeaveConferenceButton;
 import scripts.cats.hmi.actions.Conference.SelectConferenceListParticipant;
-import scripts.cats.hmi.asserts.Conference.VerifyAddConferenceParticipantButtonState;
+import scripts.cats.hmi.asserts.Conference.VerifyManageParticipantsButtonState;
 import scripts.cats.hmi.asserts.Conference.VerifyConferenceListParticipantName;
 import scripts.cats.hmi.asserts.Conference.VerifyConferenceListParticipantStatus;
 import scripts.cats.hmi.asserts.Conference.VerifyConferenceListSize;
@@ -89,13 +89,13 @@ public class ConferenceUISteps extends AutomationSteps
                 .input(VerifyRemoveConferenceParticipantButtonState.IPARAM_STATE, state));
     }
 
-    @Then("$profileName verifies that add conference participant button is $state")
+    @Then("$profileName verifies that edit conference button is $state")
     public void verifyAddConferenceParticipantButtonState(final String profileName, final String state) {
         evaluate(remoteStep("Verify add conference participant button has state " + state)
                 .scriptOn(
-                        profileScriptResolver().map(VerifyAddConferenceParticipantButtonState.class, BookableProfileName.javafx),
+                        profileScriptResolver().map(VerifyManageParticipantsButtonState.class, BookableProfileName.javafx),
                         assertProfile(profileName))
-                .input(VerifyAddConferenceParticipantButtonState.IPARAM_STATE, state));
+                .input(VerifyManageParticipantsButtonState.IPARAM_STATE, state));
     }
 
     @Then("$profileName verifies that terminate conference button is $state")
