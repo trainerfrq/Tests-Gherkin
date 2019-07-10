@@ -29,7 +29,7 @@ Scenario: Op1 activates Call Forward
 When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
 When HMI OP1 presses DA key OP3(as OP1)
 Then HMI OP1 verifies that call queue info container contains Target: op3
-Then HMI OP1 has the function key CALLFORWARD in active state
+Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in active state
 
 Scenario: Op2 establishes an outgoing call
 When HMI OP2 presses DA key OP3

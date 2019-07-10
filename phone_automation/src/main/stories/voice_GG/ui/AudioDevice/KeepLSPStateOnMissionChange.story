@@ -16,7 +16,7 @@ Given the call queue items:
 | OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
 
 Scenario: Op1 verifies Loudspeaker state
-Then HMI OP1 has the function key LOUDSPEAKER label GG LSP off
+Then HMI OP1 with layout lower-east-exec-layout has the function key LOUDSPEAKER label GG LSP off
 
 Scenario: Caller establishes an outgoing call
 When HMI OP1 presses DA key OP2(as OP1)
@@ -34,7 +34,7 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Scenario: Op1 activates loudspeaker
 		  @REQUIREMENTS:GID-3005515
 When HMI OP1 with layout lower-east-exec-layout presses function key LOUDSPEAKER
-Then HMI OP1 has the function key LOUDSPEAKER label GG LSP on
+Then HMI OP1 with layout lower-east-exec-layout has the function key LOUDSPEAKER label GG LSP on
 
 Scenario: Op1 changes mission
 When HMI OP1 with layout lower-east-exec-layout presses function key MISSIONS
@@ -43,7 +43,7 @@ Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: Op1 verifies if Loudspeaker state is unmodified
-Then HMI OP1 has the function key LOUDSPEAKER label GG LSP on
+Then HMI OP1 with layout lower-west-exec-layout has the function key LOUDSPEAKER label GG LSP on
 
 Scenario: Verify active call is still connected
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
@@ -51,7 +51,7 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Op1 deactivates loudspeaker
 When HMI OP1 with layout lower-west-exec-layout presses function key LOUDSPEAKER
-Then HMI OP1 has the function key LOUDSPEAKER label GG LSP off
+Then HMI OP1 with layout lower-west-exec-layout has the function key LOUDSPEAKER label GG LSP off
 
 Scenario: Op1 changes to initial mission
 When HMI OP1 with layout lower-west-exec-layout presses function key MISSIONS
@@ -65,4 +65,4 @@ Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Op1 verifies if Loudspeaker state is unmodified
-Then HMI OP1 has the function key LOUDSPEAKER label GG LSP off
+Then HMI OP1 with layout lower-east-exec-layout has the function key LOUDSPEAKER label GG LSP off

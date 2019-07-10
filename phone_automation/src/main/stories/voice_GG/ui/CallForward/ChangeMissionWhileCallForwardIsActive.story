@@ -17,11 +17,11 @@ Given the call queue items:
 
 Scenario: Op1 activates Call Forward
 When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
-Then HMI OP1 has the function key CALLFORWARD in forwardOngoing state
+Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in forwardOngoing state
 Scenario: Op1 chooses Op2 as call forward target
 		  @REQUIREMENTS:GID-2521111
 When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 has the function key CALLFORWARD in active state
+Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in active state
 Then HMI OP1 verifies that call queue info container is visible
 
 Scenario: Caller establishes an outgoing call

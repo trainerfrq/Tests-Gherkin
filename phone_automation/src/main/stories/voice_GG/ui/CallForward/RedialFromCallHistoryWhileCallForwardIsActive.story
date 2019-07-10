@@ -19,12 +19,12 @@ Given the call queue items:
 
 Scenario: Op1 activates Call Forward
 When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
-Then HMI OP1 has the function key CALLFORWARD in forwardOngoing state
+Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in forwardOngoing state
 
 Scenario: Op1 chooses Op2 as call forward target
 		  @REQUIREMENTS:GID-2521111
 When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 has the function key CALLFORWARD in active state
+Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in active state
 Then HMI OP1 verifies that call queue info container is visible
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP2 has in the call queue a number of 0 calls
@@ -66,7 +66,7 @@ Scenario: Op1 client clears the phone call
 When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP1 has in the call queue a number of 0 calls
-Then HMI OP1 has the function key CALLFORWARD in active state
+Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in active state
 
 Scenario: Op1 establishes an outgoing priority call
 When HMI OP1 initiates a priority call on DA key OP2(as OP1)
@@ -98,7 +98,7 @@ Scenario: Op1 client clears the phone call
 When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP1 has in the call queue a number of 0 calls
-Then HMI OP1 has the function key CALLFORWARD in active state
+Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in active state
 Then HMI OP1 verifies that call queue info container is visible
 
 Scenario: Op1 establishes an outgoing IA call
@@ -132,7 +132,7 @@ When HMI OP1 presses IA key IA - OP2(as OP1)
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Op1 still has Call Forward active
-Then HMI OP1 has the function key CALLFORWARD in active state
+Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in active state
 
 Scenario: Op1 deactivates Call Forward
 When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD

@@ -22,12 +22,12 @@ Given the call queue items:
 Scenario: Op1 activates Call Forward with Op2 as call forward target
 When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
 When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 has the function key CALLFORWARD in active state
+Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in active state
 
 Scenario: Op2 activates Call Forward with Op1 as call forward target
 When HMI OP2 with layout lower-west-exec-layout presses function key CALLFORWARD
 When HMI OP2 presses DA key OP1
-Then HMI OP2 has the function key CALLFORWARD in active state
+Then HMI OP2 with layout lower-west-exec-layout has the function key CALLFORWARD in active state
 
 Scenario: Op2 fails to establish an outgoing call towards Op1
 		  @REQUIREMENTS:GID-4370514

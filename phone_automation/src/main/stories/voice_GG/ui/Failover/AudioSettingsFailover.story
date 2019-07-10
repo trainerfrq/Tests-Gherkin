@@ -8,6 +8,11 @@ Given booked profiles:
 | profile | group | host           | identifier |
 | javafx  | hmi   | <<CLIENT2_IP>> | HMI OP2    |
 
+Scenario: Verify display status after stopping and starting op voice instances from one partition
+GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost1.story
+Then waiting for 60 seconds
+Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
+
 Scenario: Open settings
 When HMI OP2 with layout lower-west-exec-layout presses function key SETTINGS
 
@@ -52,11 +57,6 @@ Then HMI OP2 closes volumeControl popup
 
 Scenario: Close settings tab
 Then HMI OP2 closes settings popup
-
-Scenario: Verify display status after stopping and starting op voice instances from one partition
-GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost1.story
-Then waiting for 60 seconds
-Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 
 Scenario: Verify display status after the stopping the op voice instances from one partition
 GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost2.story

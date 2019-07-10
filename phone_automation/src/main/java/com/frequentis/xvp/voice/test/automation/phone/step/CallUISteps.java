@@ -246,9 +246,9 @@ public class CallUISteps extends AutomationSteps {
     }
 
 
-   @Then("$profileName has the function key $key in $state state")
-   public void verifyForwardState(final String profileName, final String target, final String state) {
-      FunctionKey key = retrieveFunctionKey(target);
+   @Then("$profileName with layout $layoutName has the function key $key in $state state")
+   public void verifyForwardState(final String profileName, final String layoutName, final String target, final String state) {
+      FunctionKey key = retrieveFunctionKey(layoutName + "-" + target);
 
       String stateParam = state;
 
@@ -264,9 +264,9 @@ public class CallUISteps extends AutomationSteps {
             .input( VerifyFunctionKeyState.IPARAM_KEY_STATE, stateParam ) );
    }
 
-   @Then("$profileName has the function key $functionKey label $label")
-   public void verifyLoudspeakerState(final String profileName, final String target, final String label) {
-      FunctionKey key = retrieveFunctionKey(target);
+   @Then("$profileName with layout $layoutName has the function key $functionKey label $label")
+   public void verifyLoudspeakerState(final String profileName, final String layoutName, final String target, final String label) {
+      FunctionKey key = retrieveFunctionKey(layoutName + "-" + target);
 
       evaluate( remoteStep( "Verify operator position has the loudspeaker in " + label + " state" )
             .scriptOn(profileScriptResolver().map( VerifyFunctionKeyLabel.class, BookableProfileName.javafx ),
