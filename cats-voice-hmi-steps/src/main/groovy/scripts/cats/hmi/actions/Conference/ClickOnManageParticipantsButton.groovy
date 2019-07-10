@@ -4,7 +4,7 @@ import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class ClickOnAddConferenceParticipantButton extends FxScriptTemplate {
+class ClickOnManageParticipantsButton extends FxScriptTemplate {
     @Override
     void script() {
 
@@ -15,7 +15,7 @@ class ClickOnAddConferenceParticipantButton extends FxScriptTemplate {
                 .success(conferenceListPopup != null))
 
         if (conferenceListPopup != null) {
-            final Node addConferenceParticipantButton = robot.lookup("#conferenceListPopup #addConferenceParticipantsButton").queryFirst()
+            final Node addConferenceParticipantButton = robot.lookup("#conferenceListPopup #manageParticipantsButton").queryFirst()
 
             evaluate(ExecutionDetails.create("Add conference participant button was found")
                     .expected("Add conference participant button is not null")

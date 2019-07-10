@@ -20,7 +20,7 @@ import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import scripts.cats.hmi.actions.Conference.ClickOnAddConferenceParticipantButton;
+import scripts.cats.hmi.actions.Conference.ClickOnManageParticipantsButton;
 import scripts.cats.hmi.actions.Conference.ClickOnConferenceListCloseButton;
 import scripts.cats.hmi.actions.Conference.ClickOnRemoveConferenceParticipantButton;
 import scripts.cats.hmi.actions.Conference.ClickOnLeaveConferenceButton;
@@ -55,10 +55,10 @@ public class ConferenceUISteps extends AutomationSteps
                 assertProfile(profileName)));
     }
 
-    @Then("$profileName adds conference participant")
+    @Then("$profileName chooses to edit participants list")
     public void addConferenceParticipant(final String profileName) {
         evaluate(remoteStep("Add conference participant").scriptOn(
-                profileScriptResolver().map(ClickOnAddConferenceParticipantButton.class, BookableProfileName.javafx),
+                profileScriptResolver().map(ClickOnManageParticipantsButton.class, BookableProfileName.javafx),
                 assertProfile(profileName)));
     }
 
