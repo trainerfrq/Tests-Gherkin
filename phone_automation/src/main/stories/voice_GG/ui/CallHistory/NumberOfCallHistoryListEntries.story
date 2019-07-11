@@ -16,7 +16,7 @@ Given the call queue items:
 | OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
 
 Scenario: Caller clears call history list
-When HMI OP2 with layout lower-west-exec-layout presses function key CALLHISTORY
+When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key CALLHISTORY
 Then HMI OP2 clears Call History list
 Then HMI OP2 verifies that call history list contains 0 entries
 Then HMI OP2 closes Call History popup window
@@ -29,7 +29,7 @@ Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Caller opens call history
-When HMI OP2 with layout lower-west-exec-layout presses function key CALLHISTORY
+When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key CALLHISTORY
 
 Scenario: Caller verifies the call history list
 Then HMI OP2 verifies that call history list contains 100 entries
@@ -54,7 +54,7 @@ Scenario: Call is terminated also for caller
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Caller opens call history
-When HMI OP2 with layout lower-west-exec-layout presses function key CALLHISTORY
+When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key CALLHISTORY
 
 Scenario: Caller verifies that the call history list still has 100 entries
 		  @REQUIREMENTS:GID-2600304

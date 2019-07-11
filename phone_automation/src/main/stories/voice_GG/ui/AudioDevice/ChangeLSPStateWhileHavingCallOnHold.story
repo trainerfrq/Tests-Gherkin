@@ -16,7 +16,7 @@ Given the call queue items:
 | OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
 
 Scenario: Op1 verifies Loudspeaker initial state
-Then HMI OP1 with layout lower-east-exec-layout has the function key LOUDSPEAKER label GG LSP off
+Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP off
 
 Scenario: Caller establishes an outgoing call
 When HMI OP1 presses DA key OP2(as OP1)
@@ -31,9 +31,9 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Caller activates loudspeaker
 		  @REQUIREMENTS:GID-3005515
-Then HMI OP1 with layout lower-east-exec-layout has the function key LOUDSPEAKER label GG LSP off
-When HMI OP1 with layout lower-east-exec-layout presses function key LOUDSPEAKER
-Then HMI OP1 with layout lower-east-exec-layout has the function key LOUDSPEAKER label GG LSP on
+Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP off
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key LOUDSPEAKER
+Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP on
 
 Scenario: Caller puts call on hold
 When HMI OP1 puts on hold the active call
@@ -41,11 +41,11 @@ Then HMI OP1 has the call queue item OP2-OP1 in state hold
 Then HMI OP2 has the call queue item OP1-OP2 in state held
 
 Scenario: Op1 verifies if Loudspeaker state is unmodified
-Then HMI OP1 with layout lower-east-exec-layout has the function key LOUDSPEAKER label GG LSP on
+Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP on
 
 Scenario: Op1 deactivates loudspeaker
-When HMI OP1 with layout lower-east-exec-layout presses function key LOUDSPEAKER
-Then HMI OP1 with layout lower-east-exec-layout has the function key LOUDSPEAKER label GG LSP off
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key LOUDSPEAKER
+Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP off
 
 Scenario: Caller retrieves call from hold
 Then HMI OP1 retrieves from hold the call queue item OP2-OP1
@@ -53,7 +53,7 @@ Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Op1 verifies if Loudspeaker state is unmodified
-Then HMI OP1 with layout lower-east-exec-layout has the function key LOUDSPEAKER label GG LSP off
+Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP off
 
 Scenario: Callee clears outgoing call
 When HMI OP2 presses DA key OP1

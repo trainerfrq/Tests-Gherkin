@@ -116,7 +116,7 @@
         }
       }
     },
-    "layoutId": "lower-east-exec-layout"
+    "layoutId": "<<LAYOUT_MISSION1>>"
   },
   {
     "missionId": "11505886-c060-4f6d-aae9-07c41bef3ca5",
@@ -181,7 +181,7 @@
         }
       }
     },
-    "layoutId": "lower-west-exec-layout"
+    "layoutId": "<<LAYOUT_MISSION2>>"
   },
   {
     "missionId": "21ac82ce-d7e3-4426-b601-b685b5b889db",
@@ -245,6 +245,6 @@
         }
       }
     },
-    "layoutId": "lower-east-exec-layout"
+    "layoutId": "<<LAYOUT_MISSION1>>"
   }
 ]

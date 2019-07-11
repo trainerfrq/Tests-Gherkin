@@ -1,7 +1,7 @@
 [
   {
     "schemaVersion": "0.5.0-SNAPSHOT",
-    "layoutId": "lower-east-exec-layout",
+    "layoutId": "<<LAYOUT_MISSION1>>",
     "name": "LOWER-EAST-EXEC Layout",
     "functionData": {
       "functionData": [
@@ -320,7 +320,7 @@
   },
   {
     "schemaVersion": "0.5.0-SNAPSHOT",
-    "layoutId": "lower-west-exec-layout",
+    "layoutId": "<<LAYOUT_MISSION2>>",
     "name": "LOWER-WEST-EXEC Layout",
     "functionData": {
       "functionData": [

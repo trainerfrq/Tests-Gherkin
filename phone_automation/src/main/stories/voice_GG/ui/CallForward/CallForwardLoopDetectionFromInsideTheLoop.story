@@ -20,14 +20,14 @@ Given the call queue items:
 | OP1-OP2 | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
 
 Scenario: Op1 activates Call Forward with Op2 as call forward target
-When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
 When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in active state
+Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state
 
 Scenario: Op2 activates Call Forward with Op1 as call forward target
-When HMI OP2 with layout lower-west-exec-layout presses function key CALLFORWARD
+When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key CALLFORWARD
 When HMI OP2 presses DA key OP1
-Then HMI OP2 with layout lower-west-exec-layout has the function key CALLFORWARD in active state
+Then HMI OP2 with layout <<LAYOUT_MISSION2>> has the function key CALLFORWARD in active state
 
 Scenario: Op2 fails to establish an outgoing call towards Op1
 		  @REQUIREMENTS:GID-4370514
@@ -55,9 +55,9 @@ Then wait for 15 seconds
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Op1 deactivates Call Forward
-When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
 Then HMI OP1 verifies that call queue info container is not visible
 
 Scenario: Op2 deactivates Call Forward
-When HMI OP2 with layout lower-west-exec-layout presses function key CALLFORWARD
+When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key CALLFORWARD
 Then HMI OP2 verifies that call queue info container is not visible

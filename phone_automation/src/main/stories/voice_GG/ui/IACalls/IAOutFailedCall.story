@@ -22,7 +22,7 @@ Given the call queue items:
 | OP1-PHONE2 | <<SIP_PHONE2>> | sip:111111@example.com | IA       |
 
 Scenario: Caller establishes an outgoing IA call
-When HMI OP1 with layout lower-east-exec-layout selects grid tab 2
+When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
 When HMI OP1 presses IA key IA - PHONE2
 Then HMI OP1 has the call queue item OP1-PHONE2 in state out_initiating
 
@@ -57,4 +57,4 @@ Scenario: Remove SipContact
 When SipContact is removed
 
 Scenario: Cleanup - always select first tab
-When HMI OP1 with layout lower-east-exec-layout selects grid tab 1
+When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 1

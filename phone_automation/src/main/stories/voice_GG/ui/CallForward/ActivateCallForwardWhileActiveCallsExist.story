@@ -38,13 +38,13 @@ Then HMI OP1 has the call queue item OP3-OP1 in state hold
 Then HMI OP3 has the call queue item OP1-OP3 in state held
 
 Scenario: Op1 establishes an outgoing IA call
-When HMI OP1 with layout lower-east-exec-layout selects grid tab 2
+When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
 When HMI OP1 presses IA key IA - OP2(as OP1)
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
 
 Scenario: Op1 receives incoming IA call
-When HMI OP2 with layout lower-west-exec-layout selects grid tab 2
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Then HMI OP2 has the IA key IA - OP1 in state connected
 
@@ -53,14 +53,14 @@ Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction tx
 Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction rx
 
 Scenario: Op1 activates Call Forward
-When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
-Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in forwardOngoing state
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
+Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in forwardOngoing state
 
 Scenario: Op1 chooses Op2 as call forward target
 		  @REQUIREMENTS:GID-2521111
-When HMI OP1 with layout lower-east-exec-layout selects grid tab 1
+When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 1
 When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in active state
+Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state
 Then HMI OP1 verifies that call queue info container is visible
 
 Scenario: Verify calls state on all operators
@@ -81,7 +81,7 @@ Then HMI OP2 has in the call queue a number of 1 calls
 Then HMI OP3 has in the call queue a number of 1 calls
 
 Scenario: Op1 client clears the IA phone call
-When HMI OP1 with layout lower-east-exec-layout selects grid tab 2
+When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
 When HMI OP1 presses DA key IA - OP2(as OP1)
 
 Scenario: Cleanup IA call
@@ -89,7 +89,7 @@ When HMI OP2 presses IA key IA - OP1
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Op1 still has Call Forward active
-Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in active state
+Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state
 Then HMI OP1 verifies that call queue info container is visible
 
 Scenario: Op1 retrieves call from hold
@@ -98,18 +98,18 @@ Then HMI OP1 has in the call queue a number of 1 calls
 Then HMI OP3 has in the call queue a number of 1 calls
 
 Scenario: Op1 still has Call Forward active
-Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in active state
+Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state
 
 Scenario: Op1 client clears the phone call
-When HMI OP1 with layout lower-east-exec-layout selects grid tab 1
+When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 1
 When HMI OP1 presses DA key OP3(as OP1)
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Op1 deactivates Call Forward
-When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
 Then HMI OP1 verifies that call queue info container is not visible
 
 Scenario: Cleanup - always select first tab
-When HMI OP1 with layout lower-east-exec-layout selects grid tab 1
-When HMI OP2 with layout lower-west-exec-layout selects grid tab 1
+When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 1
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1

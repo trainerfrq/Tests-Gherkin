@@ -30,9 +30,9 @@ When HMI OP2 verifies that loading screen is visible
 Then HMI OP2 has in the DISPLAY STATUS section connection the state DEGRADED
 
 Scenario: Verify IA keys state
-When HMI OP1 with layout lower-east-exec-layout selects grid tab 2
+When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
 Given HMI OP1 has the IA key IA - OP2(as OP1) in ready to be used state
-When HMI OP2 with layout lower-west-exec-layout selects grid tab 2
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
 Given HMI OP2 has the IA key IA - OP1 in ready to be used state
 
 Scenario: Caller establishes an half duplex IA call
@@ -60,5 +60,5 @@ Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
 Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 
 Scenario: Cleanup - always select first tab
-When HMI OP1 with layout lower-east-exec-layout selects grid tab 1
-When HMI OP2 with layout lower-west-exec-layout selects grid tab 1
+When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 1
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1

@@ -1,7 +1,7 @@
 [
   {
     "layoutId": "580a5ad0-d448-42eb-9d35-0fb825d0f4ab",
-    "name": "lower-east-exec-layout",
+    "name": "<<LAYOUT_MISSION1>>",
     "layoutInitData": {
       "columnNumber": 1,
       "rowNumber": 1,
@@ -360,7 +360,7 @@
   },
   {
     "layoutId": "53b1dd6a-6582-4899-a459-1fc4e8e4e3a0",
-    "name": "lower-west-exec-layout",
+    "name": "<<LAYOUT_MISSION2>>",
     "layoutInitData": {
       "columnNumber": 1,
       "rowNumber": 1,

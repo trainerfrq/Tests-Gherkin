@@ -50,7 +50,7 @@ Scenario: Op1 call state verification
 Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
 
 Scenario: Op2 adds a conference participant from phonebook
-When HMI OP2 with layout lower-west-exec-layout presses function key PHONEBOOK
+When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key PHONEBOOK
 When HMI OP2 selects call route selector: none
 When HMI OP2 selects phonebook entry number: 2
 Then HMI OP2 verifies that phone book text box displays text Madoline

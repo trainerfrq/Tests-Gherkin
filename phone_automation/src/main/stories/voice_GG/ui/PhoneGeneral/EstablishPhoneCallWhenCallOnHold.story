@@ -11,14 +11,14 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
-| OP2-OP3 | sip:222222@example.com | sip:op3@example.com    | DA/IDA   |
+| key     | source      | target           | callType |
+| OP1-OP2 | <<OP1_URI>> | <<OP2_URI>>      | DA/IDA   |
+| OP2-OP1 | <<OP2_URI>> | <<OP1_URI>>      | DA/IDA   |
+| OP2-OP3 | <<OP2_URI>> | <<MISSION3_URI>> | DA/IDA   |
 
 Scenario: Caller establishes an outgoing call
-When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
+When HMI OP1 presses DA key OP2
+Then HMI OP1 has the DA key OP2 in state out_ringing
 
 Scenario: Callee client receives the incoming call
 Then HMI OP2 has the DA key OP1 in state inc_initiated
@@ -38,7 +38,7 @@ Then HMI OP1 has the call queue item OP2-OP1 in state hold
 Scenario: Caller establishes another outgoing call towards the same target
 		  @REQUIREMENTS:GID-3657854
 		  @REQUIREMENTS:GID-2510075
-When HMI OP1 presses DA key OP2(as OP3)
+When HMI OP1 presses DA key OP2(as Mission3)
 
 Scenario: Verify call is connected again
 Then HMI OP1 has the call queue item OP2-OP3 in state connected

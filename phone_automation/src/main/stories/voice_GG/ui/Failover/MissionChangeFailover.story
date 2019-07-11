@@ -15,7 +15,7 @@ Scenario: Verify operator mission
 Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission MAN-NIGHT-TACT
 
 Scenario: Change mission
-When HMI OP1 with layout lower-east-exec-layout presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP1 has a list of 3 missions available
 Then HMI OP1 changes current mission to mission WEST-EXEC
 Then HMI OP1 activates mission
@@ -39,7 +39,7 @@ Scenario: Verify operator mission
 Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission WEST-EXEC
 
 Scenario: Change mission
-When HMI OP1 with layout lower-west-exec-layout presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
 Then HMI OP1 has a list of 3 missions available
 Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP1 activates mission

@@ -63,7 +63,7 @@ Scenario: Op3 call state verification
 Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
 
 Scenario: Op1 changes mission
-When HMI OP1 with layout lower-east-exec-layout presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP1 changes current mission to mission WEST-EXEC
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
@@ -83,7 +83,7 @@ Then HMI OP2 verifies that remove conference participant button is disabled
 Then HMI OP2 verifies that terminate conference button is enabled
 
 Scenario: Op1 changes mission
-When HMI OP1 with layout lower-west-exec-layout presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
 Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP1 activates mission
 Then waiting for 5 seconds

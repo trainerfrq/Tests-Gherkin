@@ -51,7 +51,7 @@ Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
 
 Scenario: Op2 adds a conference participant from phonebook
 		  @REQUIREMENTS:GID-2529024
-When HMI OP2 with layout lower-west-exec-layout presses function key PHONEBOOK
+When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key PHONEBOOK
 When HMI OP2 selects call route selector: none
 When HMI OP2 selects phonebook entry number: 2
 Then HMI OP2 verifies that phone book text box displays text Madoline
@@ -67,7 +67,7 @@ Then HMI OP2 verifies in the list that conference participant on position 2 has 
 Then HMI OP2 verifies in the list that conference participant on position 2 has name <<SIP_PHONE2>>
 
 Scenario: Op2 adds another participant to the conference
-When HMI OP2 with layout lower-west-exec-layout presses function key PHONEBOOK
+When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key PHONEBOOK
 When HMI OP2 selects call route selector: none
 When HMI OP2 selects phonebook entry number: 1
 Then HMI OP2 verifies that phone book text box displays text Lloyd

@@ -18,7 +18,7 @@ Given the call queue items:
 | ROLE1-OP1 | sip:role1@example.com  | sip:222222@example.com | IA       |
 
 Scenario: Caller establishes an outgoing IA call
-When HMI OP2 with layout lower-west-exec-layout selects grid tab 2
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
 When HMI OP2 presses IA key IA - ROLE1
 Then HMI OP2 has the call queue item ROLE1-OP1 in state connected
 Then HMI OP2 has the IA key IA - ROLE1 in state connected
@@ -36,4 +36,4 @@ Scenario: Call is terminated also for callee
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Cleanup - always select first tab
-When HMI OP2 with layout lower-west-exec-layout selects grid tab 1
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1

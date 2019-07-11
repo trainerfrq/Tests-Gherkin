@@ -17,13 +17,13 @@ Given the call queue items:
 
 Scenario: OP1 clears call history list
 		  @REQUIREMENTS:GID-4695014
-When HMI OP1 with layout lower-east-exec-layout presses function key CALLHISTORY
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLHISTORY
 Then HMI OP1 clears Call History list
 Then HMI OP1 verifies that call history list contains 0 entries
 Then HMI OP1 closes Call History popup window
 
 Scenario: OP2 clears call history list
-When HMI OP2 with layout lower-west-exec-layout presses function key CALLHISTORY
+When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key CALLHISTORY
 Then HMI OP2 clears Call History list
 Then HMI OP2 verifies that call history list contains 0 entries
 Then HMI OP2 closes Call History popup window
@@ -47,7 +47,7 @@ When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: OP2 opens call history
-When HMI OP2 with layout lower-west-exec-layout presses function key CALLHISTORY
+When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key CALLHISTORY
 Then HMI OP2 verifies that call history list contains 1 entries
 
 Scenario: OP2 selects first entry from history
@@ -65,7 +65,7 @@ Scenario: OP1 client receives the incoming call
 Then HMI OP1 has the DA key OP2(as OP1) in state inc_initiated
 
 Scenario: OP1 opens call history
-When HMI OP1 with layout lower-east-exec-layout presses function key CALLHISTORY
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLHISTORY
 Then HMI OP1 verifies that call history list contains 1 entries
 Then HMI OP1 closes Call History popup window
 

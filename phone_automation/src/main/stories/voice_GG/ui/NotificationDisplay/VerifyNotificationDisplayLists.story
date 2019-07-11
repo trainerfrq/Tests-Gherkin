@@ -14,7 +14,7 @@ Given the call queue items:
 | OP1-OP1 | 111111   |        | DA/IDA   |
 
 Scenario: Operator tries a call to its own position
-When HMI OP1 with layout lower-east-exec-layout presses function key PHONEBOOK
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
 When HMI OP1 writes in phonebook text box the address: 111111
 When HMI OP1 initiates a call from the phonebook
 
@@ -44,10 +44,10 @@ Then HMI OP1 closes notification popup
 Then HMI OP1 verifies that popup notification is not visible
 
 Scenario: Operator activates Call Forward
-When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
-Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in forwardOngoing state
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
+Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in forwardOngoing state
 When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in active state
+Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state
 Then HMI OP1 has a notification that shows Call Forward to OP2 Physical is active
 
 Scenario: Operator opens Notification Display popup

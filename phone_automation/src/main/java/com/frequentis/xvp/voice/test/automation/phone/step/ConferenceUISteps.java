@@ -20,17 +20,18 @@ import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import scripts.cats.hmi.actions.Conference.ClickOnManageParticipantsButton;
 import scripts.cats.hmi.actions.Conference.ClickOnConferenceListCloseButton;
-import scripts.cats.hmi.actions.Conference.ClickOnRemoveConferenceParticipantButton;
 import scripts.cats.hmi.actions.Conference.ClickOnLeaveConferenceButton;
+import scripts.cats.hmi.actions.Conference.ClickOnManageParticipantsButton;
+import scripts.cats.hmi.actions.Conference.ClickOnRemoveConferenceParticipantButton;
 import scripts.cats.hmi.actions.Conference.SelectConferenceListParticipant;
-import scripts.cats.hmi.asserts.Conference.VerifyManageParticipantsButtonState;
 import scripts.cats.hmi.asserts.Conference.VerifyConferenceListParticipantName;
 import scripts.cats.hmi.asserts.Conference.VerifyConferenceListParticipantStatus;
 import scripts.cats.hmi.asserts.Conference.VerifyConferenceListSize;
-import scripts.cats.hmi.asserts.Conference.VerifyRemoveConferenceParticipantButtonState;
 import scripts.cats.hmi.asserts.Conference.VerifyLeaveConferenceButtonState;
+import scripts.cats.hmi.asserts.Conference.VerifyManageParticipantsButtonLabel;
+import scripts.cats.hmi.asserts.Conference.VerifyManageParticipantsButtonState;
+import scripts.cats.hmi.asserts.Conference.VerifyRemoveConferenceParticipantButtonState;
 
 public class ConferenceUISteps extends AutomationSteps
 {
@@ -56,8 +57,8 @@ public class ConferenceUISteps extends AutomationSteps
     }
 
     @Then("$profileName chooses to edit participants list")
-    public void addConferenceParticipant(final String profileName) {
-        evaluate(remoteStep("Add conference participant").scriptOn(
+    public void editConferenceParticipant(final String profileName) {
+        evaluate(remoteStep("Edit conference participant").scriptOn(
                 profileScriptResolver().map(ClickOnManageParticipantsButton.class, BookableProfileName.javafx),
                 assertProfile(profileName)));
     }
@@ -90,7 +91,7 @@ public class ConferenceUISteps extends AutomationSteps
     }
 
     @Then("$profileName verifies that edit conference button is $state")
-    public void verifyAddConferenceParticipantButtonState(final String profileName, final String state) {
+    public void verifyEditConferenceButtonState(final String profileName, final String state) {
         evaluate(remoteStep("Verify edit conference button button has state " + state)
                 .scriptOn(
                         profileScriptResolver().map(VerifyManageParticipantsButtonState.class, BookableProfileName.javafx),
@@ -105,6 +106,16 @@ public class ConferenceUISteps extends AutomationSteps
                         profileScriptResolver().map(VerifyLeaveConferenceButtonState.class, BookableProfileName.javafx),
                         assertProfile(profileName))
                 .input(VerifyLeaveConferenceButtonState.IPARAM_STATE, state));
+    }
+
+
+    @Then("$profileName verifies that edit conference button shows text $text")
+    public void verifyEditConferenceButtonLabel(final String profileName, final String text) {
+        evaluate(remoteStep("Verify edit conference button button shows text " + text)
+                .scriptOn(
+                        profileScriptResolver().map(VerifyManageParticipantsButtonLabel.class, BookableProfileName.javafx),
+                        assertProfile(profileName))
+                .input(VerifyManageParticipantsButtonLabel.IPARAM_LABEL, text));
     }
 
     @Then("$profileName verifies in the list that conference participant on position $number has status $status")
