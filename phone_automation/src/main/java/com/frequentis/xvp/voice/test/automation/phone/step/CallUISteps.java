@@ -23,6 +23,7 @@ import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
 import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
 import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
+import com.frequentis.xvp.voice.test.automation.phone.data.GridWidgetKey;
 import com.frequentis.xvp.voice.test.automation.phone.data.StatusKey;
 import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Given;
@@ -71,7 +72,7 @@ public class CallUISteps extends AutomationSteps {
     public void defineFunctionKeys(final List<FunctionKey> functionKeys) {
         final LocalStep localStep = localStep("Define function keys");
         for (final FunctionKey functionKey : functionKeys) {
-            final String key = functionKey.getKey();
+            final String key = functionKey.getLayout() + "-" + functionKey.getKey();
             setStoryListData(key, functionKey);
             localStep.details(ExecutionDetails.create("Define function key").usedData(key, functionKey));
         }
@@ -104,6 +105,20 @@ public class CallUISteps extends AutomationSteps {
         record(localStep);
     }
 
+   @Given("the grid widget keys: $gridWidgetKeys")
+   public void defineGridWidgetKeys(final List<GridWidgetKey> gridWidgetKeys)
+   {
+      final LocalStep localStep = localStep( "Define grid widget keys" );
+      for (final GridWidgetKey gridWidgetKey: gridWidgetKeys)
+      {
+         final String key = gridWidgetKey.getLayout();
+         setStoryListData( key, gridWidgetKey );
+         localStep.details( ExecutionDetails.create( "Define grid widget key" ).usedData( key, gridWidgetKey ) );
+      }
+
+      record( localStep );
+   }
+
     @When("$profileName presses DA key $target")
     @Alias("$profileName presses IA key $target")
     public void clickDA(final String profileName, final String target) {
@@ -123,9 +138,10 @@ public class CallUISteps extends AutomationSteps {
         }
     }
 
-    @When("$profileName presses function key $type")
-    public void clickFunctionKey(final String profileName, final String type) {
-        FunctionKey functionKey = retrieveFunctionKey(type);
+    @When("$profileName with layout $layoutName presses function key $type")
+    public void clickFunctionKey(final String profileName, final String layoutName, final String type) {
+        String key = layoutName + "-" + type;
+        FunctionKey functionKey = retrieveFunctionKey(key);
 
         evaluate(remoteStep("Click on a function key")
                          .scriptOn(
@@ -230,9 +246,9 @@ public class CallUISteps extends AutomationSteps {
     }
 
 
-   @Then("$profileName has the function key $key in $state state")
-   public void verifyForwardState(final String profileName, final String target, final String state) {
-      FunctionKey key = retrieveFunctionKey(target);
+   @Then("$profileName with layout $layoutName has the function key $key in $state state")
+   public void verifyForwardState(final String profileName, final String layoutName, final String target, final String state) {
+      FunctionKey key = retrieveFunctionKey(layoutName + "-" + target);
 
       String stateParam = state;
 
@@ -248,9 +264,9 @@ public class CallUISteps extends AutomationSteps {
             .input( VerifyFunctionKeyState.IPARAM_KEY_STATE, stateParam ) );
    }
 
-   @Then("$profileName has the function key $functionKey label $label")
-   public void verifyLoudspeakerState(final String profileName, final String target, final String label) {
-      FunctionKey key = retrieveFunctionKey(target);
+   @Then("$profileName with layout $layoutName has the function key $functionKey label $label")
+   public void verifyLoudspeakerState(final String profileName, final String layoutName, final String target, final String label) {
+      FunctionKey key = retrieveFunctionKey(layoutName + "-" + target);
 
       evaluate( remoteStep( "Verify operator position has the loudspeaker in " + label + " state" )
             .scriptOn(profileScriptResolver().map( VerifyFunctionKeyLabel.class, BookableProfileName.javafx ),

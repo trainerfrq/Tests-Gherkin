@@ -26,7 +26,7 @@ Scenario: Callee client receives the incoming call
 Then HMI OP2 has the DA key OP1 in state inc_initiated
 
 Scenario: Change mission for HMI OP2
-When HMI OP2 presses function key MISSIONS
+When HMI OP2 with layout lower-west-exec-layout presses function key MISSIONS
 Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
@@ -44,7 +44,7 @@ Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Change mission for HMI OP1
-When HMI OP1 presses function key MISSIONS
+When HMI OP1 with layout lower-east-exec-layout presses function key MISSIONS
 Then HMI OP1 changes current mission to mission WEST-EXEC
 Then HMI OP1 activates mission
 Then waiting for 5 seconds

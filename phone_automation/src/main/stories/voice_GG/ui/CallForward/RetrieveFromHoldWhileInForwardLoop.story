@@ -28,16 +28,16 @@ Then HMI OP2 has the call queue item OP3-OP2 in state hold
 Then HMI OP3 has the call queue item OP2-OP3 in state held
 
 Scenario: Op1 activates Call Forward with Op2 as call forward target
-When HMI OP1 presses function key CALLFORWARD
+When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
 When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 has the function key CALLFORWARD in active state
+Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in active state
 
 Scenario: Op2 activates Call Forward with Op1 as call forward target
 		  @REQUIREMENTS:GID-2541807
 		  @REQUIREMENTS:GID-4370514
-When HMI OP2 presses function key CALLFORWARD
+When HMI OP2 with layout lower-west-exec-layout presses function key CALLFORWARD
 When HMI OP2 presses DA key OP1
-Then HMI OP2 has the function key CALLFORWARD in active state
+Then HMI OP2 with layout lower-west-exec-layout has the function key CALLFORWARD in active state
 
 Scenario: Op2 retrieves call from hold
 		  @REQUIREMENTS:GID-2510075
@@ -53,9 +53,9 @@ Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Op1 deactivates Call Forward
-When HMI OP1 presses function key CALLFORWARD
+When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
 Then HMI OP1 verifies that call queue info container is not visible
 
 Scenario: Op2 deactivates Call Forward
-When HMI OP2 presses function key CALLFORWARD
+When HMI OP2 with layout lower-west-exec-layout presses function key CALLFORWARD
 Then HMI OP2 verifies that call queue info container is not visible

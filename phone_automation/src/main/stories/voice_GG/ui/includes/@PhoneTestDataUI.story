@@ -4,6 +4,7 @@ Given the DA keys:
 | HMI OP1 | OP2(as OP1)           | 100 |
 | HMI OP1 | OP2(as OP3)           | 101 |
 | HMI OP1 | OP3(as OP1)           | 102 |
+| HMI OP1 | OP1(as OP3)           | 103 |
 | HMI OP1 | ROLE1(as OP1)         | 105 |
 | HMI OP1 | IA - OP2(as OP1)      | 107 |
 | HMI OP1 | IA - PHONE2           | 109 |
@@ -23,14 +24,34 @@ Given the DA keys:
 | HMI OP3 | OP2(as OP3)           | 101 |
 | HMI OP3 | IA - OP2(as OP3)      | 108 |
 
+Scenario: Define grid widget keys
+Given the grid widget keys:
+| layout                 | id                          |
+| lower-east-exec-layout | <<GRID_ID_LOWER_EAST_EXEC>> |
+| lower-west-exec-layout | <<GRID_ID_LOWER_WEST_EXEC>> |
+| upper-east-exec-layout | <<GRID_ID_UPPER_EAST_EXEC>> |
+
 Scenario: Define function keys
 Given the function keys:
-| key         | id |
-| PHONEBOOK   | f1 |
-| CALLHISTORY | f2 |
-| MISSIONS    | f3 |
-| CALLFORWARD | f4 |
-| LOUDSPEAKER | f5 |
+| layout                  | key           | id                              |
+| lower-east-exec-layout  | PHONEBOOK     | f1                              |
+| lower-east-exec-layout  | CALLHISTORY   | f2                              |
+| lower-east-exec-layout  | MISSIONS      | f3                              |
+| lower-east-exec-layout  | CALLFORWARD   | f4                              |
+| lower-east-exec-layout  | LOUDSPEAKER   | f5                              |
+| lower-east-exec-layout  | SETTINGS      | <<SETTINGS_ID_LOWER_EAST_EXEC>> |
+| lower-west-exec-layout  | PHONEBOOK     | f1                              |
+| lower-west-exec-layout  | CALLHISTORY   | f2                              |
+| lower-west-exec-layout  | MISSIONS      | f3                              |
+| lower-west-exec-layout  | CALLFORWARD   | f4                              |
+| lower-west-exec-layout  | LOUDSPEAKER   | f5                              |
+| lower-west-exec-layout  | SETTINGS      | <<SETTINGS_ID_LOWER_WEST_EXEC>> |
+| upper-east-exec-layout  | PHONEBOOK     | f1                              |
+| upper-east-exec-layout  | CALLHISTORY   | f2                              |
+| upper-east-exec-layout  | MISSIONS      | f3                              |
+| upper-east-exec-layout  | CALLFORWARD   | f4                              |
+| upper-east-exec-layout  | LOUDSPEAKER   | f5                              |
+| upper-east-exec-layout  | SETTINGS      | <<SETTINGS_ID_UPPER_EAST_EXEC>> |
 
 Scenario: Define status key
 Given the status key:

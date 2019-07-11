@@ -32,6 +32,9 @@ Then HMI OP1 has in the DISPLAY STATUS section connection the state DEGRADED
 When HMI OP2 verifies that loading screen is visible
 Then HMI OP2 has in the DISPLAY STATUS section connection the state DEGRADED
 
+Scenario: Select second tab to make IA buttons visible
+When HMI OP1 with layout lower-east-exec-layout selects grid tab 2
+When HMI OP2 with layout lower-west-exec-layout selects grid tab 2
 Scenario: Verify IA keys state
 Given HMI OP1 has the IA key IA - OP2(as OP1) in ready to be used state
 Given HMI OP2 has the IA key IA - OP1 in ready to be used state
@@ -41,7 +44,7 @@ When HMI OP1 presses IA key IA - OP2(as OP1)
 
 Scenario: Verify call queue section
 Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label IA - OP2(as OP1)
-Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label 111111
+Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label Operator1
 
 Scenario: Verify call is connected for both operators
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
@@ -94,5 +97,6 @@ Then waiting for 60 seconds
 Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
 Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 
-
-
+Scenario: Cleanup - always select first tab
+When HMI OP1 with layout lower-east-exec-layout selects grid tab 1
+When HMI OP2 with layout lower-west-exec-layout selects grid tab 1

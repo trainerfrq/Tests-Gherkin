@@ -8,8 +8,8 @@ Meta: @BeforeStory: ../includes/@PrepareTwoClientsWithMissions.story
 
 Scenario: Define phone book entries
 Given the following phone book entries:
-| key         | uri                    | name         | full-name             | location | organization    | notes                                                          | display-addon |
-| targetEntry | sip:222222@example.com | OP2 Physical | Physical Identity OP2 | XVP Lab  | FRQ XVP GG-Team | This is the physical identity of the second operating position |               |
+| key         | uri                    | name         | full-name              | location | organization    | notes                                                          | display-addon |
+| targetEntry | sip:222222@example.com | OP2 Physical | 1Physical Identity OP2 | XVP Lab  | FRQ XVP GG-Team | This is the physical identity of the second operating position |               |
 
 Scenario: Create the message buffers
 When WS1 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer1

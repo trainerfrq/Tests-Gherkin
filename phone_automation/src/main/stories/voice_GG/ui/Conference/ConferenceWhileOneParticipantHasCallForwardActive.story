@@ -26,11 +26,11 @@ Given SipContacts group SipContact:
 And phones for SipContact are created
 
 Scenario: Op1 activates Call Forward
-When HMI OP1 presses function key CALLFORWARD
-When HMI OP1 presses function key PHONEBOOK
+When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
+When HMI OP1 with layout lower-east-exec-layout presses function key PHONEBOOK
 When HMI OP1 selects phonebook entry number: 2
 When HMI OP1 activates call forward from phonebook
-Then HMI OP1 has the function key CALLFORWARD in active state
+Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in active state
 
 Scenario: Op2 establishes an outgoing call
 When HMI OP2 presses DA key OP3
@@ -88,7 +88,7 @@ Scenario: Verify that Op1 hasn't any calls
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Op1 deactivates Call Forward
-When HMI OP1 presses function key CALLFORWARD
+When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
 Then HMI OP1 verifies that call queue info container is not visible
 
 Scenario: Remove phone

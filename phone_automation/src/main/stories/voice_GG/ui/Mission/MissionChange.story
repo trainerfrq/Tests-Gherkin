@@ -16,7 +16,7 @@ Scenario: Change mission
 		  @REQUIREMENTS: GID-3003103
 		  @REQUIREMENTS: GID-4324230
 		  @REQUIREMENTS: GID-4324231
-When HMI OP1 presses function key MISSIONS
+When HMI OP1 with layout lower-east-exec-layout presses function key MISSIONS
 Then HMI OP1 has a list of 3 missions available
 Then HMI OP1 has missions EAST-EXEC, MAN-NIGHT-TACT, WEST-EXEC available in the missions list
 Then HMI OP1 changes current mission to mission WEST-EXEC
@@ -27,7 +27,7 @@ Scenario: Verify operator mission
 Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission WEST-EXEC
 
 Scenario: Select mission and close pop-up with activating the mission
-When HMI OP1 presses function key MISSIONS
+When HMI OP1 with layout lower-west-exec-layout presses function key MISSIONS
 Then HMI OP1 has a list of 3 missions available
 Then HMI OP1 has missions EAST-EXEC, MAN-NIGHT-TACT, WEST-EXEC available in the missions list
 Then HMI OP1 changes current mission to mission EAST-EXEC
@@ -38,7 +38,7 @@ Scenario: Verify operator mission
 Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission EAST-EXEC
 
 Scenario: Change to previous mission
-When HMI OP1 presses function key MISSIONS
+When HMI OP1 with layout upper-east-exec-layout presses function key MISSIONS
 Then HMI OP1 has a list of 3 missions available
 Then HMI OP1 has missions EAST-EXEC, MAN-NIGHT-TACT, WEST-EXEC available in the missions list
 Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT

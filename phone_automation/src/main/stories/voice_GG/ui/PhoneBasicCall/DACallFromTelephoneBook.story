@@ -16,7 +16,7 @@ Given the call queue items:
 | OP3-OP1 | <<OPVOICE3_PHONE_URI>>   |                        | DA/IDA   |
 
 Scenario: Caller opens phonebook
-When HMI OP1 presses function key PHONEBOOK
+When HMI OP1 with layout lower-east-exec-layout presses function key PHONEBOOK
 Then HMI OP1 verifies that phone book call button is disabled
 
 Scenario: Caller selects call route selector

@@ -39,13 +39,13 @@ When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Change mission for HMI OP1
-When HMI OP1 presses function key MISSIONS
+When HMI OP1 with layout lower-east-exec-layout presses function key MISSIONS
 Then HMI OP1 changes current mission to mission WEST-EXEC
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: Caller opens call history
-When HMI OP1 presses function key CALLHISTORY
+When HMI OP1 with layout lower-west-exec-layout presses function key CALLHISTORY
 
 Scenario: Caller selects first entry from history
 When HMI OP1 selects call history list entry number: 0
@@ -59,7 +59,7 @@ Scenario: Caller does call from call history
 When HMI OP1 initiates a call from the call history
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
 Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
-Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with name label 111111
+Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with name label Operator1
 
 Scenario: Callee client answers the incoming call
 Then HMI OP2 accepts the call queue item OP1-OP2
@@ -76,13 +76,13 @@ Then waiting for 2 seconds
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Change mission for HMI OP2
-When HMI OP2 presses function key MISSIONS
+When HMI OP2 with layout lower-west-exec-layout presses function key MISSIONS
 Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
 
 Scenario: Caller opens call history
-When HMI OP1 presses function key CALLHISTORY
+When HMI OP1 with layout lower-west-exec-layout presses function key CALLHISTORY
 
 Scenario: Caller selects first entry from history
 When HMI OP1 selects call history list entry number: 0
@@ -96,7 +96,7 @@ Scenario: Caller does call from call history
 When HMI OP1 initiates a call from the call history
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
 Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
-Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with name label 111111
+Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with name label Operator1
 Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2 Physical
 
 Scenario: Callee client answers the incoming call
