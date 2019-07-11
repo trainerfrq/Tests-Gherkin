@@ -23,7 +23,7 @@ When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
 Then HMI OP1 has in the active list a number of 1 calls
 Then HMI OP2 has the call queue item OP1-OP2-1 in state inc_initiated
-Then HMI OP2 has the call queue item OP1-OP2-1 in the waiting list with name label 111111
+Then HMI OP2 has the call queue item OP1-OP2-1 in the waiting list with name label Operator1
 When HMI OP1 presses DA key OP2(as OP1)
 
 Scenario: Outgoing DA call using as source another specific SIP address

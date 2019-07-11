@@ -36,7 +36,7 @@ When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Callee opens call history
-When HMI OP2 presses function key CALLHISTORY
+When HMI OP2 with layout lower-west-exec-layout presses function key CALLHISTORY
 
 Scenario: Callee selects first entry from history
 When HMI OP2 selects call history list entry number: 0

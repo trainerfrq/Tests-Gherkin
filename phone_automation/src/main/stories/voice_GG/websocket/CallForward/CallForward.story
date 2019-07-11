@@ -5,7 +5,7 @@ Scenario: Create the message buffer for call forward
 When WS1 opens the message buffer for message type callForwardStatus named callForwardStatusBuffer
 
 Scenario: Forwarding client retrieves phone data
-When WS1 loads phone data for role roleId1 and names callSource and callTarget from the entry number 1
+When WS1 loads phone data for mission missionId1 and names callSource and callTarget from the entry number 1
 
 Scenario: Send Call Forward Request
 		  @REQUIREMENTS:GID-2521111

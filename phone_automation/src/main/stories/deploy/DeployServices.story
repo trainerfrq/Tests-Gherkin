@@ -14,10 +14,10 @@ When using endpoint <<configurationMngEndpoint>> create configuration id op-voic
 Then waiting for 3 seconds
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/frequencyData.json with payload /configuration-files/common/frequencyData.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/virtualDevices.json with payload /configuration-files/common/virtualDevices.json
-And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/missions.json with payload /configuration-files/<<systemName>>/missions.json
+!-- And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/missions.json with payload /configuration-files/<<systemName>>/missions.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/phoneData.json with payload /configuration-files/<<systemName>>/phoneData.json
-And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/layouts.json with payload /configuration-files/<<systemName>>/layouts.json
-And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/phoneBook.json with payload /configuration-files/<<systemName>>/phoneBook.json
+!-- And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/layouts.json with payload /configuration-files/<<systemName>>/layouts.json
+!-- And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/phoneBook.json with payload /configuration-files/<<systemName>>/phoneBook.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/partitions.json with payload /configuration-files/<<systemName>>/partitions.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/phoneDevices.json with payload /configuration-files/<<systemName>>/phoneDevices.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/radioData.json with payload /configuration-files/<<systemName>>/radioData.json
@@ -30,6 +30,8 @@ And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path c
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/volumeSliderLevelAdjustments.json with payload /configuration-files/common/volumeSliderLevelAdjustments.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/voipRecording.json with payload /configuration-files/common/voipRecording.json
 And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/recordedVirtualDevices.json with payload /configuration-files/common/recordedVirtualDevices.json
+And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/available_sound_settings.json with payload /configuration-files/common/available_sound_settings.json
+And issuing http PUT request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/generic/items/rtLogicSignallingParameters.json with payload /configuration-files/common/rtLogicSignallingParameters.json
 
 Scenario: Commit and activate configuration
 When using endpoint <<configurationMngEndpoint>> commit the configuration and name commit commitId

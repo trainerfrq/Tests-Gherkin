@@ -17,14 +17,19 @@
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
+import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import com.frequentis.xvp.voice.test.automation.phone.data.GridWidgetKey;
+import com.frequentis.xvp.voice.test.automation.phone.data.StatusKey;
 import com.frequentis.xvp.voice.test.automation.phone.data.NotificationDisplayEntry;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.ClickContainerTab;
+import scripts.cats.hmi.actions.ClickOnSymbolButton;
+import scripts.cats.hmi.actions.ClickStatusLabel;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationClearEventButton;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationDisplay;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationTab;
@@ -50,6 +55,16 @@ public class GGBasicUISteps extends AutomationSteps
               .input(VerifyNotificationLabel.IPARAM_NOTIFICATION_LABEL_TEXT, notification));
    }
 
+   @When("$profileName clicks on $buttonName button")
+   public void clickOnSymbolButton(final String profileName, final String buttonName)
+   {
+      evaluate( remoteStep( "User clicks on " + buttonName + "button" ).scriptOn(
+            profileScriptResolver().map( ClickOnSymbolButton.class, BookableProfileName.javafx ),
+            assertProfile( profileName ) )
+            .input( ClickOnSymbolButton.IPARAM_SETTINGS_BUTTON_NAME, buttonName )
+      );
+   }
+
    @When("$profileName verifies that loading screen is visible")
    public void verifyLoadingScreen( final String profileName)
    {
@@ -58,13 +73,43 @@ public class GGBasicUISteps extends AutomationSteps
               assertProfile( profileName ) ));
    }
 
-   @When("$profileName selects grid tab $tabPosition")
-   public void clicksOnKey( final String profileName, Integer tabPosition )
+   @When("$profileName with layout $layoutName selects grid tab $tabPosition")
+   public void clicksOnGridWidgetKey( final String profileName, final String layoutName, Integer tabPosition )
    {
+      GridWidgetKey gridWidgetKey = retrieveGridWidgetKey(layoutName);
+
       evaluate( remoteStep( "Presses key" ).scriptOn(
-              profileScriptResolver().map( ClickContainerTab.class, BookableProfileName.javafx ),
-              assertProfile( profileName ) )
-              .input(ClickContainerTab.IPARAM_TAB_POSITION, tabPosition-1));
+            profileScriptResolver().map( ClickContainerTab.class, BookableProfileName.javafx ),
+            assertProfile( profileName ) )
+            .input( ClickContainerTab.IPARAM_GRID_WIDGET_ID, gridWidgetKey.getId() )
+            .input(ClickContainerTab.IPARAM_TAB_POSITION, tabPosition-1));
+   }
+
+   private GridWidgetKey retrieveGridWidgetKey( final String source )
+   {
+      final GridWidgetKey gridWidgetKey = getStoryListData(source, GridWidgetKey.class);
+      evaluate(localStep("Check Grid Widget key").details( ExecutionDetails.create("Verify Grid Widget key is defined")
+            .usedData("source", source).success(gridWidgetKey != null)));
+
+      return gridWidgetKey;
+   }
+
+   @When("$profileName clicks on $status label $label")
+   public void clicksOnLabel( final String profileName, final String status, final String label )
+   {
+      StatusKey statusKey = retrieveStatusKey(status);
+      evaluate( remoteStep( "user clicks on "+label+" label" )
+              .scriptOn( profileScriptResolver().map( ClickStatusLabel.class, BookableProfileName.javafx ),
+                      assertProfile( profileName ) )
+              .input( ClickStatusLabel.IPARAM_STATUS_KEY_ID, statusKey.getId())
+              .input( ClickStatusLabel.IPARAM_DISPLAY_LABEL, label ) );
+   }
+
+   private StatusKey retrieveStatusKey(final String key) {
+      final StatusKey statusKey = getStoryListData(key, StatusKey.class);
+      evaluate(localStep("Check Status Key").details(ExecutionDetails.create("Verify Status key is defined")
+              .usedData("key", key).success(statusKey.getId() != null)));
+      return statusKey;
    }
 
    @Then("$profileName verifies that popup $popupName is $exists")

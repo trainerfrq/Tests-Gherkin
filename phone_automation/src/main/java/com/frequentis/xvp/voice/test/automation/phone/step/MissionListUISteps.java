@@ -23,9 +23,9 @@ import com.frequentis.xvp.voice.test.automation.phone.data.StatusKey;
 import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+
 import scripts.cats.hmi.actions.Mission.ClickActivateMission;
 import scripts.cats.hmi.actions.Mission.ClickMissionCloseButton;
-import scripts.cats.hmi.actions.Mission.ClickMissionLabel;
 import scripts.cats.hmi.actions.Mission.SelectMissionFromList;
 import scripts.cats.hmi.actions.Mission.SelectMissionFromListByPosition;
 import scripts.cats.hmi.asserts.Mission.VerifyMissionListNames;
@@ -106,15 +106,6 @@ public class MissionListUISteps extends AutomationSteps
             assertProfile( profileName ) ) );
    }
 
-
-   @When("$profileName clicks on mission label $label")
-   public void clickMissionLabel( final String profileName, final String label )
-   {
-      evaluate( remoteStep( "sser clicks mission label" )
-            .scriptOn( profileScriptResolver().map( ClickMissionLabel.class, BookableProfileName.javafx ),
-                  assertProfile( profileName ) )
-            .input( ClickMissionLabel.IPARAM_MISSION_DISPLAY_LABEL, label ) );
-   }
 
     private StatusKey retrieveStatusKey(final String source, final String key) {
         final StatusKey statusKey = getStoryListData(source + "-" + key, StatusKey.class);

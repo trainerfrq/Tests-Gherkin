@@ -43,7 +43,7 @@ Then HMI OP2 has in the call queue the item OP1-OP2 with priority
 
 Scenario: Verify call queue section
 Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2 Physical
-Then HMI OP2 has the call queue item OP1-OP2 in the priority list with name label 111111
+Then HMI OP2 has the call queue item OP1-OP2 in the priority list with name label Operator1
 
 Scenario: Callee client answers the incoming call
 When HMI OP2 presses DA key OP1
@@ -54,7 +54,7 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Verify call queue section
 Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2 Physical
-Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label 111111
+Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label Operator1
 
 Scenario: Caller client clears the phone call
 When HMI OP1 presses DA key OP2(as OP1)

@@ -19,15 +19,15 @@ Given the call queue items:
 | OP3-OP1 | sip:op3@example.com    | sip:111111@example.com | DA/IDA   |
 
 Scenario: Op1 activates Call Forward
-When HMI OP1 presses function key CALLFORWARD
-Then HMI OP1 has the function key CALLFORWARD in forwardOngoing state
+When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
+Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in forwardOngoing state
 Then HMI OP1 verifies that call queue info container is not visible
 
 Scenario: Op1 chooses Op2 as call forward target
 		  @REQUIREMENTS:GID-2521111
 		  @REQUIREMENTS:GID-2541807
 When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 has the function key CALLFORWARD in active state
+Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in active state
 Then HMI OP1 verifies that call queue info container is visible
 Then HMI OP1 verifies that call queue info container contains Target: OP2 Physical
 Then HMI OP1 has in the call queue a number of 0 calls
@@ -49,7 +49,7 @@ Scenario: Verify call is connected for both operators
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
 Then HMI OP3 has the call queue item OP1-OP3 in state connected
 Then HMI OP1 has in the call queue a number of 0 calls
-Then HMI OP1 has the function key CALLFORWARD in active state
+Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in active state
 
 Scenario: Op3 client clears the phone call
 When HMI OP3 presses DA key OP1(as OP3)
@@ -59,10 +59,10 @@ Scenario: Call is terminated also for Op2
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Op1 still has Call Forward active
-Then HMI OP1 has the function key CALLFORWARD in active state
+Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in active state
 
 Scenario: Op1 deactivates Call Forward
-When HMI OP1 presses function key CALLFORWARD
+When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
 Then HMI OP1 verifies that call queue info container is not visible
 
 

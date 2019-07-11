@@ -9,7 +9,7 @@ Given booked profiles:
 | javafx  | hmi   | <<CLIENT2_IP>> | HMI OP2    |
 
 Scenario: Operator opens phonebook
-When HMI OP2 presses function key PHONEBOOK
+When HMI OP2 with layout lower-west-exec-layout presses function key PHONEBOOK
 Then HMI OP2 verifies that phone book call button is disabled
 Then HMI OP2 verify that call route selector shows Default
 

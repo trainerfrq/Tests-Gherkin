@@ -26,7 +26,7 @@ Given HMI OP1 has the DA key OP2(as OP1) in ready to be used state
 Given HMI OP2 has the DA key OP1 in ready to be used state
 
 Scenario: Caller clears call history list
-When HMI OP1 presses function key CALLHISTORY
+When HMI OP1 with layout lower-east-exec-layout presses function key CALLHISTORY
 Then HMI OP1 clears Call History list
 Then HMI OP1 verifies that call history list contains 0 entries
 Then HMI OP1 closes Call History popup window
@@ -50,7 +50,7 @@ When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Caller opens call history
-When HMI OP1 presses function key CALLHISTORY
+When HMI OP1 with layout lower-east-exec-layout presses function key CALLHISTORY
 Then HMI OP1 verifies that call history list contains 1 entries
 
 Scenario: Verify displayed status after the stopping the op voice instances from one partition

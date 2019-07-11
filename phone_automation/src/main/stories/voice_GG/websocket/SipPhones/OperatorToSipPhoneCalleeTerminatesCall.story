@@ -5,7 +5,7 @@ Scenario: Create the message buffers
 When WS1 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer1
 
 Scenario: Caller client retrieves phone data
-When WS1 loads phone data for role roleId1 and names callSource and callTarget from the entry number 1
+When WS1 loads phone data for mission missionId1 and names callSource and callTarget from the entry number 1
 
 Scenario: Define call target
 When define values in story data:

@@ -9,7 +9,22 @@ public class FunctionKey extends CatsCustomParameterBase implements Serializable
 {
 
    @CatsCustomParameter
+   private String layout;
+
+   @CatsCustomParameter
    private String id;
+
+
+   public String getLayout()
+   {
+      return layout;
+   }
+
+
+   public void setLayout( final String layout )
+   {
+      this.layout = layout;
+   }
 
 
    public String getId()
@@ -27,6 +42,9 @@ public class FunctionKey extends CatsCustomParameterBase implements Serializable
    @Override
    public String toString()
    {
-      return "FunctionKey{" + "id='" + id + '\'' + '}';
+      return "FunctionKey{" +
+            "layout='" + layout + '\'' +
+            ", id='" + id + '\'' +
+            '}';
    }
 }

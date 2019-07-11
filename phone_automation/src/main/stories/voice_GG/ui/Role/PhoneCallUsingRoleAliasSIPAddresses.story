@@ -29,7 +29,7 @@ Given the call queue items:
 | OP1-OP2-5 | sip:operator1@example.com   |                             | DA/IDA   |
 
 Scenario: Caller opens phonebook
-When HMI OP2 presses function key PHONEBOOK
+When HMI OP2 with layout lower-west-exec-layout presses function key PHONEBOOK
 Then HMI OP2 verifies that phone book call button is disabled
 
 Scenario: Caller selects call route selector
@@ -57,7 +57,7 @@ Scenario: Caller clears outgoing call
 Then HMI OP2 terminates the call queue item OP1-OP2-1
 
 Scenario: Caller opens phonebook
-When HMI OP2 presses function key PHONEBOOK
+When HMI OP2 with layout lower-west-exec-layout presses function key PHONEBOOK
 Then HMI OP2 verifies that phone book call button is disabled
 
 Scenario: Caller selects call route selector
@@ -82,7 +82,7 @@ Scenario: Caller clears outgoing call
 Then HMI OP2 terminates the call queue item OP1-OP2-2
 
 Scenario: Caller opens phonebook
-When HMI OP2 presses function key PHONEBOOK
+When HMI OP2 with layout lower-west-exec-layout presses function key PHONEBOOK
 Then HMI OP2 verifies that phone book call button is disabled
 
 Scenario: Caller selects call route selector
@@ -107,7 +107,7 @@ Scenario: Caller clears outgoing call
 Then HMI OP2 terminates the call queue item OP1-OP2-3
 
 Scenario: Caller opens phonebook
-When HMI OP2 presses function key PHONEBOOK
+When HMI OP2 with layout lower-west-exec-layout presses function key PHONEBOOK
 Then HMI OP2 verifies that phone book call button is disabled
 
 Scenario: Caller selects call route selector
@@ -129,7 +129,7 @@ Then HMI OP1 has the call queue item OP2-OP1-4 in the waiting list with name lab
 Then HMI OP3 has the call queue item OP2-OP3-4 in the waiting list with name label mission2
 
 Scenario: Caller opens phonebook
-When HMI OP2 presses function key PHONEBOOK
+When HMI OP2 with layout lower-west-exec-layout presses function key PHONEBOOK
 Then HMI OP2 verifies that phone book call button is disabled
 
 Scenario: Caller selects call route selector

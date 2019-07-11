@@ -16,7 +16,7 @@ Given the call queue items:
 | OP2-OP1 | sip:222222@example.com   |                        | DA/IDA   |
 
 Scenario: Operator opens phonebook
-When HMI OP1 presses function key PHONEBOOK
+When HMI OP1 with layout lower-east-exec-layout presses function key PHONEBOOK
 Then HMI OP1 verifies that phone book dial pad has the alphaNumeric layout
 
 Scenario: Operator verifies dial pad layouts
@@ -33,7 +33,7 @@ Then HMI OP1 verifies that phone book dial pad has the symbol layout
 
 Scenario: Operator closes and opens the phonebook
 When HMI OP1 closes phonebook
-When HMI OP1 presses function key PHONEBOOK
+When HMI OP1 with layout lower-east-exec-layout presses function key PHONEBOOK
 Then HMI OP1 verifies that phone book dial pad has the alphaNumeric layout
 
 Scenario: Operator verifies keys label

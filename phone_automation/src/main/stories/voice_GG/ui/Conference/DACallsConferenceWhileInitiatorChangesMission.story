@@ -78,7 +78,7 @@ Scenario: Op2 closes conference participants list
 Then HMI OP2 closes Conference list popup window
 
 Scenario: Op2 changes mission
-When HMI OP2 presses function key MISSIONS
+When HMI OP2 with layout lower-west-exec-layout presses function key MISSIONS
 Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
@@ -112,7 +112,7 @@ Then HMI OP2 closes Conference list popup window
 
 Scenario: Op2 adds a conference participant from phonebook
 		  @REQUIREMENTS:GID-2529024
-When HMI OP2 presses function key PHONEBOOK
+When HMI OP2 with layout lower-east-exec-layout presses function key PHONEBOOK
 When HMI OP2 selects call route selector: none
 When HMI OP2 selects phonebook entry number: 2
 Then HMI OP2 verifies that phone book text box displays text Madoline
@@ -133,7 +133,7 @@ Scenario: Op2 closes conference participants list
 Then HMI OP2 closes Conference list popup window
 
 Scenario: Op2 changes mission
-When HMI OP2 presses function key MISSIONS
+When HMI OP2 with layout lower-east-exec-layout presses function key MISSIONS
 Then HMI OP2 changes current mission to mission WEST-EXEC
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
