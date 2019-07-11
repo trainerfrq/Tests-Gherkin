@@ -13,9 +13,9 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key       | source                 | target                 | callType |
-| OP2-ROLE1 | sip:222222@example.com | sip:role1@example.com  | IA       |
-| ROLE1-OP1 | sip:role1@example.com  | sip:222222@example.com | IA       |
+| key       | source                   | target                   | callType |
+| OP2-ROLE1 | <<OP2_URI>>              | sip:role1@example.com | IA       |
+| ROLE1-OP1 | sip:role1@example.com | <<OP2_URI>>              | IA       |
 
 Scenario: Caller establishes an outgoing IA call
 When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2

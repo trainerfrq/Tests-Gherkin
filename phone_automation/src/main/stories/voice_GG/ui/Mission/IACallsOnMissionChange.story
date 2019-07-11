@@ -7,17 +7,17 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | IA       |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | IA       |
-| OP2-OP3 | sip:222222@example.com | sip:op3@example.com    | IA       |
-| OP3-OP2 | sip:op3@example.com    | sip:222222@example.com | IA       |
+| key     | source      | target      | callType |
+| OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | IA       |
+| OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | IA       |
+| OP2-OP3 | <<OP2_URI>> | <<OP3_URI>> | IA       |
+| OP3-OP2 | <<OP3_URI>> | <<OP2_URI>> | IA       |
 
 Scenario: Op1 establishes an outgoing IA call towards Op2
 When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
-When HMI OP1 presses IA key IA - OP2(as OP1)
+When HMI OP1 presses IA key IA - OP2
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
-Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
+Then HMI OP1 has the IA key IA - OP2 in state connected
 
 Scenario: Callee Op2 receives incoming IA call from Op1
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
@@ -25,7 +25,7 @@ When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
 Then HMI OP2 has the IA key IA - OP1 in state connected
 
 Scenario: Callee Op2 changes the mission
-When HMI OP2 clicks on STATUS label mission
+When HMI OP2 clicks on DISPLAY STATUS label mission
 Then HMI OP2 has a list of 3 missions available
 Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP2 activates mission
@@ -36,9 +36,9 @@ Then HMI OP2 has in the DISPLAY STATUS section mission the assigned mission MAN-
 
 Scenario: Op3 establishes an outgoing IA call towards Op2
 When HMI OP3 with layout <<LAYOUT_MISSION3>> selects grid tab 2
-When HMI OP3 presses IA key IA - OP2(as OP3)
+When HMI OP3 presses IA key IA - OP2
 Then HMI OP3 has the call queue item OP2-OP3 in state connected
-Then HMI OP3 has the IA key IA - OP2(as OP3) in state connected
+Then HMI OP3 has the IA key IA - OP2 in state connected
 
 Scenario: Callee Op2 receives incoming IA call from Op3
 		  @REQUIREMENTS:GID-3236103
@@ -47,7 +47,7 @@ Then HMI OP2 has the call queue item OP3-OP2 in state connected
 Then HMI OP2 has in the call queue a number of 2 calls
 
 Scenario: Callee Op2 changes to previous mission
-When HMI OP2 clicks on STATUS label mission
+When HMI OP2 clicks on DISPLAY STATUS label mission
 Then HMI OP2 has a list of 3 missions available
 Then HMI OP2 changes current mission to mission WEST-EXEC
 Then HMI OP2 activates mission
@@ -66,7 +66,7 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
 
 Scenario: Op1 cleans up the outgoing call
-When HMI OP1 presses IA key IA - OP2(as OP1)
+When HMI OP1 presses IA key IA - OP2
 Then HMI OP1 has in the call queue a number of 0 calls
 Then wait for 6 seconds
 
@@ -74,7 +74,7 @@ Scenario: Call is also terminated for callee
 Then HMI OP2 has in the active list a number of 1 calls
 
 Scenario: Op3 cleans up the outgoing call
-When HMI OP3 presses IA key IA - OP2(as OP3)
+When HMI OP3 presses IA key IA - OP2
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Call is also terminated for callee
