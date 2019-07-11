@@ -91,16 +91,16 @@ public class ConferenceUISteps extends AutomationSteps
 
     @Then("$profileName verifies that edit conference button is $state")
     public void verifyAddConferenceParticipantButtonState(final String profileName, final String state) {
-        evaluate(remoteStep("Verify add conference participant button has state " + state)
+        evaluate(remoteStep("Verify edit conference button button has state " + state)
                 .scriptOn(
                         profileScriptResolver().map(VerifyManageParticipantsButtonState.class, BookableProfileName.javafx),
                         assertProfile(profileName))
                 .input(VerifyManageParticipantsButtonState.IPARAM_STATE, state));
     }
 
-    @Then("$profileName verifies that terminate conference button is $state")
+    @Then("$profileName verifies that leave conference button is $state")
     public void verifyTerminateConferenceButtonState(final String profileName, final String state) {
-        evaluate(remoteStep("Verify terminate conferencet button has state " + state)
+        evaluate(remoteStep("Verify leave conference button has state " + state)
                 .scriptOn(
                         profileScriptResolver().map(VerifyLeaveConferenceButtonState.class, BookableProfileName.javafx),
                         assertProfile(profileName))
