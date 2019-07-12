@@ -18,7 +18,7 @@ And phones for SipContact are created
 Scenario: Define call queue items
 Given the call queue items:
 | key            | source                  | target | callType |
-| OP1-SipContact | 12345@192.168.40.9:5070 |        | DA/IDA   |
+| OP1-SipContact | <<PHONE2>> |        | DA/IDA   |
 
 Scenario: Caller opens phonebook
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
@@ -33,7 +33,7 @@ Then HMI OP1 verifies that phone book call button is disabled
 Then HMI OP1 verifies that phone book priority toggle is inactive
 
 Scenario: Caller writes target address in text box
-When HMI OP1 writes in phonebook text box the address: 12345@192.168.40.9:5070
+When HMI OP1 writes in phonebook text box the address: <<PHONE2>>
 Then HMI OP1 verifies that phone book call button is enabled
 
 Scenario: Caller toggles call priority

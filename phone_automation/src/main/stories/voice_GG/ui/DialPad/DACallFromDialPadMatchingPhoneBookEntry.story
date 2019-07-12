@@ -11,9 +11,9 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                  | target                 | callType |
-| OP1-OP3 | <<MISSION1_URI>>        | <<OPVOICE3_PHONE_URI>> | DA/IDA   |
-| OP3-OP1 | op3@192.168.40.128:5060 |                        | DA/IDA   |
+| key     | source             | target                 | callType |
+| OP1-OP3 | <<MISSION1_URI>>   | <<OPVOICE3_PHONE_URI>> | DA/IDA   |
+| OP3-OP1 | <<OPVOICE3_PHONE>> |                        | DA/IDA   |
 
 Scenario: Caller opens phonebook
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
@@ -27,7 +27,7 @@ Then HMI OP1 verify that call route selector shows None
 Then HMI OP1 verifies that phone book call button is disabled
 
 Scenario: Caller writes target address in text box
-When HMI OP1 writes in phonebook text box the address: op3@192.168.40.128:5060
+When HMI OP1 writes in phonebook text box the address: <<OPVOICE3_PHONE>>
 Then HMI OP1 verifies that phone book call button is enabled
 
 Scenario: Caller hits phonebook call button

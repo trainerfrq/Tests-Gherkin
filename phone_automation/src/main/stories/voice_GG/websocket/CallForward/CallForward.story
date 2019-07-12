@@ -21,7 +21,7 @@ When WS2 opens the message buffer for message type callStatusIndication named Ca
 When WS3 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer3
 
 Scenario: Caller retrieves phone data
-When WS3 loads phone data for role roleId1 and names callSource3 and callTarget3 from the entry number 2
+When WS3 loads phone data for mission missionId1 and names callSource3 and callTarget3 from the entry number 1
 
 Scenario: Caller establishes an outgoing call
 When WS3 establishes an outgoing phone call using source callSource3 ang target callSource and names outgoingPhoneCallId

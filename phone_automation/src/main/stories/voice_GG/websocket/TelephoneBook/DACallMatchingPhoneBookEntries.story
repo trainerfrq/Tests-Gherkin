@@ -8,8 +8,8 @@ Meta: @BeforeStory: ../includes/@PrepareTwoClientsWithMissions.story
 
 Scenario: Define phone book entries
 Given the following phone book entries:
-| key         | uri                    | name         | full-name              | location | organization    | notes                                                          | display-addon |
-| targetEntry | sip:222222@example.com | OP2 Physical | 1Physical Identity OP2 | XVP Lab  | FRQ XVP GG-Team | This is the physical identity of the second operating position |               |
+| key         | uri                    | name         | full-name | location | organization | notes | display-addon |
+| targetEntry | <<OPVOICE2_PHONE_URI>> | OP2 Physical |           |          |              |       |               |
 
 Scenario: Create the message buffers
 When WS1 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer1
@@ -19,7 +19,7 @@ Scenario: Define call source and target
 When define values in story data:
 | name         | value                  |
 | callSource   | <<OPVOICE1_PHONE_URI>> |
-| calledTarget | sip:222222@example.com |
+| calledTarget | <<OPVOICE2_PHONE_URI>> |
 
 Scenario: Caller establishes an outgoing call
 When WS1 establishes an outgoing phone call using source callSource ang target calledTarget and names outgoingPhoneCallId
