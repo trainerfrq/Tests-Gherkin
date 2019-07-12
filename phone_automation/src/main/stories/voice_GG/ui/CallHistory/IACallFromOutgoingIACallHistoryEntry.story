@@ -11,15 +11,15 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | IA       |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | IA       |
+| key     | source      | target      | callType |
+| OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | IA       |
+| OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | IA       |
 
 Scenario: OP1 establishes an outgoing IA call
 When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
-When HMI OP1 presses IA key IA - OP2(as OP1)
+When HMI OP1 presses IA key IA - OP2
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
-Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
+Then HMI OP1 has the IA key IA - OP2 in state connected
 
 Scenario: OP2 receives incoming IA call
 When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
@@ -27,7 +27,7 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Then HMI OP2 has the IA key IA - OP1 in state connected
 
 Scenario: Cleanup IA call
-When HMI OP1 presses IA key IA - OP2(as OP1)
+When HMI OP1 presses IA key IA - OP2
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for callee
@@ -45,14 +45,14 @@ Scenario: Caller does call from call history
 !-- TODO Disable story until bug QXVP-14263 is fixed
 When HMI OP1 initiates a call from the call history
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
-Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
+Then HMI OP1 has the IA key IA - OP2 in state connected
 
 Scenario: OP2 receives incoming IA call
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Then HMI OP2 has the IA key IA - OP1 in state connected
 
 Scenario: Cleanup IA call
-When HMI OP1 presses IA key IA - OP2(as OP1)
+When HMI OP1 presses IA key IA - OP2
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for callee

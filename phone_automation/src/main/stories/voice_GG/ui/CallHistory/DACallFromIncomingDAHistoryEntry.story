@@ -11,9 +11,9 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
+| key     | source      | target      | callType |
+| OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | DA/IDA   |
+| OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | DA/IDA   |
 
 Scenario: OP1 clears call history list
 		  @REQUIREMENTS:GID-4695014
@@ -29,8 +29,8 @@ Then HMI OP2 verifies that call history list contains 0 entries
 Then HMI OP2 closes Call History popup window
 
 Scenario: OP1 establishes an outgoing call
-When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
+When HMI OP1 presses DA key OP2
+Then HMI OP1 has the DA key OP2 in state out_ringing
 
 Scenario: OP2 client receives the incoming call
 Then HMI OP2 has the DA key OP1 in state inc_initiated
@@ -43,7 +43,7 @@ Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: OP1 client clears the phone call
-When HMI OP1 presses DA key OP2(as OP1)
+When HMI OP1 presses DA key OP2
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: OP2 opens call history
@@ -62,7 +62,7 @@ When HMI OP2 initiates a call from the call history
 Then HMI OP2 has the DA key OP1 in state out_ringing
 
 Scenario: OP1 client receives the incoming call
-Then HMI OP1 has the DA key OP2(as OP1) in state inc_initiated
+Then HMI OP1 has the DA key OP2 in state inc_initiated
 
 Scenario: OP1 opens call history
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLHISTORY
@@ -70,14 +70,14 @@ Then HMI OP1 verifies that call history list contains 1 entries
 Then HMI OP1 closes Call History popup window
 
 Scenario: OP1 client answers the incoming call
-When HMI OP1 presses DA key OP2(as OP1)
+When HMI OP1 presses DA key OP2
 
 Scenario: Verify call is connected for both operators
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Caller client clears the phone call
-When HMI OP1 presses DA key OP2(as OP1)
+When HMI OP1 presses DA key OP2
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for caller

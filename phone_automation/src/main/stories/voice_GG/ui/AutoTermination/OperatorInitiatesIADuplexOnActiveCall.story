@@ -12,17 +12,17 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | IA       |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | IA       |
-| OP3-OP2 | sip:op3@example.com    | sip:222222@example.com | DA/IDA   |
-| OP2-OP3 | sip:222222@example.com | sip:op3@example.com    | DA/IDA   |
+| key     | source      | target      | callType |
+| OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | IA       |
+| OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | IA       |
+| OP3-OP2 | <<OP3_URI>> | <<OP2_URI>> | DA/IDA   |
+| OP2-OP3 | <<OP2_URI>> | <<OP3_URI>> | DA/IDA   |
 
 Scenario: Caller establishes an outgoing IA call
 When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
-When HMI OP1 presses IA key IA - OP2(as OP1)
+When HMI OP1 presses IA key IA - OP2
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
-Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
+Then HMI OP1 has the IA key IA - OP2 in state connected
 
 Scenario: Callee receives incoming IA call
 When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
@@ -30,8 +30,8 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Then HMI OP2 has the IA key IA - OP1 in state connected
 
 Scenario: Op3 establishes an outgoing call towards op2
-When HMI OP3 presses DA key OP2(as OP3)
-Then HMI OP3 has the DA key OP2(as OP3) in state out_ringing
+When HMI OP3 presses DA key OP2
+Then HMI OP3 has the DA key OP2 in state out_ringing
 
 Scenario: Op2 receives the incoming call
 When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1
@@ -62,15 +62,15 @@ Scenario: Verify calls state on all operators
 Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction duplex
 Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction duplex
 Then HMI OP1 has in the call queue a number of 1 calls
-Then HMI OP2 has in the call queue a number of 1 calls
+Then HMI OP2 has in the active list a number of 1 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Caller clears IA call
-When HMI OP1 presses IA key IA - OP2(as OP1)
+When HMI OP1 presses IA key IA - OP2
 
 Scenario: Cleanup IA call
 When HMI OP2 presses IA key IA - OP1
-Then HMI OP2 has in the call queue a number of 0 calls
+Then HMI OP2 has in the active list a number of 0 calls
 
 Scenario: Call is terminated also for callee
 Then HMI OP1 has in the call queue a number of 0 calls

@@ -11,9 +11,9 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
+| key     | source      | target      | callType |
+| OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | DA/IDA   |
+| OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | DA/IDA   |
 
 Scenario: Op1 verifies loudspeaker initial state
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP disabled
@@ -39,12 +39,13 @@ Scenario: Op1 verifies that Loudspeaker state is unchanged
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP enabled
 
 Scenario: Verify DA keys state
-Given HMI OP1 has the DA key OP2(as OP1) in ready to be used state
+Given HMI OP1 has the DA key OP2 in ready to be used state
+
 Given HMI OP2 has the DA key OP1 in ready to be used state
 
 Scenario: Caller establishes an outgoing call
-When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
+When HMI OP1 presses DA key OP2
+Then HMI OP1 has the DA key OP2 in state out_ringing
 Then HMI OP2 has the DA key OP1 in state inc_initiated
 
 Scenario: Op1 deactivates loudspeaker
@@ -61,7 +62,7 @@ When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key LOUDSPEAKER
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP enabled
 
 Scenario: Caller client clears the phone call
-When HMI OP1 presses DA key OP2(as OP1)
+When HMI OP1 presses DA key OP2
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP2 has in the call queue a number of 0 calls
 
@@ -75,3 +76,5 @@ Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER la
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key LOUDSPEAKER
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP disabled
 
+Scenario: Time to wait between failover tests
+Then waiting for 1 minute

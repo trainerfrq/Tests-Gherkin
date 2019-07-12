@@ -12,11 +12,11 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | IA       |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | IA       |
-| OP3-OP2 | sip:op3@example.com    | sip:222222@example.com | IA       |
-| OP2-OP3 | sip:222222@example.com | sip:op3@example.com    | IA       |
+| key     | source      | target      | callType |
+| OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | IA       |
+| OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | IA       |
+| OP3-OP2 | <<OP3_URI>> | <<OP2_URI>> | IA       |
+| OP2-OP3 | <<OP2_URI>> | <<OP3_URI>> | IA       |
 
 Scenario: Op1 activates Call Forward
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
@@ -25,10 +25,10 @@ Then HMI OP1 verifies that call queue info container is not visible
 
 Scenario: Op1 chooses Op3 as call forward target
 		  @REQUIREMENTS:GID-2521111
-When HMI OP1 presses DA key OP3(as OP1)
+When HMI OP1 presses DA key OP3
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state
 Then HMI OP1 verifies that call queue info container is visible
-Then HMI OP1 verifies that call queue info container contains Target: op3
+Then HMI OP1 verifies that call queue info container contains Target: <<OP3_NAME>>
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 
@@ -41,7 +41,7 @@ Scenario: Call is automatically forwarded to Op3
 		  @REQUIREMENTS:GID-2521112
 When HMI OP3 with layout <<LAYOUT_MISSION3>> selects grid tab 2
 Then HMI OP3 has in the call queue a number of 1 calls
-Then HMI OP3 has the IA key IA - OP2(as OP3) in state connected
+Then HMI OP3 has the IA key IA - OP2 in state connected
 
 Scenario: Verify call is connected for both operators
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
@@ -65,4 +65,4 @@ Then HMI OP1 verifies that call queue info container is not visible
 
 Scenario: Cleanup - always select first tab
 When HMI OP3 with layout <<LAYOUT_MISSION3>> selects grid tab 1
-When HMI OP2 with layout <<LAYOUT_MISSION1>> selects grid tab 1
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1

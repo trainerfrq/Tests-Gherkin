@@ -17,8 +17,8 @@ Given the call queue items:
 | OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | DA/IDA   |
 | OP3-OP2 | <<OP3_URI>> | <<OP2_URI>> | DA/IDA   |
 | OP2-OP3 | <<OP2_URI>> | <<OP3_URI>> | DA/IDA   |
-| OP1-OP3 | <<OP3_URI>> | <<OP1_URI>> | DA/IDA   |
-| OP3-OP1 | <<OP1_URI>> | <<OP3_URI>> | DA/IDA   |
+| OP3-OP1 | <<OP3_URI>> | <<OP1_URI>> | DA/IDA   |
+| OP1-OP3 | <<OP1_URI>> | <<OP3_URI>> | DA/IDA   |
 
 Scenario: Transferor establishes an outgoing call towards transferee
 When HMI OP2 presses DA key OP1
@@ -73,8 +73,8 @@ And waiting for 1 seconds
 
 Scenario: Verify call was transferred
 Then HMI OP1 has in the call queue a number of 0 calls
-Then HMI OP3 has the call queue item OP3-OP2 in state connected
-Then HMI OP2 has the call queue item OP2-OP3 in state connected
+Then HMI OP3 has the call queue item OP2-OP3 in state connected
+Then HMI OP2 has the call queue item OP3-OP2 in state connected
 
 Scenario: Cleanup call
 When HMI OP2 presses DA key OP3

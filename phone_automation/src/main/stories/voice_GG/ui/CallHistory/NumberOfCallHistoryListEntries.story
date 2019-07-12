@@ -12,8 +12,8 @@ Given booked profiles:
 Scenario: Define call queue items
 Given the call queue items:
 | key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
+| OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | DA/IDA   |
+| OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | DA/IDA   |
 
 Scenario: Caller clears call history list
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key CALLHISTORY
@@ -34,11 +34,11 @@ When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key CALLHISTORY
 Scenario: Caller verifies the call history list
 Then HMI OP2 verifies that call history list contains 100 entries
 When HMI OP2 selects call history list entry number: 0
-Then HMI OP2 verifies that call history call button has label OP1
+Then HMI OP2 verifies that call history call button has label <<OP1_NAME>>
 When HMI OP2 selects call history list entry number: 1
-Then HMI OP2 verifies that call history call button has label OP1
+Then HMI OP2 verifies that call history call button has label <<OP1_NAME>>
 When HMI OP2 selects call history list entry number: 2
-Then HMI OP2 verifies that call history call button has label OP1
+Then HMI OP2 verifies that call history call button has label <<OP1_NAME>>
 
 Scenario: Caller closes call history
 Then HMI OP2 closes Call History popup window
@@ -62,7 +62,7 @@ Then HMI OP2 verifies that call history list contains 100 entries
 
 Scenario: Caller verifies that the last call is in call history list
 When HMI OP2 selects call history list entry number: 0
-Then HMI OP2 verifies that call history call button has label OP3
+Then HMI OP2 verifies that call history call button has label <<OP3_NAME>>
 
 Scenario: Caller clears call history list
 		  @REQUIREMENTS:GID-4695014

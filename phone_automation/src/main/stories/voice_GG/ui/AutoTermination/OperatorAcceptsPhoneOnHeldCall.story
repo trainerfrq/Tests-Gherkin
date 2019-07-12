@@ -19,24 +19,24 @@ And phones for SipContact are created
 
 Scenario: Define call queue items
 Given the call queue items:
-| key            | source                 | target                 | callType |
-| OP1-OP2        | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1        | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
-| OP3-OP2        | sip:op3@example.com    | sip:222222@example.com | DA/IDA   |
-| OP2-OP3        | sip:222222@example.com | sip:op3@example.com    | DA/IDA   |
-| OP1-OP3        | sip:111111@example.com | sip:op3@example.com    | DA/IDA   |
-| OP3-OP1        | sip:op3@example.com    | sip:111111@example.com | DA/IDA   |
-| SipContact-OP1 | <<SIP_PHONE2>>         | <<OPVOICE1_PHONE_URI>> | DA/IDA   |
+| key            | source         | target                 | callType |
+| OP1-OP2        | <<OP1_URI>>    | <<OP2_URI>>            | DA/IDA   |
+| OP2-OP1        | <<OP2_URI>>    | <<OP1_URI>>            | DA/IDA   |
+| OP3-OP2        | <<OP3_URI>>    | <<OP2_URI>>            | DA/IDA   |
+| OP2-OP3        | <<OP2_URI>>    | <<OP3_URI>>            | DA/IDA   |
+| OP1-OP3        | <<OP1_URI>>    | <<OP3_URI>>            | DA/IDA   |
+| OP3-OP1        | <<OP3_URI>>    | <<OP1_URI>>            | DA/IDA   |
+| SipContact-OP1 | <<SIP_PHONE2>> | <<OPVOICE1_PHONE_URI>> | DA/IDA   |
 
 Scenario: Op2 establishes an outgoing call towards op1
 When HMI OP2 presses DA key OP1
 Then HMI OP2 has the DA key OP1 in state out_ringing
 
 Scenario: Op1 receives incoming call
-Then HMI OP1 has the DA key OP2(as OP1) in state inc_initiated
+Then HMI OP1 has the DA key OP2 in state inc_initiated
 
 Scenario: Op1 answers incoming call
-When HMI OP1 presses DA key OP2(as OP1)
+When HMI OP1 presses DA key OP2
 
 Scenario: Verify call is connected for both operators
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
@@ -50,14 +50,14 @@ Then HMI OP1 has the call queue item OP2-OP1 in state hold
 Then HMI OP2 has the call queue item OP1-OP2 in state held
 
 Scenario: Op3 establishes an outgoing call towards op1
-When HMI OP3 presses DA key OP1(as OP3)
-Then HMI OP3 has the DA key OP1(as OP3) in state out_ringing
+When HMI OP3 presses DA key OP1
+Then HMI OP3 has the DA key OP1 in state out_ringing
 
 Scenario: Op1 receives the incoming call
-Then HMI OP1 has the DA key OP3(as OP1) in state inc_initiated
+Then HMI OP1 has the DA key OP3 in state inc_initiated
 
 Scenario: Op1 answers incoming call
-When HMI OP1 presses DA key OP3(as OP1)
+When HMI OP1 presses DA key OP3
 
 Scenario: Verify call is connected for both operators
 Then HMI OP1 has the call queue item OP3-OP1 in state connected

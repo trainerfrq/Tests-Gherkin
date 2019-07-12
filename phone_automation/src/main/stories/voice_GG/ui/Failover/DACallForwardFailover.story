@@ -12,11 +12,11 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP3-OP2 | sip:op3@example.com    | sip:222222@example.com | DA/IDA   |
-| OP2-OP3 | sip:222222@example.com | sip:op3@example.com    | DA/IDA   |
-| OP1-OP3 | sip:111111@example.com | sip:op3@example.com    | DA/IDA   |
-| OP3-OP1 | sip:op3@example.com    | sip:111111@example.com | DA/IDA   |
+| key     | source      | target      | callType |
+| OP3-OP2 | <<OP3_URI>> | <<OP2_URI>> | DA/IDA   |
+| OP2-OP3 | <<OP2_URI>> | <<OP3_URI>> | DA/IDA   |
+| OP1-OP3 | <<OP1_URI>> | <<OP3_URI>> | DA/IDA   |
+| OP3-OP1 | <<OP3_URI>> | <<OP1_URI>> | DA/IDA   |
 
 Scenario: Verify displayed status
 GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost1.story
@@ -28,14 +28,14 @@ Then HMI OP3 has in the DISPLAY STATUS section connection the state CONNECTED
 Scenario: Op1 activates Call Forward and chooses Op2 as call forward target
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in forwardOngoing state
-When HMI OP1 presses DA key OP2(as OP1)
+When HMI OP1 presses DA key OP2
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state
 Then HMI OP1 verifies that call queue info container is visible
-Then HMI OP1 verifies that call queue info container contains Target: OP2 Physical
+Then HMI OP1 verifies that call queue info container contains Target: <<OP2_NAME>>
 
 Scenario: Op3 establishes an outgoing call
-When HMI OP3 presses DA key OP1(as OP3)
-Then HMI OP3 has the DA key OP1(as OP3) in state out_ringing
+When HMI OP3 presses DA key OP1
+Then HMI OP3 has the DA key OP1 in state out_ringing
 
 Scenario: Call is automatically forwarded to Op2
 Then HMI OP1 has in the call queue a number of 0 calls
@@ -51,7 +51,7 @@ Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state
 
 Scenario: Op3 client clears the phone call
-When HMI OP3 presses DA key OP1(as OP3)
+When HMI OP3 presses DA key OP1
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for Op2
@@ -74,12 +74,13 @@ Scenario: Op1 still has Call Forward active
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state
 
 Scenario: Verify DA keys state
-Given HMI OP3 has the DA key OP1(as OP3) in ready to be used state
+Given HMI OP3 has the DA key OP1 in ready to be used state
+
 Given HMI OP2 has the DA key OP3 in ready to be used state
 
 Scenario: Op3 establishes an outgoing call
-When HMI OP3 presses DA key OP1(as OP3)
-Then HMI OP3 has the DA key OP1(as OP3) in state out_ringing
+When HMI OP3 presses DA key OP1
+Then HMI OP3 has the DA key OP1 in state out_ringing
 
 Scenario: Call is automatically forwarded to Op2
 Then HMI OP1 has in the call queue a number of 0 calls
@@ -95,14 +96,14 @@ Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state
 
 Scenario: Op3 client clears the phone call
-When HMI OP3 presses DA key OP1(as OP3)
+When HMI OP3 presses DA key OP1
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for Op2
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Op1 still has Call Forward active
-Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state
+Then HMI OP1 has the function key CALLFORWARD in active state
 
 Scenario: Op1 deactivates Call Forward
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
@@ -115,3 +116,5 @@ Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
 Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 Then HMI OP3 has in the DISPLAY STATUS section connection the state CONNECTED
 
+Scenario: Time to wait between failover tests
+Then waiting for 1 minute

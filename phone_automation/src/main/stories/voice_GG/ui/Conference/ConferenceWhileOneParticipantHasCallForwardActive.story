@@ -13,11 +13,11 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key          | source                 | target                 | callType |
-| OP3-OP2      | sip:op3@example.com    | sip:222222@example.com | DA/IDA   |
-| OP2-OP3      | sip:222222@example.com | sip:op3@example.com    | DA/IDA   |
-| OP3-OP2-Conf | sip:op3@example.com    | sip:222222@example.com | CONF     |
-| OP2-OP3-Conf | <<OPVOICE2_CONF_URI>>  | sip:op3@example.com    | DA/IDA   |
+| key          | source                | target      | callType |
+| OP3-OP2      | <<OP3_URI>>           | <<OP2_URI>> | DA/IDA   |
+| OP2-OP3      | <<OP2_URI>>           | <<OP3_URI>> | DA/IDA   |
+| OP3-OP2-Conf | <<OP3_URI>>           | <<OP2_URI>> | CONF     |
+| OP2-OP3-Conf | <<OPVOICE2_CONF_URI>> | <<OP3_URI>> | CONF     |
 
 Scenario: Create sip phone
 Given SipContacts group SipContact:
@@ -28,7 +28,7 @@ And phones for SipContact are created
 Scenario: Op1 activates Call Forward
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
-When HMI OP1 selects phonebook entry number: 2
+When HMI OP1 selects phonebook entry number: 8
 When HMI OP1 activates call forward from phonebook
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state
 
@@ -37,8 +37,8 @@ When HMI OP2 presses DA key OP3
 Then HMI OP2 has the DA key OP3 in state out_ringing
 
 Scenario: Op3 client receives the incoming call and answers the call
-Then HMI OP3 has the DA key OP2(as OP3) in state inc_initiated
-When HMI OP3 presses DA key OP2(as OP3)
+Then HMI OP3 has the DA key OP2 in state inc_initiated
+When HMI OP3 presses DA key OP2
 
 Scenario: Verify call is connected for both operators
 Then HMI OP3 has the call queue item OP2-OP3 in state connected
@@ -49,7 +49,7 @@ Scenario: Op2 starts a conference using an existing active call
 When HMI OP2 starts a conference using an existing active call
 Then HMI OP2 has the call queue item OP3-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP3-OP2-Conf in the active list with name label CONF
-Then HMI OP2 has the call queue item OP3-OP2-Conf in the active list with info label 1 more participant
+Then HMI OP2 has the call queue item OP3-OP2-Conf in the active list with info label 2 more participants
 Then HMI OP2 has a notification that shows Conference call active
 
 Scenario: Op3 call state verification
@@ -66,13 +66,22 @@ When SipContact answers incoming calls
 Scenario: Op2 verifies conference participants list
 		  @REQUIREMENTS:GID-3229804
 When HMI OP2 opens the conference participants list
-Then HMI OP2 verifies that conference participants list contains 2 participants
+Then HMI OP2 verifies that conference participants list contains 4 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
-Then HMI OP2 verifies in the list that conference participant on position 1 has name sip:op3@example.com
+Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP2_NAME>>
 Then HMI OP2 verifies in the list that conference participant on position 2 has status connected
-Then HMI OP2 verifies in the list that conference participant on position 2 has name <<SIP_PHONE2>>
+Then HMI OP2 verifies in the list that conference participant on position 2 has name <<OP3_NAME>>
+Then HMI OP2 verifies in the list that conference participant on position 3 has status ringing
+Then HMI OP2 verifies in the list that conference participant on position 3 has name <<OP1_NAME>>
+Then HMI OP2 verifies in the list that conference participant on position 4 has status connected
+Then HMI OP2 verifies in the list that conference participant on position 4 has name Madoline
+Scenario: Op2 removes ringing conference participant
+When HMI OP2 selects conference participant: 2
+Then HMI OP2 verifies that remove conference participant button is enabled
+Then HMI OP2 removes conference participant
+Then HMI OP2 verifies that conference participants list contains 3 participants
 
-Scenario: Op2 removes conference participants
+Scenario: Op2 removes the rest of the conference participants
 When HMI OP2 selects conference participant: 1
 Then HMI OP2 verifies that remove conference participant button is enabled
 Then HMI OP2 removes conference participant

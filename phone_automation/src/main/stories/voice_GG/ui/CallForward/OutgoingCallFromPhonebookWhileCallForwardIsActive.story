@@ -12,8 +12,8 @@ Given booked profiles:
 Scenario: Define call queue items
 Given the call queue items:
 | key     | source                 | target                 | callType |
-| OP1-OP2 | sip:mission1@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1 | sip:222222@example.com   |                        | DA/IDA   |
+| OP1-OP2 | <<MISSION1_URI>>       | <<OPVOICE2_PHONE_URI>> | DA/IDA   |
+| OP2-OP1 | <<OPVOICE2_PHONE_URI>> |                        | DA/IDA   |
 
 Scenario: Op1 activates Call Forward
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
@@ -21,33 +21,32 @@ Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in
 
 Scenario: Op1 opens phonebook
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
-Then HMI OP1 verifies that phone book call button is disabled
 Then HMI OP1 verifies that phone book forward button state is disabled
 
 Scenario: Op1 selects an item from phonebook for the call forward action
-When HMI OP1 selects phonebook entry number: 4
-Then HMI OP1 verifies that phone book call button is enabled
+When HMI OP1 selects phonebook entry number: 1
+
 Then HMI OP1 verifies that phone book forward button state is enabled
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in forwardOngoing state
+Then HMI OP1 closes phonebook popup
 
-Scenario: Op1 hits phonebook call button
-When HMI OP1 activates call forward from phonebook
-
-Scenario: Op1 activates call forward
+Scenario: Op1 chooses Op2 as call forward target
 		  @REQUIREMENTS:GID-2521111
-Then HMI OP1 verifies that call queue info container is visible
-Then HMI OP1 has in the call queue a number of 0 calls
-Then HMI OP2 has in the call queue a number of 0 calls
-Then HMI OP1 verifies that call queue info container contains Target: OP2 Physical
+		  @REQUIREMENTS:GID-2541807
+When HMI OP1 presses DA key OP2
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state
+Then HMI OP1 verifies that call queue info container is visible
+Then HMI OP1 verifies that call queue info container contains Target: <<OP2_NAME>>
+
+
 
 Scenario: Op1 opens phonebook
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
 Then HMI OP1 verifies that phone book call button is disabled
-Then HMI OP1 verifies that phone book forward button state is disabled
 
-Scenario: Op1 selects an item from phonebook for the call forward action
-When HMI OP1 selects phonebook entry number: 4
+Scenario: Op1 selects an item from phonebook
+When HMI OP1 scrolls down in phonebook
+When HMI OP1 selects phonebook entry number: 10
 Then HMI OP1 verifies that phone book call button is enabled
 Then HMI OP1 checks that phone book forward button is invisible
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state
@@ -57,10 +56,15 @@ When HMI OP1 initiates a call from the phonebook
 
 Scenario: Call is initiated
 Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2 Physical
+Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with name label <<MISSION_1_NAME>>
+
+
+Scenario: Op1 still has Call Forward active
+Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state
+Then HMI OP1 verifies that call queue info container contains Target: <<OP2_NAME>>
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP2-OP1
-
 Scenario: Op1 still has Call Forward active
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state
 

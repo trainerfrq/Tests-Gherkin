@@ -129,3 +129,6 @@ Scenario: Verify displayed status after the starting the op voice instances
 GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost2.story
 Then waiting for 60 seconds
 Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
+
+Scenario: Time to wait between failover tests
+Then waiting for 1 minute

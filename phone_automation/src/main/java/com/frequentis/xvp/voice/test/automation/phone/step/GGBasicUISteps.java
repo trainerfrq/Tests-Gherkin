@@ -17,13 +17,12 @@
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
-import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.GridWidgetKey;
-import com.frequentis.xvp.voice.test.automation.phone.data.StatusKey;
 import com.frequentis.xvp.voice.test.automation.phone.data.NotificationDisplayEntry;
+import com.frequentis.xvp.voice.test.automation.phone.data.StatusKey;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -34,6 +33,7 @@ import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationClearEven
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationDisplay;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationTab;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationLabel;
+import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListEntryText;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListIsTimeSorted;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListLastEntryText;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListSeverity;
@@ -190,6 +190,17 @@ public class GGBasicUISteps extends AutomationSteps
                 .scriptOn(profileScriptResolver().map( VerifyNotificationListLastEntryText.class, BookableProfileName.javafx ),
                         assertProfile( profileName ) )
                 .input(VerifyNotificationListLastEntryText.IPARAM_LIST_NAME, listName)
+                .input(VerifyNotificationListLastEntryText.IPARAM_TEXT, text));
+    }
+
+    @Then("$profileName verifies that list $listName contains on position $number text $text")
+    public void verifiesNotificationListEntryText( final String profileName, final String listName, final String number, final String text)
+    {
+        evaluate( remoteStep( "Verify Notification Display list" +listName+ " entry "+number+"contains the expected text "+text )
+                .scriptOn(profileScriptResolver().map( VerifyNotificationListEntryText.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input(VerifyNotificationListEntryText.IPARAM_LIST_NAME, listName)
+                .input(VerifyNotificationListEntryText.IPARAM_ENTRY_POSITION, number)
                 .input(VerifyNotificationListLastEntryText.IPARAM_TEXT, text));
     }
 

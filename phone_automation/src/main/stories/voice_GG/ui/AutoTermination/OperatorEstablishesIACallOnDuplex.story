@@ -12,11 +12,11 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | IA       |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | IA       |
-| OP3-OP2 | sip:op3@example.com    | sip:222222@example.com | IA       |
-| OP2-OP3 | sip:222222@example.com | sip:op3@example.com    | IA       |
+| key     | source      | target      | callType |
+| OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | IA       |
+| OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | IA       |
+| OP3-OP2 | <<OP3_URI>> | <<OP2_URI>> | IA       |
+| OP2-OP3 | <<OP2_URI>> | <<OP3_URI>> | IA       |
 
 Scenario: Op2 establishes an outgoing IA call
 When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
@@ -28,13 +28,13 @@ Then HMI OP1 has the call queue item OP2-OP1 in state connected
 
 Scenario: Op1 also initiate a IA call, transforming the existing IA half duplex call in a full duplex
 When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
-When HMI OP1 presses IA key IA - OP2(as OP1)
+When HMI OP1 presses IA key IA - OP2
 
 Scenario: Verify calls state on all operators
 Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction duplex
 Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction duplex
-Then HMI OP1 has in the call queue a number of 1 calls
-Then HMI OP2 has in the call queue a number of 1 calls
+Then HMI OP1 has in the active list a number of 1 calls
+Then HMI OP2 has in the active list a number of 1 calls
 
 Scenario: Op2 establishes an another outgoing IA call
 When HMI OP2 presses IA key IA - OP3
@@ -61,7 +61,7 @@ Then HMI OP3 has in the call queue a number of 1 calls
 
 Scenario: Op3 also initiate a IA call, transforming the existing IA half duplex call in a full duplex
 When HMI OP3 with layout <<LAYOUT_MISSION3>> selects grid tab 2
-When HMI OP3 presses IA key IA - OP2(as OP3)
+When HMI OP3 presses IA key IA - OP2
 
 Scenario: Verify calls state on all operators
 !--TODO QXVP-13659 : re-enable this test after bug is fixed
@@ -69,18 +69,24 @@ Then HMI OP1 has in the call queue a number of 1 calls
 Then HMI OP2 has in the call queue a number of 2 calls
 Then HMI OP3 has in the call queue a number of 1 calls
 Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction rx
-Then HMI OP2 has the IA call queue item OP3-OP2 with audio direction tx
+Then HMI OP2 has the IA call queue item OP3-OP2 with audio direction duplex
 Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction tx
-Then HMI OP3 has the IA call queue item OP2-OP3 with audio direction rx
+Then HMI OP3 has the IA call queue item OP2-OP3 with audio direction duplex
 
 Scenario: Clear all calls
-When HMI OP3 presses IA key IA - OP2(as OP3)
-When HMI OP1 presses IA key IA - OP2(as OP1)
+When HMI OP3 presses IA key IA - OP2
+When HMI OP1 presses IA key IA - OP2
 
 Scenario: Verify call state for all operators
-Then HMI OP1 has in the call queue a number of 0 calls
-Then HMI OP2 has in the call queue a number of 0 calls
-Then HMI OP3 has in the call queue a number of 0 calls
+Then HMI OP1 has in the active list a number of 0 calls
+Then HMI OP2 has in the active list a number of 1 calls
+Then HMI OP3 has in the active list a number of 1 calls
+
+Scenario: Clear calls for Op2
+When HMI OP2 presses IA key IA - OP3
+
+Scenario: Verify call state for Op2
+Then HMI OP2 has in the active list a number of 0 calls
 
 Scenario: Cleanup - always select first tab
 When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 1

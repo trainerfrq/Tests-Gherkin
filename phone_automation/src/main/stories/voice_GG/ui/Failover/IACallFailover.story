@@ -11,9 +11,9 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | IA       |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | IA       |
+| key     | source      | target      | callType |
+| OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | IA       |
+| OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | IA       |
 
 Scenario: Verify displayed status after stopping and starting op voice instances from one partition
 GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost1.story
@@ -36,18 +36,18 @@ When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
 Given HMI OP2 has the IA key IA - OP1 in ready to be used state
 
 Scenario: Caller establishes an half duplex IA call
-When HMI OP1 presses IA key IA - OP2(as OP1)
+When HMI OP1 presses IA key IA - OP2
 
 Scenario: Verify call queue section
-Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label IA - OP2(as OP1)
-Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label 111111
+hen HMI OP1 has the call queue item OP2-OP1 in the active list with name label <<OP2_NAME>>
+Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label <<OP1_NAME>>
 
 Scenario: Verify call is connected for both operators
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Caller client clears the phone call
-When HMI OP1 presses IA key IA - OP2(as OP1)
+When HMI OP1 presses IA key IA - OP2
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for caller
@@ -62,3 +62,6 @@ Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 Scenario: Cleanup - always select first tab
 When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 1
 When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1
+
+Scenario: Time to wait between failover tests
+Then waiting for 1 minute
