@@ -31,9 +31,8 @@ class VerifyNotificationListSeverity extends FxScriptTemplate {
                 Node notificationEntry = robot.lookup("#notification"+listName+"List #notificationEntry_"+i).queryFirst()
 
                 evaluate(ExecutionDetails.create("Notification list "+listName+" severity is the expected one")
-                        .received(notificationEntry.getCssMetaData().toString())
                         .expected(severity)
-                        .success(notificationEntry.getCssMetaData().toString().contains(severity)));
+                        .success(notificationEntry.getStyleClass().contains(severity)));
 
             }
         }

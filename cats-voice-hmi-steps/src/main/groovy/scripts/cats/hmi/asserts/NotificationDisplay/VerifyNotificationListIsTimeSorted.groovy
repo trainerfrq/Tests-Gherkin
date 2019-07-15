@@ -40,8 +40,8 @@ class VerifyNotificationListIsTimeSorted extends FxScriptTemplate {
 
             for(int i = 0;i<receivedListSize;i++){
 
-                Label timeLabel = robot.lookup("#notification"+listName+"List #notificationEntry_"+i+" #timeLabel").selectAt(i).queryFirst()
-                Label dateLabel = robot.lookup("#notification"+listName+"List #notificationEntry_"+i+" #dateLabel").selectAt(i).queryFirst()
+                Label timeLabel = robot.lookup("#notification"+listName+"List #notificationEntry_"+i+" #timeLabel").queryFirst()
+                Label dateLabel = robot.lookup("#notification"+listName+"List #notificationEntry_"+i+" #dateLabel").queryFirst()
 
                 LocalDate date = LocalDate.parse(dateLabel.getText(),dateFormatter)
                 LocalTime time = LocalTime.parse(timeLabel.getText())
