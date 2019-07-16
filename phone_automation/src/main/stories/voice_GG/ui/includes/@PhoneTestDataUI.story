@@ -32,31 +32,31 @@ Given the DA keys:
 
 Scenario: Define grid widget keys
 Given the grid widget keys:
-| layout              | id                          |
+| layout              | id                   |
 | <<LAYOUT_MISSION1>> | <<GRID_ID_MISSION1>> |
 | <<LAYOUT_MISSION2>> | <<GRID_ID_MISSION2>> |
 | <<LAYOUT_MISSION3>> | <<GRID_ID_MISSION3>> |
 
 Scenario: Define function keys
 Given the function keys:
-| layout              | key         | id                              |
-| <<LAYOUT_MISSION1>> | PHONEBOOK   | f1                              |
-| <<LAYOUT_MISSION1>> | CALLHISTORY | f2                              |
-| <<LAYOUT_MISSION1>> | MISSIONS    | f3                              |
-| <<LAYOUT_MISSION1>> | CALLFORWARD | f4                              |
-| <<LAYOUT_MISSION1>> | LOUDSPEAKER | f5                              |
+| layout              | key         | id                       |
+| <<LAYOUT_MISSION1>> | PHONEBOOK   | f1                       |
+| <<LAYOUT_MISSION1>> | CALLHISTORY | f2                       |
+| <<LAYOUT_MISSION1>> | MISSIONS    | f3                       |
+| <<LAYOUT_MISSION1>> | CALLFORWARD | f4                       |
+| <<LAYOUT_MISSION1>> | LOUDSPEAKER | f5                       |
 | <<LAYOUT_MISSION1>> | SETTINGS    | <<SETTINGS_ID_MISSION1>> |
-| <<LAYOUT_MISSION2>> | PHONEBOOK   | f1                              |
-| <<LAYOUT_MISSION2>> | CALLHISTORY | f2                              |
-| <<LAYOUT_MISSION2>> | MISSIONS    | f3                              |
-| <<LAYOUT_MISSION2>> | CALLFORWARD | f4                              |
-| <<LAYOUT_MISSION2>> | LOUDSPEAKER | f5                              |
+| <<LAYOUT_MISSION2>> | PHONEBOOK   | f1                       |
+| <<LAYOUT_MISSION2>> | CALLHISTORY | f2                       |
+| <<LAYOUT_MISSION2>> | MISSIONS    | f3                       |
+| <<LAYOUT_MISSION2>> | CALLFORWARD | f4                       |
+| <<LAYOUT_MISSION2>> | LOUDSPEAKER | f5                       |
 | <<LAYOUT_MISSION2>> | SETTINGS    | <<SETTINGS_ID_MISSION2>> |
-| <<LAYOUT_MISSION3>> | PHONEBOOK   | f1                              |
-| <<LAYOUT_MISSION3>> | CALLHISTORY | f2                              |
-| <<LAYOUT_MISSION3>> | MISSIONS    | f3                              |
-| <<LAYOUT_MISSION3>> | CALLFORWARD | f4                              |
-| <<LAYOUT_MISSION3>> | LOUDSPEAKER | f5                              |
+| <<LAYOUT_MISSION3>> | PHONEBOOK   | f1                       |
+| <<LAYOUT_MISSION3>> | CALLHISTORY | f2                       |
+| <<LAYOUT_MISSION3>> | MISSIONS    | f3                       |
+| <<LAYOUT_MISSION3>> | CALLFORWARD | f4                       |
+| <<LAYOUT_MISSION3>> | LOUDSPEAKER | f5                       |
 | <<LAYOUT_MISSION3>> | SETTINGS    | <<SETTINGS_ID_MISSION3>> |
 
 Scenario: Define status key

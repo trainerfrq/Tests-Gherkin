@@ -94,22 +94,15 @@ public class GGBasicUISteps extends AutomationSteps
       return gridWidgetKey;
    }
 
-   @When("$profileName clicks on $status label $label")
-   public void clicksOnLabel( final String profileName, final String status, final String label )
+   @When("$profileName clicks on $key label $label")
+   public void clicksOnLabel( final String profileName, final String key, final String label )
    {
-      StatusKey statusKey = retrieveStatusKey(status);
+      StatusKey statusKey = retrieveStatusKey(profileName, key);
       evaluate( remoteStep( "user clicks on "+label+" label" )
               .scriptOn( profileScriptResolver().map( ClickStatusLabel.class, BookableProfileName.javafx ),
                       assertProfile( profileName ) )
               .input( ClickStatusLabel.IPARAM_STATUS_KEY_ID, statusKey.getId())
               .input( ClickStatusLabel.IPARAM_DISPLAY_LABEL, label ) );
-   }
-
-   private StatusKey retrieveStatusKey(final String key) {
-      final StatusKey statusKey = getStoryListData(key, StatusKey.class);
-      evaluate(localStep("Check Status Key").details(ExecutionDetails.create("Verify Status key is defined")
-              .usedData("key", key).success(statusKey.getId() != null)));
-      return statusKey;
    }
 
    @Then("$profileName verifies that popup $popupName is $exists")
@@ -229,6 +222,13 @@ public class GGBasicUISteps extends AutomationSteps
         }
 
         record( localStep );
+    }
+
+    private StatusKey retrieveStatusKey(final String source, final String key) {
+        final StatusKey statusKey = getStoryListData(source + "-" + key, StatusKey.class);
+        evaluate(localStep("Check Status Key").details(ExecutionDetails.create("Verify Status key is defined")
+                .usedData("source", source).usedData("key", key).success(statusKey.getId() != null)));
+        return statusKey;
     }
 
 }

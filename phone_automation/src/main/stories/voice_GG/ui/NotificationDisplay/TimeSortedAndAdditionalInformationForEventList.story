@@ -12,11 +12,11 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
-| OP3-OP2 | sip:op3@example.com    | sip:222222@example.com | DA/IDA   |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
-| OP2-OP3 | sip:222222@example.com | sip:op3@example.com    | DA/IDA   |
+| key     | source      | target      | callType |
+| OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | DA/IDA   |
+| OP3-OP2 | <<OP3_URI>> | <<OP2_URI>> | DA/IDA   |
+| OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | DA/IDA   |
+| OP2-OP3 | <<OP2_URI>> | <<OP3_URI>> | DA/IDA   |
 
 Scenario: Define notification entries
 Given the following notification entries:
@@ -28,7 +28,7 @@ Given the following notification entries:
 | entry1 | Warning  | Hold limit exceeded               |
 
 Scenario: Op1 establishes an outgoing call
-When HMI OP1 presses DA key OP2(as OP1)
+When HMI OP1 presses DA key OP2
 
 Scenario: Op2 accepts incoming call
 When HMI OP2 presses DA key OP1
@@ -41,7 +41,7 @@ Scenario: Op2 puts call on hold
 When HMI OP2 puts on hold the active call
 
 Scenario: Op3 establishes an outgoing call
-When HMI OP3 presses DA key OP2(as OP3)
+When HMI OP3 presses DA key OP2
 
 Scenario: Op2 accepts incoming call
 When HMI OP2 presses DA key OP3
@@ -69,7 +69,7 @@ Scenario: Caller clears outgoing call
 When HMI OP2 presses IA key IA - OP2
 
 Scenario: Op3 establishes an outgoing call
-When HMI OP3 presses DA key OP2(as OP3)
+When HMI OP3 presses DA key OP2
 
 Scenario: Op2 accepts incoming call
 When HMI OP2 presses DA key OP3
@@ -97,7 +97,7 @@ Scenario: Caller clears outgoing call
 When HMI OP2 presses IA key IA - OP2
 
 Scenario: Op3 establishes an outgoing call
-When HMI OP3 presses DA key OP2(as OP3)
+When HMI OP3 presses DA key OP2
 
 Scenario: Op2 accepts incoming call
 When HMI OP2 presses DA key OP3
