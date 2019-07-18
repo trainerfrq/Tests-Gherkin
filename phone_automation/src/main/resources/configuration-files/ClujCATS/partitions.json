@@ -1,55 +1,29 @@
 {
   "partitions": [
     {
-      "partitionKey": "cj-gg-cat-cwp-2",
-      "clients": [
-        {
-          "opId": "cj-gg-cat-cwp-2",
-          "radioUserName": "OpVoiceUser02",
-          "audioAppUri": "ws://192.168.40.95:8805/ctrlif",
-          "voIpRecordingClusterId": "myRecordingCluster",
-          "voIpRecordingRadioSessionId": "radio_recording",
-          "voIpRecordingRadioSessionConnRef": "af962717-3b14-46b8-a7d8-5ae0eb3eeabb"
-        }
-      ],
-      "audioServiceConnections": {
-        "connectionTimeout": 2000,
-        "requestTimeout": 1000,
-        "connections": [
-          {
-            "mediaPlane": "A",
-            "uri": "ws://172.1.1.1:8805/ctrlif"
-          },
-          {
-            "mediaPlane": "B",
-            "uri": "ws://172.1.1.2:8805/ctrlif"
-          }
-        ]
-      }
-    },
-    {
       "partitionKey": "cj-gg-cat-cwp-3",
       "clients": [
         {
           "opId": "cj-gg-cat-cwp-3",
+          "reconnectionTimeout": 5,
           "radioUserName": "OpVoiceUser03",
-          "audioAppUri": "ws://192.168.40.96:8805/ctrlif",
-          "voIpRecordingClusterId": "myRecordingCluster",
-          "voIpRecordingRadioSessionId": "radio_recording",
-          "voIpRecordingRadioSessionConnRef": "853f2318-2268-4e51-b2f2-be9b10343057"
+          "audioAppUri": "ws://192.168.40.99:8805/ctrlif",
+          "voIpRecordingClusterId": null,
+          "voIpRecordingRadioSessionId": null,
+          "voIpRecordingRadioSessionConnRef": null
         }
       ],
       "audioServiceConnections": {
-        "connectionTimeout": 2000,
-        "requestTimeout": 1000,
+        "connectionTimeout": "2000",
+        "requestTimeout": "1000",
         "connections": [
           {
             "mediaPlane": "A",
-            "uri": "ws://172.1.1.1:8805/ctrlif"
+            "uri": "ws://192.168.40.115:8805/ctrlif"
           },
           {
             "mediaPlane": "B",
-            "uri": "ws://172.1.1.2:8805/ctrlif"
+            "uri": "ws://192.168.40.116:8805/ctrlif"
           }
         ]
       }
@@ -59,24 +33,53 @@
       "clients": [
         {
           "opId": "cj-gg-cat-cwp-1",
+          "reconnectionTimeout": 5,
           "radioUserName": "OpVoiceUser01",
-          "audioAppUri": "ws://192.168.40.94:8805/ctrlif",
-          "voIpRecordingClusterId": "myRecordingCluster",
-          "voIpRecordingRadioSessionId": "radio_recording",
-          "voIpRecordingRadioSessionConnRef": "bc04eaa1-81f9-4dcf-9b4d-d7f143661dbb"
+          "audioAppUri": "ws://192.168.40.97:8805/ctrlif",
+          "voIpRecordingClusterId": null,
+          "voIpRecordingRadioSessionId": null,
+          "voIpRecordingRadioSessionConnRef": null
         }
       ],
       "audioServiceConnections": {
-        "connectionTimeout": 2000,
-        "requestTimeout": 1000,
+        "connectionTimeout": "2000",
+        "requestTimeout": "1000",
         "connections": [
           {
             "mediaPlane": "A",
-            "uri": "ws://172.1.1.1:8805/ctrlif"
+            "uri": "ws://192.168.40.115:8805/ctrlif"
           },
           {
             "mediaPlane": "B",
-            "uri": "ws://172.1.1.2:8805/ctrlif"
+            "uri": "ws://192.168.40.116:8805/ctrlif"
+          }
+        ]
+      }
+    },
+    {
+      "partitionKey": "cj-gg-cat-cwp-2",
+      "clients": [
+        {
+          "opId": "cj-gg-cat-cwp-2",
+          "reconnectionTimeout": 5,
+          "radioUserName": "OpVoiceUser02",
+          "audioAppUri": "ws://192.168.40.98:8805/ctrlif",
+          "voIpRecordingClusterId": null,
+          "voIpRecordingRadioSessionId": null,
+          "voIpRecordingRadioSessionConnRef": null
+        }
+      ],
+      "audioServiceConnections": {
+        "connectionTimeout": "2000",
+        "requestTimeout": "1000",
+        "connections": [
+          {
+            "mediaPlane": "A",
+            "uri": "ws://192.168.40.115:8805/ctrlif"
+          },
+          {
+            "mediaPlane": "B",
+            "uri": "ws://192.168.40.116:8805/ctrlif"
           }
         ]
       }

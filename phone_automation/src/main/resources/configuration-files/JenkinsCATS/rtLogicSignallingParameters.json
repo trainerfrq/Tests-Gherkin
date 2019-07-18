@@ -1,6 +1,7 @@
 {
-  "rtLogicName": "opVoiceRtLogic",
-  "inputVirtualDeviceNames": [],
-  "outputVirtualDeviceNames": [],
-  "signallingDevice": "Headset"
+    "rtLogicName": "opVoiceRtLogic",
+    "inputVirtualDeviceNames": [
+        "RadMic1"
+    ],
+    "signallingDevice": "Headset"
 }

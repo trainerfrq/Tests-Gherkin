@@ -3,8 +3,8 @@
     "opId": "cj-gg-cat-cwp-1",
     "devices": {
       "gg_input": {
-        "type": "ext",
-        "id": "handset_0"
+        "type": "vp",
+        "id": "gg_Mic"
       },
       "gg_output": {
         "type": "vp",
@@ -12,11 +12,11 @@
       },
       "gg_headset": {
         "type": "ext",
-        "id": "handset_0"
+        "id": "iAux_0_0_OpSpRight"
       },
       "gg_lsp": {
         "type": "ext",
-        "id": "lsp_0"
+        "id": "iAux_1_0_Lsp"
       }
     }
   },
@@ -24,8 +24,8 @@
     "opId": "cj-gg-cat-cwp-2",
     "devices": {
       "gg_input": {
-        "type": "ext",
-        "id": "handset_0"
+        "type": "vp",
+        "id": "gg_Mic"
       },
       "gg_output": {
         "type": "vp",
@@ -33,11 +33,11 @@
       },
       "gg_headset": {
         "type": "ext",
-        "id": "handset_0"
+        "id": "iAux_0_0_OpSpRight"
       },
       "gg_lsp": {
         "type": "ext",
-        "id": "lsp_0"
+        "id": "iAux_1_0_Lsp"
       }
     }
   },
@@ -45,8 +45,8 @@
     "opId": "cj-gg-cat-cwp-3",
     "devices": {
       "gg_input": {
-        "type": "ext",
-        "id": "handset_0"
+        "type": "vp",
+        "id": "gg_Mic"
       },
       "gg_output": {
         "type": "vp",
@@ -54,11 +54,11 @@
       },
       "gg_headset": {
         "type": "ext",
-        "id": "handset_0"
+        "id": "iAux_0_0_OpSpRight"
       },
       "gg_lsp": {
         "type": "ext",
-        "id": "lsp_0"
+        "id": "iAux_1_0_Lsp"
       }
     }
   }
