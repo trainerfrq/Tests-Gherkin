@@ -13,7 +13,7 @@ Given the following phone book entries:
 | entry2  | <<OP2_URI>>                      | <<OP2_NAME>>       |           |          |              |       |               |
 | entry3  | <<OP3_URI>>                      | <<OP3_NAME>>       |           |          |              |       |               |
 | entry4  | sip:group1@example.com           | group1             |           |          |              |       |               |
-| entry5  | sip:groupall@192.168.40.126:5060 | groupall           |           |          |              |       |               |
+| entry5  | <<ALL_PHONES>> | groupall           |           |          |              |       |               |
 | entry6  | <<OPVOICE3_PHONE_URI>>           | Lloyd              |           |          |              |       |               |
 | entry7  | <<MISSION1_URI>>                 | <<MISSION_1_NAME>> |           |          |              |       |               |
 | entry8  | <<MISSION2_URI>>                 | <<MISSION_2_NAME>> |           |          |              |       |               |
