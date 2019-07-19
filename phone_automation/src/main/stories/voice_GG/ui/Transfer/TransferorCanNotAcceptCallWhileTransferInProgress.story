@@ -87,7 +87,7 @@ Scenario: Verify answer call is not possible
 When HMI OP2 opens Notification Display list
 Then HMI OP2 verifies that list State contains text Call Transfer in progress
 When HMI OP2 selects tab event from notification display popup
-Then HMI OP2 verifies that list Event contains text Call can not be accepted, TRANSFER mode active
+Then HMI OP2 verifies that list Event contains on position 0 text Call can not be accepted, TRANSFER mode active
 When HMI OP2 selects tab state from notification display popup
 
 Scenario: Close popup window

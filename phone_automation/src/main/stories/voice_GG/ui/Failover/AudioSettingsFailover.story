@@ -13,6 +13,8 @@ GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost1.story
 Then waiting for 60 seconds
 Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 
+Scenario: Op2 closes settings popup window
+Then HMI OP2 closes settings popup
 Scenario: Open settings
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key SETTINGS
 
@@ -63,6 +65,8 @@ GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost2.story
 When HMI OP2 verifies that loading screen is visible
 Then HMI OP2 has in the DISPLAY STATUS section connection the state DEGRADED
 
+Scenario: Op2 closes settings popup window
+Then HMI OP2 closes settings popup
 Scenario: Verify audio settings
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key SETTINGS
 Then HMI OP2 verifies that volume slider userInput is set to level 0

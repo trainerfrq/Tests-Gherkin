@@ -31,10 +31,16 @@ Then HMI OP2 has in the DISPLAY STATUS section connection the state DEGRADED
 
 Scenario: Verify IA keys state
 When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
-Given HMI OP1 has the IA key IA - OP2(as OP1) in ready to be used state
 When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
+Scenario: Verify IA keys state
+Given HMI OP1 has the IA key IA - OP2 in ready to be used state
 Given HMI OP2 has the IA key IA - OP1 in ready to be used state
 
+Scenario: Op1 closes settings popup window
+Then HMI OP1 closes settings popup
+
+Scenario: Op2 closes settings popup window
+Then HMI OP2 closes settings popup
 Scenario: Caller establishes an half duplex IA call
 When HMI OP1 presses IA key IA - OP2
 

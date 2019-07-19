@@ -34,6 +34,11 @@ Given HMI OP1 has the DA key OP2 in ready to be used state
 
 Given HMI OP2 has the DA key OP1 in ready to be used state
 
+Scenario: Op1 closes settings popup window
+Then HMI OP1 closes settings popup
+
+Scenario: Op2 closes settings popup window
+Then HMI OP2 closes settings popup
 Scenario: Caller establishes an outgoing priority  call
 When HMI OP1 initiates a priority call on DA key OP2
 Then HMI OP1 has the DA key OP2 in state out_ringing
@@ -69,3 +74,6 @@ GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost2.story
 Then waiting for 60 seconds
 Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
 Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
+
+Scenario: Time to wait between failover tests
+Then waiting for 1 minute

@@ -79,7 +79,7 @@ Scenario: Verify call state for Op1, Op2 and Op3
 Then HMI OP2 has the call conditional flag set for call queue item OP1-OP2
 Then HMI OP2 has the call queue item OP1-OP2 in the hold list with info label XFR Hold
 Then HMI OP1 has the call queue item OP2-OP1 in state held
-Then HMI OP3 has the call queue item OP2-OP3 in state inc_initiated
+Then HMI OP3 has the call queue item OP2-OP3 in state inc_ringing
 
 Scenario: Transfer target answers incoming call
 Then HMI OP3 accepts the call queue item OP2-OP3

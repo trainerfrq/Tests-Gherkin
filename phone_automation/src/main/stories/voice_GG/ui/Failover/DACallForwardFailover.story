@@ -25,6 +25,11 @@ Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
 Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 Then HMI OP3 has in the DISPLAY STATUS section connection the state CONNECTED
 
+Scenario: Op1 closes settings popup window
+Then HMI OP1 closes settings popup
+
+Scenario: Op2 closes settings popup window
+Then HMI OP2 closes settings popup
 Scenario: Op1 activates Call Forward and chooses Op2 as call forward target
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in forwardOngoing state
