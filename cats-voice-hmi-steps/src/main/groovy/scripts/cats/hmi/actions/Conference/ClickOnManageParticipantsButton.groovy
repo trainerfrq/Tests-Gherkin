@@ -4,7 +4,7 @@ import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class ClickOnAddConferenceParticipantButton extends FxScriptTemplate {
+class ClickOnManageParticipantsButton extends FxScriptTemplate {
     @Override
     void script() {
 
@@ -15,13 +15,13 @@ class ClickOnAddConferenceParticipantButton extends FxScriptTemplate {
                 .success(conferenceListPopup != null))
 
         if (conferenceListPopup != null) {
-            final Node addConferenceParticipantButton = robot.lookup("#conferenceListPopup #addConferenceParticipantsButton").queryFirst()
+            final Node manageParticipantsButton = robot.lookup("#conferenceListPopup #manageParticipantsButton").queryFirst()
 
-            evaluate(ExecutionDetails.create("Add conference participant button was found")
-                    .expected("Add conference participant button is not null")
-                    .success(addConferenceParticipantButton != null))
+            evaluate(ExecutionDetails.create("Manage participants button was found")
+                    .expected("Manage participants button is not null")
+                    .success(manageParticipantsButton != null))
 
-            robot.clickOn(robot.point(addConferenceParticipantButton))
+            robot.clickOn(robot.point(manageParticipantsButton))
         }
     }
 }

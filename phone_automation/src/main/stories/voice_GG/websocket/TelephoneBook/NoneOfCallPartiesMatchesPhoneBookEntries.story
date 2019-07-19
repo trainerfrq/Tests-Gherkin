@@ -48,9 +48,9 @@ And phones for SipContact are created
 
 Scenario: Define phone book entries
 Given the following phone book entries:
-| key         | uri                    | name      | full-name | location | organization | notes | display-addon |
-| sourceEntry | <<SIP_PHONE3>>         | anonymous |           |          |              |       |               |
-| targetEntry | <<OPVOICE2_PHONE_URI>> | 222222    |           |          |              |       |               |
+| key         | uri                    | name         | full-name | location | organization | notes | display-addon |
+| sourceEntry | <<SIP_PHONE3>>         | anonymous    |           |          |              |       |               |
+| targetEntry | <<OPVOICE2_PHONE_URI>> | OP2 Physical |           |          |              |       |               |
 
 Scenario: Create the message buffers
 When WS1 opens the message buffer for message type callIncomingIndication named CallIncomingIndicationBuffer1

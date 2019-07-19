@@ -11,24 +11,24 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | IA       |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | IA       |
+| key     | source      | target      | callType |
+| OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | IA       |
+| OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | IA       |
 
 Scenario: Caller establishes an outgoing IA call
-When HMI OP1 with layout lower-east-exec-layout  selects grid tab 2
-When HMI OP1 presses IA key IA - OP2(as OP1)
+When HMI OP1 with layout <<LAYOUT_MISSION1>>  selects grid tab 2
+When HMI OP1 presses IA key IA - OP2
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
-Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
+Then HMI OP1 has the IA key IA - OP2 in state connected
 
 Scenario: Callee receives incoming IA call
-When HMI OP2 with layout lower-west-exec-layout selects grid tab 2
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Then HMI OP2 has the IA key IA - OP1 in state connected
 
 Scenario: Verify call queue section
-Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label IA - OP2(as OP1)
-Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label Operator1
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label <<OP2_NAME>>
+Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label <<OP1_NAME>>
 
 Scenario: Verify call direction
 Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction tx
@@ -44,11 +44,11 @@ Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction duplex
 Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction duplex
 
 Scenario: Verify call queue section
-Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2 Physical
-Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label Operator1
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label <<OP2_NAME>>
+Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label <<OP1_NAME>>
 
 Scenario: Caller clears IA call
-When HMI OP1 presses IA key IA - OP2(as OP1)
+When HMI OP1 presses IA key IA - OP2
 
 Scenario: Verify call direction
 Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction rx
@@ -62,9 +62,9 @@ Scenario: Call is terminated also for callee
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Caller establishes an outgoing IA call
-When HMI OP1 presses IA key IA - OP2(as OP1)
+When HMI OP1 presses IA key IA - OP2
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
-Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
+Then HMI OP1 has the IA key IA - OP2 in state connected
 
 Scenario: Callee receives incoming IA call
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
@@ -82,7 +82,7 @@ Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction duplex
 Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction duplex
 
 Scenario: Caller clears IA call
-When HMI OP1 presses IA key IA - OP2(as OP1)
+When HMI OP1 presses IA key IA - OP2
 
 Scenario: Verify call direction
 Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction rx
@@ -94,5 +94,5 @@ Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Cleanup - always select first tab
-When HMI OP1 with layout lower-east-exec-layout selects grid tab 1
-When HMI OP2 with layout lower-west-exec-layout selects grid tab 1
+When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 1
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1

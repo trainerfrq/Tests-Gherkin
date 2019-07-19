@@ -10,14 +10,15 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source   | target | callType |
-| OP1-OP1 | 111111   |        | DA/IDA   |
+| key     | source                 | target | callType |
+| OP1-OP1 | <<OPVOICE1_PHONE_URI>> |        | DA/IDA   |
 
 Scenario: Caller opens phonebook
-When HMI OP1 with layout lower-east-exec-layout presses function key PHONEBOOK
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
 
-Scenario: Caller writes target address in text box
-When HMI OP1 writes in phonebook text box the address: 111111
+Scenario: Caller selects target address
+When HMI OP1 selects phonebook entry number: 9
+Then HMI OP1 verifies that phone book text box displays text OP1 Physical
 
 Scenario: Caller hits phonebook call button
 When HMI OP1 initiates a call from the phonebook

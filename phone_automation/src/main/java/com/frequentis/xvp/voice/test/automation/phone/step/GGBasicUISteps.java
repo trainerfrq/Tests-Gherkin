@@ -17,13 +17,12 @@
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
-import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.GridWidgetKey;
-import com.frequentis.xvp.voice.test.automation.phone.data.StatusKey;
 import com.frequentis.xvp.voice.test.automation.phone.data.NotificationDisplayEntry;
+import com.frequentis.xvp.voice.test.automation.phone.data.StatusKey;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -34,6 +33,7 @@ import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationClearEven
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationDisplay;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationTab;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationLabel;
+import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListEntryText;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListIsTimeSorted;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListLastEntryText;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListSeverity;
@@ -94,22 +94,15 @@ public class GGBasicUISteps extends AutomationSteps
       return gridWidgetKey;
    }
 
-   @When("$profileName clicks on $status label $label")
-   public void clicksOnLabel( final String profileName, final String status, final String label )
+   @When("$profileName clicks on $key label $label")
+   public void clicksOnLabel( final String profileName, final String key, final String label )
    {
-      StatusKey statusKey = retrieveStatusKey(status);
+      StatusKey statusKey = retrieveStatusKey(profileName, key);
       evaluate( remoteStep( "user clicks on "+label+" label" )
               .scriptOn( profileScriptResolver().map( ClickStatusLabel.class, BookableProfileName.javafx ),
                       assertProfile( profileName ) )
               .input( ClickStatusLabel.IPARAM_STATUS_KEY_ID, statusKey.getId())
               .input( ClickStatusLabel.IPARAM_DISPLAY_LABEL, label ) );
-   }
-
-   private StatusKey retrieveStatusKey(final String key) {
-      final StatusKey statusKey = getStoryListData(key, StatusKey.class);
-      evaluate(localStep("Check Status Key").details(ExecutionDetails.create("Verify Status key is defined")
-              .usedData("key", key).success(statusKey.getId() != null)));
-      return statusKey;
    }
 
    @Then("$profileName verifies that popup $popupName is $exists")
@@ -193,6 +186,17 @@ public class GGBasicUISteps extends AutomationSteps
                 .input(VerifyNotificationListLastEntryText.IPARAM_TEXT, text));
     }
 
+    @Then("$profileName verifies that list $listName contains on position $number text $text")
+    public void verifiesNotificationListEntryText( final String profileName, final String listName, final String number, final String text)
+    {
+        evaluate( remoteStep( "Verify Notification Display list" +listName+ " entry "+number+"contains the expected text "+text )
+                .scriptOn(profileScriptResolver().map( VerifyNotificationListEntryText.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input(VerifyNotificationListEntryText.IPARAM_LIST_NAME, listName)
+                .input(VerifyNotificationListEntryText.IPARAM_ENTRY_POSITION, number)
+                .input(VerifyNotificationListLastEntryText.IPARAM_TEXT, text));
+    }
+
 
     @Then("$profileName using format $dateFormat verifies that Notification Display list $listName is time-sorted")
     public void verifyNotificationListTimeSorted(final String profileName, final String dateFormat, final String listName) {
@@ -218,6 +222,13 @@ public class GGBasicUISteps extends AutomationSteps
         }
 
         record( localStep );
+    }
+
+    private StatusKey retrieveStatusKey(final String source, final String key) {
+        final StatusKey statusKey = getStoryListData(source + "-" + key, StatusKey.class);
+        evaluate(localStep("Check Status Key").details(ExecutionDetails.create("Verify Status key is defined")
+                .usedData("source", source).usedData("key", key).success(statusKey.getId() != null)));
+        return statusKey;
     }
 
 }

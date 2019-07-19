@@ -19,15 +19,15 @@ And phones for SipContact are created
 
 Scenario: Define call queue items
 Given the call queue items:
-| key            | source                 | target                 | callType |
-| OP1-OP2        | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1        | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
-| OP3-OP1        | sip:op3@example.com    | sip:111111@example.com | DA/IDA   |
-| OP1-OP3        | sip:111111@example.com | sip:op3@example.com    | DA/IDA   |
-| SipContact-OP1 | <<SIP_PHONE2>>         | <<OPVOICE1_PHONE_URI>> | DA/IDA   |
+| key            | source         | target                 | callType |
+| OP1-OP2        | <<OP1_URI>>    | <<OP2_URI>>            | DA/IDA   |
+| OP2-OP1        | <<OP2_URI>>    | <<OP1_URI>>            | DA/IDA   |
+| OP3-OP1        | <<OP3_URI>>    | <<OP1_URI>>            | DA/IDA   |
+| OP1-OP3        | <<OP1_URI>>    | <<OP3_URI>>            | DA/IDA   |
+| SipContact-OP1 | <<SIP_PHONE2>> | <<OPVOICE1_PHONE_URI>> | DA/IDA   |
 
 Scenario: Op3 initiates a priority call
-When HMI OP3 initiates a priority call on DA key OP1(as OP3)
+When HMI OP3 initiates a priority call on DA key OP1
 Then HMI OP1 has in the call queue the item OP3-OP1 with priority
 
 Scenario: Op2 initiates another priority call
@@ -40,12 +40,12 @@ Then HMI OP1 verifies that the call queue item OP2-OP1 has index 0 in the priori
 Then HMI OP1 verifies that the call queue item OP3-OP1 has index 1 in the priority list
 
 Scenario: Op3 terminates the call
-When HMI OP3 presses DA key OP1(as OP3)
+When HMI OP3 presses DA key OP1
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Op3 initiates a DA call
-When HMI OP3 presses DA key OP1(as OP3)
-Then HMI OP1 has the DA key OP3(as OP1) in state inc_initiated
+When HMI OP3 presses DA key OP1
+Then HMI OP1 has the DA key OP3 in state inc_initiated
 
 Scenario: Op1 receives a SIP call
 When SipContact calls SIP URI <<OPVOICE1_PHONE_URI>>
@@ -53,8 +53,8 @@ Then waiting for 2 seconds
 
 Scenario: Op1 verifies call queue sections
 Then HMI OP1 has the call queue item SipContact-OP1 in the waiting list with name label Madoline
-Then HMI OP1 has the call queue item OP3-OP1 in the waiting list with name label Operator3
-Then HMI OP1 has the call queue item OP2-OP1 in the priority list with name label OP2 Physical
+Then HMI OP1 has the call queue item OP3-OP1 in the waiting list with name label <<OP3_NAME>>
+Then HMI OP1 has the call queue item OP2-OP1 in the priority list with name label <<OP2_NAME>>
 
 Scenario: Operator verifies the order of call queue items in the waiting section
 		  @REQUIREMENTS:GID-3371932
@@ -62,7 +62,7 @@ Then HMI OP1 verifies that the call queue item SipContact-OP1 has index 0 in the
 Then HMI OP1 verifies that the call queue item OP3-OP1 has index 1 in the waiting list
 
 Scenario: Operator answers and puts on hold the active priority call
-When HMI OP1 presses DA key OP2(as OP1)
+When HMI OP1 presses DA key OP2
 When HMI OP1 puts on hold the active call
 
 Scenario: Operator answers and puts on hold the Sip call

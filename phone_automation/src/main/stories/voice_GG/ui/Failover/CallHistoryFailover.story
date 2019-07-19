@@ -11,9 +11,9 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
+| key     | source      | target      | callType |
+| OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | DA/IDA   |
+| OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | DA/IDA   |
 
 Scenario: Verify displayed status
 GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost1.story
@@ -22,18 +22,23 @@ Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
 Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 
 Scenario: Verify DA keys state
-Given HMI OP1 has the DA key OP2(as OP1) in ready to be used state
+Given HMI OP1 has the DA key OP2 in ready to be used state
 Given HMI OP2 has the DA key OP1 in ready to be used state
 
+Scenario: Op1 closes settings popup window
+Then HMI OP1 closes settings popup
+
+Scenario: Op2 closes settings popup window
+Then HMI OP2 closes settings popup
 Scenario: Caller clears call history list
-When HMI OP1 with layout lower-east-exec-layout presses function key CALLHISTORY
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLHISTORY
 Then HMI OP1 clears Call History list
 Then HMI OP1 verifies that call history list contains 0 entries
 Then HMI OP1 closes Call History popup window
 
 Scenario: Caller establishes an outgoing call
-When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
+When HMI OP1 presses DA key OP2
+Then HMI OP1 has the DA key OP2 in state out_ringing
 
 Scenario: Callee client receives the incoming call
 Then HMI OP2 has the DA key OP1 in state inc_initiated
@@ -46,11 +51,11 @@ Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Caller client clears the phone call
-When HMI OP1 presses DA key OP2(as OP1)
+When HMI OP1 presses DA key OP2
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Caller opens call history
-When HMI OP1 with layout lower-east-exec-layout presses function key CALLHISTORY
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLHISTORY
 Then HMI OP1 verifies that call history list contains 1 entries
 
 Scenario: Verify displayed status after the stopping the op voice instances from one partition
@@ -62,9 +67,14 @@ When HMI OP2 verifies that loading screen is visible
 Then HMI OP2 has in the DISPLAY STATUS section connection the state DEGRADED
 
 Scenario: Verify DA keys state
-Given HMI OP1 has the DA key OP2(as OP1) in ready to be used state
+Given HMI OP1 has the DA key OP2 in ready to be used state
 Given HMI OP2 has the DA key OP1 in ready to be used state
 
+Scenario: Op1 closes settings popup window
+Then HMI OP1 closes settings popup
+
+Scenario: Op2 closes settings popup window
+Then HMI OP2 closes settings popup
 Scenario: Caller verifies call history list
 Then HMI OP1 verifies that call history list contains 1 entries
 
@@ -77,3 +87,5 @@ Then waiting for 60 seconds
 Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
 Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 
+Scenario: Time to wait between failover tests
+Then waiting for 1 minute

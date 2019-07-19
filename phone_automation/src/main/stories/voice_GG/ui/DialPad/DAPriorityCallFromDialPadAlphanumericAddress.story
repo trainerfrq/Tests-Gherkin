@@ -17,11 +17,11 @@ And phones for SipContact are created
 
 Scenario: Define call queue items
 Given the call queue items:
-| key            | source         | target | callType |
-| OP1-SipContact | <<SIP_PHONE2>> |        | DA/IDA   |
+| key            | source                  | target | callType |
+| OP1-SipContact | <<PHONE2>> |        | DA/IDA   |
 
 Scenario: Caller opens phonebook
-When HMI OP1 with layout lower-east-exec-layout presses function key PHONEBOOK
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
 Then HMI OP1 verifies that phone book call button is disabled
 
 Scenario: Caller selects call route selector
@@ -33,7 +33,7 @@ Then HMI OP1 verifies that phone book call button is disabled
 Then HMI OP1 verifies that phone book priority toggle is inactive
 
 Scenario: Caller writes target address in text box
-When HMI OP1 writes in phonebook text box the address: <<SIP_PHONE2>>
+When HMI OP1 writes in phonebook text box the address: <<PHONE2>>
 Then HMI OP1 verifies that phone book call button is enabled
 
 Scenario: Caller toggles call priority
@@ -59,8 +59,8 @@ Scenario: Sip Contact answers call
 When SipContact answers incoming calls
 
 Scenario: Verify call on caller side
-!-- Then HMI OP1 has the call queue item OP1-SipContact in the active list with name label Madoline
 Then HMI OP1 verifies that call queue item bar signals call state priority
+Then HMI OP1 has the call queue item OP1-SipContact in the active list with name label Madoline
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP1-SipContact

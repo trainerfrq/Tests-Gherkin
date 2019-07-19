@@ -12,49 +12,49 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key              | source                 | target                      | callType |
-| OP2-Role1        | sip:222222@example.com | sip:role1@example.com       | DA/IDA   |
-| Role2-Role1      | sip:role2@example.com  | sip:role1@example.com       | DA/IDA   |
-| OP2-Role1Alias   | sip:222222@example.com | sip:role1alias1@example.com | DA/IDA   |
-| Role2-Role1Alias | sip:role2@example.com  | sip:role1alias1@example.com | DA/IDA   |
+| key              | source                   | target                         | callType |
+| OP2-Role1        | <<OP2_URI>>              | sip:role1@example.com       | DA/IDA   |
+| Role2-Role1      | sip:role2@example.com | sip:role1@example.com       | DA/IDA   |
+| OP2-Role1Alias   | <<OP2_URI>>              | sip:role1alias1@example.com | DA/IDA   |
+| Role2-Role1Alias | sip:role2@example.com | sip:role1alias1@example.com | DA/IDA   |
 
 Scenario: Caller establishes an outgoing call towards Role1 as OP2
-When HMI OP2 presses DA key ROLE1(as OP2)
+When HMI OP2 presses DA key ROLE1
 
 Scenario: Operators part of called role receive the incoming call with caller identity
 		  @REQUIREMENTS:GID-3547601
-Then HMI OP1 has the call queue item OP2-Role1 in the waiting list with name label OP2 Physical
-Then HMI OP3 has the call queue item OP2-Role1 in the waiting list with name label OP2 Physical
+Then HMI OP1 has the call queue item OP2-Role1 in the waiting list with name label <<OP2_NAME>>
+Then HMI OP3 has the call queue item OP2-Role1 in the waiting list with name label <<OP2_NAME>>
 
 Scenario: Caller clears outgoing call
-When HMI OP2 presses DA key ROLE1(as OP2)
+When HMI OP2 presses DA key ROLE1
 
 Scenario: Caller establishes an outgoing call towards Role1 as Role2
 When HMI OP2 presses DA key ROLE1(as ROLE2)
 
 Scenario: Operators part of called role receive the incoming call with caller identity
-Then HMI OP1 has the call queue item Role2-Role1 in the waiting list with name label Role2
-Then HMI OP3 has the call queue item Role2-Role1 in the waiting list with name label Role2
+Then HMI OP1 has the call queue item Role2-Role1 in the waiting list with name label role2
+Then HMI OP3 has the call queue item Role2-Role1 in the waiting list with name label role2
 
 Scenario: Caller clears outgoing call
 When HMI OP2 presses DA key ROLE1(as ROLE2)
 
 Scenario: Caller establishes an outgoing call towards Role1-Alias as OP2
-When HMI OP2 presses DA key ROLE1-ALIAS(as OP2)
+When HMI OP2 presses DA key ROLE1-ALIAS
 
 Scenario: Operators part of called role receive the incoming call with caller identity
-Then HMI OP1 has the call queue item OP2-Role1Alias in the waiting list with name label OP2 Physical
-Then HMI OP3 has the call queue item OP2-Role1Alias in the waiting list with name label OP2 Physical
+Then HMI OP1 has the call queue item OP2-Role1Alias in the waiting list with name label <<OP2_NAME>>
+Then HMI OP3 has the call queue item OP2-Role1Alias in the waiting list with name label <<OP2_NAME>>
 
 Scenario: Caller clears outgoing call
-When HMI OP2 presses DA key ROLE1-ALIAS(as OP2)
+When HMI OP2 presses DA key ROLE1-ALIAS
 
 Scenario: Caller establishes an outgoing call towards Role1-Alias as Role2
 When HMI OP2 presses DA key ROLE1-ALIAS(as ROLE2)
 
 Scenario: Operators part of called role receive the incoming call with caller identity
-Then HMI OP1 has the call queue item Role2-Role1Alias in the waiting list with name label Role2
-Then HMI OP3 has the call queue item Role2-Role1Alias in the waiting list with name label Role2
+Then HMI OP1 has the call queue item Role2-Role1Alias in the waiting list with name label role2
+Then HMI OP3 has the call queue item Role2-Role1Alias in the waiting list with name label role2
 
 Scenario: Caller clears outgoing call
 When HMI OP2 presses DA key ROLE1-ALIAS(as ROLE2)

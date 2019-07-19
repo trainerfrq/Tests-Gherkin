@@ -11,16 +11,16 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
+| key     | source      | target      | callType |
+| OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | DA/IDA   |
+| OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | DA/IDA   |
 
 Scenario: Caller establishes an outgoing call
-When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
+When HMI OP1 presses DA key OP2
+Then HMI OP1 has the DA key OP2 in state out_ringing
 
 Scenario: Callee client receives the incoming call
-Then HMI OP2 has the DA key OP1 in state ringing
+Then HMI OP2 has the DA key OP1 in state inc_initiated
 Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
 
 Scenario: Caller establishes an outgoing call
@@ -28,7 +28,7 @@ Scenario: Caller establishes an outgoing call
 When HMI OP2 presses DA key OP1
 
 Scenario: Verify call is connected for OP1
-Then HMI OP1 has the DA key OP2(as OP1) in state connected
+Then HMI OP1 has the DA key OP2 in state connected
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP1 has in the call queue a number of 1 calls
 

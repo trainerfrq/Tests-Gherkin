@@ -165,7 +165,7 @@ When WS4 opens the message buffer for message type callIncomingIndication named 
 When WS4 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer2
 
 Scenario: Caller client retrieves phone data
-When WS3 loads phone data for role roleId1 and names callSource and callTarget from the entry number 1
+When WS3 loads phone data for mission missionId1 and names callSource and callTarget from the entry number 1
 
 Scenario: Caller establishes an outgoing call
 When WS3 establishes an outgoing phone call using source callSource ang target callTarget and names outgoingPhoneCallId

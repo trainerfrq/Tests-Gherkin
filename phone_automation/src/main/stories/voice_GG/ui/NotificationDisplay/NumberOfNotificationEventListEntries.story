@@ -7,13 +7,6 @@ Scenario: Booking profiles
 Given booked profiles:
 | profile | group | host           | identifier |
 | javafx  | hmi   | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi   | <<CLIENT2_IP>> | HMI OP2    |
-
-Scenario: Define call queue items
-Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
 
 Scenario: Operator opens Notification Display popup and clears the event list
 When HMI OP1 opens Notification Display list
@@ -26,7 +19,7 @@ Scenario: Operator closes the Notification popup
 Then HMI OP1 closes notification popup
 
 Scenario: Caller establishes 100 out failed calls
-When HMI OP1 presses for 200 times the DA key OP1(as OP3)
+When HMI OP1 presses for 200 times the DA key OP1
 
 Scenario: Verify call is terminated for both operators
 Then HMI OP1 has in the call queue a number of 0 calls
@@ -42,7 +35,7 @@ Scenario: Operator closes the Notification popup
 Then HMI OP1 closes notification popup
 
 Scenario: Operator establishes the 101st failed call
-When HMI OP1 presses for 2 times the DA key OP1(as OP3)
+When HMI OP1 presses for 2 times the DA key OP1
 
 Scenario: Call is terminated also for caller
 Then HMI OP1 has in the call queue a number of 0 calls

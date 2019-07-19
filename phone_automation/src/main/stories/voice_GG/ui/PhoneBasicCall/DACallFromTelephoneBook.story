@@ -11,12 +11,12 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                   | target                 | callType |
-| OP1-OP3 | sip:mission1@example.com | <<OPVOICE3_PHONE_URI>> | DA/IDA   |
-| OP3-OP1 | <<OPVOICE3_PHONE_URI>>   |                        | DA/IDA   |
+| key     | source                 | target                 | callType |
+| OP1-OP3 | <<MISSION1_URI>>       | <<OPVOICE3_PHONE_URI>> | DA/IDA   |
+| OP3-OP1 | <<OPVOICE3_PHONE_URI>> |                        | DA/IDA   |
 
 Scenario: Caller opens phonebook
-When HMI OP1 with layout lower-east-exec-layout presses function key PHONEBOOK
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
 Then HMI OP1 verifies that phone book call button is disabled
 
 Scenario: Caller selects call route selector
@@ -27,7 +27,7 @@ Then HMI OP1 verify that call route selector shows None
 Then HMI OP1 verifies that phone book call button is disabled
 
 Scenario: Caller selects item from phonebook
-When HMI OP1 selects phonebook entry number: 1
+When HMI OP1 selects phonebook entry number: 5
 Then HMI OP1 verifies that phone book text box displays text Lloyd
 Then HMI OP1 verifies that phone book call button is enabled
 
@@ -42,7 +42,7 @@ Scenario: Call is initiated
 		  @REQUIREMENTS:GID-2535740
 		  @REQUIREMENTS:GID-3366402
 Then HMI OP1 has the call queue item OP3-OP1 in the active list with name label Lloyd
-Then HMI OP3 has the call queue item OP1-OP3 in the waiting list with name label mission1
+Then HMI OP3 has the call queue item OP1-OP3 in the waiting list with name label <<MISSION_1_NAME>>
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP3-OP1

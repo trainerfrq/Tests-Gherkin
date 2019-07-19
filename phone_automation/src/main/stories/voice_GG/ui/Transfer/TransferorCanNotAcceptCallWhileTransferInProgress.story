@@ -20,24 +20,24 @@ And phones for SipContact are created
 
 Scenario: Define call queue items
 Given the call queue items:
-| key            | source                 | target                 | callType |
-| OP1-OP2        | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1        | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
-| OP3-OP2        | sip:op3@example.com    | sip:222222@example.com | DA/IDA   |
-| OP2-OP3        | sip:222222@example.com | sip:op3@example.com    | DA/IDA   |
-| OP1-OP3        | sip:111111@example.com | sip:op3@example.com    | DA/IDA   |
-| OP3-OP1        | sip:op3@example.com    | sip:111111@example.com | DA/IDA   |
-| SipContact-OP2 | <<SIP_PHONE2>>         | <<OPVOICE2_PHONE_URI>> | DA/IDA   |
+| key            | source         | target                 | callType |
+| OP1-OP2        | <<OP1_URI>>    | <<OP2_URI>>            | DA/IDA   |
+| OP2-OP1        | <<OP2_URI>>    | <<OP1_URI>>            | DA/IDA   |
+| OP3-OP2        | <<OP3_URI>>    | <<OP2_URI>>            | DA/IDA   |
+| OP2-OP3        | <<OP2_URI>>    | <<OP3_URI>>            | DA/IDA   |
+| OP1-OP3        | <<OP1_URI>>    | <<OP3_URI>>            | DA/IDA   |
+| OP3-OP1        | <<OP3_URI>>    | <<OP1_URI>>            | DA/IDA   |
+| SipContact-OP2 | <<SIP_PHONE2>> | <<OPVOICE2_PHONE_URI>> | DA/IDA   |
 
 Scenario: Transferor establishes an outgoing call towards transferee
 When HMI OP2 presses DA key OP1
 Then HMI OP2 has the DA key OP1 in state out_ringing
 
 Scenario: Transferee receives incoming call
-Then HMI OP1 has the DA key OP2(as OP1) in state inc_initiated
+Then HMI OP1 has the DA key OP2 in state inc_initiated
 
 Scenario: Transferee answers incoming call
-When HMI OP1 presses DA key OP2(as OP1)
+When HMI OP1 presses DA key OP2
 
 Scenario: Verify call is connected for both operators
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
@@ -61,10 +61,10 @@ When HMI OP2 presses DA key OP3
 Then HMI OP2 has the DA key OP3 in state out_ringing
 
 Scenario: Transfer target receives incoming call
-Then HMI OP3 has the DA key OP2(as OP3) in state inc_initiated
+Then HMI OP3 has the DA key OP2 in state inc_initiated
 
 Scenario: Transfer target answers incoming call
-When HMI OP3 presses DA key OP2(as OP3)
+When HMI OP3 presses DA key OP2
 
 Scenario: Verify call is connected for both operators
 Then HMI OP3 has the call queue item OP2-OP3 in state connected
@@ -84,7 +84,14 @@ Then HMI OP2 accepts the call queue item SipContact-OP2
 Then HMI OP2 has the call queue item SipContact-OP2 in state inc_initiated
 
 Scenario: Verify answer call is not possible
-Then HMI OP2 has a notification that shows Call can not be accepted, TRANSFER mode active
+When HMI OP2 opens Notification Display list
+Then HMI OP2 verifies that list State contains text Call Transfer in progress
+When HMI OP2 selects tab event from notification display popup
+Then HMI OP2 verifies that list Event contains on position 0 text Call can not be accepted, TRANSFER mode active
+When HMI OP2 selects tab state from notification display popup
+
+Scenario: Close popup window
+Then HMI OP2 closes notification popup
 
 Scenario: Transferor finishes transfer
 When HMI OP2 presses DA key OP3
@@ -105,7 +112,7 @@ And waiting for 2 seconds
 Then HMI OP2 has in the active list a number of 0 calls
 
 Scenario: Cleanup call
-When HMI OP1 presses DA key OP3(as OP1)
+When HMI OP1 presses DA key OP3
 And waiting for 1 seconds
 Then HMI OP1 has in the active list a number of 0 calls
 Then HMI OP3 has in the active list a number of 0 calls

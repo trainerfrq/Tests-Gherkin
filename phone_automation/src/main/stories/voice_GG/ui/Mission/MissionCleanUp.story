@@ -9,7 +9,7 @@ Given booked profiles:
 | javafx  | hmi   | <<CLIENT3_IP>> | HMI OP3    |
 
 Scenario: Change mission
-When HMI OP1 with layout lower-west-exec-layout presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
 Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
@@ -18,7 +18,7 @@ Scenario: Verify operator mission
 Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission MAN-NIGHT-TACT
 
 Scenario: Change to mission
-When HMI OP2 with layout lower-east-exec-layout presses function key MISSIONS
+When HMI OP2 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP2 changes current mission to mission WEST-EXEC
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
@@ -27,7 +27,7 @@ Scenario: Verify operator mission
 Then HMI OP2 has in the DISPLAY STATUS section mission the assigned mission WEST-EXEC
 
 Scenario: Change to mission
-When HMI OP3 with layout lower-east-exec-layout presses function key MISSIONS
+When HMI OP3 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP3 changes current mission to mission EAST-EXEC
 Then HMI OP3 activates mission
 Then waiting for 5 seconds

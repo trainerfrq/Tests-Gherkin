@@ -12,15 +12,15 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
-| OP2-OP3 | sip:222222@example.com | sip:op3@example.com    | IA       |
-| OP3-OP2 | sip:op3@example.com    | sip:222222@example.com | IA       |
+| key     | source      | target      | callType |
+| OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | DA/IDA   |
+| OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | DA/IDA   |
+| OP2-OP3 | <<OP2_URI>> | <<OP3_URI>> | IA       |
+| OP3-OP2 | <<OP3_URI>> | <<OP2_URI>> | IA       |
 
 Scenario: Caller establishes an outgoing call
-When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
+When HMI OP1 presses DA key OP2
+Then HMI OP1 has the DA key OP2 in state out_ringing
 
 Scenario: Callee client receives the incoming call
 Then HMI OP2 has the DA key OP1 in state inc_initiated
@@ -33,7 +33,8 @@ Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Op3 establishes an outgoing IA call towards Op2
-When HMI OP3 presses IA key IA - OP2(as OP3)
+When HMI OP3 with layout <<LAYOUT_MISSION3>> selects grid tab 2
+When HMI OP3 presses IA key IA - OP2
 
 Scenario: Verify call state for all operators
 Then HMI OP1 has in the call queue a number of 1 calls
@@ -48,7 +49,7 @@ Then HMI OP2 has in the active list a number of 1 calls
 Then HMI OP2 has in the collapsed area a number of 1 calls
 
 Scenario: Op3 terminates IA call
-When HMI OP3 presses IA key IA - OP2(as OP3)
+When HMI OP3 presses IA key IA - OP2
 
 Scenario: Verify call state for all operators
 Then HMI OP1 has in the call queue a number of 1 calls
@@ -63,3 +64,6 @@ Scenario: Verify call state for all operators
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
+
+Scenario: Cleanup - always select first tab
+When HMI OP3 with layout <<LAYOUT_MISSION3>> selects grid tab 1

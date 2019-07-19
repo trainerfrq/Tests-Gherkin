@@ -11,12 +11,12 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                   | target                 | callType |
-| OP1-OP2 | sip:mission1@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1 | sip:222222@example.com   |                        | DA/IDA   |
+| key     | source             | target      | callType |
+| OP1-OP2 | <<MISSION1_URI>>   | <<OP2_URI>> | DA/IDA   |
+| OP2-OP1 | 222222@example.com |             | DA/IDA   |
 
 Scenario: Operator opens phonebook
-When HMI OP1 with layout lower-east-exec-layout presses function key PHONEBOOK
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
 Then HMI OP1 verifies that phone book dial pad has the alphaNumeric layout
 
 Scenario: Operator verifies dial pad layouts
@@ -33,7 +33,7 @@ Then HMI OP1 verifies that phone book dial pad has the symbol layout
 
 Scenario: Operator closes and opens the phonebook
 When HMI OP1 closes phonebook
-When HMI OP1 with layout lower-east-exec-layout presses function key PHONEBOOK
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
 Then HMI OP1 verifies that phone book dial pad has the alphaNumeric layout
 
 Scenario: Operator verifies keys label
@@ -52,6 +52,9 @@ When HMI OP1 deletes a character from text box
 When HMI OP1 deletes a character from text box
 When HMI OP1 deletes a character from text box
 Then HMI OP1 checks that input text box displays sip text
+When HMI OP1 deletes a character from text box
+When HMI OP1 deletes a character from text box
+When HMI OP1 deletes a character from text box
 When HMI OP1 presses key shift
 
 Scenario: Operator makes a call using the dialpad keyboard
@@ -60,7 +63,6 @@ Scenario: Operator makes a call using the dialpad keyboard
 When HMI OP1 selects call route selector: none
 When HMI OP1 toggles the symbol key
 Then waiting for 2 seconds
-When HMI OP1 writes in phonebook text box: :
 When HMI OP1 toggles the keyboard key
 When HMI OP1 presses key 2
 When HMI OP1 presses key 2
@@ -90,9 +92,8 @@ When HMI OP1 initiates a call from the phonebook
 
 Scenario: Call is initiated
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
-!-- Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2 Physical
-!-- TODO Enable test when bug QXVP-14392 is fixed
 Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label <<OP2_NAME>>
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP2-OP1

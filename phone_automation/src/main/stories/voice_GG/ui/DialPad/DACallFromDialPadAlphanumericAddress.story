@@ -11,12 +11,12 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                   | target                 | callType |
-| OP1-OP2 | sip:mission1@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1 | sip:222222@example.com   |                        | DA/IDA   |
+| key     | source             | target      | callType |
+| OP1-OP2 | <<MISSION1_URI>>   | <<OP2_URI>> | DA/IDA   |
+| OP2-OP1 | 222222@example.com |             | DA/IDA   |
 
 Scenario: Caller opens phonebook
-When HMI OP1 with layout lower-east-exec-layout presses function key PHONEBOOK
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
 Then HMI OP1 verifies that phone book call button is disabled
 
 Scenario: Caller selects call route selector
@@ -27,7 +27,7 @@ Then HMI OP1 verify that call route selector shows None
 Then HMI OP1 verifies that phone book call button is disabled
 
 Scenario: Caller writes target address in text box
-When HMI OP1 writes in phonebook text box the address: sip:222222@example.com
+When HMI OP1 writes in phonebook text box the address: 222222@example.com
 Then HMI OP1 verifies that phone book call button is enabled
 
 Scenario: Caller hits phonebook call button
@@ -43,10 +43,10 @@ Scenario: Call is initiated
 		  @REQUIREMENTS:GID-2535740
 		  @REQUIREMENTS:GID-3366402
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
-!-- Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2 Physical
-!-- TODO Enable test when bug QXVP-14392 is fixed
-Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with name label mission1
+Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with name label <<MISSION_1_NAME>>
 Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
+!-- QXVP-14392 - known bug
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label <<OP2_NAME>>
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP2-OP1
