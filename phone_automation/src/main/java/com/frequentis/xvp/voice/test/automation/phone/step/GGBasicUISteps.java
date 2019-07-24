@@ -174,13 +174,17 @@ public class GGBasicUISteps extends AutomationSteps
                 .scriptOn(profileScriptResolver().map( VerifyNotificationListText.class, BookableProfileName.javafx ),
                         assertProfile( profileName ) )
                 .input(VerifyNotificationListText.IPARAM_LIST_NAME, listName)
-                .input(VerifyNotificationListText.IPARAM_TEXT, text));
+                .input(VerifyNotificationListText.IPARAM_TEXT, text)
+                .input( VerifyNotificationListText.IPARAM_LIST_ENTRY, entry )
+        );
 
         evaluate( remoteStep( "Verify Notification Display list " +listName+ " severity" )
                 .scriptOn(profileScriptResolver().map( VerifyNotificationListSeverity.class, BookableProfileName.javafx ),
                         assertProfile( profileName ) )
                 .input(VerifyNotificationListSeverity.IPARAM_LIST_NAME, listName)
-                .input(VerifyNotificationListSeverity.IPARAM_SEVERITY, severity));
+                .input(VerifyNotificationListSeverity.IPARAM_SEVERITY, severity)
+                .input( VerifyNotificationListSeverity.IPARAM_LIST_ENTRY, entry )
+        );
     }
 
     @Then("$profileName verifies that list $listName contains text $text")
