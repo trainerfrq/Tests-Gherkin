@@ -37,14 +37,14 @@ Scenario: Caller clears outgoing call
 When HMI OP2 presses IA key IA - OP2
 
 Scenario: Caller establishes an outgoing DA call
-When HMI OP2 with layout lower-west-exec-layout selects grid tab 1
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1
 When HMI OP2 presses DA key OP1
 Then HMI OP2 has the DA key OP1 in state out_ringing
 Then HMI OP2 has the call queue item OP1-OP2 in state out_ringing
 
 Scenario: Callee accepts the incoming DA call
 Then HMI OP1 has the call queue item OP2-OP1 in state inc_initiated
-When HMI OP1 presses DA key OP2(as OP1)
+When HMI OP1 presses DA key OP2
 
 Scenario: Verify call is connected for both operators
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
@@ -54,22 +54,22 @@ Scenario: Transferor initiates transfer
 When HMI OP2 initiates a transfer on the active call
 
 Scenario: Op3 establishes an outgoing DA call to Op2
-When HMI OP3 presses DA key OP2(as OP3)
-Then HMI OP3 has the DA key OP2(as OP3) in state out_ringing
+When HMI OP3 presses DA key OP2
+Then HMI OP3 has the DA key OP2 in state out_ringing
 
 Scenario: Op2 attempts to answer the incoming DA call
 When HMI OP2 presses DA key OP3
 Then HMI OP2 has a notification that shows Call can not be accepted, TRANSFER mode active
 
 Scenario: Op3 clears the outgoing DA call to Op2
-When HMI OP3 presses DA key OP2(as OP3)
+When HMI OP3 presses DA key OP2
 
 Scenario: Op1 clears the DA call with Op2
-When HMI OP1 presses DA key OP2(as OP1)
+When HMI OP1 presses DA key OP2
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Caller establishes an outgoing IA call
-When HMI OP2 with layout lower-west-exec-layout selects grid tab 2
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
 When HMI OP2 presses IA key IA - OP2
 
 Scenario: Verify call is received and call status is failed

@@ -46,7 +46,7 @@ Then HMI OP1 verifies that popup notification is not visible
 Scenario: Operator activates Call Forward
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in forwardOngoing state
-When HMI OP1 presses DA key OP2(as OP1)
+When HMI OP1 presses DA key OP2
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state
 Then HMI OP1 has a notification that shows Call Forward to cj-gg-cat-cwp-2 is active
 
