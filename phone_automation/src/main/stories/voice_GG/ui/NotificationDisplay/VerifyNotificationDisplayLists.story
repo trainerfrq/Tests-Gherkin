@@ -48,7 +48,7 @@ When HMI OP1 with layout lower-east-exec-layout presses function key CALLFORWARD
 Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in forwardOngoing state
 When HMI OP1 presses DA key OP2(as OP1)
 Then HMI OP1 with layout lower-east-exec-layout has the function key CALLFORWARD in active state
-Then HMI OP1 has a notification that shows Call Forward to OP2 Physical is active
+Then HMI OP1 has a notification that shows Call Forward to cj-gg-cat-cwp-2 is active
 
 Scenario: Operator opens Notification Display popup
 When HMI OP1 opens Notification Display list
