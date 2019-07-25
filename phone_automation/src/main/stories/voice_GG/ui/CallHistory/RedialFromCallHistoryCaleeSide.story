@@ -11,21 +11,21 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key        | source                 | target                 | callType |
-| OP1-OP2-DA | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1-DA | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
-| OP1-OP2-IA | sip:111111@example.com | sip:222222@example.com | IA       |
-| OP2-OP1-IA | sip:222222@example.com | sip:111111@example.com | IA       |
+| key        | source      | target      | callType |
+| OP1-OP2-DA | <<OP1_URI>> | <<OP2_URI>> | DA/IDA   |
+| OP2-OP1-DA | <<OP2_URI>> | <<OP1_URI>> | DA/IDA   |
+| OP1-OP2-IA | <<OP1_URI>> | <<OP2_URI>> | IA       |
+| OP2-OP1-IA | <<OP2_URI>> | <<OP1_URI>> | IA       |
 
 Scenario: Caller clears call history list
-When HMI OP2 with layout lower-west-exec-layout presses function key CALLHISTORY
+When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key CALLHISTORY
 Then HMI OP2 clears Call History list
 Then HMI OP2 verifies that call history list contains 0 entries
 Then HMI OP2 closes Call History popup window
 
 Scenario: Caller establishes an outgoing call
-When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
+When HMI OP1 presses DA key OP2
+Then HMI OP1 has the DA key OP2 in state out_ringing
 
 Scenario: Callee client receives the incoming call
 Then HMI OP2 has the DA key OP1 in state inc_initiated
@@ -39,19 +39,19 @@ Then HMI OP2 has the call queue item OP1-OP2-DA in state connected
 Then HMI OP2 verifies that call queue item bar signals call state active
 
 Scenario: Caller client clears the phone call
-When HMI OP1 presses DA key OP2(as OP1)
+When HMI OP1 presses DA key OP2
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Op2 opens call history
 		  @REQUIREMENTS:GID-2535779
-When HMI OP2 with layout lower-west-exec-layout presses function key CALLHISTORY
+When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key CALLHISTORY
 Then HMI OP2 verifies that call history list contains 1 entries
 Then HMI OP2 verifies that call history dial button is disabled
 Then HMI OP2 closes Call History popup window
 
 Scenario: Caller establishes an outgoing priority call
-When HMI OP1 initiates a priority call on DA key OP2(as OP1)
-Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
+When HMI OP1 initiates a priority call on DA key OP2
+Then HMI OP1 has the DA key OP2 in state out_ringing
 
 Scenario: Callee client receives the incoming call
 Then HMI OP2 has the DA key OP1 in state inc_initiated
@@ -66,39 +66,39 @@ Then HMI OP2 has the call queue item OP1-OP2-DA in state connected
 Then HMI OP2 verifies that call queue item bar signals call state priority
 
 Scenario: Caller client clears the phone call
-When HMI OP1 presses DA key OP2(as OP1)
+When HMI OP1 presses DA key OP2
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Op2 opens call history
 		  @REQUIREMENTS:GID-2535779
-When HMI OP2 with layout lower-west-exec-layout presses function key CALLHISTORY
+When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key CALLHISTORY
 Then HMI OP2 verifies that call history list contains 2 entries
 Then HMI OP2 verifies that call history dial button is disabled
 Then HMI OP2 closes Call History popup window
 
 Scenario: OP1 establishes an outgoing IA call
-When HMI OP1 with layout lower-east-exec-layout selects grid tab 2
-When HMI OP1 presses IA key IA - OP2(as OP1)
+When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
+When HMI OP1 presses IA key IA - OP2
 Then HMI OP1 has the call queue item OP2-OP1-IA in state connected
-Then HMI OP1 has the IA key IA - OP2(as OP1) in state connected
+Then HMI OP1 has the IA key IA - OP2 in state connected
 
 Scenario: OP2 receives incoming IA call
-When HMI OP2 with layout lower-west-exec-layout selects grid tab 2
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
 Then HMI OP2 has the call queue item OP1-OP2-IA in state connected
 Then HMI OP2 has the IA key IA - OP1 in state connected
 
 Scenario: Cleanup IA call
-When HMI OP1 presses IA key IA - OP2(as OP1)
+When HMI OP1 presses IA key IA - OP2
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Op2 opens call history
 		  @REQUIREMENTS:GID-2535779
-When HMI OP2 with layout lower-west-exec-layout presses function key CALLHISTORY
+When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key CALLHISTORY
 Then HMI OP2 verifies that call history list contains 3 entries
 Then HMI OP2 verifies that call history dial button is disabled
 Then HMI OP2 closes Call History popup window
 
 Scenario: Cleanup - always select first tab
-When HMI OP1 with layout lower-east-exec-layout selects grid tab 1
-When HMI OP2 with layout lower-west-exec-layout selects grid tab 1
+When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 1
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1

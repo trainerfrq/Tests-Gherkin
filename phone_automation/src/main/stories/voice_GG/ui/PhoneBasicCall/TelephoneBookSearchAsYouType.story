@@ -11,12 +11,12 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                   | target                 | callType |
-| OP1-OP2 | sip:mission1@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1 | sip:222222@example.com   |                        | DA/IDA   |
+| key     | source                 | target      | callType |
+| OP1-OP2 | <<MISSION1_URI>>       | <<OP2_URI>> | DA/IDA   |
+| OP2-OP1 | <<OPVOICE2_PHONE_URI>> |             | DA/IDA   |
 
 Scenario: Caller opens phonebook
-When HMI OP1 with layout lower-east-exec-layout presses function key PHONEBOOK
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
 Then HMI OP1 verifies that phone book call button is disabled
 Then HMI OP1 verify that call route selector shows Default
 
@@ -24,27 +24,24 @@ Scenario: Caller does several searches in the phone book
 		  @REQUIREMENTS:GID-3003014
 When HMI OP1 writes in phonebook text box: op
 Then HMI OP1 verifies that all phonebook entries have text op highlighted
-Then HMI OP1 verifies that phonebook list has 4 items
+Then HMI OP1 verifies that phonebook list has 3 items
 Then HMI OP1 verifies that phone book call button is enabled
-
 When HMI OP1 writes in phonebook text box: 3
 Then HMI OP1 verifies that phonebook list has 0 items
 Then HMI OP1 verifies that phone book call button is enabled
-
 When HMI OP1 deletes a character from text box
 When HMI OP1 writes in phonebook text box: 2
 Then HMI OP1 verifies that all phonebook entries have text op2 highlighted
 Then HMI OP1 verifies that phonebook list has 1 items
 When HMI OP1 selects phonebook entry number: 0
 Then HMI OP1 verifies that phone book text box displays text OP2 Physical
-
 When HMI OP1 deletes a character from text box
 Then HMI OP1 checks that input text box displays op2 text
 Then HMI OP1 verifies that phonebook list has 1 items
 When HMI OP1 deletes a character from text box
 Then HMI OP1 checks that input text box displays op text
 Then HMI OP1 verifies that all phonebook entries have text op highlighted
-Then HMI OP1 verifies that phonebook list has 4 items
+Then HMI OP1 verifies that phonebook list has 3 items
 
 Scenario: Caller does a call from phone book
 When HMI OP1 selects phonebook entry number: 1

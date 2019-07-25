@@ -12,13 +12,13 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
+| key     | source      | target      | callType |
+| OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | DA/IDA   |
+| OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | DA/IDA   |
 
 Scenario: Define notification entries
 Given the following notification entries:
-| key     | severity | notificationText                               | 
+| key     | severity | notificationText                               |
 | Entry_3 | error    | General failure for phone call to              |
 | Entry_2 | info     | Call can not be accepted, TRANSFER mode active |
 | Entry_1 | error    | General failure for phone call to              |
@@ -87,7 +87,7 @@ Then HMI OP2 verifies that popup notification is visible
 Scenario: Op2 verifies the size of events list
 		  @REQUIREMENTS: GID-3281816
 When HMI OP2 selects tab event from notification display popup
-Then wait for 3 seconds 
+Then wait for 3 seconds
 Then HMI OP2 verifies that Notification Display list Event has 3 items
 
 Scenario: Op2 verifies the events list is time sorted

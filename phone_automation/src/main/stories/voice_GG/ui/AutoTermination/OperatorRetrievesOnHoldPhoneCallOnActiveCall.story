@@ -19,16 +19,16 @@ And phones for SipContact are created
 
 Scenario: Define call queue items
 Given the call queue items:
-| key            | source                 | target                 | callType |
-| OP1-OP2        | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1        | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
-| OP1-OP3        | sip:111111@example.com | sip:op3@example.com    | DA/IDA   |
-| OP3-OP1        | sip:op3@example.com    | sip:111111@example.com | DA/IDA   |
-| SipContact-OP1 | <<SIP_PHONE2>>         | <<OPVOICE1_PHONE_URI>> | DA/IDA   |
+| key            | source         | target                 | callType |
+| OP1-OP2        | <<OP1_URI>>    | <<OP2_URI>>            | DA/IDA   |
+| OP2-OP1        | <<OP2_URI>>    | <<OP1_URI>>            | DA/IDA   |
+| OP1-OP3        | <<OP1_URI>>    | <<OP3_URI>>            | DA/IDA   |
+| OP3-OP1        | <<OP3_URI>>    | <<OP1_URI>>            | DA/IDA   |
+| SipContact-OP1 | <<SIP_PHONE2>> | <<OPVOICE1_PHONE_URI>> | DA/IDA   |
 
 Scenario: Caller establishes an outgoing call
-When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
+When HMI OP1 presses DA key OP2
+Then HMI OP1 has the DA key OP2 in state out_ringing
 
 Scenario: Callee client receives the incoming call
 Then HMI OP2 has the DA key OP1 in state inc_initiated
@@ -75,11 +75,11 @@ Then HMI OP1 has in the call queue a number of 1 calls
 Then HMI OP2 has in the call queue a number of 1 calls
 
 Scenario: Op1 establishes an outgoing call
-When HMI OP1 presses DA key OP3(as OP1)
-Then HMI OP1 has the DA key OP3(as OP1) in state out_ringing
+When HMI OP1 presses DA key OP3
+Then HMI OP1 has the DA key OP3 in state out_ringing
 
 Scenario: Op3 receives the incoming call
-Then HMI OP3 has the DA key OP1(as OP3) in state inc_initiated
+Then HMI OP3 has the DA key OP1 in state inc_initiated
 
 Scenario: Verify calls state for op1, op2 and op3
 		  @REQUIREMENTS:GID-2878006

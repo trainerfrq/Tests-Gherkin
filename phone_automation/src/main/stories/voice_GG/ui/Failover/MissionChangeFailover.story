@@ -15,7 +15,7 @@ Scenario: Verify operator mission
 Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission MAN-NIGHT-TACT
 
 Scenario: Change mission
-When HMI OP1 with layout lower-east-exec-layout presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP1 has a list of 3 missions available
 Then HMI OP1 changes current mission to mission WEST-EXEC
 Then HMI OP1 activates mission
@@ -35,11 +35,14 @@ GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost2.story
 When HMI OP1 verifies that loading screen is visible
 Then HMI OP1 has in the DISPLAY STATUS section connection the state DEGRADED
 
+Scenario: Op1 closes settings popup window
+Then HMI OP1 closes settings popup
+
 Scenario: Verify operator mission
 Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission WEST-EXEC
 
 Scenario: Change mission
-When HMI OP1 with layout lower-west-exec-layout presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
 Then HMI OP1 has a list of 3 missions available
 Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP1 activates mission
@@ -52,3 +55,6 @@ Scenario: Verify displayed status after the starting the op voice instances
 GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost2.story
 Then waiting for 60 seconds
 Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
+
+Scenario: Time to wait between failover tests
+Then waiting for 1 minute

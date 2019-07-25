@@ -14,15 +14,15 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
-| OP3-OP2 | sip:op3@example.com    | sip:222222@example.com | DA/IDA   |
-| OP2-OP3 | sip:222222@example.com | sip:op3@example.com    | DA/IDA   |
+| key     | source      | target      | callType |
+| OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | DA/IDA   |
+| OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | DA/IDA   |
+| OP3-OP2 | <<OP3_URI>> | <<OP2_URI>> | DA/IDA   |
+| OP2-OP3 | <<OP2_URI>> | <<OP3_URI>> | DA/IDA   |
 
 Scenario: Op1 establishes an outgoing call
-When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
+When HMI OP1 presses DA key OP2
+Then HMI OP1 has the DA key OP2 in state out_ringing
 
 Scenario: Op2 client receives the incoming call
 Then HMI OP2 has the DA key OP1 in state inc_initiated
@@ -41,7 +41,7 @@ Then HMI OP2 has the call queue item OP1-OP2 in state hold
 Then HMI OP1 has the call queue item OP2-OP1 in state held
 
 Scenario: Change mission for HMI OP1
-When HMI OP1 with layout lower-east-exec-layout presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP1 changes current mission to mission WEST-EXEC
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
@@ -52,8 +52,8 @@ Then HMI OP2 has the call queue item OP1-OP2 in state hold
 Then HMI OP1 has the call queue item OP2-OP1 in state held
 
 Scenario: Op3 establishes an outgoing call
-When HMI OP3 presses DA key OP2(as OP3)
-Then HMI OP3 has the DA key OP2(as OP3) in state out_ringing
+When HMI OP3 presses DA key OP2
+Then HMI OP3 has the DA key OP2 in state out_ringing
 
 Scenario: Op2 client receives the incoming call
 Then HMI OP2 has the DA key OP3 in state inc_initiated
@@ -67,7 +67,7 @@ Then HMI OP3 has the call queue item OP2-OP3 in state connected
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
 
 Scenario: Change mission for HMI OP2
-When HMI OP2 with layout lower-west-exec-layout presses function key MISSIONS
+When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
 Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
@@ -84,7 +84,7 @@ Then HMI OP2 has the call queue item OP3-OP2 in state hold
 Then HMI OP3 has the call queue item OP2-OP3 in state held
 
 Scenario: Change mission for HMI OP3
-When HMI OP3 with layout upper-east-exec-layout presses function key MISSIONS
+When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MISSIONS
 Then HMI OP3 changes current mission to mission WEST-EXEC
 Then HMI OP3 activates mission
 Then waiting for 5 seconds
@@ -98,7 +98,7 @@ Scenario: Caller retrieves call from held
 Then HMI OP2 retrieves from hold the call queue item OP3-OP2
 
 Scenario: Op3 change mission
-When HMI OP3 with layout lower-west-exec-layout presses function key MISSIONS
+When HMI OP3 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
 Then HMI OP3 changes current mission to mission EAST-EXEC
 Then HMI OP3 activates mission
 Then waiting for 5 seconds
@@ -111,7 +111,7 @@ Then HMI OP3 has the call queue item OP2-OP3 in state connected
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
 
 Scenario: Caller clears outgoing call
-When HMI OP3 presses DA key OP2(as OP3)
+When HMI OP3 presses DA key OP2
 
 Scenario: Callee retrieves call from hold
 Then HMI OP2 retrieves from hold the call queue item OP1-OP2

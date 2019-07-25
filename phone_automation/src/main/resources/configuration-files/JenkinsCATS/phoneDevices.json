@@ -1,65 +1,65 @@
 [
-  {
-    "opId": "cwp-vst02-14",
-    "devices": {
-      "gg_input": {
-        "type": "ext",
-        "id": "handset_0"
-      },
-      "gg_output": {
-        "type": "vp",
-        "id": "gg_Out"
-      },
-      "gg_headset": {
-        "type": "ext",
-        "id": "handset_0"
-      },
-      "gg_lsp": {
-        "type": "ext",
-        "id": "lsp_0"
-      }
+    {
+        "opId": "cwp-vst02-14",
+        "devices": {
+            "gg_input": {
+                "type": "vp",
+                "id": "gg_Mic"
+            },
+            "gg_output": {
+                "type": "vp",
+                "id": "gg_Out"
+            },
+            "gg_headset": {
+                "type": "ext",
+                "id": "iAux_0_0_OpSpRight"
+            },
+            "gg_lsp": {
+                "type": "ext",
+                "id": "iAux_1_0_Lsp"
+            }
+        }
+    },
+    {
+        "opId": "cwp-vst02-15",
+        "devices": {
+            "gg_input": {
+                "type": "vp",
+                "id": "gg_Mic"
+            },
+            "gg_output": {
+                "type": "vp",
+                "id": "gg_Out"
+            },
+            "gg_headset": {
+                "type": "ext",
+                "id": "iAux_0_0_OpSpRight"
+            },
+            "gg_lsp": {
+                "type": "ext",
+                "id": "iAux_1_0_Lsp"
+            }
+        }
+    },
+    {
+        "opId": "cwp-vst02-16",
+        "devices": {
+            "gg_input": {
+                "type": "vp",
+                "id": "gg_Mic"
+            },
+            "gg_output": {
+                "type": "vp",
+                "id": "gg_Out"
+            },
+            "gg_headset": {
+                "type": "ext",
+                "id": "iAux_0_0_OpSpRight"
+            },
+            "gg_lsp": {
+                "type": "ext",
+                "id": "iAux_1_0_Lsp"
+            }
+        }
     }
-  },
-  {
-    "opId": "cwp-vst02-15",
-    "devices": {
-      "gg_input": {
-        "type": "ext",
-        "id": "handset_0"
-      },
-      "gg_output": {
-        "type": "vp",
-        "id": "gg_Out"
-      },
-      "gg_headset": {
-        "type": "ext",
-        "id": "handset_0"
-      },
-      "gg_lsp": {
-        "type": "ext",
-        "id": "lsp_0"
-      }
-    }
-  },
-  {
-    "opId": "cwp-vst02-16",
-    "devices": {
-      "gg_input": {
-        "type": "ext",
-        "id": "handset_0"
-      },
-      "gg_output": {
-        "type": "vp",
-        "id": "gg_Out"
-      },
-      "gg_headset": {
-        "type": "ext",
-        "id": "handset_0"
-      },
-      "gg_lsp": {
-        "type": "ext",
-        "id": "lsp_0"
-      }
-    }
-  }
 ]

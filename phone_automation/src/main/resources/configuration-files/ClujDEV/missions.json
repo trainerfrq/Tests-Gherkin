@@ -85,7 +85,7 @@
         "sip:groupall@192.168.10.33:5060"
       ]
     },
-    "layoutId": "lower-east-exec-layout"
+    "layoutId": "<<LAYOUT_MISSION1>>"
   },
   {
     "missionId": "e43bacf4-9e67-42ea-ac39-4e30e2583809",
@@ -125,7 +125,7 @@
         "sip:groupall@192.168.10.33:5060"
       ]
     },
-    "layoutId": "lower-west-exec-layout"
+    "layoutId": "<<LAYOUT_MISSION2>>"
   },
   {
     "missionId": "e8faa015-ad4d-4d11-b403-b9e4983cbf74",
@@ -164,6 +164,6 @@
         "sip:groupall@192.168.10.33:5060"
       ]
     },
-    "layoutId": "lower-east-exec-layout"
+    "layoutId": "<<LAYOUT_MISSION1>>"
   }
 ]

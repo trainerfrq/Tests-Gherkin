@@ -9,14 +9,14 @@
         <cats:reportFormat>HTML</cats:reportFormat>
     </cats:reportFormats>
     <cats:storyCollections>
-        <cats:storyCollection enabled="true">
+        <cats:storyCollection enabled="false">
             <cats:name>Deploy Services</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
                 <cats:status>CREATED</cats:status>
             </cats:report>
             <cats:storyLists>
-                <cats:storyList enabled="true">
+                <cats:storyList enabled="false">
                     <cats:name>Deploy Services</cats:name>
                     <cats:onErrorOption>FINISH_CURRENT_STORY</cats:onErrorOption>
                     <cats:repetitions>1</cats:repetitions>
@@ -28,8 +28,8 @@
                         <cats:story enabled="true">
                             <cats:storyPath>deploy/DeployServices.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -55,20 +55,20 @@
                         <cats:story enabled="true">
                             <cats:storyPath>deploy/CreateCO.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>deploy/StartProfilesForWebsocketTests.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>deploy/DeployOpVoiceCluster.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -94,86 +94,86 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/HoldRetrieve/PutOnHoldAgain.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/HoldRetrieve/PutOnHoldIACall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/HoldRetrieve/PutOnHoldOnRinging.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/HoldRetrieve/PutOnHoldWhenMaxNumberReached.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/HoldRetrieve/RetrieveFromHold.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/HoldRetrieve/RetrieveFromHoldActiveCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/HoldRetrieve/RetrieveFromHoldHeldCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/HoldRetrieve/RetrieveFromHoldHeldCallOtherCallId.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/HoldRetrieve/RetrieveFromHoldOneOfTwoCallsOnHold.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/HoldRetrieve/RetrieveFromHoldWithEstablish.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/HoldRetrieve/RetrieveFromTwoWayHold.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/HoldRetrieve/TerminateCallOnHold.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/HoldRetrieve/TerminateHeldCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/HoldRetrieve/TwoWayHold.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -199,44 +199,44 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/DACalls/CallerClearsActiveCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/DACalls/CalleeClearsActiveCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/DACalls/CalleeRejectsIncomingCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/DACalls/CallerCancelsOutgoingCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/DACalls/DisassociateClientOnActiveCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/DACalls/DisassociateClientOnIncomingCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/DACalls/DisassociateClientOnOutgoingCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -262,74 +262,74 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/IACalls/IACallCallerClearsBeforeTimerExpires.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/IACalls/IACallErrorBeforeTimerExpires.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/IACalls/IACallTimerExpires.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/IACalls/IADuplexCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/IACalls/IADuplexCallCalleeAndCallerClears.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/IACalls/IADuplexCallCallerAndCalleeClears.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/IACalls/IADuplexCallReestablishedByCallee.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/IACalls/IADuplexCallReestablishedByCaller.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/IACalls/IAOneWayCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/IACalls/IAOneWayCallCalleeClears.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/IACalls/IAOneWayCallCallerClears.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/IACalls/SecondIACallTerminatedIfMaxNumberSet.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -355,68 +355,68 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/SipPhones/OperatorToSipPhoneCalleeRejectsCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/SipPhones/OperatorToSipPhoneCalleeTerminatesCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/SipPhones/OperatorToSipPhoneCallerCancelsCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/SipPhones/OperatorToSipPhoneCallerClearsCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/SipPhones/OperatorToSipPhoneCheckAudioCodec.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/SipPhones/SipPhoneToOperatorCalleeClearsCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/SipPhones/SipPhoneToOperatorCalleeRejectsCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/SipPhones/SipPhoneToOperatorCallerCancelsCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/SipPhones/SipPhoneToOperatorCallerTerminatesCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/SipPhones/OperatorClearsOutFailedCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/SipPhones/OperatorWaitsOnOutFailedCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -442,62 +442,62 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorAcceptsPhoneCallOnActiveCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorAcceptsPhoneCallOnCallOnHold.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorAcceptsPhoneCallOnHeldCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorAcceptsPhoneCallOnOutgoingPendingCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorCallsPhoneOnActiveCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorCallsPhoneOnCallOnHold.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorCallsPhoneOnHeldCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorCallsPhoneOnOutgoingPendingCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorRetrievesOnHoldPhoneCallOnActiveCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorRetrievesOnHoldPhoneCallOnOutgoingPendingCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -505,7 +505,7 @@
             </cats:storyLists>
         </cats:storyCollection>
         <cats:storyCollection enabled="true">
-        <cats:name>Websocket - Call Forward</cats:name>
+            <cats:name>Websocket - Call Forward</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
                 <cats:status>CREATED</cats:status>
@@ -523,8 +523,8 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/CallForward/CallForward.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -550,8 +550,8 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/PriorityCall/DAPriorityCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -577,14 +577,14 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/MissionsAndRoles/VerifyLayoutForRoles.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/MissionsAndRoles/VerifyTelephoneBookForRoles.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -610,86 +610,86 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/TelephoneBook/CalleeAndCalleeMatchesPhoneBookEntries.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/TelephoneBook/NoneOfCallPartiesMatchesPhoneBookEntries.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/TelephoneBook/DACallMatchingPhoneBookEntries.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookEmptySearchPattern.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookAndVerifyEntries.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookFewerEntriesThanStartIndex.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookNoMatchingEntries.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookNoMoreEntries.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookRealTyping.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookSameSearchPatternDifferentCase.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookSameSearchPatternTwice.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookWithConsecutiveRequests.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookWithPagination.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/TelephoneBook/SearchPhoneBookZeroEntriesRequested.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -715,110 +715,110 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TargetClearsConsultationCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TargetDeclinesConsultationCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TargetRespondsWithErrorToConsultationCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferIACall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferRingingCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferTargetAcceptCallWhileTransferInProgress.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferToGroup.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferToTargetHavingCallOnHoldWithTransferee.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferToTargetHavingCallOnHoldWithTransferor.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferWithConsultation.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferWithoutConsultation.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransfereeAcceptCallWhileTransferInProgress.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransfereeClearsInitialCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferorCanNotAcceptCallWhileTransferInProgress.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferorClearsConsultationCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferorClearsInitialCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TransferorDisassociatesDuringTransfer.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/CancelTransferWhileConsultationOnHold.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -844,8 +844,8 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Failover/DACallSwitchingFromActiveToPassive.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -871,8 +871,8 @@
                         <cats:story enabled="true">
                             <cats:storyPath>deploy/WebsocketCleanup.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -898,20 +898,20 @@
                         <cats:story enabled="true">
                             <cats:storyPath>deploy/DeployHmi.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>deploy/CreateCO.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>deploy/StartProfilesForUITests.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -937,80 +937,80 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneGeneral/CallQueueSections.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneGeneral/DisplayCallerIdentityForDAIncomingCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneGeneral/DisplayCallerIdentityForIAIncomingCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneGeneral/DisplayCallerRoleForIncomingCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneGeneral/ElementsOfCallRouteSelector.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneGeneral/EstablishPhoneCallTowardsSameTarget.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneGeneral/EstablishPhoneCallWhenCallOnHold.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneGeneral/OrderedListOfCallRouteSelectors.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneGeneral/OrderOfCallsInCallQueueSection.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneGeneral/PhoneCallSimultaneousCalls.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneGeneral/PhoneCallUsingATSTelephoneNumber.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneGeneral/PhoneCallUsingAlphanumericAddress.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -1036,80 +1036,80 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneBasicCall/DABasicCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneBasicCall/DACallTerminateInDifferentStates.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneBasicCall/DAPriorityCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneBasicCall/TelephoneBookMaximumNumberOfEntries.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneBasicCall/DACallMatchingPhoneBookEntry.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneBasicCall/DACallNoMatchingPhoneBookEntry.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneBasicCall/DACallPreventedToOwnOperatorPosition.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneBasicCall/DACallFromTelephoneBook.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneBasicCall/DAPriorityCallFromTelephoneBook.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneBasicCall/TelephoneBookSearchAsYouType.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneBasicCall/DAKeyStateAndType.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneBasicCall/DAKeyConfiguration.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -1135,38 +1135,38 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Role/PhoneCallUsingRoleURIOtherRole.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Role/PhoneCallUsingRoleURIOwnRole.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Role/PhoneCallUsingRoleAliasSIPAddresses.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Role/PhoneCallFromPrimaryRole.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Role/SIPCallTowardsAllOperators.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -1192,50 +1192,44 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/IACalls/IABasicCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/IACalls/IADuplexCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/IACalls/IAIncomingCallLimit.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/IACalls/IAOutFailedCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/IACalls/IACallsOnMissionChange.story</cats:storyPath>
-                            <cats:storyParameters/>
                             <cats:storyStatistics/>
-                            <cats:storyDataList/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/IACalls/IARoleTargetCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/IACalls/IACallPreventedToOwnOperatorPosition.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -1261,26 +1255,26 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/GroupCalls/DAGroupCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/GroupCalls/DACancelGroupCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/GroupCalls/DARejectGroupCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -1306,20 +1300,20 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallHold/CallsOnHoldLimit.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallHold/PutActiveCallOnHold.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -1345,32 +1339,44 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Transfer/TransferWithConsultation.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Transfer/TransferWithoutConsultation.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Transfer/TransferPriorityCallWithConsultation.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Transfer/TransferorCanNotAcceptCallWhileTransferInProgress.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/Transfer/TransferWithConsultationIncomingCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/Transfer/TransferWithoutConsultationIncomingCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -1396,56 +1402,62 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Mission/MissionChange.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Mission/DABasicCallMissionChange.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Mission/IACallMissionChange.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Mission/CallOnHoldMissionChange.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Mission/CallHeldMissionChange.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Mission/TransferCallMissionChange.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Mission/DAPriorityCallMissionChange.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/Mission/IACallLimitOnMissionChange.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Mission/MissionCleanUp.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -1471,62 +1483,62 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/AutoTermination/OperatorAcceptsPhoneCallOnActiveCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/AutoTermination/OperatorAcceptsPhoneCallOnIADuplex.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/AutoTermination/OperatorAcceptsPhoneOnHeldCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/AutoTermination/OperatorReceivesIACallOnActiveCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/AutoTermination/OperatorRetrievesOnHoldPhoneCallOnActiveCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/AutoTermination/OperatorInitiatesIADuplexOnActiveCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/AutoTermination/OperatorTriesToAcceptPhoneOnConsultationCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/AutoTermination/OperatorEstablishesSecondIACall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/AutoTermination/OperatorEstablishesIACallOnDuplex.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -1552,92 +1564,92 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallHistory/AdditionalInformationInCallHistoryList.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallHistory/DACallFromHistoryAfterMissionChange.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallHistory/DACallFromHistorySameSource.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallHistory/DACallFromIncomingDAHistoryEntry.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallHistory/DACallFromIncomingDAPriorityCall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallHistory/DACallFromIncomingIACallHistoryEntry.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallHistory/DAPriorityCallFromHistorySameSource.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallHistory/IACallFromOutgoingIACallHistoryEntry.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallHistory/KeepCallHistoryOnMissionActivation.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallHistory/MissionDefaultSIPCallFromHistoryAfterMissionChange.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallHistory/NumberOfCallHistoryListEntries.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallHistory/RedialFromCallHistoryCaleeSide.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallHistory/RedialFromCallHistoryCallerSide.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallHistory/TimeSortedCallHistoryList.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -1663,44 +1675,44 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/DialPad/DACallFromDialPadATSTelephoneNumber.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/DialPad/DACallFromDialPadAlphanumericAddress.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/DialPad/DACallFromDialPadMatchingPhoneBookEntry.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/DialPad/DAPriorityCallFromDialPadATSTelephoneNumber.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/DialPad/DAPriorityCallFromDialPadAlphanumericAddress.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/DialPad/DialPadUsage.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -1726,92 +1738,92 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallForward/ChangeMissionWhileCallForwardIsActive.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallForward/DACallForward.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallForward/CallForwardLoopDetection.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallForward/CallForwardLoopDetectionFromInsideTheLoop.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallForward/RetrieveFromHoldWhileInForwardLoop.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallForward/DACallForwardChooseTargetFromPhonebook.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallForward/DAPriorityCallForward.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallForward/IACallForward.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallForward/OutgoingCallFromPhonebookWhileCallForwardIsActive.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallForward/OutgoingCallWhileCallForwardIsActive.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallForward/RedialFromCallHistoryWhileCallForwardIsActive.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallForward/ActivateCallForwardWhileActiveCallsExist.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallForward/DACallForwardChooseTargetFromDialpad.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="false">
                             <cats:storyPath>voice_GG/ui/CallForward/ValidSIPCallForward.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -1837,50 +1849,50 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/AudioDevice/AudioVolumeSlider.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/AudioDevice/MuteAudio.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/AudioDevice/MuteButtonStateWhenAudioSliderIsMoved.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/AudioDevice/MuteAudioOnMissionChange.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/AudioDevice/MuteVolumeSliderOnMissionChange.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/AudioDevice/KeepLSPStateOnMissionChange.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/AudioDevice/ChangeLSPStateWhileHavingCallOnHold.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -1906,26 +1918,26 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/ui/NotificationDisplay/VerifyNotificationDisplayLists.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/ui/NotificationDisplay/NumberOfNotificationEventListEntries.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/ui/NotificationDisplay/TimeSortedAndAdditionalInformationForEventList.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -1951,86 +1963,86 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Conference/ConferenceAddingParticipantsFromPhonebook.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Conference/ConferenceAndCallForwardLoopDetection.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Conference/ConferenceParticipantReceivingDACall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Conference/ConferenceParticipantReceivingIACall.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="false">
                             <cats:storyPath>voice_GG/ui/Conference/ConferenceWhileOneParticipantHasCallForwardActive.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Conference/DACallsConference.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Conference/DACallsConferenceWhileInitiatorChangesMission.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Conference/DACallsConferenceWhileParticipantChangesMission.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Conference/DAPriorityCallsConference.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Conference/FullDuplexIACAllWhileHavingAConference.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Conference/HoldAndTransferNotPossibleForConference.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Conference/InitiatorReceivingDACallWhileHavingAConference.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Conference/InitiatorReceivingIACallWhileHavingAConference.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -2056,74 +2068,74 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Failover/AudioSettingsFailover.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Failover/CallHistoryFailover.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Failover/DABasicCallFailover.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Failover/DABasicCallOnGoingFailover.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Failover/DACallForwardFailover.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Failover/DAPriorityCallFailover.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Failover/DAPriorityCallOnGoingFailover.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Failover/IACallFailover.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Failover/IACallOnGoingFailover.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Failover/MissionChangeFailover.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Failover/LSPStateFailover.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>3600</cats:timeout>
@@ -2149,22 +2161,22 @@
                         <cats:story enabled="true">
                             <cats:storyPath>deploy/HmiCleanup.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
                 </cats:storyList>
             </cats:storyLists>
         </cats:storyCollection>
-        <cats:storyCollection enabled="true">
+        <cats:storyCollection enabled="false">
             <cats:name>Audio - Prepare Tests</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
                 <cats:status>CREATED</cats:status>
             </cats:report>
             <cats:storyLists>
-                <cats:storyList enabled="true">
+                <cats:storyList enabled="false">
                     <cats:name>Audio - Prepare Tests</cats:name>
                     <cats:onErrorOption>ABORT_ENTIRE_STORY_SET</cats:onErrorOption>
                     <cats:repetitions>1</cats:repetitions>
@@ -2176,52 +2188,52 @@
                         <cats:story enabled="true">
                             <cats:storyPath>deploy/CreateCO.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>deploy/StartProfilesForAudioTests.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>deploy/UpdateOpVoicePartitionsJson.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>deploy/UpdateOpVoiceServiceDescriptorsAndRedeployOpVoice.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>deploy/DeployHmi.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/audio/UnattendedStatus/PrepareAudioSimulator.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
                 </cats:storyList>
             </cats:storyLists>
         </cats:storyCollection>
-        <cats:storyCollection enabled="true">
+        <cats:storyCollection enabled="false">
             <cats:name>Audio - UnattendedStatus</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
                 <cats:status>CREATED</cats:status>
             </cats:report>
             <cats:storyLists>
-                <cats:storyList enabled="true">
+                <cats:storyList enabled="false">
                     <cats:name>Audio - UnattendedStatus</cats:name>
                     <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
                     <cats:repetitions>1</cats:repetitions>
@@ -2233,58 +2245,58 @@
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/audio/UnattendedStatus/ActiveCallWhilePositionUnattended.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/audio/UnattendedStatus/IdleOnPositionUnattendedSet.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/audio/UnattendedStatus/KeepCallForwardIfIdleOnPositionUnattended.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/audio/UnattendedStatus/MissionChangeAndIdleOnPositionUnattended.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/audio/UnattendedStatus/PreventIdleOnPositionUnattended.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/audio/UnattendedStatus/IdleOnPositionUnattendedNotSet.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
                 </cats:storyList>
             </cats:storyLists>
         </cats:storyCollection>
-        <cats:storyCollection enabled="true">
+        <cats:storyCollection enabled="false">
             <cats:name>Audio - Cleanup</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
                 <cats:status>CREATED</cats:status>
             </cats:report>
             <cats:storyLists>
-                <cats:storyList enabled="true">
+                <cats:storyList enabled="false">
                     <cats:name>Audio - Cleanup</cats:name>
                     <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
                     <cats:repetitions>1</cats:repetitions>
@@ -2296,14 +2308,14 @@
                         <cats:story enabled="true">
                             <cats:storyPath>deploy/RevertDeployChangesNeededForAudioSimulator.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>deploy/AudioCleanup.story</cats:storyPath>
                             <cats:storyParameters/>
-                            <cats:storyStatistics/>
                             <cats:storyDataList/>
+                            <cats:storyStatistics/>
                         </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
@@ -2311,5 +2323,4 @@
             </cats:storyLists>
         </cats:storyCollection>
     </cats:storyCollections>
-    <cats:webCenterURL>http://10.254.56.242:8081/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880/services/reports/html/3348d3f1-8a3d-4c0a-8513-ae0a64d0e880</cats:webCenterURL>
 </cats:storyBoard>

@@ -11,13 +11,13 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
+| key     | source      | target      | callType |
+| OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | DA/IDA   |
+| OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | DA/IDA   |
 
 Scenario: Caller establishes an outgoing call
-When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
+When HMI OP1 presses DA key OP2
+Then HMI OP1 has the DA key OP2 in state out_ringing
 
 Scenario: Callee client receives the incoming call
 Then HMI OP2 has the DA key OP1 in state inc_initiated
@@ -41,8 +41,8 @@ Then HMI OP2 has the call queue item OP1-OP2 in state held
 
 Scenario: Verify call queue section
 		  @REQUIREMENTS:GID-3371934
-Then HMI OP1 has the call queue item OP2-OP1 in the hold list with name label OP2 Physical
-Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label Operator1
+Then HMI OP1 has the call queue item OP2-OP1 in the hold list with name label <<OP2_NAME>>
+Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label <<OP1_NAME>>
 
 Scenario: Callee puts the call on hold
 When HMI OP2 puts on hold the active call
@@ -70,8 +70,8 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Scenario: Verify call queue section
 		  @REQUIREMENTS:GID-3371935
 Then HMI OP1 verifies that the call queue item OP2-OP1 was removed from the hold list
-Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2 Physical
-Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label Operator1
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label <<OP2_NAME>>
+Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label <<OP1_NAME>>
 
 Scenario: Callee clears outgoing call
 When HMI OP2 presses DA key OP1

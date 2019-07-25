@@ -13,20 +13,20 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | DA/IDA   |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | DA/IDA   |
+| key     | source      | target      | callType |
+| OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | DA/IDA   |
+| OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | DA/IDA   |
 
 Scenario: Caller establishes an outgoing call
-When HMI OP1 presses DA key OP2(as OP1)
+When HMI OP1 presses DA key OP2
 Then waiting for 3 seconds
-Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
+Then HMI OP1 has the DA key OP2 in state out_ringing
 
 Scenario: Callee client receives the incoming call
 Then HMI OP2 has the DA key OP1 in state inc_initiated
 
 Scenario: Change mission for HMI OP2
-When HMI OP2 with layout lower-west-exec-layout presses function key MISSIONS
+When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
 Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
@@ -44,7 +44,7 @@ Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Change mission for HMI OP1
-When HMI OP1 with layout lower-east-exec-layout presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP1 changes current mission to mission WEST-EXEC
 Then HMI OP1 activates mission
 Then waiting for 5 seconds

@@ -1220,7 +1220,7 @@
                             <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/IACalls/IACallsOnMissionChange.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/ui/Mission/IACallsOnMissionChange.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>

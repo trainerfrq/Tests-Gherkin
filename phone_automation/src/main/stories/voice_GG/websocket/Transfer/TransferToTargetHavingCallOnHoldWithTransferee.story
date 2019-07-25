@@ -15,9 +15,9 @@ When WS3 opens the message buffer for message type callStatusIndication named Ca
 When WS3 opens the message buffer for message type callIncomingIndication named CallIncomingIndicationBuffer3
 
 Scenario: Transferor retrieves phone data
-When WS2 loads phone data for role roleId1 and names roleCallSource and roleCallTarget from the entry number 3
-When WS1 loads phone data for role roleId1 and names callSource1 and callTarget1 from the entry number 1
-When WS1 loads phone data for role roleId1 and names callSource2 and callTarget2 from the entry number 3
+When WS2 loads phone data for mission missionId1 and names roleCallSource and roleCallTarget from the entry number 3
+When WS1 loads phone data for mission missionId1 and names callSource1 and callTarget1 from the entry number 1
+When WS1 loads phone data for mission missionId1 and names callSource2 and callTarget2 from the entry number 3
 
 Scenario: Future transferee establishes an outgoing call
 When WS2 establishes an outgoing phone call using source roleCallSource ang target roleCallTarget and names initialOutgoingPhoneCallId

@@ -9,7 +9,7 @@ Given booked profiles:
 | javafx  | hmi   | <<CLIENT1_IP>> | HMI OP1    |
 
 Scenario: Op1 opens settings tab
-When HMI OP1 with layout lower-east-exec-layout presses function key SETTINGS
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key SETTINGS
 
 Scenario: Op1 adjust all the volume sliders to mute level
 		  @REQUIREMENTS:GID-4231218
@@ -26,7 +26,7 @@ Scenario: Op1 closes audio settings tab
 Then HMI OP1 closes settings popup
 
 Scenario: Op1 reopens settings tab
-When HMI OP1 with layout lower-east-exec-layout presses function key SETTINGS
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key SETTINGS
 
 Scenario: Op1 verifies that all the volume sliders remained at mute level
 Then HMI OP1 verifies that volume slider userInput is set to level 0
@@ -48,7 +48,7 @@ Scenario: Op1 closes settings tab
 Then HMI OP1 closes settings popup
 
 Scenario: Op1 reopens settings tab
-When HMI OP1 with layout lower-east-exec-layout presses function key SETTINGS
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key SETTINGS
 
 Scenario: Op1 verifies that all the volume sliders remained at middle level
 Then HMI OP1 verifies that volume slider userInput is set to level 50
@@ -70,7 +70,7 @@ Scenario: Op1 closes settings tab
 Then HMI OP1 closes settings popup
 
 Scenario: Op1 reopens settings tab
-When HMI OP1 with layout lower-east-exec-layout presses function key SETTINGS
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key SETTINGS
 
 Scenario: Op1 verifies that all the volume sliders remained at maximum level
 Then HMI OP1 verifies that volume slider userInput is set to level 100
@@ -96,7 +96,7 @@ Scenario: Op1 closes settings tab
 Then HMI OP1 closes settings popup
 
 Scenario: Op1 reopens settings tab
-When HMI OP1 with layout lower-east-exec-layout presses function key SETTINGS
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key SETTINGS
 
 Scenario: Op1 reopens audio settings tab
 When HMI OP1 clicks on volumeControlPanel button
@@ -121,7 +121,7 @@ Scenario: Op1 closes settings tab
 Then HMI OP1 closes settings popup
 
 Scenario: Op1 reopens settings tab
-When HMI OP1 with layout lower-east-exec-layout presses function key SETTINGS
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key SETTINGS
 
 Scenario: Op1 reopens audio settings tab
 When HMI OP1 clicks on volumeControlPanel button
@@ -147,7 +147,7 @@ Scenario: Op1 closes settings tab
 Then HMI OP1 closes settings popup
 
 Scenario: Op1 reopens settings tab
-When HMI OP1 with layout lower-east-exec-layout presses function key SETTINGS
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key SETTINGS
 
 Scenario: Op1 reopens audio settings tab
 When HMI OP1 clicks on volumeControlPanel button

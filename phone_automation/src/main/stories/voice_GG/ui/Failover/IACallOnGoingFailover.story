@@ -11,9 +11,9 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
-| OP1-OP2 | sip:111111@example.com | sip:222222@example.com | IA       |
-| OP2-OP1 | sip:222222@example.com | sip:111111@example.com | IA       |
+| key     | source      | target      | callType |
+| OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | IA       |
+| OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | IA       |
 
 Scenario: Verify displayed status after stopping and starting op voice instances from one partition
 GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost1.story
@@ -23,28 +23,30 @@ Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 
 Scenario: Verify displayed status after the stopping the op voice instances from one partition
 GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost2.story
-Then HMI OP1 has in the DISPLAY STATUS section connection the state DISCONNECTED
-Then HMI OP2 has in the DISPLAY STATUS section connection the state DISCONNECTED
-
-Scenario: Verify displayed status after the stopping the op voice instances from one partition
 When HMI OP1 verifies that loading screen is visible
 Then HMI OP1 has in the DISPLAY STATUS section connection the state DEGRADED
 When HMI OP2 verifies that loading screen is visible
 Then HMI OP2 has in the DISPLAY STATUS section connection the state DEGRADED
 
 Scenario: Select second tab to make IA buttons visible
-When HMI OP1 with layout lower-east-exec-layout selects grid tab 2
-When HMI OP2 with layout lower-west-exec-layout selects grid tab 2
+When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
 Scenario: Verify IA keys state
-Given HMI OP1 has the IA key IA - OP2(as OP1) in ready to be used state
+Given HMI OP1 has the IA key IA - OP2 in ready to be used state
+
 Given HMI OP2 has the IA key IA - OP1 in ready to be used state
 
+Scenario: Op1 closes settings popup window
+Then HMI OP1 closes settings popup
+
+Scenario: Op2 closes settings popup window
+Then HMI OP2 closes settings popup
 Scenario: Caller establishes an half duplex IA call
-When HMI OP1 presses IA key IA - OP2(as OP1)
+When HMI OP1 presses IA key IA - OP2
 
 Scenario: Verify call queue section
-Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label IA - OP2(as OP1)
-Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label Operator1
+Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label <<OP2_NAME>>
+Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label <<OP1_NAME>>
 
 Scenario: Verify call is connected for both operators
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
@@ -64,6 +66,11 @@ Then HMI OP1 has in the DISPLAY STATUS section connection the state DEGRADED
 When HMI OP2 verifies that loading screen is visible
 Then HMI OP2 has in the DISPLAY STATUS section connection the state DEGRADED
 
+Scenario: Op1 closes settings popup window
+Then HMI OP1 closes settings popup
+
+Scenario: Op2 closes settings popup window
+Then HMI OP2 closes settings popup
 Scenario: Call is terminated for calee
 !-- TODO QXVP-9245 : enable this test after story is done
 Then HMI OP2 has in the call queue a number of 0 calls
@@ -72,20 +79,21 @@ Scenario: Call is terminated also for caller
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Verify IA keys state
-Given HMI OP1 has the IA key IA - OP2(as OP1) in ready to be used state
+Given HMI OP1 has the IA key IA - OP2 in ready to be used state
+
 Given HMI OP2 has the IA key IA - OP1 in ready to be used state
-Then HMI OP1 has the DA key IA - OP2(as OP1) in state terminated
+Then HMI OP1 has the DA key IA - OP2 in state terminated
 Then HMI OP2 has the DA key IA - OP1 in state terminated
 
 Scenario: Caller establishes an half duplex IA call
-When HMI OP1 presses IA key IA - OP2(as OP1)
+When HMI OP1 presses IA key IA - OP2
 
 Scenario: Verify call is connected for both operators
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Caller client clears the phone call
-When HMI OP1 presses IA key IA - OP2(as OP1)
+When HMI OP1 presses IA key IA - OP2
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for caller
@@ -98,5 +106,8 @@ Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
 Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 
 Scenario: Cleanup - always select first tab
-When HMI OP1 with layout lower-east-exec-layout selects grid tab 1
-When HMI OP2 with layout lower-west-exec-layout selects grid tab 1
+When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 1
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1
+
+Scenario: Time to wait between failover tests
+Then waiting for 1 minute
