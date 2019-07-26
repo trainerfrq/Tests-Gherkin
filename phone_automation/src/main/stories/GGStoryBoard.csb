@@ -1921,19 +1921,19 @@
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/NotificationDisplay/VerifyNotificationDisplayLists.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/NotificationDisplay/NumberOfNotificationEventListEntries.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/NotificationDisplay/TimeSortedAndAdditionalInformationForEventList.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
