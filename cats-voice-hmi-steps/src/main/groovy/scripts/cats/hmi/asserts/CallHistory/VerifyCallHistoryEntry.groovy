@@ -4,8 +4,6 @@ import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
 import javafx.scene.control.Label
 import javafx.scene.layout.Pane
-import org.joda.time.DateTime
-import org.joda.time.format.DateTimeFormat
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 import java.time.Duration
@@ -18,7 +16,6 @@ class VerifyCallHistoryEntry extends FxScriptTemplate {
     public static final String IPARAM_CALL_HISTORY_ENTRY_DIRECTION = "call_history_entry_direction"
     public static final String IPARAM_CALL_HISTORY_ENTRY_CONNECTION_STATUS = "call_history_entry_connection_status"
     public static final String IPARAM_CALL_HISTORY_ENTRY_DURATION = "call_history_entry_duration"
-    public static final String IPARAM_CALL_HISTORY_ENTRY_TIME = "call_history_entry_time"
 
     @Override
     void script() {
@@ -28,7 +25,6 @@ class VerifyCallHistoryEntry extends FxScriptTemplate {
         String callHistoryEntryDirection = assertInput(IPARAM_CALL_HISTORY_ENTRY_DIRECTION) as String
         String callHistoryEntryConnectionStatus = assertInput(IPARAM_CALL_HISTORY_ENTRY_CONNECTION_STATUS) as String
         String callHistoryEntryDuration = assertInput(IPARAM_CALL_HISTORY_ENTRY_DURATION) as String
-        String callHistoryEntryTime = assertInput(IPARAM_CALL_HISTORY_ENTRY_TIME) as String
 
         final Node callHistoryEntry = robot.lookup("#callHistoryList .list-cell").selectAt(callHistoryEntryNumber).queryFirst()
 
@@ -59,16 +55,6 @@ class VerifyCallHistoryEntry extends FxScriptTemplate {
                 .expected(callHistoryEntryDuration)
                 .received(durationText)
                 .success(receivedDuration <= givenDuration))
-
-        Label timeLabel = robot.lookup("#callHistoryList #timeLabel").selectAt(callHistoryEntryNumber).queryFirst()
-        DateTime received = DateTime.parse(timeLabel.getText(), DateTimeFormat.forPattern("hh:mm:ss"))
-        DateTime givenTime = DateTime.parse(callHistoryEntryTime, DateTimeFormat.forPattern("hh:mm:ss"))
-        DateTime start =  received.minusSeconds(2)
-        DateTime end =  received.plusSeconds(2)
-        evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for time")
-                .expected(callHistoryEntryTime)
-                .received(timeLabel.getText())
-                .success(givenTime.isAfter(start) && givenTime.isBefore(end)))
 
     }
 

@@ -35,7 +35,8 @@ When HMI OP2 presses DA key OP1
 Then call duration for entry entry5 is calculated
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key CALLHISTORY
 Then HMI OP2 verifies call history entry number 1 matches entry5
-Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 matches date format for entry5
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 matches date for entry5
+Then HMI OP2 verifies call history entry time format <<timeFormat>> for entry 1 matches time for entry5
 
 Scenario: Op2 closes Call History window
 Then HMI OP2 closes Call History popup window
@@ -53,7 +54,8 @@ When HMI OP2 presses DA key OP1
 Then call duration for entry entry4 is calculated
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key CALLHISTORY
 Then HMI OP2 verifies call history entry number 1 matches entry4
-Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 matches date format for entry4
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 matches date for entry4
+Then HMI OP2 verifies call history entry time format <<timeFormat>> for entry 1 matches time for entry4
 
 Scenario: Op2 closes Call History window
 Then HMI OP2 closes Call History popup window
@@ -67,7 +69,8 @@ When HMI OP2 presses IA key IA - OP1
 Then call duration for entry entry3 is calculated
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key CALLHISTORY
 Then HMI OP2 verifies call history entry number 1 matches entry3
-Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 matches date format for entry3
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 matches date for entry3
+Then HMI OP2 verifies call history entry time format <<timeFormat>> for entry 1 matches time for entry3
 
 Scenario: Op2 closes Call History window
 Then HMI OP2 closes Call History popup window
@@ -82,7 +85,8 @@ Then call duration for entry entry2 is calculated
 When HMI OP1 presses DA key OP2
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key CALLHISTORY
 Then HMI OP2 verifies call history entry number 1 matches entry2
-Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 matches date format for entry2
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 matches date for entry2
+Then HMI OP2 verifies call history entry time format <<timeFormat>> for entry 1 matches time for entry2
 
 Scenario: Op2 closes Call History window
 Then HMI OP2 closes Call History popup window
@@ -97,7 +101,8 @@ Then call duration for entry entry1 is calculated
 When HMI OP1 presses IA key IA - OP2
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key CALLHISTORY
 Then HMI OP2 verifies call history entry number 1 matches entry1
-Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 matches date format for entry1
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 matches date for entry1
+Then HMI OP2 verifies call history entry time format <<timeFormat>> for entry 1 matches time for entry1
 
 Scenario: Op2 closes Call History window
 Then HMI OP2 closes Call History popup window
@@ -115,7 +120,8 @@ Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP2 has in the call queue a number of 0 calls
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key CALLHISTORY
 Then HMI OP2 verifies call history entry number 1 matches entry0
-Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 matches date format for entry0
+Then HMI OP2 verifies call history entry date format <<dateFormat>> for entry 1 matches date for entry0
+Then HMI OP2 verifies call history entry time format <<timeFormat>> for entry 1 matches time for entry0
 
 Scenario: Op2 closes Call History window
 Then HMI OP2 closes Call History popup window
