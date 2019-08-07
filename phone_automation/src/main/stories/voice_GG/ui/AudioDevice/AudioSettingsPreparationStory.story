@@ -40,7 +40,7 @@ Scenario: Op1 unmutes operator audio button
 When HMI OP1 checks side tone button operator state and unmutes it if it finds it mute
 
 Scenario: Op1 unmutes notification error button
-When HMI OP1 checks side tone button NotificationError state and unmutes it if it finds it mute
+When HMI OP1 checks button NotificationError state and unmutes it if it finds it mute
 
 Scenario: Op1 adjusts coachSidetone volume slider from audio settings to maximumm level
 When HMI OP1 drags volume slider coachSidetone to maximum level
