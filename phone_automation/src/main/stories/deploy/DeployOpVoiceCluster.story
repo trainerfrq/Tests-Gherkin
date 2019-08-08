@@ -4,7 +4,18 @@ Given SSH connections:
 | deploymentServer | <<DEP_SERVER_IP>>    | 22         | root     | !frqAdmin |
 | dockerHost1      | <<OPVOICE_HOST1_IP>> | 22         | root     | !frqAdmin |
 | dockerHost2      | <<OPVOICE_HOST2_IP>> | 22         | root     | !frqAdmin |
+| hmiHost1         | <<CLIENT1_IP>>       | 22         | root     | !frqAdmin |
+| hmiHost2         | <<CLIENT2_IP>>       | 22         | root     | !frqAdmin |
+| hmiHost3         | <<CLIENT3_IP>>       | 22         | root     | !frqAdmin |
 | catsMaster       | <<CATS_MASTER_IP>>   | 22         | root     | !frqAdmin |
+
+Scenario: Stop all running voice-hmi services
+When SSH host hmiHost1 executes docker rm -f $(docker ps -q -a -f name=${PARTITION_KEY_1})
+And waiting for 5 seconds
+When SSH host hmiHost2 executes docker rm -f $(docker ps -q -a -f name=${PARTITION_KEY_2})
+And waiting for 5 seconds
+When SSH host hmiHost3 executes docker rm -f $(docker ps -q -a -f name=${PARTITION_KEY_3})
+And waiting for 5 seconds
 
 Scenario: Stop running Op Voice Services
 When SSH host deploymentServer executes /usr/bin/xvp services remove op-voice-service -g
