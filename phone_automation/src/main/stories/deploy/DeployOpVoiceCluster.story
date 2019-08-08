@@ -37,7 +37,7 @@ When SSH host deploymentServer executes sed -i '4s/.*/  "tag" : "${op.voice.vers
 
 Scenario: Publish the service descriptors and start services
 Then SSH host deploymentServer executes /usr/bin/xvp descriptors download -g
-Then SSH host deploymentServer executes /usr/bin/xvp services deploy --all -g
+Then SSH host deploymentServer executes /usr/bin/xvp services deploy op-voice-service -g
 And waiting for 120 seconds
 
 Scenario: Verify Op Voice Services are running
