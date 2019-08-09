@@ -9,14 +9,14 @@
         <cats:reportFormat>HTML</cats:reportFormat>
     </cats:reportFormats>
     <cats:storyCollections>
-        <cats:storyCollection enabled="true">
+        <cats:storyCollection enabled="false">
             <cats:name>Deploy Services</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
                 <cats:status>CREATED</cats:status>
             </cats:report>
             <cats:storyLists>
-                <cats:storyList enabled="true">
+                <cats:storyList enabled="false">
                     <cats:name>Deploy Services</cats:name>
                     <cats:onErrorOption>FINISH_CURRENT_STORY</cats:onErrorOption>
                     <cats:repetitions>1</cats:repetitions>
@@ -895,12 +895,6 @@
                     </cats:report>
                     <cats:reports/>
                     <cats:stories>
-                        <cats:story enabled="true">
-                            <cats:storyPath>deploy/DeployHmi.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyDataList/>
-                            <cats:storyStatistics/>
-                        </cats:story>
                         <cats:story enabled="false">
                             <cats:storyPath>deploy/CreateCO.story</cats:storyPath>
                             <cats:storyParameters/>
@@ -909,6 +903,12 @@
                         </cats:story>
                         <cats:story enabled="false">
                             <cats:storyPath>deploy/StartProfilesForUITests.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>deploy/DeployHmi.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>

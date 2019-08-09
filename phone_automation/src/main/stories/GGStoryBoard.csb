@@ -896,12 +896,6 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
-                            <cats:storyPath>deploy/DeployHmi.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyDataList/>
-                            <cats:storyStatistics/>
-                        </cats:story>
-                        <cats:story enabled="true">
                             <cats:storyPath>deploy/CreateCO.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
@@ -909,6 +903,12 @@
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>deploy/StartProfilesForUITests.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>deploy/DeployHmi.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
