@@ -28,19 +28,19 @@ Then HMI OP1 has in the DISPLAY STATUS section connection the state DEGRADED
 When HMI OP2 verifies that loading screen is visible
 Then HMI OP2 has in the DISPLAY STATUS section connection the state DEGRADED
 
-Scenario: Select second tab to make IA buttons visible
-When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
-When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
-Scenario: Verify IA keys state
-Given HMI OP1 has the IA key IA - OP2 in ready to be used state
-
-Given HMI OP2 has the IA key IA - OP1 in ready to be used state
-
 Scenario: Op1 closes settings popup window
 Then HMI OP1 closes settings popup
 
 Scenario: Op2 closes settings popup window
 Then HMI OP2 closes settings popup
+Scenario: Select second tab to make IA buttons visible
+When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
+Scenario: Verify IA keys state
+Given HMI OP1 has the IA key IA - OP2 in ready to be used state
+Given HMI OP2 has the IA key IA - OP1 in ready to be used state
+
+
 Scenario: Caller establishes an half duplex IA call
 When HMI OP1 presses IA key IA - OP2
 

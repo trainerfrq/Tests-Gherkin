@@ -20,20 +20,20 @@ import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-
-import scripts.cats.hmi.actions.ClickContainerTab;
+import scripts.cats.hmi.actions.AudioSettings.CleanUpMuteButton;
+import scripts.cats.hmi.actions.AudioSettings.CleanUpMuteSideToneButton;
+import scripts.cats.hmi.actions.AudioSettings.ClickOnMuteButton;
+import scripts.cats.hmi.actions.AudioSettings.ClickOnMuteSideToneButton;
+import scripts.cats.hmi.actions.AudioSettings.ClickOnVolumeSlider;
 import scripts.cats.hmi.actions.ClickOnIdlePopupButton;
-import scripts.cats.hmi.actions.ClickOnMuteButton;
-import scripts.cats.hmi.actions.ClickOnMuteSideToneButton;
 import scripts.cats.hmi.actions.ClickOnPopupCloseButton;
-import scripts.cats.hmi.actions.ClickOnVolumeSlider;
 import scripts.cats.hmi.actions.ClickOnWarningPopupButton;
 import scripts.cats.hmi.asserts.Attended.VerifyIdlePopupText;
 import scripts.cats.hmi.asserts.Attended.VerifyWarningPopupCountDownIsVisible;
 import scripts.cats.hmi.asserts.Attended.VerifyWarningPopupText;
-import scripts.cats.hmi.asserts.VerifyMuteButtonState;
-import scripts.cats.hmi.asserts.VerifyMuteSidetoneButtonState;
-import scripts.cats.hmi.asserts.VerifyVolumeSliderLevel;
+import scripts.cats.hmi.asserts.AudioSettings.VerifyMuteButtonState;
+import scripts.cats.hmi.asserts.AudioSettings.VerifyMuteSidetoneButtonState;
+import scripts.cats.hmi.asserts.AudioSettings.VerifyVolumeSliderLevel;
 
 public class AudioUISteps extends AutomationSteps
 {
@@ -155,4 +155,22 @@ public class AudioUISteps extends AutomationSteps
             assertProfile( profileName ) )
             .input( ClickOnWarningPopupButton.IPARAM_BUTTON_NAME, buttonName ) );
    }
+
+    @When("$profileName checks button $buttonName state and unmutes it if it finds it mute")
+    public void unMuteButton(final String profileName, final String buttonName)
+    {
+        evaluate( remoteStep( "Click on mute button" ).scriptOn(
+                profileScriptResolver().map( CleanUpMuteButton.class, BookableProfileName.javafx ),
+                assertProfile( profileName ) )
+                .input( CleanUpMuteButton.IPARAM_MUTE_BUTTON_NAME, buttonName ) );
+    }
+
+    @When("$profileName checks side tone button $buttonName state and unmutes it if it finds it mute")
+    public void unMuteSideToneButton(final String profileName, final String buttonName)
+    {
+        evaluate(remoteStep( "Click on side tone mute button" ).scriptOn(
+                profileScriptResolver().map( CleanUpMuteSideToneButton.class, BookableProfileName.javafx ),
+                assertProfile( profileName ) )
+                .input( CleanUpMuteSideToneButton.IPARAM_MUTE_BUTTON_NAME, buttonName ) );
+    }
 }

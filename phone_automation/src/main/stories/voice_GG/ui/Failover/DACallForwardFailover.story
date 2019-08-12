@@ -30,6 +30,8 @@ Then HMI OP1 closes settings popup
 
 Scenario: Op2 closes settings popup window
 Then HMI OP2 closes settings popup
+Scenario: Op3 closes settings popup window
+Then HMI OP3 closes settings popup
 Scenario: Op1 activates Call Forward and chooses Op2 as call forward target
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in forwardOngoing state
@@ -108,7 +110,7 @@ Scenario: Call is terminated also for Op2
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Op1 still has Call Forward active
-Then HMI OP1 has the function key CALLFORWARD in active state
+Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state
 
 Scenario: Op1 deactivates Call Forward
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
