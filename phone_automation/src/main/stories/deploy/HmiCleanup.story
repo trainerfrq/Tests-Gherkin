@@ -4,6 +4,7 @@ Given SSH connections:
 | hmiHost1 | <<CLIENT1_IP>> | 22         | root     | !frqAdmin |
 | hmiHost2 | <<CLIENT2_IP>> | 22         | root     | !frqAdmin |
 | hmiHost3 | <<CLIENT3_IP>> | 22         | root     | !frqAdmin |
+| coHost   | <<CO3_IP>>     | 22         | root     | !frqAdmin |
 
 Scenario: Stop all running voice-hmi services
 When SSH host hmiHost1 executes docker rm -f $(docker ps -f name=${PARTITION_KEY_1})
