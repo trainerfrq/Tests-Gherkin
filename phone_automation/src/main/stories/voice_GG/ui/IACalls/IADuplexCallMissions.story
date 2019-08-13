@@ -11,9 +11,10 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source           | target           | callType |
-| OP1-OP2 | <<MISSION1_URI>> | <<MISSION2_URI>> | IA       |
-| OP2-OP1 | <<MISSION2_URI>> | <<MISSION1_URI>> | IA       |
+| key       | source           | target           | callType |
+| OP1-OP2   | <<MISSION1_URI>> | <<MISSION2_URI>> | IA       |
+| OP2-OP1   | <<MISSION2_URI>> |                  | IA       |
+| OP2-OP1-1 | <<MISSION2_URI>> | <<MISSION1_URI>> | IA       |
 
 Scenario: Caller establishes an outgoing IA call
 When HMI OP1 with layout <<LAYOUT_MISSION1>>  selects grid tab 2
@@ -40,18 +41,18 @@ Scenario: Callee establishes an outgoing IA call, using the IA key
 When HMI OP2 presses IA key <<MISSION_1_NAME>>
 
 Scenario: Verify call direction
-Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction duplex
+Then HMI OP1 has the IA call queue item OP2-OP1-1 with audio direction duplex
 Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction duplex
 
 Scenario: Verify call queue section
-Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label <<MISSION_2_NAME>>
+Then HMI OP1 has the call queue item OP2-OP1-1 in the active list with name label <<MISSION_2_NAME>>
 Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label <<MISSION_1_NAME>>
 
 Scenario: Caller clears IA call
 When HMI OP1 presses IA key <<MISSION_2_NAME>>
 
 Scenario: Verify call direction
-Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction rx
+Then HMI OP1 has the IA call queue item OP2-OP1-1 with audio direction rx
 Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction tx
 
 Scenario: Cleanup IA call
@@ -78,14 +79,14 @@ Scenario: Callee establishes an outgoing IA call, using the call queue item
 Then HMI OP2 accepts the call queue item OP1-OP2
 
 Scenario: Verify call direction
-Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction duplex
+Then HMI OP1 has the IA call queue item OP2-OP1-1 with audio direction duplex
 Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction duplex
 
 Scenario: Caller clears IA call
 When HMI OP1 presses IA key <<MISSION_2_NAME>>
 
 Scenario: Verify call direction
-Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction rx
+Then HMI OP1 has the IA call queue item OP2-OP1-1 with audio direction rx
 Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction tx
 
 Scenario: Cleanup IA call
