@@ -2,9 +2,6 @@ Scenario: Connect to hosts
 Given SSH connections:
 | name             | remote-address      | remotePort | username | password  |
 | deploymentServer | <<DEP_SERVER_IP>>   | 22         | root     | !frqAdmin |
-| dockerHost1      | <<DOCKER_HOST1_IP>> | 22         | root     | !frqAdmin |
-| dockerHost2      | <<DOCKER_HOST2_IP>> | 22         | root     | !frqAdmin |
-| dockerHost3      | <<DOCKER_HOST3_IP>> | 22         | root     | !frqAdmin |
 | hmiHost1         | <<CLIENT1_IP>>      | 22         | root     | !frqAdmin |
 | hmiHost2         | <<CLIENT2_IP>>      | 22         | root     | !frqAdmin |
 | hmiHost3         | <<CLIENT3_IP>>      | 22         | root     | !frqAdmin |
@@ -93,10 +90,9 @@ When activating commit commitId to endpoint <<configurationMngEndpoint>> and pat
 Then waiting for 3 seconds
 
 Scenario: Update voice hmi service instances
-When the script hmiUpdate from /configuration-files/<<systemName>>/ is copied to deploymentServer
-And SSH host deploymentServer executes chmod +x hmiUpdate.sh
-And SSH host deploymentServer executes ./hmiUpdate.sh
-And waiting for 60 seconds
+Then SSH host deploymentServer executes /usr/bin/xvp services deploy --force mission-service -g
+Then SSH host deploymentServer executes /usr/bin/xvp services deploy --force op-shell-service -g
+And waiting for 90 seconds
 
 Scenario: Verify services are running on dockerhost1
 When SSH host hmiHost1 executes  docker inspect -f '{{.State.Status}}' $(docker ps -q -f name=${PARTITION_KEY_1}) and the output contains running
