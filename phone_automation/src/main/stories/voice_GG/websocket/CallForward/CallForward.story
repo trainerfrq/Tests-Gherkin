@@ -5,7 +5,7 @@ Scenario: Create the message buffer for call forward
 When WS1 opens the message buffer for message type callForwardStatus named callForwardStatusBuffer
 
 Scenario: Forwarding client retrieves phone data
-When WS1 loads phone data for mission missionId1 and names callSource and callTarget from the entry number 1
+When WS1 queries phone data for mission missionId1 in order to call OP2 and names them callSource and callTarget
 
 Scenario: Send Call Forward Request
 		  @REQUIREMENTS:GID-2521111
@@ -21,7 +21,8 @@ When WS2 opens the message buffer for message type callStatusIndication named Ca
 When WS3 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer3
 
 Scenario: Caller retrieves phone data
-When WS3 loads phone data for mission missionId1 and names callSource3 and callTarget3 from the entry number 1
+!-- When WS3 loads phone data for mission missionId1 and names callSource3 and callTarget3 from the entry number 1
+When WS3 queries phone data for mission missionId3 in order to call OP2 and names them callSource3 and callTarget3
 
 Scenario: Caller establishes an outgoing call
 When WS3 establishes an outgoing phone call using source callSource3 ang target callSource and names outgoingPhoneCallId
