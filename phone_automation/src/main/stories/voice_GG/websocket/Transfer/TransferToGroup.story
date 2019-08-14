@@ -18,7 +18,6 @@ When WS3 opens the message buffer for message type callIncomingIndication named 
 Scenario: Transferor retrieves phone data
 When WS1 queries phone data for mission missionId1 in order to call OP2 and names them callSource1 and callTarget1
 When WS1 queries phone data for mission missionId1 in order to call ROLE1 and names them callSourceRoleAlias and callTargetRoleAlias
-!-- When WS1 loads phone data for mission missionId1 and names callSourceRoleAlias and callTargetRoleAlias from the entry number 6
 
 Scenario: Transferor establishes an outgoing call
 When WS1 establishes an outgoing phone call using source callSource1 ang target callTarget1 and names outgoingPhoneCallId1
