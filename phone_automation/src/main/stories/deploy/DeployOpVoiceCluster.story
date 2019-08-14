@@ -38,7 +38,7 @@ When SSH host deploymentServer executes sed -i '4s/.*/  "tag" : "${op.voice.vers
 Scenario: Publish the service descriptors and start services
 Then SSH host deploymentServer executes /usr/bin/xvp descriptors download -g
 Then SSH host deploymentServer executes /usr/bin/xvp services deploy op-voice-service -g
-And waiting for 120 seconds
+And waiting for 180 seconds
 
 Scenario: Verify Op Voice Services are running
 When SSH host dockerHost1 executes docker inspect -f '{{.State.Status}}' op-voice-service-${OP_VOICE_PARTITION_KEY_1}-1 and the output contains running
