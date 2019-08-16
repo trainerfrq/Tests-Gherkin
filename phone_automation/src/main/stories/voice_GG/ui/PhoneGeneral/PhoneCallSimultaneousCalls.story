@@ -8,6 +8,7 @@ Given booked profiles:
 | profile | group | host           | identifier |
 | javafx  | hmi   | <<CLIENT1_IP>> | HMI OP1    |
 | javafx  | hmi   | <<CLIENT2_IP>> | HMI OP2    |
+| javafx  | hmi   | <<CLIENT3_IP>> | HMI OP3    |
 
 Scenario: Define call queue items
 Given the call queue items:
@@ -32,3 +33,10 @@ Then HMI OP2 has in the call queue a number of 1 calls
 
 Scenario: Callee clears outgoing call
 When HMI OP2 presses DA key OP1
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
+			  voice_GG/ui/includes/@CleanupUIMission.story,
+			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story
+Then waiting for 1 millisecond

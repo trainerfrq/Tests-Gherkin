@@ -8,6 +8,7 @@ Given booked profiles:
 | profile | group          | host           | identifier |
 | javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
 | javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
 | voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Create sip phone
@@ -58,3 +59,10 @@ When SipContact is removed
 
 Scenario: Cleanup - always select first tab
 When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 1
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
+			  voice_GG/ui/includes/@CleanupUIMission.story,
+			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story
+Then waiting for 1 millisecond

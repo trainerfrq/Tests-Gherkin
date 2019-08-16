@@ -79,3 +79,10 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Op2 clears active call
 When HMI OP2 presses DA key OP1
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
+			  voice_GG/ui/includes/@CleanupUIMission.story,
+			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story
+Then waiting for 1 millisecond

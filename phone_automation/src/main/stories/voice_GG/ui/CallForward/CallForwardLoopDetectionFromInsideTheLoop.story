@@ -61,3 +61,10 @@ Then HMI OP1 verifies that call queue info container is not visible
 Scenario: Op2 deactivates Call Forward
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key CALLFORWARD
 Then HMI OP2 verifies that call queue info container is not visible
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
+			  voice_GG/ui/includes/@CleanupUIMission.story,
+			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story
+Then waiting for 1 millisecond

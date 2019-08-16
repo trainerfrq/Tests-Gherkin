@@ -121,3 +121,9 @@ Then HMI OP3 has in the call queue a number of 0 calls
 Scenario: Conference is terminated for the initiator also, because it was the only one left
 Then HMI OP2 has in the call queue a number of 0 calls
 
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
+			  voice_GG/ui/includes/@CleanupUIMission.story,
+			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story
+Then waiting for 1 millisecond

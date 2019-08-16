@@ -8,6 +8,7 @@ Given booked profiles:
 | profile | group          | host           | identifier |
 | javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
 | javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
 | voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Create sip phone
@@ -18,8 +19,8 @@ And phones for SipContact are created
 
 Scenario: Define call queue items
 Given the call queue items:
-| key            | source                 | target                 | callType |
-| SipContact-OP1 | <<SIP_PHONE2>>         | <<OPVOICE1_PHONE_URI>> | DA/IDA   |
+| key            | source         | target                 | callType |
+| SipContact-OP1 | <<SIP_PHONE2>> | <<OPVOICE1_PHONE_URI>> | DA/IDA   |
 
 Scenario: Op1 activates Call Forward
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
@@ -62,6 +63,13 @@ Then HMI OP1 verifies that call queue info container is not visible
 
 Scenario: Remove phone
 When SipContact is removed
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
+			  voice_GG/ui/includes/@CleanupUIMission.story,
+			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story
+Then waiting for 1 millisecond
 
 
 

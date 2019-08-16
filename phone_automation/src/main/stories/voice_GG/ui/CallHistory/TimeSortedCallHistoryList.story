@@ -68,3 +68,10 @@ Then HMI OP2 using format <<dateFormat>> verifies call history list is time-sort
 
 Scenario: Op2 closes call history
 Then HMI OP2 closes Call History popup window
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
+			  voice_GG/ui/includes/@CleanupUIMission.story,
+			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story
+Then waiting for 1 millisecond
