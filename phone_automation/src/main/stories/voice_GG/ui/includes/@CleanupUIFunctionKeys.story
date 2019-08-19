@@ -22,12 +22,3 @@ Then HMI OP3 with layout <<LAYOUT_MISSION3>> does a clean up for function key CA
 Then HMI OP3 with layout <<LAYOUT_MISSION3>> does a clean up for function key CALLFORWARD if the state is forwardOngoingState
 Then HMI OP3 with layout <<LAYOUT_MISSION3>> does a clean up for function key LOUDSPEAKER if the state is on
 
-Scenario: Op1 closes seetings popup window
-Then HMI OP1 closes settings popup
-
-Scenario: Op2 closes seetings popup window
-Then HMI OP2 closes settings popup
-
-Scenario: Op3 closes seetings popup window
-Then HMI OP3 closes settings popup
-
