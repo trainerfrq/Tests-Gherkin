@@ -1168,12 +1168,6 @@
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/IACalls/IADuplexCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyDataList/>
-                            <cats:storyStatistics/>
-                        </cats:story>
                         <cats:story enabled="false">
                             <cats:storyPath>voice_GG/ui/IACalls/IAIncomingCallLimit.story</cats:storyPath>
                             <cats:storyParameters/>
@@ -1194,6 +1188,12 @@
                         </cats:story>
                         <cats:story enabled="false">
                             <cats:storyPath>voice_GG/ui/IACalls/IACallPreventedToOwnOperatorPosition.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/IACalls/IADuplexCallPhysicalPositions.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
