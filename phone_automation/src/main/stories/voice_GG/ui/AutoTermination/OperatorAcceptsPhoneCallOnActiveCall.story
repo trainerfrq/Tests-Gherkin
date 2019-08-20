@@ -8,6 +8,7 @@ Given booked profiles:
 | profile | group          | host           | identifier |
 | javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
 | javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
 | voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Create sip phone
@@ -61,3 +62,11 @@ Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Remove phone
 When SipContact is removed
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
+			  voice_GG/ui/includes/@CleanupUIMission.story,
+			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story,
+			  voice_GG/ui/includes/@CleanupUIWindows.story
+Then waiting for 1 millisecond

@@ -14,8 +14,8 @@ When WS1 opens the message buffer for message type callIncomingIndication named 
 When WS2 opens the message buffer for message type callIncomingIndication named CallIncomingIndicationBuffer2
 
 Scenario: Clients retrieve phone data
-When WS1 loads phone data for mission missionId1 and names callSourceCalling and callTargetCalling from the entry number 1
-When WS2 loads phone data for mission missionId2 and names callSourceCalled and callTargetCalled from the entry number 1
+When WS1 queries phone data for mission missionId1 in order to call IA - OP2 and names them callSourceCalling and callTargetCalling
+When WS2 queries phone data for mission missionId2 in order to call IA - OP1 and names them callSourceCalled and callTargetCalled
 
 Scenario: Caller establishes an outgoing call
 When WS1 establishes an outgoing IA call with source callSourceCalling and target callTargetCalling and names outgoingPhoneCallId1

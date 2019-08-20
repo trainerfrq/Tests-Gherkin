@@ -7,6 +7,8 @@ Scenario: Booking profiles
 Given booked profiles:
 | profile | group | host           | identifier |
 | javafx  | hmi   | <<CLIENT1_IP>> | HMI OP1    |
+| javafx  | hmi   | <<CLIENT2_IP>> | HMI OP2    |
+| javafx  | hmi   | <<CLIENT3_IP>> | HMI OP3    |
 
 Scenario: Verify displayed status
 Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
@@ -58,3 +60,11 @@ Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
 
 Scenario: Time to wait between failover tests
 Then waiting for 1 minute
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
+			  voice_GG/ui/includes/@CleanupUIMission.story,
+			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story,
+			  voice_GG/ui/includes/@CleanupUIWindows.story
+Then waiting for 1 millisecond

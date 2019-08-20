@@ -5,6 +5,7 @@
  */
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
@@ -39,6 +40,8 @@ import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallRetrieve
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallStatusIndication;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallTransferRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallTransferResponse;
+import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
+import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import scripts.cats.websocket.sequential.SendTextMessage;
@@ -68,6 +71,17 @@ import java.util.stream.Collectors;
 
 public class GGBasicSteps extends WebsocketAutomationSteps
 {
+    @Given("the DA keys: $daKeys")
+    public void defineDaKeys(final List<DAKey> daKeys) {
+        final LocalStep localStep = localStep("Define DA keys");
+        for (final DAKey daKey : daKeys) {
+            final String key = daKey.getSource() + "-" + daKey.getTarget();
+            setStoryListData(key, daKey);
+            localStep.details(ExecutionDetails.create("Define DA key").usedData(key, daKey));
+        }
+
+        record(localStep);
+    }
 
    @When("$namedWebSocket associates with Op Voice Service using opId $opId and appId $appId")
    public void associateWithOpVoiceService( final String namedWebSocket, final String opId, final String appId )
@@ -222,6 +236,51 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
       setStoryListData( missionIdToChangeName, missionId );
    }
+
+    @When("$namedWebSocket queries phone data for mission $missionIdName in order to call $target and names them $callSourceName and $callTargetName")
+    public void loadPhoneDataId( final String namedWebSocket, final String missionIdName, final String target, final String callSourceName,
+                               final String callTargetName )
+    {
+        final ProfileToWebSocketConfigurationReference reference =
+                getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+        DAKey daKey = retrieveDaKey(namedWebSocket, target);
+
+        final String missionId = getStoryListData( missionIdName, String.class );
+        QueryPhoneDataRequest queryPhoneDataRequest = new QueryPhoneDataRequest( missionId );
+        final JsonMessage request =
+                JsonMessage.builder().withQueryPhoneDataRequest( queryPhoneDataRequest )
+                        .withCorrelationId( UUID.randomUUID() ).build();
+
+        final RemoteStepResult remoteStepResult =
+                evaluate(
+                        remoteStep( "Querying phone data for mission " + missionId )
+                                .scriptOn( profileScriptResolver().map( SendAndReceiveTextMessage.class,
+                                        BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                                .input( SendAndReceiveTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                                .input( SendAndReceiveTextMessage.IPARAM_RESPONSETYPE, "queryPhoneDataResponse" )
+                                .input( SendAndReceiveTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
+
+        final String jsonResponse =
+                ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
+        final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
+
+        evaluate( localStep( "Received query phone data response" )
+                .details( match( "Response is successful", jsonMessage.body().queryPhoneDataResponse().getError(),
+                        nullValue() ) )
+                .details( match( "Phone data is not empty",
+                        jsonMessage.body().queryPhoneDataResponse().getPhoneData().getDa(), not( empty() ) ) ));
+
+        final List<JsonDaDataElement> listDataElement =
+                jsonMessage.body().queryPhoneDataResponse().getPhoneData().getDa();
+        for(JsonDaDataElement dataElement:listDataElement){
+            if(dataElement.getId().equals(daKey.getId()))
+            {
+                setStoryListData( callSourceName, dataElement.getSource() );
+                setStoryListData( callTargetName, dataElement.getTarget() );
+            }
+        }
+    }
 
 
    @When("$namedWebSocket loads phone data for mission $missionIdName and names $callSourceName and $callTargetName from the entry number $entryNumber")
@@ -1094,4 +1153,11 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             .details( match( "Transaction id is " + transactionId,
                   jsonMessage.body().callForwardConfirmation().getTransactionId(), equalTo( transactionId ) ) ) );
    }
+
+    private DAKey retrieveDaKey(final String source, final String target) {
+        final DAKey daKey = getStoryListData(source + "-" + target, DAKey.class);
+        evaluate(localStep("Check DA key").details(ExecutionDetails.create("Verify DA key is defined")
+                .usedData("source", source).usedData("target", target).success(daKey != null)));
+        return daKey;
+    }
 }

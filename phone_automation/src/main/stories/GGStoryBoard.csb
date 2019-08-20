@@ -92,6 +92,12 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/includes/@PhoneTestData.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/HoldRetrieve/PutOnHoldAgain.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
@@ -197,6 +203,12 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/includes/@PhoneTestData.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/DACalls/CallerClearsActiveCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
@@ -259,6 +271,12 @@
                     </cats:report>
                     <cats:reports/>
                     <cats:stories>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/includes/@PhoneTestData.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/IACalls/IACallCallerClearsBeforeTimerExpires.story</cats:storyPath>
                             <cats:storyParameters/>
@@ -353,6 +371,12 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/includes/@PhoneTestData.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/SipPhones/OperatorToSipPhoneCalleeRejectsCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
@@ -440,6 +464,12 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/includes/@PhoneTestData.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/AutoTermination/OperatorAcceptsPhoneCallOnActiveCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
@@ -521,6 +551,12 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/includes/@PhoneTestData.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/CallForward/CallForward.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
@@ -548,6 +584,12 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/includes/@PhoneTestData.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/PriorityCall/DAPriorityCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
@@ -574,6 +616,12 @@
                     </cats:report>
                     <cats:reports/>
                     <cats:stories>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/includes/@PhoneTestData.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/MissionsAndRoles/VerifyLayoutForRoles.story</cats:storyPath>
                             <cats:storyParameters/>
@@ -607,6 +655,12 @@
                     </cats:report>
                     <cats:reports/>
                     <cats:stories>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/includes/@PhoneTestData.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/TelephoneBook/CalleeAndCalleeMatchesPhoneBookEntries.story</cats:storyPath>
                             <cats:storyParameters/>
@@ -712,6 +766,12 @@
                     </cats:report>
                     <cats:reports/>
                     <cats:stories>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/includes/@PhoneTestData.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Transfer/TargetClearsConsultationCall.story</cats:storyPath>
                             <cats:storyParameters/>
@@ -841,6 +901,12 @@
                     </cats:report>
                     <cats:reports/>
                     <cats:stories>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/includes/@PhoneTestData.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/Failover/DACallSwitchingFromActiveToPassive.story</cats:storyPath>
                             <cats:storyParameters/>

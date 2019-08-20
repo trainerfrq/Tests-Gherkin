@@ -26,6 +26,7 @@ import com.frequentis.xvp.voice.test.automation.phone.data.StatusKey;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+import scripts.cats.hmi.actions.AudioSettings.CleanUpPopupWindow;
 import scripts.cats.hmi.actions.ClickContainerTab;
 import scripts.cats.hmi.actions.ClickOnSymbolButton;
 import scripts.cats.hmi.actions.ClickStatusLabel;
@@ -118,6 +119,16 @@ public class GGBasicUISteps extends AutomationSteps
               .input( VerifyPopupVisible.IPARAM_POPUP_NAME, popupName )
               . input(VerifyPopupVisible.IPARAM_IS_VISIBLE, isVisible));
    }
+
+
+    @Then("$profileName closes popup $popupName if window is visible")
+    public void cleanupPopupWindow( final String profileName, final String popupName )
+    {
+        evaluate( remoteStep( "Verify if popup window is visible and close it" )
+                .scriptOn( profileScriptResolver().map( CleanUpPopupWindow.class,
+                        BookableProfileName.javafx ), assertProfile( profileName ) )
+                .input( CleanUpPopupWindow.IPARAM_POPUP_NAME, popupName ));
+    }
 
 
     @When("$profileName opens Notification Display list")

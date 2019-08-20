@@ -140,3 +140,11 @@ When SipContact is removed
 Scenario: Cleanup - always select first tab
 When HMI OP3 with layout <<LAYOUT_MISSION3>> selects grid tab 1
 When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
+			  voice_GG/ui/includes/@CleanupUIMission.story,
+			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story,
+			  voice_GG/ui/includes/@CleanupUIWindows.story
+Then waiting for 1 millisecond

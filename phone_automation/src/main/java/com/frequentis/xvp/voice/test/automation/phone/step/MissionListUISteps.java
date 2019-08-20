@@ -19,11 +19,11 @@ package com.frequentis.xvp.voice.test.automation.phone.step;
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
 import com.frequentis.xvp.voice.test.automation.phone.data.StatusKey;
 import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
-
+import scripts.cats.hmi.actions.Mission.CleanUpMission;
 import scripts.cats.hmi.actions.Mission.ClickActivateMission;
 import scripts.cats.hmi.actions.Mission.ClickMissionCloseButton;
 import scripts.cats.hmi.actions.Mission.SelectMissionFromList;
@@ -106,12 +106,34 @@ public class MissionListUISteps extends AutomationSteps
             assertProfile( profileName ) ) );
    }
 
+    @Then("$profileName with layout $layoutName will do a change mission if $key section $label has not the default mission $text")
+    public void cleanupMission( final String profileName, final String layoutName, final String key, final String label, final String text )
+    {
+        String keyMission = layoutName + "-" + label.toUpperCase()+"S";
+        FunctionKey functionKey = retrieveFunctionKey(keyMission);
+        StatusKey statusKey = retrieveStatusKey(profileName, key);
+        evaluate( remoteStep( "Clean-up mission" )
+                .scriptOn( profileScriptResolver().map( CleanUpMission.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input(CleanUpMission.IPARAM_STATUS_DISPLAY_KEY, statusKey.getId())
+                .input( CleanUpMission.IPARAM_STATUS_DISPLAY_LABEL, label + "Label" )
+                .input( CleanUpMission.IPARAM_STATUS_DISPLAY_TEXT, text )
+                .input( CleanUpMission.IPARAM_FUNCTION_KEY_ID, functionKey.getId() ));
+    }
+
 
     private StatusKey retrieveStatusKey(final String source, final String key) {
         final StatusKey statusKey = getStoryListData(source + "-" + key, StatusKey.class);
         evaluate(localStep("Check Status Key").details(ExecutionDetails.create("Verify Status key is defined")
                 .usedData("source", source).usedData("key", key).success(statusKey.getId() != null)));
         return statusKey;
+    }
+
+    private FunctionKey retrieveFunctionKey(final String key) {
+        final FunctionKey functionKey = getStoryListData(key, FunctionKey.class);
+        evaluate(localStep("Check Function Key").details(ExecutionDetails.create("Verify Function key is defined")
+                .usedData("key", key).success(functionKey.getId() != null)));
+        return functionKey;
     }
 
 }

@@ -92,7 +92,7 @@ Then waiting for 3 seconds
 Scenario: Update voice hmi service instances
 Then SSH host deploymentServer executes /usr/bin/xvp services deploy --force mission-service -g
 Then SSH host deploymentServer executes /usr/bin/xvp services deploy --force op-shell-service -g
-And waiting for 90 seconds
+And waiting for 180 seconds
 
 Scenario: Verify services are running on dockerhost1
 When SSH host hmiHost1 executes  docker inspect -f '{{.State.Status}}' $(docker ps -q -f name=${PARTITION_KEY_1}) and the output contains running

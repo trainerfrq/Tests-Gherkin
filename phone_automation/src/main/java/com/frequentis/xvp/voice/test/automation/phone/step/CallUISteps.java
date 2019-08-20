@@ -308,14 +308,15 @@ public class CallUISteps extends AutomationSteps {
                 .input( DragAndClickOnMenuButtonDAKey.IPARAM_DA_KEY_ID, daKey.getId() ) );
     }
 
-    @Then("$profileName does a clean up for function key $key if the state is $state")
-    public void cleanUpFunctionKey(final String profileName, final String target, final String state) {
-        FunctionKey key = retrieveFunctionKey(target);
+    @Then("$profileName with layout $layoutName does a clean up for function key $type if the state is $state")
+    public void cleanUpFunctionKey(final String profileName, final String layoutName, final String type, final String state) {
+        String key = layoutName + "-" + type;
+        FunctionKey functionKey = retrieveFunctionKey(key);
 
-        evaluate( remoteStep( "Verify operator position has the "+ target +" key in " + state + " state" )
+        evaluate( remoteStep( "Verify operator position has the "+ type +" key in " + state + " state" )
                 .scriptOn(profileScriptResolver().map( CleanUpFunctionKey.class, BookableProfileName.javafx ),
                         assertProfile( profileName ) )
-                .input( CleanUpFunctionKey.IPARAM_FUNCTION_KEY_ID, key.getId() )
+                .input( CleanUpFunctionKey.IPARAM_FUNCTION_KEY_ID, functionKey.getId() )
                 .input( CleanUpFunctionKey.IPARAM_KEY_STATE, state ) );
     }
 
