@@ -26,11 +26,13 @@ class VerifyVolumeSliderLevel extends FxScriptTemplate {
 
         Double receivedSliderValue = slider.getValue().round();
 
-        evaluate(ExecutionDetails.create("Volume slider value is the expected one")
-                .expected("Expected volume slider value is "+sliderValue)
-                .received("Received volume slider value is "+receivedSliderValue)
-                .success(receivedSliderValue.equals(sliderValue)))
-
+       if((receivedSliderValue >= sliderValue - 2) && (receivedSliderValue <= sliderValue + 2))
+       {
+           evaluate(ExecutionDetails.create("Volume slider value is the expected one")
+                   .expected("Expected volume slider value is "+sliderValue)
+                   .received("Received volume slider value is "+receivedSliderValue)
+                   .success(true))
+       }
 
     }
 }
