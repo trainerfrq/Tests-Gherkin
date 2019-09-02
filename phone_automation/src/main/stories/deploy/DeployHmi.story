@@ -75,7 +75,7 @@ Scenario: Download image descriptor
 Then downloading docker image from <<voiceHmiDockerImageArtifactoryUri>> to path /configuration-files/<<systemName>>/voice-hmi-service-docker-image.json
 
 Scenario: Upload image descriptor
-When deleting all previous versions of image descriptors for service xvp-voice/voice-hmi-service on endpoint <<configurationMngEndpoint>>
+!-- When deleting all previous versions of image descriptors for service xvp-voice/voice-hmi-service on endpoint <<configurationMngEndpoint>>
 When issuing http POST request to endpoint <<configurationMngEndpoint>> and path configurations/orchestration/groups/images/ with payload /configuration-files/<<systemName>>/voice-hmi-service-docker-image.json
 
 Scenario: Change layout to new voice-hmi version
