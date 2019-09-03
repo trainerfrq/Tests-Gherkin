@@ -15,8 +15,8 @@ Given the following phone book entries:
 | entry4  | sip:group1@example.com      | group1             |           |          |              |       |               |
 | entry5  | <<ALL_PHONES>>              | groupall           |           |          |              |       |               |
 | entry6  | <<OPVOICE3_PHONE_URI>>      | Lloyd              |           |          |              |       |               |
-| entry7  | <<MISSION1_URI>>            | <<MISSION_1_NAME>> |           |          |              |       |               |
-| entry8  | <<MISSION2_URI>>            | <<MISSION_2_NAME>> |           |          |              |       |               |
+| entry7  | <<ROLE1_URI>>            | <<ROLE_1_NAME>> |           |          |              |       |               |
+| entry8  | <<ROLE2_URI>>            | <<ROLE_2_NAME>> |           |          |              |       |               |
 | entry9  | <<SIP_PHONE2>>              | Madoline           |           |          |              |       |               |
 | entry10 | <<OPVOICE1_PHONE_URI>>      | OP1 Physical       |           |          |              |       |               |
 | entry11 | <<OPVOICE2_PHONE_URI>>      | OP2 Physical       |           |          |              |       |               |

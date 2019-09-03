@@ -1,7 +1,7 @@
 Narrative:
-	 As an operator
-	 I want to initiate an outgoing DA call by clicking on one telephone book entry
-	 So I can check that the call towards the corresponding entry is initiated
+As an operator
+I want to initiate an outgoing DA call by clicking on one telephone book entry
+So I can check that the call towards the corresponding entry is initiated
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -13,7 +13,7 @@ Given booked profiles:
 Scenario: Define call queue items
 Given the call queue items:
 | key     | source                 | target                 | callType |
-| OP1-OP2 | <<MISSION1_URI>>       | <<OPVOICE2_PHONE_URI>> | DA/IDA   |
+| OP1-OP2 | <<ROLE1_URI>>          | <<OPVOICE2_PHONE_URI>> | DA/IDA   |
 | OP2-OP1 | <<OPVOICE2_PHONE_URI>> |                        | DA/IDA   |
 
 Scenario: Caller opens phonebook
@@ -50,8 +50,7 @@ Scenario: Priority call is initiated
 		  @REQUIREMENTS:GID-2535740
 Then HMI OP1 has in the call queue the item OP2-OP1 with priority
 Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2 Physical
-Then HMI OP2 has the call queue item OP1-OP2 in the priority list with name label <<MISSION_1_NAME>>
-
+Then HMI OP2 has the call queue item OP1-OP2 in the priority list with name label <<ROLE_1_NAME>>
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP2-OP1

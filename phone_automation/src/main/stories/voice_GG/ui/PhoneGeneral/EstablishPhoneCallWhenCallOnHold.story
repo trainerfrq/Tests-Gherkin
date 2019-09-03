@@ -15,7 +15,7 @@ Given the call queue items:
 | key     | source      | target           | callType |
 | OP1-OP2 | <<OP1_URI>> | <<OP2_URI>>      | DA/IDA   |
 | OP2-OP1 | <<OP2_URI>> | <<OP1_URI>>      | DA/IDA   |
-| OP2-OP3 | <<OP2_URI>> | <<MISSION3_URI>> | DA/IDA   |
+| OP2-OP3 | <<OP2_URI>> | <<ROLE3_URI>> | DA/IDA   |
 
 Scenario: Caller establishes an outgoing call
 When HMI OP1 presses DA key OP2

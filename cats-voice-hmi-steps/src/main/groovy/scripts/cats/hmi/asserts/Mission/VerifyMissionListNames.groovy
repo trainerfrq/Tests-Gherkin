@@ -37,7 +37,5 @@ class VerifyMissionListNames extends FxScriptTemplate {
                     .success(text.equals(missionName)));
 
         }
-
-
     }
 }

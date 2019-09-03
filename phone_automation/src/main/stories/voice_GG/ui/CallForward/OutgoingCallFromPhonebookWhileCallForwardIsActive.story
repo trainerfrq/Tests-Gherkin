@@ -13,7 +13,7 @@ Given booked profiles:
 Scenario: Define call queue items
 Given the call queue items:
 | key     | source                 | target                 | callType |
-| OP1-OP2 | <<MISSION1_URI>>       | <<OPVOICE2_PHONE_URI>> | DA/IDA   |
+| OP1-OP2 | <<ROLE1_URI>>       | <<OPVOICE2_PHONE_URI>> | DA/IDA   |
 | OP2-OP1 | <<OPVOICE2_PHONE_URI>> |                        | DA/IDA   |
 
 Scenario: Op1 activates Call Forward
@@ -57,7 +57,7 @@ When HMI OP1 initiates a call from the phonebook
 
 Scenario: Call is initiated
 Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label OP2 Physical
-Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with name label <<MISSION_1_NAME>>
+Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with name label <<ROLE_1_NAME>>
 
 
 Scenario: Op1 still has Call Forward active

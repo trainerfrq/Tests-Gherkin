@@ -15,8 +15,8 @@ Given booked profiles:
 Scenario: Define call queue items
 Given the call queue items:
 | key       | source      | target      | callType |
-| OP1-OP2-1 | <<MISSION1_URI>> | <<OP2_URI>> | DA/IDA   |
-| OP1-OP2-2 | <<MISSION2_URI>> | <<OP2_URI>> | DA/IDA   |
+| OP1-OP2-1 | <<ROLE1_URI>> | <<OP2_URI>> | DA/IDA   |
+| OP1-OP2-2 | <<ROLE2_URI>> | <<OP2_URI>> | DA/IDA   |
 | OP2-OP1   | 222222      |             | DA/IDA   |
 
 Scenario: Caller makes a call from phonebook using dialpad
@@ -27,7 +27,7 @@ When HMI OP1 initiates a call from the phonebook
 Scenario: Call is initiated
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
 Then HMI OP2 has the call queue item OP1-OP2-1 in state inc_initiated
-Then HMI OP2 has the call queue item OP1-OP2-1 in the waiting list with name label <<MISSION_1_NAME>>
+Then HMI OP2 has the call queue item OP1-OP2-1 in the waiting list with name label <<ROLE_1_NAME>>
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP2-OP1
@@ -51,7 +51,7 @@ Scenario: Caller does call from call history
 When HMI OP1 initiates a call from the call history
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
 Then HMI OP2 has the call queue item OP1-OP2-2 in state inc_initiated
-Then HMI OP2 has the call queue item OP1-OP2-2 in the waiting list with name label <<MISSION_2_NAME>>
+Then HMI OP2 has the call queue item OP1-OP2-2 in the waiting list with name label <<ROLE_2_NAME>>
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP2-OP1

@@ -13,7 +13,7 @@ Given booked profiles:
 Scenario: Define call queue items
 Given the call queue items:
 | key     | source           | target      | callType |
-| OP1-OP2 | <<MISSION1_URI>> | <<OP2_URI>> | DA/IDA   |
+| OP1-OP2 | <<ROLE1_URI>> | <<OP2_URI>> | DA/IDA   |
 | OP2-OP1 | 222222           |             | DA/IDA   |
 
 Scenario: Caller opens phonebook
@@ -44,7 +44,7 @@ Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
 Then HMI OP1 verifies that call queue item bar signals call state priority
 Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
 Then HMI OP2 verifies that call queue item bar signals call state priority
-Then HMI OP2 has the call queue item OP1-OP2 in the priority list with name label <<MISSION_1_NAME>>
+Then HMI OP2 has the call queue item OP1-OP2 in the priority list with name label <<ROLE_1_NAME>>
 !-- Known bug QXVP-14392
 Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label <<OP2_NAME>>
 

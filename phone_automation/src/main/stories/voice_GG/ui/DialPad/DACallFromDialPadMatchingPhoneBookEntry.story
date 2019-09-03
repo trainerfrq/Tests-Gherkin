@@ -13,7 +13,7 @@ Given booked profiles:
 Scenario: Define call queue items
 Given the call queue items:
 | key     | source             | target                 | callType |
-| OP1-OP3 | <<MISSION1_URI>>   | <<OPVOICE3_PHONE_URI>> | DA/IDA   |
+| OP1-OP3 | <<ROLE1_URI>>   | <<OPVOICE3_PHONE_URI>> | DA/IDA   |
 | OP3-OP1 | <<OPVOICE3_PHONE>> |                        | DA/IDA   |
 
 Scenario: Caller opens phonebook
@@ -42,7 +42,7 @@ Then HMI OP1 has the call queue item OP3-OP1 in the active list with name label 
 
 Scenario: Callee accepts call
 Then HMI OP3 accepts the call queue item OP1-OP3
-Then HMI OP3 has the call queue item OP1-OP3 in the active list with name label <<MISSION_1_NAME>>
+Then HMI OP3 has the call queue item OP1-OP3 in the active list with name label <<ROLE_1_NAME>>
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP3-OP1

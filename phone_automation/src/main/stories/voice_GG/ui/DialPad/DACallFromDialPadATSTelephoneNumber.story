@@ -13,7 +13,7 @@ Given booked profiles:
 Scenario: Define call queue items
 Given the call queue items:
 | key     | source           | target      | callType |
-| OP1-OP2 | <<MISSION1_URI>> | <<OP2_URI>> | DA/IDA   |
+| OP1-OP2 | <<ROLE1_URI>> | <<OP2_URI>> | DA/IDA   |
 | OP2-OP1 | 222222           |             | DA/IDA   |
 
 Scenario: Caller opens phonebook
@@ -37,13 +37,13 @@ Scenario: Call is initiated
 		  @REQUIREMENTS:GID-3366402
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
 Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
-Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with name label <<MISSION_1_NAME>>
+Then HMI OP2 has the call queue item OP1-OP2 in the waiting list with name label <<ROLE_1_NAME>>
 !--  QXVP-14392 - known bug
 Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label <<OP2_NAME>>
 
 Scenario: Callee accepts call
 Then HMI OP2 accepts the call queue item OP1-OP2
-Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label <<MISSION_1_NAME>>
+Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label <<ROLE_1_NAME>>
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP2-OP1
