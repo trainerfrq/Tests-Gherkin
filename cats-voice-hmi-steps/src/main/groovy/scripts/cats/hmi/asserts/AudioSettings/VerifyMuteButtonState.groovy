@@ -20,8 +20,8 @@ class VerifyMuteButtonState extends FxScriptTemplate {
         Node muteButton = robot.lookup("#mute"+buttonName+"Button").queryFirst()
 
         evaluate(ExecutionDetails.create("Mute button was found")
-                .expected("Mute button is not null")
-                .success(muteButton != null))
+                .expected("Mute button is visible")
+                .success(muteButton.isVisible()))
 
         switch(state){
             case "muted":

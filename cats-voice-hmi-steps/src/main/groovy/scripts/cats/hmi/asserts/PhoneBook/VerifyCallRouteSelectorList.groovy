@@ -16,9 +16,9 @@ class VerifyCallRouteSelectorList extends FxScriptTemplate {
 
         evaluate(ExecutionDetails.create("Phone book popup was found")
                 .expected("Phone book popup is not null")
-                .success(phoneBookPopup != null))
+                .success(phoneBookPopup.isVisible()))
 
-        if (phoneBookPopup != null) {
+        if (phoneBookPopup.isVisible()) {
             final Node callRouteSelectorComboBox = robot.lookup("#callRouteComboBox").queryFirst()
 
             robot.clickOn(robot.point(callRouteSelectorComboBox ))

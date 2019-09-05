@@ -17,8 +17,8 @@ class ClickOnWarningPopupButton extends FxScriptTemplate {
         Node unattendedPopup = robot.lookup("#unattendedPopup").queryFirst()
 
         evaluate(ExecutionDetails.create("Unattended popup was found")
-                .expected("Unattended popup is not null")
-                .success(unattendedPopup != null))
+                .expected("Unattended popup is visible")
+                .success(unattendedPopup.isVisible()))
 
         final Node button
         switch(buttonName)

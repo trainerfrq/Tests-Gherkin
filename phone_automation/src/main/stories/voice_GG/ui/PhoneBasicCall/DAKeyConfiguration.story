@@ -73,6 +73,7 @@ When HMI OP1 presses IA key IA - <<ROLE_2_NAME>>
 Scenario: Outgoing DA call using as source a configured role
 When HMI OP2 presses IA key IA - ROLE1
 Then HMI OP2 has the IA key IA - ROLE1 in state connected
+Then wait for 2 seconds
 Then the call queue item OP2-ROLE1 is connected for only one of the operator positions: HMI OP1, HMI OP3
 
 Scenario: Cleanup IA call

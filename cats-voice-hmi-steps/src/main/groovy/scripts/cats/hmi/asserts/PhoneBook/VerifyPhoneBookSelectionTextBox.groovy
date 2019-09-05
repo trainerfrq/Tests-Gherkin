@@ -18,10 +18,10 @@ class VerifyPhoneBookSelectionTextBox extends FxScriptTemplate {
         Node phoneBookPopup = robot.lookup("#phonebookPopup").queryFirst()
 
         evaluate(ExecutionDetails.create("Phonebook popup was found")
-                .expected("Phonebook popup is not null")
-                .success(phoneBookPopup != null))
+                .expected("Phonebook popup is visible")
+                .success(phoneBookPopup.isVisible()))
 
-        if (phoneBookPopup != null) {
+        if (phoneBookPopup.isVisible()) {
             final TextField textField = robot.lookup("#callInputSelectionField").queryFirst()
 
             evaluate(ExecutionDetails.create("Textfield has the desired text")

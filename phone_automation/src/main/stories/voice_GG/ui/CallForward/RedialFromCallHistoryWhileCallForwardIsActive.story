@@ -45,7 +45,7 @@ Then HMI OP2 has the DA key OP1 in state inc_initiated
 
 Scenario: Op1 client clears the phone call
 When HMI OP1 presses DA key OP2
-Then HMI OP2 has in the call queue a number of 0 calls
+Then HMI OP2 has in the active list a number of 0 calls
 
 Scenario: Op1 redials from CallHistory
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLHISTORY
@@ -79,7 +79,7 @@ Then HMI OP2 has in the call queue the item OP1-OP2-DA with priority
 
 Scenario: Op1 client clears the phone call
 When HMI OP1 presses DA key OP2
-Then HMI OP2 has in the call queue a number of 0 calls
+Then HMI OP2 has in the active list a number of 0 calls
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Op1 redials from CallHistory

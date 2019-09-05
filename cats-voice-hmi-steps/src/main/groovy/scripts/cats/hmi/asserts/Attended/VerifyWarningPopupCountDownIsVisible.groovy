@@ -13,8 +13,8 @@ class VerifyWarningPopupCountDownIsVisible extends FxScriptTemplate {
         Pane unattendedPopup = robot.lookup("#unattendedPopup").queryFirst()
 
         evaluate(ExecutionDetails.create("Unattended popup was found")
-                .expected("Unattended popup is not null")
-                .success(unattendedPopup != null))
+                .expected("Unattended popup is visible")
+                .success(unattendedPopup.isVisible()))
 
         Label countDownLabel = robot.lookup("#unattendedPopup #unattendedRemainingTime").queryFirst()
 

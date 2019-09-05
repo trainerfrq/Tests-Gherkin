@@ -17,8 +17,8 @@ class VerifyIdlePopupText extends FxScriptTemplate {
         Pane idlePopup = robot.lookup("#idlePopup").queryFirst()
 
         evaluate(ExecutionDetails.create("Idle popup was found")
-                .expected("Idle popup is not null")
-                .success(idlePopup != null))
+                .expected("Idle popup is visible")
+                .success(idlePopup.isVisible()))
 
         Label label1 = robot.lookup("#idlePopup #idleText_1").queryFirst()
         Label label2 = robot.lookup("#idlePopup #idleText_2").queryFirst()

@@ -17,8 +17,8 @@ class VerifyLeaveConferenceButtonState extends FxScriptTemplate {
         Node conferenceListPopup = robot.lookup("#conferenceListPopup").queryFirst()
 
         evaluate(ExecutionDetails.create("Conference list popup was found")
-                .expected("Conference list is not null")
-                .success(conferenceListPopup != null))
+                .expected("Conference list is visible")
+                .success(conferenceListPopup.isVisible()))
 
         if (conferenceListPopup != null) {
             final Node terminateConferenceButton = robot.lookup("#conferenceListPopup #terminateConferenceButton").queryFirst()

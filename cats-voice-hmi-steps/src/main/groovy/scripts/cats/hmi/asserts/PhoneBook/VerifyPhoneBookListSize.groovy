@@ -18,10 +18,10 @@ class VerifyPhoneBookListSize extends FxScriptTemplate {
         final Node phoneBookPopup = robot.lookup("#phonebookPopup").queryFirst()
 
         evaluate(ExecutionDetails.create("Phonebook popup was found")
-                .expected("Phonebook popup is not null")
-                .success(phoneBookPopup != null))
+                .expected("Phonebook popup is visible")
+                .success(phoneBookPopup.isVisible()))
 
-        if (phoneBookPopup != null) {
+        if (phoneBookPopup.isVisible()) {
 
             final TableView phonebookTable = robot.lookup( "#phonebookTable" ).queryFirst()
             phonebookTable.refresh()

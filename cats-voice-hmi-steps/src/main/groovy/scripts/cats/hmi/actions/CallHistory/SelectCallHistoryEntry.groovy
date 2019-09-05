@@ -15,10 +15,10 @@ class SelectCallHistoryEntry extends FxScriptTemplate {
         Node callHistoryPopup = robot.lookup("#callHistoryPopup").queryFirst()
 
         evaluate(ExecutionDetails.create("Call history popup was found")
-                .expected("Call history popup is not null")
-                .success(callHistoryPopup != null))
+                .expected("Call history popup is visible")
+                .success(callHistoryPopup.isVisible()))
 
-        if (callHistoryPopup != null) {
+        if (callHistoryPopup.isVisible()) {
             final Node callHistoryEntry = robot.lookup("#callHistoryList .list-cell").selectAt(callHistoryEntryNumber).queryFirst()
 
             evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " was found")
