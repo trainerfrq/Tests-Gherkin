@@ -36,14 +36,14 @@
                 </cats:storyList>
             </cats:storyLists>
         </cats:storyCollection>
-        <cats:storyCollection enabled="false">
+        <cats:storyCollection enabled="true">
             <cats:name>Websocket - Prepare Tests</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
                 <cats:status>CREATED</cats:status>
             </cats:report>
             <cats:storyLists>
-                <cats:storyList enabled="false">
+                <cats:storyList enabled="true">
                     <cats:name>Websocket - Prepare Tests</cats:name>
                     <cats:onErrorOption>FINISH_CURRENT_STORY</cats:onErrorOption>
                     <cats:repetitions>1</cats:repetitions>
@@ -879,14 +879,14 @@
                 </cats:storyList>
             </cats:storyLists>
         </cats:storyCollection>
-        <cats:storyCollection enabled="false">
+        <cats:storyCollection enabled="true">
             <cats:name>UI - Prepare Tests</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
                 <cats:status>CREATED</cats:status>
             </cats:report>
             <cats:storyLists>
-                <cats:storyList enabled="false">
+                <cats:storyList enabled="true">
                     <cats:name>UI - Prepare Tests</cats:name>
                     <cats:onErrorOption>ABORT_ENTIRE_STORY_SET</cats:onErrorOption>
                     <cats:repetitions>1</cats:repetitions>
@@ -1372,6 +1372,18 @@
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
                         </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/Transfer/TransferWithConsultationIncomingCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/Transfer/TransferWithoutConsultationIncomingCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
                 </cats:storyList>
@@ -1437,6 +1449,18 @@
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Mission/DAPriorityCallMissionChange.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/Mission/MissionAndRoles.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/Mission/MissionMasterRoleSIP.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
