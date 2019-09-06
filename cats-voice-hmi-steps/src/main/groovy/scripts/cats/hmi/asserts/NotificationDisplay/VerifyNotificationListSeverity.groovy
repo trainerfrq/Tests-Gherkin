@@ -2,9 +2,6 @@ package scripts.cats.hmi.asserts.NotificationDisplay
 
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
-import javafx.scene.control.ListView
-import javafx.scene.layout.HBox
-import javafx.scene.layout.Pane
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 class VerifyNotificationListSeverity extends FxScriptTemplate {
@@ -24,10 +21,10 @@ class VerifyNotificationListSeverity extends FxScriptTemplate {
         Node notificationPopup = robot.lookup("#notificationPopup").queryFirst()
 
         evaluate(ExecutionDetails.create("Notification popup was found")
-                .expected("Notification popup is not null")
-                .success(notificationPopup != null))
+                .expected("Notification popup is visible")
+                .success(notificationPopup.isVisible()))
 
-        if (notificationPopup != null) {
+        if (notificationPopup.isVisible()) {
             Node notificationEntry = robot.lookup("#notificationEventList #notificationEntry_"+ entryNumber.toString() + " .notificationListItem").queryFirst()
             evaluate(ExecutionDetails.create("Notification list "+listName+" severity is the expected one")
                     .received(Arrays.toString(notificationEntry.getStyleClass().toArray()))

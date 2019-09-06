@@ -16,8 +16,8 @@ class ClickOnIdlePopupButton extends FxScriptTemplate {
         Node idlePopup = robot.lookup("#idlePopup").queryFirst()
 
         evaluate(ExecutionDetails.create("Idle popup was found")
-                .expected("Idle popup is not null")
-                .success(idlePopup != null))
+                .expected("Idle popup is visible")
+                .success(idlePopup.isVisible()))
 
         final Node button
         switch (buttonName) {

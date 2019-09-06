@@ -16,7 +16,7 @@ class VerifyPhoneBookInputTextBox extends FxScriptTemplate {
 
         Node phoneBookPopup = robot.lookup("#phonebookPopup").queryFirst()
 
-        if (phoneBookPopup != null) {
+        if (phoneBookPopup.isVisible()) {
             final TextField textField = robot.lookup("#callInputTextField").queryFirst()
 
             evaluate(ExecutionDetails.create("Textfield has the desired text")

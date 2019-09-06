@@ -17,8 +17,8 @@ class ClickOnPopupCloseButton extends FxScriptTemplate {
         Node requestedPopup = robot.lookup("#"+ popupName +"Popup").queryFirst()
 
         evaluate(ExecutionDetails.create("Popup was found")
-                .expected("Popup is not null")
-                .success(requestedPopup != null))
+                .expected("Popup is visible")
+                .success(requestedPopup.isVisible()))
 
         if (requestedPopup != null) {
             final Node closePopupButton = robot.lookup("#"+ popupName +"Popup #closePopupButton").queryFirst()

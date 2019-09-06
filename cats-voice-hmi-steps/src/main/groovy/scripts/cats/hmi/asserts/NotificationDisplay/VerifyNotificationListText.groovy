@@ -3,7 +3,6 @@ package scripts.cats.hmi.asserts.NotificationDisplay
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
 import javafx.scene.control.Label
-import javafx.scene.control.ListView
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 class VerifyNotificationListText extends FxScriptTemplate {
@@ -23,10 +22,10 @@ class VerifyNotificationListText extends FxScriptTemplate {
         Node notificationPopup = robot.lookup("#notificationPopup").queryFirst()
 
         evaluate(ExecutionDetails.create("Notification popup was found")
-                .expected("Notification popup is not null")
-                .success(notificationPopup != null))
+                .expected("Notification popup is visible")
+                .success(notificationPopup.isVisible()))
 
-        if (notificationPopup != null) {
+        if (notificationPopup.isVisible()) {
             Label textLabel = robot.lookup("#notification"+listName+"List #notificationEntry_"+ entryNumber.toString() +" #notificationTextLabel").queryFirst()
 
             evaluate(ExecutionDetails.create("Notification list entry was found")
