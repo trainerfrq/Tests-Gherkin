@@ -15,6 +15,13 @@ Given the call queue items:
 | key     | source   | target | callType |
 | OP1-OP1 | 111111   |        | DA/IDA   |
 
+Scenario: Cleanup events list
+When HMI OP1 opens Notification Display list
+When HMI OP1 selects tab event from notification display popup
+When HMI OP1 clears the notification events from list
+Then HMI OP1 verifies that Notification Display list Event has 0 items
+Then HMI OP1 closes notification popup
+
 Scenario: Operator tries a call to its own position
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
 When HMI OP1 writes in phonebook text box the address: 111111

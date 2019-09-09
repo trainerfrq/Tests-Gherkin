@@ -1228,7 +1228,7 @@
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/ui/Role/SIPCallTowardsAllOperators.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
@@ -1521,6 +1521,18 @@
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Mission/IACallLimitOnMissionChange.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/Mission/MissionAndRoles.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/Mission/MissionMasterRoleSIP.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
@@ -1969,7 +1981,7 @@
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/ui/Conference/ConferenceAndCallForwardLoopDetection.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
@@ -2069,12 +2081,6 @@
                             <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/Failover/AudioSettingsFailover.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyDataList/>
-                            <cats:storyStatistics/>
-                        </cats:story>
-                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Failover/CallHistoryFailover.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
@@ -2130,6 +2136,18 @@
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Failover/LSPStateFailover.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/AudioDevice/AudioSettingsPreparationStory.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/Failover/AudioSettingsFailover.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>

@@ -23,6 +23,12 @@ Given the following notification entries:
 | Entry_2 | info     | Call can not be accepted, TRANSFER mode active |
 | Entry_1 | error    | General failure for phone call to              |
 
+Scenario: Cleanup events list
+When HMI OP2 opens Notification Display list
+When HMI OP2 selects tab event from notification display popup
+When HMI OP2 clears the notification events from list
+Then HMI OP2 verifies that Notification Display list Event has 0 items
+Then HMI OP2 closes notification popup
 
 Scenario: Caller establishes an outgoing IA call
 When HMI OP2 with layout lower-west-exec-layout selects grid tab 2

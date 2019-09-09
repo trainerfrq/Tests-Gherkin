@@ -20,10 +20,10 @@ class VerifyTotalNumberOfEntries extends FxScriptTemplate {
         Node phoneBookPopup = robot.lookup("#phonebookPopup").queryFirst()
 
         evaluate(ExecutionDetails.create("Phonebook popup was found")
-                .expected("Phonebook popup is not null")
-                .success(phoneBookPopup != null))
+                .expected("Phonebook popup is visible")
+                .success(phoneBookPopup.isVisible()))
 
-        if (phoneBookPopup != null) {
+        if (phoneBookPopup.isVisible()) {
             final Node scrollDownButton = robot.lookup("#phonebookPopup #scrollDown").queryFirst()
             for (Integer index = 0; index < totalNumberOfEntries/10; index++) {
                 robot.clickOn(robot.point(scrollDownButton)) // scrolling is needed because there are loaded only 250 entries at first, after scrolling 25 times a new request is being sent to op voice

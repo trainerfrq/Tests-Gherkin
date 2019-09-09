@@ -19,10 +19,10 @@ class VerifyMissionListSize extends FxScriptTemplate {
         Node missionPopup = robot.lookup("#missionPopup").queryFirst();
 
         evaluate(ExecutionDetails.create("Mission popup was found")
-                .expected("missionPopup is not null")
-                .success(missionPopup != null));
+                .expected("missionPopup is visible")
+                .success(missionPopup.isVisible()));
 
-        if (missionPopup != null) {
+        if (missionPopup.isVisible()) {
             final Set<Node> missionItems = robot.lookup("#missionPopup #missionList .missionListItem").queryAll();
             evaluate(ExecutionDetails.create("Mission list size is the expected one")
                     .received(missionItems.size().toString())

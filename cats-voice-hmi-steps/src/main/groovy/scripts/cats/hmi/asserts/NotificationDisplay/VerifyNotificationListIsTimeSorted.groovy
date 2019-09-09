@@ -27,10 +27,10 @@ class VerifyNotificationListIsTimeSorted extends FxScriptTemplate {
         Node notificationPopup = robot.lookup("#notificationPopup").queryFirst()
 
         evaluate(ExecutionDetails.create("Notification popup was found")
-                .expected("Notification popup is not null")
-                .success(notificationPopup != null))
+                .expected("Notification popup is visible")
+                .success(notificationPopup .isVisible()))
 
-        if (notificationPopup != null) {
+        if (notificationPopup.isVisible()) {
             final ListView list = robot.lookup( "#notification"+listName+"List" ).queryFirst()
             int receivedListSize = list.getItems().size();
 

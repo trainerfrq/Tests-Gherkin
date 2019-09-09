@@ -36,11 +36,12 @@ GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost2.story
 When HMI OP1 verifies that loading screen is visible
 Then HMI OP1 has in the DISPLAY STATUS section connection the state DEGRADED
 
-Scenario: Op1 closes settings popup window
-Then HMI OP1 closes settings popup
+Scenario: Op1 closes open popup window
+Then HMI OP1 closes popup settings if window is visible
 
-Scenario: Op2 closes settings popup window
-Then HMI OP2 closes settings popup
+Scenario: Op2 closes open popup window
+Then HMI OP2 closes popup settings if window is visible
+
 Scenario: Op1 verifies that Loudspeaker state is unchanged
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP on
 

@@ -78,6 +78,9 @@ Then HMI OP1 verifies in the list that conference participant on position 3 has 
 Then HMI OP1 verifies that remove conference participant button is disabled
 Then HMI OP1 verifies that leave conference button is enabled
 
+Scenario: Op1 closes conference participants list
+Then HMI OP1 closes Conference list popup window
+
 Scenario: Op1 changes mission
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP1 changes current mission to mission WEST-EXEC
@@ -124,6 +127,9 @@ Then HMI OP1 verifies in the list that conference participant on position 1 has 
 Then HMI OP1 verifies in the list that conference participant on position 2 has status connected
 Then HMI OP1 verifies in the list that conference participant on position 2 has name <<OP1_NAME>>
 
+Scenario: Op1 closes conference participants list
+Then HMI OP1 closes Conference list popup window
+
 Scenario: Op1 changes mission
 When HMI OP1 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
 Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
@@ -145,6 +151,7 @@ Scenario: Op2 closes conference participants list
 Then HMI OP2 closes Conference list popup window
 
 Scenario: Op1 verifies conference participants list
+When HMI OP1 opens the conference participants list
 Then HMI OP1 verifies that conference participants list contains 2 participants
 Then HMI OP1 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP1 verifies in the list that conference participant on position 1 has name <<OP2_NAME>>

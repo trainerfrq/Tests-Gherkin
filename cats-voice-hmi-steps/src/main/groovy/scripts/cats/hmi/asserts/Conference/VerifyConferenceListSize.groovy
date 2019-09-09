@@ -20,10 +20,10 @@ class VerifyConferenceListSize extends FxScriptTemplate {
         Node conferencePopup = robot.lookup("#conferenceListPopup").queryFirst();
 
         evaluate(ExecutionDetails.create("Conference popup was found")
-                .expected("conferencePopup is not null")
-                .success(conferencePopup != null));
+                .expected("conferencePopup is visible")
+                .success(conferencePopup.isVisible()));
 
-        if (conferencePopup != null) {
+        if (conferencePopup.isVisible()) {
             final TableView conferenceTable = robot.lookup( "#conferenceTable" ).queryFirst()
             final ObservableList conferenceItems = conferenceTable.getItems()
             evaluate(ExecutionDetails.create("Conference list size is the expected one")

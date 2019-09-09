@@ -34,11 +34,12 @@ Given HMI OP1 has the DA key OP2 in ready to be used state
 
 Given HMI OP2 has the DA key OP1 in ready to be used state
 
-Scenario: Op1 closes settings popup window
-Then HMI OP1 closes settings popup
+Scenario: Op1 closes open popup window
+Then HMI OP1 closes popup settings if window is visible
 
-Scenario: Op2 closes settings popup window
-Then HMI OP2 closes settings popup
+Scenario: Op2 closes open popup window
+Then HMI OP2 closes popup settings if window is visible
+
 Scenario: Caller establishes an outgoing call
 When HMI OP1 presses DA key OP2
 Then HMI OP1 has the DA key OP2 in state out_ringing
@@ -76,11 +77,12 @@ Then HMI OP1 has in the DISPLAY STATUS section connection the state DEGRADED
 When HMI OP2 verifies that loading screen is visible
 Then HMI OP2 has in the DISPLAY STATUS section connection the state DEGRADED
 
-Scenario: Op1 closes settings popup window
-Then HMI OP1 closes settings popup
+Scenario: Op1 closes open popup window
+Then HMI OP1 closes popup settings if window is visible
 
-Scenario: Op2 closes settings popup window
-Then HMI OP2 closes settings popup
+Scenario: Op2 closes open popup window
+Then HMI OP2 closes popup settings if window is visible
+
 Scenario: Call is terminated for callee
 !-- TODO QXVP-9245 : enable this test after story is done
 Then HMI OP2 has in the call queue a number of 0 calls

@@ -30,11 +30,11 @@ Then HMI OP1 has in the DISPLAY STATUS section connection the state DEGRADED
 When HMI OP2 verifies that loading screen is visible
 Then HMI OP2 has in the DISPLAY STATUS section connection the state DEGRADED
 
-Scenario: Op1 closes settings popup window
-Then HMI OP1 closes settings popup
+Scenario: Op1 closes open popup window
+Then HMI OP1 closes popup settings if window is visible
 
-Scenario: Op2 closes settings popup window
-Then HMI OP2 closes settings popup
+Scenario: Op2 closes open popup window
+Then HMI OP2 closes popup settings if window is visible
 
 Scenario: Select second tab to make IA buttons visible
 When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2

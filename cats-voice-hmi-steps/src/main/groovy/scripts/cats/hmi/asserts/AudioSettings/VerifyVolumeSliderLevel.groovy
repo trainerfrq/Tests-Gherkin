@@ -19,18 +19,20 @@ class VerifyVolumeSliderLevel extends FxScriptTemplate {
         Node volumeSlider = robot.lookup("#"+sliderName+"VolumeSlider").queryFirst()
 
         evaluate(ExecutionDetails.create("Volume slider was found")
-                .expected("Volume slider is not null")
-                .success(volumeSlider != null))
+                .expected("Volume slider is visible")
+                .success(volumeSlider.isVisible()))
 
         Slider slider = (Slider) volumeSlider;
 
         Double receivedSliderValue = slider.getValue().round();
 
-        evaluate(ExecutionDetails.create("Volume slider value is the expected one")
-                .expected("Expected volume slider value is "+sliderValue)
-                .received("Received volume slider value is "+receivedSliderValue)
-                .success(receivedSliderValue.equals(sliderValue)))
-
+       if((receivedSliderValue >= sliderValue - 2) && (receivedSliderValue <= sliderValue + 2))
+       {
+           evaluate(ExecutionDetails.create("Volume slider value is the expected one")
+                   .expected("Expected volume slider value is "+sliderValue)
+                   .received("Received volume slider value is "+receivedSliderValue)
+                   .success(true))
+       }
 
     }
 }

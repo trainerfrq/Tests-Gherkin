@@ -17,10 +17,10 @@ class VerifyCallHistoryDialButtonState extends FxScriptTemplate {
         Node callHistoryPopup = robot.lookup("#callHistoryPopup").queryFirst()
 
         evaluate(ExecutionDetails.create("Call history popup was found")
-                .expected("Call history popup is not null")
-                .success(callHistoryPopup != null))
+                .expected("Call history popup is visible")
+                .success(callHistoryPopup.isVisible()))
 
-        if (callHistoryPopup != null) {
+        if (callHistoryPopup.isVisible()) {
             final Node redialCallButton = robot.lookup("#callHistoryPopup #initiateCallButton").queryFirst()
             switch(state){
                 case "disabled":

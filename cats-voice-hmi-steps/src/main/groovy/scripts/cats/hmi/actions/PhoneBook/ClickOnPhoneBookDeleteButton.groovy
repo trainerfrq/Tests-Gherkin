@@ -11,10 +11,10 @@ class ClickOnPhoneBookDeleteButton extends FxScriptTemplate {
         Node phoneBookPopup = robot.lookup("#phonebookPopup").queryFirst()
 
         evaluate(ExecutionDetails.create("Phonebook popup was found")
-                .expected("Phonebook popup is not null")
-                .success(phoneBookPopup != null))
+                .expected("Phonebook popup is visible")
+                .success(phoneBookPopup.isVisible()))
 
-        if (phoneBookPopup != null) {
+        if (phoneBookPopup.isVisible()) {
             final Node deleteButton = robot.lookup("#phonebookPopup #inputBackspace").queryFirst()
 
             robot.clickOn(robot.point(deleteButton))

@@ -13,7 +13,7 @@ Given booked profiles:
 Scenario: Define call queue items
 Given the call queue items:
 | key     | source                 | target                 | callType |
-| OP1-OP3 | <<MISSION1_URI>>       | <<OPVOICE3_PHONE_URI>> | DA/IDA   |
+| OP1-OP3 | <<ROLE1_URI>>       | <<OPVOICE3_PHONE_URI>> | DA/IDA   |
 | OP3-OP1 | <<OPVOICE3_PHONE_URI>> |                        | DA/IDA   |
 
 Scenario: Caller opens phonebook
@@ -37,7 +37,7 @@ Then HMI OP1 has the call queue item OP3-OP1 in the active list with name label 
 
 Scenario: Verify that the call is initiated using the caller primary SIP address
 		  @REQUIREMENTS:GID-2952544
-Then HMI OP3 has the call queue item OP1-OP3 in the waiting list with name label <<MISSION_1_NAME>>
+Then HMI OP3 has the call queue item OP1-OP3 in the waiting list with name label <<ROLE_1_NAME>>
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP3-OP1

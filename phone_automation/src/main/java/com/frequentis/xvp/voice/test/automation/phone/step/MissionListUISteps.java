@@ -25,11 +25,12 @@ import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Then;
 import scripts.cats.hmi.actions.Mission.CleanUpMission;
 import scripts.cats.hmi.actions.Mission.ClickActivateMission;
-import scripts.cats.hmi.actions.Mission.ClickMissionCloseButton;
 import scripts.cats.hmi.actions.Mission.SelectMissionFromList;
 import scripts.cats.hmi.actions.Mission.SelectMissionFromListByPosition;
+import scripts.cats.hmi.asserts.Mission.VerifyCurrentActiveMission;
 import scripts.cats.hmi.asserts.Mission.VerifyMissionListNames;
 import scripts.cats.hmi.asserts.Mission.VerifyMissionListSize;
+import scripts.cats.hmi.asserts.Mission.VerifyRolesInMissionList;
 import scripts.cats.hmi.asserts.VerifyStatusDisplay;
 
 public class MissionListUISteps extends AutomationSteps
@@ -67,6 +68,24 @@ public class MissionListUISteps extends AutomationSteps
               .input( VerifyMissionListNames.IPARAM_MISSION_LIST_NAMES, missionNames ) );
    }
 
+    @Then("$profileName has roles $roleNames available in the roles list")
+    public void verifyNamesOfAvailableRoles( final String profileName, final String roleNames )
+    {
+        evaluate( remoteStep( "Verify that the mission has the correct list of roles" )
+                .scriptOn( profileScriptResolver().map( VerifyRolesInMissionList.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input( VerifyRolesInMissionList.IPARAM_ROLE_LIST_NAMES, roleNames ) );
+    }
+
+    @Then("$profileName verifies that current active mission is mission $mission")
+    public void verifyActiveMission( final String profileName, final String mission )
+    {
+        evaluate( remoteStep( "Verify active mission is: " + mission )
+                .scriptOn( profileScriptResolver().map( VerifyCurrentActiveMission.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input( VerifyCurrentActiveMission.IPARAM_MISSION_NAME, mission ) );
+    }
+
 
    @Then("$profileName changes current mission to mission $mission")
    public void changeMission( final String profileName, final String mission )
@@ -94,15 +113,6 @@ public class MissionListUISteps extends AutomationSteps
    {
       evaluate( remoteStep( "user clicks Activate Mission" ).scriptOn(
             profileScriptResolver().map( ClickActivateMission.class, BookableProfileName.javafx ),
-            assertProfile( profileName ) ) );
-   }
-
-
-   @Then("$profileName closes mission popup window")
-   public void clickCloseMission( final String profileName )
-   {
-      evaluate( remoteStep( "user clicks Close Mission" ).scriptOn(
-            profileScriptResolver().map( ClickMissionCloseButton.class, BookableProfileName.javafx ),
             assertProfile( profileName ) ) );
    }
 

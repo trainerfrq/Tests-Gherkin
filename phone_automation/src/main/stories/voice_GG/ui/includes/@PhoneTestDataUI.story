@@ -1,37 +1,42 @@
 Scenario: Define the DA keys
 Given the DA keys:
-| source  | target                | id                               |
-| HMI OP1 | OP1                   |                               |
-| HMI OP1 | OP2                   | 100                              |
-| HMI OP1 | OP3                   | 102                              |
-| HMI OP1 | IA - OP1              |                               |
-| HMI OP1 | IA - OP2              | 107                              |
-| HMI OP1 | IA - OP3              | <<OP1_IA_OP3_ID>>                |
-| HMI OP1 | ROLE2                 | 104                              |
-| HMI OP1 | ROLE1                 | 105                              |
-| HMI OP1 | ROLE2-ALIAS           | 106                              |
-| HMI OP1 | Madoline              | 109                              |
-| HMI OP1 | OP2(as Mission3)      | 101                              |
-| HMI OP1 | OP2(as ActiveMission) | <<OP1_ACTIVE_MISSION_OP2_ID>>    |
-| HMI OP1 | OP1(as Mission3)      | 103                              |
-| HMI OP1 | <<MISSION_2_NAME>>    | <<OP1_IA_MISSION2_ID>>           |
-| HMI OP2 | OP1                   | 110                              |
-| HMI OP2 | OP2                   |                               |
-| HMI OP2 | OP3                   | 111                              |
-| HMI OP2 | IA - OP1              | 118                              |
-| HMI OP2 | IA - OP2              | 119                              |
-| HMI OP2 | IA - OP3              | 121                              |
-| HMI OP2 | ROLE1                 | 112                              |
-| HMI OP2 | ROLE1(as ROLE2)       | 113                              |
-| HMI OP2 | ROLE1-ALIAS           | 114                              |
-| HMI OP2 | ROLE1-ALIAS(as ROLE2) | 115                              |
-| HMI OP2 | IA - ROLE1            | 117                              |
-| HMI OP2 | OP1(as Mission2)      | <<OP2_OP1_MISSION2_ID>>          |
-| HMI OP2 | <<MISSION_1_NAME>>    | <<OP2_IA_MISSION1_ID>>        |  |
-| HMI OP3 | OP1                   | <<OP3_OP1_ID>>                   |
-| HMI OP3 | OP2                   | <<OP3_OP2_ID>>                   |
-| HMI OP3 | IA - OP1              | <<OP3_IA_OP1_ID>>                |
-| HMI OP3 | IA - OP2              | <<OP3_IA_OP2_ID>>                |
+| source  | target                | id                        |
+| HMI OP1 | OP1                   |                           |
+| HMI OP1 | OP2                   | <<PhyOpPos1_CWP2>>        |
+| HMI OP1 | OP3                   | <<PhyOpPos1_CWP3>>        |
+| HMI OP1 | IA - OP1              |                           |
+| HMI OP1 | IA - OP2              | <<IA_PhyOpPos1_CWP2>>     |
+| HMI OP1 | IA - OP3              | <<IA_PhyOpPos1_CWP3>>     |
+| HMI OP1 | ROLE2                 | <<ROLE1_ROLE2>>           |
+| HMI OP1 | ROLE1                 | <<PhyOpPos1_ROLE1>>       |
+| HMI OP1 | ROLE2-ALIAS           | <<ROLE1_ROLE2ALIAS1>>     |
+| HMI OP1 | Madoline              | <<IA_PhyOpPos1_Madoline>> |
+| HMI OP1 | OP2(as Mission3)      | <<MISSION3_CWP2>>         |
+| HMI OP1 | OP2(as ActiveMission) | <<ACTIVE1_CWP2>>          |
+| HMI OP1 | OP1(as Mission3)      | <<MISSION3_CWP1>>         |
+| HMI OP1 | IA - <<ROLE_2_NAME>>  | <<IA_ACTIVE_MISSION2>>    |
+| HMI OP1 | <<ROLE_2_NAME>>       | <<ACTIVE1_MISSION2>>      |
+| HMI OP1 | <<ROLE_3_NAME>>       | <<ACTIVE2_MISSION3>>      |
+| HMI OP1 | OP3 - <<ROLE_2_NAME>> | <<ACTIVE3_MISSION2>>      |
+| HMI OP2 | OP1                   | <<PhyOpPos2_CWP1>>        |
+| HMI OP2 | OP2                   |                           |
+| HMI OP2 | OP3                   | <<PhyOpPos2_CWP3>>        |
+| HMI OP2 | IA - OP1              | <<IA_PhyOpPos2_CWP1>>     |
+| HMI OP2 | IA - OP2              | <<IA_PhyOpPos2_CWP2>>     |
+| HMI OP2 | IA - OP3              | <<IA_PhyOpPos2_CWP3>>     |
+| HMI OP2 | ROLE1                 | <<PhyOpPos2_ROLE1>>       |
+| HMI OP2 | ROLE1(as ROLE2)       | <<ROLE2_ROLE1>>           |
+| HMI OP2 | ROLE1-ALIAS           | <<PhyOpPos2_ROLE1ALIAS1>> |
+| HMI OP2 | ROLE1-ALIAS(as ROLE2) | <<ROLE2_ROLE1ALIAS1>>     |
+| HMI OP2 | IA - ROLE1            | <<IA_PhyOpPos2_ROLE1>>    |
+| HMI OP2 | OP1(as Mission2)      | <<ACTIVE2_CWP1>>          |
+| HMI OP2 | <<ROLE_1_NAME>>       | <<IA_ACTIVE2_MISSION1>>   |
+| HMI OP2 | <<ROLE_3_NAME>>       | <<ACTIVE2_MISSION3>>      |
+| HMI OP3 | OP1                   | <<PhyOpPos3_CWP1>>        |
+| HMI OP3 | OP2                   | <<PhyOpPos3_CWP2>>        |
+| HMI OP3 | <<ROLE_2_NAME>>       | <<ACTIVE3_MISSION2>>      |
+| HMI OP3 | IA - OP1              | <<IA_PhyOpPos3_CWP1>>     |
+| HMI OP3 | IA - OP2              | <<IA_PhyOpPos3_CWP2>>     |
 
 Scenario: Define grid widget keys
 Given the grid widget keys:

@@ -17,8 +17,8 @@ class VerifyWarningPopupText extends FxScriptTemplate {
         Pane unattendedPopup = robot.lookup("#unattendedPopup").queryFirst()
 
         evaluate(ExecutionDetails.create("Unattended popup was found")
-                .expected("Unattended popup is not null")
-                .success(unattendedPopup != null))
+                .expected("Unattended popup is visible")
+                .success(unattendedPopup.isVisible()))
 
         Label label1 = robot.lookup("#unattendedPopup #unattendedText_1").queryFirst()
         Label label2 = robot.lookup("#unattendedPopup #unattendedText_2").queryFirst()

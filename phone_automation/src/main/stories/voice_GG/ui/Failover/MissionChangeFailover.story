@@ -37,8 +37,8 @@ GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost2.story
 When HMI OP1 verifies that loading screen is visible
 Then HMI OP1 has in the DISPLAY STATUS section connection the state DEGRADED
 
-Scenario: Op1 closes settings popup window
-Then HMI OP1 closes settings popup
+Scenario: Op1 closes open popup window
+Then HMI OP1 closes popup settings if window is visible
 
 Scenario: Verify operator mission
 Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission WEST-EXEC

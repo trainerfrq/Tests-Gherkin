@@ -26,11 +26,12 @@ Scenario: Verify DA keys state
 Given HMI OP1 has the DA key OP2 in ready to be used state
 Given HMI OP2 has the DA key OP1 in ready to be used state
 
-Scenario: Op1 closes settings popup window
-Then HMI OP1 closes settings popup
+Scenario: Op1 closes open popup window
+Then HMI OP1 closes popup settings if window is visible
 
-Scenario: Op2 closes settings popup window
-Then HMI OP2 closes settings popup
+Scenario: Op2 closes open popup window
+Then HMI OP2 closes popup settings if window is visible
+
 Scenario: Caller clears call history list
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLHISTORY
 Then HMI OP1 clears Call History list
@@ -71,11 +72,12 @@ Scenario: Verify DA keys state
 Given HMI OP1 has the DA key OP2 in ready to be used state
 Given HMI OP2 has the DA key OP1 in ready to be used state
 
-Scenario: Op1 closes settings popup window
-Then HMI OP1 closes settings popup
+Scenario: Op1 closes open popup window
+Then HMI OP1 closes popup settings if window is visible
 
-Scenario: Op2 closes settings popup window
-Then HMI OP2 closes settings popup
+Scenario: Op2 closes open popup window
+Then HMI OP2 closes popup settings if window is visible
+
 Scenario: Caller verifies call history list
 Then HMI OP1 verifies that call history list contains 1 entries
 
