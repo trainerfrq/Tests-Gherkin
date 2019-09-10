@@ -40,6 +40,7 @@ Scenario: Callee establishes an outgoing IA call, using the IA key
 		  @REQUIREMENTS:GID-2505705
 		  @REQUIREMENTS:GID-3371939
 When HMI OP2 presses IA key <<ROLE_1_NAME>>
+Then wait for 2 seconds
 
 Scenario: Verify call direction
 Then HMI OP1 has the IA call queue item OP2-OP1-1 with audio direction duplex
