@@ -79,6 +79,7 @@ Scenario: Op2 closes open popup window
 Then HMI OP2 closes popup settings if window is visible
 
 Scenario: Caller verifies call history list
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLHISTORY
 Then HMI OP1 verifies that call history list contains 1 entries
 
 Scenario: Caller closes call history list

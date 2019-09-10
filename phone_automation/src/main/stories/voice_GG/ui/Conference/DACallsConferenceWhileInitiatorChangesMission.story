@@ -168,6 +168,7 @@ Then HMI OP2 verifies in the list that conference participant on position 3 has 
 Scenario: Op1 leaves the conference
 Then HMI OP1 terminates the call queue item OP2-OP1-Conf
 Then HMI OP1 has in the call queue a number of 0 calls
+Then wait for 2 seconds
 
 Scenario: Op2 verifies conference participants list
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected

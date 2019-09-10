@@ -28,7 +28,6 @@ Then HMI OP2 verifies that volume slider coach is set to level 0
 When HMI OP2 drags volume slider operator to muted level
 Then HMI OP2 verifies that volume slider operator is set to level 0
 When HMI OP2 clicks on mute button Chime
-Then HMI OP2 has a notification that shows Chime muted
 Then HMI OP2 verifies that mute button Chime is in muted state
 When HMI OP2 clicks on mute button UserInput
 Then HMI OP2 verifies that mute button UserInput is in muted state
@@ -37,6 +36,15 @@ Then HMI OP2 verifies that mute button Coach is in muted state
 When HMI OP2 clicks on mute button Operator
 Then HMI OP2 verifies that mute button Operator is in muted state
 
+Scenario: Verify notification that chime is muted
+When HMI OP2 opens Notification Display list
+Then HMI OP2 verifies that list State contains text Chime muted
+
+Scenario: Close popup window
+Then HMI OP2 closes notification popup
+
+Scenario: Op1 opens settings tab
+When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key SETTINGS
 Scenario: Open audio settings
 When HMI OP2 clicks on volumeControlPanel button
 
@@ -72,7 +80,6 @@ When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key SETTINGS
 Then HMI OP2 verifies that volume slider userInput is set to level 0
 Then HMI OP2 verifies that mute button UserInput is in muted state
 Then HMI OP2 verifies that volume slider chime is set to level 0
-Then HMI OP2 has a notification that shows Chime muted
 Then HMI OP2 verifies that mute button Chime is in muted state
 Then HMI OP2 verifies that volume slider coach is set to level 0
 Then HMI OP2 verifies that mute button Coach is in muted state
@@ -86,6 +93,12 @@ Then HMI OP2 verifies that mute sidetone button coach is in muted state
 Then HMI OP2 verifies that mute sidetone button operator is in muted state
 Then HMI OP2 verifies that mute button NotificationError is in muted state
 
+Scenario: Verify notification that chime is muted
+When HMI OP2 opens Notification Display list
+Then HMI OP2 verifies that list State contains text Chime muted
+
+Scenario: Close popup window
+Then HMI OP2 closes notification popup
 Scenario: Close audio settings tab
 Then HMI OP2 closes volumeControl popup
 
