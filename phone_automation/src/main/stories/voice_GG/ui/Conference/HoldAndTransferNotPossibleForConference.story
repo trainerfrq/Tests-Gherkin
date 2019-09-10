@@ -99,6 +99,9 @@ Then HMI OP3 verifies that transfer button does not exists
 
 Scenario: Op1 leaves the conference
 Then HMI OP1 terminates the call queue item OP2-OP1-Conf
+Then wait for 2 seconds
+
+Scenario: Op1 and Op3 have 0 calls in call queue
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 

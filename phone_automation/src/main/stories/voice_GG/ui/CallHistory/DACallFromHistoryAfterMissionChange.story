@@ -57,7 +57,7 @@ When HMI OP1 with layout <<LAYOUT_MISSION2>> presses function key CALLHISTORY
 Scenario: Caller selects first entry from history
 When HMI OP1 selects call history list entry number: 0
 Then HMI OP1 verifies that call history call button has label <<OP2_NAME>>
-Then HMI OP2 verifies that call history dial button is enabled
+Then HMI OP1 verifies that call history dial button is enabled
 
 Scenario: Caller does call from call history
 		  @REQUIREMENTS:GID-2535764

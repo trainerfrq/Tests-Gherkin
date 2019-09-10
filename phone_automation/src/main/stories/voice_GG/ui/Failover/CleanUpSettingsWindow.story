@@ -6,10 +6,10 @@ Given booked profiles:
 | javafx  | hmi   | <<CLIENT3_IP>> | HMI OP3    |
 
 Scenario: Op1 closes seetings popup window
-Then HMI OP1 closes settings popup
+Then HMI OP1 closes popup settings if window is visible
 
 Scenario: Op2 closes seetings popup window
-Then HMI OP2 closes settings popup
+Then HMI OP2 closes popup settings if window is visible
 
 Scenario: Op3 closes seetings popup window
-Then HMI OP3 closes settings popup
+Then HMI OP3 closes popup settings if window is visible

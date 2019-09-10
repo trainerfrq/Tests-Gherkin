@@ -55,4 +55,4 @@ Scenario: Op1 closes audio settings tab
 Then HMI OP1 closes volumeControl popup
 
 Scenario: Op1 closes settings tab
-Then HMI OP1 closes settings popup
+Then HMI OP1 closes popup settings if window is visible
