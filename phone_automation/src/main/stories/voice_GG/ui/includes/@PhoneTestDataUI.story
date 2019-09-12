@@ -30,7 +30,7 @@ Given the DA keys:
 | HMI OP2 | ROLE1-ALIAS(as ROLE2) | <<ROLE2_ROLE1ALIAS1>>     |
 | HMI OP2 | IA - ROLE1            | <<IA_PhyOpPos2_ROLE1>>    |
 | HMI OP2 | OP1(as Mission2)      | <<ACTIVE2_CWP1>>          |
-| HMI OP2 | <<ROLE_1_NAME>>       | <<IA_ACTIVE2_MISSION1>>   |
+| HMI OP2 | IA - <<ROLE_1_NAME>>  | <<IA_ACTIVE2_MISSION1>>   |
 | HMI OP2 | <<ROLE_3_NAME>>       | <<ACTIVE2_MISSION3>>      |
 | HMI OP3 | OP1                   | <<PhyOpPos3_CWP1>>        |
 | HMI OP3 | OP2                   | <<PhyOpPos3_CWP2>>        |

@@ -12,9 +12,9 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key       | source           | target           | callType |
+| key       | source        | target        | callType |
 | OP1-OP2   | <<ROLE1_URI>> | <<ROLE2_URI>> | IA       |
-| OP2-OP1   | <<ROLE2_URI>> |                  | IA       |
+| OP2-OP1   | <<ROLE2_URI>> |               | IA       |
 | OP2-OP1-1 | <<ROLE2_URI>> | <<ROLE1_URI>> | IA       |
 
 Scenario: Caller establishes an outgoing IA call
@@ -26,7 +26,7 @@ Then HMI OP1 has the IA key IA - <<ROLE_2_NAME>> in state connected
 Scenario: Callee receives incoming IA call
 When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
-Then HMI OP2 has the IA key <<ROLE_1_NAME>> in state connected
+Then HMI OP2 has the IA key IA - <<ROLE_1_NAME>> in state connected
 
 Scenario: Verify call queue section
 Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label <<ROLE_2_NAME>>
@@ -39,7 +39,7 @@ Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction rx
 Scenario: Callee establishes an outgoing IA call, using the IA key
 		  @REQUIREMENTS:GID-2505705
 		  @REQUIREMENTS:GID-3371939
-When HMI OP2 presses IA key <<ROLE_1_NAME>>
+When HMI OP2 presses IA key IA - <<ROLE_1_NAME>>
 Then wait for 2 seconds
 
 Scenario: Verify call direction
@@ -58,7 +58,7 @@ Then HMI OP1 has the IA call queue item OP2-OP1-1 with audio direction rx
 Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction tx
 
 Scenario: Cleanup IA call
-When HMI OP2 presses IA key <<ROLE_1_NAME>>
+When HMI OP2 presses IA key IA - <<ROLE_1_NAME>>
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for callee
@@ -71,7 +71,7 @@ Then HMI OP1 has the IA key IA - <<ROLE_2_NAME>> in state connected
 
 Scenario: Callee receives incoming IA call
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
-Then HMI OP2 has the IA key <<ROLE_1_NAME>> in state connected
+Then HMI OP2 has the IA key IA - <<ROLE_1_NAME>> in state connected
 
 Scenario: Verify call direction
 Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction tx
@@ -92,7 +92,7 @@ Then HMI OP1 has the IA call queue item OP2-OP1-1 with audio direction rx
 Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction tx
 
 Scenario: Cleanup IA call
-When HMI OP2 presses IA key <<ROLE_1_NAME>>
+When HMI OP2 presses IA key IA - <<ROLE_1_NAME>>
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP1 has in the call queue a number of 0 calls
 

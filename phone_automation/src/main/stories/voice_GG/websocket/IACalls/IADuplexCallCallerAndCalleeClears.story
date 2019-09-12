@@ -24,7 +24,7 @@ And waiting for 1 seconds
 Then WS1 is receiving call status indication on message buffer named CallStatusIndicationBuffer1 with callId callId1 and status connected and audio direction TX
 
 Scenario: Callee client receives the incoming call
-When WS2 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer2 with callSourceCalling and callTargetCalling and names callId2 and audio direction RX
+When WS2 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer2 with callSourceCalling and callTargetCalling and names callId2 and audio direction RX_MONITORED
 
 Scenario: Callee establishes an outgoing call
 When WS2 establishes an outgoing IA call with source callSourceCalled and target callTargetCalled and names callId2
