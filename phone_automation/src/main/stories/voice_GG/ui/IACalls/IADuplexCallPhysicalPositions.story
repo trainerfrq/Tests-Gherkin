@@ -86,8 +86,8 @@ Scenario: Caller clears IA call
 When HMI OP1 presses IA key IA - OP2
 
 Scenario: Verify call direction
-Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction rx
-Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction tx
+Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction rx_monitored
+Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction tx_monitored
 
 Scenario: Cleanup IA call
 When HMI OP2 presses IA key IA - OP1

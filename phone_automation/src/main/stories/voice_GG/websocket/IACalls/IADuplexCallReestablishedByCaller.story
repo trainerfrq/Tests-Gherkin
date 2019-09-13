@@ -38,7 +38,7 @@ Scenario: Caller client clears the phone call
 When WS1 clears the phone call with the callId callId1
 And waiting for 1 seconds
 Then WS1 is receiving call status indication on message buffer named CallStatusIndicationBuffer1 with callId callId1 and status connected and audio direction RX_MONITORED
-Then WS2 is receiving call status indication on message buffer named CallStatusIndicationBuffer2 with callId callId2 and status connected and audio direction TX
+Then WS2 is receiving call status indication on message buffer named CallStatusIndicationBuffer2 with callId callId2 and status connected and audio direction TX_MONITORED
 
 Scenario: Caller reestablishes the phone call
 When WS1 establishes an outgoing IA call with source callSourceCalling and target callTargetCalling and names callId1

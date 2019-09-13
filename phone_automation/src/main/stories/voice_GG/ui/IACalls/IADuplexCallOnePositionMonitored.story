@@ -15,8 +15,8 @@ Given the call queue items:
 | key          | source        | target        | callType |
 | OP1-OP2      | <<OP1_URI>>   | <<OP2_URI>>   | IA       |
 | OP2-OP1      | <<OP2_URI>>   | <<OP1_URI>>   | IA       |
-| OP1-OP2-ROLE | <<ROLE1_URI>> | <<ROLE2_URI>> | IA       |
-| OP2-OP1-ROLE | <<ROLE2_URI>> |               | IA       |
+| OP1-OP2-ROLE | <<ROLE1_URI>> |               | IA       |
+| OP2-OP1-ROLE | <<ROLE2_URI>> | <<ROLE1_URI>> | IA       |
 | OP1-OP2-1    | <<ROLE1_URI>> | <<ROLE2_URI>> | IA       |
 
 Scenario: Caller establishes an outgoing IA call
@@ -36,8 +36,8 @@ Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label 
 
 Scenario: Verify call direction
 		  @REQUIREMENTS:GID-2841714
-Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction RX_MONITORED
-Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction tx
+Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction rx_monitored
+Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction tx_monitored
 
 Scenario: Callee establishes an outgoing IA call, using the IA key
 		  @REQUIREMENTS:GID-2505705
@@ -57,8 +57,8 @@ When HMI OP1 presses IA key IA - OP2
 
 Scenario: Verify call direction
 		  @REQUIREMENTS:GID-2841714
-Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction RX_MONITORED
-Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction tx
+Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction rx_monitored
+Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction tx_monitored
 
 Scenario: Cleanup IA call
 When HMI OP2 presses IA key IA - OP1
@@ -82,8 +82,8 @@ Then HMI OP2 has the call queue item OP1-OP2-ROLE in the active list with name l
 
 Scenario: Verify call direction
 		  @REQUIREMENTS:GID-2841714
-Then HMI OP1 has the IA call queue item OP2-OP1-ROLE with audio direction RX_MONITORED
-Then HMI OP2 has the IA call queue item OP1-OP2-ROLE with audio direction tx
+Then HMI OP1 has the IA call queue item OP2-OP1-ROLE with audio direction rx_monitored
+Then HMI OP2 has the IA call queue item OP1-OP2-ROLE with audio direction tx_monitored
 
 Scenario: Callee establishes an outgoing IA call, using the IA key
 		  @REQUIREMENTS:GID-2505705
@@ -104,8 +104,8 @@ When HMI OP1 presses IA key IA - <<ROLE_2_NAME>>
 
 Scenario: Verify call direction
 		  @REQUIREMENTS:GID-2841714
-Then HMI OP2 has the IA call queue item OP1-OP2-1 with audio direction tx
-Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction RX_MONITORED
+Then HMI OP2 has the IA call queue item OP1-OP2-1 with audio direction tx_monitored
+Then HMI OP1 has the IA call queue item OP2-OP1-ROLE with audio direction rx_monitored
 
 Scenario: Cleanup IA call
 When HMI OP2 presses IA key IA - <<ROLE_1_NAME>>

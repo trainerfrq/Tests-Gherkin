@@ -31,6 +31,10 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
 Then HMI OP2 has the IA key IA - OP1 in state connected
 
+Scenario: Verify call direction
+Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction tx
+Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction rx
+
 Scenario: Cleanup IA call
 When HMI OP1 presses IA key IA - OP2
 Then HMI OP1 has in the call queue a number of 0 calls
