@@ -37,9 +37,11 @@ import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallForwardR
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallHoldRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallIncomingConfirmation;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallRetrieveRequest;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallStatus;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallStatusIndication;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallTransferRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallTransferResponse;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.QueryFullCallStatusRequest;
 import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
@@ -897,7 +899,20 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       sendCallForwardCancel( namedWebSocket );
    }
 
+   @When("$namedWebSocket sends a full calls status request")
+   public void sendFullCallStatusRequest( final String namedWebSocket )
+    {
+        sendQueryFullCallStatusRequest( namedWebSocket );
+    }
 
+    @Then("$namedWebSocket receives full call status on message buffer named $bufferName with $callSource , $callTarget , $callType , $direction , $callStatus and $priority")
+    public void receiveFullCallStatusResponse( final String namedWebSocket, final String bufferName,
+                                               final String callSourceName, final String callTargetName, final String callType, final String direction, final String callStatus,
+                                               final String priority)
+    {
+        receiveFullCallStatus( namedWebSocket, bufferName, callSourceName, callTargetName,
+                callType, direction, callStatus, priority );
+    }
 
 
 
@@ -1153,6 +1168,76 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             .details( match( "Transaction id is " + transactionId,
                   jsonMessage.body().callForwardConfirmation().getTransactionId(), equalTo( transactionId ) ) ) );
    }
+
+
+    private void sendQueryFullCallStatusRequest( final String namedWebSocket )
+    {
+        final ProfileToWebSocketConfigurationReference reference =
+                getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+        final QueryFullCallStatusRequest queryFullCallStatusRequest = new QueryFullCallStatusRequest();
+        final JsonMessage request =
+                new JsonMessage.Builder().withCorrelationId( UUID.randomUUID() ).withPayload( queryFullCallStatusRequest ).build();
+
+        final RemoteStepResult remoteStepResult =
+                evaluate(
+                        remoteStep( "Query call status" )
+                                .scriptOn( profileScriptResolver().map( SendAndReceiveTextMessage.class,
+                                        BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                                .input( SendAndReceiveTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                                .input( SendAndReceiveTextMessage.IPARAM_RESPONSETYPE, "queryFullCallStatusResponse" )
+                                .input( SendAndReceiveTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
+
+        final String jsonResponse =
+                ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
+
+        final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
+        evaluate( localStep( "Received query call status response" )
+                .details( match( "Is query call status response ",
+                        jsonMessage.body().isQueryFullCallStatusResponse(), equalTo( true ) ) ) );
+    }
+
+
+    private void receiveFullCallStatus( final String namedWebSocket, final String bufferName,
+                                                final String callSourceName, final String callTargetName, final String callType,
+                                                final Object audioDirection, final String callStatus, final String priority )
+    {
+        final ProfileToWebSocketConfigurationReference reference =
+                getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+        final RemoteStepResult remoteStepResult =
+                evaluate(
+                        remoteStep( "Receiving full call status on buffer named " + bufferName )
+                                .scriptOn( profileScriptResolver().map( ReceiveLastReceivedMessage.class,
+                                        BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                                .input( ReceiveLastReceivedMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                                .input( ReceiveLastReceivedMessage.IPARAM_BUFFERKEY, bufferName ) );
+
+        final String jsonResponse =
+                ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
+        final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
+
+        List<CallStatus> responseList = jsonMessage.body().fullCallStatusResponse().getCallStatus();
+
+        for(CallStatus response : responseList){
+            evaluate( localStep( "Verify full call status response" )
+                    .details( match( "Is query full call status response", jsonMessage.body().isQueryFullCallStatusResponse(),
+                            equalTo( true ) ) )
+                    .details( match( "Call status matches", response.getStatus().getCallStatus(),
+                            equalTo( callStatus ) ) )
+                    .details( match( "Call type matches", response.getStatus().getCallType(),
+                            equalTo( callType ) ) )
+                    .details( match( "Calling party matches", response.getStatus().getLocalParty().getUri(),
+                            containsString( getStoryListData( callSourceName, String.class ) ) ) )
+                    .details(
+                            match( "Called party matches", response.getStatus().getRemoteParty().getUri(),
+                                    containsString( getStoryListData( callTargetName, String.class ) ) ) )
+                    .details( match( "AudioDirection matches", response.getStatus().getAudioDirection(),
+                            equalTo( audioDirection ) ) )
+                    .details( match( "Call priority matches", response.getStatus().getCallPriority(),
+                            equalTo( priority ) ) ) );
+        }
+    }
 
     private DAKey retrieveDaKey(final String source, final String target) {
         final DAKey daKey = getStoryListData(source + "-" + target, DAKey.class);

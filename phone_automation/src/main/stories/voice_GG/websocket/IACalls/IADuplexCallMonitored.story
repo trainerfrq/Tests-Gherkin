@@ -1,7 +1,7 @@
 Narrative:
 As a called operator having monitoring audio to incoming IA call activated and an incoming one-way IA Call
 I want to establish another one-way IA Call towards the calling operator
-So that I can verify that monitoring audio to incoming IA call works as expected
+So that I can verify that monitoring audio to incoming IA call and duplex IA call works as expected
 
 Meta:
      @BeforeStory: ../includes/@PrepareTwoClientsWithMissions.story

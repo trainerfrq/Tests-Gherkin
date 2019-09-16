@@ -48,15 +48,15 @@ Then HMI OP1 has the call queue item OP3-OP1 in the active list with name label 
 Then HMI OP3 has the call queue item OP1-OP3 in the active list with name label <<OP1_NAME>>
 
 Scenario: Caller clears IA call
-When HMI OP1 presses IA key IA - OP3
+When HMI OP3 presses IA key IA - OP1
 
 Scenario: Verify call direction
 		  @REQUIREMENTS:GID-2841714
-Then HMI OP1 has the IA call queue item OP3-OP1 with audio direction rx_monitored
-Then HMI OP3 has the IA call queue item OP1-OP3 with audio direction tx_monitored
+Then HMI OP1 has the IA call queue item OP3-OP1 with audio direction tx_monitored
+Then HMI OP3 has the IA call queue item OP1-OP3 with audio direction rx_monitored
 
 Scenario: Cleanup IA call
-When HMI OP3 presses IA key IA - OP1
+When HMI OP1 presses IA key IA - OP3
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for callee
