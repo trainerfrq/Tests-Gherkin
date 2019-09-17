@@ -12,13 +12,13 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key       | source           | target                | callType |
-| OP1-OP2-1 | <<OP1_URI>>      | <<OP2_URI>>           | DA/IDA   |
+| key       | source        | target                | callType |
+| OP1-OP2-1 | <<OP1_URI>>   | <<OP2_URI>>           | DA/IDA   |
 | OP1-OP2-2 | <<ROLE1_URI>> | <<OP2_URI>>           | DA/IDA   |
-| OP2-Role1 | <<OP2_URI>>      | sip:role1@example.com | DA/IDA   |
-| OP1-OP2-3 | <<OP1_URI>>      | <<OP2_URI>>           | IA       |
-| OP1-OP2-4 | <<ROLE1_URI>> | <<ROLE2_URI>>      | IA       |
-| OP2-ROLE1 | <<OP2_URI>>      | sip:role1@example.com | IA       |
+| OP2-Role1 | <<OP2_URI>>   | sip:role1@example.com | DA/IDA   |
+| OP1-OP2-3 | <<OP1_URI>>   | <<OP2_URI>>           | IA       |
+| OP1-OP2-4 | <<ROLE1_URI>> | <<ROLE2_URI>>         | IA       |
+| OP2-ROLE1 | <<OP2_URI>>   | sip:role1@example.com | IA       |
 
 Scenario: Outgoing DA call using as source Physical OP SIP Address
 		  @REQUIREMENTS:GID-4123501
@@ -65,7 +65,7 @@ Scenario: Outgoing IA call using as source the actual active mission
 When HMI OP1 presses IA key IA - <<ROLE_2_NAME>>
 Then HMI OP1 has the IA key IA - <<ROLE_2_NAME>> in state connected
 Then HMI OP2 has the call queue item OP1-OP2-4 in state connected
-Then HMI OP2 has the IA key <<ROLE_1_NAME>> in state connected
+Then HMI OP2 has the IA key IA - <<ROLE_1_NAME>> in state connected
 
 Scenario: Cleanup IA call
 When HMI OP1 presses IA key IA - <<ROLE_2_NAME>>

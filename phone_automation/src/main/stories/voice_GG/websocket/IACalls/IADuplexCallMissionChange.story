@@ -83,7 +83,7 @@ Then WS1 confirms mission change completed for mission missionId2
 
 Scenario: Caller does a full call status request
 		  @REQUIREMENTS:GID-2841714
-When WS1 sends a full calls status request
+When WS1 queries full call status
 Then WS1 receives full call status on message buffer named FullCallStatusResponseBuffer1 with callSourceCalling , callTargetCalling , IA , TX_MONITORED , connected and URGENT
 
 Scenario: Callee establishes an outgoing call
@@ -100,7 +100,7 @@ Then WS3 receives mission changed indication on buffer named MissionChangedIndic
 Then WS3 confirms mission change completed for mission missionId4
 
 Scenario: Callee does a full call status request
-When WS3 sends a full calls status request
+When WS3 queries full call status
 Then WS3 receives full call status on message buffer named FullCallStatusResponseBuffer2 with callSourceCalled , callTargetCalled , IA , DUPLEX , connected and URGENT
 
 Scenario: Caller cleans up phone call
@@ -120,11 +120,11 @@ Then WS3 receives mission changed indication on buffer named MissionChangedIndic
 Then WS3 confirms mission change completed for mission missionId3
 
 Scenario: Caller does a full call status request
-When WS1 sends a full calls status request
+When WS1 queries full call status
 Then WS1 receives full call status on message buffer named FullCallStatusResponseBuffer1 with callSourceCalling , callTargetCalling , IA , RX_MONITORED , connected and URGENT
 
 Scenario: Callee does a full call status request
-When WS3 sends a full calls status request
+When WS3 queries full call status
 Then WS3 receives full call status on message buffer named FullCallStatusResponseBuffer2 with callSourceCalled , callTargetCalled , IA , TX_MONITORED , connected and URGENT
 
 Scenario: Callee cleans up phone call

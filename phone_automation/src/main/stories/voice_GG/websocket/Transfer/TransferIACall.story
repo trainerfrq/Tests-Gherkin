@@ -19,7 +19,7 @@ When WS2 queries phone data for mission missionId2 in order to call IA - OP1 and
 
 Scenario: Caller establishes an outgoing call
 When WS1 establishes an outgoing IA call with source callSourceCalling and target callTargetCalling and names outgoingPhoneCallId1
-And waiting for 1 seconds
+And waiting for 3 seconds
 Then WS1 is receiving call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status connected and audio direction TX
 
 Scenario: Callee client receives the incoming call
@@ -27,7 +27,7 @@ When WS2 receives call incoming indication for IA call on message buffer named C
 
 Scenario: Callee establishes an outgoing call
 When WS2 establishes an outgoing IA call with source callSourceCalled and target callTargetCalled and names outgoingPhoneCallId2
-And waiting for 1 seconds
+And waiting for 3 seconds
 Then WS2 is receiving call status indication on message buffer named CallStatusIndicationBuffer2 with callId outgoingPhoneCallId2 and status connected and audio direction DUPLEX
 
 Scenario: Caller client receives the incoming call

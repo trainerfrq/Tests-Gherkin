@@ -64,12 +64,12 @@ When WS3 clears all text messages from buffer named CallStatusIndicationBuffer3
 
 Scenario: Second client puts the call on hold
 		  @REQUIREMENTS:GID-2604614
-When WS2 puts the phone call with the callId outgoingPhoneCallId2 on hold
+When WS2 puts the phone call with the callId incomingPhoneCallId2 on hold
 And waiting for 2 seconds
+Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId2 and status connected
 
 Scenario: Verify call is not put on hold
 Then WS1 has on the message buffer named CallStatusIndicationBuffer1 a number of 0 messages
-Then WS2 has on the message buffer named CallStatusIndicationBuffer2 a number of 0 messages
 Then WS3 has on the message buffer named CallStatusIndicationBuffer3 a number of 0 messages
 
 Scenario: Cleanup calls

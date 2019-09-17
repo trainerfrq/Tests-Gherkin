@@ -1,6 +1,6 @@
 Narrative:
-As an operator having monitoring audio to incoming IA call activated and an incoming IA call
-I want to initiate an outgoing IA call towards caller operator that has incoming IA call activated
+As an operator having incoming IA call monitoring activated and an incoming IA call
+I want to initiate an outgoing IA call towards caller operator that has incoming IA call monitoring activated
 So that I can verify that incoming IA can be monitored correctly
 
 Scenario: Booking profiles

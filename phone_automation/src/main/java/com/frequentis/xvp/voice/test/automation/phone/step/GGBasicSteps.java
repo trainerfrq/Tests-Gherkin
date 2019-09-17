@@ -899,7 +899,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       sendCallForwardCancel( namedWebSocket );
    }
 
-   @When("$namedWebSocket sends a full calls status request")
+   @When("$namedWebSocket queries full call status")
    public void sendFullCallStatusRequest( final String namedWebSocket )
     {
         sendQueryFullCallStatusRequest( namedWebSocket );
@@ -1221,8 +1221,6 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
         for(CallStatus response : responseList){
             evaluate( localStep( "Verify full call status response" )
-                    .details( match( "Is query full call status response", jsonMessage.body().isQueryFullCallStatusResponse(),
-                            equalTo( true ) ) )
                     .details( match( "Call status matches", response.getStatus().getCallStatus(),
                             equalTo( callStatus ) ) )
                     .details( match( "Call type matches", response.getStatus().getCallType(),

@@ -85,8 +85,6 @@ public class ConfigurationSteps extends AutomationSteps
 
    private static final String IMAGE_DESCRIPTORS_PATH = "configurations/orchestration/groups/images/";
 
-    private static final String SIP_PROTOCOL_JSON = "/configuration-files/common/audioAppResources.json";
-
 
    @When("issuing http POST request to endpoint $endpointUri and path $resourcePath with payload $templatePath")
    public void issuePOSTRequest( final String endpointUri, final String resourcePath, final String templatePath )
@@ -112,8 +110,8 @@ public class ConfigurationSteps extends AutomationSteps
       }
    }
 
-    @When("issuing http POST request to endpoint $endpointUri and path $resourcePath with property ED-137/2B $v2b and ED-137/2C $v2c")
-    public void issuePOSTRequestWithProperties( final String endpointUri, final String resourcePath, final String v2b, final String v2c )
+    @When("issuing http POST request to endpoint $endpointUri and path $resourcePath with payload $filePath and property ED-137/2B $v2b and ED-137/2C $v2c")
+    public void issuePOSTRequestWithProperties( final String endpointUri, final String resourcePath, final String filePath, final String v2b, final String v2c )
             throws Throwable
     {
         final LocalStep localStep = localStep( "Execute POST request with payload" );
@@ -123,7 +121,7 @@ public class ConfigurationSteps extends AutomationSteps
         map.put( "v2c", v2c );
 
         final String jsonContent =
-                processConfigurationTemplate( StepsUtil.getConfigFile( SIP_PROTOCOL_JSON ), map );
+                processConfigurationTemplate( StepsUtil.getConfigFile( filePath ), map );
 
         if ( endpointUri != null )
         {

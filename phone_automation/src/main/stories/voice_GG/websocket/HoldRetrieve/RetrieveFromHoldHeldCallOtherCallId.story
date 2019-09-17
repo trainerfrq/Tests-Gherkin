@@ -46,12 +46,12 @@ When WS2 clears all text messages from buffer named CallStatusIndicationBuffer2
 
 Scenario: Callee client retrieves call from hold
 		  @REQUIREMENTS:GID-2510075
-When WS2 retrieves the on hold phone call with the callId outgoingPhoneCallId
+When WS2 retrieves the on hold phone call with the callId incomingPhoneCallId
 And waiting for 1 seconds
+Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and status held
 
-Scenario: Verify call is unchanged
+Scenario: Verify call is unchanged for caller
 Then WS1 has on the message buffer named CallStatusIndicationBuffer1 a number of 0 messages
-Then WS2 has on the message buffer named CallStatusIndicationBuffer2 a number of 0 messages
 
 Scenario: Cleanup call
 When WS1 clears the phone call with the callId outgoingPhoneCallId
