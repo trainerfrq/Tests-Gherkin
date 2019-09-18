@@ -21,7 +21,7 @@ When WS1 queries phone data for mission missionId1 in order to call ROLE1 and na
 
 Scenario: Transferor establishes an outgoing call
 When WS1 establishes an outgoing phone call using source callSource1 ang target callTarget1 and names outgoingPhoneCallId1
-And waiting for 1 seconds
+And waiting for 3 seconds
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status out_trying
 
 Scenario: Transferee receives the incoming call and confirms it
@@ -31,13 +31,13 @@ Then WS1 receives call status indication on message buffer named CallStatusIndic
 
 Scenario: Transferee answers the incoming call
 When WS2 answers the incoming phone call with the callId incomingPhoneCallId1
-And waiting for 1 seconds
+And waiting for 3 seconds
 Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status connected
 And WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status connected
 
 Scenario: Transferor puts the call on hold with call conditional flag
 When WS1 puts the phone call with the callId outgoingPhoneCallId1 on hold with call conditional flag xfr
-And waiting for 2 seconds
+And waiting for 4 seconds
 
 Scenario: Verify call is on hold
 Then WS1 receives call status indication with call conditional flag xfr on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status hold
@@ -47,7 +47,7 @@ Scenario: Transferor establishes consultation call to a group
 		  @REQUIREMENTS:GID-2510076
 		  @REQUIREMENTS:GID-2510077
 When WS1 establishes an outgoing phone call with call conditional flag xfr using source callSourceRoleAlias ang target callTargetRoleAlias and names outgoingPhoneCallId2
-And waiting for 1 seconds
+And waiting for 3 seconds
 Then WS1 receives call status indication with call conditional flag xfr on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status out_trying
 
 Scenario: Operators part of target role get incoming call
@@ -59,7 +59,7 @@ Then WS1 receives call status indication with call conditional flag xfr on messa
 
 Scenario: Transfer target answers the incoming call
 When WS3 answers the incoming phone call with the callId incomingPhoneCallId3
-And waiting for 1 seconds
+And waiting for 3 seconds
 Then WS3 receives call status indication on message buffer named CallStatusIndicationBuffer3 with callId incomingPhoneCallId3 and status connected
 And WS1 receives call status indication verifying all the messages on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status connected
 

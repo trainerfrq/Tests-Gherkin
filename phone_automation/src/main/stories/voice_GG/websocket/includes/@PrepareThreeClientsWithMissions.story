@@ -69,3 +69,5 @@ When the named websocket WS1 removes the message buffer named MissionsAvailableI
 When the named websocket WS1 removes the message buffer named MissionChangedIndicationBuffer1
 When the named websocket WS2 removes the message buffer named MissionsAvailableIndicationBuffer2
 When the named websocket WS2 removes the message buffer named MissionChangedIndicationBuffer2
+When the named websocket WS3 removes the message buffer named MissionsAvailableIndicationBuffer3
+When the named websocket WS3 removes the message buffer named MissionChangedIndicationBuffer3

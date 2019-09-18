@@ -8,6 +8,7 @@
     <cats:reportFormats>
         <cats:reportFormat>HTML</cats:reportFormat>
     </cats:reportFormats>
+    <cats:reportPersistenceMode>ALL</cats:reportPersistenceMode>
     <cats:storyCollections>
         <cats:storyCollection enabled="false">
             <cats:name>Deploy Services</cats:name>
@@ -345,6 +346,18 @@
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/IACalls/SecondIACallTerminatedIfMaxNumberSet.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/IACalls/IADuplexCallMissionChange.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/IACalls/IADuplexCallMonitored.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
@@ -1299,6 +1312,18 @@
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/IACalls/IACallPreventedToOwnOperatorPosition.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/IACalls/IADuplexCallBothPositionsMonitored.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/IACalls/IADuplexCallOnePositionMonitored.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>

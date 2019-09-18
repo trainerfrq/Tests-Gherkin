@@ -21,7 +21,7 @@ When WS1 queries phone data for mission missionId1 in order to call OP3 and name
 
 Scenario: Transferor establishes an outgoing call
 When WS1 establishes an outgoing phone call using source callSource1 ang target callTarget1 and names outgoingPhoneCallId1
-And waiting for 1 seconds
+And waiting for 3 seconds
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status out_trying
 
 Scenario: Transferee receives the incoming call and confirms it
@@ -31,7 +31,7 @@ Then WS1 receives call status indication on message buffer named CallStatusIndic
 
 Scenario: Transferee answers the incoming call
 When WS2 answers the incoming phone call with the callId incomingPhoneCallId1
-And waiting for 1 seconds
+And waiting for 3 seconds
 Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status connected
 And WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status connected
 
@@ -47,7 +47,7 @@ Scenario: Transferor establishes consultation call
 		  @REQUIREMENTS:GID-2510076
 		  @REQUIREMENTS:GID-2510077
 When WS1 establishes an outgoing phone call with call conditional flag xfr using source callSource2 ang target callTarget2 and names outgoingPhoneCallId2
-And waiting for 1 seconds
+And waiting for 3 seconds
 Then WS1 receives call status indication with call conditional flag xfr on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status out_trying
 
 Scenario: Transfer target receives the incoming call and confirms it
@@ -57,7 +57,7 @@ Then WS1 receives call status indication with call conditional flag xfr on messa
 
 Scenario: Transfer target answers the incoming call
 When WS3 answers the incoming phone call with the callId incomingPhoneCallId2
-And waiting for 1 seconds
+And waiting for 3 seconds
 Then WS3 receives call status indication on message buffer named CallStatusIndicationBuffer3 with callId incomingPhoneCallId2 and status connected
 And WS1 receives call status indication with call conditional flag xfr on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status connected
 
@@ -84,7 +84,7 @@ Then SipContact DialogState is EARLY within 100 ms
 
 Scenario: Transferee puts on hold consultation call
 When WS3 puts the phone call with the callId incomingPhoneCallId2 on hold
-And waiting for 1 seconds
+And waiting for 3 seconds
 
 Scenario: Consultation call is put on hold
 Then WS1 receives call status indication with call conditional flag xfr on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status held
@@ -92,7 +92,7 @@ Then WS3 receives call status indication on message buffer named CallStatusIndic
 
 Scenario: Transfer target answers the incoming call
 When WS3 answers the incoming phone call with the callId phoneIncomingCallId
-And waiting for 1 seconds
+And waiting for 3 seconds
 Then WS3 receives call status indication on message buffer named CallStatusIndicationBuffer3 with callId phoneIncomingCallId and status connected
 Then SipContact DialogState is CONFIRMED within 100 ms
 
@@ -107,7 +107,7 @@ Then WS3 receives call status indication with terminated status on message buffe
 
 Scenario: Transfer target retrieves from hold consultation call
 When WS3 retrieves the on hold phone call with the callId incomingPhoneCallId2
-And waiting for 1 seconds
+And waiting for 3 seconds
 
 Scenario: Consultation call is retrieved from hold
 Then WS1 receives call status indication with call conditional flag xfr on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId2 and status connected

@@ -37,8 +37,8 @@ When WS1 receives call incoming indication for IA call on message buffer named C
 Scenario: Caller client clears the phone call
 When WS1 clears the phone call with the callId callId1
 And waiting for 1 seconds
-Then WS1 is receiving call status indication on message buffer named CallStatusIndicationBuffer1 with callId callId1 and status connected and audio direction RX
-Then WS2 is receiving call status indication on message buffer named CallStatusIndicationBuffer2 with callId callId2 and status connected and audio direction TX
+Then WS1 is receiving call status indication on message buffer named CallStatusIndicationBuffer1 with callId callId1 and status connected and audio direction RX_MONITORED
+Then WS2 is receiving call status indication on message buffer named CallStatusIndicationBuffer2 with callId callId2 and status connected and audio direction TX_MONITORED
 
 Scenario: Callee client clears the phone call
 When WS2 clears the phone call with the callId callId2

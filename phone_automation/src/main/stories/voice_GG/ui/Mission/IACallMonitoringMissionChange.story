@@ -19,19 +19,20 @@ Given the call queue items:
 | OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | IA       |
 
 Scenario: Caller establishes an outgoing IA call
-When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
-When HMI OP1 presses IA key IA - OP2
-Then HMI OP1 has the call queue item OP2-OP1 in state connected
-Then HMI OP1 has the IA key IA - OP2 in state connected
-
-Scenario: Callee receives incoming IA call
 When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
+When HMI OP2 presses IA key IA - OP1
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Then HMI OP2 has the IA key IA - OP1 in state connected
 
+Scenario: Callee receives incoming IA call
+When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
+Then HMI OP1 has the call queue item OP2-OP1 in state connected
+Then HMI OP1 has the IA key IA - OP2 in state connected
+
 Scenario: Verify call direction
-Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction tx
-Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction rx
+		  @REQUIREMENTS:GID-2841714
+Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction rx_monitored
+Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction tx_monitored
 
 Scenario: Change mission for HMI OP1
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
@@ -44,17 +45,8 @@ Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Verify call direction
-Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction tx
-Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction rx
-
-Scenario: HMI OP2 also initiate a IA call, transforming the existing IA half duplex call in a full duplex
-Then HMI OP2 presses the call queue item OP1-OP2
-Then HMI OP1 has in the call queue a number of 1 calls
-Then HMI OP2 has in the call queue a number of 1 calls
-
-Scenario: Verify call direction
-Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction duplex
-Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction duplex
+Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction rx_monitored
+Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction tx_monitored
 
 Scenario: Change mission for HMI OP2
 		  @REQUIREMENTS: GID-3005111
@@ -68,11 +60,10 @@ Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Verify call direction
-Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction duplex
-Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction duplex
+Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction rx_monitored
+Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction tx_monitored
 
 Scenario: Cleanup IA call
-Then HMI OP1 terminates the call queue item OP2-OP1
 Then HMI OP2 terminates the call queue item OP1-OP2
 Then HMI OP1 has in the call queue a number of 0 calls
 

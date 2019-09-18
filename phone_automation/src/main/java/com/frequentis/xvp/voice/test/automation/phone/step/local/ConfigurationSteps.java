@@ -39,6 +39,7 @@ import org.glassfish.jersey.client.JerseyClientBuilder;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import static com.frequentis.c4i.test.config.AutomationProjectConfig.fromCatsHome;
+import static com.frequentis.xvp.voice.test.automation.phone.step.StepsUtil.processConfigurationTemplate;
 import static java.lang.String.format;
 import static java.lang.String.valueOf;
 import static java.net.URLEncoder.encode;
@@ -57,7 +58,9 @@ import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -106,6 +109,36 @@ public class ConfigurationSteps extends AutomationSteps
                .received( "Endpoint is not present", endpointUri != null ).failure() );
       }
    }
+
+    @When("issuing http POST request to endpoint $endpointUri and path $resourcePath with payload $filePath and property ED-137/2B $v2b and ED-137/2C $v2c")
+    public void issuePOSTRequestWithProperties( final String endpointUri, final String resourcePath, final String filePath, final String v2b, final String v2c )
+            throws Throwable
+    {
+        final LocalStep localStep = localStep( "Execute POST request with payload" );
+
+        final Map<String, String> map = new HashMap<>();
+        map.put( "v2b", v2b );
+        map.put( "v2c", v2c );
+
+        final String jsonContent =
+                processConfigurationTemplate( StepsUtil.getConfigFile( filePath ), map );
+
+        if ( endpointUri != null )
+        {
+            final URI configurationURI = new URI( endpointUri );
+            Response response =
+                    getConfigurationItemsWebTarget( configurationURI + resourcePath ).request( MediaType.APPLICATION_JSON )
+                            .post( Entity.json( jsonContent ) );
+
+            localStep.details( ExecutionDetails.create( "Executed POST request with payload! " ).expected( "200 or 201" )
+                    .received( Integer.toString( response.getStatus() ) ).success( requestWithSuccess( response ) ) );
+        }
+        else
+        {
+            localStep.details( ExecutionDetails.create( "Executed POST request! " ).expected( "Success" )
+                    .received( "Endpoint is not present", endpointUri != null ).failure() );
+        }
+    }
 
 
    @Then("issuing http PUT request to endpoint $endpointUri and path $resourcePath with payload $templatePath")
