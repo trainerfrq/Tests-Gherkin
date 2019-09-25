@@ -180,6 +180,11 @@
                <artifactId>cats-javafx-plugin</artifactId>
                <version>${cats.version}</version>
            </dependency>
+            <dependency>
+                <groupId>com.frequentis.c4i.test</groupId>
+                <artifactId>cats-pcap-plugin</artifactId>
+                <version>${cats.version}</version>
+            </dependency>
 
            <!-- 3rd party dependencies -->
            <dependency>

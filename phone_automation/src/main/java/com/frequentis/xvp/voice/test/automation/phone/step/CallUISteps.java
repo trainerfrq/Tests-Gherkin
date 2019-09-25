@@ -39,6 +39,7 @@ import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonState;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonUsageNotReady;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonUsageReady;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAKeyLabel;
+import scripts.cats.hmi.asserts.DAKey.VerifyDAKeyProperty;
 import scripts.cats.hmi.asserts.VerifyFunctionKeyLabel;
 import scripts.cats.hmi.asserts.VerifyFunctionKeyState;
 
@@ -233,7 +234,7 @@ public class CallUISteps extends AutomationSteps {
                          .input(DragAndClickOnMenuButtonDAKey.IPARAM_MENU_BUTTON_ID, DECLINE_CALL_MENU_BUTTON_ID));
     }
 
-    @When("$profileName initiates a priority call on DA key $target")
+    @When(value = "$profileName initiates a priority call on DA key $target", priority = 50000)
     public void initiatePriorityCallOnDAKey(final String profileName, final String target) {
         DAKey daKey = retrieveDaKey(profileName, target);
 
@@ -245,14 +246,25 @@ public class CallUISteps extends AutomationSteps {
                          .input(DragAndClickOnMenuButtonDAKey.IPARAM_MENU_BUTTON_ID, PRIORITY_CALL_MENU_BUTTON_ID));
     }
 
+    @Then("$profileName has the DA key $key showing $state")
+    public void verifyDAKeyProperty(final String profileName, final String target, final String state) {
+        DAKey daKey = retrieveDaKey(profileName, target);
+
+        evaluate( remoteStep( "Verify operator position has the "+ target +" key in " + state + " state" )
+                .scriptOn(profileScriptResolver().map( VerifyDAKeyProperty.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input( VerifyDAKeyProperty.IPARAM_DA_KEY_ID, daKey.getId() )
+                .input( VerifyDAKeyProperty.IPARAM_DA_KEY_PROPERTY, state ) );
+    }
+
 
    @Then("$profileName with layout $layoutName has the function key $key in $state state")
-   public void verifyForwardState(final String profileName, final String layoutName, final String target, final String state) {
+   public void verifyfunctionKeyState(final String profileName, final String layoutName, final String target, final String state) {
       FunctionKey key = retrieveFunctionKey(layoutName + "-" + target);
 
       String stateParam = state;
 
-      if (!state.equals( "active" ))
+      if (!state.equals( "active" )&& !state.contains( "monitoring" ))
       {
          stateParam = state + "State";
       }

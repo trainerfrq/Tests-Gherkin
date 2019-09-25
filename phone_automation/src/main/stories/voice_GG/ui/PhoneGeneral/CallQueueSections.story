@@ -19,17 +19,18 @@ And phones for SipContact are created
 
 Scenario: Define call queue items
 Given the call queue items:
-| key            | source                 | target                 | callType |
+| key            | source         | target                 | callType |
 | OP1-OP2        | <<OP1_URI>>    | <<OP2_URI>>            | DA/IDA   |
 | OP2-OP1        | <<OP2_URI>>    | <<OP1_URI>>            | DA/IDA   |
 | OP3-OP1        | <<OP3_URI>>    | <<OP1_URI>>            | DA/IDA   |
 | OP1-OP3        | <<OP1_URI>>    | <<OP3_URI>>            | DA/IDA   |
 | IA-OP1-OP2     | <<OP1_URI>>    | <<OP2_URI>>            | IA       |
 | IA-OP2-OP1     | <<OP2_URI>>    | <<OP1_URI>>            | IA       |
-| SipContact-OP1 | <<SIP_PHONE2>>         | <<OPVOICE1_PHONE_URI>> | DA/IDA   |
+| SipContact-OP1 | <<SIP_PHONE2>> | <<OPVOICE1_PHONE_URI>> | DA/IDA   |
 
 Scenario: Op3 initiates a priority call
 When HMI OP3 initiates a priority call on DA key OP1
+When init
 Then HMI OP3 has the call queue item OP1-OP3 in the active list with name label <<OP1_NAME>>
 
 Scenario: Op1 receives a priority call and verifies call queue section (priority)
