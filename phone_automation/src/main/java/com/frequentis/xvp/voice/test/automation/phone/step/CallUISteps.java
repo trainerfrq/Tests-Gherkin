@@ -34,6 +34,7 @@ import scripts.cats.hmi.actions.CleanUpFunctionKey;
 import scripts.cats.hmi.actions.ClickDAButton;
 import scripts.cats.hmi.actions.ClickFunctionKey;
 import scripts.cats.hmi.actions.DragAndClickOnMenuButtonDAKey;
+import scripts.cats.hmi.actions.DragAndClickOnMenuButtonFunctionKey;
 import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookCallButton;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonState;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonUsageNotReady;
@@ -55,6 +56,10 @@ public class CallUISteps extends AutomationSteps {
     private static final String TRANSFER_MENU_BUTTON_ID = "transfer_call_menu_button";
 
     private static final String CONFERENCE_MENU_BUTTON_ID = "conference_call_menu_button";
+
+    private static final String TERMINATE_MONITORING_BUTTON_ID = "terminate_monitoring_calls_menu_button";
+
+    private static final String MONITORING_LIST_BUTTON_ID = "monitoring_list_menu_button";
 
 
    @Given("the DA keys: $daKeys")
@@ -246,15 +251,16 @@ public class CallUISteps extends AutomationSteps {
                          .input(DragAndClickOnMenuButtonDAKey.IPARAM_MENU_BUTTON_ID, PRIORITY_CALL_MENU_BUTTON_ID));
     }
 
-    @Then("$profileName has the DA key $key showing $state")
-    public void verifyDAKeyProperty(final String profileName, final String target, final String state) {
+    @Then("$profileName has the DA key $key with $property is $state")
+    public void verifyDAKeyProperty(final String profileName, final String target, final String property, final String state) {
         DAKey daKey = retrieveDaKey(profileName, target);
 
-        evaluate( remoteStep( "Verify operator position has the "+ target +" key in " + state + " state" )
+        evaluate( remoteStep( "Verify operator position has the "+ target +" key with " + property + " property in state "+state )
                 .scriptOn(profileScriptResolver().map( VerifyDAKeyProperty.class, BookableProfileName.javafx ),
                         assertProfile( profileName ) )
                 .input( VerifyDAKeyProperty.IPARAM_DA_KEY_ID, daKey.getId() )
-                .input( VerifyDAKeyProperty.IPARAM_DA_KEY_PROPERTY, state ) );
+                .input( VerifyDAKeyProperty.IPARAM_DA_KEY_PROPERTY, property )
+                .input( VerifyDAKeyProperty.IPARAM_PROPERTY_VISIBLE, state));
     }
 
 
@@ -330,6 +336,32 @@ public class CallUISteps extends AutomationSteps {
                         assertProfile( profileName ) )
                 .input( CleanUpFunctionKey.IPARAM_FUNCTION_KEY_ID, functionKey.getId() )
                 .input( CleanUpFunctionKey.IPARAM_KEY_STATE, state ) );
+    }
+
+    @When("$profileName with layout $layout terminates monitoring calls using function key $target menu")
+    public void terminateMonitoringFromFunctionKey( final String profileName, final String layout, final String target  )
+    {
+        String key = layout + "-" + target;
+        FunctionKey functionKey = retrieveFunctionKey(key);
+
+        evaluate( remoteStep( "Terminate monitorng using function key menu" )
+                .scriptOn( profileScriptResolver().map( DragAndClickOnMenuButtonFunctionKey.class,
+                        BookableProfileName.javafx ), assertProfile( profileName ) )
+                .input( DragAndClickOnMenuButtonFunctionKey.IPARAM_MENU_BUTTON_ID, TERMINATE_MONITORING_BUTTON_ID )
+                .input( DragAndClickOnMenuButtonFunctionKey.IPARAM_FUNCTION_KEY_ID, functionKey.getId() ) );
+    }
+
+    @When("$profileName with layout $layout opens monitoring list using function key $target menu")
+    public void openMonitoringListFromFunctionKey( final String profileName, final String layout, final String target  )
+    {
+        String key = layout + "-" + target;
+        FunctionKey functionKey = retrieveFunctionKey(key);
+
+        evaluate( remoteStep( "Open monitoring list using function key menu" )
+                .scriptOn( profileScriptResolver().map( DragAndClickOnMenuButtonFunctionKey.class,
+                        BookableProfileName.javafx ), assertProfile( profileName ) )
+                .input( DragAndClickOnMenuButtonFunctionKey.IPARAM_MENU_BUTTON_ID, MONITORING_LIST_BUTTON_ID )
+                .input( DragAndClickOnMenuButtonFunctionKey.IPARAM_FUNCTION_KEY_ID, functionKey.getId() ) );
     }
 
     private DAKey retrieveDaKey(final String source, final String target) {

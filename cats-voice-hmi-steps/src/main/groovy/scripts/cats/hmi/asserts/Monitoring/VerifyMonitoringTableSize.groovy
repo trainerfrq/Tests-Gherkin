@@ -16,7 +16,7 @@ class VerifyMonitoringTableSize extends FxScriptTemplate {
 
         Integer monitoringListSize = assertInput(IPARAM_MONITORING_LIST_SIZE) as Integer
         
-            final TableView monitoringTable = robot.lookup( "monitoringTable" ).queryFirst()
+            final TableView monitoringTable = robot.lookup( "#monitoringTable" ).queryFirst()
             final ObservableList monitoringItems = monitoringTable.getItems()
             evaluate(ExecutionDetails.create("Monitoring list size is the expected one")
                     .received("Received monitoring list size: " + monitoringItems.size().toString())

@@ -476,7 +476,7 @@ public class CallQueueUISteps extends AutomationSteps
               .input(CleanUpCallQueue.IPARAM_LIST_NAME, callQueueItemList));
    }
 
-    @Then("$profileName verifies that the call queue item $callQueueItem has the monitoring type $type ")
+    @Then("$profileName verifies item $namedCallQueueItem has the monitoring type $type ")
     public void verifyCallQueueMonitoringType( final String profileName, final String namedCallQueueItem,
                                          final String type )
     {

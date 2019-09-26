@@ -13,12 +13,14 @@ class VerifyDAKeyProperty extends FxScriptTemplate {
 
     public static final String IPARAM_DA_KEY_ID = "da_key_id"
     public static final String IPARAM_DA_KEY_PROPERTY = "da_key_property"
+    public static final String IPARAM_PROPERTY_VISIBLE = "property_visible"
 
     @Override
     void script() {
 
         String daKeyId = assertInput(IPARAM_DA_KEY_ID) as String
         String daKeyProperty = assertInput(IPARAM_DA_KEY_PROPERTY) as String
+        String propertyVisible = assertInput(IPARAM_PROPERTY_VISIBLE) as String
 
         final PseudoClass pseudoClassState = PseudoClass.getPseudoClass(daKeyProperty)
 
@@ -28,8 +30,18 @@ class VerifyDAKeyProperty extends FxScriptTemplate {
                 .expected("DA key with id " + daKeyId + " was found")
                 .success(daWidget != null));
 
-        evaluate(ExecutionDetails.create("Verify PseudoClassStates contains: " + daKeyProperty)
-                .success(verifyNodeHasPseudoClass(daWidget, pseudoClassState, 10000)))
+        switch(propertyVisible){
+            case "visible":
+                evaluate(ExecutionDetails.create("Verify PseudoClassStates contains: " + daKeyProperty)
+                        .success(verifyNodeHasPseudoClass(daWidget, pseudoClassState, 10000)))
+                break
+            case "not visible":
+                evaluate(ExecutionDetails.create("Verify PseudoClassStates contains: " + daKeyProperty)
+                        .success(!verifyNodeHasPseudoClass(daWidget, pseudoClassState, 10000)))
+                break
+        }
+
+
     }
 
     protected static boolean verifyNodeHasPseudoClass(Node node, PseudoClass pseudoClassState, long nWait) {

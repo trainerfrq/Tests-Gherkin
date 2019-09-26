@@ -18,15 +18,17 @@ class VerifyCallQueueContainerVisible extends FxScriptTemplate {
 
         Pane container = robot.lookup("#"+containerName+"ParentContainer").queryFirst()
 
-        if(isVisible) {
+        switch(isVisible){
+        case "visible":
             evaluate(ExecutionDetails.create("Container " + container+ " is visible")
                     .expected("Container is visible: " + isVisible)
                     .success(container.isVisible()));
-        }
-        else{
+                break
+        case "not visible":
             evaluate(ExecutionDetails.create("Container " + container + " is not visible")
                     .expected("Container is visible: " + isVisible)
                     .success(!container.isVisible()));
+                break
         }
     }
 }

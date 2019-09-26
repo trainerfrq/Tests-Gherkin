@@ -34,6 +34,7 @@ Given the DA keys:
 | HMI OP2 | <<ROLE_3_NAME>>       | <<ACTIVE2_MISSION3>>      |
 | HMI OP3 | OP1                   | <<PhyOpPos3_CWP1>>        |
 | HMI OP3 | OP2                   | <<PhyOpPos3_CWP2>>        |
+| HMI OP3 | ROLE1                 | <<PhyOpPos3_ROLE1>>       |
 | HMI OP3 | <<ROLE_2_NAME>>       | <<ACTIVE3_MISSION2>>      |
 | HMI OP3 | IA - OP1              | <<IA_PhyOpPos3_CWP1>>     |
 | HMI OP3 | IA - OP2              | <<IA_PhyOpPos3_CWP2>>     |
