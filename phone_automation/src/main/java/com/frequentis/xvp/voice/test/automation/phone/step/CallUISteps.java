@@ -61,6 +61,10 @@ public class CallUISteps extends AutomationSteps {
 
     private static final String MONITORING_LIST_BUTTON_ID = "monitoring_list_menu_button";
 
+    private static final String MONITORING_AG_CALL_ID = "monitoring_ag_call_menu_button";
+
+    private static final String MONITORING_GG_CALL_ID = "monitoring_gg_call_menu_button";
+
 
    @Given("the DA keys: $daKeys")
     public void defineDaKeys(final List<DAKey> daKeys) {
@@ -251,8 +255,8 @@ public class CallUISteps extends AutomationSteps {
                          .input(DragAndClickOnMenuButtonDAKey.IPARAM_MENU_BUTTON_ID, PRIORITY_CALL_MENU_BUTTON_ID));
     }
 
-    @Then("$profileName has the DA key $key with $property is $state")
-    public void verifyDAKeyProperty(final String profileName, final String target, final String property, final String state) {
+    @Then("$profileName has the DA key $key with $state state $property")
+    public void verifyDAKeyProperty(final String profileName, final String target, final String state, final String property) {
         DAKey daKey = retrieveDaKey(profileName, target);
 
         evaluate( remoteStep( "Verify operator position has the "+ target +" key with " + property + " property in state "+state )
@@ -362,6 +366,28 @@ public class CallUISteps extends AutomationSteps {
                         BookableProfileName.javafx ), assertProfile( profileName ) )
                 .input( DragAndClickOnMenuButtonFunctionKey.IPARAM_MENU_BUTTON_ID, MONITORING_LIST_BUTTON_ID )
                 .input( DragAndClickOnMenuButtonFunctionKey.IPARAM_FUNCTION_KEY_ID, functionKey.getId() ) );
+    }
+
+    @When("$profileName starts monitoring gg calls on DA key $target")
+    public void startGGCallsMonitoring( final String profileName, final String target  )
+    {
+        DAKey daKey = retrieveDaKey(profileName, target);
+        evaluate( remoteStep( "Starts monitoring using DA key context menu" )
+                .scriptOn( profileScriptResolver().map( DragAndClickOnMenuButtonDAKey.class,
+                        BookableProfileName.javafx ), assertProfile( profileName ) )
+                .input( DragAndClickOnMenuButtonDAKey.IPARAM_MENU_BUTTON_ID, MONITORING_GG_CALL_ID )
+                .input( DragAndClickOnMenuButtonDAKey.IPARAM_DA_KEY_ID, daKey.getId() ) );
+    }
+
+    @When("$profileName starts monitoring ag calls on DA key $target")
+    public void startAGCallsMonitoring( final String profileName, final String target  )
+    {
+        DAKey daKey = retrieveDaKey(profileName, target);
+        evaluate( remoteStep( "Starts monitoring using DA key context menu" )
+                .scriptOn( profileScriptResolver().map( DragAndClickOnMenuButtonDAKey.class,
+                        BookableProfileName.javafx ), assertProfile( profileName ) )
+                .input( DragAndClickOnMenuButtonDAKey.IPARAM_MENU_BUTTON_ID, MONITORING_AG_CALL_ID )
+                .input( DragAndClickOnMenuButtonDAKey.IPARAM_DA_KEY_ID, daKey.getId() ) );
     }
 
     private DAKey retrieveDaKey(final String source, final String target) {

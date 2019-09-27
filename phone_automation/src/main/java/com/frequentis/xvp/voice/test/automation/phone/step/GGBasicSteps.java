@@ -41,6 +41,7 @@ import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallStatus;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallStatusIndication;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallTransferRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.CallTransferResponse;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.ConfEstablishRequest;
 import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.QueryFullCallStatusRequest;
 import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
 import org.jbehave.core.annotations.Given;
@@ -899,6 +900,12 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       sendCallForwardCancel( namedWebSocket );
    }
 
+    @When("$namedWebSocket sends a conference request using active call with id $callId")
+    public void sendConfCallRequest( final String namedWebSocket, final String callId )
+    {
+        sendConfRequest(namedWebSocket, callId);
+    }
+
    @When("$namedWebSocket queries full call status")
    public void sendFullCallStatusRequest( final String namedWebSocket )
     {
@@ -1100,6 +1107,32 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
       setStoryListData( phoneCallIdName, jsonMessage.body().callEstablishResponse().getCallId() );
    }
+
+    private void sendConfRequest( final String namedWebSocket, final String phoneCallIdName )
+    {
+        final ProfileToWebSocketConfigurationReference reference =
+                getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
+
+        final String callId = getStoryListData( phoneCallIdName, String.class );
+
+        final Integer transactionId = new Integer( 1234 );
+
+        final ConfEstablishRequest conEstablishRequest = new ConfEstablishRequest( transactionId, callId );
+        final JsonMessage request =
+                new JsonMessage.Builder().withCorrelationId( UUID.randomUUID() ).withPayload( conEstablishRequest ).build();
+
+        final RemoteStepResult remoteStepResult =
+                evaluate(
+                        remoteStep( "Establishing conf request to " + callId )
+                                .scriptOn( profileScriptResolver().map( SendAndReceiveTextMessage.class,
+                                        BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
+                                .input( SendAndReceiveTextMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
+                                .input( SendAndReceiveTextMessage.IPARAM_RESPONSETYPE, "confEstablishResponse" )
+                                .input( SendAndReceiveTextMessage.IPARAM_MESSAGETOSEND, request.toJson() ) );
+
+        final String jsonResponse =
+                ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
+    }
 
 
    private void sendCallForwardRequest( final String namedWebSocket, final String callTargetName )

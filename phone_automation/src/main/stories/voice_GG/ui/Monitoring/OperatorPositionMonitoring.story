@@ -21,12 +21,12 @@ Scenario: Op3 activates Monitoring
 When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MONITORING
 Then HMI OP3 with layout <<LAYOUT_MISSION3>> has the function key MONITORING in monitoringOnGoing state
 !-- Then HMI OP3 has the DA key OP1 showing monitoringOngoingState
-Then HMI OP3 has the DA key OP1 with monitoringOngoingState is visible
+Then HMI OP3 has the DA key OP1 with visible state monitoringOngoingState
 
 Scenario: Op3 chooses to monitor Op1
 When HMI OP3 presses DA key OP1
 !-- Then HMI OP3 has the DA key OP1 showing monitoringActiveState
-Then HMI OP3 has the DA key OP1 with monitoringActiveState is visible
+Then HMI OP3 has the DA key OP1 with visible state monitoringActiveState
 
 Scenario: Stop monitoring ongoing on the function key
 Then HMI OP3 with layout <<LAYOUT_MISSION3>> has the function key MONITORING in monitoringOnGoing state
@@ -90,7 +90,7 @@ Scenario: Call is terminated also for Op3
 Then HMI OP1 has in the call queue a number of 1 calls
 
 Scenario: Verify that Op1 and Op3 still show monitoring
-Then HMI OP3 has the DA key OP1 with monitoringActiveState is visible
+Then HMI OP3 has the DA key OP1 with visible state monitoringActiveState
 Then HMI OP1 has the call queue item OP3-OP1-MONITORING in state tx_monitored
 
 Scenario: Op3 terminates all monitoring calls
@@ -105,6 +105,8 @@ Then HMI OP3 verifies that monitoring list contains 0 entries
 
 Scenario: Op3 closes monitoring popup
 Then HMI OP3 closes monitoring popup
+Then HMI OP3 has the DA key OP1 with not visible state monitoringActiveState
+Then HMI OP3 has the DA key OP1 with not visible state monitoringOngoingState
 
 Scenario: Monitoring not visible anymore on Op1
 Then HMI OP1 verifies that call queue container monitoring is not visible
