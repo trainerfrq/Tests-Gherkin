@@ -1,7 +1,7 @@
 Narrative:
-As a caller operator having to outgoing position monitoring calls enabled
-I want to activate monitoring to another operator position
-So I can verify that I can monitor the active calls of the monitored position
+As a caller operator having incoming position monitoring calls enabled
+I want to receive monitoring calls
+So I can verify that incoming monitoring calls limit is respected
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -26,6 +26,9 @@ Scenario: Op3 chooses to monitor Op1
 When HMI OP1 presses DA key OP2
 Then HMI OP1 has the DA key OP2 with visible state monitoringOngoingState
 Then HMI OP1 verifies that the DA key OP2 has the info label failed
+
+Scenario: Stop monitoring ongoing on the function key
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MONITORING
 
 Scenario: Op2 changes mission
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
@@ -64,6 +67,7 @@ Then HMI OP3 verifies that the DA key OP1 has the info label busy
 
 Scenario: Op3 stops monitoring ongoing on the function key
 When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MONITORING
+Then wait for 15 seconds
 
 Scenario: Op3 establishes an outgoing call
 When HMI OP3 presses DA key OP1

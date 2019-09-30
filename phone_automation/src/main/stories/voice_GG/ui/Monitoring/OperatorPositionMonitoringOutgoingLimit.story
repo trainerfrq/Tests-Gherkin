@@ -1,7 +1,7 @@
 Narrative:
-As a caller operator having to outgoing position monitoring calls enabled
-I want to activate monitoring to another operator position
-So I can verify that I can monitor the active calls of the monitored position
+As a caller operator having outgoing position monitoring calls enabled
+I want to send monitoring calls
+So I can verify that outgoing monitoring calls limit is respected
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -14,9 +14,19 @@ Scenario: Define call queue items
 Given the call queue items:
 | key                | source      | target      | callType   |
 | OP3-OP1-MONITORING | <<OP3_URI>> | <<OP1_URI>> | MONITORING |
-|OP3-OP2-MONITORING|<<OP3_URI>>|<<OP2_URI>>|MONITORING|
+| OP3-OP2-MONITORING | <<OP3_URI>> | <<OP2_URI>> | MONITORING |
 | OP1-OP3            | <<OP1_URI>> | <<OP3_URI>> | DA/IDA     |
 | OP3-OP1            | <<OP3_URI>> | <<OP1_URI>> | DA/IDA     |
+
+Scenario: Op2 activates Monitoring
+When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key MONITORING
+Then HMI OP2 with layout <<LAYOUT_MISSION2>> has the function key MONITORING in monitoringOnGoing state
+Then HMI OP2 has the DA key OP1 with visible state monitoringOngoingState
+
+Scenario: Op2 chooses to monitor Op1, but is not allowed
+When HMI OP2 presses DA key OP1
+Then HMI OP2 has the DA key OP1 with not visible state monitoringActiveState
+Then HMI OP2 has the DA key OP1 with visible state monitoringOngoingState
 
 Scenario: Op2 changes mission
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
@@ -82,6 +92,8 @@ Then HMI OP3 verifies that popup monitoring is visible
 Scenario: Op3 selects entry in the monitoring list
 When HMI OP3 selects entry 1 in the monitoring list
 Then HMI OP3 verifies that in the monitoring window clearSelected button is enabled
+
+Scenario: Op3 terminates monitoring for the selected item
 Then HMI OP3 clicks on clearSelected button
 
 Scenario: Op3 closes monitoring popup
