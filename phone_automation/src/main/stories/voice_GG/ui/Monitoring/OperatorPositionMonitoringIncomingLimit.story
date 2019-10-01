@@ -24,6 +24,7 @@ Then HMI OP1 has the DA key OP2 with visible state monitoringOngoingState
 
 Scenario: Op1 chooses to monitor Op1
 		  @REQUIREMENTS:GID-2505729
+		  @REQUIREMENTS:GID-2834339
 When HMI OP1 presses DA key OP2
 Then HMI OP1 has the DA key OP2 with visible state monitoringOngoingState
 Then HMI OP1 verifies that the DA key OP2 has the info label failed
@@ -66,6 +67,7 @@ Then HMI OP3 has the DA key OP1 with visible state monitoringOngoingState
 
 Scenario: Op3 chooses to monitor Op1
 		  @REQUIREMENTS:GID-2505729
+		  @REQUIREMENTS:GID-2834339
 When HMI OP3 presses DA key OP1
 Then HMI OP3 verifies that the DA key OP1 has the info label busy
 

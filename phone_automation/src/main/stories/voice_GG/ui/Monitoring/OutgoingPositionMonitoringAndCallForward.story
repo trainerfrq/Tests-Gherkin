@@ -1,7 +1,7 @@
 Narrative:
-As an operator monitoring another operator position
+As an operator having an outgoing monitoring position call
 I want to activate CallForward to the monitored position
-So I can verify that all DA phone calls are forwarded to the selected target Operator Position
+So I can verify that call forward and monitoring are working as expected
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -35,6 +35,7 @@ Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key MONITORING in 
 Then HMI OP1 has the DA key OP3 with visible state monitoringOngoingState
 
 Scenario: Op1 chooses to monitor Op3
+		  @REQUIREMENTS:GID-2505728
 When HMI OP1 starts monitoring gg calls on DA key OP3
 Then HMI OP1 has the DA key OP3 with visible state monitoringActiveState
 

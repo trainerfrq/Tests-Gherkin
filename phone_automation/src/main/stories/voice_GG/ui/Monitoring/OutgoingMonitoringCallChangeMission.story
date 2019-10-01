@@ -16,6 +16,7 @@ Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key MONITORING in 
 Then HMI OP1 has the DA key OP3 with visible state monitoringOngoingState
 
 Scenario: Op1 chooses to monitor Op3
+		  @REQUIREMENTS:GID-2505728
 When HMI OP1 starts monitoring gg calls on DA key OP3
 Then HMI OP1 has the DA key OP3 with visible state monitoringActiveState
 
@@ -83,12 +84,14 @@ Then HMI OP1 verifies that monitoring list contains 1 entries
 Then HMI OP1 verifies in the monitoring list that for entry 1 the first column has value GG
 Then HMI OP1 verifies in the monitoring list that for entry 1 the second column has value <<OP3_NAME>>
 
-Scenario: Op1 terminates monitoring for the selected item
-When HMI OP1 selects entry 1 in the monitoring list
-Then HMI OP1 clicks on clearSelected button
-
 Scenario: Op1 closes monitoring popup
 Then HMI OP1 closes monitoring popup
+
+Scenario: Op1 verifies that it has no visual indication of an incoming monitoring call
+Then HMI OP1 verifies that call queue container monitoring is not visible
+
+Scenario: Op1 terminates all monitoring calls
+When HMI OP1 with layout <<LAYOUT_MISSION1>> terminates monitoring calls using function key MONITORING menu
 
 Scenario: Op1 hasn't a visible indication that it is monitoring Op3
 Then HMI OP1 has the DA key OP3 with not visible state monitoringActiveState

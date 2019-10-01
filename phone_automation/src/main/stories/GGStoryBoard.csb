@@ -2111,6 +2111,12 @@
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
                         </cats:story>
+                        <cats:story enabled="false">
+                            <cats:storyPath>voice_GG/ui/Monitoring/IncomingPositionMonitoringAndCallForward.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Monitoring/OperatorPositionMonitoring.story</cats:storyPath>
                             <cats:storyParameters/>
@@ -2166,7 +2172,7 @@
                             <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/Monitoring/PositionMonitoringAndCallForward.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/ui/Monitoring/OutgoingPositionMonitoringAndCallForward.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>

@@ -1,7 +1,7 @@
 Scenario: Define the DA keys
 Given the DA keys:
 | source  | target                | id                        |
-| HMI OP1 | OP1                   |                           |
+| HMI OP1 | OP1                   | <<PhyOpPos1_CWP1>>                         |
 | HMI OP1 | OP2                   | <<PhyOpPos1_CWP2>>        |
 | HMI OP1 | OP3                   | <<PhyOpPos1_CWP3>>        |
 | HMI OP1 | IA - OP1              |                           |

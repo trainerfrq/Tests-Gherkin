@@ -15,7 +15,8 @@ When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MONITORING
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key MONITORING in monitoringOnGoing state
 Then HMI OP1 has the DA key OP1 with visible state monitoringOngoingState
 
-Scenario: Op1 chooses to monitor Op3
+Scenario: Op1 chooses to monitor Op1
+		  @REQUIREMENTS:GID-2505728
 When HMI OP1 starts monitoring gg calls on DA key OP1
 Then HMI OP1 verifies that the DA key OP1 has the info label failed
 Then wait for 5 seconds
@@ -27,11 +28,12 @@ When HMI OP1 selects tab event from notification display popup
 Then HMI OP1 verifies that list Event contains text General failure for phone call to
 
 Scenario: Close popup window
-Then HMI OP3 closes notification popup
+Then HMI OP1 closes notification popup
 
 Scenario: Stop monitoring ongoing on the function key
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key MONITORING in monitoringOnGoing state
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MONITORING
+Then wait for 10 seconds
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure

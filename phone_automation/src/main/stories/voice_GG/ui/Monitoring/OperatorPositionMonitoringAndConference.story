@@ -73,6 +73,7 @@ When HMI OP1 with layout <<LAYOUT_MISSION1>> opens monitoring list using functio
 Then HMI OP1 verifies that popup monitoring is visible
 
 Scenario: Op1 verifies monitoring list entries
+		  @REQUIREMENTS:GID-4968898
 Then HMI OP1 verifies that monitoring list contains 1 entries
 Then HMI OP1 verifies in the monitoring list that for entry 1 the first column has value ALL
 Then HMI OP1 verifies in the monitoring list that for entry 1 the second column has value <<OP3_NAME>>

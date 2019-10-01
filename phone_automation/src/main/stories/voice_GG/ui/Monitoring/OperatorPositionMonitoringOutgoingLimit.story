@@ -64,6 +64,7 @@ When HMI OP3 with layout <<LAYOUT_MISSION3>> opens monitoring list using functio
 Then HMI OP3 verifies that popup monitoring is visible
 
 Scenario: Op3 verifies monitoring list entries
+		  @REQUIREMENTS:GID-2510120
 Then HMI OP3 verifies that monitoring list contains 2 entries
 Then HMI OP3 verifies in the monitoring list that for entry 1 the second column has value <<OP1_NAME>>
 Then HMI OP3 verifies in the monitoring list that for entry 2 the second column has value <<OP2_NAME>>
@@ -80,6 +81,7 @@ Then HMI OP3 closes notification popup
 
 Scenario: Op3 chooses to monitor ROLE1, but monitoring is not started
 		  @REQUIREMENTS:GID-2505729
+		  @REQUIREMENTS:GID-2505732
 When HMI OP3 presses DA key ROLE1
 Then HMI OP3 has the DA key ROLE1 with visible state monitoringOngoingState
 

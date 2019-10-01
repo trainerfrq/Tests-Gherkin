@@ -86,6 +86,7 @@ Then HMI OP3 has the call queue item OP3-OP2 in state connected
 Then HMI OP2 has the call queue item OP2-OP3 in state connected
 
 Scenario: Op1 has an indication that is monitoring Op3
+		  @REQUIREMENTS:GID-4968898
 Then HMI OP1 has the DA key OP3 with visible state monitoringActiveState
 
 Scenario: Op1 terminates all monitoring calls

@@ -21,6 +21,7 @@ Then HMI OP3 with layout <<LAYOUT_MISSION3>> has the function key MONITORING in 
 Then HMI OP3 has the DA key OP1 with visible state monitoringOngoingState
 
 Scenario: Op3 chooses to monitor Op1
+		  @REQUIREMENTS:GID-2505728
 When HMI OP3 presses DA key OP1
 Then HMI OP3 has the DA key OP1 with visible state monitoringActiveState
 

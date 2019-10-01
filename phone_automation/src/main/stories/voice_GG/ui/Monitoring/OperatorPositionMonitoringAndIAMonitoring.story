@@ -31,6 +31,7 @@ When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MONITORING
 Then HMI OP3 with layout <<LAYOUT_MISSION3>> has the function key MONITORING in monitoringActive state
 
 Scenario: Op1 has the visual indication that it is monitored
+		  @REQUIREMENTS:GID-2505728
 Then HMI OP1 verifies that call queue container monitoring is visible
 Then HMI OP1 has the call queue item OP3-OP1-MONITORING in state connected
 Then HMI OP1 has the call queue item OP3-OP1-MONITORING in state tx_monitored
@@ -94,6 +95,7 @@ Then HMI OP3 has the DA key OP1 with not visible state monitoringActiveState
 Then HMI OP3 has the DA key OP1 with not visible state monitoringOngoingState
 
 Scenario: Op3 verifies that IA monitored call to Op1 is still ongoing
+		  @REQUIREMENTS:GID-2841714
 Then HMI OP3 has in the call queue a number of 1 calls
 Then HMI OP3 has the IA call queue item OP1-OP3 with audio direction tx_monitored
 
