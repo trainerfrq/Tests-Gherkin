@@ -1,7 +1,7 @@
 Narrative:
-As an operator part of an active DA call
-I want to start a conference
-So I can add and/or remove participants to the call
+As an operator monitoring another operator position and an active conference
+I want to add to the conference the monitored position
+So I can verify that the monitored position can be part of the conference
 
 Scenario: Booking profiles
 Given booked profiles:

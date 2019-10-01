@@ -1,5 +1,5 @@
 Narrative:
-As a caller operator having incoming position monitoring calls enabled
+As an operator having incoming position monitoring calls enabled
 I want to receive monitoring calls and change mission
 So I can verify that incoming monitoring calls is not affected by this action
 
@@ -98,3 +98,11 @@ Then HMI OP3 has the DA key OP1 with not visible state monitoringActiveState
 Scenario: Monitoring not visible anymore on Op1
 Then HMI OP1 verifies that call queue container monitoring is not visible
 Then HMI OP1 has in the call queue a number of 0 calls
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
+			  voice_GG/ui/includes/@CleanupUIMission.story,
+			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story,
+			  voice_GG/ui/includes/@CleanupUIWindows.story
+Then waiting for 1 millisecond

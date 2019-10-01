@@ -1,7 +1,7 @@
 Narrative:
-As a caller operator having outgoing position monitoring calls enabled
-I want to activate monitoring to another operator position
-So I can verify that I can monitor the active calls of the monitored position
+As an operator having incoming position monitoring calls enabled and incoming IA call monitoring activated
+I want to be monitored to another operator position
+So I can verify that monitoring of DA and IA calls are works simultaneously
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -115,5 +115,13 @@ Then HMI OP1 has in the call queue a number of 0 calls
 Scenario: Cleanup - always select first tab
 When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 1
 When HMI OP3 with layout <<LAYOUT_MISSION3>> selects grid tab 1
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
+			  voice_GG/ui/includes/@CleanupUIMission.story,
+			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story,
+			  voice_GG/ui/includes/@CleanupUIWindows.story
+Then waiting for 1 millisecond
 
 

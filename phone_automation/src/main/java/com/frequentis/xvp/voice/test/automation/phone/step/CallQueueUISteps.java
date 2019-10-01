@@ -464,6 +464,19 @@ public class CallQueueUISteps extends AutomationSteps
               . input(VerifyMenuButtonFirstCallQueueItemIsVisible.IPARAM_IS_VISIBLE, isVisible));
    }
 
+    @Then("$profileName verifies the call queue item $callQueueItem has label $type showing $label")
+    public void monitoringCallQueueItem( final String profileName, final String namedCallQueueItem, final String type, final String label )
+    {
+        CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
+
+        evaluate( remoteStep( "Monitoring call queue item" )
+                .scriptOn( profileScriptResolver().map( VerifyMonitoringCallQueueItem.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input( VerifyMonitoringCallQueueItem.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
+                .input(VerifyMonitoringCallQueueItem.IPARAM_LABEL_TYPE, type)
+                .input(VerifyMonitoringCallQueueItem.IPARAM_MONITORING_LABEL, label));
+    }
+
    @Then("$profileName cleans the call queue item $callQueueItem from the call queue list $callQueueItemList")
    public void cleanUpCallQueueItem( final String profileName, final String namedCallQueueItem, final String callQueueItemList )
    {
@@ -475,20 +488,6 @@ public class CallQueueUISteps extends AutomationSteps
               .input( CleanUpCallQueue.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
               .input(CleanUpCallQueue.IPARAM_LIST_NAME, callQueueItemList));
    }
-
-    @Then("$profileName verifies item $namedCallQueueItem has the monitoring type $type ")
-    public void verifyCallQueueMonitoringType( final String profileName, final String namedCallQueueItem,
-                                         final String type )
-    {
-        CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
-
-        evaluate( remoteStep( "Verify call queue item has the expected monitoring type " )
-                .scriptOn( profileScriptResolver().map( VerifyMonitoringCallQueueItem.class, BookableProfileName.javafx ),
-                        assertProfile( profileName ) )
-                .input( VerifyMonitoringCallQueueItem.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
-                .input( VerifyMonitoringCallQueueItem.IPARAM_MONITORING_TYPE, type ) );
-    }
-
 
    private String reformatSipUris( final String sipUri )
    {

@@ -1,5 +1,5 @@
 Narrative:
-As a caller operator having outgoing position monitoring calls enabled
+As an operator having outgoing position monitoring calls enabled
 I want to send monitoring calls
 So I can verify that outgoing monitoring calls limit is respected
 
@@ -24,6 +24,7 @@ Then HMI OP2 with layout <<LAYOUT_MISSION2>> has the function key MONITORING in 
 Then HMI OP2 has the DA key OP1 with visible state monitoringOngoingState
 
 Scenario: Op2 chooses to monitor Op1, but is not allowed
+		  @REQUIREMENTS:GID-2505729
 When HMI OP2 presses DA key OP1
 Then HMI OP2 has the DA key OP1 with not visible state monitoringActiveState
 Then HMI OP2 has the DA key OP1 with visible state monitoringOngoingState
@@ -77,7 +78,8 @@ Then HMI OP3 verifies that list State contains text Select Monitoring target
 Scenario: Close popup window
 Then HMI OP3 closes notification popup
 
-Scenario: Op3 chooses to monitor ROLE1
+Scenario: Op3 chooses to monitor ROLE1, but monitoring is not started
+		  @REQUIREMENTS:GID-2505729
 When HMI OP3 presses DA key ROLE1
 Then HMI OP3 has the DA key ROLE1 with visible state monitoringOngoingState
 
@@ -139,3 +141,11 @@ When HMI OP2 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP2 changes current mission to mission WEST-EXEC
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
+			  voice_GG/ui/includes/@CleanupUIMission.story,
+			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story,
+			  voice_GG/ui/includes/@CleanupUIWindows.story
+Then waiting for 1 millisecond

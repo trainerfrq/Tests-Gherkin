@@ -1,5 +1,5 @@
 Narrative:
-As a caller operator having outgoing position monitoring calls enabled
+As an operator having outgoing position monitoring calls enabled
 I want to send monitoring call and change mission
 So I can verify that outgoing monitoring call is not affected by this action
 
@@ -101,6 +101,14 @@ Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Verify number of calls in call queue for Op1
 Then HMI OP1 has in the call queue a number of 0 calls
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
+			  voice_GG/ui/includes/@CleanupUIMission.story,
+			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story,
+			  voice_GG/ui/includes/@CleanupUIWindows.story
+Then waiting for 1 millisecond
 
 
 

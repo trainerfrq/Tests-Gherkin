@@ -1,5 +1,5 @@
 Narrative:
-As a caller operator having incoming position monitoring calls enabled
+As an operator having incoming position monitoring calls enabled
 I want to receive monitoring calls
 So I can verify that incoming monitoring calls limit is respected
 
@@ -22,7 +22,8 @@ When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MONITORING
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key MONITORING in monitoringOnGoing state
 Then HMI OP1 has the DA key OP2 with visible state monitoringOngoingState
 
-Scenario: Op3 chooses to monitor Op1
+Scenario: Op1 chooses to monitor Op1
+		  @REQUIREMENTS:GID-2505729
 When HMI OP1 presses DA key OP2
 Then HMI OP1 has the DA key OP2 with visible state monitoringOngoingState
 Then HMI OP1 verifies that the DA key OP2 has the info label failed
@@ -42,7 +43,7 @@ Then HMI OP2 with layout <<LAYOUT_MISSION3>> has the function key MONITORING in 
 Then HMI OP2 has the DA key OP1(as Mission3) with visible state monitoringOngoingState
 
 Scenario: Op2 chooses to monitor Op1
-When HMI OP2 presses DA key OP1(as Mission3)
+When HMI OP2 starts monitoring gg calls on DA key OP1(as Mission3)
 Then HMI OP2 has the DA key OP1(as Mission3) with visible state monitoringActiveState
 
 Scenario: Stop monitoring ongoing on the function key
@@ -55,6 +56,8 @@ Then HMI OP1 verifies that call queue container monitoring is visible
 Then HMI OP1 has the call queue item OP2-OP1-MONITORING in state connected
 Then HMI OP1 has the call queue item OP2-OP1-MONITORING in state tx_monitored
 Then HMI OP1 has in the call queue a number of 1 calls
+Then HMI OP1 verifies the call queue item OP2-OP1-MONITORING has label type showing GG
+Then HMI OP1 verifies the call queue item OP2-OP1-MONITORING has label name showing <<OP2_NAME>>
 
 Scenario: Op3 activates Monitoring
 When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MONITORING
@@ -62,6 +65,7 @@ Then HMI OP3 with layout <<LAYOUT_MISSION3>> has the function key MONITORING in 
 Then HMI OP3 has the DA key OP1 with visible state monitoringOngoingState
 
 Scenario: Op3 chooses to monitor Op1
+		  @REQUIREMENTS:GID-2505729
 When HMI OP3 presses DA key OP1
 Then HMI OP3 verifies that the DA key OP1 has the info label busy
 
@@ -96,7 +100,7 @@ Then HMI OP2 verifies that popup monitoring is visible
 
 Scenario: Op2 verifies monitoring list entries
 Then HMI OP2 verifies that monitoring list contains 1 entries
-Then HMI OP2 verifies in the monitoring list that for entry 1 the first column has value ALL
+Then HMI OP2 verifies in the monitoring list that for entry 1 the first column has value GG
 Then HMI OP2 verifies in the monitoring list that for entry 1 the second column has value <<OP1_NAME>>
 
 Scenario: Op3 closes monitoring popup
@@ -125,6 +129,14 @@ When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
 Then HMI OP2 changes current mission to mission WEST-EXEC
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
+			  voice_GG/ui/includes/@CleanupUIMission.story,
+			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story,
+			  voice_GG/ui/includes/@CleanupUIWindows.story
+Then waiting for 1 millisecond
 
 
 

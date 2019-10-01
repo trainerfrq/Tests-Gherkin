@@ -1,6 +1,6 @@
 Narrative:
-As an operator part of an active call
-I want to transfer the active call to a transfer target operator using an intermediary consultation call
+As an operator monitoring another operator position
+I want to transfer an active call to the monitored position using an intermediary consultation call
 So I can verify that the call was transferred successfully
 
 Scenario: Booking profiles

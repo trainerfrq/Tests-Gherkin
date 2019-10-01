@@ -1,5 +1,5 @@
 Narrative:
-As a caller operator having outgoing position monitoring calls enabled
+As an operator having outgoing position monitoring calls enabled
 I want to activate monitoring to a role that is active on 2 positions
 So I can verify that monitoring is activated only on one position without a specific priority
 
@@ -35,8 +35,8 @@ Then HMI OP1 verifies that call queue container monitoring is visible
 Then HMI OP1 has the call queue item OP3-OP1-MONITORING in state connected
 Then HMI OP1 has the call queue item OP3-OP1-MONITORING in state tx_monitored
 Then HMI OP1 has in the call queue a number of 1 calls
-!-- Then HMI OP1 verifies item OP3-OP1 has the monitoring type ALL
-!-- Then HMI OP1 has the call queue item OP3-OP1 in the monitoring list with name label <<OP3_NAME>>
+Then HMI OP1 verifies the call queue item OP3-OP1-MONITORING has label type showing ALL
+Then HMI OP1 verifies the call queue item OP3-OP1-MONITORING has label name showing <<ROLE_3_NAME>>
 
 Scenario: Op2 is not monitored
 Then HMI OP2 verifies that call queue container monitoring is not visible
@@ -103,8 +103,8 @@ Then HMI OP2 verifies that call queue container monitoring is visible
 Then HMI OP2 has the call queue item OP3-OP1-MONITORING in state connected
 Then HMI OP2 has the call queue item OP3-OP1-MONITORING in state tx_monitored
 Then HMI OP2 has in the call queue a number of 1 calls
-!-- Then HMI OP1 verifies item OP3-OP1 has the monitoring type ALL
-!-- Then HMI OP1 has the call queue item OP3-OP1 in the monitoring list with name label <<OP3_NAME>>
+Then HMI OP2 verifies the call queue item OP3-OP1-MONITORING has label type showing ALL
+Then HMI OP2 verifies the call queue item OP3-OP1-MONITORING has label name showing <<ROLE_3_NAME>>
 
 Scenario: Op1 is not monitored
 Then HMI OP1 verifies that call queue container monitoring is not visible
@@ -134,3 +134,11 @@ When HMI OP2 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP2 changes current mission to mission WEST-EXEC
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
+			  voice_GG/ui/includes/@CleanupUIMission.story,
+			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story,
+			  voice_GG/ui/includes/@CleanupUIWindows.story
+Then waiting for 1 millisecond

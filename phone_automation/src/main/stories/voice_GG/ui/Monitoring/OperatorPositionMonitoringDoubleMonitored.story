@@ -1,5 +1,5 @@
 Narrative:
-As a caller operator having multiple incoming position monitoring calls enabled
+As an operator having multiple incoming position monitoring calls enabled
 I want to receive monitoring calls from 2 different operator positions
 So I can verify that monitoring from 2 different operators is working as expected
 
@@ -99,3 +99,11 @@ When HMI OP2 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP2 changes current mission to mission WEST-EXEC
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
+			  voice_GG/ui/includes/@CleanupUIMission.story,
+			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story,
+			  voice_GG/ui/includes/@CleanupUIWindows.story
+Then waiting for 1 millisecond
