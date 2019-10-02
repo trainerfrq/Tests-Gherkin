@@ -29,6 +29,8 @@ class ReceiveMessageAsIs extends WebsocketScriptTemplate {
         evaluate(ExecutionDetails.create("Geting client endpoint with name: [" + endpointName + "]")
                 .success(clientEndpoint != null))
 
+        clientEndpoint.startRecording()
+
         evaluate(ExecutionDetails.create("Stopping recording")
                 .expected("Recording still started")
                 .success(clientEndpoint.recordingStarted()))
