@@ -30,7 +30,6 @@ Given the call queue items:
 
 Scenario: Op3 initiates a priority call
 When HMI OP3 initiates a priority call on DA key OP1
-When init
 Then HMI OP3 has the call queue item OP1-OP3 in the active list with name label <<OP1_NAME>>
 
 Scenario: Op1 receives a priority call and verifies call queue section (priority)
