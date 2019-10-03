@@ -1,6 +1,6 @@
 Narrative:
 As an operator having incoming position monitoring calls enabled
-I want to receive monitoring calls and change mission
+I want to receive monitoring calls and change mission to a mission that has incoming and outgoing monitoring disabled
 So I can verify that incoming monitoring calls is not affected by this action
 
 Scenario: Booking profiles
@@ -93,10 +93,10 @@ Then HMI OP3 clicks on clearSelected button
 Scenario: Op3 closes monitoring popup
 Then HMI OP3 closes monitoring popup
 
-Scenario: Op3 has no visual indication that is monitoring Op1
+Scenario: Op3 has monitoring call terminated
 Then HMI OP3 has the DA key OP1 with not visible state monitoringActiveState
 
-Scenario: Monitoring not visible anymore on Op1
+Scenario: Monitoring terminated on Op1
 Then HMI OP1 verifies that call queue container monitoring is not visible
 Then HMI OP1 has in the call queue a number of 0 calls
 

@@ -99,7 +99,7 @@ Scenario: Op3 verifies that IA monitored call to Op1 is still ongoing
 Then HMI OP3 has in the call queue a number of 1 calls
 Then HMI OP3 has the IA call queue item OP1-OP3 with audio direction tx_monitored
 
-Scenario: Monitoring not visible anymore on Op1
+Scenario: Monitoring terminated on Op1
 Then HMI OP1 verifies that call queue container monitoring is not visible
 
 Scenario: Op1 verifies that IA monitoring call from Op3 is still ongoing

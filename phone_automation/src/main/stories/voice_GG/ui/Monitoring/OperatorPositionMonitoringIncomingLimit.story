@@ -22,7 +22,7 @@ When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MONITORING
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key MONITORING in monitoringOnGoing state
 Then HMI OP1 has the DA key OP2 with visible state monitoringOngoingState
 
-Scenario: Op1 chooses to monitor Op1
+Scenario: Op1 chooses to monitor Op2
 		  @REQUIREMENTS:GID-2505729
 		  @REQUIREMENTS:GID-2834339
 When HMI OP1 presses DA key OP2
@@ -111,7 +111,7 @@ Then HMI OP2 closes monitoring popup
 Scenario: Op2 terminates all monitoring calls
 When HMI OP2 with layout <<LAYOUT_MISSION3>> terminates monitoring calls using function key MONITORING menu
 
-Scenario: Monitoring not visible anymore on Op1
+Scenario: Monitoring terminated on Op1
 Then HMI OP1 verifies that call queue container monitoring is not visible
 Then HMI OP1 has in the call queue a number of 1 calls
 

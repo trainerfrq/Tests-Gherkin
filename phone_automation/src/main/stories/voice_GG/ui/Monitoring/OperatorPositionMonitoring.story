@@ -109,7 +109,7 @@ Then HMI OP3 closes monitoring popup
 Then HMI OP3 has the DA key OP1 with not visible state monitoringActiveState
 Then HMI OP3 has the DA key OP1 with not visible state monitoringOngoingState
 
-Scenario: Monitoring not visible anymore on Op1
+Scenario: Monitoring terminated on Op1
 Then HMI OP1 verifies that call queue container monitoring is not visible
 Then HMI OP1 has in the call queue a number of 0 calls
 

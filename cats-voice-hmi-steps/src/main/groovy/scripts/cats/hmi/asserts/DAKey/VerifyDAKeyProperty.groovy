@@ -40,10 +40,7 @@ class VerifyDAKeyProperty extends FxScriptTemplate {
                         .success(!verifyNodeHasPseudoClass(daWidget, pseudoClassState, 10000)))
                 break
         }
-
-
     }
-
     protected static boolean verifyNodeHasPseudoClass(Node node, PseudoClass pseudoClassState, long nWait) {
 
         WaitCondition condition = new WaitCondition("Wait until node has [" + pseudoClassState + "] class") {

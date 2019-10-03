@@ -33,7 +33,7 @@ import scripts.cats.hmi.actions.CallQueue.ClickOnCallQueueInfoContainer;
 import scripts.cats.hmi.actions.CallQueue.DragAndClickOnMenuButtonFirstCallQueueItem;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueBarState;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueCollapsedAreaSize;
-import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueContainerVisible;
+import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueContainerVisibility;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueInfoContainerIfVisible;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueInfoContainerLabel;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemCallType;
@@ -389,10 +389,10 @@ public class CallQueueUISteps extends AutomationSteps
     public void verifyCallQueueContainerState( final String profileName, final String containerName, final String state )
     {
         evaluate( remoteStep( "Verify call queue container " +containerName+ " state" )
-                .scriptOn( profileScriptResolver().map( VerifyCallQueueContainerVisible.class,
+                .scriptOn( profileScriptResolver().map( VerifyCallQueueContainerVisibility.class,
                         BookableProfileName.javafx ), assertProfile( profileName ) )
-                .input(VerifyCallQueueContainerVisible.IPARAM_CONTAINER_NAME, containerName)
-                .input( VerifyCallQueueContainerVisible.IPARAM_IS_VISIBLE, state ) );
+                .input(VerifyCallQueueContainerVisibility.IPARAM_CONTAINER_NAME, containerName)
+                .input( VerifyCallQueueContainerVisibility.IPARAM_IS_VISIBLE, state ) );
     }
 
 

@@ -1,6 +1,6 @@
 Narrative:
-As an operator being monitoring by another operator position
-I want to activate CallForward to the monitored position
+As an operator being monitored by another operator position
+I want to activate CallForward to the position monitoring me
 So I can verify that call forward and monitoring are working as expected
 
 Scenario: Booking profiles
