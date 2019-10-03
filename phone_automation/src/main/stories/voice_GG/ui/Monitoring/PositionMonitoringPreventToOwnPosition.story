@@ -17,7 +17,7 @@ Then HMI OP1 has the DA key OP1 with visible state monitoringOngoingState
 
 Scenario: Op1 chooses to monitor Op1
 		  @REQUIREMENTS:GID-2505728
-When HMI OP1 starts monitoring gg calls on DA key OP1
+When HMI OP1 starts monitoring gg calls for OP1
 Then HMI OP1 verifies that the DA key OP1 has the info label failed
 Then wait for 5 seconds
 

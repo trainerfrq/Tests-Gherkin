@@ -364,7 +364,7 @@ public class CallUISteps extends AutomationSteps {
                 .input( DragAndClickOnMenuButtonFunctionKey.IPARAM_FUNCTION_KEY_ID, functionKey.getId() ) );
     }
 
-    @When("$profileName starts monitoring $callType calls on DA key $target")
+    @When("$profileName starts monitoring $callType calls for $target")
     public void startGGCallsMonitoring( final String profileName, final String callType, final String target  )
     {
         String MONITORING_CALL_ID = "monitoring_"+callType+"_call_menu_button";

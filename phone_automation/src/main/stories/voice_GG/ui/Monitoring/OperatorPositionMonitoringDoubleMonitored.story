@@ -30,7 +30,7 @@ Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key MONITORING in 
 Then HMI OP1 has the DA key OP3 with visible state monitoringOngoingState
 
 Scenario: Op1 chooses to monitor Op3
-When HMI OP1 starts monitoring gg calls on DA key OP3
+When HMI OP1 starts monitoring gg calls for OP3
 Then HMI OP1 has the DA key OP3 with visible state monitoringActiveState
 
 Scenario: Stop monitoring ongoing on the function key
@@ -47,7 +47,7 @@ Then HMI OP2 with layout <<LAYOUT_MISSION1>> has the function key MONITORING in 
 Then HMI OP2 has the DA key OP3(as Mission1) with visible state monitoringOngoingState
 
 Scenario: Op2 chooses to monitor Op3
-When HMI OP2 starts monitoring ag calls on DA key OP3(as Mission1)
+When HMI OP2 starts monitoring ag calls for OP3(as Mission1)
 Then HMI OP2 has the DA key OP3(as Mission1) with visible state monitoringActiveState
 
 Scenario: Stop monitoring ongoing on the function key

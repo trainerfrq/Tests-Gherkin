@@ -34,7 +34,7 @@ Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key MONITORING in 
 Then HMI OP1 has the DA key OP3 with visible state monitoringOngoingState
 
 Scenario: Op1 chooses to monitor Op3
-When HMI OP1 starts monitoring gg calls on DA key OP3
+When HMI OP1 starts monitoring gg calls for OP3
 Then assign date time value for entry entry1
 Then HMI OP1 has the DA key OP3 with visible state monitoringActiveState
 
