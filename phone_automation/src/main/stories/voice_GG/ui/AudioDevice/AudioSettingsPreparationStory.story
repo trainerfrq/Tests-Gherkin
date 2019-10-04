@@ -52,7 +52,7 @@ Scenario: Op1 adjusts notificationError volume slider from audio settings to max
 When HMI OP1 drags volume slider notificationError to maximum level
 
 Scenario: Op1 closes audio settings tab
-Then HMI OP1 closes volumeControl popup
+Then HMI OP1 closes advancedSetting popup
 
 Scenario: Op1 closes settings tab
 Then HMI OP1 closes popup settings if window is visible

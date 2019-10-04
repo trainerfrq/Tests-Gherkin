@@ -38,7 +38,7 @@ Then HMI OP1 verifies that mute button NotificationError is in muted state
 
 
 Scenario: Op1 closes audio settings tab
-Then HMI OP1 closes volumeControl popup
+Then HMI OP1 closes advancedSetting popup
 
 Scenario: Op1 closes settings tab
 Then HMI OP1 closes settings popup
@@ -68,7 +68,7 @@ Then HMI OP1 verifies that mute sidetone button operator is in muted state
 Then HMI OP1 verifies that mute button NotificationError is in muted state
 
 Scenario: Op1 closes audio settings tab
-Then HMI OP1 closes volumeControl popup
+Then HMI OP1 closes advancedSetting popup
 
 Scenario: Op1 closes settings tab
 Then HMI OP1 closes settings popup
@@ -128,7 +128,7 @@ When HMI OP1 clicks on mute button NotificationError
 Then HMI OP1 verifies that mute button NotificationError is in unmuted state
 
 Scenario: Op1 closes audio settings tab
-Then HMI OP1 closes volumeControl popup
+Then HMI OP1 closes advancedSetting popup
 
 Scenario: Op1 closes settings tab
 Then HMI OP1 closes settings popup
@@ -145,7 +145,7 @@ Then HMI OP1 verifies that mute sidetone button operator is in unmuted state
 Then HMI OP1 verifies that mute button NotificationError is in unmuted state
 
 Scenario: Op1 closes audio settings tab
-Then HMI OP1 closes volumeControl popup
+Then HMI OP1 closes advancedSetting popup
 
 Scenario: Op1 closes settings tab
 Then HMI OP1 closes settings popup
