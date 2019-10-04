@@ -41,11 +41,12 @@ class VerifyCallHistoryEntry extends FxScriptTemplate {
                 .received(typeLabel.getStyleClass().toString())
                 .success(typeLabel.getStyleClass().toString().equals(callHistoryEntryDirection)))
 
-        String statusConnection = (callHistoryEntry).lookup("#callConnectionStatus").toString()
+        Pane statusConnection = robot.lookup("#callHistoryList #callConnectionStatus").selectAt(callHistoryEntryNumber).queryFirst()
+        //String statusConnection = (callHistoryEntry).lookup("#callConnectionStatus").toString()
         evaluate(ExecutionDetails.create("Call history entry number " + callHistoryEntryNumber + " has expected value for status connection")
                 .expected(callHistoryEntryConnectionStatus)
-                .received(statusConnection)
-                .success(statusConnection.contains(callHistoryEntryConnectionStatus)))
+                .received(statusConnection.getStyleClass().toString())
+                .success(statusConnection.getStyleClass().toString().contains(callHistoryEntryConnectionStatus)))
 
         Label durationLabel = robot.lookup("#callHistoryList #durationLabel").selectAt(callHistoryEntryNumber).queryFirst()
         String durationText = durationLabel.getText()
