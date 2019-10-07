@@ -11,7 +11,7 @@ class VerifyCallQueueLength extends FxScriptTemplate {
     void script() {
         Integer callQueueLength = assertInput(IPARAM_QUEUE_EXPECTED_LENGTH) as Integer;
 
-        Set<Node> callQueueItems = robot.lookup(".callQueueItem").queryAll();
+        Set<Node> callQueueItems = robot.lookup("#activeList .callQueueItem").queryAll();
 
         evaluate(ExecutionDetails.create("Verify call queue length is matching")
                 .expected("Call queue with a number of " + callQueueLength + " items")

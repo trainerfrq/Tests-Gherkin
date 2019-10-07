@@ -53,6 +53,7 @@ When HMI OP2 with layout <<LAYOUT_MISSION3>> presses function key MONITORING
 Then HMI OP2 with layout <<LAYOUT_MISSION3>> has the function key MONITORING in monitoringActive state
 
 Scenario: Op1 has the visual indication that it is monitored
+		  @REQUIREMENTS:GID-3371940
 Then HMI OP1 verifies that call queue container monitoring is visible
 Then HMI OP1 has the call queue item OP2-OP1-MONITORING in state connected
 Then HMI OP1 has the call queue item OP2-OP1-MONITORING in state tx_monitored
