@@ -461,6 +461,39 @@
             </cats:storyLists>
         </cats:storyCollection>
         <cats:storyCollection enabled="true">
+            <cats:name>Websocket - Conference</cats:name>
+            <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
+            <cats:report>
+                <cats:status>CREATED</cats:status>
+            </cats:report>
+            <cats:storyLists>
+                <cats:storyList enabled="true">
+                    <cats:name>Websocket - Conference</cats:name>
+                    <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
+                    <cats:repetitions>1</cats:repetitions>
+                    <cats:report>
+                        <cats:status>CREATED</cats:status>
+                    </cats:report>
+                    <cats:reports/>
+                    <cats:stories>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/includes/@PhoneTestData.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/ConferenceCall/OneOperatorAddsTwoOtherOperatorsInSameActiveCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                    </cats:stories>
+                    <cats:timeout>1800</cats:timeout>
+                </cats:storyList>
+            </cats:storyLists>
+        </cats:storyCollection>
+        <cats:storyCollection enabled="true">
             <cats:name>Websocket - Autotermination</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>

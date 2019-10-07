@@ -381,53 +381,6 @@ public class GGBasicSteps extends WebsocketAutomationSteps {
         sendCallForwardRequest(namedWebSocket, callTargetName);
     }
 
-   @When("$namedWebSocket receives conference establish response with result $confResult on message buffer named $bufferName")
-    public void receiveConfEstablishResponse(final String namedWebSocket, final String conferenceResult, final String bufferName){
-        verifyConfEstablishResponse(namedWebSocket, conferenceResult, bufferName);
-    }
-
-    private void verifyConfEstablishResponse(String namedWebSocket, String conferenceResult, String bufferName) {
-        final String conferenceType = "broadcast";
-
-        final ProfileToWebSocketConfigurationReference reference =
-                getStoryListData(namedWebSocket, ProfileToWebSocketConfigurationReference.class);
-
-        final RemoteStepResult remoteStepResult =
-                evaluate(
-                        remoteStep("Receiving conference establish response on buffer named " + bufferName)
-                                .scriptOn(profileScriptResolver().map(ReceiveLastReceivedMessage.class,
-                                        BookableProfileName.websocket), requireProfile(reference.getProfileName()))
-                                .input(ReceiveLastReceivedMessage.IPARAM_ENDPOINTNAME, reference.getKey())
-                                .input(ReceiveLastReceivedMessage.IPARAM_BUFFERKEY, bufferName));
-
-        final String jsonResponse =
-                (String) remoteStepResult.getOutput(SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE);
-        final JsonMessage jsonMessage = JsonMessage.fromJson(jsonResponse);
-
-//        evaluate(localStep("Verify conference type and conference result")
-//                .details(match("Conference type matches", jsonMessage.body().confStatusIndication(),
-//                        equalTo(getStoryListData(phoneCallIdName, String.class))))
-//                .details(match("Call status does not match", jsonMessage.body().callStatusIndication().getCallStatus(),
-//                        equalTo(callStatus)))
-//                .details(match("Call conditional flag does not match",
-//                        jsonMessage.body().callStatusIndication().getCallConditionalFlag(),
-//                        equalTo(callConditionalFlag))));
-    }
-
-    @Then("$namedWebSocket receives call status indication on message buffer named $bufferName with callId $phoneCallIdName and status $callStatus")
-    public void receiveCallStatusIndication(final String namedWebSocket, final String bufferName,
-                                            final String phoneCallIdName, final String callStatus) {
-        receiveCallStatusIndication(namedWebSocket, bufferName, phoneCallIdName, callStatus, null);
-    }
-
-
-    @Then("$namedWebSocket receives call status indication with call conditional flag $callConditionalFlag on message buffer named $bufferName with callId $phoneCallIdName and status $callStatus")
-    public void receiveCallStatusIndicationWithCallConditionalFlag(final String namedWebSocket,
-                                                                   final String callConditionalFlag, final String bufferName, final String phoneCallIdName,
-                                                                   final String callStatus) {
-        receiveCallStatusIndication(namedWebSocket, bufferName, phoneCallIdName, callStatus, callConditionalFlag);
-    }
-
 
     @Then("$namedWebSocket receives call status indication verifying all the messages on message buffer named $bufferName with callId $phoneCallIdName and status $callStatus")
     public void receiveCallStatusIndicationAllMessages(final String namedWebSocket, final String bufferName,
@@ -873,10 +826,12 @@ public class GGBasicSteps extends WebsocketAutomationSteps {
         sendCallForwardCancel(namedWebSocket);
     }
 
+
     @When("$namedWebSocket queries full call status")
     public void sendFullCallStatusRequest(final String namedWebSocket) {
         sendQueryFullCallStatusRequest(namedWebSocket);
     }
+
 
     @Then("$namedWebSocket receives full call status on message buffer named $bufferName with $callSource , $callTarget , $callType , $direction , $callStatus and $priority")
     public void receiveFullCallStatusResponse(final String namedWebSocket, final String bufferName,
@@ -885,61 +840,6 @@ public class GGBasicSteps extends WebsocketAutomationSteps {
         receiveFullCallStatus(namedWebSocket, bufferName, callSourceName, callTargetName,
                 callType, direction, callStatus, priority);
     }
-
-    @When("$namedWebSocket establishes a conference call using callId $phoneCallIdName")
-    public void establishP2PConferenceCall(final String namedWebSocket, final String phoneCallIdName) {
-        establishConferenceCall(namedWebSocket, phoneCallIdName);
-    }
-
-
-    @When("$namedWebSocket receives conference status and type on buffer named $bufferName and names $confCallIdName")
-    public void checkConferenceStatusAndConferenceType(final String namedWebSocket, final String bufferName, final String conferenceCallId) {
-        verifyConferenceStatusAndConferenceType(namedWebSocket, bufferName, conferenceCallId);
-    }
-
-    @When("$namedWebSocket receives conference status indication with $confCallIdName , callingParty $callingPartyName , calledParty $calledPartyName and state $calledPartyState on message buffer named $bufferName")
-    public void checkConferenceCallingAndCalledParties(final String namedWebSocket, final String conferenceCallId, final String callingPartyName, final String calledPartyName, final String calledPartyState, final String bufferName) {
-
-        checkConferenceParties(namedWebSocket, conferenceCallId, callingPartyName, calledPartyName, calledPartyState, bufferName);
-    }
-
-    @When("$namedWebSocket receives the $callingPartyState state on $confCallIdName with callingParty $callingPartyName , calledParty $calledPartyName on message buffer named $bufferName")
-    public void checkPartiesAreConnected(final String namedWebSocket, final String callingPartyState, final String conferenceCallId, final String callingPartyName, final String calledPartyName, final String bufferName) {
-
-        verifyPartiesAreConnectedSuccesfully(namedWebSocket, callingPartyState, conferenceCallId, callingPartyName, calledPartyName, bufferName);
-    }
-
-    @When("$namedWebSocket establish a conference add party request to conference $confCallIdName with callingParty $callSoruceName and calledParty $calledTargetName")
-    public void establishConferenceAddPartyRequest(final String namedWebSocket, final String confCallIdName, final String callSourceName, final String callTargetName) {
-        addPartyToConference(namedWebSocket, confCallIdName, callSourceName, callTargetName, "none");
-    }
-
-    @Then("$namedWebSocket receives conference add party response on message buffer named $bufferName")
-    public void receiveConferenceAddPartyResponse(final String namedWebSocket, final String bufferName) {
-
-        receiveConfAddPartyResponse(namedWebSocket, bufferName);
-    }
-
-    @Then("$namedWebSocket receives conference status indication messages on buffer named $bufferName")
-    public void receive(final String namedWebSocket, final String bufferName ){
-
-        final ProfileToWebSocketConfigurationReference reference =
-                getStoryListData(namedWebSocket, ProfileToWebSocketConfigurationReference.class);
-
-        final RemoteStepResult remoteStepResult =
-                evaluate(
-                        remoteStep("Receive conf status indication on buffer name " + bufferName)
-                                .scriptOn(profileScriptResolver().map(ReceiveAllReceivedMessages.class,
-                                        BookableProfileName.websocket), requireProfile(reference.getProfileName()))
-                                .input(ReceiveAllReceivedMessages.IPARAM_ENDPOINTNAME, reference.getKey())
-                                .input(ReceiveAllReceivedMessages.IPARAM_BUFFERKEY, bufferName));
-
-        final List<String> receivedMessagesList =
-                (List<String>) remoteStepResult.getOutput(ReceiveAllReceivedMessages.OPARAM_RECEIVEDMESSAGES);
-
-
-    }
-
 
 
     private void receiveTwoCallIncomingIndications(final String namedWebSocket, final String callStatus1, final String callStatus2, final String bufferName,
@@ -1019,36 +919,6 @@ public class GGBasicSteps extends WebsocketAutomationSteps {
                         equalTo(priority))));
 
         setStoryListData(phoneCallIdName, jsonMessage.body().callIncomingIndication().getCallId());
-    }
-
-
-    private void receiveCallStatusIndication(final String namedWebSocket, final String bufferName,
-                                             final String phoneCallIdName, final String callStatus, final String callConditionalFlag) {
-        final ProfileToWebSocketConfigurationReference reference =
-                getStoryListData(namedWebSocket, ProfileToWebSocketConfigurationReference.class);
-
-        final RemoteStepResult remoteStepResult =
-                evaluate(
-                        remoteStep("Receiving call status indication on buffer named " + bufferName)
-                                .scriptOn(profileScriptResolver().map(ReceiveLastReceivedMessage.class,
-                                        BookableProfileName.websocket), requireProfile(reference.getProfileName()))
-                                .input(ReceiveLastReceivedMessage.IPARAM_ENDPOINTNAME, reference.getKey())
-                                .input(ReceiveLastReceivedMessage.IPARAM_BUFFERKEY, bufferName));
-
-        final String jsonResponse =
-                (String) remoteStepResult.getOutput(SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE);
-        final JsonMessage jsonMessage = JsonMessage.fromJson(jsonResponse);
-
-        evaluate(localStep("Verify call status indication")
-                .details(
-                        match("Is call status indication", jsonMessage.body().isCallStatusIndication(), equalTo(true)))
-                .details(match("Phone call id matches", jsonMessage.body().callStatusIndication().getCallId(),
-                        equalTo(getStoryListData(phoneCallIdName, String.class))))
-                .details(match("Call status does not match", jsonMessage.body().callStatusIndication().getCallStatus(),
-                        equalTo(callStatus)))
-                .details(match("Call conditional flag does not match",
-                        jsonMessage.body().callStatusIndication().getCallConditionalFlag(),
-                        equalTo(callConditionalFlag))));
     }
 
 
@@ -1257,223 +1127,15 @@ public class GGBasicSteps extends WebsocketAutomationSteps {
     }
 
 
-    private void establishConferenceCall(final String namedWebSocket, final String phoneCallIdName) {
-        final ProfileToWebSocketConfigurationReference reference =
-                getStoryListData(namedWebSocket, ProfileToWebSocketConfigurationReference.class);
-
-        final String callId = getStoryListData(phoneCallIdName, String.class);
-
-        final Integer transactionId = new Integer(1234);
-
-        final ConfEstablishRequest conEstablishRequest = new ConfEstablishRequest(transactionId, callId);
-        final JsonMessage request =
-                new JsonMessage.Builder().withCorrelationId(UUID.randomUUID()).withPayload(conEstablishRequest).build();
-
-        final RemoteStepResult remoteStepResult =
-                evaluate(
-                        remoteStep("Establishing conf request to " + callId)
-                                .scriptOn(profileScriptResolver().map(SendAndReceiveTextMessage.class,
-                                        BookableProfileName.websocket), requireProfile(reference.getProfileName()))
-                                .input(SendAndReceiveTextMessage.IPARAM_ENDPOINTNAME, reference.getKey())
-                                .input(SendAndReceiveTextMessage.IPARAM_RESPONSETYPE, "confEstablishResponse")
-                                .input(SendAndReceiveTextMessage.IPARAM_MESSAGETOSEND, request.toJson()));
-
-        final String jsonResponse =
-                (String) remoteStepResult.getOutput(SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE);
 
 
-    }
-
-    private void verifyConferenceStatusAndConferenceType(final String namedWebSocket, final String bufferName, final String conferenceCallId) {
-        final String conferenceStatus = "connected";
-        final String conferenceType = "broadcast";
-        final ProfileToWebSocketConfigurationReference reference =
-                getStoryListData(namedWebSocket, ProfileToWebSocketConfigurationReference.class);
-
-        final RemoteStepResult remoteStepResult =
-                evaluate(
-                        remoteStep("Checking if all conference status indication messages are received on buffer name " + bufferName)
-                                .scriptOn(profileScriptResolver().map(ReceiveAllReceivedMessages.class,
-                                        BookableProfileName.websocket), requireProfile(reference.getProfileName()))
-                                .input(ReceiveAllReceivedMessages.IPARAM_ENDPOINTNAME, reference.getKey())
-                                .input(ReceiveAllReceivedMessages.IPARAM_BUFFERKEY, bufferName));
-
-        final List<String> receivedMessagesList =
-                (List<String>) remoteStepResult.getOutput(ReceiveAllReceivedMessages.OPARAM_RECEIVEDMESSAGES);
-
-        Optional<String> desiredMessage;
-
-        if (!receivedMessagesList.isEmpty()) {
-            desiredMessage = Optional.of(receivedMessagesList.get(0));
-        } else {
-            desiredMessage = Optional.empty();
-        }
-
-        final JsonMessage jsonMessage = JsonMessage.fromJson(receivedMessagesList.get(0));
-        final String receivedConferenceStatus = jsonMessage.body().confStatusIndication().getConfStatus();
-        final String receivedConferenceType = jsonMessage.body().confStatusIndication().getConfType();
 
 
-        evaluate(localStep("Verifying the conference status and conference type in first received message")
-                .details(match("Buffer should contain desired message", desiredMessage.isPresent(), equalTo(true)))
-                .details(match("Message should contain conference status ", receivedConferenceStatus, equalTo(conferenceStatus)))
-                .details(match("Message should contain conference type ", receivedConferenceType, equalTo(conferenceType)))
-                .details(ExecutionDetails.create("Desired message").usedData("The desired message is: ",
-                        desiredMessage.orElse("Message was not found!"))));
-
-        setStoryListData(conferenceCallId, jsonMessage.body().confStatusIndication().getConfCallId());
-    }
-
-    private void checkConferenceParties(final String namedWebSocket, final String conferenceCallId, final String callingPartyName, final String calledPartyName, final String calledPartyState, final String bufferName) {
-        Optional<String> desiredMessage;
-        final String receivedCallingParty;
-        final String receivedCalledParty;
-        final String receivedCalledPartyState;
-        final String receivedConfCallId;
-        final int firstParticipant = 0;
-        final int messageNumber = 1;
-
-        final String callingParty = (getStoryListData(callingPartyName, String.class)) + ":5060";
-        final String calledParty = (getStoryListData(calledPartyName, String.class)) + ":5060";
-        final String confCallId = (getStoryListData(conferenceCallId, String.class));
-        final ProfileToWebSocketConfigurationReference reference =
-                getStoryListData(namedWebSocket, ProfileToWebSocketConfigurationReference.class);
-
-        final RemoteStepResult remoteStepResult =
-                evaluate(
-                        remoteStep("Checking if all conference status indication messages are received on buffer name " + bufferName)
-                                .scriptOn(profileScriptResolver().map(ReceiveAllReceivedMessages.class,
-                                        BookableProfileName.websocket), requireProfile(reference.getProfileName()))
-                                .input(ReceiveAllReceivedMessages.IPARAM_ENDPOINTNAME, reference.getKey())
-                                .input(ReceiveAllReceivedMessages.IPARAM_BUFFERKEY, bufferName));
-
-        final List<String> receivedMessagesList =
-                (List<String>) remoteStepResult.getOutput(ReceiveAllReceivedMessages.OPARAM_RECEIVEDMESSAGES);
 
 
-        if (!receivedMessagesList.isEmpty()) {
-            desiredMessage = Optional.of(receivedMessagesList.get(messageNumber));
-        } else {
-            desiredMessage = Optional.empty();
-        }
-
-        final JsonMessage jsonMessage = JsonMessage.fromJson(receivedMessagesList.get(messageNumber));
-
-        List<ConfParticipant> confParticipants = jsonMessage.body().confStatusIndication().getConfParticipants();
-
-        receivedCallingParty = confParticipants.get(firstParticipant).getCallingParty();
-        receivedCalledParty = confParticipants.get(firstParticipant).getCalledParty();
-        receivedCalledPartyState = confParticipants.get(firstParticipant).getState();
-        receivedConfCallId = jsonMessage.body().confStatusIndication().getConfCallId();
-
-        String message = confParticipants.get(firstParticipant).getCalledPartyDetails().toString();
-
-        evaluate(localStep("Verifying the conference parties and conference status in second received message")
-                .details(match("Message should contain conference call ID ", receivedConfCallId, equalTo(confCallId)))
-                .details(match("Message should contain calling party ", receivedCallingParty, equalTo(callingParty)))
-                .details(match("Message should contain called party ", receivedCalledParty, equalTo(calledParty)))
-                .details(match("Message should contain the state ", receivedCalledPartyState, equalTo(calledPartyState)))
-                .details(ExecutionDetails.create("Desired message").usedData("The desired message is: ",
-                        desiredMessage.orElse("Message was not found!"))));
-
-    }
-
-    private void verifyPartiesAreConnectedSuccesfully(String namedWebSocket, String callingPartyState, String conferenceCallId, String callingPartyName, String calledPartyName, String bufferName) {
-        Optional<String> desiredMessage;
-        final String receivedCallingParty;
-        final String receivedCalledParty;
-        final String receivedCallingPartyState;
-        final String receivedConfCallId;
-
-        final int messageNumber = 2;
-        final int firstParticipant = 0;
-        final int secondParticipant = 1;
-
-        final String callingParty = (getStoryListData(callingPartyName, String.class)) + ":5060";
-        final String calledParty = (getStoryListData(calledPartyName, String.class)) + ":5060";
-        final String confCallId = (getStoryListData(conferenceCallId, String.class));
-
-        final ProfileToWebSocketConfigurationReference reference =
-                getStoryListData(namedWebSocket, ProfileToWebSocketConfigurationReference.class);
-
-        final RemoteStepResult remoteStepResult =
-                evaluate(
-                        remoteStep("Checking if all conference status indication messages are received on buffer name " + bufferName)
-                                .scriptOn(profileScriptResolver().map(ReceiveAllReceivedMessages.class,
-                                        BookableProfileName.websocket), requireProfile(reference.getProfileName()))
-                                .input(ReceiveAllReceivedMessages.IPARAM_ENDPOINTNAME, reference.getKey())
-                                .input(ReceiveAllReceivedMessages.IPARAM_BUFFERKEY, bufferName));
-
-        final List<String> receivedMessagesList =
-                (List<String>) remoteStepResult.getOutput(ReceiveAllReceivedMessages.OPARAM_RECEIVEDMESSAGES);
 
 
-        if (!receivedMessagesList.isEmpty()) {
-            desiredMessage = Optional.of(receivedMessagesList.get(messageNumber));
-        } else {
-            desiredMessage = Optional.empty();
-        }
-
-        final JsonMessage jsonMessage = JsonMessage.fromJson(receivedMessagesList.get(messageNumber));
-
-        List<ConfParticipant> confParticipants = jsonMessage.body().confStatusIndication().getConfParticipants();
-
-        receivedCallingParty = confParticipants.get(firstParticipant).getCallingParty();
-        receivedCalledParty = confParticipants.get(firstParticipant).getCalledParty();
-        receivedCallingPartyState = confParticipants.get(secondParticipant).getState();
-        receivedConfCallId = jsonMessage.body().confStatusIndication().getConfCallId();
 
 
-        evaluate(localStep("Verifying the conference parties and conference status in third received message")
-                .details(match("Message should contain conference call ID ", receivedConfCallId, equalTo(confCallId)))
-                .details(match("Message should contain calling party ", receivedCallingParty, equalTo(callingParty)))
-                .details(match("Message should contain called party ", receivedCalledParty, equalTo(calledParty)))
-                .details(match("Message should contain the state ", receivedCallingPartyState, equalTo(callingPartyState)))
-                .details(ExecutionDetails.create("Desired message").usedData("The desired message is: ",
-                        desiredMessage.orElse("Message was not found!"))));
-    }
 
-    private void addPartyToConference(String namedWebSocket, String confCallIdName, String callSourceName, String callTargetName, String confPartyRouteSelectorId) {
-        final ProfileToWebSocketConfigurationReference reference =
-                getStoryListData(namedWebSocket, ProfileToWebSocketConfigurationReference.class);
-
-        final String confCallId = getStoryListData(confCallIdName, String.class);
-        final String confInitiator = getStoryListData(callSourceName, String.class);
-        //final String confParty = getStoryListData(callTargetName, String.class);
-
-
-        final Integer transactionId = new Integer(1234);
-
-        final ConfAddPartyRequest confAddPartyRequest = new ConfAddPartyRequest(transactionId, confCallId, confInitiator, callTargetName, confPartyRouteSelectorId);
-
-        final JsonMessage request =
-                new JsonMessage.Builder().withCorrelationId(UUID.randomUUID()).withPayload(confAddPartyRequest).build();
-
-        final RemoteStepResult remoteStepResult =
-                evaluate(
-                        remoteStep("Establishing conference add party request to conference" + confCallId)
-                                .scriptOn(profileScriptResolver().map(SendTextMessage.class,
-                                        BookableProfileName.websocket), requireProfile(reference.getProfileName()))
-                                .input(SendTextMessage.IPARAM_ENDPOINTNAME, reference.getKey())
-                                .input(SendTextMessage.IPARAM_MESSAGETOSEND, request.toJson()));
-    }
-
-    private void receiveConfAddPartyResponse(String namedWebSocket, String bufferName) {
-
-        final ProfileToWebSocketConfigurationReference reference =
-                getStoryListData(namedWebSocket, ProfileToWebSocketConfigurationReference.class);
-
-        final RemoteStepResult remoteStepResult =
-                evaluate(
-                        remoteStep("Receiving conference add party response on buffer named " + bufferName)
-                                .scriptOn(profileScriptResolver().map(ReceiveLastReceivedMessage.class,
-                                        BookableProfileName.websocket), requireProfile(reference.getProfileName()))
-                                .input(ReceiveLastReceivedMessage.IPARAM_ENDPOINTNAME, reference.getKey())
-                                .input(ReceiveLastReceivedMessage.IPARAM_BUFFERKEY, bufferName));
-
-        final String jsonResponse =
-                (String) remoteStepResult.getOutput(SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE);
-        final JsonMessage jsonMessage = JsonMessage.fromJson(jsonResponse);
-
-    }
 }
