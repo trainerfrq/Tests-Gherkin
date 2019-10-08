@@ -23,6 +23,7 @@
     <bean class="com.frequentis.xvp.voice.test.automation.phone.step.AudioUISteps"/>
     <bean class="com.frequentis.xvp.voice.test.automation.phone.step.AudioSteps"/>
     <bean class="com.frequentis.xvp.voice.test.automation.phone.step.MonitoringUISteps"/>
+    <bean class="com.frequentis.xvp.voice.test.automation.phone.step.ConferenceSteps"/>
 
     <import resource="classpath*:cats-master-common-step-definitions.xml"/>
     <import resource="classpath*:websocket-automation-steps.xml"/>
