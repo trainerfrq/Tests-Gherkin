@@ -57,7 +57,8 @@ Then HMI OP2 has the call queue item OP3-OP2 in state connected
 Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction rx
 Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction tx
 Then HMI OP1 has in the call queue a number of 1 calls
-Then HMI OP2 has in the call queue a number of 2 calls
+Then HMI OP2 has in the collapsed area a number of 1 calls
+Then HMI OP2 has in the call queue a number of 1 calls
 Then HMI OP3 has in the call queue a number of 1 calls
 
 Scenario: Caller clears IA call
