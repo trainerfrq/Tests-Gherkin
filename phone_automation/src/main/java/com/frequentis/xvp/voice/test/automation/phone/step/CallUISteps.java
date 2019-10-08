@@ -251,8 +251,8 @@ public class CallUISteps extends AutomationSteps {
                          .input(DragAndClickOnMenuButtonDAKey.IPARAM_MENU_BUTTON_ID, PRIORITY_CALL_MENU_BUTTON_ID));
     }
 
-    @Then("$profileName has the DA key $key with $property is $state")
-    public void verifyDAKeyProperty(final String profileName, final String target, final String property, final String state) {
+    @Then("$profileName has the DA key $key with $state state $property")
+    public void verifyDAKeyProperty(final String profileName, final String target, final String state, final String property) {
         DAKey daKey = retrieveDaKey(profileName, target);
 
         evaluate( remoteStep( "Verify operator position has the "+ target +" key with " + property + " property in state "+state )
@@ -362,6 +362,18 @@ public class CallUISteps extends AutomationSteps {
                         BookableProfileName.javafx ), assertProfile( profileName ) )
                 .input( DragAndClickOnMenuButtonFunctionKey.IPARAM_MENU_BUTTON_ID, MONITORING_LIST_BUTTON_ID )
                 .input( DragAndClickOnMenuButtonFunctionKey.IPARAM_FUNCTION_KEY_ID, functionKey.getId() ) );
+    }
+
+    @When("$profileName starts monitoring $callType calls for $target")
+    public void startGGCallsMonitoring( final String profileName, final String callType, final String target  )
+    {
+        String MONITORING_CALL_ID = "monitoring_"+callType+"_call_menu_button";
+        DAKey daKey = retrieveDaKey(profileName, target);
+        evaluate( remoteStep( "Starts monitoring using DA key context menu" )
+                .scriptOn( profileScriptResolver().map( DragAndClickOnMenuButtonDAKey.class,
+                        BookableProfileName.javafx ), assertProfile( profileName ) )
+                .input( DragAndClickOnMenuButtonDAKey.IPARAM_MENU_BUTTON_ID, MONITORING_CALL_ID )
+                .input( DragAndClickOnMenuButtonDAKey.IPARAM_DA_KEY_ID, daKey.getId() ) );
     }
 
     private DAKey retrieveDaKey(final String source, final String target) {

@@ -24,16 +24,14 @@ class VerifyMonitoringTableEntryValue extends FxScriptTemplate {
 
         final Node entry = robot.lookup( "#monitoringTable #monitoringEntry_"+entryPosition +" " ).queryFirst()
         TableRow row = (TableRow)entry;
-
-
-         switch(entryColumn){
+         switch(entryColumn) {
              case "first":
                  String value = row.getChildrenUnmodifiable().get(0).toString()
                  evaluate(ExecutionDetails.create("Monitoring entry has the expected monitoring type")
                          .received(value)
                          .expected(entryValue)
                          .success(value.contains(entryValue)))
-              break
+                 break
              case "second":
                  String value = row.getChildrenUnmodifiable().get(1).toString()
                  evaluate(ExecutionDetails.create("Monitoring entry has the expected monitoring role")
@@ -42,7 +40,5 @@ class VerifyMonitoringTableEntryValue extends FxScriptTemplate {
                          .success(value.contains(entryValue)))
                  break
          }
-
-        
     }
 }

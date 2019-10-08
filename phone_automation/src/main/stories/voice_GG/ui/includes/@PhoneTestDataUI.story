@@ -1,7 +1,7 @@
 Scenario: Define the DA keys
 Given the DA keys:
 | source  | target                | id                        |
-| HMI OP1 | OP1                   |                           |
+| HMI OP1 | OP1                   | <<PhyOpPos1_CWP1>>                         |
 | HMI OP1 | OP2                   | <<PhyOpPos1_CWP2>>        |
 | HMI OP1 | OP3                   | <<PhyOpPos1_CWP3>>        |
 | HMI OP1 | IA - OP1              |                           |
@@ -32,12 +32,15 @@ Given the DA keys:
 | HMI OP2 | OP1(as Mission2)      | <<ACTIVE2_CWP1>>          |
 | HMI OP2 | IA - <<ROLE_1_NAME>>  | <<IA_ACTIVE2_MISSION1>>   |
 | HMI OP2 | <<ROLE_3_NAME>>       | <<ACTIVE2_MISSION3>>      |
+| HMI OP2 | OP1(as Mission3)      | <<PhyOpPos3_CWP1>>        |
+| HMI OP2 | OP3(as Mission1)      | <<PhyOpPos1_CWP3>>        |
 | HMI OP3 | OP1                   | <<PhyOpPos3_CWP1>>        |
 | HMI OP3 | OP2                   | <<PhyOpPos3_CWP2>>        |
 | HMI OP3 | ROLE1                 | <<PhyOpPos3_ROLE1>>       |
 | HMI OP3 | <<ROLE_2_NAME>>       | <<ACTIVE3_MISSION2>>      |
 | HMI OP3 | IA - OP1              | <<IA_PhyOpPos3_CWP1>>     |
 | HMI OP3 | IA - OP2              | <<IA_PhyOpPos3_CWP2>>     |
+| HMI OP3 | <<ROLE_1_NAME>>       | <<ACTIVE3_MISSION1>>      |
 
 Scenario: Define grid widget keys
 Given the grid widget keys:

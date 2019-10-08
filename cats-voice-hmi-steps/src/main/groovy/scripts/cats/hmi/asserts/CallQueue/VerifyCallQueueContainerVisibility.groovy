@@ -5,7 +5,7 @@ import javafx.scene.layout.Pane
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 
-class VerifyCallQueueContainerVisible extends FxScriptTemplate {
+class VerifyCallQueueContainerVisibility extends FxScriptTemplate {
 
     public static final String IPARAM_CONTAINER_NAME = "container_name"
     public static final String IPARAM_IS_VISIBLE= "is_visible";

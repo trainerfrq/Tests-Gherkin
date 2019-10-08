@@ -1,4 +1,4 @@
-package scripts.cats.hmi.actions
+package scripts.cats.hmi.actions.Monitoring
 
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
@@ -22,12 +22,16 @@ class SelectMonitoringTableEntry extends FxScriptTemplate {
 
         if (monitoringPopup != null) {
             final TableView monitoringTable = robot.lookup( "#monitoringTable" ).queryFirst()
+
+            evaluate(ExecutionDetails.create("Monitoring table was found")
+                    .expected("Monitoring table is visible")
+                    .success(monitoringTable.isVisible()))
+
             final TableRow entry = robot.lookup( "#monitoringTable #monitoringEntry_"+entryNumber+" " ).queryFirst()
 
             evaluate(ExecutionDetails.create("Monitoring list entry " + entryNumber + " was found")
                     .expected("#monitoringTable #monitoringEntry_"+entryNumber+" ")
                     .success(entry != null))
-
 
             robot.clickOn(robot.point(entry))
 

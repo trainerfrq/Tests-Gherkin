@@ -19,18 +19,18 @@ And phones for SipContact are created
 
 Scenario: Define call queue items
 Given the call queue items:
-| key            | source         | target                 | callType |
-| OP1-OP2        | <<OP1_URI>>    | <<OP2_URI>>            | DA/IDA   |
-| OP2-OP1        | <<OP2_URI>>    | <<OP1_URI>>            | DA/IDA   |
-| OP3-OP1        | <<OP3_URI>>    | <<OP1_URI>>            | DA/IDA   |
-| OP1-OP3        | <<OP1_URI>>    | <<OP3_URI>>            | DA/IDA   |
-| IA-OP1-OP2     | <<OP1_URI>>    | <<OP2_URI>>            | IA       |
-| IA-OP2-OP1     | <<OP2_URI>>    | <<OP1_URI>>            | IA       |
-| SipContact-OP1 | <<SIP_PHONE2>> | <<OPVOICE1_PHONE_URI>> | DA/IDA   |
+| key                | source         | target                 | callType   |
+| OP1-OP2            | <<OP1_URI>>    | <<OP2_URI>>            | DA/IDA     |
+| OP2-OP1            | <<OP2_URI>>    | <<OP1_URI>>            | DA/IDA     |
+| OP3-OP1            | <<OP3_URI>>    | <<OP1_URI>>            | DA/IDA     |
+| OP1-OP3            | <<OP1_URI>>    | <<OP3_URI>>            | DA/IDA     |
+| IA-OP1-OP2         | <<OP1_URI>>    | <<OP2_URI>>            | IA         |
+| IA-OP2-OP1         | <<OP2_URI>>    | <<OP1_URI>>            | IA         |
+| SipContact-OP1     | <<SIP_PHONE2>> | <<OPVOICE1_PHONE_URI>> | DA/IDA     |
+| OP3-OP1-MONITORING | <<OP3_URI>>    | <<OP1_URI>>            | MONITORING |
 
 Scenario: Op3 initiates a priority call
 When HMI OP3 initiates a priority call on DA key OP1
-When init
 Then HMI OP3 has the call queue item OP1-OP3 in the active list with name label <<OP1_NAME>>
 
 Scenario: Op1 receives a priority call and verifies call queue section (priority)
@@ -107,12 +107,28 @@ Then HMI OP1 has the call queue item SipContact-OP1 in the waiting list with nam
 Then HMI OP1 has the call queue item OP3-OP1 in the waiting list with name label <<OP3_NAME>>
 Then HMI OP1 verifies that the call queue item OP2-OP1 from the hold list has call type DA
 
+Scenario: Op3 chooses to monitor Op1
+When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MONITORING
+Then HMI OP3 with layout <<LAYOUT_MISSION3>> has the function key MONITORING in monitoringOnGoing state
+When HMI OP3 presses DA key OP1
+Then HMI OP3 has the DA key OP1 with visible state monitoringActiveState
+
+Scenario: Stop monitoring ongoing on the function key
+When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MONITORING
+
+Scenario: Op1 has the visual indication that it is monitored
+Then HMI OP1 verifies that call queue container monitoring is visible
+Then HMI OP1 verifies the call queue item OP3-OP1-MONITORING has label type showing ALL
+Then HMI OP1 verifies the call queue item OP3-OP1-MONITORING has label name showing <<OP3_NAME>>
+
 Scenario: Op1 answers Sip call
 Then HMI OP1 accepts the call queue item SipContact-OP1
 Then HMI OP1 has the call queue item SipContact-OP1 in the active list with name label Madoline
 
 Scenario: Op1 puts the Sip call on hold and verifies call queue section (hold)
 When HMI OP1 puts on hold the active call
+Then HMI OP1 verifies that call queue container monitoring is visible
+Then HMI OP1 verifies the call queue item OP3-OP1-MONITORING has label name showing <<OP3_NAME>>
 Then HMI OP1 verifies that the call queue item SipContact-OP1 was removed from the active list
 Then HMI OP1 has the call queue item SipContact-OP1 in the hold list with name label Madoline
 Then HMI OP1 has the call queue item OP3-OP1 in the waiting list with name label <<OP3_NAME>>
@@ -144,6 +160,12 @@ Then HMI OP1 retrieves from hold the call queue item OP3-OP1
 Then HMI OP1 verifies that the call queue item OP3-OP1 was removed from the hold list
 Then HMI OP1 has the call queue item OP3-OP1 in the active list with name label <<OP3_NAME>>
 Then HMI OP1 terminates the call queue item OP3-OP1
+
+Scenario: Op3 terminates all monitoring calls
+When HMI OP3 with layout <<LAYOUT_MISSION3>> terminates monitoring calls using function key MONITORING menu
+
+Scenario: Monitoring terminated on Op1
+Then HMI OP1 verifies that call queue container monitoring is not visible
 
 Scenario: Operator retrieves the SIP Call
 Then HMI OP1 retrieves from hold the call queue item SipContact-OP1
