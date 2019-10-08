@@ -1,8 +1,8 @@
 package scripts.cats.hmi.asserts.CallHistory
 
 import com.frequentis.c4i.test.model.ExecutionDetails
+import com.frequentis.voice.hmi.component.layout.list.listview.CustomListView
 import javafx.scene.Node
-import javafx.scene.control.ListView
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 class VerifyCallHistoryListSize extends FxScriptTemplate {
@@ -22,7 +22,7 @@ class VerifyCallHistoryListSize extends FxScriptTemplate {
 
         if (callHistoryPopup.isVisible()) {
 
-            final ListView callHistoryList = robot.lookup("#callHistoryList").queryFirst()
+            final CustomListView callHistoryList = robot.lookup("#callHistoryList").queryFirst()
             int receivedCallHistoryListSize = callHistoryList.getItems().size()
 
             evaluate(ExecutionDetails.create("Call History list size is the expected one")

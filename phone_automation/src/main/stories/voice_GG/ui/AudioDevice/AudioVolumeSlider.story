@@ -90,7 +90,7 @@ When HMI OP1 drags volume slider notificationError to muted level
 Then HMI OP1 verifies that volume slider notificationError is set to level 0
 
 Scenario: Op1 closes audio settings tab
-Then HMI OP1 closes volumeControl popup
+Then HMI OP1 closes advancedSetting popup
 
 Scenario: Op1 closes settings tab
 Then HMI OP1 closes settings popup
@@ -115,7 +115,7 @@ When HMI OP1 drags volume slider notificationError to middle level
 Then HMI OP1 verifies that volume slider notificationError is set to level 50
 
 Scenario: Op1 closes audio settings tab
-Then HMI OP1 closes volumeControl popup
+Then HMI OP1 closes advancedSetting popup
 
 Scenario: Op1 closes settings tab
 Then HMI OP1 closes settings popup
@@ -141,7 +141,7 @@ When HMI OP1 drags volume slider notificationError to maximum level
 Then HMI OP1 verifies that volume slider notificationError is set to level 100
 
 Scenario: Op1 closes audio settings tab
-Then HMI OP1 closes volumeControl popup
+Then HMI OP1 closes advancedSetting popup
 
 Scenario: Op1 closes settings tab
 Then HMI OP1 closes settings popup
@@ -158,7 +158,7 @@ Then HMI OP1 verifies that volume slider operatorSidetone is set to level 100
 Then HMI OP1 verifies that volume slider notificationError is set to level 100
 
 Scenario: Op1 closes audio settings tab
-Then HMI OP1 closes volumeControl popup
+Then HMI OP1 closes advancedSetting popup
 
 Scenario: Op1 closes settings tab
 Then HMI OP1 closes settings popup
