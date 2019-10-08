@@ -37,7 +37,7 @@
     "notes": "",
     "dataSets": [
       {
-        "destination": "sip:op3@192.168.40.128:5060",
+        "destination": "sip:op3@10.31.205.136:5060",
         "callType": "DA/IDA",
         "displayAddon": ""
       }
@@ -51,7 +51,7 @@
     "notes": "",
     "dataSets": [
       {
-        "destination": "sip:12345@192.168.40.9:5070",
+        "destination": "sip:12345@10.31.205.9:5070",
         "callType": "DA/IDA",
         "displayAddon": ""
       }
@@ -65,7 +65,7 @@
     "notes": "",
     "dataSets": [
       {
-        "destination": "sip:111111@192.168.40.126:5060",
+        "destination": "sip:111111@10.31.205.119:5060",
         "callType": "DA/IDA",
         "displayAddon": ""
       }
@@ -79,7 +79,7 @@
     "notes": "",
     "dataSets": [
       {
-        "destination": "sip:222222@192.168.40.127:5060",
+        "destination": "sip:222222@10.31.205.132:5060",
         "callType": "DA/IDA",
         "displayAddon": ""
       }
@@ -1284,20 +1284,6 @@
     "dataSets": [
       {
         "destination": "sip:318008@example.com",
-        "callType": "DA/IDA",
-        "displayAddon": ""
-      }
-    ]
-  },
-  {
-    "fullName": "",
-    "displayName": "Test_Betsy",
-    "location": "",
-    "organization": "",
-    "notes": "",
-    "dataSets": [
-      {
-        "destination": "sip:150732@example.com",
         "callType": "DA/IDA",
         "displayAddon": ""
       }
@@ -5064,20 +5050,6 @@
     "dataSets": [
       {
         "destination": "sip:328645@example.com",
-        "callType": "DA/IDA",
-        "displayAddon": ""
-      }
-    ]
-  },
-  {
-    "fullName": "",
-    "displayName": "Test_Glenda",
-    "location": "",
-    "organization": "",
-    "notes": "",
-    "dataSets": [
-      {
-        "destination": "sip:257486@example.com",
         "callType": "DA/IDA",
         "displayAddon": ""
       }
@@ -14084,7 +14056,7 @@
     "notes": "",
     "dataSets": [
       {
-        "destination": "sip:groupall@192.168.40.126:5060",
+        "destination": "sip:groupall@10.31.205.133:5060",
         "callType": "DA/IDA",
         "priority": "normal",
         "displayAddon": ""
