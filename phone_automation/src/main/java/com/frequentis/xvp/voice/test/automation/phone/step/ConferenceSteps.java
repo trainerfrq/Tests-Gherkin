@@ -47,7 +47,7 @@ public class ConferenceSteps extends WebsocketAutomationSteps {
     }
 
 
-    @When("$namedWebSocket receives conference status indication with confId $confCallId1 and source $callSaourceName , target $callTargetName on message buffer named $bufferName with status $partiesStatus for both parties")
+    @When("$namedWebSocket receives conference status indication with confId $confCallId1 and source $callSourceName , target $callTargetName on message buffer named $bufferName with status $partiesStatus for both parties")
     public void checkPartiesAreConnected(final String namedWebSocket, final String conferenceCallId, final String callSourceName, final String callTargetName, final String bufferName, final String partiesStatus) {
         verifyPartiesAreConnectedSuccesfully(namedWebSocket, conferenceCallId, callSourceName, callTargetName, bufferName, partiesStatus);
     }
@@ -319,39 +319,28 @@ public class ConferenceSteps extends WebsocketAutomationSteps {
 
 
     private void checkConfStatusOfRemainingParticipants(String namedWebSocket, String statusType, String bufferName) {
-        Optional<String> desiredMessage;
         final ProfileToWebSocketConfigurationReference reference =
                 getStoryListData(namedWebSocket, ProfileToWebSocketConfigurationReference.class);
 
         final RemoteStepResult remoteStepResult =
                 evaluate(
                         remoteStep("Receive conf status indication on buffer name " + bufferName)
-                                .scriptOn(profileScriptResolver().map(ReceiveAllReceivedMessages.class,
+                                .scriptOn(profileScriptResolver().map(ReceiveLastReceivedMessage.class,
                                         BookableProfileName.websocket), requireProfile(reference.getProfileName()))
-                                .input(ReceiveAllReceivedMessages.IPARAM_ENDPOINTNAME, reference.getKey())
-                                .input(ReceiveAllReceivedMessages.IPARAM_BUFFERKEY, bufferName));
+                                .input(ReceiveLastReceivedMessage.IPARAM_ENDPOINTNAME, reference.getKey())
+                                .input(ReceiveLastReceivedMessage.IPARAM_BUFFERKEY, bufferName));
 
-        final List<String> receivedMessagesList =
-                (List<String>) remoteStepResult.getOutput(ReceiveAllReceivedMessages.OPARAM_RECEIVEDMESSAGES);
+        final String jsonResponse =
+                (String) remoteStepResult.getOutput(ReceiveLastReceivedMessage.OPARAM_RECEIVEDMESSAGE);
+        final JsonMessage jsonMessage = JsonMessage.fromJson(jsonResponse);
 
-        if (!receivedMessagesList.isEmpty()) {
-            desiredMessage = Optional.of(receivedMessagesList.get(5));
-        } else {
-            desiredMessage = Optional.empty();
-        }
-
-        final JsonMessage jsonMessage = JsonMessage.fromJson(receivedMessagesList.get(5));
         List<ConfParticipant> confParticipants = jsonMessage.body().confStatusIndication().getConfParticipants();
 
-        evaluate(localStep("Verifying the conference status off all parties")
-                .details(match("First party state matches", confParticipants.get(0).getState(),
-                        equalTo("terminated")))
-                .details(match("Second party state matches", confParticipants.get(1).getState(),
+        evaluate(localStep("Verifying the conference status of remaining parties")
+                .details(match("Operator 2 status matches", confParticipants.get(0).getState(),
                         equalTo(statusType)))
-                .details(match("Third party state matches", confParticipants.get(2).getState(),
-                        equalTo(statusType)))
-                .details(ExecutionDetails.create("Desired message").usedData("The desired message is: ",
-                        desiredMessage.orElse("Message was not found!"))));
+                .details(match("Operator 3 status matches", confParticipants.get(1).getState(),
+                        equalTo(statusType))));
     }
 
 
@@ -380,12 +369,12 @@ public class ConferenceSteps extends WebsocketAutomationSteps {
         final JsonMessage jsonMessage = JsonMessage.fromJson(receivedMessagesList.get(5));
         List<ConfParticipant> confParticipants = jsonMessage.body().confStatusIndication().getConfParticipants();
 
-        evaluate(localStep("Verifying the conference status off all parties")
-                .details(match("First party state matches", confParticipants.get(0).getState(),
+        evaluate(localStep("Verifying the conference status of all parties")
+                .details(match("Operator 1 status matches", confParticipants.get(0).getState(),
                         equalTo(stateType)))
-                .details(match("Second party state matches", confParticipants.get(1).getState(),
+                .details(match("Operator 2 status matches", confParticipants.get(1).getState(),
                         equalTo(stateType)))
-                .details(match("Third party state matches", confParticipants.get(2).getState(),
+                .details(match("Operator 3 status matches", confParticipants.get(2).getState(),
                         equalTo(stateType)))
                 .details(ExecutionDetails.create("Desired message").usedData("The desired message is: ",
                         desiredMessage.orElse("Message was not found!"))));

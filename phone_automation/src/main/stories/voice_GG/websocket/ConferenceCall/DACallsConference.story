@@ -18,6 +18,7 @@ When WS2 opens the message buffer for message type confStatusIndication named Co
 
 When WS3 opens the message buffer for message type callIncomingIndication named CallIncomingIndicationBuffer3
 When WS3 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer3
+When WS3 opens the message buffer for message type confStatusIndication named ConfStatusIndicationBuffer3
 
 Scenario: Operator 1 retrieves phone data
 When WS1 queries phone data for mission missionId1 in order to call OP2 and names them callSource1 and callTarget1
@@ -73,8 +74,9 @@ When WS1 clears the phone call with the callId confCallId1
 And waiting for 1 second
 Then WS1 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and terminationDetails normal
 
-Scenario: Operator 2 checks the status of the call with operator 3
+Scenario: Check the status of the conference remaining participants
 When WS2 receives conference status indication messages with status connected for remaining participants on buffer named ConfStatusIndicationBuffer2
+When WS3 receives conference status indication messages with status connected for remaining participants on buffer named ConfStatusIndicationBuffer3
 
 Scenario: Operator 3 leaves the conference
 When WS3 clears the phone call with the callId incomingPhoneCallId3
@@ -90,3 +92,4 @@ When the named websocket WS2 removes the message buffer named CallStatusIndicati
 When the named websocket WS2 removes the message buffer named ConfStatusIndicationBuffer2
 When the named websocket WS3 removes the message buffer named CallIncomingIndicationBuffer3
 When the named websocket WS3 removes the message buffer named CallStatusIndicationBuffer3
+When the named websocket WS3 removes the message buffer named ConfStatusIndicationBuffer3
