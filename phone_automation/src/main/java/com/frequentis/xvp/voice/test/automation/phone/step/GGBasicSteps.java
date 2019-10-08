@@ -1101,7 +1101,6 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       setStoryListData( phoneCallIdName, jsonMessage.body().callEstablishResponse().getCallId() );
    }
 
-
    private void sendCallForwardRequest( final String namedWebSocket, final String callTargetName )
    {
       final ProfileToWebSocketConfigurationReference reference =

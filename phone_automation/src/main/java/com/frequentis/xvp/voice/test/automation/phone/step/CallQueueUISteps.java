@@ -33,6 +33,7 @@ import scripts.cats.hmi.actions.CallQueue.ClickOnCallQueueInfoContainer;
 import scripts.cats.hmi.actions.CallQueue.DragAndClickOnMenuButtonFirstCallQueueItem;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueBarState;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueCollapsedAreaSize;
+import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueContainerVisibility;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueInfoContainerIfVisible;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueInfoContainerLabel;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemCallType;
@@ -45,6 +46,7 @@ import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemTransferState;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueLength;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueSectionLength;
 import scripts.cats.hmi.asserts.CallQueue.VerifyMenuButtonFirstCallQueueItemIsVisible;
+import scripts.cats.hmi.asserts.Monitoring.VerifyMonitoringCallQueueItem;
 
 import java.util.HashMap;
 import java.util.List;
@@ -70,6 +72,8 @@ public class CallQueueUISteps extends AutomationSteps
 
    private static final String PRIORITY_LIST_NAME = "priorityList";
 
+   private static final String MONITORING_LIST_NAME = "#monitoringList";
+
    private static final String HOLD_MENU_BUTTON_ID = "hold_call_menu_button";
 
    private static final String DECLINE_CALL_MENU_BUTTON_ID = "decline_call_menu_button";
@@ -88,6 +92,7 @@ public class CallQueueUISteps extends AutomationSteps
       CALL_QUEUE_LIST_MAP.put( "active", ACTIVE_LIST_NAME );
       CALL_QUEUE_LIST_MAP.put( "hold", HOLD_LIST_NAME );
       CALL_QUEUE_LIST_MAP.put( "priority", PRIORITY_LIST_NAME );
+      CALL_QUEUE_LIST_MAP.put( "monitoring", MONITORING_LIST_NAME );
    }
 
 
@@ -380,6 +385,17 @@ public class CallQueueUISteps extends AutomationSteps
    }
 
 
+    @Then("$profileName verifies that call queue container $containerName is $state")
+    public void verifyCallQueueContainerState( final String profileName, final String containerName, final String state )
+    {
+        evaluate( remoteStep( "Verify call queue container " +containerName+ " state" )
+                .scriptOn( profileScriptResolver().map( VerifyCallQueueContainerVisibility.class,
+                        BookableProfileName.javafx ), assertProfile( profileName ) )
+                .input(VerifyCallQueueContainerVisibility.IPARAM_CONTAINER_NAME, containerName)
+                .input( VerifyCallQueueContainerVisibility.IPARAM_IS_VISIBLE, state ) );
+    }
+
+
     @Then("$profileName verifies that call queue info container is $state")
     public void verifyCallQueueInfoContainerState( final String profileName, final String state )
     {
@@ -448,6 +464,19 @@ public class CallQueueUISteps extends AutomationSteps
               . input(VerifyMenuButtonFirstCallQueueItemIsVisible.IPARAM_IS_VISIBLE, isVisible));
    }
 
+    @Then("$profileName verifies the call queue item $callQueueItem has label $type showing $label")
+    public void monitoringCallQueueItem( final String profileName, final String namedCallQueueItem, final String type, final String label )
+    {
+        CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
+
+        evaluate( remoteStep( "Monitoring call queue item" )
+                .scriptOn( profileScriptResolver().map( VerifyMonitoringCallQueueItem.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input( VerifyMonitoringCallQueueItem.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
+                .input(VerifyMonitoringCallQueueItem.IPARAM_LABEL_TYPE, type)
+                .input(VerifyMonitoringCallQueueItem.IPARAM_MONITORING_LABEL, label));
+    }
+
    @Then("$profileName cleans the call queue item $callQueueItem from the call queue list $callQueueItemList")
    public void cleanUpCallQueueItem( final String profileName, final String namedCallQueueItem, final String callQueueItemList )
    {
@@ -459,7 +488,6 @@ public class CallQueueUISteps extends AutomationSteps
               .input( CleanUpCallQueue.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
               .input(CleanUpCallQueue.IPARAM_LIST_NAME, callQueueItemList));
    }
-
 
    private String reformatSipUris( final String sipUri )
    {

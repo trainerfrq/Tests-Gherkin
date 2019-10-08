@@ -1,7 +1,7 @@
 Scenario: Define the DA keys
 Given the DA keys:
 | source  | target                | id                        |
-| HMI OP1 | OP1                   |                           |
+| HMI OP1 | OP1                   | <<PhyOpPos1_CWP1>>                         |
 | HMI OP1 | OP2                   | <<PhyOpPos1_CWP2>>        |
 | HMI OP1 | OP3                   | <<PhyOpPos1_CWP3>>        |
 | HMI OP1 | IA - OP1              |                           |
@@ -32,11 +32,15 @@ Given the DA keys:
 | HMI OP2 | OP1(as Mission2)      | <<ACTIVE2_CWP1>>          |
 | HMI OP2 | IA - <<ROLE_1_NAME>>  | <<IA_ACTIVE2_MISSION1>>   |
 | HMI OP2 | <<ROLE_3_NAME>>       | <<ACTIVE2_MISSION3>>      |
+| HMI OP2 | OP1(as Mission3)      | <<PhyOpPos3_CWP1>>        |
+| HMI OP2 | OP3(as Mission1)      | <<PhyOpPos1_CWP3>>        |
 | HMI OP3 | OP1                   | <<PhyOpPos3_CWP1>>        |
 | HMI OP3 | OP2                   | <<PhyOpPos3_CWP2>>        |
+| HMI OP3 | ROLE1                 | <<PhyOpPos3_ROLE1>>       |
 | HMI OP3 | <<ROLE_2_NAME>>       | <<ACTIVE3_MISSION2>>      |
 | HMI OP3 | IA - OP1              | <<IA_PhyOpPos3_CWP1>>     |
 | HMI OP3 | IA - OP2              | <<IA_PhyOpPos3_CWP2>>     |
+| HMI OP3 | <<ROLE_1_NAME>>       | <<ACTIVE3_MISSION1>>      |
 
 Scenario: Define grid widget keys
 Given the grid widget keys:
@@ -47,25 +51,28 @@ Given the grid widget keys:
 
 Scenario: Define function keys
 Given the function keys:
-| layout              | key         | id                       |
-| <<LAYOUT_MISSION1>> | PHONEBOOK   | f1                       |
-| <<LAYOUT_MISSION1>> | CALLHISTORY | f2                       |
-| <<LAYOUT_MISSION1>> | MISSIONS    | f3                       |
-| <<LAYOUT_MISSION1>> | CALLFORWARD | f4                       |
-| <<LAYOUT_MISSION1>> | LOUDSPEAKER | f5                       |
-| <<LAYOUT_MISSION1>> | SETTINGS    | <<SETTINGS_ID_MISSION1>> |
-| <<LAYOUT_MISSION2>> | PHONEBOOK   | f1                       |
-| <<LAYOUT_MISSION2>> | CALLHISTORY | f2                       |
-| <<LAYOUT_MISSION2>> | MISSIONS    | f3                       |
-| <<LAYOUT_MISSION2>> | CALLFORWARD | f4                       |
-| <<LAYOUT_MISSION2>> | LOUDSPEAKER | f5                       |
-| <<LAYOUT_MISSION2>> | SETTINGS    | <<SETTINGS_ID_MISSION2>> |
-| <<LAYOUT_MISSION3>> | PHONEBOOK   | f1                       |
-| <<LAYOUT_MISSION3>> | CALLHISTORY | f2                       |
-| <<LAYOUT_MISSION3>> | MISSIONS    | f3                       |
-| <<LAYOUT_MISSION3>> | CALLFORWARD | f4                       |
-| <<LAYOUT_MISSION3>> | LOUDSPEAKER | f5                       |
-| <<LAYOUT_MISSION3>> | SETTINGS    | <<SETTINGS_ID_MISSION3>> |
+| layout              | key         | id                          |
+| <<LAYOUT_MISSION1>> | PHONEBOOK   | f1                          |
+| <<LAYOUT_MISSION1>> | CALLHISTORY | f2                          |
+| <<LAYOUT_MISSION1>> | MISSIONS    | f3                          |
+| <<LAYOUT_MISSION1>> | CALLFORWARD | f4                          |
+| <<LAYOUT_MISSION1>> | LOUDSPEAKER | f5                          |
+| <<LAYOUT_MISSION1>> | SETTINGS    | <<SETTINGS_ID_MISSION1>>    |
+| <<LAYOUT_MISSION1>> | MONITORING  | <<SETTINGS_ID_MONITORING1>> |
+| <<LAYOUT_MISSION2>> | PHONEBOOK   | f1                          |
+| <<LAYOUT_MISSION2>> | CALLHISTORY | f2                          |
+| <<LAYOUT_MISSION2>> | MISSIONS    | f3                          |
+| <<LAYOUT_MISSION2>> | CALLFORWARD | f4                          |
+| <<LAYOUT_MISSION2>> | LOUDSPEAKER | f5                          |
+| <<LAYOUT_MISSION2>> | SETTINGS    | <<SETTINGS_ID_MISSION2>>    |
+| <<LAYOUT_MISSION2>> | MONITORING  | <<SETTINGS_ID_MONITORING2>> |
+| <<LAYOUT_MISSION3>> | PHONEBOOK   | f1                          |
+| <<LAYOUT_MISSION3>> | CALLHISTORY | f2                          |
+| <<LAYOUT_MISSION3>> | MISSIONS    | f3                          |
+| <<LAYOUT_MISSION3>> | CALLFORWARD | f4                          |
+| <<LAYOUT_MISSION3>> | LOUDSPEAKER | f5                          |
+| <<LAYOUT_MISSION3>> | SETTINGS    | <<SETTINGS_ID_MISSION3>>    |
+| <<LAYOUT_MISSION3>> | MONITORING  | <<SETTINGS_ID_MONITORING3>> |
 
 Scenario: Define status key
 Given the status key:

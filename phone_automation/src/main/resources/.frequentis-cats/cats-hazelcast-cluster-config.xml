@@ -18,12 +18,6 @@
              <member>10.17.15.44:${CATS_HAZELCAST_PORT}</member>
              <member>10.17.15.45:${CATS_HAZELCAST_PORT}</member>
              <member>10.17.15.46:${CATS_HAZELCAST_PORT}</member>
-             <member>10.17.15.48:${CATS_HAZELCAST_PORT}</member>
-             <member>10.31.205.11:${CATS_HAZELCAST_PORT}</member>
-             <member>10.31.205.12:${CATS_HAZELCAST_PORT}</member>
-             <member>10.31.205.14:${CATS_HAZELCAST_PORT}</member>
-             <member>10.31.205.15:${CATS_HAZELCAST_PORT}</member>
-             <member>10.31.205.16:${CATS_HAZELCAST_PORT}</member>
           </tcp-ip>
        </join>
     </network>
