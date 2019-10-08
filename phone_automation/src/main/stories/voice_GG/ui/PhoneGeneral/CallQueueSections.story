@@ -29,6 +29,20 @@ Given the call queue items:
 | SipContact-OP1     | <<SIP_PHONE2>> | <<OPVOICE1_PHONE_URI>> | DA/IDA     |
 | OP3-OP1-MONITORING | <<OP3_URI>>    | <<OP1_URI>>            | MONITORING |
 
+Scenario: Op3 chooses to monitor Op1
+When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MONITORING
+Then HMI OP3 with layout <<LAYOUT_MISSION3>> has the function key MONITORING in monitoringOnGoing state
+When HMI OP3 presses DA key OP1
+Then HMI OP3 has the DA key OP1 with visible state monitoringActiveState
+
+Scenario: Stop monitoring ongoing on the function key
+When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MONITORING
+
+Scenario: Op1 has the visual indication that it is monitored
+Then HMI OP1 verifies that call queue container monitoring is visible
+Then HMI OP1 verifies the call queue item OP3-OP1-MONITORING has label type showing ALL
+Then HMI OP1 verifies the call queue item OP3-OP1-MONITORING has label name showing <<OP3_NAME>>
+
 Scenario: Op3 initiates a priority call
 When HMI OP3 initiates a priority call on DA key OP1
 Then HMI OP3 has the call queue item OP1-OP3 in the active list with name label <<OP1_NAME>>
@@ -106,20 +120,6 @@ Then HMI OP1 has the call queue item OP2-OP1 in the hold list with name label <<
 Then HMI OP1 has the call queue item SipContact-OP1 in the waiting list with name label Madoline
 Then HMI OP1 has the call queue item OP3-OP1 in the waiting list with name label <<OP3_NAME>>
 Then HMI OP1 verifies that the call queue item OP2-OP1 from the hold list has call type DA
-
-Scenario: Op3 chooses to monitor Op1
-When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MONITORING
-Then HMI OP3 with layout <<LAYOUT_MISSION3>> has the function key MONITORING in monitoringOnGoing state
-When HMI OP3 presses DA key OP1
-Then HMI OP3 has the DA key OP1 with visible state monitoringActiveState
-
-Scenario: Stop monitoring ongoing on the function key
-When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MONITORING
-
-Scenario: Op1 has the visual indication that it is monitored
-Then HMI OP1 verifies that call queue container monitoring is visible
-Then HMI OP1 verifies the call queue item OP3-OP1-MONITORING has label type showing ALL
-Then HMI OP1 verifies the call queue item OP3-OP1-MONITORING has label name showing <<OP3_NAME>>
 
 Scenario: Op1 answers Sip call
 Then HMI OP1 accepts the call queue item SipContact-OP1
