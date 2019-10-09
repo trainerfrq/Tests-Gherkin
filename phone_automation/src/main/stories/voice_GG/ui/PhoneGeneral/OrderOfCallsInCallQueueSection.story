@@ -72,6 +72,7 @@ When HMI OP1 puts on hold the active call
 Scenario: Operator answers and initiates transfer the DA call
 Then HMI OP1 accepts the call queue item OP3-OP1
 When HMI OP1 initiates a transfer on the active call
+Then HMI OP1 has in the hold list a number of 3 calls
 
 Scenario: Operator verifies the order of call queue items in the hold section
 		  @REQUIREMENTS:GID-3371932
@@ -82,8 +83,10 @@ Then HMI OP1 verifies that the call queue item OP2-OP1 has index 2 in the hold l
 Scenario: Operator retrieves from hold and terminates all calls
 Then HMI OP1 retrieves from hold the call queue item OP2-OP1
 Then HMI OP1 terminates the call queue item OP2-OP1
+Then wait for 2 seconds
 Then HMI OP1 retrieves from hold the call queue item OP3-OP1
 Then HMI OP1 terminates the call queue item OP3-OP1
+Then wait for 2 seconds
 Then HMI OP1 retrieves from hold the call queue item SipContact-OP1
 Then HMI OP1 terminates the call queue item SipContact-OP1
 Then wait for 2 seconds
