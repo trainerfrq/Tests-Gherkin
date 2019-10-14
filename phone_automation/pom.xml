@@ -156,6 +156,11 @@
            <artifactId>cats-pcap-steps</artifactId>
            <version>${cats.version}</version>
        </dependency>
+       <dependency>
+           <groupId>com.frequentis.c4i.test</groupId>
+           <artifactId>cats-io-pcap-steps</artifactId>
+           <version>${cats.version}</version>
+       </dependency>
 
       <!-- ZIP dependecies of CATS Platform needed for JUnit execution (normally provided by CATS CO) -->
       <dependency>
