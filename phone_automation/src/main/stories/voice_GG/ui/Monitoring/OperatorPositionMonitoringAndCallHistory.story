@@ -12,15 +12,15 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key                | source      | target      | callType   |
-| OP1-OP3            | <<OP1_URI>> | <<OP3_URI>> | DA/IDA     |
-| OP3-OP1            | <<OP3_URI>> | <<OP1_URI>> | DA/IDA     |
+| key     | source      | target      | callType |
+| OP1-OP3 | <<OP1_URI>> | <<OP3_URI>> | DA/IDA   |
+| OP3-OP1 | <<OP3_URI>> | <<OP1_URI>> | DA/IDA   |
 
 Scenario: Define call history entries
 Given the following call history entries:
-| key    | remoteDisplayName | callDirection | callConnectionStatus |
-| entry2 | <<OP3_NAME>>      | incoming      | established          |
-| entry1 | <<OP3_NAME>>      | outgoing      | established          |
+| key    | remoteDisplayName | callDirection     | callConnectionStatus |
+| entry2 | <<OP3_NAME>>      | monitoring_in_all | established          |
+| entry1 | <<OP3_NAME>>      | monitoring_out_gg | established          |
 
 Scenario: Op1 clears call history list
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLHISTORY
@@ -84,23 +84,11 @@ Scenario: OP1 does call from call history
 		  @REQUIREMENTS:GID-2535764
 		  @REQUIREMENTS:GID-2536682
 When HMI OP1 initiates a call from the call history
-Then HMI OP1 has the DA key OP3 in state out_ringing
+Then HMI OP1 has the DA key OP3 with visible state monitoringActiveState
+Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key MONITORING in monitoringActive state
 
-Scenario: Op3 receives the incoming call
-Then HMI OP3 has the DA key OP1 in state inc_initiated
-
-Scenario: Op3 answers the incoming call
-When HMI OP3 presses DA key OP1
-
-Scenario: Verify call is connected for both operators
-		  @REQUIREMENTS:GID-2535771
-Then HMI OP1 has the call queue item OP3-OP1 in state connected
-Then HMI OP3 has the call queue item OP1-OP3 in state connected
-
-Scenario: Op3 clears the phone call
-When HMI OP3 presses DA key OP1
-Then HMI OP3 has in the call queue a number of 0 calls
-Then HMI OP1 has in the call queue a number of 0 calls
+Scenario: Op1 terminates all monitoring calls
+When HMI OP1 with layout <<LAYOUT_MISSION1>> terminates monitoring calls using function key MONITORING menu
 
 Scenario: Op1 opens call history
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLHISTORY
@@ -116,6 +104,7 @@ Then HMI OP3 has the DA key OP1 in state inc_initiated
 
 Scenario: Op3 answers the incoming call
 When HMI OP3 presses DA key OP1
+Then wait for 2 seconds
 
 Scenario: Verify call is connected for both operators
 		  @REQUIREMENTS:GID-2535771

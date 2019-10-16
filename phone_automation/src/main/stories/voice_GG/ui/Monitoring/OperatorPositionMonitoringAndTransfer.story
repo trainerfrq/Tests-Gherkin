@@ -17,8 +17,8 @@ Given the call queue items:
 | OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | DA/IDA   |
 | OP3-OP2 | <<OP3_URI>> | <<OP2_URI>> | DA/IDA   |
 | OP2-OP3 | <<OP2_URI>> | <<OP3_URI>> | DA/IDA   |
-| OP1-OP3 | <<OP3_URI>> | <<OP1_URI>> | DA/IDA   |
-| OP3-OP1 | <<OP1_URI>> | <<OP3_URI>> | DA/IDA   |
+| OP1-OP3 | <<OP1_URI>> | <<OP3_URI>> | DA/IDA   |
+| OP3-OP1 | <<OP3_URI>> | <<OP1_URI>> | DA/IDA   |
 
 Scenario: Op1 activates Monitoring to Op3
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MONITORING
@@ -81,9 +81,9 @@ When HMI OP1 presses DA key OP3
 And waiting for 1 seconds
 
 Scenario: Verify call was transferred
-Then HMI OP1 has in the call queue a number of 1 calls
-Then HMI OP3 has the call queue item OP3-OP2 in state connected
-Then HMI OP2 has the call queue item OP2-OP3 in state connected
+Then HMI OP1 has in the call queue a number of 0 calls
+Then HMI OP3 has the call queue item OP2-OP3 in state connected
+Then HMI OP2 has the call queue item OP3-OP2 in state connected
 
 Scenario: Op1 has an indication that is monitoring Op3
 		  @REQUIREMENTS:GID-4968898
@@ -93,7 +93,8 @@ Scenario: Op1 terminates all monitoring calls
 When HMI OP1 with layout <<LAYOUT_MISSION1>> terminates monitoring calls using function key MONITORING menu
 
 Scenario: Verify monitoring call has been terminated
-Then HMI OP1 has in the call queue a number of 0 calls
+Then HMI OP1 has the DA key OP3 with not visible state monitoringActiveState
+Then HMI OP1 has the DA key OP3 with not visible state monitoringOngoingState
 
 Scenario: Cleanup call
 When HMI OP2 presses DA key OP3
