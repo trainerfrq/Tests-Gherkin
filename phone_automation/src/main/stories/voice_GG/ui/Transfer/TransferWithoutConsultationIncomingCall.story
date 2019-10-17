@@ -58,6 +58,7 @@ Scenario: Transferor finishes transfer
 		  @REQUIREMENTS:GID-2510076
 		  @REQUIREMENTS:GID-2510078
 When HMI OP1 presses DA key OP3
+Then wait for 2 seconds
 
 Scenario: Verify call was transferred
 Then HMI OP1 has in the call queue a number of 0 calls

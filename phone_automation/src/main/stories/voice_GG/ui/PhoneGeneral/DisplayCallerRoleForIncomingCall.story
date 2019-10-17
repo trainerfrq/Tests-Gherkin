@@ -58,6 +58,7 @@ Then HMI OP3 has the call queue item Role2-Role1Alias in the waiting list with n
 
 Scenario: Caller clears outgoing call
 When HMI OP2 presses DA key ROLE1-ALIAS(as ROLE2)
+Then wait for 2 seconds
 
 Scenario: Call is terminated for all three operators
 Then HMI OP1 has in the call queue a number of 0 calls

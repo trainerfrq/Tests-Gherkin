@@ -100,11 +100,12 @@ Scenario: Call is not terminated for the left participants
 Then HMI OP3 has in the call queue a number of 1 calls
 Then HMI OP2 has in the call queue a number of 1 calls
 
-Scenario: Op3 clears the phone call
-When HMI OP3 presses DA key OP2
-Then HMI OP3 has in the call queue a number of 0 calls
+Scenario: Op3 terminates conference
+Then HMI OP3 terminates the call queue item OP1-OP3-Conf
+Then wait for 2 seconds
 
-Scenario: Call is terminated also for Op2
+Scenario: Verify call is terminated also for both operators
+Then HMI OP3 has in the call queue a number of 0 calls
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Op1 has an indication that is monitoring Op3

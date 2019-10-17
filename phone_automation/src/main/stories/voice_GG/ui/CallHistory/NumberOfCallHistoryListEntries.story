@@ -24,6 +24,7 @@ Then HMI OP2 closes Call History popup window
 
 Scenario: Caller establishes 100 outgoing calls towards same target
 When HMI OP2 presses for 200 times the DA key OP1
+Then wait for 2 seconds
 
 Scenario: Verify call is terminated for both operators
 Then HMI OP1 has in the call queue a number of 0 calls

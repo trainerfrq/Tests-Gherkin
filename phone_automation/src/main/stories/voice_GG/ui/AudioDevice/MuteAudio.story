@@ -77,9 +77,6 @@ Then HMI OP1 verifies that mute button NotificationError is in muted state
 Scenario: Op1 closes audio settings tab
 Then HMI OP1 closes advancedSetting popup
 
-Scenario: Op1 closes settings tab
-Then HMI OP1 closes settings popup
-
 Scenario: Op1 reopens settings tab
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key SETTINGS
 
