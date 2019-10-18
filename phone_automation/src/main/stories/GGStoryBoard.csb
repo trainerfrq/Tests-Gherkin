@@ -8,6 +8,7 @@
     <cats:reportFormats>
         <cats:reportFormat>HTML</cats:reportFormat>
     </cats:reportFormats>
+<cats:reportPersistenceMode>ALL</cats:reportPersistenceMode>
     <cats:storyCollections>
         <cats:storyCollection enabled="false">
             <cats:name>Deploy Services</cats:name>
