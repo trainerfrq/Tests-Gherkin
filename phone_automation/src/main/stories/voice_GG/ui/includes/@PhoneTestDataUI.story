@@ -58,21 +58,21 @@ Given the function keys:
 | <<LAYOUT_MISSION1>> | CALLFORWARD | f4                          |
 | <<LAYOUT_MISSION1>> | LOUDSPEAKER | f5                          |
 | <<LAYOUT_MISSION1>> | SETTINGS    | <<SETTINGS_ID_MISSION1>>    |
-| <<LAYOUT_MISSION1>> | MONITORING  | <<SETTINGS_ID_MONITORING1>> |
+| <<LAYOUT_MISSION1>> | MONITORING  | <<MONITORING_ID_MISSION1>> |
 | <<LAYOUT_MISSION2>> | PHONEBOOK   | f1                          |
 | <<LAYOUT_MISSION2>> | CALLHISTORY | f2                          |
 | <<LAYOUT_MISSION2>> | MISSIONS    | f3                          |
 | <<LAYOUT_MISSION2>> | CALLFORWARD | f4                          |
 | <<LAYOUT_MISSION2>> | LOUDSPEAKER | f5                          |
 | <<LAYOUT_MISSION2>> | SETTINGS    | <<SETTINGS_ID_MISSION2>>    |
-| <<LAYOUT_MISSION2>> | MONITORING  | <<SETTINGS_ID_MONITORING2>> |
+| <<LAYOUT_MISSION2>> | MONITORING  | <<MONITORING_ID_MISSION2>> |
 | <<LAYOUT_MISSION3>> | PHONEBOOK   | f1                          |
 | <<LAYOUT_MISSION3>> | CALLHISTORY | f2                          |
 | <<LAYOUT_MISSION3>> | MISSIONS    | f3                          |
 | <<LAYOUT_MISSION3>> | CALLFORWARD | f4                          |
 | <<LAYOUT_MISSION3>> | LOUDSPEAKER | f5                          |
 | <<LAYOUT_MISSION3>> | SETTINGS    | <<SETTINGS_ID_MISSION3>>    |
-| <<LAYOUT_MISSION3>> | MONITORING  | <<SETTINGS_ID_MONITORING3>> |
+| <<LAYOUT_MISSION3>> | MONITORING  | <<MONITORING_ID_MISSION3>> |
 
 Scenario: Define status key
 Given the status key:
