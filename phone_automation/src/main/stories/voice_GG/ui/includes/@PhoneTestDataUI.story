@@ -76,10 +76,10 @@ Given the function keys:
 
 Scenario: Define status key
 Given the status key:
-| source  | key            | id      |
-| HMI OP1 | DISPLAY STATUS | status1 |
-| HMI OP2 | DISPLAY STATUS | status1 |
-| HMI OP3 | DISPLAY STATUS | status1 |
+| source  | key            | id                    |
+| HMI OP1 | DISPLAY STATUS | <<DISPLAY_STATUS_ID>> |
+| HMI OP2 | DISPLAY STATUS | <<DISPLAY_STATUS_ID>> |
+| HMI OP3 | DISPLAY STATUS | <<DISPLAY_STATUS_ID>> |
 
 Scenario: Define call route selectors
 Given the call route selectors:
