@@ -1,4 +1,4 @@
-package scripts.cats.hmi.asserts.ForwardCall
+package scripts.cats.hmi.asserts.TimeoutBar
 
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node

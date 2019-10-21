@@ -28,8 +28,8 @@ import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonUsageNotReady;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonUsageReady;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAKeyLabel;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAKeyProperty;
-import scripts.cats.hmi.asserts.ForwardCall.VerifyTimeoutBarVisible;
-import scripts.cats.hmi.asserts.ForwardCall.VerifyTimeoutBarVisibleForSpecificTime;
+import scripts.cats.hmi.asserts.TimeoutBar.VerifyTimeoutBarVisible;
+import scripts.cats.hmi.asserts.TimeoutBar.VerifyTimeoutBarVisibleForSpecificTime;
 import scripts.cats.hmi.asserts.VerifyFunctionKeyLabel;
 import scripts.cats.hmi.asserts.VerifyFunctionKeyState;
 
