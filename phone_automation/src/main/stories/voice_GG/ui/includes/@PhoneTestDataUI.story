@@ -1,7 +1,7 @@
 Scenario: Define the DA keys
 Given the DA keys:
 | source  | target                | id                        |
-| HMI OP1 | OP1                   | <<PhyOpPos1_CWP1>>                         |
+| HMI OP1 | OP1                   | <<PhyOpPos1_CWP1>>        |
 | HMI OP1 | OP2                   | <<PhyOpPos1_CWP2>>        |
 | HMI OP1 | OP3                   | <<PhyOpPos1_CWP3>>        |
 | HMI OP1 | IA - OP1              |                           |
@@ -51,27 +51,27 @@ Given the grid widget keys:
 
 Scenario: Define function keys
 Given the function keys:
-| layout              | key         | id                          |
-| <<LAYOUT_MISSION1>> | PHONEBOOK   | f1                          |
-| <<LAYOUT_MISSION1>> | CALLHISTORY | f2                          |
-| <<LAYOUT_MISSION1>> | MISSIONS    | f3                          |
-| <<LAYOUT_MISSION1>> | CALLFORWARD | f4                          |
-| <<LAYOUT_MISSION1>> | LOUDSPEAKER | f5                          |
-| <<LAYOUT_MISSION1>> | SETTINGS    | <<SETTINGS_ID_MISSION1>>    |
+| layout              | key         | id                         |
+| <<LAYOUT_MISSION1>> | PHONEBOOK   | <<PHONEBOOK_ID>>           |
+| <<LAYOUT_MISSION1>> | CALLHISTORY | <<CALLHISTORY_ID>>         |
+| <<LAYOUT_MISSION1>> | MISSIONS    | <<MISSIONS_ID>>            |
+| <<LAYOUT_MISSION1>> | CALLFORWARD | <<CALLFORWARD_ID>>         |
+| <<LAYOUT_MISSION1>> | LOUDSPEAKER | <<LOUDSPEAKER_ID>>         |
+| <<LAYOUT_MISSION1>> | SETTINGS    | <<SETTINGS_ID_MISSION1>>   |
 | <<LAYOUT_MISSION1>> | MONITORING  | <<MONITORING_ID_MISSION1>> |
-| <<LAYOUT_MISSION2>> | PHONEBOOK   | f1                          |
-| <<LAYOUT_MISSION2>> | CALLHISTORY | f2                          |
-| <<LAYOUT_MISSION2>> | MISSIONS    | f3                          |
-| <<LAYOUT_MISSION2>> | CALLFORWARD | f4                          |
-| <<LAYOUT_MISSION2>> | LOUDSPEAKER | f5                          |
-| <<LAYOUT_MISSION2>> | SETTINGS    | <<SETTINGS_ID_MISSION2>>    |
+| <<LAYOUT_MISSION2>> | PHONEBOOK   | <<PHONEBOOK_ID>>           |
+| <<LAYOUT_MISSION2>> | CALLHISTORY | <<CALLHISTORY_ID>>         |
+| <<LAYOUT_MISSION2>> | MISSIONS    | <<MISSIONS_ID>>            |
+| <<LAYOUT_MISSION2>> | CALLFORWARD | <<CALLFORWARD_ID>>         |
+| <<LAYOUT_MISSION2>> | LOUDSPEAKER | <<LOUDSPEAKER_ID>>         |
+| <<LAYOUT_MISSION2>> | SETTINGS    | <<SETTINGS_ID_MISSION2>>   |
 | <<LAYOUT_MISSION2>> | MONITORING  | <<MONITORING_ID_MISSION2>> |
-| <<LAYOUT_MISSION3>> | PHONEBOOK   | f1                          |
-| <<LAYOUT_MISSION3>> | CALLHISTORY | f2                          |
-| <<LAYOUT_MISSION3>> | MISSIONS    | f3                          |
-| <<LAYOUT_MISSION3>> | CALLFORWARD | f4                          |
-| <<LAYOUT_MISSION3>> | LOUDSPEAKER | f5                          |
-| <<LAYOUT_MISSION3>> | SETTINGS    | <<SETTINGS_ID_MISSION3>>    |
+| <<LAYOUT_MISSION3>> | PHONEBOOK   | <<PHONEBOOK_ID>>           |
+| <<LAYOUT_MISSION3>> | CALLHISTORY | <<CALLHISTORY_ID>>         |
+| <<LAYOUT_MISSION3>> | MISSIONS    | <<MISSIONS_ID>>            |
+| <<LAYOUT_MISSION3>> | CALLFORWARD | <<CALLFORWARD_ID>>         |
+| <<LAYOUT_MISSION3>> | LOUDSPEAKER | <<LOUDSPEAKER_ID>>         |
+| <<LAYOUT_MISSION3>> | SETTINGS    | <<SETTINGS_ID_MISSION3>>   |
 | <<LAYOUT_MISSION3>> | MONITORING  | <<MONITORING_ID_MISSION3>> |
 
 Scenario: Define status key
