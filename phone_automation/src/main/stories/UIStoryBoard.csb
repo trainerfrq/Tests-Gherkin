@@ -1971,7 +1971,7 @@
                             <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/Timeout/CallForwardTimeOutWhilePressingButtons.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/ui/Timeout/CallForwardTimeOutWhileUsingOtherFunctionKeys.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
@@ -2001,7 +2001,7 @@
                             <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/Timeout/MonitoringTimeOutWhilePressingButtons.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/ui/Timeout/MonitoringTimeOutWhileUsingOtherFunctionKeys.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>

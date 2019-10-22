@@ -8,16 +8,16 @@
     <cats:reportFormats>
         <cats:reportFormat>HTML</cats:reportFormat>
     </cats:reportFormats>
-    <cats:reportPersistenceMode>ALL</cats:reportPersistenceMode>
+<cats:reportPersistenceMode>ALL</cats:reportPersistenceMode>
     <cats:storyCollections>
-        <cats:storyCollection enabled="true">
+        <cats:storyCollection enabled="false">
             <cats:name>Deploy Services</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
                 <cats:status>CREATED</cats:status>
             </cats:report>
             <cats:storyLists>
-                <cats:storyList enabled="true">
+                <cats:storyList enabled="false">
                     <cats:name>Deploy Services</cats:name>
                     <cats:onErrorOption>FINISH_CURRENT_STORY</cats:onErrorOption>
                     <cats:repetitions>1</cats:repetitions>
@@ -2227,7 +2227,7 @@
                 </cats:storyList>
             </cats:storyLists>
         </cats:storyCollection>
-        <cats:storyCollection enabled="true">
+        <cats:storyCollection enabled="false">
             <cats:name>UI - Failover</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
@@ -2361,7 +2361,7 @@
                             <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/Timeout/CallForwardTimeOutWhilePressingButtons.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/ui/Timeout/CallForwardTimeOutWhileUsingOtherFunctionKeys.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
@@ -2391,7 +2391,7 @@
                             <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/Timeout/MonitoringTimeOutWhilePressingButtons.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/ui/Timeout/MonitoringTimeOutWhileUsingOtherFunctionKeys.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
@@ -2521,14 +2521,14 @@
                 </cats:storyList>
             </cats:storyLists>
         </cats:storyCollection>
-        <cats:storyCollection enabled="true">
+        <cats:storyCollection enabled="false">
             <cats:name>Audio - Prepare Tests</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
                 <cats:status>CREATED</cats:status>
             </cats:report>
             <cats:storyLists>
-                <cats:storyList enabled="true">
+                <cats:storyList enabled="false">
                     <cats:name>Audio - Prepare Tests</cats:name>
                     <cats:onErrorOption>ABORT_ENTIRE_STORY_SET</cats:onErrorOption>
                     <cats:repetitions>1</cats:repetitions>
@@ -2578,14 +2578,14 @@
                 </cats:storyList>
             </cats:storyLists>
         </cats:storyCollection>
-        <cats:storyCollection enabled="true">
+        <cats:storyCollection enabled="false">
             <cats:name>Audio - UnattendedStatus</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
                 <cats:status>CREATED</cats:status>
             </cats:report>
             <cats:storyLists>
-                <cats:storyList enabled="true">
+                <cats:storyList enabled="false">
                     <cats:name>Audio - UnattendedStatus</cats:name>
                     <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
                     <cats:repetitions>1</cats:repetitions>
@@ -2641,14 +2641,14 @@
                 </cats:storyList>
             </cats:storyLists>
         </cats:storyCollection>
-        <cats:storyCollection enabled="true">
+        <cats:storyCollection enabled="false">
             <cats:name>Audio - Cleanup</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
                 <cats:status>CREATED</cats:status>
             </cats:report>
             <cats:storyLists>
-                <cats:storyList enabled="true">
+                <cats:storyList enabled="false">
                     <cats:name>Audio - Cleanup</cats:name>
                     <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
                     <cats:repetitions>1</cats:repetitions>

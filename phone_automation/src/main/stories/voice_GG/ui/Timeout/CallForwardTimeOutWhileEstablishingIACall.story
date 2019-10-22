@@ -1,7 +1,7 @@
 Narrative:
 As an operator
-I want to press CallForward button and then establish an IA call
-So I can verify that Call Forward button is in the desired state
+I want to activate CallForward button and then establish an IA call
+So I can verify that these actions don't have an influence on Call Forward button timeout
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -19,11 +19,11 @@ Given the call queue items:
 Scenario: Op1 presses Call Forward button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in forwardOngoing state
+Then HMI OP1 verifies that the DA key OP2 has the info label Call Fwd
 
 Scenario: Op1 verifies Call Forward button state
 		@REQUIREMENTS:GID-4402140
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key CALLFORWARD is visible
-Then HMI OP1 verifies that the DA key OP2 has the info label Call Fwd
 
 Scenario: Op1 verifies notification message
 Then HMI OP1 has a notification that shows Select Call Forward target

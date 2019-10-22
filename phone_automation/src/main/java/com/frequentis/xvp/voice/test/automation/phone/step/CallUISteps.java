@@ -391,7 +391,6 @@ public class CallUISteps extends AutomationSteps {
                   profileScriptResolver()
                         .map( VerifyTimeoutBarVisibleForSpecificTime.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
-            .input( VerifyTimeoutBarVisibleForSpecificTime.IPARAM_IS_VISIBLE, true )
             .input( VerifyTimeoutBarVisibleForSpecificTime.IPARAM_FUNCTION_KEY_ID, functionKey.getId() )
             .input( VerifyTimeoutBarVisibleForSpecificTime.IPARAM_TIME_SECONDS, time ) );
    }

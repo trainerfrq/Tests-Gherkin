@@ -1,7 +1,7 @@
 Narrative:
 As an operator
 I want to press Edit button without doing other actions
-So I can verify that Edit button is in the desired state
+So I can verify that Edit button timeout is in the expected state
 
 Scenario: Booking profiles
 Given booked profiles:
