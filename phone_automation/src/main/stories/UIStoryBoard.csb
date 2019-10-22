@@ -1989,6 +1989,12 @@
                             <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/Timeout/EditButtonTimeoutWithoutOtherActions.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Timeout/MonitoringTimeOutWhileEstablishingIACall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>

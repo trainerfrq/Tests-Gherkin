@@ -14,6 +14,9 @@ Given booked profiles:
 Scenario: Op1 presses Call Forward button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in forwardOngoing state
+
+Scenario: Op1 verifies Call Forward button state
+		  @REQUIREMENTS:GID-4402140
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key CALLFORWARD is visible
 Then HMI OP1 verifies that the DA key OP2 has the info label Call Fwd
 
@@ -22,15 +25,21 @@ Then HMI OP1 has a notification that shows Select Call Forward target
 
 Scenario: Op1 presses Call History button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLHISTORY
+
+Scenario: Op1 verifies Call Forward button state
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key CALLFORWARD is not visible
 
 Scenario: Op1 closes Call History window
 Then HMI OP1 closes Call History popup window
+
+Scenario: Op1 verifies Call Forward button state
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key CALLFORWARD is not visible
 
 Scenario: Op1 presses Call Forward button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in forwardOngoing state
+
+Scenario: Op1 verifies Call Forward button state
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key CALLFORWARD is visible
 Then HMI OP1 verifies that the DA key OP2 has the info label Call Fwd
 
@@ -39,16 +48,20 @@ Then HMI OP1 has a notification that shows Select Call Forward target
 
 Scenario: Op1 presses Settings button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key SETTINGS
+
+Scenario: Op1 verifies Call Forward button state
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key CALLFORWARD is visible
 
 Scenario: Op1 closes Settings window
 Then HMI OP1 closes settings popup
+
+Scenario: Op1 verifies Call Forward button state
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key CALLFORWARD is visible
 
 Scenario: Op1 verifies notification message
 Then HMI OP1 has a notification that shows Select Call Forward target
 
-Scenario: Op1 deactivates Call Forward functionality
+Scenario: Op1 deactivates Call Forward button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key CALLFORWARD is not visible
 

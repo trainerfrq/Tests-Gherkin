@@ -380,24 +380,18 @@ public class CallUISteps extends AutomationSteps {
                 .input( DragAndClickOnMenuButtonDAKey.IPARAM_DA_KEY_ID, daKey.getId() ) );
     }
 
-   @Then("$profileName with layout $layoutName has timerBar $key in state $state for $requiredTime seconds")
-   public void timerBarIsVisibleForSpecificTime( final String profileName, final String layoutName, final String targetKey, final String state, final String time )
+   @Then("$profileName with layout $layoutName has timer bar for function key $key in state visible for $requiredTime seconds")
+   public void timerBarIsVisibleForSpecificTime( final String profileName, final String layoutName, final String targetKey, final String time )
    {
       String key = layoutName + "-" + targetKey;
       FunctionKey functionKey = retrieveFunctionKey( key );
-
-      Boolean isVisible = true;
-      if ( state.contains( "not" ) )
-      {
-         isVisible = false;
-      }
 
       evaluate( remoteStep( "Verifying the progress bar for " + time + " seconds" )
             .scriptOn(
                   profileScriptResolver()
                         .map( VerifyTimeoutBarVisibleForSpecificTime.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
-            .input( VerifyTimeoutBarVisibleForSpecificTime.IPARAM_IS_VISIBLE, isVisible )
+            .input( VerifyTimeoutBarVisibleForSpecificTime.IPARAM_IS_VISIBLE, true )
             .input( VerifyTimeoutBarVisibleForSpecificTime.IPARAM_FUNCTION_KEY_ID, functionKey.getId() )
             .input( VerifyTimeoutBarVisibleForSpecificTime.IPARAM_TIME_SECONDS, time ) );
    }

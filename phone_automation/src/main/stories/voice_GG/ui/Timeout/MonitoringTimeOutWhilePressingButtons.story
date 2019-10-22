@@ -14,6 +14,9 @@ Given booked profiles:
 Scenario: Op1 presses Monitoring button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MONITORING
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key MONITORING in monitoringOnGoing state
+
+Scenario: Op1 verifies Monitoring button state
+		  @REQUIREMENTS:GID-4402140
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key MONITORING is visible
 Then HMI OP1 has the DA key OP2 with visible state monitoringOngoingState
 
@@ -31,52 +34,47 @@ Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function
 Scenario: Op1 verifies notification message
 Then HMI OP1 has a notification that shows Select Monitoring target
 
-Scenario: Op1 deactivates Monitoring functionality
-When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MONITORING
-Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key MONITORING is not visible
-
-Scenario: Op1 presses Monitoring button
-When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MONITORING
-Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key MONITORING in monitoringOnGoing state
-Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key MONITORING is visible
-Then HMI OP1 has the DA key OP2 with visible state monitoringOngoingState
-
-Scenario: Op1 verifies notification message
-Then HMI OP1 has a notification that shows Select Monitoring target
-
 Scenario: Op1 presses Call History button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLHISTORY
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key MONITORING is visible
 
 Scenario: Op1 closes Call History window
 Then HMI OP1 closes Call History popup window
+
+Scenario: Op1 verifies Monitoring button state
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key MONITORING is visible
 Then HMI OP1 has the DA key OP2 with visible state monitoringOngoingState
 
 Scenario: Op1 verifies notification message
 Then HMI OP1 has a notification that shows Select Monitoring target
 
-Scenario: Op1 deactivates Monitoring functionality
+Scenario: Op1 deactivates Monitoring button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MONITORING
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key MONITORING is not visible
 
 Scenario: Op1 presses Monitoring button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MONITORING
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key MONITORING in monitoringOnGoing state
+
+Scenario: Op1 verifies Monitoring button state
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key MONITORING is visible
 Then HMI OP1 has the DA key OP2 with visible state monitoringOngoingState
 
 Scenario: Op1 verifies notification message
 Then HMI OP1 has a notification that shows Select Monitoring target
 
-Scenario: Op1 presses Forward Call button
+Scenario: Op1 presses Call Forward button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
+
+Scenario: Op1 verifies Monitoring button state
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key MONITORING is not visible
 Then HMI OP1 has a notification that shows Select Call Forward target
+
+Scenario: Op1 verifies Call Forward button state
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key CALLFORWARD is visible
 Then HMI OP1 verifies that the DA key OP2 has the info label Call Fwd
 
-Scenario: Op1 deactivates Forward Call functionality
+Scenario: Op1 deactivates Call Forward button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key CALLFORWARD is not visible
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key MONITORING is not visible

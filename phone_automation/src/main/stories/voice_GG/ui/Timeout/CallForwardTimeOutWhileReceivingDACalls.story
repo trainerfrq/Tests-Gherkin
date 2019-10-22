@@ -19,6 +19,9 @@ Given the call queue items:
 Scenario: Op1 presses Call Forward button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in forwardOngoing state
+
+Scenario: Op1 verifies Call Forward button state
+		  @REQUIREMENTS:GID-4402140
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key CALLFORWARD is visible
 Then HMI OP1 verifies that the DA key OP2 has the info label Call Fwd
 
@@ -46,6 +49,8 @@ When HMI OP1 presses DA key OP2
 Scenario: Verifying call is connected for both operators
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
+
+Scenario: Op1 verifies Call Forward button state
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key CALLFORWARD is visible
 Then HMI OP1 verifies that the DA key OP2 has the type label DA
 
@@ -53,13 +58,15 @@ Scenario: Op1 clears the call
 When HMI OP1 presses DA key OP2
 And waiting for 10 milliseconds
 Then HMI OP1 has in the call queue a number of 0 calls
+
+Scenario: Op1 verifies Call Forward button state
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key CALLFORWARD is visible
 Then HMI OP1 verifies that the DA key OP2 has the info label Call Fwd
 
 Scenario: Op1 verifies notification message
 Then HMI OP1 has a notification that shows Select Call Forward target
 
-Scenario: Op1 deactivates Call Forward functionality
+Scenario: Op1 deactivates Call Forward button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key CALLFORWARD is not visible
 

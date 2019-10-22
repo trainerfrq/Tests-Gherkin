@@ -19,6 +19,9 @@ Given the call queue items:
 Scenario: Op1 presses Monitoring button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MONITORING
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key MONITORING in monitoringOnGoing state
+
+Scenario: Op1 verifies Monitoring button state
+		  @REQUIREMENTS:GID-4402140
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key MONITORING is visible
 Then HMI OP1 has the DA key OP2 with visible state monitoringOngoingState
 
@@ -40,18 +43,22 @@ When HMI OP1 presses DA key OP2
 Scenario: Verifying call is connected for both operators
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
+
+Scenario: Op1 verifies Monitoring button state
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key MONITORING is visible
 
 Scenario: Op1 clears the call
 When HMI OP1 presses DA key OP2
 Then HMI OP1 has in the call queue a number of 0 calls
+
+Scenario: Op1 verifies Monitoring button state
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key MONITORING is visible
 Then HMI OP1 has the DA key OP2 with visible state monitoringOngoingState
 
 Scenario: Op1 verifies notification message
 Then HMI OP1 has a notification that shows Select Monitoring target
 
-Scenario: Op1 deactivates Monitoring functionality
+Scenario: Op1 deactivates Monitoring button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MONITORING
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key MONITORING is not visible
 
