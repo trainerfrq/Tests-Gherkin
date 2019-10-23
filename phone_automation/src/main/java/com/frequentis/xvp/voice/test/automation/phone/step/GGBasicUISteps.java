@@ -34,6 +34,7 @@ import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationClearEven
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationDisplay;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationTab;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationLabel;
+import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListAllEntriesText;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListEntryText;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListIsTimeSorted;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListLastEntryText;
@@ -191,14 +192,24 @@ public class GGBasicUISteps extends AutomationSteps
         );
     }
 
-    @Then("$profileName verifies that list $listName contains text $text")
-    public void verifiesNotificationListText( final String profileName, final String listName, final String text)
+    @Then("$profileName verifies that in the list $listName the last entry contains text $text")
+    public void verifiesNotificationListTextOnLastEntry( final String profileName, final String listName, final String text)
     {
               evaluate( remoteStep( "Verify Notification Display list last entry " +listName+ " text" )
                 .scriptOn(profileScriptResolver().map( VerifyNotificationListLastEntryText.class, BookableProfileName.javafx ),
                         assertProfile( profileName ) )
                 .input(VerifyNotificationListLastEntryText.IPARAM_LIST_NAME, listName)
                 .input(VerifyNotificationListLastEntryText.IPARAM_TEXT, text));
+    }
+
+    @Then("$profileName verifies that list $listName contains text $text")
+    public void verifiesNotificationListText( final String profileName, final String listName, final String text)
+    {
+        evaluate( remoteStep( "Verify Notification Display list last entry " +listName+ " text" )
+                .scriptOn(profileScriptResolver().map( VerifyNotificationListAllEntriesText.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input(VerifyNotificationListAllEntriesText.IPARAM_LIST_NAME, listName)
+                .input(VerifyNotificationListAllEntriesText.IPARAM_TEXT, text));
     }
 
     @Then("$profileName verifies that list $listName contains on position $number text $text")
@@ -209,7 +220,7 @@ public class GGBasicUISteps extends AutomationSteps
                         assertProfile( profileName ) )
                 .input(VerifyNotificationListEntryText.IPARAM_LIST_NAME, listName)
                 .input(VerifyNotificationListEntryText.IPARAM_ENTRY_POSITION, number)
-                .input(VerifyNotificationListLastEntryText.IPARAM_TEXT, text));
+                .input(VerifyNotificationListEntryText.IPARAM_TEXT, text));
     }
 
 
