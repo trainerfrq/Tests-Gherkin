@@ -28,7 +28,7 @@ class VerifyNotificationListAllEntriesText extends FxScriptTemplate {
             List<String> allEntriesTextLabels = new ArrayList<String>()
             for(int i=0; i<list.getItems().size(); i++){
                 Label textLabel = robot.lookup("#notification"+listName+"List #notificationEntry_"+i+" #notificationTextLabel").queryFirst()
-                allEntriesTextLabels.add(textLabel.toString())
+                allEntriesTextLabels.add(textLabel.getText())
             }
 
                 evaluate(ExecutionDetails.create("Notification list "+listName+" contains text")
