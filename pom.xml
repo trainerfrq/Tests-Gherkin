@@ -20,7 +20,7 @@
       <cats.version>5.10.0</cats.version>
       
       <!-- DEPENDENCY VERSIONS -->
-      <voice.service.interface.version>0.4.1</voice.service.interface.version>
+      <voice.service.interface.version>1.1.0-6.7.1</voice.service.interface.version>
       <audio-simulator-service.version>0.56.0</audio-simulator-service.version>
       <audio-service-interface.version>0.30.0</audio-service-interface.version>
        <voice.hmi.service.version>1.1.0-2.6.7</voice.hmi.service.version>
