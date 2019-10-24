@@ -353,16 +353,16 @@ public class GGBasicSteps extends WebsocketAutomationSteps
         final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
 
         evaluate( localStep( "Received query phone data response" )
-                          .details( match( "Response is successful", jsonMessage.body().queryRolePhoneDataResponse().getError(),
+                          .details( match( "Response is successful", jsonMessage.body().queryPhoneDataResponse().getError(),
                                            nullValue() ) )
                           .details( match( "Phone data is not empty",
-                                           jsonMessage.body().queryRolePhoneDataResponse().getPhoneData().getDa(), not( empty() ) ) )
+                                           jsonMessage.body().queryPhoneDataResponse().getPhoneData().getDa(), not( empty() ) ) )
                           .details( match( "Entry of given number is present",
-                                           jsonMessage.body().queryRolePhoneDataResponse().getPhoneData().getDa().size(),
+                                           jsonMessage.body().queryPhoneDataResponse().getPhoneData().getDa().size(),
                                            greaterThanOrEqualTo( entryNumber ) ) ) );
 
         final JsonDaDataElement dataElement =
-                jsonMessage.body().queryRolePhoneDataResponse().getPhoneData().getDa().get( entryNumber - 1 );
+                jsonMessage.body().queryPhoneDataResponse().getPhoneData().getDa().get( entryNumber - 1 );
         setStoryListData( callSourceName, dataElement.getSource() );
         setStoryListData( callTargetName, dataElement.getSource() );
     }
