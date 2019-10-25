@@ -53,7 +53,7 @@ Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify current active mission has the expected roles
-When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
 Then HMI OP1 verifies that current active mission is mission WEST-EXEC
 Then HMI OP1 has roles <<ROLE_2_NAME>>, role2alias2, groupall, role2, role2alias1, group1 available in the roles list
 
@@ -78,13 +78,13 @@ Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Change mission
-When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
 Then HMI OP1 changes current mission to mission EAST-EXEC
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify current active mission has the expected roles
-When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_MISSION3>> presses function key MISSIONS
 Then HMI OP1 verifies that current active mission is mission EAST-EXEC
 Then HMI OP1 has roles <<ROLE_3_NAME>>, role1alias1, groupall, role1, role1alias2, group1 available in the roles list
 
@@ -109,7 +109,7 @@ Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Change mission
-When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_MISSION3>> presses function key MISSIONS
 Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP1 activates mission
 Then waiting for 5 seconds

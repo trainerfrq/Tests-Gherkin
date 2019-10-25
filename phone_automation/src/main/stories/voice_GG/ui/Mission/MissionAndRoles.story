@@ -31,7 +31,7 @@ Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission WEST
 
 Scenario: Verify current active mission has the expected roles
 		  @REQUIREMENTS: GID-2397112
-When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
 Then HMI OP1 has a list of 3 missions available
 Then HMI OP1 has missions EAST-EXEC, MAN-NIGHT-TACT, WEST-EXEC available in the missions list
 Then HMI OP1 verifies that current active mission is mission WEST-EXEC
@@ -47,7 +47,7 @@ Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission EAST
 
 Scenario: Verify current active mission has the expected roles
 		  @REQUIREMENTS: GID-2397112
-When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_MISSION3>> presses function key MISSIONS
 Then HMI OP1 has a list of 3 missions available
 Then HMI OP1 has missions EAST-EXEC, MAN-NIGHT-TACT, WEST-EXEC available in the missions list
 Then HMI OP1 verifies that current active mission is mission EAST-EXEC
