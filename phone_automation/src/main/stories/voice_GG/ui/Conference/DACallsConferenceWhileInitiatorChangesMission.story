@@ -41,9 +41,10 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Op2 starts a conference using an existing active call
 When HMI OP2 starts a conference using an existing active call
+And waiting for 1 second
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label CONF
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 2 more participants
+Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 2 participants
 Then HMI OP2 has a notification that shows Conference call active
 
 Scenario: Op1 call state verification
@@ -52,6 +53,7 @@ Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name l
 
 Scenario: Op2 adds another participant to the conference
 When HMI OP2 presses DA key OP3
+And waiting for 1 second
 
 Scenario: Op3 client receives the incoming call and answers the call
 Then HMI OP3 has the call queue item OP2-OP3-Conf in state inc_initiated
@@ -99,7 +101,7 @@ Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
 Scenario: Op2 verifies conference state on the call queue
 Then HMI OP2 has the call queue item OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP2-Conf in the active list with name label CONF
-Then HMI OP2 has the call queue item OP2-Conf in the active list with info label 3 more participants
+Then HMI OP2 has the call queue item OP2-Conf in the active list with info label 3 participants
 
 Scenario: Op2 verifies conference participants list
 When HMI OP2 opens the conference participants list
@@ -117,6 +119,7 @@ Scenario: Op2 removes one conference participant
 When HMI OP2 selects conference participant: 2
 Then HMI OP2 verifies that remove conference participant button is enabled
 Then HMI OP2 removes conference participant
+And waiting for 1 second
 Then HMI OP2 verifies that conference participants list contains 2 participants
 Then HMI OP2 chooses to edit participants list
 

@@ -29,6 +29,7 @@ Then HMI OP1 has the call queue item OP2-OP1 in state connected
 
 Scenario: Caller establishes an outgoing IA call
 When HMI OP2 presses IA key IA - OP3
+And waiting for 1 second
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
 Then HMI OP2 has the IA key IA - OP3 in state connected
 

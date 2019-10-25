@@ -48,6 +48,7 @@ Then HMI OP2 has the DA key OP3 in state inc_initiated
 
 Scenario: Op2 answers the incoming call
 Then HMI OP2 accepts the call queue item OP3-OP2
+And waiting for 1 second
 
 Scenario: Verify calls state for all operators
 		  @REQUIREMENTS:GID-2878006

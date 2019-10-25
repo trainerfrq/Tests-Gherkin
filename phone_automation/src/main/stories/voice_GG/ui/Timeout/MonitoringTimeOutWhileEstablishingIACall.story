@@ -53,6 +53,9 @@ Scenario: Op1 deactivates Monitoring button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MONITORING
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key MONITORING is not visible
 
+Scenario: Cleanup - always select first tab
+When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 1
+
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
 GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
