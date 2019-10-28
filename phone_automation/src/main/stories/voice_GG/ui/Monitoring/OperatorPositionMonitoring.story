@@ -86,6 +86,7 @@ Then HMI OP3 closes monitoring popup
 
 Scenario: Op1 client clears the phone call
 When HMI OP1 presses DA key OP3
+And waiting for 1 second
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for Op3
