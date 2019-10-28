@@ -19,6 +19,7 @@ package com.frequentis.xvp.tools.cats.websocket.automation.model;
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameter;
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameterBase;
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameterClass;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookResponseItem;
 
 import java.io.Serializable;
 
@@ -45,6 +46,9 @@ public class PhoneBookEntry extends CatsCustomParameterBase implements Serializa
 
    @CatsCustomParameter(parameterName = "display-addon")
    private String displayAddon;
+
+   @CatsCustomParameter(parameterName = "call-priority")
+   private PhoneBookResponseItem.CallPriority callPriority;
 
 
    public String getUri()
@@ -140,12 +144,29 @@ public class PhoneBookEntry extends CatsCustomParameterBase implements Serializa
       this.displayAddon = displayAddon;
    }
 
+    public PhoneBookResponseItem.CallPriority getCallPriority()
+    {
+        return callPriority;
+    }
 
-   @Override
-   public String toString()
-   {
-      return "PhoneBookEntry{" + "uri='" + uri + '\'' + ", name='" + name + '\'' + ", fullName='" + fullName + '\''
-            + ", location='" + location + '\'' + ", organization='" + organization + '\'' + ", notes='" + notes + '\''
-            + ", displayAddon='" + displayAddon + '\'' + '}';
-   }
+
+    public void setName( final PhoneBookResponseItem.CallPriority callPriority )
+    {
+        this.callPriority = callPriority;
+    }
+
+
+    @Override
+    public String toString() {
+        return "PhoneBookEntry{" +
+                "uri='" + uri + '\'' +
+                ", name='" + name + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", location='" + location + '\'' +
+                ", organization='" + organization + '\'' +
+                ", notes='" + notes + '\'' +
+                ", displayAddon='" + displayAddon + '\'' +
+                ", callPriority=" + callPriority +
+                '}';
+    }
 }

@@ -459,7 +459,7 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
 
       PhoneBookResponseItem entry = new PhoneBookResponseItem(phoneBookEntry.getName(), phoneBookEntry.getFullName(),phoneBookEntry.getLocation(),
                                                               phoneBookEntry.getOrganization(),phoneBookEntry.getNotes(),phoneBookEntry.getDisplayAddon(),
-                                                              phoneBookEntry.getUri(), getUserPartOfURI( phoneBookEntry.getUri() ));
+                                                              phoneBookEntry.getUri(), getUserPartOfURI( phoneBookEntry.getUri() ), phoneBookEntry.getCallPriority() );
       evaluate( localStep( "Verify phone book entry exists in the entire phone book list" )
                         .details(match(entry,isIn(items))));
    }
