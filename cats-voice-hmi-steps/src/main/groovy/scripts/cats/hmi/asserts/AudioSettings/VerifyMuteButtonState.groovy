@@ -37,7 +37,5 @@ class VerifyMuteButtonState extends FxScriptTemplate {
             default:
                 break
         }
-
-
     }
 }
