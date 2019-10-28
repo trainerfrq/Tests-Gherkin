@@ -36,7 +36,7 @@ Scenario: Op2 starts a conference using an existing active call
 When HMI OP2 starts a conference using an existing active call
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label CONF
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 2 more participants
+Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 2 participants
 Then HMI OP2 has a notification that shows Conference call active
 
 Scenario: Op1 call state verification
@@ -55,6 +55,7 @@ Then HMI OP2 closes Conference list popup window
 Scenario: Op2 adds another participant to the conference
 		  @REQUIREMENTS:GID-2529024
 When HMI OP2 presses DA key OP3
+And waiting for 1 second
 
 Scenario: Op3 client receives the incoming call
 Then HMI OP3 has the call queue item OP2-OP3-Conf in state inc_initiated
@@ -62,7 +63,7 @@ Then HMI OP3 has the call queue item OP2-OP3-Conf in state inc_initiated
 Scenario: Op2 verifies conference state
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label CONF
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 3 more participants
+Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 3 participants
 Then HMI OP2 has a notification that shows Conference call active
 
 Scenario: Op2 verifies conference participants list
@@ -114,6 +115,7 @@ Then HMI OP3 verifies that remove conference participant button is disabled
 Then HMI OP3 verifies that edit conference button is disabled
 Then HMI OP3 verifies that leave conference button is enabled
 Then HMI OP3 leaves conference
+And waiting for 1 second
 
 Scenario: Call is terminated for the removed participant
 Then HMI OP3 has in the call queue a number of 0 calls

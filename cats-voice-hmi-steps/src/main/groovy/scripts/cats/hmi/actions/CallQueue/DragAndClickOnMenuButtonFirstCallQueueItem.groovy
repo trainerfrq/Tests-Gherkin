@@ -1,7 +1,10 @@
 package scripts.cats.hmi.actions.CallQueue
 
 import com.frequentis.c4i.test.model.ExecutionDetails
+import com.google.common.base.Optional
 import javafx.scene.Node
+import org.testfx.api.FxRobotException
+import org.testfx.service.query.NodeQuery
 import org.testfx.service.query.PointQuery
 import scripts.agent.testfx.automation.FxScriptTemplate
 
@@ -24,7 +27,15 @@ class DragAndClickOnMenuButtonFirstCallQueueItem extends FxScriptTemplate {
             PointQuery pointQuery = robot.point(callQueueItem)
             robot.drag(pointQuery)
             robot.dropBy(pointQuery.getPosition().getX() - 100, pointQuery.getPosition().getY())
-            Thread.sleep(3000)
+
+            while ({
+                Thread.sleep(100)
+                NodeQuery searchedMenuButton = robot.lookup("#" + menuButtonId)
+                Optional<Node> resultNode = searchedMenuButton.tryQueryFirst();
+                Node node = resultNode.get()
+                !node.isVisible()
+            }()) continue
+
             robot.clickOn(robot.point("#" + menuButtonId))
         }
     }
