@@ -29,7 +29,7 @@
                 <username>svc-contour</username>
                 <password>tFJptJNAV481</password>
                 <project>PVCSX</project>
-                <releaseId>VCS3020X Rel. 10.0 Rev. 2.0</releaseId>
+                <releaseId>VCS3020X Rel. 10.1 Rev. 1.0</releaseId>
                 <testtype>Automated Test</testtype>
                 <documentType>TC</documentType>
                 <parentFolder>/Voice Application (VA)/SystemTests/Test Cases - System Tests/Automated Tests - Phone</parentFolder>
