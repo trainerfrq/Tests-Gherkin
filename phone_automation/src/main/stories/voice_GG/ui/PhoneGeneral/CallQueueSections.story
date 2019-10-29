@@ -93,7 +93,7 @@ Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label 
 Scenario: Op3 terminates the call
 When HMI OP3 presses DA key OP1
 Then HMI OP3 has in the call queue a number of 0 calls
-Then HMI OP1 has in the call queue a number of 1 calls
+Then HMI OP1 has in the call queue a number of 2 calls
 
 Scenario: Op3 initiates a DA call
 When HMI OP3 presses DA key OP1
@@ -172,6 +172,7 @@ Then HMI OP1 retrieves from hold the call queue item SipContact-OP1
 
 Scenario: Operator terminates the SIP Call
 When SipContact terminates calls
+And waiting for 1 second
 
 Scenario: Verify call is terminated for all operators
 Then HMI OP1 has in the call queue a number of 0 calls

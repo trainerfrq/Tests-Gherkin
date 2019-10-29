@@ -16,19 +16,6 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
-import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
-import com.frequentis.c4i.test.model.ExecutionDetails;
-import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
-import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
-import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
-import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
-import com.frequentis.xvp.voice.test.automation.phone.data.GridWidgetKey;
-import com.frequentis.xvp.voice.test.automation.phone.data.StatusKey;
-import org.jbehave.core.annotations.Alias;
-import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.CallHistory.ClickOnCallHistoryCallButton;
 import scripts.cats.hmi.actions.CleanUpFunctionKey;
 import scripts.cats.hmi.actions.ClickDAButton;
@@ -41,10 +28,27 @@ import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonUsageNotReady;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonUsageReady;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAKeyLabel;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAKeyProperty;
+import scripts.cats.hmi.asserts.TimeoutBar.VerifyTimeoutBarVisible;
+import scripts.cats.hmi.asserts.TimeoutBar.VerifyTimeoutBarVisibleForSpecificTime;
 import scripts.cats.hmi.asserts.VerifyFunctionKeyLabel;
 import scripts.cats.hmi.asserts.VerifyFunctionKeyState;
 
 import java.util.List;
+
+import org.jbehave.core.annotations.Alias;
+import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
+
+import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
+import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
+import com.frequentis.c4i.test.model.ExecutionDetails;
+import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
+import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
+import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
+import com.frequentis.xvp.voice.test.automation.phone.data.GridWidgetKey;
+import com.frequentis.xvp.voice.test.automation.phone.data.StatusKey;
 
 public class CallUISteps extends AutomationSteps {
     private static final String PRIORITY_CALL_MENU_BUTTON_ID = "priority_call_menu_button";
@@ -375,6 +379,41 @@ public class CallUISteps extends AutomationSteps {
                 .input( DragAndClickOnMenuButtonDAKey.IPARAM_MENU_BUTTON_ID, MONITORING_CALL_ID )
                 .input( DragAndClickOnMenuButtonDAKey.IPARAM_DA_KEY_ID, daKey.getId() ) );
     }
+
+   @Then("$profileName with layout $layoutName has timer bar for function key $key in state visible for $requiredTime seconds")
+   public void timerBarIsVisibleForSpecificTime( final String profileName, final String layoutName, final String targetKey, final String time )
+   {
+      String key = layoutName + "-" + targetKey;
+      FunctionKey functionKey = retrieveFunctionKey( key );
+
+      evaluate( remoteStep( "Verifying the progress bar for " + time + " seconds" )
+            .scriptOn(
+                  profileScriptResolver()
+                        .map( VerifyTimeoutBarVisibleForSpecificTime.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyTimeoutBarVisibleForSpecificTime.IPARAM_FUNCTION_KEY_ID, functionKey.getId() )
+            .input( VerifyTimeoutBarVisibleForSpecificTime.IPARAM_TIME_SECONDS, time ) );
+   }
+
+   @Then("$profileName with layout $layoutName verifies that timerBar for function key $key is $state")
+   public void verifyingTimerBarIsVisible( final String profileName, final String layoutName, final String targetKey, final String state )
+   {
+      String key = layoutName + "-" + targetKey;
+      FunctionKey functionKey = retrieveFunctionKey( key );
+
+      Boolean isVisible = true;
+      if ( state.contains( "not" ) )
+      {
+         isVisible = false;
+      }
+
+      evaluate( remoteStep( "Verify the reverse progress bar " )
+            .scriptOn(
+                  profileScriptResolver().map( VerifyTimeoutBarVisible.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyTimeoutBarVisible.IPARAM_FUNCTION_KEY_ID, functionKey.getId() )
+            .input( VerifyTimeoutBarVisible.IPARAM_IS_VISIBLE, isVisible ) );
+   }
 
     private DAKey retrieveDaKey(final String source, final String target) {
         final DAKey daKey = getStoryListData(source + "-" + target, DAKey.class);

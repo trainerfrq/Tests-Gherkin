@@ -44,7 +44,7 @@ When HMI OP2 starts a conference using an existing active call
 Then wait for 2 seconds
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label CONF
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 2 more participants
+Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 2 participants
 Then HMI OP2 has a notification that shows Conference call active
 
 Scenario: Op1 call state verification
@@ -96,7 +96,7 @@ Then HMI OP2 closes notification popup
 Scenario: Op2 verifies conference state
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label CONF
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 3 more participants
+Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 3 participants
 
 Scenario: Op1 leaves the conference
 Then HMI OP1 terminates the call queue item OP2-OP1-Conf
@@ -104,7 +104,7 @@ Then HMI OP1 terminates the call queue item OP2-OP1-Conf
 Scenario: Op2 verifies conference state
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label CONF
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 2 more participants
+Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 2 participants
 
 Scenario: Op2 verifies conference participants list
 When HMI OP2 opens the conference participants list
@@ -120,6 +120,7 @@ Then HMI OP2 closes Conference list popup window
 Scenario: Op2 (conference initiator) leaves the conference
 		  @REQUIREMENTS:GID-2529028
 Then HMI OP2 terminates the call queue item OP1-OP2-Conf
+And waiting for 1 second
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Remove phone

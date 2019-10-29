@@ -43,7 +43,7 @@ Scenario: Op2 starts a conference using an existing active call
 When HMI OP2 starts a conference using an existing active call
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label CONF
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 2 more participants
+Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 2 participants
 Then HMI OP2 has a notification that shows Conference call active
 
 Scenario: Op1 call state verification
@@ -52,6 +52,7 @@ Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name l
 
 Scenario: Op2 adds another participant to the conference
 When HMI OP2 presses DA key OP3
+Then wait for 2 seconds
 
 Scenario: Op3 client receives the incoming call and answers the call
 Then HMI OP3 has the call queue item OP2-OP3-Conf in state inc_initiated
@@ -80,6 +81,7 @@ Then HMI OP1 has in the call queue a number of 2 calls
 Scenario: Op1 accepts call
 		  @REQUIREMENTS:GID-2878006
 Then HMI OP1 accepts the call queue item SipContact-OP1
+And waiting for 1 second
 Then HMI OP1 has the call queue item SipContact-OP1 in state connected
 Then HMI OP1 has in the call queue a number of 1 calls
 
@@ -93,6 +95,7 @@ Then HMI OP2 verifies in the list that conference participant on position 2 has 
 
 Scenario: Op2 leaves the conference
 Then HMI OP2 leaves conference
+And waiting for 1 second
 Then HMI OP2 has the DA key OP3 in state terminated
 Then HMI OP2 has in the call queue a number of 0 calls
 

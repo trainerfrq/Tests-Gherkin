@@ -70,6 +70,7 @@ Scenario: Op3 chooses to monitor Op1
 		  @REQUIREMENTS:GID-2505729
 		  @REQUIREMENTS:GID-2834339
 When HMI OP3 presses DA key OP1
+And waiting for 1 second
 Then HMI OP3 verifies that the DA key OP1 has the info label busy
 
 Scenario: Op3 stops monitoring ongoing on the function key
@@ -122,6 +123,7 @@ Then HMI OP3 has the call queue item OP1-OP3 in state connected
 
 Scenario: Op1 client clears the phone call
 When HMI OP1 presses DA key OP3
+And waiting for 1 second
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for Op3
