@@ -1,9 +1,9 @@
 package scripts.cats.hmi.asserts.NotificationDisplay
 
 import com.frequentis.c4i.test.model.ExecutionDetails
+import com.frequentis.voice.hmi.component.layout.list.listview.CustomListView
 import javafx.scene.Node
 import javafx.scene.control.Label
-import javafx.scene.control.ListView
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 class VerifyNotificationListLastEntryText extends FxScriptTemplate {
@@ -24,7 +24,7 @@ class VerifyNotificationListLastEntryText extends FxScriptTemplate {
                 .success(notificationPopup.isVisible()))
 
         if (notificationPopup.isVisible()) {
-            final ListView list = robot.lookup( "#notification"+listName+"List" ).queryFirst()
+            final CustomListView list = robot.lookup( "#notification"+listName+"List" ).queryFirst()
             int lastEntryIndex = list.getItems().size() -1;
 
             Label textLabel = robot.lookup("#notification"+listName+"List #notificationEntry_"+lastEntryIndex+" #notificationTextLabel").queryFirst()

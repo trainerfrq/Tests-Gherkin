@@ -45,6 +45,7 @@ Then HMI OP2 has in the active list a number of 1 calls
 
 Scenario: Cleanup IA call
 When HMI OP2 presses IA key IA - OP3
+And waiting for 1 second
 
 Scenario: Verify call is ended
 Then HMI OP3 has in the call queue a number of 0 calls

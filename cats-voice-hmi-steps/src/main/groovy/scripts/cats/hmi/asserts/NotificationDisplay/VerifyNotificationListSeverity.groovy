@@ -1,7 +1,10 @@
 package scripts.cats.hmi.asserts.NotificationDisplay
 
 import com.frequentis.c4i.test.model.ExecutionDetails
+import com.frequentis.voice.hmi.component.layout.list.listview.CustomListView
 import javafx.scene.Node
+import javafx.scene.control.Label
+import javafx.scene.layout.Pane
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 class VerifyNotificationListSeverity extends FxScriptTemplate {
@@ -25,13 +28,20 @@ class VerifyNotificationListSeverity extends FxScriptTemplate {
                 .success(notificationPopup.isVisible()))
 
         if (notificationPopup.isVisible()) {
-            Node notificationEntry = robot.lookup("#notificationEventList #notificationEntry_"+ entryNumber.toString() + " .notificationListItem").queryFirst()
+            final Pane notificationEntry = robot.lookup("#notification"+listName+"List").queryFirst()
+
+            evaluate(ExecutionDetails.create("Verify notification Event List exists")
+                    .expected("List of Events exists")
+                    .success(notificationEntry != null));
+
+            ObservableList events = notificationEntry.getChildren()
+            List<Label> eventsList = new ArrayList<>(events)
+
             evaluate(ExecutionDetails.create("Notification list "+listName+" severity is the expected one")
-                    .received(Arrays.toString(notificationEntry.getStyleClass().toArray()))
-                    .expected(severity)
-                    .success(notificationEntry.getStyleClass().contains(severity)));
+                    .expected("Expected severity: " + severity)
+                    .received("Received severity: " + eventsList.get(entryNumber).toString())
+                    .success(eventsList.get(entryNumber).toString().contains(severity)));
 
         }
     }
 }
-

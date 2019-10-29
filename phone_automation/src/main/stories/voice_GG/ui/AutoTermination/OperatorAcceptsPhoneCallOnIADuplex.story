@@ -31,6 +31,7 @@ Then HMI OP2 has the IA key IA - OP1 in state connected
 
 Scenario: Callee also initiate a IA call, transforming the existing IA half duplex call in a full duplex
 When HMI OP2 presses IA key IA - OP1
+And waiting for 1 second
 
 Scenario: Verify calls state on all operators
 Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction duplex
@@ -74,6 +75,7 @@ Then HMI OP3 has in the call queue a number of 1 calls
 
 Scenario: Op3 clears DA call
 When HMI OP3 presses DA key OP2
+And waiting for 1 second
 
 Scenario: Verify call state for both operators
 Then HMI OP2 has in the call queue a number of 0 calls
