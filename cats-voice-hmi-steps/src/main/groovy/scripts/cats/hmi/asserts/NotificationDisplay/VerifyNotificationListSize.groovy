@@ -1,10 +1,8 @@
 package scripts.cats.hmi.asserts.NotificationDisplay
 
 import com.frequentis.c4i.test.model.ExecutionDetails
-import javafx.scene.control.ListView
-
+import com.frequentis.voice.hmi.component.layout.list.listview.CustomListView
 import scripts.agent.testfx.automation.FxScriptTemplate
-
 
 class VerifyNotificationListSize extends FxScriptTemplate {
 
@@ -17,7 +15,7 @@ class VerifyNotificationListSize extends FxScriptTemplate {
         Integer listSize = assertInput(IPARAM_LIST_SIZE) as Integer
         String listName = assertInput(IPARAM_LIST_NAME) as String
 
-        final ListView list = robot.lookup( "#notification"+listName+"List" ).queryFirst()
+        final CustomListView list = robot.lookup( "#notification"+listName+"List" ).queryFirst()
 
         int receivedListSize = list.getItems().size();
 

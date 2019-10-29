@@ -83,13 +83,13 @@ Then HMI OP1 verifies that the call queue item OP2-OP1 has index 2 in the hold l
 Scenario: Operator retrieves from hold and terminates all calls
 Then HMI OP1 retrieves from hold the call queue item OP2-OP1
 Then HMI OP1 terminates the call queue item OP2-OP1
-Then wait for 2 seconds
+Then wait for 4 seconds
 Then HMI OP1 retrieves from hold the call queue item OP3-OP1
 Then HMI OP1 terminates the call queue item OP3-OP1
 Then wait for 2 seconds
 Then HMI OP1 retrieves from hold the call queue item SipContact-OP1
 Then HMI OP1 terminates the call queue item SipContact-OP1
-Then wait for 2 seconds
+Then wait for 4 seconds
 
 Scenario: Verify call is terminated for all operators
 Then HMI OP2 has in the call queue a number of 0 calls

@@ -79,6 +79,7 @@ Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction rx
 
 Scenario: Callee establishes an outgoing IA call, using the call queue item
 Then HMI OP2 accepts the call queue item OP1-OP2
+And waiting for 1 second
 
 Scenario: Verify call direction
 Then HMI OP1 has the IA call queue item OP2-OP1-1 with audio direction duplex
