@@ -1,4 +1,4 @@
-package scripts.cats.hmi.asserts.AudioSettings
+package scripts.cats.hmi.asserts.Settings
 
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.css.PseudoClass
@@ -8,13 +8,13 @@ import scripts.agent.testfx.automation.FxScriptTemplate
 
 class VerifyClosePanelButtonState extends FxScriptTemplate {
 
-    public static final String IPARAM_MUTE_BUTTON_NUMBER= "button_number"
+    public static final String IPARAM_BUTTON_NUMBER= "button_number"
     public static final String IPARAM_STATE = "state_mode"
 
     @Override
     void script() {
 
-        Integer buttonNumber = assertInput(IPARAM_MUTE_BUTTON_NUMBER) as Integer
+        Integer buttonNumber = assertInput(IPARAM_BUTTON_NUMBER) as Integer
         String state = assertInput(IPARAM_STATE) as String
 
         Node button = robot.lookup("#closePanelButton_" + buttonNumber).queryFirst()
@@ -27,12 +27,12 @@ class VerifyClosePanelButtonState extends FxScriptTemplate {
             case "selected":
                 evaluate(ExecutionDetails.create("Verify that close panel button state is: " + state)
                         .expected("Close panel button state is: " + state)
-                        .success(muteButton.getPseudoClassStates().contains(PseudoClass.getPseudoClass("selected"))))
+                        .success(button.getPseudoClassStates().contains(PseudoClass.getPseudoClass("selected"))))
                 break
             case "next":
                 evaluate(ExecutionDetails.create("Verify that close panel button state is: " + state)
                         .expected("Close panel button state is: " + state)
-                        .success(!muteButton.getPseudoClassStates().contains(PseudoClass.getPseudoClass("next"))))
+                        .success(!button.getPseudoClassStates().contains(PseudoClass.getPseudoClass("next"))))
                 break
             default:
                 break

@@ -1,17 +1,17 @@
-package scripts.cats.hmi.asserts
+package scripts.cats.hmi.asserts.Settings
 
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 class VerifySymbolButtonState extends FxScriptTemplate{
-    public static String IPARAM_SETTINGS_BUTTON_NAME = "button_name";
-    public static String IPARAM_SETTINGS_BUTTON_STATE = "button_state";
+    public static String IPARAM_BUTTON_NAME = "button_name";
+    public static String IPARAM_BUTTON_STATE = "state";
 
     @Override
     protected void script() {
-        String buttonName = assertInput(IPARAM_SETTINGS_BUTTON_NAME) as String;
-        String buttonState = assertInput(IPARAM_SETTINGS_BUTTON_STATE) as String;
+        String buttonName = assertInput(IPARAM_BUTTON_NAME) as String;
+        String buttonState = assertInput(IPARAM_BUTTON_STATE) as String;
 
         Node symbolButton = robot.lookup("#" + buttonName + "Symbol").queryFirst();
 

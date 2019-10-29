@@ -1,4 +1,4 @@
-package scripts.cats.hmi.asserts.AudioSettings
+package scripts.cats.hmi.asserts.Settings
 
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
@@ -7,12 +7,12 @@ import scripts.agent.testfx.automation.FxScriptTemplate
 
 class VerifyClosePanelButtonVisible extends FxScriptTemplate {
 
-    public static final String IPARAM_MUTE_BUTTON_NUMBER= "button_number"
+    public static final String IPARAM_BUTTON_NUMBER= "number"
 
     @Override
     void script() {
 
-        Integer buttonNumber = assertInput(IPARAM_MUTE_BUTTON_NUMBER) as Integer
+        Integer buttonNumber = assertInput(IPARAM_BUTTON_NUMBER) as Integer
 
         Node button = robot.lookup("#closePanelButton_" + buttonNumber).queryFirst()
 

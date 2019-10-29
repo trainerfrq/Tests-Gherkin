@@ -26,15 +26,13 @@ import com.frequentis.xvp.voice.test.automation.phone.data.StatusKey;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import scripts.cats.hmi.actions.AudioSettings.CleanUpPopupWindow;
+import scripts.cats.hmi.actions.Settings.CleanUpPopupWindow;
 import scripts.cats.hmi.actions.ClickContainerTab;
-import scripts.cats.hmi.actions.ClickOnSymbolButton;
+import scripts.cats.hmi.actions.Settings.ClickOnSymbolButton;
 import scripts.cats.hmi.actions.ClickStatusLabel;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationClearEventButton;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationDisplay;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationTab;
-import scripts.cats.hmi.asserts.AudioSettings.VerifyClosePanelButtonState;
-import scripts.cats.hmi.asserts.AudioSettings.VerifyClosePanelButtonVisible;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationLabel;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListEntryText;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListIsTimeSorted;
@@ -44,7 +42,6 @@ import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListSize;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListText;
 import scripts.cats.hmi.asserts.VerifyLoadingOverlayIsVisible;
 import scripts.cats.hmi.asserts.VerifyPopupVisible;
-import scripts.cats.hmi.asserts.VerifySymbolButtonState;
 
 import java.util.List;
 
@@ -240,38 +237,6 @@ public class GGBasicUISteps extends AutomationSteps
         }
 
         record( localStep );
-    }
-
-    @Then("$profileName verifies that $buttonName button has state $state ")
-    public void verifyStateForSymbolButton(final String profileName, final String buttonName, final String state)
-    {
-        evaluate( remoteStep( "User clicks on " + buttonName + "button" ).scriptOn(
-                profileScriptResolver().map( VerifySymbolButtonState.class, BookableProfileName.javafx ),
-                assertProfile( profileName ) )
-                .input( VerifySymbolButtonState.IPARAM_SETTINGS_BUTTON_NAME, buttonName )
-                .input(VerifySymbolButtonState.IPARAM_SETTINGS_BUTTON_STATE, state)
-        );
-    }
-
-    @Then("$profileName verifies that close panel button number $number is visible ")
-    public void verifyClosePanelButtonVisible(final String profileName, final String number)
-    {
-        evaluate( remoteStep( "Verify clean button is visible" ).scriptOn(
-                profileScriptResolver().map( VerifyClosePanelButtonVisible.class, BookableProfileName.javafx ),
-                assertProfile( profileName ) )
-                .input( VerifyClosePanelButtonVisible.IPARAM_MUTE_BUTTON_NUMBER, number )
-        );
-    }
-
-    @Then("$profileName verifies that close panel button number $number is in $state state")
-    public void verifyClosePanelButtonState(final String profileName, final String number, final String state)
-    {
-        evaluate( remoteStep( "Verify close panel button is in expected state" ).scriptOn(
-                profileScriptResolver().map( VerifyClosePanelButtonState.class, BookableProfileName.javafx ),
-                assertProfile( profileName ) )
-                .input( VerifyClosePanelButtonState.IPARAM_MUTE_BUTTON_NUMBER, number )
-                .input( VerifyClosePanelButtonState.IPARAM_STATE, state )
-        );
     }
 
     private StatusKey retrieveStatusKey(final String source, final String key) {
