@@ -1,17 +1,16 @@
 package scripts.cats.hmi.asserts.NotificationDisplay
 
 import com.frequentis.c4i.test.model.ExecutionDetails
+import com.frequentis.voice.hmi.component.layout.list.listview.CustomListView
 import com.google.common.collect.Ordering
 import javafx.scene.Node
 import javafx.scene.control.Label
-import javafx.scene.control.ListView
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
-
 
 class VerifyNotificationListIsTimeSorted extends FxScriptTemplate {
 
@@ -31,7 +30,7 @@ class VerifyNotificationListIsTimeSorted extends FxScriptTemplate {
                 .success(notificationPopup .isVisible()))
 
         if (notificationPopup.isVisible()) {
-            final ListView list = robot.lookup( "#notification"+listName+"List" ).queryFirst()
+            final CustomListView list = robot.lookup( "#notification"+listName+"List" ).queryFirst()
             int receivedListSize = list.getItems().size();
 
             List<LocalDateTime> dateTimeList = new ArrayList<LocalDateTime>()
