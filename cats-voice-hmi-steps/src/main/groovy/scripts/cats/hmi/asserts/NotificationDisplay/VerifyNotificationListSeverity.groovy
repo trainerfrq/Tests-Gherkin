@@ -28,19 +28,12 @@ class VerifyNotificationListSeverity extends FxScriptTemplate {
                 .success(notificationPopup.isVisible()))
 
         if (notificationPopup.isVisible()) {
-            final Pane notificationEntry = robot.lookup("#notification"+listName+"List").queryFirst()
+            final Pane notificationEntry = robot.lookup("#notificationEventList #notificationEntry_" + entryNumber).queryFirst()
 
-            evaluate(ExecutionDetails.create("Verify notification Event List exists")
-                    .expected("List of Events exists")
-                    .success(notificationEntry != null));
-
-            ObservableList events = notificationEntry.getChildren()
-            List<Label> eventsList = new ArrayList<>(events)
-
-            evaluate(ExecutionDetails.create("Notification list "+listName+" severity is the expected one")
-                    .expected("Expected severity: " + severity)
-                    .received("Received severity: " + eventsList.get(entryNumber).toString())
-                    .success(eventsList.get(entryNumber).toString().contains(severity)));
+            evaluate(ExecutionDetails.create("Notification list " + listName + " severity is the expected one")
+                    .received(Arrays.toString(notificationEntry.getStyleClass().toArray()))
+                    .expected(severity)
+                    .success(notificationEntry.getStyleClass().contains(severity)));
 
         }
     }
