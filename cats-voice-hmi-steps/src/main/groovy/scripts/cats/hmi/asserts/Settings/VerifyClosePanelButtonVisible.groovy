@@ -17,7 +17,7 @@ class VerifyClosePanelButtonVisible extends FxScriptTemplate {
         Node button = robot.lookup("#closePanelButton_" + buttonNumber).queryFirst()
 
         evaluate(ExecutionDetails.create("Button was found")
-                .expected("Button is not null")
+                .expected("Button is visible")
                 .success(button.isVisible()))
     }
 

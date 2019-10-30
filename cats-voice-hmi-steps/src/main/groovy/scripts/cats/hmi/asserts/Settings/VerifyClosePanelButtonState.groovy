@@ -32,7 +32,7 @@ class VerifyClosePanelButtonState extends FxScriptTemplate {
             case "next":
                 evaluate(ExecutionDetails.create("Verify that close panel button state is: " + state)
                         .expected("Close panel button state is: " + state)
-                        .success(!button.getPseudoClassStates().contains(PseudoClass.getPseudoClass("next"))))
+                        .success(button.getPseudoClassStates().contains(PseudoClass.getPseudoClass("next"))))
                 break
             default:
                 break

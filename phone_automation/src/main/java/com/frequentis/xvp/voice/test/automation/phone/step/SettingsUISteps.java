@@ -178,20 +178,19 @@ public class SettingsUISteps extends AutomationSteps
                 .input( CleanUpMuteSideToneButton.IPARAM_MUTE_BUTTON_NAME, buttonName ) );
     }
 
-
-    @Then("$profileName checks that $buttonName button has state $state ")
-    public void verifyStateForSymbolButton(final String profileName, final String buttonName, final String state)
+    @Then("$profileName verifies that the state of $btnName button is $state state")
+    public void verifyButtonState(final String profileName, final String btnName, final String state)
     {
-        evaluate( remoteStep( "User verifies " + buttonName + "state" ).scriptOn(
-                profileScriptResolver().map( VerifySymbolButtonState.class, BookableProfileName.javafx ),
-                assertProfile( profileName ) )
-                .input( VerifySymbolButtonState.IPARAM_BUTTON_NAME, buttonName )
-                .input(VerifySymbolButtonState.IPARAM_BUTTON_STATE, state)
+        evaluate( remoteStep( "User verifies " + btnName + "state" ).scriptOn(
+            profileScriptResolver().map( VerifySymbolButtonState.class, BookableProfileName.javafx ),
+            assertProfile( profileName ) )
+            .input( VerifySymbolButtonState.IPARAM_BUTTON_NAME, btnName )
+            .input(VerifySymbolButtonState.IPARAM_BUTTON_STATE, state)
         );
     }
 
-    @Then("$profileName verifies that close panel button number $number is visible ")
-    public void verifyClosePanelButtonVisible(final String profileName, final Integer number)
+    @Then("$profileName verifies that close panel button $number is visible")
+    public void verifyButtonVisible (final String profileName, final Integer number)
     {
         evaluate( remoteStep( "Verify clean button is visible" ).scriptOn(
                 profileScriptResolver().map( VerifyClosePanelButtonVisible.class, BookableProfileName.javafx ),

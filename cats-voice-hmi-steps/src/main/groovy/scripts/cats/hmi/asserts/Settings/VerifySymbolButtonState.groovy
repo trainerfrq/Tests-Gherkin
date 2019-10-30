@@ -22,12 +22,12 @@ class VerifySymbolButtonState extends FxScriptTemplate{
         switch(buttonState) {
             case "disabled":
                 evaluate(ExecutionDetails.create("Verify that" + symbolButton + "call button state is: " + buttonState)
-                        .expected(symbolButton + " button state is: " + buttonState)
+                        .expected("Button state is: " + buttonState)
                         .success(symbolButton.isDisabled()))
                 break
             case "enabled":
                 evaluate(ExecutionDetails.create("Verify that" + symbolButton + "call button state is: " + buttonState)
-                        .expected(symbolButton + " button state is: " + buttonState)
+                        .expected("Button state is: " + buttonState)
                         .success(!symbolButton.isDisabled()))
                 break
             default:
