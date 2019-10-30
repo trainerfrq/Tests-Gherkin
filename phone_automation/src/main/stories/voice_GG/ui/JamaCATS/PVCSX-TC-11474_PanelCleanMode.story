@@ -67,7 +67,7 @@ Meta:
 @TEST_STEP_REACTION: The initial screen is visible for Op1. Settings window is not visible.
 @TEST_STEP_REF: [CATS-REF: FPXX]
 When HMI OP3 clicks on close panel button number 3
-Then HMI OP3 has in the DISPLAY STATUS section connection the state DEGRADED
+Then HMI OP3 has in the DISPLAY STATUS section connection the state CONNECTED
 Then HMI OP3 verifies that popup settings is not visible
 
 
