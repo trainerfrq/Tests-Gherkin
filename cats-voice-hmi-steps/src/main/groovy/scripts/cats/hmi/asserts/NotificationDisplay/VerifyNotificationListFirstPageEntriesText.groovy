@@ -3,10 +3,9 @@ package scripts.cats.hmi.asserts.NotificationDisplay
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
 import javafx.scene.control.Label
-import javafx.scene.control.ListView
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class VerifyNotificationListAllEntriesText extends FxScriptTemplate {
+class VerifyNotificationListFirstPageEntriesText extends FxScriptTemplate {
 
     public static final String IPARAM_TEXT = "text"
     public static final String IPARAM_LIST_NAME = "list_name"
@@ -24,19 +23,17 @@ class VerifyNotificationListAllEntriesText extends FxScriptTemplate {
                 .success(notificationPopup.isVisible()))
 
         if (notificationPopup.isVisible()) {
-            final ListView list = robot.lookup( "#notification"+listName+"List" ).queryFirst()
             List<String> allEntriesTextLabels = new ArrayList<String>()
-            for(int i=0; i<list.getItems().size(); i++){
+            for(int i=0; i<6; i++){
                 Label textLabel = robot.lookup("#notification"+listName+"List #notificationEntry_"+i+" #notificationTextLabel").queryFirst()
-                allEntriesTextLabels.add(textLabel.getText())
+                if(textLabel!=null){
+                    allEntriesTextLabels.add(textLabel.getText())
+                }
             }
-
                 evaluate(ExecutionDetails.create("Notification list "+listName+" contains text")
                         .received(allEntriesTextLabels.toString())
                         .expected(text)
                         .success(allEntriesTextLabels.contains(text)));
-
-
         }
     }
 }
