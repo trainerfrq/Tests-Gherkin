@@ -31,7 +31,7 @@ class CountNotificationStateListItems extends FxScriptTemplate {
                     .received(allEntriesTextLabels.size().toString())
                     .success(true));
 
-            setOutput(OPARAM_ITEMS_NUMBER, allEntriesTextLabels.size())
+            setOutput(OPARAM_ITEMS_NUMBER, allEntriesTextLabels.size().toString())
         }
     }
 }
