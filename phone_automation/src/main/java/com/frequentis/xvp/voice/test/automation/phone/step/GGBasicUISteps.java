@@ -33,8 +33,9 @@ import scripts.cats.hmi.actions.ClickOnSymbolButton;
 import scripts.cats.hmi.actions.ClickStatusLabel;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationClearEventButton;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationDisplay;
+import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationScrollDownButton;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationTab;
-import scripts.cats.hmi.actions.NotificationDisplay.CountNotificationStateListItems;
+import scripts.cats.hmi.actions.NotificationDisplay.CountStateListItemsOnFirstTwoPages;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationLabel;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListEntryText;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListFirstPageEntriesText;
@@ -201,10 +202,10 @@ public class GGBasicUISteps extends AutomationSteps
     {
         RemoteStepResult remoteStepResult =
         evaluate( remoteStep( "Count State list items" )
-                .scriptOn(profileScriptResolver().map( CountNotificationStateListItems.class, BookableProfileName.javafx ),
+                .scriptOn(profileScriptResolver().map( CountStateListItemsOnFirstTwoPages.class, BookableProfileName.javafx ),
                         assertProfile( profileName ) ));
 
-        final String itemsNumber = (String) remoteStepResult.getOutput(CountNotificationStateListItems.OPARAM_ITEMS_NUMBER);
+        final String itemsNumber = (String) remoteStepResult.getOutput(CountStateListItemsOnFirstTwoPages.OPARAM_ITEMS_NUMBER);
         setStoryListData(number, itemsNumber);
     }
 
@@ -288,6 +289,15 @@ public class GGBasicUISteps extends AutomationSteps
         }
 
         record( localStep );
+    }
+
+    @When("$profileName clicks the scroll down button for $listName list")
+    public void clickNotificationListScrollDown( final String profileName, final String listName)
+    {
+        evaluate( remoteStep( "Click scroll down button in Notification Display list" +listName)
+                .scriptOn(profileScriptResolver().map( ClickOnNotificationScrollDownButton.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input(ClickOnNotificationScrollDownButton.IPARAM_LIST_NAME, listName));
     }
 
     private StatusKey retrieveStatusKey(final String source, final String key) {
