@@ -35,7 +35,7 @@ import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationClearEven
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationDisplay;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationScrollDownButton;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationTab;
-import scripts.cats.hmi.actions.NotificationDisplay.CountStateListItemsOnFirstTwoPages;
+import scripts.cats.hmi.actions.NotificationDisplay.CountStateListItems;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationLabel;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListEntryText;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListFirstPageEntriesText;
@@ -202,10 +202,10 @@ public class GGBasicUISteps extends AutomationSteps
     {
         RemoteStepResult remoteStepResult =
         evaluate( remoteStep( "Count State list items" )
-                .scriptOn(profileScriptResolver().map( CountStateListItemsOnFirstTwoPages.class, BookableProfileName.javafx ),
+                .scriptOn(profileScriptResolver().map( CountStateListItems.class, BookableProfileName.javafx ),
                         assertProfile( profileName ) ));
 
-        final String itemsNumber = (String) remoteStepResult.getOutput(CountStateListItemsOnFirstTwoPages.OPARAM_ITEMS_NUMBER);
+        final String itemsNumber = (String) remoteStepResult.getOutput(CountStateListItems.OPARAM_ITEMS_NUMBER);
         setStoryListData(number, itemsNumber);
     }
 
