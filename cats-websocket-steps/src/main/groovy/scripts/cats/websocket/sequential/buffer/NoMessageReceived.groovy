@@ -36,7 +36,7 @@ class NoMessageReceived extends AbstractBufferScript {
                 .expected("Buffer should not be null: ")
                 .success(usedBuffer != null))
 
-        // verify that at least one message is in the buffer
+        // verify that there is no message received
         evaluate(ExecutionDetails.create("Verify the buffer length")
                 .expected("there is no message stored in the buffer named: " + bufferKey)
                 .success(receiveNrTextMessages(endpoint, bufferKey, 0, 10000)))

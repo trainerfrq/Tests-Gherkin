@@ -588,7 +588,17 @@ public class GGBasicSteps extends WebsocketAutomationSteps
          final String audioDirection )
    {
       receiveCallIncomingIndication( namedWebSocket, bufferName, callSourceName, callTargetName, phoneCallIdName, "IA",
-            audioDirection, CallStatusIndication.CONNECTED, "URGENT" );
+            audioDirection, CallStatusIndication.CONNECTED, "URGENT", null );
+   }
+
+
+   @When("$namedWebSocket receives call incoming indication for IA call on message buffer named $bufferName with $callSource , $callTarget , audio direction $audioDirection and monitoring type $monitoringType and names $incomingPhoneCallId")
+   public void receiveCallIncomingIndicationWithAudioDirectionAndMonitoringType( final String namedWebSocket, final String bufferName,
+         final String callSourceName, final String callTargetName, final String audioDirection, final String monitoringType,
+         final String phoneCallIdName )
+   {
+      receiveCallIncomingIndication( namedWebSocket, bufferName, callSourceName, callTargetName, phoneCallIdName, "IA",
+            audioDirection, CallStatusIndication.CONNECTED, "URGENT", monitoringType );
    }
 
 
@@ -597,7 +607,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
          final String callSourceName, final String callTargetName, final String phoneCallIdName )
    {
       receiveCallIncomingIndication( namedWebSocket, bufferName, callSourceName, callTargetName, phoneCallIdName,
-            "DA/IDA", null, CallStatusIndication.INC_INITIATED, "NON-URGENT" );
+            "DA/IDA", null, CallStatusIndication.INC_INITIATED, "NON-URGENT", null );
    }
 
 
@@ -607,7 +617,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
          final String phoneCallIdName )
    {
       receiveCallIncomingIndication( namedWebSocket, bufferName, callSourceName, callTargetName, phoneCallIdName,
-            "DA/IDA", null, callStatus, "NON-URGENT" );
+            "DA/IDA", null, callStatus, "NON-URGENT", null );
    }
 
 
@@ -626,7 +636,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
          final String callSourceName, final String callTargetName, final String phoneCallIdName )
    {
       receiveCallIncomingIndication( namedWebSocket, bufferName, callSourceName, callTargetName, phoneCallIdName,
-            "DA/IDA", null, CallStatusIndication.INC_INITIATED, "URGENT" );
+            "DA/IDA", null, CallStatusIndication.INC_INITIATED, "URGENT", null );
    }
 
 
@@ -908,30 +918,30 @@ public class GGBasicSteps extends WebsocketAutomationSteps
         sendQueryFullCallStatusRequest( namedWebSocket );
     }
 
-    @Then("$namedWebSocket receives full call status on message buffer named $bufferName with $callSource , $callTarget , $callType , $direction , $callStatus and $priority")
+    @Then("$namedWebSocket receives full call status on message buffer named $bufferName with $callSource , $callTarget , $callType , $direction , $callStatus , $monitoringType and $priority")
     public void receiveFullCallStatusResponse( final String namedWebSocket, final String bufferName,
-                                               final String callSourceName, final String callTargetName, final String callType, final String direction, final String callStatus,
+                                               final String callSourceName, final String callTargetName, final String callType, final String direction, final String callStatus, final String monitoringType,
                                                final String priority)
     {
-        receiveFullCallStatus( namedWebSocket, bufferName, callSourceName, callTargetName,
-                callType, direction, callStatus, priority );
+       receiveFullCallStatus( namedWebSocket, bufferName, callSourceName, callTargetName,
+             callType, direction, callStatus, priority, monitoringType );
     }
 
 
-   @When("$namedWebSocket establishes an outgoing monitoring call with source $callSourceName and target $callTargetName and names $phoneCallIdName")
-   public void establishOutgoingMonitoringCall(final String namedWebSocket, final String callSourceName, final String callTargetName, final String phoneCallIdName)
+   @When("$namedWebSocket establishes an outgoing monitoring call with source $callSourceName , target $callTargetName and monitoring type $monitoringType and names $phoneCallIdName")
+   public void establishOutgoingMonitoringCall(final String namedWebSocket, final String callSourceName, final String callTargetName, final String monitoringType, final String phoneCallIdName)
    {
-      establishOutgoingCall( namedWebSocket, callSourceName, callTargetName, phoneCallIdName, "MONITORING", null, CallStatusIndication.OUT_INITIATING, null, "ALL" );
+      establishOutgoingCall( namedWebSocket, callSourceName, callTargetName, phoneCallIdName, "MONITORING", null, CallStatusIndication.OUT_INITIATING, null, monitoringType );
    }
 
 
-   @When("$namedWebSocket receives call incoming indication for monitoring call on message buffer named $bufferName with $callSource and $callTarget and names $incomingMonitoringCallId and audio direction $audioDirection")
+   @When("$namedWebSocket receives call incoming indication for monitoring call on message buffer named $bufferName with $callSource , $callTarget ,audio direction $audioDirection and monitoring type $monitoringType and names $incomingMonitoringCallId")
    public void receiveMonitoringCallIncomingIndicationWithAudioDirection( final String namedWebSocket, final String bufferName,
-         final String callSourceName, final String callTargetName, final String phoneCallIdName,
-         final String audioDirection )
+         final String callSourceName, final String callTargetName, final String audioDirection, final String monitoringType,
+         final String phoneCallIdName )
    {
-      receiveMonitoringCallIncomingIndication( namedWebSocket, bufferName, callSourceName, callTargetName, phoneCallIdName, "MONITORING",
-            audioDirection, CallStatusIndication.CONNECTED, "NON-URGENT", "ALL" );
+      receiveCallIncomingIndication( namedWebSocket, bufferName, callSourceName, callTargetName, phoneCallIdName, "MONITORING",
+            audioDirection, CallStatusIndication.CONNECTED, "NON-URGENT", monitoringType );
    }
 
 
@@ -1023,7 +1033,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
    private void receiveCallIncomingIndication( final String namedWebSocket, final String bufferName,
          final String callSourceName, final String callTargetName, final String phoneCallIdName, final String callType,
-         final Object audioDirection, final String callStatus, final String priority )
+         final Object audioDirection, final String callStatus, final String priority, final String monitoringType )
    {
       final ProfileToWebSocketConfigurationReference reference =
             getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
@@ -1056,7 +1066,9 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             .details( match( "AudioDirection matches", jsonMessage.body().callIncomingIndication().getAudioDirection(),
                   equalTo( audioDirection ) ) )
             .details( match( "Call priority matches", jsonMessage.body().callIncomingIndication().getCallPriority(),
-                  equalTo( priority ) ) ) );
+                  equalTo( priority ) ) )
+            .details( match( "Monitoring type matches", jsonMessage.body().callIncomingIndication().getMonitoringType(),
+                  equalTo( monitoringType ) ) ) );
 
       setStoryListData( phoneCallIdName, jsonMessage.body().callIncomingIndication().getCallId() );
    }
@@ -1261,7 +1273,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
     private void receiveFullCallStatus( final String namedWebSocket, final String bufferName,
                                                 final String callSourceName, final String callTargetName, final String callType,
-                                                final Object audioDirection, final String callStatus, final String priority )
+                                                final Object audioDirection, final String callStatus, final String priority, final String monitoringType )
     {
         final ProfileToWebSocketConfigurationReference reference =
                 getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
@@ -1294,51 +1306,11 @@ public class GGBasicSteps extends WebsocketAutomationSteps
                     .details( match( "AudioDirection matches", response.getStatus().getAudioDirection(),
                             equalTo( audioDirection ) ) )
                     .details( match( "Call priority matches", response.getStatus().getCallPriority(),
-                            equalTo( priority ) ) ) );
+                            equalTo( priority ) ) )
+                     .details( match( "Monitoring type matches", response.getStatus().getMonitoringType(),
+                            equalTo( monitoringType ) ) ) );
         }
     }
-
-   private void receiveMonitoringCallIncomingIndication( final String namedWebSocket, final String bufferName,
-         final String callSourceName, final String callTargetName, final String phoneCallIdName, final String callType,
-         final String audioDirection, final String callStatus, final String priority, final String monitoringType )
-   {
-      final ProfileToWebSocketConfigurationReference reference =
-            getStoryListData( namedWebSocket, ProfileToWebSocketConfigurationReference.class );
-
-      final RemoteStepResult remoteStepResult =
-            evaluate(
-                  remoteStep( "Receiving call incoming indication on buffer named " + bufferName )
-                        .scriptOn( profileScriptResolver().map( ReceiveLastReceivedMessage.class,
-                              BookableProfileName.websocket ), requireProfile( reference.getProfileName() ) )
-                        .input( ReceiveLastReceivedMessage.IPARAM_ENDPOINTNAME, reference.getKey() )
-                        .input( ReceiveLastReceivedMessage.IPARAM_BUFFERKEY, bufferName ) );
-
-      final String jsonResponse =
-            ( String ) remoteStepResult.getOutput( SendAndReceiveTextMessage.OPARAM_RECEIVEDMESSAGE );
-      final JsonMessage jsonMessage = JsonMessage.fromJson( jsonResponse );
-
-      evaluate( localStep( "Verify call incoming indication" )
-            .details( match( "Is call incoming indication", jsonMessage.body().isCallIncomingIndication(),
-                  equalTo( true ) ) )
-            .details( match( "Call status matches", jsonMessage.body().callIncomingIndication().getCallStatus(),
-                  equalTo( callStatus ) ) )
-            .details( match( "Call type matches", jsonMessage.body().callIncomingIndication().getCallType(),
-                  equalTo( callType ) ) )
-            .details( match( "Calling party matches",
-                  jsonMessage.body().callIncomingIndication().getCallingParty().getUri(),
-                  containsString( getStoryListData( callSourceName, String.class ) ) ) )
-            .details(
-                  match( "Called party matches", jsonMessage.body().callIncomingIndication().getCalledParty().getUri(),
-                        containsString( getStoryListData( callTargetName, String.class ) ) ) )
-            .details( match( "AudioDirection matches", jsonMessage.body().callIncomingIndication().getAudioDirection(),
-                  equalTo( audioDirection ) ) )
-            .details( match( "Call priority matches", jsonMessage.body().callIncomingIndication().getCallPriority(),
-                  equalTo( priority ) ) )
-            .details( match( "Monitoring Type matches", jsonMessage.body().callIncomingIndication().getMonitoringType(),
-                  equalTo( monitoringType ) ) ) );
-
-      setStoryListData( phoneCallIdName, jsonMessage.body().callIncomingIndication().getCallId() );
-   }
 
     private DAKey retrieveDaKey(final String source, final String target) {
         final DAKey daKey = getStoryListData(source + "-" + target, DAKey.class);

@@ -56,8 +56,6 @@ When WS3 chooses mission with name EAST-EXEC from available missions named avail
 Then WS3 receives mission changed indication on buffer named MissionChangedIndicationBuffer3 equal to missionIdToChange3 and names missionId3 and roleId3
 Then WS3 confirms mission change completed for mission missionId3
 
-
-
 Scenario: Create the message buffers
 When WS1 opens the message buffer for message type callIncomingIndication named CallIncomingIndicationBuffer1
 When WS1 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer1
@@ -72,7 +70,7 @@ When WS1 queries phone data for mission missionId1 in order to call OP3 and name
 
 Scenario: Op1 establishes an outgoing monitoring call to Op3
 		  @REQUIREMENTS:GID-2505728
-When WS1 establishes an outgoing monitoring call with source monitoringCallSource1 and target monitoringCallTarget1 and names outgoingMonitoringCallId1
+When WS1 establishes an outgoing monitoring call with source monitoringCallSource1 , target monitoringCallTarget1 and monitoring type GG and names outgoingMonitoringCallId1
 And waiting for 1 second
 Then WS1 is receiving call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingMonitoringCallId1 and status connected and audio direction RX_MONITORED
 
@@ -81,7 +79,7 @@ When WS3 does not receive call incoming indication for monitoring call on messag
 
 Scenario: Op1 does a full call status request
 When WS1 queries full call status
-Then WS1 receives full call status on message buffer named FullCallStatusResponseBuffer1 with monitoringCallSource1 , monitoringCallTarget1 , MONITORING , RX_MONITORED , connected and NON-URGENT
+Then WS1 receives full call status on message buffer named FullCallStatusResponseBuffer1 with monitoringCallSource1 , monitoringCallTarget1 , MONITORING , RX_MONITORED , connected , GG and NON-URGENT
 
 Scenario: Op3 does a full call status request
 When WS3 queries full call status
@@ -94,7 +92,7 @@ Then WS1 confirms mission change completed for mission missionId2
 
 Scenario: Op1 does a full call status request
 When WS1 queries full call status
-Then WS1 receives full call status on message buffer named FullCallStatusResponseBuffer1 with monitoringCallSource1 , monitoringCallTarget1 , MONITORING , RX_MONITORED , connected and NON-URGENT
+Then WS1 receives full call status on message buffer named FullCallStatusResponseBuffer1 with monitoringCallSource1 , monitoringCallTarget1 , MONITORING , RX_MONITORED , connected , GG and NON-URGENT
 
 Scenario: Op3 does a full call status request
 When WS3 queries full call status
@@ -107,7 +105,7 @@ Then WS1 confirms mission change completed for mission missionId4
 
 Scenario: Op1 does a full call status request
 When WS1 queries full call status
-Then WS1 receives full call status on message buffer named FullCallStatusResponseBuffer1 with monitoringCallSource1 , monitoringCallTarget1 , MONITORING , RX_MONITORED , connected and NON-URGENT
+Then WS1 receives full call status on message buffer named FullCallStatusResponseBuffer1 with monitoringCallSource1 , monitoringCallTarget1 , MONITORING , RX_MONITORED , connected , GG and NON-URGENT
 
 Scenario: Op3 does a full call status request
 When WS3 queries full call status

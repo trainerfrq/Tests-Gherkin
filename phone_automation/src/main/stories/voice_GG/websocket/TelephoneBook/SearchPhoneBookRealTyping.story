@@ -8,12 +8,12 @@ Meta: @BeforeStory: ../includes/@PrepareClientWithMissionAndSipPhone.story
 
 Scenario: Define phone book entries
 Given the following phone book entries:
-| key    | uri                    | name              | full-name | location | organization | notes | display-addon |
-| entry1 | sip:police@78.56.43.21 | Police-Ambulance1 |           |          |              |       |               |
-| entry2 | sip:police@99.56.34.21 | Police-Ambulance2 |           |          |              |       |               |
-| entry3 | sip:police@12.34.56.78 | Police1           |           |          |              |       |               |
-| entry4 | sip:police@12.34.56.89 | Police2           |           |          |              |       |               |
-| entry5 | sip:police@78.65.43.21 | Police3           |           |          |              |       |               |
+| key    | uri                    | name              | full-name | location | organization | notes | display-addon | call-priority |
+| entry1 | sip:police@78.56.43.21 | Police-Ambulance1 |           |          |              |       |               |   NON_URGENT  |
+| entry2 | sip:police@99.56.34.21 | Police-Ambulance2 |           |          |              |       |               |   NON_URGENT  |
+| entry3 | sip:police@12.34.56.78 | Police1           |           |          |              |       |               |   NON_URGENT  |
+| entry4 | sip:police@12.34.56.89 | Police2           |           |          |              |       |               |   NON_URGENT  |
+| entry5 | sip:police@78.65.43.21 | Police3           |           |          |              |       |               |   NON_URGENT  |
 
 Scenario: Create the message buffers
 When WS1 opens the message buffer for message type phoneBookResponse named PhoneBookResponseBuffer
