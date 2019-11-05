@@ -16,11 +16,12 @@
  ************************************************************************/
 package com.frequentis.xvp.tools.cats.websocket.automation.model;
 
+import java.io.Serializable;
+
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameter;
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameterBase;
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameterClass;
-
-import java.io.Serializable;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookResponseItem;
 
 @CatsCustomParameterClass
 public class PhoneBookEntry extends CatsCustomParameterBase implements Serializable
@@ -45,6 +46,9 @@ public class PhoneBookEntry extends CatsCustomParameterBase implements Serializa
 
    @CatsCustomParameter(parameterName = "display-addon")
    private String displayAddon;
+
+   @CatsCustomParameter(parameterName = "call-priority")
+   private PhoneBookResponseItem.CallPriority callPriority;
 
 
    public String getUri()
@@ -141,11 +145,17 @@ public class PhoneBookEntry extends CatsCustomParameterBase implements Serializa
    }
 
 
+   public PhoneBookResponseItem.CallPriority getCallPriority() { return callPriority; }
+
+
+   public void setCallPriority( final PhoneBookResponseItem.CallPriority callPriority ) { this.callPriority = callPriority; }
+
+
    @Override
    public String toString()
    {
       return "PhoneBookEntry{" + "uri='" + uri + '\'' + ", name='" + name + '\'' + ", fullName='" + fullName + '\''
             + ", location='" + location + '\'' + ", organization='" + organization + '\'' + ", notes='" + notes + '\''
-            + ", displayAddon='" + displayAddon + '\'' + '}';
+            + ", displayAddon='" + displayAddon + '\'' + ", callPriority='" + callPriority + '\'' + '}';
    }
 }

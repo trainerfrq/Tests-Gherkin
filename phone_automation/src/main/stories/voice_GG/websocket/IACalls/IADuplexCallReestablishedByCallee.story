@@ -32,7 +32,7 @@ And waiting for 1 seconds
 Then WS2 is receiving call status indication on message buffer named CallStatusIndicationBuffer2 with callId callId2 and status connected and audio direction DUPLEX
 
 Scenario: Caller client receives the duplex call
-When WS1 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer1 with callSourceCalled and callTargetCalled and names callId1 and audio direction DUPLEX
+When WS1 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer1 with callSourceCalled , callTargetCalled , audio direction DUPLEX and monitoring type GG and names callId1
 
 Scenario: Callee client clears the phone call
 When WS2 clears the phone call with the callId callId2
@@ -46,7 +46,7 @@ And waiting for 1 seconds
 Then WS2 is receiving call status indication on message buffer named CallStatusIndicationBuffer2 with callId callId2 and status connected and audio direction DUPLEX
 
 Scenario: Caller client receives the duplex call
-When WS1 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer1 with callSourceCalled and callTargetCalled and names callId1 and audio direction DUPLEX
+When WS1 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer1 with callSourceCalled , callTargetCalled , audio direction DUPLEX and monitoring type GG and names callId1
 
 Scenario: Cleanup phone calls
 When WS1 clears the phone call with the callId callId1
