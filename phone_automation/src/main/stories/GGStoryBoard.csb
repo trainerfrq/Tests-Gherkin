@@ -8,7 +8,7 @@
     <cats:reportFormats>
         <cats:reportFormat>HTML</cats:reportFormat>
     </cats:reportFormats>
-<cats:reportPersistenceMode>ALL</cats:reportPersistenceMode>
+    <cats:reportPersistenceMode>ALL</cats:reportPersistenceMode>
     <cats:storyCollections>
         <cats:storyCollection enabled="false">
             <cats:name>Deploy Services</cats:name>
@@ -676,6 +676,45 @@
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/MissionsAndRoles/VerifyTelephoneBookForRoles.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                    </cats:stories>
+                    <cats:timeout>1800</cats:timeout>
+                </cats:storyList>
+            </cats:storyLists>
+        </cats:storyCollection>
+        <cats:storyCollection enabled="true">
+            <cats:name>Websocket - Monitoring</cats:name>
+            <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
+            <cats:report>
+                <cats:status>CREATED</cats:status>
+            </cats:report>
+            <cats:storyLists>
+                <cats:storyList enabled="true">
+                    <cats:name>Websocket - Monitoring</cats:name>
+                    <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
+                    <cats:repetitions>1</cats:repetitions>
+                    <cats:report>
+                        <cats:status>CREATED</cats:status>
+                    </cats:report>
+                    <cats:reports/>
+                    <cats:stories>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/includes/@PhoneTestData.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/Monitoring/IncomingMonitoringCallChangeMission.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/Monitoring/OutgoingMonitoringCallChangeMission.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>

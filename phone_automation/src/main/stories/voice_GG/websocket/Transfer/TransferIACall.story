@@ -31,7 +31,7 @@ And waiting for 3 seconds
 Then WS2 is receiving call status indication on message buffer named CallStatusIndicationBuffer2 with callId outgoingPhoneCallId2 and status connected and audio direction DUPLEX
 
 Scenario: Caller client receives the incoming call
-When WS1 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer1 with callSourceCalled and callTargetCalled and names incomingPhoneCallId2 and audio direction DUPLEX
+When WS1 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer1 with callSourceCalled , callTargetCalled , audio direction DUPLEX and monitoring type GG and names incomingPhoneCallId2
 
 Scenario: Callee operator puts the call on hold with call conditional flag
 		  @REQUIREMENTS:GID-2510076

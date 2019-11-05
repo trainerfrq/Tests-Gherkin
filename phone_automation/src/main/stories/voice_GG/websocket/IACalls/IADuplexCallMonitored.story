@@ -24,7 +24,7 @@ Then WS2 is receiving call status indication on message buffer named CallStatusI
 
 Scenario: Callee client receives the incoming call
 		  @REQUIREMENTS:GID-2841714
-When WS1 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer2 with callSourceCalling and callTargetCalling and names incomingPhoneCallId1 and audio direction RX_MONITORED
+When WS1 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer2 with callSourceCalling , callTargetCalling , audio direction RX_MONITORED and monitoring type GG and names incomingPhoneCallId1
 
 Scenario: Callee establishes an outgoing call
 When WS1 establishes an outgoing IA call with source callSourceCalled and target callTargetCalled and names outgoingPhoneCallId2
