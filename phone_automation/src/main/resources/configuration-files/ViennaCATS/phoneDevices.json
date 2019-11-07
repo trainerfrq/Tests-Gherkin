@@ -1,6 +1,6 @@
 [
   {
-    "opId": "cj-gg-cat-cwp-1",
+    "opId": "gg-cats-cwp-1",
     "devices": {
       "gg_input": {
         "type": "vp",
@@ -21,7 +21,7 @@
     }
   },
   {
-    "opId": "cj-gg-cat-cwp-2",
+    "opId": "gg-cats-cwp-2",
     "devices": {
       "gg_input": {
         "type": "vp",
@@ -42,7 +42,7 @@
     }
   },
   {
-    "opId": "cj-gg-cat-cwp-3",
+    "opId": "gg-cats-cwp-3",
     "devices": {
       "gg_input": {
         "type": "vp",

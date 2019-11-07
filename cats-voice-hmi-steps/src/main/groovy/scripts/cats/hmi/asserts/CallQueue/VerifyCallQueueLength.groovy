@@ -1,7 +1,9 @@
 package scripts.cats.hmi.asserts.CallQueue
 
 import com.frequentis.c4i.test.model.ExecutionDetails
-import javafx.scene.Node
+import com.frequentis.voice.hmi.component.layout.list.item.callQueue.CallQueueListItem
+import com.frequentis.voice.hmi.component.layout.list.scrollpane.CallQueueListView
+import javafx.collections.ObservableList
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 class VerifyCallQueueLength extends FxScriptTemplate {
@@ -11,12 +13,17 @@ class VerifyCallQueueLength extends FxScriptTemplate {
     void script() {
         Integer callQueueLength = assertInput(IPARAM_QUEUE_EXPECTED_LENGTH) as Integer;
 
-        Set<Node> activeCallQueueItems = robot.lookup("#activeList .callQueueItem").queryAll();
-        Set<Node> holdCallQueueItems = robot.lookup("#holdList .callQueueItem").queryAll();
-        Set<Node> waitingCallQueueItems = robot.lookup("#waitingList .callQueueItem").queryAll();
-        Set<Node> monitoringCallQueueItems = robot.lookup("#monitoringList .callQueueItem").queryAll();
+        CallQueueListView activeCallQueueItems = robot.lookup("#activeList").queryFirst();
+        CallQueueListView holdCallQueueItems = robot.lookup("#holdList").queryFirst();
+        CallQueueListView waitingCallQueueItems = robot.lookup("#waitingList").queryFirst();
+        CallQueueListView monitoringCallQueueItems = robot.lookup("#monitoringList").queryFirst();
 
-        int callQueueItems = activeCallQueueItems.size()+holdCallQueueItems.size()+waitingCallQueueItems.size()+monitoringCallQueueItems.size()
+        ObservableList<CallQueueListItem> activeItems =  activeCallQueueItems.getContainerCallQueueListItemsReadOnly();
+        ObservableList<CallQueueListItem> holdItems =  holdCallQueueItems.getContainerCallQueueListItemsReadOnly();
+        ObservableList<CallQueueListItem> waitItems =  waitingCallQueueItems.getContainerCallQueueListItemsReadOnly();
+        ObservableList<CallQueueListItem> monitoringItems =  monitoringCallQueueItems.getContainerCallQueueListItemsReadOnly();
+
+        int callQueueItems = activeItems.size()+holdItems.size()+waitItems.size()+monitoringItems.size()
 
         evaluate(ExecutionDetails.create("Verify call queue length is matching")
                 .expected("Call queue with a number of " + callQueueLength + " items")

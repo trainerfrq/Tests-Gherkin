@@ -57,7 +57,7 @@ When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in forwardOngoing state
 When HMI OP1 presses DA key OP2
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state
-Then HMI OP1 has a notification that shows Call Forward to cj-gg-cat-cwp-2 is active
+Then HMI OP1 has a notification that shows Call Forward to <<OP2_NAME>> is active
 
 Scenario: Operator opens Notification Display popup
 When HMI OP1 opens Notification Display list

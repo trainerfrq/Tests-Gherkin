@@ -1,9 +1,14 @@
 [
   {
-    "missionId": "174eb923-6ff9-4b7e-8372-d29c1c884c04",
+    "missionId": "13f9b516-e0ff-4269-b844-e2fdf0eff518",
     "missionName": "MAN-NIGHT-TACT",
     "missionAssignedRoles": [
-      "LOWER-EAST-EXEC"
+      "LOWER-EAST-EXEC",
+      "role1alias2",
+      "role1alias1",
+      "role1",
+      "groupall",
+      "group1"
     ],
     "missionMasterRole": "LOWER-EAST-EXEC",
     "missionDefaultSourceSipAddress": "sip:LowerEastExec@example.com",
@@ -11,9 +16,10 @@
     "maxIncomingIaCallsCount": 3,
     "maxIncomingPendingCallsCount": 16,
     "maxCallsOnHold": 5,
+    "maxOutgoingPositionMonitoringCalls": 1,
+    "maxIncomingPositionMonitoringCalls": 1,
     "priorityCallHandling": "indication",
     "priorityCallIntrusionWarningPeriod": 0,
-    "voiceMonitoringEnabled": false,
     "audibleAlertOnIncomingIACallEnabled": false,
     "missionAssignedCallRouteSelectors": [
       {
@@ -77,194 +83,84 @@
         "pattern": "sip:111{user_input}"
       }
     ],
-    "layoutId": "cca2f2db-5eaf-420d-b37a-fdaed773de5b",
+    "layoutId": "7cff5489-45c0-4483-869e-a53eb3cadfd8",
     "phoneSettings": {
       "sipAddresses": [
         "sip:LowerEastExec@example.com",
         "sip:role1alias2@example.com",
-        "sip:groupall@192.168.40.126:5060",
-        "sip:role1@example.com",
         "sip:role1alias1@example.com",
-        "sip:operator1@example.com",
-        "sip:group1@example.com"
-      ]
-    },
-    "unattendedSettings": {
-      "opUnattendedWarningTimeSpanSeconds": 10,
-      "permissions": {
-        "idleOnPositionUnattendedAllowed": true
-      }
-    },
-    "positionSettings": {
-      "chimeTone": "chime_01",
-      "keyClickTone": "input_01",
-      "opVolumeControlRange": {
-        "minValue": 0,
-        "maxValue": 9
-      },
-      "coVolumeControlRange": {
-        "minValue": 0,
-        "maxValue": 9
-      },
-      "maxAgGgBalanceAttenuation": 20,
-      "notificationsVolumeControlRange": {
-        "minValue": 0,
-        "maxValue": 9
-      },
-      "chimeVolumeControlRange": {
-        "minValue": 0,
-        "maxValue": 9
-      },
-      "keyClickVolumeControlRange": {
-        "minValue": 0,
-        "maxValue": 9
-      },
-      "opSidetoneVolumeControlRange": {
-        "minValue": 0,
-        "maxValue": 9
-      },
-      "coSidetoneVolumeControlRange": {
-        "minValue": 0,
-        "maxValue": 9
-      },
-      "brightnessControlRange": {
-        "minValue": 0,
-        "maxValue": 100
-      }
-    }
-  },
-  {
-    "missionId": "11505886-c060-4f6d-aae9-07c41bef3ca5",
-    "missionName": "WEST-EXEC",
-    "missionAssignedRoles": [
-      "LOWER-WEST-EXEC"
-    ],
-    "missionMasterRole": "LOWER-WEST-EXEC",
-    "missionDefaultSourceSipAddress": "sip:LowerWestExec@example.com",
-    "iaCallTimeoutMilliseconds": 2000,
-    "maxIncomingIaCallsCount": 1,
-    "maxIncomingPendingCallsCount": 16,
-    "maxCallsOnHold": 1,
-    "priorityCallHandling": "indication",
-    "priorityCallIntrusionWarningPeriod": 0,
-    "voiceMonitoringEnabled": false,
-    "audibleAlertOnIncomingIACallEnabled": false,
-    "missionAssignedCallRouteSelectors": [
-      {
-        "id": "default",
-        "name": "Default",
-        "patternType": "replacePlaceholder",
-        "pattern": "sip:{user_input}@example.com"
-      },
-      {
-        "id": "none",
-        "name": "None",
-        "patternType": "replacePlaceholder",
-        "pattern": "sip:{user_input}"
-      },
-      {
-        "id": "frqUser",
-        "name": "FrqUser",
-        "patternType": "replacePlaceholder",
-        "pattern": "sip:2{user_input}@example.com"
-      },
-      {
-        "id": "gmail",
-        "name": "Gmail",
-        "patternType": "replacePlaceholder",
-        "pattern": "sip:22{user_input}@example.com"
-      },
-      {
-        "id": "admin",
-        "name": "Admin",
-        "patternType": "replacePlaceholder",
-        "pattern": "sip:222{user_input}@example.com"
-      },
-      {
-        "id": "super",
-        "name": "Super",
-        "patternType": "replacePlaceholder",
-        "pattern": "sip:2222{user_input}@example.com"
-      },
-      {
-        "id": "student",
-        "name": "Student",
-        "patternType": "replacePlaceholder",
-        "pattern": "sip:22222{user_input}@example.com"
-      },
-      {
-        "id": "prof",
-        "name": "Professor",
-        "patternType": "replacePlaceholder",
-        "pattern": "sip:1{user_input}@example.com"
-      },
-      {
-        "id": "medic",
-        "name": "Medic",
-        "patternType": "replacePlaceholder",
-        "pattern": "sip:11{user_input}@example.com"
-      },
-      {
-        "id": "mail",
-        "name": "Mail",
-        "patternType": "replacePlaceholder",
-        "pattern": "sip:111{user_input}"
-      }
-    ],
-    "layoutId": "f39c4f05-4267-4d07-8a34-acbb84f9972a",
-    "phoneSettings": {
-      "sipAddresses": [
-        "sip:LowerWestExec@example.com",
-        "sip:groupall@192.168.40.126:5060",
-        "sip:role2alias2@example.com",
+        "sip:role1@example.com",
+        "sip:groupall@10.16.157.68:5060",
         "sip:group1@example.com",
-        "sip:role2alias1@example.com",
-        "sip:role2@example.com"
-      ]
+        "sip:operator1@example.com"
+      ],
+      "defaultSipPriority": "normal"
     },
     "positionSettings": {
       "chimeTone": "chime_01",
       "keyClickTone": "input_01",
       "opVolumeControlRange": {
         "minValue": 0,
-        "maxValue": 9
+        "maxValue": 100
       },
       "coVolumeControlRange": {
         "minValue": 0,
-        "maxValue": 10
+        "maxValue": 100
       },
       "maxAgGgBalanceAttenuation": 20,
       "notificationsVolumeControlRange": {
         "minValue": 0,
-        "maxValue": 10
+        "maxValue": 3
       },
       "chimeVolumeControlRange": {
         "minValue": 0,
-        "maxValue": 8
+        "maxValue": 3
       },
       "keyClickVolumeControlRange": {
         "minValue": 0,
-        "maxValue": 9
+        "maxValue": 3
       },
       "opSidetoneVolumeControlRange": {
         "minValue": 0,
-        "maxValue": 9
+        "maxValue": 3
       },
       "coSidetoneVolumeControlRange": {
         "minValue": 0,
-        "maxValue": 9
+        "maxValue": 3
       },
       "brightnessControlRange": {
         "minValue": 0,
         "maxValue": 100
       }
+    },
+    "settingData": {
+      "missionSettings": {
+        "timeoutSettings": {
+          "cleanPanelModeCallTimeout": 0,
+          "pttDecay": 0,
+          "pttElsewhereDecay": 0,
+          "squDecay": 0,
+          "minNotificationDisplayTime": 0,
+          "notificationCycleDuration": 0
+        }
+      }
+    },
+    "voiceMonitoring": {
+      "agIaCallMonitoringEnabled": false,
+      "ggIaCallMonitoringEnabled": true,
+      "incomingPositionMonitoringCallsIndicationEnabled": true
     }
   },
   {
-    "missionId": "21ac82ce-d7e3-4426-b601-b685b5b889db",
+    "missionId": "50331874-0345-42d1-b5a9-e5611eb84fc3",
     "missionName": "EAST-EXEC",
     "missionAssignedRoles": [
-      "UPPER-EAST-EXEC"
+      "UPPER-EAST-EXEC",
+      "role1alias1",
+      "role1",
+      "groupall",
+      "role1alias2",
+      "group1"
     ],
     "missionMasterRole": "UPPER-EAST-EXEC",
     "missionDefaultSourceSipAddress": "sip:UpperEastExec@example.com",
@@ -272,9 +168,10 @@
     "maxIncomingIaCallsCount": 3,
     "maxIncomingPendingCallsCount": 16,
     "maxCallsOnHold": 5,
+    "maxOutgoingPositionMonitoringCalls": 2,
+    "maxIncomingPositionMonitoringCalls": 2,
     "priorityCallHandling": "indication",
     "priorityCallIntrusionWarningPeriod": 0,
-    "voiceMonitoringEnabled": false,
     "audibleAlertOnIncomingIACallEnabled": false,
     "missionAssignedCallRouteSelectors": [
       {
@@ -338,51 +235,923 @@
         "pattern": "sip:111{user_input}"
       }
     ],
-    "layoutId": "1091cfe1-3a02-4c49-995d-d6d6812df784",
+    "layoutId": "97c3274b-95f8-4400-8391-18253f088772",
     "phoneSettings": {
       "sipAddresses": [
         "sip:UpperEastExec@example.com",
-        "sip:role1@example.com",
         "sip:role1alias1@example.com",
-        "sip:role1alias2@example.com"
-      ]
+        "sip:role1@example.com",
+        "sip:groupall@10.16.157.68:5060",
+        "sip:role1alias2@example.com",
+        "sip:group1@example.com"
+      ],
+      "defaultSipPriority": "normal"
     },
     "positionSettings": {
       "chimeTone": "chime_01",
       "keyClickTone": "input_01",
       "opVolumeControlRange": {
         "minValue": 0,
-        "maxValue": 9
+        "maxValue": 100
       },
       "coVolumeControlRange": {
         "minValue": 0,
-        "maxValue": 9
+        "maxValue": 100
       },
       "maxAgGgBalanceAttenuation": 20,
       "notificationsVolumeControlRange": {
         "minValue": 0,
-        "maxValue": 9
+        "maxValue": 3
       },
       "chimeVolumeControlRange": {
         "minValue": 0,
-        "maxValue": 10
+        "maxValue": 3
       },
       "keyClickVolumeControlRange": {
         "minValue": 0,
-        "maxValue": 11
+        "maxValue": 3
       },
       "opSidetoneVolumeControlRange": {
         "minValue": 0,
-        "maxValue": 11
+        "maxValue": 3
       },
       "coSidetoneVolumeControlRange": {
         "minValue": 0,
-        "maxValue": 11
+        "maxValue": 3
       },
       "brightnessControlRange": {
         "minValue": 0,
         "maxValue": 100
       }
+    },
+    "settingData": {
+      "missionSettings": {
+        "timeoutSettings": {
+          "cleanPanelModeCallTimeout": 0,
+          "pttDecay": 0,
+          "pttElsewhereDecay": 0,
+          "squDecay": 0,
+          "minNotificationDisplayTime": 0,
+          "notificationCycleDuration": 0
+        }
+      }
+    },
+    "voiceMonitoring": {
+      "agIaCallMonitoringEnabled": true,
+      "ggIaCallMonitoringEnabled": true,
+      "incomingPositionMonitoringCallsIndicationEnabled": false
+    }
+  },
+  {
+    "missionId": "abcb04af-33f3-4ecc-9cdc-f081d231aa7e",
+    "missionName": "WEST-EXEC",
+    "missionAssignedRoles": [
+      "LOWER-WEST-EXEC",
+      "role2alias2",
+      "role2alias1",
+      "role2"
+    ],
+    "missionMasterRole": "LOWER-WEST-EXEC",
+    "missionDefaultSourceSipAddress": "sip:LowerWestExec@example.com",
+    "iaCallTimeoutMilliseconds": 2000,
+    "maxIncomingIaCallsCount": 1,
+    "maxIncomingPendingCallsCount": 16,
+    "maxCallsOnHold": 1,
+    "maxOutgoingPositionMonitoringCalls": 0,
+    "maxIncomingPositionMonitoringCalls": 0,
+    "priorityCallHandling": "indication",
+    "priorityCallIntrusionWarningPeriod": 0,
+    "audibleAlertOnIncomingIACallEnabled": false,
+    "missionAssignedCallRouteSelectors": [
+      {
+        "id": "default",
+        "name": "Default",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:{user_input}@example.com"
+      },
+      {
+        "id": "none",
+        "name": "None",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:{user_input}"
+      },
+      {
+        "id": "frqUser",
+        "name": "FrqUser",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:2{user_input}@example.com"
+      },
+      {
+        "id": "gmail",
+        "name": "Gmail",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:22{user_input}@example.com"
+      },
+      {
+        "id": "admin",
+        "name": "Admin",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:222{user_input}@example.com"
+      },
+      {
+        "id": "super",
+        "name": "Super",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:2222{user_input}@example.com"
+      },
+      {
+        "id": "student",
+        "name": "Student",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:22222{user_input}@example.com"
+      },
+      {
+        "id": "prof",
+        "name": "Professor",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:1{user_input}@example.com"
+      },
+      {
+        "id": "medic",
+        "name": "Medic",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:11{user_input}@example.com"
+      },
+      {
+        "id": "mail",
+        "name": "Mail",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:111{user_input}"
+      }
+    ],
+    "layoutId": "bfe180b4-7661-49a2-928e-0892694f648a",
+    "phoneSettings": {
+      "sipAddresses": [
+        "sip:LowerWestExec@example.com",
+        "sip:role2alias2@example.com",
+        "sip:role2alias1@example.com",
+        "sip:role2@example.com"
+      ],
+      "defaultSipPriority": "normal"
+    },
+    "positionSettings": {
+      "chimeTone": "chime_01",
+      "keyClickTone": "input_01",
+      "opVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "coVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "maxAgGgBalanceAttenuation": 20,
+      "notificationsVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 3
+      },
+      "chimeVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 3
+      },
+      "keyClickVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 3
+      },
+      "opSidetoneVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 3
+      },
+      "coSidetoneVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 3
+      },
+      "brightnessControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      }
+    },
+    "settingData": {
+      "missionSettings": {
+        "timeoutSettings": {
+          "cleanPanelModeCallTimeout": 0,
+          "pttDecay": 0,
+          "pttElsewhereDecay": 0,
+          "squDecay": 0,
+          "minNotificationDisplayTime": 0,
+          "notificationCycleDuration": 0
+        }
+      }
+    },
+    "voiceMonitoring": {
+      "agIaCallMonitoringEnabled": false,
+      "ggIaCallMonitoringEnabled": false,
+      "incomingPositionMonitoringCallsIndicationEnabled": false
+    }
+  },
+  {
+    "missionId": "e90c0b57-2a0f-4ed4-bbdc-fc6349c2f804",
+    "missionName": "Init_M01",
+    "missionAssignedRoles": [
+      "ZInit_R01"
+    ],
+    "missionMasterRole": "ZInit_R01",
+    "missionDefaultSourceSipAddress": "sip:init_r01@ggcats.xvp.frequentis.frq",
+    "iaCallTimeoutMilliseconds": 2000,
+    "maxIncomingIaCallsCount": 3,
+    "maxIncomingPendingCallsCount": 16,
+    "maxCallsOnHold": 5,
+    "maxOutgoingPositionMonitoringCalls": 0,
+    "maxIncomingPositionMonitoringCalls": 0,
+    "priorityCallHandling": "indication",
+    "priorityCallIntrusionWarningPeriod": 0,
+    "audibleAlertOnIncomingIACallEnabled": false,
+    "missionAssignedCallRouteSelectors": [
+      {
+        "id": "default",
+        "name": "Default",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:{user_input}@example.com"
+      },
+      {
+        "id": "none",
+        "name": "None",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:{user_input}"
+      },
+      {
+        "id": "frqUser",
+        "name": "FrqUser",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:2{user_input}@example.com"
+      },
+      {
+        "id": "gmail",
+        "name": "Gmail",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:22{user_input}@example.com"
+      },
+      {
+        "id": "admin",
+        "name": "Admin",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:222{user_input}@example.com"
+      },
+      {
+        "id": "super",
+        "name": "Super",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:2222{user_input}@example.com"
+      },
+      {
+        "id": "student",
+        "name": "Student",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:22222{user_input}@example.com"
+      },
+      {
+        "id": "prof",
+        "name": "Professor",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:1{user_input}@example.com"
+      },
+      {
+        "id": "medic",
+        "name": "Medic",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:11{user_input}@example.com"
+      },
+      {
+        "id": "mail",
+        "name": "Mail",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:111{user_input}"
+      }
+    ],
+    "layoutId": "7cff5489-45c0-4483-869e-a53eb3cadfd8",
+    "phoneSettings": {
+      "sipAddresses": [
+        "sip:init_r01@ggcats.xvp.frequentis.frq"
+      ],
+      "defaultSipPriority": "normal"
+    },
+    "positionSettings": {
+      "chimeTone": "chime_01",
+      "keyClickTone": "input_01",
+      "opVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "coVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "maxAgGgBalanceAttenuation": 20,
+      "notificationsVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "chimeVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "keyClickVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "opSidetoneVolumeControlRange": {
+        "minValue": 26,
+        "maxValue": 62
+      },
+      "coSidetoneVolumeControlRange": {
+        "minValue": 26,
+        "maxValue": 62
+      },
+      "brightnessControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      }
+    },
+    "settingData": {
+      "missionSettings": {
+        "timeoutSettings": {
+          "cleanPanelModeCallTimeout": 0,
+          "pttDecay": 0,
+          "pttElsewhereDecay": 0,
+          "squDecay": 0,
+          "minNotificationDisplayTime": 0,
+          "notificationCycleDuration": 0
+        }
+      }
+    },
+    "voiceMonitoring": {
+      "agIaCallMonitoringEnabled": false,
+      "ggIaCallMonitoringEnabled": false,
+      "incomingPositionMonitoringCallsIndicationEnabled": true
+    }
+  },
+  {
+    "missionId": "f8bbde70-b72e-4ab9-a725-fd90c651a3fb",
+    "missionName": "Init_M02",
+    "missionAssignedRoles": [
+      "ZInit_R02"
+    ],
+    "missionMasterRole": "ZInit_R02",
+    "missionDefaultSourceSipAddress": "sip:init_r02@ggcats.xvp.frequentis.frq",
+    "iaCallTimeoutMilliseconds": 2000,
+    "maxIncomingIaCallsCount": 3,
+    "maxIncomingPendingCallsCount": 16,
+    "maxCallsOnHold": 5,
+    "maxOutgoingPositionMonitoringCalls": 0,
+    "maxIncomingPositionMonitoringCalls": 0,
+    "priorityCallHandling": "indication",
+    "priorityCallIntrusionWarningPeriod": 0,
+    "audibleAlertOnIncomingIACallEnabled": false,
+    "missionAssignedCallRouteSelectors": [
+      {
+        "id": "default",
+        "name": "Default",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:{user_input}@example.com"
+      },
+      {
+        "id": "none",
+        "name": "None",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:{user_input}"
+      },
+      {
+        "id": "frqUser",
+        "name": "FrqUser",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:2{user_input}@example.com"
+      },
+      {
+        "id": "gmail",
+        "name": "Gmail",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:22{user_input}@example.com"
+      },
+      {
+        "id": "admin",
+        "name": "Admin",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:222{user_input}@example.com"
+      },
+      {
+        "id": "super",
+        "name": "Super",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:2222{user_input}@example.com"
+      },
+      {
+        "id": "student",
+        "name": "Student",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:22222{user_input}@example.com"
+      },
+      {
+        "id": "prof",
+        "name": "Professor",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:1{user_input}@example.com"
+      },
+      {
+        "id": "medic",
+        "name": "Medic",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:11{user_input}@example.com"
+      },
+      {
+        "id": "mail",
+        "name": "Mail",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:111{user_input}"
+      }
+    ],
+    "layoutId": "7cff5489-45c0-4483-869e-a53eb3cadfd8",
+    "phoneSettings": {
+      "sipAddresses": [
+        "sip:init_r02@ggcats.xvp.frequentis.frq"
+      ],
+      "defaultSipPriority": "normal"
+    },
+    "positionSettings": {
+      "chimeTone": "chime_01",
+      "keyClickTone": "input_01",
+      "opVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "coVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "maxAgGgBalanceAttenuation": 20,
+      "notificationsVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "chimeVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "keyClickVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "opSidetoneVolumeControlRange": {
+        "minValue": 26,
+        "maxValue": 62
+      },
+      "coSidetoneVolumeControlRange": {
+        "minValue": 26,
+        "maxValue": 62
+      },
+      "brightnessControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      }
+    },
+    "settingData": {
+      "missionSettings": {
+        "timeoutSettings": {
+          "cleanPanelModeCallTimeout": 0,
+          "pttDecay": 0,
+          "pttElsewhereDecay": 0,
+          "squDecay": 0,
+          "minNotificationDisplayTime": 0,
+          "notificationCycleDuration": 0
+        }
+      }
+    },
+    "voiceMonitoring": {
+      "agIaCallMonitoringEnabled": false,
+      "ggIaCallMonitoringEnabled": false,
+      "incomingPositionMonitoringCallsIndicationEnabled": true
+    }
+  },
+  {
+    "missionId": "0e464298-ac06-4a0c-a743-370ecaf0e1fd",
+    "missionName": "Init_M03",
+    "missionAssignedRoles": [
+      "ZInit_R03"
+    ],
+    "missionMasterRole": "ZInit_R03",
+    "missionDefaultSourceSipAddress": "sip:init_r03@ggcats.xvp.frequentis.frq",
+    "iaCallTimeoutMilliseconds": 2000,
+    "maxIncomingIaCallsCount": 3,
+    "maxIncomingPendingCallsCount": 16,
+    "maxCallsOnHold": 5,
+    "maxOutgoingPositionMonitoringCalls": 0,
+    "maxIncomingPositionMonitoringCalls": 0,
+    "priorityCallHandling": "indication",
+    "priorityCallIntrusionWarningPeriod": 0,
+    "audibleAlertOnIncomingIACallEnabled": false,
+    "missionAssignedCallRouteSelectors": [
+      {
+        "id": "default",
+        "name": "Default",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:{user_input}@example.com"
+      },
+      {
+        "id": "none",
+        "name": "None",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:{user_input}"
+      },
+      {
+        "id": "frqUser",
+        "name": "FrqUser",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:2{user_input}@example.com"
+      },
+      {
+        "id": "gmail",
+        "name": "Gmail",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:22{user_input}@example.com"
+      },
+      {
+        "id": "admin",
+        "name": "Admin",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:222{user_input}@example.com"
+      },
+      {
+        "id": "super",
+        "name": "Super",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:2222{user_input}@example.com"
+      },
+      {
+        "id": "student",
+        "name": "Student",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:22222{user_input}@example.com"
+      },
+      {
+        "id": "prof",
+        "name": "Professor",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:1{user_input}@example.com"
+      },
+      {
+        "id": "medic",
+        "name": "Medic",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:11{user_input}@example.com"
+      },
+      {
+        "id": "mail",
+        "name": "Mail",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:111{user_input}"
+      }
+    ],
+    "layoutId": "7cff5489-45c0-4483-869e-a53eb3cadfd8",
+    "phoneSettings": {
+      "sipAddresses": [
+        "sip:init_r03@ggcats.xvp.frequentis.frq"
+      ],
+      "defaultSipPriority": "normal"
+    },
+    "positionSettings": {
+      "chimeTone": "chime_01",
+      "keyClickTone": "input_01",
+      "opVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "coVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "maxAgGgBalanceAttenuation": 20,
+      "notificationsVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "chimeVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "keyClickVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "opSidetoneVolumeControlRange": {
+        "minValue": 26,
+        "maxValue": 62
+      },
+      "coSidetoneVolumeControlRange": {
+        "minValue": 26,
+        "maxValue": 62
+      },
+      "brightnessControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      }
+    },
+    "settingData": {
+      "missionSettings": {
+        "timeoutSettings": {
+          "cleanPanelModeCallTimeout": 0,
+          "pttDecay": 0,
+          "pttElsewhereDecay": 0,
+          "squDecay": 0,
+          "minNotificationDisplayTime": 0,
+          "notificationCycleDuration": 0
+        }
+      }
+    },
+    "voiceMonitoring": {
+      "agIaCallMonitoringEnabled": false,
+      "ggIaCallMonitoringEnabled": false,
+      "incomingPositionMonitoringCallsIndicationEnabled": true
+    }
+  },
+  {
+    "missionId": "e6212112-6e5d-4bdf-8d67-a6d1c0bfd002",
+    "missionName": "Init_M04",
+    "missionAssignedRoles": [
+      "ZInit_R04"
+    ],
+    "missionMasterRole": "ZInit_R04",
+    "missionDefaultSourceSipAddress": "sip:init_r04@ggcats.xvp.frequentis.frq",
+    "iaCallTimeoutMilliseconds": 2000,
+    "maxIncomingIaCallsCount": 3,
+    "maxIncomingPendingCallsCount": 16,
+    "maxCallsOnHold": 5,
+    "maxOutgoingPositionMonitoringCalls": 0,
+    "maxIncomingPositionMonitoringCalls": 0,
+    "priorityCallHandling": "indication",
+    "priorityCallIntrusionWarningPeriod": 0,
+    "audibleAlertOnIncomingIACallEnabled": false,
+    "missionAssignedCallRouteSelectors": [
+      {
+        "id": "default",
+        "name": "Default",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:{user_input}@example.com"
+      },
+      {
+        "id": "none",
+        "name": "None",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:{user_input}"
+      },
+      {
+        "id": "frqUser",
+        "name": "FrqUser",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:2{user_input}@example.com"
+      },
+      {
+        "id": "gmail",
+        "name": "Gmail",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:22{user_input}@example.com"
+      },
+      {
+        "id": "admin",
+        "name": "Admin",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:222{user_input}@example.com"
+      },
+      {
+        "id": "super",
+        "name": "Super",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:2222{user_input}@example.com"
+      },
+      {
+        "id": "student",
+        "name": "Student",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:22222{user_input}@example.com"
+      },
+      {
+        "id": "prof",
+        "name": "Professor",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:1{user_input}@example.com"
+      },
+      {
+        "id": "medic",
+        "name": "Medic",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:11{user_input}@example.com"
+      },
+      {
+        "id": "mail",
+        "name": "Mail",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:111{user_input}"
+      }
+    ],
+    "layoutId": "7cff5489-45c0-4483-869e-a53eb3cadfd8",
+    "phoneSettings": {
+      "sipAddresses": [
+        "sip:init_r04@ggcats.xvp.frequentis.frq"
+      ],
+      "defaultSipPriority": "normal"
+    },
+    "positionSettings": {
+      "chimeTone": "chime_01",
+      "keyClickTone": "input_01",
+      "opVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "coVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "maxAgGgBalanceAttenuation": 20,
+      "notificationsVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "chimeVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "keyClickVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "opSidetoneVolumeControlRange": {
+        "minValue": 26,
+        "maxValue": 62
+      },
+      "coSidetoneVolumeControlRange": {
+        "minValue": 26,
+        "maxValue": 62
+      },
+      "brightnessControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      }
+    },
+    "settingData": {
+      "missionSettings": {
+        "timeoutSettings": {
+          "cleanPanelModeCallTimeout": 0,
+          "pttDecay": 0,
+          "pttElsewhereDecay": 0,
+          "squDecay": 0,
+          "minNotificationDisplayTime": 0,
+          "notificationCycleDuration": 0
+        }
+      }
+    },
+    "voiceMonitoring": {
+      "agIaCallMonitoringEnabled": false,
+      "ggIaCallMonitoringEnabled": false,
+      "incomingPositionMonitoringCallsIndicationEnabled": true
+    }
+  },
+  {
+    "missionId": "afe0bc05-454f-40c4-859d-cecfdd838b1b",
+    "missionName": "Init_M05",
+    "missionAssignedRoles": [
+      "ZInit_R05"
+    ],
+    "missionMasterRole": "ZInit_R05",
+    "missionDefaultSourceSipAddress": "sip:init_r05@ggcats.xvp.frequentis.frq",
+    "iaCallTimeoutMilliseconds": 2000,
+    "maxIncomingIaCallsCount": 3,
+    "maxIncomingPendingCallsCount": 16,
+    "maxCallsOnHold": 5,
+    "maxOutgoingPositionMonitoringCalls": 0,
+    "maxIncomingPositionMonitoringCalls": 0,
+    "priorityCallHandling": "indication",
+    "priorityCallIntrusionWarningPeriod": 0,
+    "audibleAlertOnIncomingIACallEnabled": false,
+    "missionAssignedCallRouteSelectors": [
+      {
+        "id": "default",
+        "name": "Default",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:{user_input}@example.com"
+      },
+      {
+        "id": "none",
+        "name": "None",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:{user_input}"
+      },
+      {
+        "id": "frqUser",
+        "name": "FrqUser",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:2{user_input}@example.com"
+      },
+      {
+        "id": "gmail",
+        "name": "Gmail",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:22{user_input}@example.com"
+      },
+      {
+        "id": "admin",
+        "name": "Admin",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:222{user_input}@example.com"
+      },
+      {
+        "id": "super",
+        "name": "Super",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:2222{user_input}@example.com"
+      },
+      {
+        "id": "student",
+        "name": "Student",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:22222{user_input}@example.com"
+      },
+      {
+        "id": "prof",
+        "name": "Professor",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:1{user_input}@example.com"
+      },
+      {
+        "id": "medic",
+        "name": "Medic",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:11{user_input}@example.com"
+      },
+      {
+        "id": "mail",
+        "name": "Mail",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:111{user_input}"
+      }
+    ],
+    "layoutId": "7cff5489-45c0-4483-869e-a53eb3cadfd8",
+    "phoneSettings": {
+      "sipAddresses": [
+        "sip:init_r05@ggcats.xvp.frequentis.frq"
+      ],
+      "defaultSipPriority": "normal"
+    },
+    "positionSettings": {
+      "chimeTone": "chime_01",
+      "keyClickTone": "input_01",
+      "opVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "coVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "maxAgGgBalanceAttenuation": 20,
+      "notificationsVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "chimeVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "keyClickVolumeControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "opSidetoneVolumeControlRange": {
+        "minValue": 26,
+        "maxValue": 62
+      },
+      "coSidetoneVolumeControlRange": {
+        "minValue": 26,
+        "maxValue": 62
+      },
+      "brightnessControlRange": {
+        "minValue": 0,
+        "maxValue": 100
+      }
+    },
+    "settingData": {
+      "missionSettings": {
+        "timeoutSettings": {
+          "cleanPanelModeCallTimeout": 0,
+          "pttDecay": 0,
+          "pttElsewhereDecay": 0,
+          "squDecay": 0,
+          "minNotificationDisplayTime": 0,
+          "notificationCycleDuration": 0
+        }
+      }
+    },
+    "voiceMonitoring": {
+      "agIaCallMonitoringEnabled": false,
+      "ggIaCallMonitoringEnabled": false,
+      "incomingPositionMonitoringCallsIndicationEnabled": true
     }
   }
 ]

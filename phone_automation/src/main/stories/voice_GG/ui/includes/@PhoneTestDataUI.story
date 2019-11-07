@@ -59,7 +59,7 @@ Given the function keys:
 | <<LAYOUT_MISSION1>> | LOUDSPEAKER | <<LOUDSPEAKER_ID>>         |
 | <<LAYOUT_MISSION1>> | SETTINGS    | <<SETTINGS_ID_MISSION1>>   |
 | <<LAYOUT_MISSION1>> | MONITORING  | <<MONITORING_ID_MISSION1>> |
-| <<LAYOUT_MISSION1>> | EDIT        | <<EDIT_ID_MISSION1>>        |
+| <<LAYOUT_MISSION1>> | EDIT        | <<EDIT_ID_MISSION1>>       |
 | <<LAYOUT_MISSION2>> | PHONEBOOK   | <<PHONEBOOK_ID>>           |
 | <<LAYOUT_MISSION2>> | CALLHISTORY | <<CALLHISTORY_ID>>         |
 | <<LAYOUT_MISSION2>> | MISSIONS    | <<MISSIONS_ID>>            |
@@ -67,7 +67,7 @@ Given the function keys:
 | <<LAYOUT_MISSION2>> | LOUDSPEAKER | <<LOUDSPEAKER_ID>>         |
 | <<LAYOUT_MISSION2>> | SETTINGS    | <<SETTINGS_ID_MISSION2>>   |
 | <<LAYOUT_MISSION2>> | MONITORING  | <<MONITORING_ID_MISSION2>> |
-| <<LAYOUT_MISSION2>> | EDIT        | <<EDIT_ID_MISSION2>>        |
+| <<LAYOUT_MISSION2>> | EDIT        | <<EDIT_ID_MISSION2>>       |
 | <<LAYOUT_MISSION3>> | PHONEBOOK   | <<PHONEBOOK_ID>>           |
 | <<LAYOUT_MISSION3>> | CALLHISTORY | <<CALLHISTORY_ID>>         |
 | <<LAYOUT_MISSION3>> | MISSIONS    | <<MISSIONS_ID>>            |
@@ -75,7 +75,7 @@ Given the function keys:
 | <<LAYOUT_MISSION3>> | LOUDSPEAKER | <<LOUDSPEAKER_ID>>         |
 | <<LAYOUT_MISSION3>> | SETTINGS    | <<SETTINGS_ID_MISSION3>>   |
 | <<LAYOUT_MISSION3>> | MONITORING  | <<MONITORING_ID_MISSION3>> |
-| <<LAYOUT_MISSION3>> | EDIT        | <<EDIT_ID_MISSION3>>        |
+| <<LAYOUT_MISSION3>> | EDIT        | <<EDIT_ID_MISSION3>>       |
 
 Scenario: Define status key
 Given the status key:
