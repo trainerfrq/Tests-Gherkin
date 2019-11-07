@@ -39,14 +39,12 @@ Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in
 Then HMI OP1 verifies that call queue info container is visible
 Then HMI OP1 verifies that call queue info container contains Target: <<OP2_NAME>>
 
-
-
 Scenario: Op1 opens phonebook
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
 Then HMI OP1 verifies that phone book call button is disabled
 
 Scenario: Op1 selects an item from phonebook
-When HMI OP1 scrolls down in phonebook
+When HMI OP1 clicks on the scroll down button in phonebook for 1 time(s)
 When HMI OP1 selects phonebook entry number: 10
 Then HMI OP1 verifies that phone book call button is enabled
 Then HMI OP1 checks that phone book forward button is invisible

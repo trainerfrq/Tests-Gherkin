@@ -28,7 +28,7 @@ Then HMI OP1 verify that call route selector shows None
 Then HMI OP1 verifies that phone book call button is disabled
 
 Scenario: Caller selects item from phonebook
-When HMI OP1 scrolls down in phonebook
+When HMI OP1 clicks on the scroll down button in phonebook for 1 time(s)
 When HMI OP1 selects phonebook entry number: 10
 Then HMI OP1 verifies that phone book text box displays text OP2 Physical
 Then HMI OP1 verifies that phone book call button is enabled

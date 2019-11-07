@@ -10,6 +10,10 @@
        <join>
           <multicast enabled="false"/>
           <tcp-ip enabled="true">
+             <member>10.16.156.19:${CATS_HAZELCAST_PORT}</member>
+             <member>10.16.156.13:${CATS_HAZELCAST_PORT}</member>
+             <member>10.16.156.14:${CATS_HAZELCAST_PORT}</member>
+             <member>10.16.156.15:${CATS_HAZELCAST_PORT}</member>
              <member>10.31.205.9:${CATS_HAZELCAST_PORT}</member>
              <member>10.31.205.94:${CATS_HAZELCAST_PORT}</member>
              <member>10.31.205.95:${CATS_HAZELCAST_PORT}</member>

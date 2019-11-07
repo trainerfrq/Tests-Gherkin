@@ -41,7 +41,7 @@ Then HMI OP1 click on Stay operational button from idle warning popup
 
 Scenario: Op1 changes to mission WEST-EXEC
 When HMI OP1 presses function key MISSIONS
-Then HMI OP1 has a list of 3 missions available
+Then HMI OP1 has a list of 8 missions available
 Then HMI OP1 changes current mission to mission WEST-EXEC
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
@@ -70,7 +70,7 @@ When HMI OP1 presses DA key OP3
 
 Scenario: Op1 changes to mission MAN-NIGHT-TACT
 When HMI OP1 presses function key MISSIONS
-Then HMI OP1 has a list of 3 missions available
+Then HMI OP1 has a list of 8 missions available
 Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
