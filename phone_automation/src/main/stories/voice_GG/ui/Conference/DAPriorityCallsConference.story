@@ -99,6 +99,9 @@ Then HMI OP1 verifies that leave conference button is enabled
 Then HMI OP1 leaves conference
 
 Scenario: Call is terminated for Op1
+Then HMI OP1 has in the call queue a number of 0 calls
+
+Scenario: Conference is not terminated for Op3
 Then HMI OP3 has in the call queue a number of 1 calls
 
 Scenario: Op2 verifies the conference participants list

@@ -88,6 +88,10 @@ Then HMI OP1 verifies in the list that conference participant on position 3 has 
 Scenario: Op1 answers the IA call
 When HMI OP2 presses IA key IA - OP3
 
+Scenario: Verify call queue for Op2 and Op3
+Then HMI OP2 has in the call queue a number of 1 calls
+Then HMI OP3 has in the call queue a number of 1 calls
+
 Scenario: Verify call direction
 Then HMI OP3 has the IA call queue item OP2-OP3 with audio direction duplex
 Then HMI OP2 has the IA call queue item OP3-OP2 with audio direction duplex
