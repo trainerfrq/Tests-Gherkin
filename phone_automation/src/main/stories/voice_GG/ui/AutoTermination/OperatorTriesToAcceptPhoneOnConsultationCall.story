@@ -85,13 +85,24 @@ Then HMI OP2 has the call queue item SipContact-OP2 in state inc_initiated
 Then HMI OP3 has the call queue item OP2-OP3 in state connected
 
 Scenario: Verify notification label is displayed correctly for transferor
-Then HMI OP2 has a notification that shows Call Transfer in progress
+When HMI OP2 opens Notification Display list
+Then HMI OP2 verifies that list State contains text Call Transfer in progress
+
+Scenario: Close popup window
+Then HMI OP2 closes notification popup
 
 Scenario: Transferor tries to answers the incoming call
 Then HMI OP2 accepts the call queue item SipContact-OP2
 
 Scenario: Verify notification label is displayed correctly for transferor
-Then HMI OP2 has a notification that shows Call can not be accepted, TRANSFER mode active
+!-- Then HMI OP2 has a notification that shows Call can not be accepted, TRANSFER mode active
+When HMI OP2 opens Notification Display list
+When HMI OP2 selects tab event from notification display popup
+Then HMI OP2 verifies that list Event contains on position 0 text Call can not be accepted, TRANSFER mode active
+When HMI OP2 selects tab state from notification display popup
+
+Scenario: Close popup window
+Then HMI OP2 closes notification popup
 
 Scenario: Verify calls state for all operators
 Then HMI OP1 has the call queue item OP2-OP1 in state held

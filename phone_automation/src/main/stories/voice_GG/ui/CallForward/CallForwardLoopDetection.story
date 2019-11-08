@@ -26,7 +26,7 @@ Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in
 Scenario: Op2 activates Call Forward with Op1 as call forward target
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key CALLFORWARD
 When HMI OP2 presses DA key OP1
-Then HMI OP2 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state
+Then HMI OP2 with layout <<LAYOUT_MISSION2>> has the function key CALLFORWARD in active state
 
 Scenario: Op3 fails to establish an outgoing call towards Op1
 		  @REQUIREMENTS:GID-4370514

@@ -24,6 +24,11 @@ Then HMI OP1 clears Call History list
 Then HMI OP1 verifies that call history list contains 0 entries
 Then HMI OP1 closes Call History popup window
 
+Scenario: Callee clears call history list
+When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key CALLHISTORY
+Then HMI OP2 clears Call History list
+Then HMI OP2 verifies that call history list contains 0 entries
+Then HMI OP2 closes Call History popup window
 Scenario: Caller establishes an outgoing call
 When HMI OP1 presses DA key OP2
 Then waiting for 3 seconds

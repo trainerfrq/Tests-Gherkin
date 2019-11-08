@@ -77,9 +77,6 @@ Then waiting for 60 seconds
 Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
 Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 
-Scenario: Time to wait between failover tests
-Then waiting for 1 minute
-
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
 GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
