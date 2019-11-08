@@ -18,6 +18,7 @@ package com.frequentis.xvp.voice.test.automation.phone.step;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
+import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.GridWidgetKey;
@@ -33,8 +34,10 @@ import scripts.cats.hmi.actions.ClickStatusLabel;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationClearEventButton;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationDisplay;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationTab;
+import scripts.cats.hmi.actions.NotificationDisplay.CountStateListItems;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationLabel;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListEntryText;
+import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListFirstPageEntriesText;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListIsTimeSorted;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListLastEntryText;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListSeverity;
@@ -157,6 +160,29 @@ public class GGBasicUISteps extends AutomationSteps
     }
 
 
+    @Then("$profileName verifies that list $listName has $number items")
+    public void verifiesStateListSize( final String profileName, final String listName, String number)
+    {
+        number = getStoryListData("StateListItems", String.class);
+        evaluate( remoteStep( "Verify State list size" )
+                .scriptOn(profileScriptResolver().map( VerifyNotificationListSize.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input(VerifyNotificationListSize.IPARAM_LIST_NAME, listName)
+                .input(VerifyNotificationListSize.IPARAM_LIST_SIZE, number));
+    }
+
+    @Then("$profileName verifies that list $listName has $number items plus $items")
+    public void verifiesStateListSizePlusItems( final String profileName, final String listName, String number, int items)
+    {
+        number = getStoryListData("StateListItems", String.class);
+        int i = Integer.parseInt(number);
+        int finalNumberOfItems = i+items;
+        evaluate( remoteStep( "Verify State list size" )
+                .scriptOn(profileScriptResolver().map( VerifyNotificationListSize.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input(VerifyNotificationListSize.IPARAM_LIST_NAME, listName)
+                .input(VerifyNotificationListSize.IPARAM_LIST_SIZE, finalNumberOfItems));
+    }
     @Then("$profileName verifies that Notification Display list $listName has $number items")
     public void verifiesNotificationListSize( final String profileName, final String listName, final String number)
     {
@@ -167,6 +193,18 @@ public class GGBasicUISteps extends AutomationSteps
                 .input(VerifyNotificationListSize.IPARAM_LIST_SIZE, number));
     }
 
+
+    @Then("$profileName counts the State list items and saves output as $number items")
+    public void verifiesNotificationListSize( final String profileName, final String number)
+    {
+        RemoteStepResult remoteStepResult =
+        evaluate( remoteStep( "Count State list items" )
+                .scriptOn(profileScriptResolver().map( CountStateListItems.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) ));
+
+        final String itemsNumber = (String) remoteStepResult.getOutput(CountStateListItems.OPARAM_ITEMS_NUMBER);
+        setStoryListData(number, itemsNumber);
+    }
     @Then("$profileName verifies that $entry from list $listName has the expected text and severity")
     public void verifiesNotificationEntryText( final String profileName, final String entry, final String listName)
     {
@@ -191,8 +229,8 @@ public class GGBasicUISteps extends AutomationSteps
         );
     }
 
-    @Then("$profileName verifies that list $listName contains text $text")
-    public void verifiesNotificationListText( final String profileName, final String listName, final String text)
+    @Then("$profileName verifies that in the list $listName the last entry contains text $text")
+    public void verifiesNotificationListTextOnLastEntry( final String profileName, final String listName, final String text)
     {
               evaluate( remoteStep( "Verify Notification Display list last entry " +listName+ " text" )
                 .scriptOn(profileScriptResolver().map( VerifyNotificationListLastEntryText.class, BookableProfileName.javafx ),
@@ -201,6 +239,15 @@ public class GGBasicUISteps extends AutomationSteps
                 .input(VerifyNotificationListLastEntryText.IPARAM_TEXT, text));
     }
 
+    @Then("$profileName verifies that list $listName contains text $text")
+    public void verifiesNotificationListText( final String profileName, final String listName, final String text)
+    {
+        evaluate( remoteStep( "Verify Notification Display list last entry " +listName+ " text" )
+                .scriptOn(profileScriptResolver().map( VerifyNotificationListFirstPageEntriesText.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input(VerifyNotificationListFirstPageEntriesText.IPARAM_LIST_NAME, listName)
+                .input(VerifyNotificationListFirstPageEntriesText.IPARAM_TEXT, text));
+    }
     @Then("$profileName verifies that list $listName contains on position $number text $text")
     public void verifiesNotificationListEntryText( final String profileName, final String listName, final String number, final String text)
     {
