@@ -1,6 +1,7 @@
 package scripts.cats.hmi.asserts.Conference
 
 import com.frequentis.c4i.test.model.ExecutionDetails
+import com.frequentis.c4i.test.util.timer.WaitTimer
 import javafx.scene.Node
 import javafx.scene.control.TableView
 import org.slf4j.Logger
@@ -25,7 +26,17 @@ class VerifyConferenceListSize extends FxScriptTemplate {
 
         if (conferencePopup.isVisible()) {
             final TableView conferenceTable = robot.lookup( "#conferenceTable" ).queryFirst()
-            final ObservableList conferenceItems = conferenceTable.getItems()
+            ObservableList conferenceItems = conferenceTable.getItems()
+
+            int i = 1
+            while (conferenceItems.size() != conferenceListSize){
+                WaitTimer.pause(250);
+                conferenceItems = conferenceTable.getItems()
+                i++
+                if((conferenceItems.size() == conferenceListSize) || i > 9)
+                    break
+            }
+
             evaluate(ExecutionDetails.create("Conference list size is the expected one")
                     .received("Received conference list size: " + conferenceItems.size().toString())
                     .expected("Expected conference list size: " + conferenceListSize.toString())
