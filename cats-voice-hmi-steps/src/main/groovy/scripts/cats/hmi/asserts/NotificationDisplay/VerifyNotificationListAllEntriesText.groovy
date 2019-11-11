@@ -35,7 +35,7 @@ class VerifyNotificationListAllEntriesText extends FxScriptTemplate {
                     if(textLabel!=null){
                         allEntriesTextLabels.add(textLabel.getText())
                 }
-                    final Node scrollDownButton = robot.lookup("#notification"+listName+"List #scrollDown"+listName+"List").queryFirst()
+                    final Node scrollDownButton = robot.lookup("#notificationPopup #scrollDown"+listName+"List").queryFirst()
                     robot.clickOn(robot.point(scrollDownButton))
             }
 

@@ -23,7 +23,7 @@ class ClickOnNotificationScrollDownButton extends FxScriptTemplate {
                 .success(notificationPopup.isVisible()))
 
         if (notificationPopup.isVisible()) {
-            final Node scrollDownButton = robot.lookup("#notification"+listName+"List #scrollDown"+listName+"List").queryFirst()
+            final Node scrollDownButton = robot.lookup("#notificationPopup #scrollDown"+listName+"List").queryFirst()
 
             robot.clickOn(robot.point(scrollDownButton))
         }
