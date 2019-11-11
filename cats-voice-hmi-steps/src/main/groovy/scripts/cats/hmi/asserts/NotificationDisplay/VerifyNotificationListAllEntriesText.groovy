@@ -25,18 +25,20 @@ class VerifyNotificationListAllEntriesText extends FxScriptTemplate {
 
         if (notificationPopup.isVisible()) {
             final ListView list = robot.lookup( "#notification"+listName+"List" ).queryFirst()
-            final Node scrollDownButton = robot.lookup("#notification"+listName+"List #scrollDown"+listName+"List").queryFirst()
+            List<String> allEntriesTextLabels = new ArrayList<>()
             int receivedListSize = list.getItems().size();
-            List<String> allEntriesTextLabels = new ArrayList<String>()
 
             for(int index=0; index<receivedListSize/6; index++){
                 for(int i=0; i<6; i++){
+
                     Label textLabel = robot.lookup("#notification"+listName+"List #notificationEntry_"+i+" #notificationTextLabel").queryFirst()
                     if(textLabel!=null){
                         allEntriesTextLabels.add(textLabel.getText())
                 }
+                    final Node scrollDownButton = robot.lookup("#notification"+listName+"List #scrollDown"+listName+"List").queryFirst()
                     robot.clickOn(robot.point(scrollDownButton))
             }
+
          }
          evaluate(ExecutionDetails.create("Notification list "+listName+" contains text")
                 .received(allEntriesTextLabels.toString())
