@@ -41,6 +41,8 @@ Given the DA keys:
 | HMI OP3 | IA - OP1              | <<IA_PhyOpPos3_CWP1>>     |
 | HMI OP3 | IA - OP2              | <<IA_PhyOpPos3_CWP2>>     |
 | HMI OP3 | <<ROLE_1_NAME>>       | <<ACTIVE3_MISSION1>>      |
+| HMI OP3 | OP1-urgent            | <<PhyOpPos3_CWP1_urgent>>      |
+| HMI OP3 | RoleEmergency         | <<PhyOpPos3_RoleEmergency>>       |
 
 Scenario: Define grid widget keys
 Given the grid widget keys:
