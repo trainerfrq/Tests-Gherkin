@@ -33,6 +33,7 @@ import scripts.cats.hmi.actions.ClickOnSymbolButton;
 import scripts.cats.hmi.actions.ClickStatusLabel;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationClearEventButton;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationDisplay;
+import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationScrollDownButton;
 import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationTab;
 import scripts.cats.hmi.actions.NotificationDisplay.CountStateListItems;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationLabel;
@@ -284,6 +285,15 @@ public class GGBasicUISteps extends AutomationSteps
         }
 
         record( localStep );
+    }
+
+    @When("$profileName clicks the scroll down button for $listName list")
+    public void clickNotificationListScrollDown( final String profileName, final String listName)
+    {
+        evaluate( remoteStep( "Click scroll down button in Notification Display list" +listName)
+                .scriptOn(profileScriptResolver().map( ClickOnNotificationScrollDownButton.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input(ClickOnNotificationScrollDownButton.IPARAM_LIST_NAME, listName));
     }
 
     private StatusKey retrieveStatusKey(final String source, final String key) {

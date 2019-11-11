@@ -26,7 +26,8 @@ Scenario: Verify Notification Display list shows Select Monitoring target
 When HMI OP1 opens Notification Display list
 Then HMI OP1 verifies that list State contains text Select Monitoring target
 When HMI OP1 selects tab event from notification display popup
-Then HMI OP1 verifies that list Event contains text General failure for phone call to
+!-- Then HMI OP1 verifies that list Event contains text General failure for phone call to
+Then HMI OP1 verifies that list Event contains on position 0 text General failure for phone call to
 
 Scenario: Close popup window
 Then HMI OP1 closes notification popup
