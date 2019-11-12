@@ -21,6 +21,9 @@ Then HMI OP1 counts the State list items and saves output as StateListItems item
 When HMI OP1 selects tab event from notification display popup
 When HMI OP1 clears the notification events from list
 Then HMI OP1 verifies that Notification Display list Event has 0 items
+When HMI OP1 selects tab state from notification display popup
+
+Scenario: Operator closes the Notification popup
 Then HMI OP1 closes notification popup
 
 Scenario: Operator tries a call to its own position

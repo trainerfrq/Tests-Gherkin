@@ -26,6 +26,15 @@ Given SipContacts group SipContact:
 | SipContact | VOIP    | 12345       | <<SIP_PHONE2>> |
 And phones for SipContact are created
 
+Scenario: Operator opens Notification Display popup and clears the event list
+When HMI OP2 opens Notification Display list
+When HMI OP2 selects tab event from notification display popup
+When HMI OP2 clears the notification events from list
+When HMI OP2 selects tab state from notification display popup
+
+Scenario: Operator closes the Notification popup
+Then HMI OP2 closes notification popup
+
 Scenario: Op2 establishes an outgoing call
 When HMI OP2 presses DA key OP1
 Then HMI OP2 has the DA key OP1 in state out_ringing

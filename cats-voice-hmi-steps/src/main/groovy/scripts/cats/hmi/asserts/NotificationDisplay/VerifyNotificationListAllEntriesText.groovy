@@ -33,7 +33,7 @@ class VerifyNotificationListAllEntriesText extends FxScriptTemplate {
 
                     Label textLabel = robot.lookup("#notification"+listName+"List #notificationEntry_"+i+" #notificationTextLabel").queryFirst()
                     if(textLabel!=null){
-                        allEntriesTextLabels.add(textLabel.getText())
+                        allEntriesTextLabels.add(textLabel.getText().replaceAll("\\s",""))
                 }
                     final Node scrollDownButton = robot.lookup("#notificationPopup #scrollDown"+listName+"List").queryFirst()
                     robot.clickOn(robot.point(scrollDownButton))

@@ -16,6 +16,7 @@ Then HMI OP1 verifies that popup notification is visible
 When HMI OP1 selects tab event from notification display popup
 When HMI OP1 clears the notification events from list
 Then HMI OP1 verifies that Notification Display list Event has 0 items
+When HMI OP1 selects tab state from notification display popup
 
 Scenario: Operator closes the Notification popup
 Then HMI OP1 closes notification popup
