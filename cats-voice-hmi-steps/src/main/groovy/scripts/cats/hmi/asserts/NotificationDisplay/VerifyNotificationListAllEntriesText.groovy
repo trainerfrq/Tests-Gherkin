@@ -27,8 +27,9 @@ class VerifyNotificationListAllEntriesText extends FxScriptTemplate {
             final ListView list = robot.lookup( "#notification"+listName+"List" ).queryFirst()
             List<String> allEntriesTextLabels = new ArrayList<>()
             int receivedListSize = list.getItems().size();
+            int roundValue = Math.ceil(receivedListSize/6)
 
-            for(int index=0; index<receivedListSize/6; index++){
+            for(int index=0; index<roundValue; index++){
                 for(int i=0; i<6; i++){
 
                     Label textLabel = robot.lookup("#notification"+listName+"List #notificationEntry_"+i+" #notificationTextLabel").queryFirst()
