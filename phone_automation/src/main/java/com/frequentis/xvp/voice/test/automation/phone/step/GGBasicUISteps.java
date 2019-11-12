@@ -38,7 +38,7 @@ import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationTab;
 import scripts.cats.hmi.actions.NotificationDisplay.CountStateListItems;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationLabel;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListEntryText;
-import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListFirstPageEntriesText;
+import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListAllEntriesText;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListIsTimeSorted;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListLastEntryText;
 import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListSeverity;
@@ -244,10 +244,10 @@ public class GGBasicUISteps extends AutomationSteps
     public void verifiesNotificationListText( final String profileName, final String listName, final String text)
     {
         evaluate( remoteStep( "Verify Notification Display list last entry " +listName+ " text" )
-                .scriptOn(profileScriptResolver().map( VerifyNotificationListFirstPageEntriesText.class, BookableProfileName.javafx ),
+                .scriptOn(profileScriptResolver().map( VerifyNotificationListAllEntriesText.class, BookableProfileName.javafx ),
                         assertProfile( profileName ) )
-                .input(VerifyNotificationListFirstPageEntriesText.IPARAM_LIST_NAME, listName)
-                .input(VerifyNotificationListFirstPageEntriesText.IPARAM_TEXT, text));
+                .input(VerifyNotificationListAllEntriesText.IPARAM_LIST_NAME, listName)
+                .input(VerifyNotificationListAllEntriesText.IPARAM_TEXT, text));
     }
     @Then("$profileName verifies that list $listName contains on position $number text $text")
     public void verifiesNotificationListEntryText( final String profileName, final String listName, final String number, final String text)
