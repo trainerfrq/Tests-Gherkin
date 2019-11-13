@@ -63,6 +63,7 @@ When HMI OP1 presses IA key IA - OP2
 
 Scenario: Outgoing IA call using as source the actual active mission
 When HMI OP1 presses IA key IA - <<ROLE_2_NAME>>
+And waiting for 1 second
 Then HMI OP1 has the IA key IA - <<ROLE_2_NAME>> in state connected
 Then HMI OP2 has the call queue item OP1-OP2-4 in state connected
 Then HMI OP2 has the IA key IA - <<ROLE_1_NAME>> in state connected

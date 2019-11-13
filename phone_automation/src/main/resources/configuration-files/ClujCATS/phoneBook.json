@@ -31,6 +31,21 @@
   },
   {
     "fullName": "",
+    "displayName": "LOWER-WEST-TOWER",
+    "location": "",
+    "organization": "",
+    "notes": "",
+    "dataSets": [
+      {
+        "destination": "sip:LowerWestTowerExec@example.com",
+        "callType": "DA/IDA",
+        "priority": "normal",
+        "displayAddon": ""
+      }
+    ]
+  },
+  {
+    "fullName": "",
     "displayName": "Lloyd",
     "location": "",
     "organization": "",
@@ -1297,8 +1312,9 @@
     "notes": "",
     "dataSets": [
       {
-        "destination": "sip:111173@example.com",
+        "destination": "sip:111173@10.31.205.9:5070",
         "callType": "DA/IDA",
+        "priority": "normal",
         "displayAddon": ""
       }
     ]
@@ -8969,8 +8985,9 @@
     "notes": "",
     "dataSets": [
       {
-        "destination": "sip:656750@example.com",
+        "destination": "sip:656750@10.31.205.9:5070",
         "callType": "DA/IDA",
+        "priority": "role",
         "displayAddon": ""
       }
     ]
@@ -10243,8 +10260,9 @@
     "notes": "",
     "dataSets": [
       {
-        "destination": "sip:946416@example.com",
+        "destination": "sip:946416@10.31.205.9:5070",
         "callType": "DA/IDA",
+        "priority": "emergency",
         "displayAddon": ""
       }
     ]
@@ -14162,6 +14180,21 @@
     "dataSets": [
       {
         "destination": "sip:role2alias2@example.com",
+        "callType": "DA/IDA",
+        "priority": "normal",
+        "displayAddon": ""
+      }
+    ]
+  },
+  {
+    "fullName": "",
+    "displayName": "roleEmergency",
+    "location": "",
+    "organization": "",
+    "notes": "",
+    "dataSets": [
+      {
+        "destination": "sip:roleEmergency@example.com",
         "callType": "DA/IDA",
         "priority": "normal",
         "displayAddon": ""

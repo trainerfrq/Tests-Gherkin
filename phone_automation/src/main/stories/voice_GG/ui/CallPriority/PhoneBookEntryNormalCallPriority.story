@@ -20,7 +20,7 @@ And phones for SipContact are created
 Scenario: Define call queue items
 Given the call queue items:
 | key             | source          | target    | callType |
-| OP1-SipContact3 | <<SIP_PHONE4>>  |           | DA/IDA   |
+| OP1-SipContact | <<SIP_PHONE4>>  |           | DA/IDA   |
 
 Scenario: Op1 opens PhoneBook
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
@@ -39,13 +39,13 @@ When HMI OP1 initiates a call from the phonebook
 
 Scenario: Op1 checks call priority
 		  @REQUIREMENTS:GID-2659402
-When HMI OP1 has the call queue item OP1-SipContact3 with priority NORMAL
+When HMI OP1 has the call queue item OP1-SipContact with priority NORMAL
 
 Scenario: Call is initiated
-Then HMI OP1 has the call queue item OP1-SipContact3 in the active list with name label Test_Bettie
+Then HMI OP1 has the call queue item OP1-SipContact in the active list with name label Test_Bettie
 
 Scenario: Op1 clears outgoing call
-Then HMI OP1 terminates the call queue item OP1-SipContact3
+Then HMI OP1 terminates the call queue item OP1-SipContact
 
 Scenario: Call is terminated
 Then HMI OP1 has in the call queue a number of 0 calls

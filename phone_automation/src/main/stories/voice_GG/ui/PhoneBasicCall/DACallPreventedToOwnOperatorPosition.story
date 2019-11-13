@@ -19,7 +19,8 @@ Scenario: Caller opens phonebook
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
 
 Scenario: Caller selects target address
-When HMI OP1 selects phonebook entry number: 9
+When HMI OP1 scrolls down in phonebook
+When HMI OP1 selects phonebook entry number: 10
 Then HMI OP1 verifies that phone book text box displays text OP1 Physical
 
 Scenario: Caller hits phonebook call button
@@ -32,6 +33,7 @@ Then HMI OP1 has the call queue item OP1-OP1 in state out_failed
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP1-OP1
+And waiting for 1 second
 
 Scenario: Call is terminated
 Then HMI OP1 has in the call queue a number of 0 calls

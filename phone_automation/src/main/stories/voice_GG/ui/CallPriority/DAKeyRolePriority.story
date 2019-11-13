@@ -13,91 +13,85 @@ Given booked profiles:
 Scenario: Define call queue items
 Given the call queue items:
 | key                  | source                         | target                         | callType |
-| OP3-RoleEmergency    | <<OP3_URI>>                    | sip:roleEmergency@example.com  | DA/IDA   |
-| RoleEmergency-OP3    |sip:roleEmergency@example.com   | <<OP3_URI>>                    | DA/IDA   |
+| OP2-RoleEmergency    | <<OP2_URI>>                    | <<ROLE_EMERGENCY_URI>>         | DA/IDA   |
+| RoleEmergency-OP2    | <<ROLE_EMERGENCY_URI>>         | <<OP2_URI>>                    | DA/IDA   |
 
 Scenario: Verify operator mission
-Then HMI OP3 has in the DISPLAY STATUS section mission the assigned mission EAST-EXEC
+Then HMI OP2 has in the DISPLAY STATUS section mission the assigned mission WEST-EXEC
 
-!-- passes while UPPER-EAST-EXEC role Default SIP Priority: NON-URGENT
-Scenario: Op3 checks DAKey priority
+Scenario: Op2 changes grid tab
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 3
+
+Scenario: Op2 checks DAKey priority
 		  @REQUIREMENTS:GID-4698739
-When HMI OP3 has the DA key RoleEmergency with call priority NON-URGENT
+When HMI OP2 has the DA key RoleEmergency with call priority NORMAL
 
-Scenario: Op3 establishes an outgoing call
-When HMI OP3 presses DA key RoleEmergency
-Then HMI OP3 has the DA key RoleEmergency in state out_ringing
-Then HMI OP3 has the call queue item RoleEmergency-OP3 in state out_ringing
+Scenario: Op2 establishes an outgoing call
+When HMI OP2 presses DA key RoleEmergency
+Then HMI OP2 has the DA key RoleEmergency in state out_ringing
+Then HMI OP2 has the call queue item RoleEmergency-OP2 in state out_ringing
 
 Scenario: Operators part of called role receive the incoming call
-Then HMI OP1 has the call queue item OP3-RoleEmergency in state inc_initiated
-Then HMI OP2 has the call queue item OP3-RoleEmergency in state inc_initiated
+Then HMI OP1 has the call queue item OP2-RoleEmergency in state inc_initiated
+Then HMI OP3 has the call queue item OP2-RoleEmergency in state inc_initiated
 
-Scenario: Op1 answers the incoming call
-Then HMI OP1 accepts the call queue item OP3-RoleEmergency
+Scenario: Op2 checks call priority
+When HMI OP2 has the call queue item RoleEmergency-OP2 with priority NORMAL
 
-Scenario: Op3 checks call priority
-When HMI OP3 has the call queue item RoleEmergency-OP3 with priority NON-URGENT
-
-Scenario: Verify call is connected for both operators
-Then HMI OP3 has the call queue item RoleEmergency-OP3 in state connected
-Then HMI OP1 has the call queue item OP3-RoleEmergency in state connected
-
-Scenario: Op3 client clears the phone call
-When HMI OP3 presses DA key RoleEmergency
+Scenario: Op2 client clears the phone call
+When HMI OP2 presses DA key RoleEmergency
+And waiting for 1 second
 Then HMI OP1 has in the call queue a number of 0 calls
 
-Scenario: Call is terminated also for Op3
-Then HMI OP3 has in the call queue a number of 0 calls
+Scenario: Call is terminated also for Op2
+Then HMI OP2 has in the call queue a number of 0 calls
 
-Scenario: Op3 changes its mission
-When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MISSIONS
-Then HMI OP3 changes current mission to mission EAST-EXEC-Test
-Then HMI OP3 activates mission
+Scenario: Op2 changes grid tab back
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1
+
+Scenario: Op2 changes its mission
+When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
+Then HMI OP2 changes current mission to mission WEST-EXEC-TOWER
+Then HMI OP2 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify operator mission
-Then HMI OP3 has in the DISPLAY STATUS section mission the assigned mission EAST-EXEC-Test
+Then HMI OP2 has in the DISPLAY STATUS section mission the assigned mission WEST-EXEC-TOWER
 
-!-- passes while UPPER-EAST-EXEC-Test role Default SIP Priority: EMERGENCY
-Scenario: Op3 checks DAKey priority
+Scenario: Op2 checks DAKey priority
 		  @REQUIREMENTS:GID-4698739
-When HMI OP3 has the DA key RoleEmergency with call priority EMERGENCY
+When HMI OP2 has the DA key RoleEmergency(tower) with call priority EMERGENCY
 
-Scenario: Op3 establishes an outgoing call
-When HMI OP3 presses DA key RoleEmergency
-Then HMI OP3 has the DA key RoleEmergency in state out_ringing
-Then HMI OP3 has the call queue item RoleEmergency-OP3 in state out_ringing
+Scenario: Op2 establishes an outgoing call
+When HMI OP2 presses DA key RoleEmergency(tower)
+Then HMI OP2 has the DA key RoleEmergency(tower) in state out_ringing
+Then HMI OP2 has the call queue item RoleEmergency-OP2 in state out_ringing
 
 Scenario: Operators part of called role receive the incoming call
-Then HMI OP1 has the call queue item OP3-RoleEmergency in state inc_initiated
-Then HMI OP2 has the call queue item OP3-RoleEmergency in state inc_initiated
+Then HMI OP1 has the call queue item OP2-RoleEmergency in state inc_initiated
+Then HMI OP3 has the call queue item OP2-RoleEmergency in state inc_initiated
 
-Scenario: Op1 answers the incoming call
-Then HMI OP1 accepts the call queue item OP3-RoleEmergency
+Scenario: Op2 checks call priority
+When HMI OP2 has the call queue item RoleEmergency-OP2 with priority EMERGENCY
 
-Scenario: Op3 checks call priority
-When HMI OP3 has the call queue item RoleEmergency-OP3 with priority EMERGENCY
-
-Scenario: Verify call is connected for both operators
-Then HMI OP3 has the call queue item RoleEmergency-OP3 in state connected
-Then HMI OP1 has the call queue item OP3-RoleEmergency in state connected
-
-Scenario: Op3 client clears the phone call
-When HMI OP3 presses DA key RoleEmergency
+Scenario: Op2 client clears the phone call
+When HMI OP2 presses DA key RoleEmergency(tower)
 Then HMI OP1 has in the call queue a number of 0 calls
 
-Scenario: Call is terminated also for Op3
-Then HMI OP3 has in the call queue a number of 0 calls
+Scenario: Call is terminated also for Op2
+Then HMI OP2 has in the call queue a number of 0 calls
 
-Scenario: Clean-up: Op3 changes its mission back
-When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MISSIONS
-Then HMI OP3 changes current mission to mission EAST-EXEC
-Then HMI OP3 activates mission
+Scenario: Clean-up: Op2 changes its mission back
+When HMI OP2 with layout <<LAYOUT_MISSION4>> presses function key MISSIONS
+Then HMI OP2 changes current mission to mission WEST-EXEC
+Then HMI OP2 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify operator mission
-Then HMI OP3 has in the DISPLAY STATUS section mission the assigned mission EAST-EXEC
+Then HMI OP2 has in the DISPLAY STATUS section mission the assigned mission WEST-EXEC
+
+Scenario: Cleanup - always select first tab
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure

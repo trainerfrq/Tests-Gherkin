@@ -37,6 +37,7 @@ Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction rx
 
 Scenario: Cleanup IA call
 When HMI OP1 presses IA key IA - OP2
+And waiting for 1 second
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for callee

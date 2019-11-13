@@ -29,7 +29,7 @@ Then HMI OP1 verifies that phone book call button is disabled
 
 Scenario: Caller selects item from phonebook
 When HMI OP1 scrolls down in phonebook
-When HMI OP1 selects phonebook entry number: 10
+When HMI OP1 selects phonebook entry number: 11
 Then HMI OP1 verifies that phone book text box displays text OP2 Physical
 Then HMI OP1 verifies that phone book call button is enabled
 Then HMI OP1 verifies that phone book priority toggle is inactive

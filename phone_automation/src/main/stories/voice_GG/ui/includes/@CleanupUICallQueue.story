@@ -41,8 +41,8 @@ Given the call queue items:
 | OP1_uregent-OP3      | <<OP1_URI>>                   | <<OP3_URI>>                    | DA/IDA   |
 | OP1-SipContact2      | <<SIP_PHONE5>>                |                                | DA/IDA   |
 | OP1-SipContact3      | <<SIP_PHONE4>>                |                                | DA/IDA   |
-| OP3-RoleEmergency    | <<OP3_URI>>                   | sip:roleEmergency@example.com  | DA/IDA   |
-| RoleEmergency-OP3    | sip:roleEmergency@example.com | <<OP3_URI>>                    | DA/IDA   |
+| OP3-RoleEmergency    | <<OP3_URI>>                   | <<ROLE_EMERGENCY_URI>>         | DA/IDA   |
+| RoleEmergency-OP3    | <<ROLE_EMERGENCY_URI>>        | <<OP3_URI>>                    | DA/IDA   |
 | OP3-SipContact       | <<SIP_PHONE6>>                |                                | DA/IDA   |
 
 Scenario: OP1 cleans up active list call queues, if is the case

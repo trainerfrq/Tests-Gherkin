@@ -1203,12 +1203,6 @@
                             <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/PhoneBasicCall/DAPriorityCall.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyDataList/>
-                            <cats:storyStatistics/>
-                        </cats:story>
-                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneBasicCall/TelephoneBookMaximumNumberOfEntries.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
@@ -1234,12 +1228,6 @@
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/PhoneBasicCall/DACallFromTelephoneBook.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyDataList/>
-                            <cats:storyStatistics/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/PhoneBasicCall/DAPriorityCallFromTelephoneBook.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
@@ -1512,6 +1500,12 @@
                             <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/CallPriority/DACallFromIncomingDAPriorityCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallPriority/DAKeyRolePriority.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
@@ -1519,6 +1513,18 @@
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallPriority/DAKeysWithDifferentPriorities.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/CallPriority/DAPriorityCall.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/CallPriority/DAPriorityCallFromTelephoneBook.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
@@ -1744,12 +1750,6 @@
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallHistory/DACallFromIncomingDAHistoryEntry.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyDataList/>
-                            <cats:storyStatistics/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/CallHistory/DACallFromIncomingDAPriorityCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
