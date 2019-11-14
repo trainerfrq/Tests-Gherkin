@@ -41,9 +41,11 @@ Given the call queue items:
 | OP1_uregent-OP3      | <<OP1_URI>>                   | <<OP3_URI>>                    | DA/IDA   |
 | OP1-SipContact2      | <<SIP_PHONE5>>                |                                | DA/IDA   |
 | OP1-SipContact3      | <<SIP_PHONE4>>                |                                | DA/IDA   |
-| OP3-RoleEmergency    | <<OP3_URI>>                   | <<ROLE_EMERGENCY_URI>>         | DA/IDA   |
-| RoleEmergency-OP3    | <<ROLE_EMERGENCY_URI>>        | <<OP3_URI>>                    | DA/IDA   |
+| OP2-RoleEmergency    | <<OP2_URI>>                   | <<ROLE_EMERGENCY_URI>>         | DA/IDA   |
+| RoleEmergency-OP2    | <<ROLE_EMERGENCY_URI>>        | <<OP2_URI>>                    | DA/IDA   |
 | OP3-SipContact       | <<SIP_PHONE6>>                |                                | DA/IDA   |
+| OP1_Master-OP2       | <<ROLE1_URI>>                 | <<OP2_URI>>                    | DA/IDA   |
+| OP2-OP1_Master       | <<OP2_URI>>                   |                                | DA/IDA   |
 
 Scenario: OP1 cleans up active list call queues, if is the case
 Then HMI OP1 cleans the call queue item OP2-OP1-IA from the call queue list activeList
@@ -62,9 +64,10 @@ Then HMI OP1 cleans the call queue item OP2-ROLE1-IA from the call queue list ac
 Then HMI OP1 cleans the call queue item ROLE2-IA from the call queue list activeList
 Then HMI OP1 cleans the call queue item OP3-Role1 from the call queue list activeList
 Then HMI OP1 cleans the call queue item OP3-OP1_uregent from the call queue list activeList
-Then HMI OP1 cleans the call queue item OP3-RoleEmergency from the call queue list activeList
+Then HMI OP1 cleans the call queue item OP2-RoleEmergency from the call queue list activeList
 Then HMI OP1 cleans the call queue item OP1-SipContact2 from the call queue list activeList
 Then HMI OP1 cleans the call queue item OP1-SipContact3 from the call queue list activeList
+Then HMI OP1 cleans the call queue item OP2-OP1_Master from the call queue list activeList
 
 Scenario: OP1 cleans up waiting list call queues, if is the case
 Then HMI OP1 cleans the call queue item OP2-OP1-IA from the call queue list waitingList
@@ -83,9 +86,10 @@ Then HMI OP1 cleans the call queue item OP2-ROLE1-IA from the call queue list wa
 Then HMI OP1 cleans the call queue item ROLE2-IA from the call queue list waitingList
 Then HMI OP1 cleans the call queue item OP3-Role1 from the call queue list waitingList
 Then HMI OP1 cleans the call queue item OP3-OP1_uregent from the call queue list waitingList
-Then HMI OP1 cleans the call queue item OP3-RoleEmergency from the call queue list waitingList
+Then HMI OP1 cleans the call queue item OP2-RoleEmergency from the call queue list waitingList
 Then HMI OP1 cleans the call queue item OP1-SipContact2 from the call queue list waitingList
 Then HMI OP1 cleans the call queue item OP1-SipContact3 from the call queue list waitingList
+Then HMI OP1 cleans the call queue item OP2-OP1_Master from the call queue list waitingList
 
 Scenario: OP1 cleans up hold list call queues, if is the case
 Then HMI OP1 cleans the call queue item OP2-OP1-IA from the call queue list holdList
@@ -104,9 +108,10 @@ Then HMI OP1 cleans the call queue item OP2-ROLE1-IA from the call queue list ho
 Then HMI OP1 cleans the call queue item ROLE2-IA from the call queue list holdList
 Then HMI OP1 cleans the call queue item OP3-Role1 from the call queue list holdList
 Then HMI OP1 cleans the call queue item OP3-OP1_uregent from the call queue list holdList
-Then HMI OP1 cleans the call queue item OP3-RoleEmergency from the call queue list holdList
+Then HMI OP1 cleans the call queue item OP2-RoleEmergency from the call queue list holdList
 Then HMI OP1 cleans the call queue item OP1-SipContact2 from the call queue list holdList
 Then HMI OP1 cleans the call queue item OP1-SipContact3 from the call queue list holdList
+Then HMI OP1 cleans the call queue item OP2-OP1_Master from the call queue list holdList
 
 Scenario: OP1 cleans up priority list call queues, if is the case
 Then HMI OP1 cleans the call queue item OP2-OP1-IA from the call queue list priorityList
@@ -125,9 +130,10 @@ Then HMI OP1 cleans the call queue item OP2-ROLE1-IA from the call queue list pr
 Then HMI OP1 cleans the call queue item ROLE2-IA from the call queue list priorityList
 Then HMI OP1 cleans the call queue item OP3-Role1 from the call queue list priorityList
 Then HMI OP1 cleans the call queue item OP3-OP1_uregent from the call queue list priorityList
-Then HMI OP1 cleans the call queue item OP3-RoleEmergency from the call queue list priorityList
+Then HMI OP1 cleans the call queue item OP2-RoleEmergency from the call queue list priorityList
 Then HMI OP1 cleans the call queue item OP1-SipContact2 from the call queue list priorityList
 Then HMI OP1 cleans the call queue item OP1-SipContact3 from the call queue list priorityList
+Then HMI OP1 cleans the call queue item OP2-OP1_Master from the call queue list priorityList
 
 Scenario: OP2 cleans up active list call queues, if is the case
 Then HMI OP2 cleans the call queue item OP1-OP2-IA from the call queue list activeList
@@ -144,7 +150,8 @@ Then HMI OP2 cleans the call queue item ROLE3 from the call queue list activeLis
 Then HMI OP2 cleans the call queue item ROLE1-OP2-IA from the call queue list activeList
 Then HMI OP2 cleans the call queue item ROLE1-ROLE2-IA from the call queue list activeList
 Then HMI OP2 cleans the call queue item OP3-Role1 from the call queue list activeList
-Then HMI OP2 cleans the call queue item OP3-RoleEmergency from the call queue list activeList
+Then HMI OP2 cleans the call queue item RoleEmergency-OP2 from the call queue list activeList
+Then HMI OP2 cleans the call queue item OP1_Master-OP2 from the call queue list activeList
 
 Scenario: OP2 cleans up waiting list call queues, if is the case
 Then HMI OP2 cleans the call queue item OP1-OP2-IA from the call queue list waitingList
@@ -161,7 +168,8 @@ Then HMI OP2 cleans the call queue item ROLE3 from the call queue list waitingLi
 Then HMI OP2 cleans the call queue item ROLE1-OP2-IA from the call queue list waitingList
 Then HMI OP2 cleans the call queue item ROLE1-ROLE2-IA from the call queue list waitingList
 Then HMI OP2 cleans the call queue item OP3-Role1 from the call queue list waitingList
-Then HMI OP2 cleans the call queue item OP3-RoleEmergency from the call queue list waitingList
+Then HMI OP2 cleans the call queue item RoleEmergency-OP2 from the call queue list waitingList
+Then HMI OP2 cleans the call queue item OP1_Master-OP2 from the call queue list waitingList
 
 Scenario: OP2 cleans up hold list call queues, if is the case
 Then HMI OP2 cleans the call queue item OP2-OP1-IA from the call queue list holdList
@@ -178,7 +186,8 @@ Then HMI OP2 cleans the call queue item ROLE3 from the call queue list holdList
 Then HMI OP2 cleans the call queue item ROLE1-OP2-IA from the call queue list holdList
 Then HMI OP2 cleans the call queue item ROLE1-ROLE2-IA from the call queue list holdList
 Then HMI OP2 cleans the call queue item OP3-Role1 from the call queue list holdList
-Then HMI OP2 cleans the call queue item OP3-RoleEmergency from the call queue list holdList
+Then HMI OP2 cleans the call queue item RoleEmergency-OP2 from the call queue list holdList
+Then HMI OP2 cleans the call queue item OP1_Master-OP2 from the call queue list holdList
 
 Scenario: OP2 cleans up priority list call queues, if is the case
 Then HMI OP2 cleans the call queue item OP1-OP2-IA from the call queue list priorityList
@@ -195,7 +204,8 @@ Then HMI OP2 cleans the call queue item ROLE3 from the call queue list priorityL
 Then HMI OP2 cleans the call queue item ROLE1-OP2-IA from the call queue list priorityList
 Then HMI OP2 cleans the call queue item ROLE1-ROLE2-IA from the call queue list priorityList
 Then HMI OP2 cleans the call queue item OP3-Role1 from the call queue list priorityList
-Then HMI OP2 cleans the call queue item OP3-RoleEmergency from the call queue list priorityList
+Then HMI OP2 cleans the call queue item RoleEmergency-OP2 from the call queue list priorityList
+Then HMI OP2 cleans the call queue item OP1_Master-OP2 from the call queue list priorityList
 
 Scenario: OP3 cleans up active list call queues, if is the case
 Then HMI OP3 cleans the call queue item OP2-OP3-IA from the call queue list activeList
@@ -208,8 +218,8 @@ Then HMI OP3 cleans the call queue item ROLE2-ROLE3 from the call queue list act
 Then HMI OP3 cleans the call queue item ROLE2 from the call queue list activeList
 Then HMI OP3 cleans the call queue item Role1-OP3 from the call queue list activeList
 Then HMI OP3 cleans the call queue item OP1_uregent-OP3 from the call queue list activeList
-Then HMI OP3 cleans the call queue item RoleEmergency-OP3 from the call queue list activeList
 Then HMI OP3 cleans the call queue item OP3-SipContact from the call queue list activeList
+Then HMI OP3 cleans the call queue item OP2-RoleEmergency from the call queue list activeList
 
 Scenario: OP3 cleans up waiting list call queues, if is the case
 Then HMI OP3 cleans the call queue item OP2-OP3-IA from the call queue list waitingList
@@ -222,8 +232,8 @@ Then HMI OP3 cleans the call queue item ROLE2-ROLE3 from the call queue list wai
 Then HMI OP3 cleans the call queue item ROLE2 from the call queue list waitingList
 Then HMI OP3 cleans the call queue item Role1-OP3 from the call queue list waitingList
 Then HMI OP3 cleans the call queue item OP1_uregent-OP3 from the call queue list waitingList
-Then HMI OP3 cleans the call queue item RoleEmergency-OP3 from the call queue list waitingList
 Then HMI OP3 cleans the call queue item OP3-SipContact from the call queue list waitingList
+Then HMI OP3 cleans the call queue item OP2-RoleEmergency from the call queue list waitingList
 
 Scenario: OP3 cleans up ahold list call queues, if is the case
 Then HMI OP3 cleans the call queue item OP2-OP3-IA from the call queue list holdList
@@ -236,8 +246,8 @@ Then HMI OP3 cleans the call queue item ROLE2-ROLE3 from the call queue list hol
 Then HMI OP3 cleans the call queue item ROLE2 from the call queue list holdList
 Then HMI OP3 cleans the call queue item Role1-OP3 from the call queue list holdList
 Then HMI OP3 cleans the call queue item OP1_uregent-OP3 from the call queue list holdList
-Then HMI OP3 cleans the call queue item RoleEmergency-OP3 from the call queue list holdList
 Then HMI OP3 cleans the call queue item OP3-SipContact from the call queue list holdList
+Then HMI OP3 cleans the call queue item OP2-RoleEmergency from the call queue list holdList
 
 Scenario: OP3 cleans up priority list call queues, if is the case
 Then HMI OP3 cleans the call queue item OP2-OP3-IA from the call queue list priorityList
@@ -250,6 +260,6 @@ Then HMI OP3 cleans the call queue item ROLE2-ROLE3 from the call queue list pri
 Then HMI OP3 cleans the call queue item ROLE2 from the call queue list priorityList
 Then HMI OP3 cleans the call queue item Role1-OP3 from the call queue list priorityList
 Then HMI OP3 cleans the call queue item OP1_uregent-OP3 from the call queue list priorityList
-Then HMI OP3 cleans the call queue item RoleEmergency-OP3 from the call queue list priorityList
 Then HMI OP3 cleans the call queue item OP3-SipContact from the call queue list priorityList
+Then HMI OP3 cleans the call queue item OP2-RoleEmergency from the call queue list priorityList
 

@@ -80,13 +80,13 @@ Given the function keys:
 | <<LAYOUT_MISSION3>> | SETTINGS    | <<SETTINGS_ID_MISSION3>>   |
 | <<LAYOUT_MISSION3>> | MONITORING  | <<MONITORING_ID_MISSION3>> |
 | <<LAYOUT_MISSION3>> | EDIT        | <<EDIT_ID_MISSION3>>       |
-| <<LAYOUT_MISSION4>> | PHONEBOOK   | f1                          |
-| <<LAYOUT_MISSION4>> | CALLHISTORY | f2                          |
-| <<LAYOUT_MISSION4>> | MISSIONS    | f3                          |
-| <<LAYOUT_MISSION4>> | CALLFORWARD | f4                          |
-| <<LAYOUT_MISSION4>> | LOUDSPEAKER | f5                          |
+| <<LAYOUT_MISSION4>> | PHONEBOOK   | <<PHONEBOOK_ID>>           |
+| <<LAYOUT_MISSION4>> | CALLHISTORY | <<CALLHISTORY_ID>>         |
+| <<LAYOUT_MISSION4>> | MISSIONS    | <<MISSIONS_ID>>            |
+| <<LAYOUT_MISSION4>> | CALLFORWARD | <<CALLFORWARD_ID>>         |
+| <<LAYOUT_MISSION4>> | LOUDSPEAKER | <<LOUDSPEAKER_ID>>         |
 | <<LAYOUT_MISSION4>> | SETTINGS    | <<SETTINGS_ID_MISSION4>>    |
-| <<LAYOUT_MISSION4>> | MONITORING  | <<SETTINGS_ID_MONITORING4>> |
+| <<LAYOUT_MISSION4>> | MONITORING  | <<MONITORING_ID_MISSION4>> |
 | <<LAYOUT_MISSION4>> | EDIT        | <<EDIT_ID_MISSION4>>        |
 
 Scenario: Define status key

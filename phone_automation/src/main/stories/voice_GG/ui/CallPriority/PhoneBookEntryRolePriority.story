@@ -1,7 +1,7 @@
 Narrative:
 As an operator
 I want to establish a call to a Phone Book Entry that has set Priority to: Use Role Priority
-So I can verify that the call has the priority of my operator role
+So I can verify that the call has the priority of the active role
 
 Scenario: Booking profiles
 Given booked profiles:

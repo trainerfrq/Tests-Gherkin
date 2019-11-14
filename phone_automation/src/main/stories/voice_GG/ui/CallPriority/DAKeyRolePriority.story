@@ -1,7 +1,7 @@
 Narrative:
 As a caller operator having set a DAKey with Call Priority: ROLE
 I want to establish a phone call
-So I can verify that the received call has caller's operator role priority
+So I can verify that call has caller's operator role priority
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -38,9 +38,11 @@ Then HMI OP3 has the call queue item OP2-RoleEmergency in state inc_initiated
 Scenario: Op2 checks call priority
 When HMI OP2 has the call queue item RoleEmergency-OP2 with priority NORMAL
 
+Scenario: Op1 checks call priority
+When HMI OP1 has the call queue item OP2-RoleEmergency with priority NORMAL
+
 Scenario: Op2 client clears the phone call
 When HMI OP2 presses DA key RoleEmergency
-And waiting for 1 second
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for Op2
@@ -73,6 +75,9 @@ Then HMI OP3 has the call queue item OP2-RoleEmergency in state inc_initiated
 
 Scenario: Op2 checks call priority
 When HMI OP2 has the call queue item RoleEmergency-OP2 with priority EMERGENCY
+
+Scenario: Op1 checks call priority
+When HMI OP1 has the call queue item OP2-RoleEmergency with priority EMERGENCY
 
 Scenario: Op2 client clears the phone call
 When HMI OP2 presses DA key RoleEmergency(tower)

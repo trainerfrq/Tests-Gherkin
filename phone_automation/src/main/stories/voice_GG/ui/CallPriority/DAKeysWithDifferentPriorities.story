@@ -1,7 +1,7 @@
 Narrative:
 As a caller operator having set a DAKey with requested Call Priority
 I want to establish a phone call
-So I can verify that the received call has the desired priority
+So I can verify that the call has the desired priority for both operators
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -39,9 +39,11 @@ Then HMI OP1 has the call queue item OP3-Role1 in state inc_initiated
 Scenario: Op1 client checks call priority
 When HMI OP1 has the call queue item OP3-Role1 with priority EMERGENCY
 
+Scenario: Op3 client checks call priority
+When HMI OP3 has the call queue item Role1-OP3 with priority EMERGENCY
+
 Scenario: Op3 client clears the phone call
 When HMI OP3 presses DA key ROLE1
-And waiting for 1 second
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for Op3
@@ -62,9 +64,11 @@ Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
 Scenario: Op2 checks call priority
 When HMI OP2 has the call queue item OP1-OP2 with priority NON-URGENT
 
+Scenario: Op1 checks call priority
+When HMI OP1 has the call queue item OP2-OP1 with priority NON-URGENT
+
 Scenario: Op1 clears the phone call
 When HMI OP1 presses DA key OP2
-And waiting for 1 second
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for Op1
@@ -76,7 +80,6 @@ When HMI OP1 has the DA key OP2(as ActiveMission) with call priority NORMAL
 
 Scenario: Op1 establishes an outgoing call
 When HMI OP1 presses DA key OP2(as ActiveMission)
-And waiting for 1 second
 Then HMI OP1 has the DA key OP2(as ActiveMission) in state out_ringing
 Then HMI OP1 has the call queue item OP2-OP1_Master in state out_ringing
 
@@ -86,9 +89,11 @@ Then HMI OP2 has the call queue item OP1_Master-OP2 in state inc_initiated
 Scenario: Op2 checks call priority
 When HMI OP2 has the call queue item OP1_Master-OP2 with priority NORMAL
 
+Scenario: Op1 checks call priority
+When HMI OP1 has the call queue item OP2-OP1_Master with priority NORMAL
+
 Scenario: Op1 clears the phone call
 When HMI OP1 presses DA key OP2(as ActiveMission)
-And waiting for 1 second
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for Op1
@@ -109,9 +114,11 @@ Then HMI OP1 has the call queue item OP3-OP1_uregent in state inc_initiated
 Scenario: Op1 client checks call priority
 When HMI OP1 has the call queue item OP3-OP1_uregent with priority URGENT
 
+Scenario: Op3 client checks call priority
+When HMI OP3 has the call queue item OP1_uregent-OP3 with priority URGENT
+
 Scenario: Op3 client clears the phone call
 When HMI OP3 presses DA key OP1-urgent
-And waiting for 1 second
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for Op3
