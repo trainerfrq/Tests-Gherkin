@@ -1,0 +1,1574 @@
+[
+  {
+    "layoutId": "7cff5489-45c0-4483-869e-a53eb3cadfd8",
+    "name": "lower-east-exec-layout",
+    "layoutInitData": {
+      "columnNumber": 1,
+      "rowNumber": 1,
+      "column": 0,
+      "row": 0,
+      "usedColumnNumber": 1,
+      "usedRowNumber": 1
+    },
+    "gridInitData": {
+      "columnNumber": 24,
+      "rowNumber": 18
+    },
+    "widgetLayout": {
+      "widgets": [
+        {
+          "id": "1560865815744",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560871280767",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 2,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "456.100",
+          "type": "radio",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 0,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
+        },
+        {
+          "id": "456.200",
+          "type": "radio",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 3,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
+        },
+        {
+          "id": "456.300",
+          "type": "radio",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 6,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
+        },
+        {
+          "id": "456.400",
+          "type": "radio",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 9,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
+        },
+        {
+          "id": "456.500",
+          "type": "radio",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 12,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
+        },
+        {
+          "id": "1560866042173",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 4,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560866049984",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 6,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560871268987",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 8,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560866075753",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 10,
+            "row": 16,
+            "columnSpan": 1,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560865856496",
+          "type": "grid",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 3,
+            "row": 0,
+            "columnSpan": 16,
+            "rowSpan": 16
+          }
+        },
+        {
+          "id": "1560865842624",
+          "type": "status",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 19,
+            "row": 0,
+            "columnSpan": 5,
+            "rowSpan": 3
+          }
+        },
+        {
+          "id": "1560866082527",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 11,
+            "row": 16,
+            "columnSpan": 1,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560866093256",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 12,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560866102078",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 14,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1571318036623",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 16,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560865825850",
+          "type": "callQueue",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 19,
+            "row": 3,
+            "columnSpan": 5,
+            "rowSpan": 15
+          }
+        },
+        {
+          "id": "1560865873772",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 0,
+            "row": 0,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1560865887773",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 0,
+            "row": 5,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1560865977835",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 7,
+            "row": 0,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1560865997016",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 14,
+            "row": 0,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1560866007069",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 7,
+            "row": 5,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1560865910101",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 0,
+            "row": 10,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1560865910102",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 7,
+            "row": 10,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1560865910103",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 14,
+            "row": 10,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1571317923534",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 14,
+            "row": 5,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1571318094394",
+          "type": "ia",
+          "grid": "1560865856496_tab2",
+          "position": {
+            "column": 7,
+            "row": 0,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1571318068339",
+          "type": "ia",
+          "grid": "1560865856496_tab2",
+          "position": {
+            "column": 0,
+            "row": 0,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1571318117306",
+          "type": "ia",
+          "grid": "1560865856496_tab2",
+          "position": {
+            "column": 0,
+            "row": 5,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1572965372980",
+          "type": "ia",
+          "grid": "1560865856496_tab2",
+          "position": {
+            "column": 14,
+            "row": 0,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        }
+      ],
+      "positions": []
+    },
+    "gridWidgetData": {
+      "grid": [
+        {
+          "id": "1560865856496",
+          "columnNumber": 21,
+          "rowNumber": 20,
+          "gridPages": [
+            {
+              "id": "1560865856496_tab1",
+              "displayName": "tab1"
+            },
+            {
+              "id": "1560865856496_tab2",
+              "displayName": "tab2"
+            }
+          ]
+        }
+      ]
+    },
+    "phoneData": {
+      "da": [
+        {
+          "id": "1571318068339",
+          "target": "sip:222222@example.com",
+          "source": "{op_physical_sip_address}",
+          "displayName": "gg-cats-cwp-2",
+          "callPriority": "URGENT"
+        },
+        {
+          "id": "1560865887773",
+          "target": "sip:222222@example.com",
+          "source": "sip:UpperEastExec@example.com",
+          "displayName": "gg-cats-cwp-2",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "1571317923534",
+          "target": "sip:role1@example.com",
+          "source": "{op_physical_sip_address}",
+          "displayName": "role1",
+          "callPriority": "ROLE"
+        },
+        {
+          "id": "1571318117306",
+          "target": "sip:LowerWestExec@example.com",
+          "source": "{role_primary_sip_address}",
+          "displayName": "LOWER-WEST-EXEC",
+          "callPriority": "URGENT"
+        },
+        {
+          "id": "1560865997016",
+          "target": "sip:op3@example.com",
+          "source": "{op_physical_sip_address}",
+          "displayName": "gg-cats-cwp-3",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "1571318094394",
+          "target": "sip:op3@example.com",
+          "source": "{op_physical_sip_address}",
+          "displayName": "gg-cats-cwp-3",
+          "callPriority": "URGENT"
+        },
+        {
+          "id": "1560865910103",
+          "target": "sip:LowerWestExec@example.com",
+          "source": "{role_primary_sip_address}",
+          "displayName": "LOWER-WEST-EXEC",
+          "callPriority": "EMERGENCY"
+        },
+        {
+          "id": "1560865910102",
+          "target": "sip:222222@example.com",
+          "source": "{role_primary_sip_address}",
+          "displayName": "gg-cats-cwp-2",
+          "callPriority": "NORMAL"
+        },
+        {
+          "id": "1560865873772",
+          "target": "sip:111111@example.com",
+          "source": "sip:UpperEastExec@example.com",
+          "displayName": "gg-cats-cwp-1",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "1560866007069",
+          "target": "sip:role2@example.com",
+          "source": "sip:role1@example.com",
+          "displayName": "role2",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "1560865910101",
+          "target": "sip:role2alias1@example.com",
+          "source": "sip:role1@example.com",
+          "displayName": "role2alias1",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "1572965372980",
+          "target": "sip:12345@10.16.157.19:5070",
+          "source": "{op_physical_sip_address}",
+          "displayName": "Madoline",
+          "callPriority": "URGENT"
+        },
+        {
+          "id": "1560865977835",
+          "target": "sip:222222@example.com",
+          "source": "{op_physical_sip_address}",
+          "displayName": "gg-cats-cwp-2",
+          "callPriority": "NON-URGENT"
+        }
+      ]
+    },
+    "functionData": {
+      "functionData": [
+        {
+          "id": "1560866082527",
+          "type": "agAudioOutput"
+        },
+        {
+          "id": "1560871280767",
+          "type": "edit"
+        },
+        {
+          "id": "1571318036623",
+          "type": "monitoring"
+        },
+        {
+          "id": "1560871268987",
+          "type": "forward"
+        },
+        {
+          "id": "1560866102078",
+          "type": "setting"
+        },
+        {
+          "id": "1560866093256",
+          "type": "cpl"
+        },
+        {
+          "id": "1560866042173",
+          "type": "phonebook"
+        },
+        {
+          "id": "1560866049984",
+          "type": "history"
+        },
+        {
+          "id": "1560866075753",
+          "type": "ggAudioOutput"
+        },
+        {
+          "id": "1560865815744",
+          "type": "mission"
+        }
+      ]
+    },
+    "statusDisplayData": {
+      "statusDisplay": [
+        {
+          "id": "notificationDisplay",
+          "time": "hh:mm:ss",
+          "date": "dd-MM-YYYY",
+          "showClock": true,
+          "showDate": false,
+          "showMission": true,
+          "showConnectionStatus": true
+        },
+        {
+          "id": "1560865842624",
+          "time": "hh:mm:ss",
+          "date": "dd-MM-YYYY",
+          "showClock": true,
+          "showDate": true,
+          "showMission": true,
+          "showConnectionStatus": true
+        }
+      ]
+    }
+  },
+  {
+    "layoutId": "bfe180b4-7661-49a2-928e-0892694f648a",
+    "name": "lower-west-exec-layout",
+    "layoutInitData": {
+      "columnNumber": 1,
+      "rowNumber": 1,
+      "column": 0,
+      "row": 0,
+      "usedColumnNumber": 1,
+      "usedRowNumber": 1
+    },
+    "gridInitData": {
+      "columnNumber": 24,
+      "rowNumber": 18
+    },
+    "widgetLayout": {
+      "widgets": [
+        {
+          "id": "1560865815744",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560871280767",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 2,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "456.100",
+          "type": "radio",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 0,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
+        },
+        {
+          "id": "456.200",
+          "type": "radio",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 3,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
+        },
+        {
+          "id": "456.300",
+          "type": "radio",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 6,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
+        },
+        {
+          "id": "456.400",
+          "type": "radio",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 9,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
+        },
+        {
+          "id": "456.500",
+          "type": "radio",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 12,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
+        },
+        {
+          "id": "1560866042173",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 4,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560866049984",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 6,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560871268987",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 8,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560866075753",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 10,
+            "row": 16,
+            "columnSpan": 1,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560865856496",
+          "type": "grid",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 3,
+            "row": 0,
+            "columnSpan": 16,
+            "rowSpan": 16
+          }
+        },
+        {
+          "id": "1560866082527",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 11,
+            "row": 16,
+            "columnSpan": 1,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560866093256",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 12,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560866102078",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 14,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1571318036623",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 16,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560865842624",
+          "type": "status",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 19,
+            "row": 0,
+            "columnSpan": 5,
+            "rowSpan": 3
+          }
+        },
+        {
+          "id": "1560865825850",
+          "type": "callQueue",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 19,
+            "row": 3,
+            "columnSpan": 5,
+            "rowSpan": 15
+          }
+        },
+        {
+          "id": "1560865873772",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 0,
+            "row": 0,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1560865887773",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 0,
+            "row": 5,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1560865977835",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 7,
+            "row": 0,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1560865997016",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 14,
+            "row": 0,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1560866007069",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 7,
+            "row": 5,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1560865910101",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 0,
+            "row": 10,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1560865910102",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 7,
+            "row": 10,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1560865910103",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 14,
+            "row": 10,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1571317923534",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 14,
+            "row": 5,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1571318068339",
+          "type": "ia",
+          "grid": "1560865856496_tab2",
+          "position": {
+            "column": 0,
+            "row": 0,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1571318117306",
+          "type": "ia",
+          "grid": "1560865856496_tab2",
+          "position": {
+            "column": 0,
+            "row": 5,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1571318094394",
+          "type": "ia",
+          "grid": "1560865856496_tab2",
+          "position": {
+            "column": 14,
+            "row": 0,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1571395833922",
+          "type": "ia",
+          "grid": "1560865856496_tab2",
+          "position": {
+            "column": 7,
+            "row": 0,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1571396046312",
+          "type": "ia",
+          "grid": "1560865856496_tab2",
+          "position": {
+            "column": 7,
+            "row": 5,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        }
+      ],
+      "positions": []
+    },
+    "gridWidgetData": {
+      "grid": [
+        {
+          "id": "1560865856496",
+          "columnNumber": 21,
+          "rowNumber": 20,
+          "gridPages": [
+            {
+              "id": "1560865856496_tab1",
+              "displayName": "tab1"
+            },
+            {
+              "id": "1560865856496_tab2",
+              "displayName": "tab2"
+            }
+          ]
+        }
+      ]
+    },
+    "phoneData": {
+      "da": [
+        {
+          "id": "1571395833922",
+          "target": "sip:222222@example.com",
+          "source": "{op_physical_sip_address}",
+          "displayName": "gg-cats-cwp-2",
+          "callPriority": "URGENT"
+        },
+        {
+          "id": "1571318068339",
+          "target": "sip:111111@example.com",
+          "source": "{op_physical_sip_address}",
+          "displayName": "gg-cats-cwp-1",
+          "callPriority": "URGENT"
+        },
+        {
+          "id": "1560865887773",
+          "target": "sip:role1@example.com",
+          "source": "{op_physical_sip_address}",
+          "displayName": "role1",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "1571317923534",
+          "target": "sip:role1alias1@example.com",
+          "source": "sip:role2@example.com",
+          "displayName": "role1alias1",
+          "callPriority": "ROLE"
+        },
+        {
+          "id": "1571318117306",
+          "target": "sip:role1@example.com",
+          "source": "{op_physical_sip_address}",
+          "displayName": "role1",
+          "callPriority": "URGENT"
+        },
+        {
+          "id": "1571396046312",
+          "target": "sip:LowerEastExec@example.com",
+          "source": "{role_primary_sip_address}",
+          "displayName": "LOWER-EAST-EXEC",
+          "callPriority": "URGENT"
+        },
+        {
+          "id": "1560865997016",
+          "target": "sip:role1@example.com",
+          "source": "sip:role2@example.com",
+          "displayName": "role1",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "1571318094394",
+          "target": "sip:op3@example.com",
+          "source": "{op_physical_sip_address}",
+          "displayName": "gg-cats-cwp-3",
+          "callPriority": "URGENT"
+        },
+        {
+          "id": "1560865910103",
+          "target": "sip:UpperEastExec@example.com",
+          "source": "{role_primary_sip_address}",
+          "displayName": "UPPER-EAST-EXEC",
+          "callPriority": "EMERGENCY"
+        },
+        {
+          "id": "1560865910102",
+          "target": "sip:111111@example.com",
+          "source": "{role_primary_sip_address}",
+          "displayName": "gg-cats-cwp-1",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "1560865873772",
+          "target": "sip:111111@example.com",
+          "source": "{op_physical_sip_address}",
+          "displayName": "gg-cats-cwp-1",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "1560866007069",
+          "target": "sip:role1alias1@example.com",
+          "source": "{op_physical_sip_address}",
+          "displayName": "role1alias1",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "1560865910101",
+          "target": "sip:role1alias2@example.com",
+          "source": "sip:role2alias1@example.com",
+          "displayName": "role1alias2",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "1560865977835",
+          "target": "sip:op3@example.com",
+          "source": "{op_physical_sip_address}",
+          "displayName": "gg-cats-cwp-3",
+          "callPriority": "NON-URGENT"
+        }
+      ]
+    },
+    "functionData": {
+      "functionData": [
+        {
+          "id": "1560866082527",
+          "type": "agAudioOutput"
+        },
+        {
+          "id": "1560871280767",
+          "type": "edit"
+        },
+        {
+          "id": "1571318036623",
+          "type": "monitoring"
+        },
+        {
+          "id": "1560871268987",
+          "type": "forward"
+        },
+        {
+          "id": "1560866102078",
+          "type": "setting"
+        },
+        {
+          "id": "1560866093256",
+          "type": "cpl"
+        },
+        {
+          "id": "1560866042173",
+          "type": "phonebook"
+        },
+        {
+          "id": "1560866049984",
+          "type": "history"
+        },
+        {
+          "id": "1560866075753",
+          "type": "ggAudioOutput"
+        },
+        {
+          "id": "1560865815744",
+          "type": "mission"
+        }
+      ]
+    },
+    "statusDisplayData": {
+      "statusDisplay": [
+        {
+          "id": "notificationDisplay",
+          "time": "hh:mm:ss",
+          "date": "dd-MM-YYYY",
+          "showClock": true,
+          "showDate": false,
+          "showMission": true,
+          "showConnectionStatus": true
+        },
+        {
+          "id": "1560865842624",
+          "time": "hh:mm:ss",
+          "date": "dd-MM-YYYY",
+          "showClock": true,
+          "showDate": true,
+          "showMission": true,
+          "showConnectionStatus": true
+        }
+      ]
+    }
+  },
+  {
+    "layoutId": "97c3274b-95f8-4400-8391-18253f088772",
+    "name": "upper-east-exec-layout",
+    "layoutInitData": {
+      "columnNumber": 1,
+      "rowNumber": 1,
+      "column": 0,
+      "row": 0,
+      "usedColumnNumber": 1,
+      "usedRowNumber": 1
+    },
+    "gridInitData": {
+      "columnNumber": 24,
+      "rowNumber": 18
+    },
+    "widgetLayout": {
+      "widgets": [
+        {
+          "id": "1560865815744",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560871280767",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 2,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "456.100",
+          "type": "radio",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 0,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
+        },
+        {
+          "id": "456.200",
+          "type": "radio",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 3,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
+        },
+        {
+          "id": "456.300",
+          "type": "radio",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 6,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
+        },
+        {
+          "id": "456.400",
+          "type": "radio",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 9,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
+        },
+        {
+          "id": "456.500",
+          "type": "radio",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 0,
+            "row": 12,
+            "columnSpan": 3,
+            "rowSpan": 3
+          }
+        },
+        {
+          "id": "1560866042173",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 4,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560866049984",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 6,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560871268987",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 8,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560866075753",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 10,
+            "row": 16,
+            "columnSpan": 1,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560865856496",
+          "type": "grid",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 3,
+            "row": 0,
+            "columnSpan": 16,
+            "rowSpan": 16
+          }
+        },
+        {
+          "id": "1560865842624",
+          "type": "status",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 19,
+            "row": 0,
+            "columnSpan": 5,
+            "rowSpan": 3
+          }
+        },
+        {
+          "id": "1560866082527",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 11,
+            "row": 16,
+            "columnSpan": 1,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560866093256",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 12,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560866102078",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 14,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1571318036623",
+          "type": "function",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 16,
+            "row": 16,
+            "columnSpan": 2,
+            "rowSpan": 2
+          }
+        },
+        {
+          "id": "1560865825850",
+          "type": "callQueue",
+          "grid": "applicationGrid",
+          "position": {
+            "column": 19,
+            "row": 3,
+            "columnSpan": 5,
+            "rowSpan": 15
+          }
+        },
+        {
+          "id": "1560865873772",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 0,
+            "row": 0,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1560865887773",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 0,
+            "row": 5,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1560865977835",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 7,
+            "row": 0,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1560865997016",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 14,
+            "row": 0,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1560866007069",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 7,
+            "row": 5,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1560865910101",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 0,
+            "row": 10,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1571317923534",
+          "type": "da",
+          "grid": "1560865856496_tab1",
+          "position": {
+            "column": 14,
+            "row": 5,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1571318094394",
+          "type": "ia",
+          "grid": "1560865856496_tab2",
+          "position": {
+            "column": 7,
+            "row": 0,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        },
+        {
+          "id": "1571318068339",
+          "type": "ia",
+          "grid": "1560865856496_tab2",
+          "position": {
+            "column": 0,
+            "row": 0,
+            "columnSpan": 7,
+            "rowSpan": 5
+          }
+        }
+      ],
+      "positions": []
+    },
+    "gridWidgetData": {
+      "grid": [
+        {
+          "id": "1560865856496",
+          "columnNumber": 21,
+          "rowNumber": 20,
+          "gridPages": [
+            {
+              "id": "1560865856496_tab1",
+              "displayName": "tab1"
+            },
+            {
+              "id": "1560865856496_tab2",
+              "displayName": "tab2"
+            }
+          ]
+        }
+      ]
+    },
+    "phoneData": {
+      "da": [
+        {
+          "id": "1571318068339",
+          "target": "sip:222222@example.com",
+          "source": "{op_physical_sip_address}",
+          "displayName": "gg-cats-cwp-2",
+          "callPriority": "URGENT"
+        },
+        {
+          "id": "1560865997016",
+          "target": "sip:role2alias1@example.com",
+          "source": "sip:role1@example.com",
+          "displayName": "role2alias1",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "1571318094394",
+          "target": "sip:111111@example.com",
+          "source": "{op_physical_sip_address}",
+          "displayName": "gg-cats-cwp-1",
+          "callPriority": "URGENT"
+        },
+        {
+          "id": "1560865873772",
+          "target": "sip:111111@example.com",
+          "source": "{op_physical_sip_address}",
+          "displayName": "gg-cats-cwp-1",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "1560865887773",
+          "target": "sip:role2@example.com",
+          "source": "sip:role1@example.com",
+          "displayName": "role2",
+          "callPriority": "NON-URGENT"
+        },
+        {
+          "id": "1560866007069",
+          "target": "sip:role1@example.com",
+          "source": "{op_physical_sip_address}",
+          "displayName": "role1",
+          "callPriority": "EMERGENCY"
+        },
+        {
+          "id": "1571317923534",
+          "target": "sip:LowerWestExec@example.com",
+          "source": "{role_primary_sip_address}",
+          "displayName": "LOWER-WEST-EXEC",
+          "callPriority": "EMERGENCY"
+        },
+        {
+          "id": "1560865910101",
+          "target": "sip:LowerEastExec@example.com",
+          "source": "{role_primary_sip_address}",
+          "displayName": "LOWER-EAST-EXEC",
+          "callPriority": "EMERGENCY"
+        },
+        {
+          "id": "1560865977835",
+          "target": "sip:222222@example.com",
+          "source": "{op_physical_sip_address}",
+          "displayName": "gg-cats-cwp-2",
+          "callPriority": "NON-URGENT"
+        }
+      ]
+    },
+    "functionData": {
+      "functionData": [
+        {
+          "id": "1560866082527",
+          "type": "agAudioOutput"
+        },
+        {
+          "id": "1560871280767",
+          "type": "edit"
+        },
+        {
+          "id": "1571318036623",
+          "type": "monitoring"
+        },
+        {
+          "id": "1560871268987",
+          "type": "forward"
+        },
+        {
+          "id": "1560866102078",
+          "type": "setting"
+        },
+        {
+          "id": "1560866093256",
+          "type": "cpl"
+        },
+        {
+          "id": "1560866042173",
+          "type": "phonebook"
+        },
+        {
+          "id": "1560866049984",
+          "type": "history"
+        },
+        {
+          "id": "1560866075753",
+          "type": "ggAudioOutput"
+        },
+        {
+          "id": "1560865815744",
+          "type": "mission"
+        }
+      ]
+    },
+    "statusDisplayData": {
+      "statusDisplay": [
+        {
+          "id": "notificationDisplay",
+          "time": "hh:mm:ss",
+          "date": "dd-MM-YYYY",
+          "showClock": true,
+          "showDate": false,
+          "showMission": true,
+          "showConnectionStatus": true
+        },
+        {
+          "id": "1560865842624",
+          "time": "hh:mm:ss",
+          "date": "dd-MM-YYYY",
+          "showClock": true,
+          "showDate": true,
+          "showMission": true,
+          "showConnectionStatus": true
+        }
+      ]
+    }
+  }
+]

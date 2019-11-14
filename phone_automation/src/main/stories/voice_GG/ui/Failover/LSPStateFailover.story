@@ -83,9 +83,6 @@ Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER la
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key LOUDSPEAKER
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP off
 
-Scenario: Time to wait between failover tests
-Then waiting for 1 minute
-
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
 GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,

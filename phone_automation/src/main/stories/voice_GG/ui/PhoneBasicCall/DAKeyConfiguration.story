@@ -79,6 +79,7 @@ Then the call queue item OP2-ROLE1 is connected for only one of the operator pos
 
 Scenario: Cleanup IA call
 When HMI OP2 presses IA key IA - ROLE1
+Then waiting for 1 second
 
 Scenario: Verify call is terminated for both operators
 Then HMI OP1 has in the call queue a number of 0 calls

@@ -46,7 +46,14 @@ And waiting for 1 second
 Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
 Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
 Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with info label 2 participants
-Then HMI OP1 has a notification that shows Conference call active
+
+Scenario: Verify conference call notification
+When HMI OP1 opens Notification Display list
+When HMI OP1 selects tab state from notification display popup
+Then HMI OP1 verifies that list State contains text Conference call active
+
+Scenario: Close popup window
+Then HMI OP1 closes notification popup
 
 Scenario: Op2 call state verification
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
@@ -87,6 +94,10 @@ Then HMI OP1 verifies in the list that conference participant on position 3 has 
 
 Scenario: Op1 answers the IA call
 When HMI OP2 presses IA key IA - OP3
+
+Scenario: Verify call queue for Op2 and Op3
+Then HMI OP2 has in the call queue a number of 1 calls
+Then HMI OP3 has in the call queue a number of 1 calls
 
 Scenario: Verify call direction
 Then HMI OP3 has the IA call queue item OP2-OP3 with audio direction duplex

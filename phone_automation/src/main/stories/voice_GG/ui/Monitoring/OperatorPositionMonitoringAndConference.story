@@ -49,7 +49,13 @@ And waiting for 1 second
 Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
 Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
 Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with info label 2 participants
-Then HMI OP1 has a notification that shows Conference call active
+
+Scenario: Verify conference call notification
+When HMI OP1 opens Notification Display list
+Then HMI OP1 verifies that list State contains text Conference call active
+
+Scenario: Close popup window
+Then HMI OP1 closes notification popup
 
 Scenario: Op2 call state verification
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
@@ -63,7 +69,13 @@ Scenario: Op1 verifies conference state
 Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
 Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
 Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with info label 3 participants
-Then HMI OP1 has a notification that shows Conference call active
+
+Scenario: Verify conference call notification
+When HMI OP1 opens Notification Display list
+Then HMI OP1 verifies that list State contains text Conference call active
+
+Scenario: Close popup window
+Then HMI OP1 closes notification popup
 
 Scenario: Op3 client receives the incoming call and answers the call
 Then HMI OP3 has the call queue item OP1-OP3-Conf in state inc_initiated

@@ -1,7 +1,10 @@
 package scripts.cats.hmi.asserts.CallQueue
 
 import com.frequentis.c4i.test.model.ExecutionDetails
-import javafx.scene.Node
+import com.frequentis.c4i.test.util.timer.WaitTimer
+import com.frequentis.voice.hmi.component.layout.list.item.callQueue.CallQueueListItem
+import com.frequentis.voice.hmi.component.layout.list.scrollpane.CallQueueListView
+import javafx.collections.ObservableList
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 class VerifyCallQueueLength extends FxScriptTemplate {
@@ -11,12 +14,35 @@ class VerifyCallQueueLength extends FxScriptTemplate {
     void script() {
         Integer callQueueLength = assertInput(IPARAM_QUEUE_EXPECTED_LENGTH) as Integer;
 
-        Set<Node> activeCallQueueItems = robot.lookup("#activeList .callQueueItem").queryAll();
-        Set<Node> holdCallQueueItems = robot.lookup("#holdList .callQueueItem").queryAll();
-        Set<Node> waitingCallQueueItems = robot.lookup("#waitingList .callQueueItem").queryAll();
-        Set<Node> monitoringCallQueueItems = robot.lookup("#monitoringList .callQueueItem").queryAll();
+        CallQueueListView activeCallQueueList = robot.lookup("#activeList").queryFirst();
+        CallQueueListView holdCallQueueList = robot.lookup("#holdList").queryFirst();
+        CallQueueListView waitingCallQueueList = robot.lookup("#waitingList").queryFirst();
+        CallQueueListView monitoringCallQueueList = robot.lookup("#monitoringList").queryFirst();
+        CallQueueListView priorityCallQueueList = robot.lookup( "#priorityList").queryFirst();
 
-        int callQueueItems = activeCallQueueItems.size()+holdCallQueueItems.size()+waitingCallQueueItems.size()+monitoringCallQueueItems.size()
+        ObservableList<CallQueueListItem> activeItems =  activeCallQueueList.getContainerCallQueueListItemsReadOnly();
+        ObservableList<CallQueueListItem> holdItems =  holdCallQueueList.getContainerCallQueueListItemsReadOnly();
+        ObservableList<CallQueueListItem> waitItems =  waitingCallQueueList.getContainerCallQueueListItemsReadOnly();
+        ObservableList<CallQueueListItem> monitoringItems =  monitoringCallQueueList.getContainerCallQueueListItemsReadOnly();
+        ObservableList<CallQueueListItem> priorityItems =  priorityCallQueueList.getContainerCallQueueListItemsReadOnly();
+
+        int callQueueItems = activeItems.size()+holdItems.size()+waitItems.size()+monitoringItems.size() + priorityItems.size()
+
+        int i = 1
+        int numberOfVerificationRetries = 9 //it will verify the call queue state for maximum 2.3 seconds
+        while (callQueueLength != callQueueItems){
+            WaitTimer.pause(250);
+            activeItems =  activeCallQueueList.getContainerCallQueueListItemsReadOnly();
+            holdItems =  holdCallQueueList.getContainerCallQueueListItemsReadOnly();
+            waitItems =  waitingCallQueueList.getContainerCallQueueListItemsReadOnly();
+            monitoringItems =  monitoringCallQueueList.getContainerCallQueueListItemsReadOnly();
+            priorityItems =  priorityCallQueueList.getContainerCallQueueListItemsReadOnly();
+
+            callQueueItems = activeItems.size()+holdItems.size()+waitItems.size()+monitoringItems.size() + priorityItems.size()
+            i++
+            if((callQueueLength == callQueueItems) || i > numberOfVerificationRetries)
+                break
+        }
 
         evaluate(ExecutionDetails.create("Verify call queue length is matching")
                 .expected("Call queue with a number of " + callQueueLength + " items")
