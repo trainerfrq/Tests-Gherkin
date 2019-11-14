@@ -2556,7 +2556,7 @@
                             <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/Settings/PVCSX-TC-11474_PanelCleanMode.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/ui/Settings/PVCSX-TC-11603_PanelCleanMode.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
