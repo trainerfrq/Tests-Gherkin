@@ -16,8 +16,8 @@ Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission MAN-
 Scenario: Verify current active mission has the expected roles
 		  @REQUIREMENTS: GID-2397112
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP1 has a list of 8 missions available
-Then HMI OP1 has missions EAST-EXEC, MAN-NIGHT-TACT, WEST-EXEC available in the missions list
+Then HMI OP1 has a list of <<NUMBER_OF_MISSIONS>> missions available
+Then HMI OP1 has missions <<MISSIONS_LIST>> available in the missions list
 Then HMI OP1 verifies that current active mission is mission MAN-NIGHT-TACT
 Then HMI OP1 has roles <<ROLE_1_NAME>>, role1alias2, groupall, role1, role1alias1, group1 available in the roles list
 
@@ -32,8 +32,8 @@ Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission WEST
 Scenario: Verify current active mission has the expected roles
 		  @REQUIREMENTS: GID-2397112
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP1 has a list of 8 missions available
-Then HMI OP1 has missions EAST-EXEC, MAN-NIGHT-TACT, WEST-EXEC available in the missions list
+Then HMI OP1 has a list of <<NUMBER_OF_MISSIONS>> missions available
+Then HMI OP1 has missions <<MISSIONS_LIST>> available in the missions list
 Then HMI OP1 verifies that current active mission is mission WEST-EXEC
 Then HMI OP1 has roles <<ROLE_2_NAME>>, role2alias2, role2, role2alias1 available in the roles list
 
@@ -48,8 +48,8 @@ Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission EAST
 Scenario: Verify current active mission has the expected roles
 		  @REQUIREMENTS: GID-2397112
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP1 has a list of 8 missions available
-Then HMI OP1 has missions EAST-EXEC, MAN-NIGHT-TACT, WEST-EXEC available in the missions list
+Then HMI OP1 has a list of <<NUMBER_OF_MISSIONS>> missions available
+Then HMI OP1 has missions <<MISSIONS_LIST>> available in the missions list
 Then HMI OP1 verifies that current active mission is mission EAST-EXEC
 Then HMI OP1 has roles <<ROLE_3_NAME>>, role1alias1, groupall, role1, role1alias2, group1 available in the roles list
 

@@ -19,9 +19,9 @@ class ClickOnPhoneBookScrollDownButton extends FxScriptTemplate {
 
         evaluate(ExecutionDetails.create("Phonebook popup was found")
                 .expected("Phonebook popup is not null")
-                .success(phoneBookPopup != null))
+                .success(phoneBookPopup.isVisible()))
 
-        if (phoneBookPopup != null) {
+        if (phoneBookPopup.isVisible()) {
             final Node scrollDownButton = robot.lookup("#phonebookPopup #scrollDown").queryFirst()
 
             for(int i=0; i<clickNumber; i++){

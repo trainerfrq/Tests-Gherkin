@@ -29,11 +29,12 @@ class VerifyConferenceListSize extends FxScriptTemplate {
             ObservableList conferenceItems = conferenceTable.getItems()
 
             int i = 1
+            int numberOfVerificationRetries = 9 //it will verify the conference list size for maximum 2.3 seconds
             while (conferenceItems.size() != conferenceListSize){
                 WaitTimer.pause(250);
                 conferenceItems = conferenceTable.getItems()
                 i++
-                if((conferenceItems.size() == conferenceListSize) || i > 9)
+                if((conferenceItems.size() == conferenceListSize) || i > numberOfVerificationRetries)
                     break
             }
 

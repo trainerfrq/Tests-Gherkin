@@ -29,6 +29,7 @@ class VerifyCallQueueLength extends FxScriptTemplate {
         int callQueueItems = activeItems.size()+holdItems.size()+waitItems.size()+monitoringItems.size() + priorityItems.size()
 
         int i = 1
+        int numberOfVerificationRetries = 9 //it will verify the call queue state for maximum 2.3 seconds
         while (callQueueLength != callQueueItems){
             WaitTimer.pause(250);
             activeItems =  activeCallQueueList.getContainerCallQueueListItemsReadOnly();
@@ -39,7 +40,7 @@ class VerifyCallQueueLength extends FxScriptTemplate {
 
             callQueueItems = activeItems.size()+holdItems.size()+waitItems.size()+monitoringItems.size() + priorityItems.size()
             i++
-            if((callQueueLength == callQueueItems) || i > 9)
+            if((callQueueLength == callQueueItems) || i > numberOfVerificationRetries)
                 break
         }
 

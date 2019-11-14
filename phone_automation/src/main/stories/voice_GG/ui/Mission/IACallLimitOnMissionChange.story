@@ -26,7 +26,7 @@ Then HMI OP2 has the IA key IA - OP1 in state connected
 
 Scenario: Callee Op2 changes the mission
 When HMI OP2 clicks on DISPLAY STATUS label mission
-Then HMI OP2 has a list of 8 missions available
+Then HMI OP2 has a list of <<NUMBER_OF_MISSIONS>> missions available
 Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP2 activates mission
 Then wait for 5 seconds
@@ -49,7 +49,7 @@ Then HMI OP2 has in the call queue a number of 1 calls
 
 Scenario: Callee Op2 changes to previous mission
 When HMI OP2 clicks on DISPLAY STATUS label mission
-Then HMI OP2 has a list of 8 missions available
+Then HMI OP2 has a list of <<NUMBER_OF_MISSIONS>> missions available
 Then HMI OP2 changes current mission to mission WEST-EXEC
 Then HMI OP2 activates mission
 Then wait for 5 seconds

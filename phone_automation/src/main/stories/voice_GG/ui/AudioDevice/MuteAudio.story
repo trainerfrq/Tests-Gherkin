@@ -46,7 +46,6 @@ When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key SETTINGS
 Scenario: Op1 verifies that all audio buttons are in muted state
 		  @REQUIREMENTS:GID-4309053
 		  @REQUIREMENTS:GID-4231218
-!-- Then HMI OP1 has a notification that shows Chime muted
 Then HMI OP1 verifies that mute button Chime is in muted state
 Then HMI OP1 verifies that mute button UserInput is in muted state
 Then HMI OP1 verifies that mute button Coach is in muted state

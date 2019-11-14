@@ -28,6 +28,9 @@ When HMI OP2 opens Notification Display list
 When HMI OP2 selects tab event from notification display popup
 When HMI OP2 clears the notification events from list
 Then HMI OP2 verifies that Notification Display list Event has 0 items
+When HMI OP2 selects tab state from notification display popup
+
+Scenario: Operator closes the Notification popup
 Then HMI OP2 closes notification popup
 
 Scenario: Caller establishes an outgoing IA call
@@ -65,7 +68,15 @@ Then HMI OP3 has the DA key OP2 in state out_ringing
 
 Scenario: Op2 attempts to answer the incoming DA call
 When HMI OP2 presses DA key OP3
-Then HMI OP2 has a notification that shows Call can not be accepted, TRANSFER mode active
+
+Scenario: Operator opens Notification Display popup and verifies the Event list
+When HMI OP2 opens Notification Display list
+Then HMI OP2 verifies that popup notification is visible
+When HMI OP2 selects tab event from notification display popup
+Then HMI OP2 verifies that list Event contains text Call can not be accepted, TRANSFER mode active
+
+Scenario: Operator closes the Notification popup
+Then HMI OP2 closes notification popup
 
 Scenario: Op3 clears the outgoing DA call to Op2
 When HMI OP3 presses DA key OP2
@@ -81,7 +92,16 @@ When HMI OP2 presses IA key IA - OP2
 Scenario: Verify call is received and call status is failed
 Then HMI OP2 has in the call queue a number of 1 calls
 Then HMI OP2 has the IA key IA - OP2 in state out_failed
-Then HMI OP2 has a notification that shows General failure for phone call to
+
+Scenario: Operator opens Notification Display popup and verifies the Event list
+When HMI OP2 opens Notification Display list
+Then HMI OP2 verifies that popup notification is visible
+When HMI OP2 selects tab event from notification display popup
+Then HMI OP2 verifies that list Event contains on position 0 text General failure for phone call to
+!-- Then HMI OP2 verifies that list Event contains text General failure for phone call to
+
+Scenario: Operator closes the Notification popup
+Then HMI OP2 closes notification popup
 
 Scenario: Caller clears outgoing call
 When HMI OP2 presses IA key IA - OP2

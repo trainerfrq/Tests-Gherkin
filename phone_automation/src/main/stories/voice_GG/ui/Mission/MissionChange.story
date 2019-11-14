@@ -19,8 +19,8 @@ Scenario: Change mission
 		  @REQUIREMENTS: GID-4324230
 		  @REQUIREMENTS: GID-4324231
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP1 has a list of 8 missions available
-Then HMI OP1 has missions EAST-EXEC, MAN-NIGHT-TACT, WEST-EXEC available in the missions list
+Then HMI OP1 has a list of <<NUMBER_OF_MISSIONS>> missions available
+Then HMI OP1 has missions <<MISSIONS_LIST>> available in the missions list
 Then HMI OP1 changes current mission to mission WEST-EXEC
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
@@ -30,8 +30,8 @@ Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission WEST
 
 Scenario: Select mission and close pop-up with activating the mission
 When HMI OP1 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
-Then HMI OP1 has a list of 8 missions available
-Then HMI OP1 has missions EAST-EXEC, MAN-NIGHT-TACT, WEST-EXEC available in the missions list
+Then HMI OP1 has a list of <<NUMBER_OF_MISSIONS>> missions available
+Then HMI OP1 has missions <<MISSIONS_LIST>> available in the missions list
 Then HMI OP1 changes current mission to mission EAST-EXEC
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
@@ -41,8 +41,8 @@ Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission EAST
 
 Scenario: Change to previous mission
 When HMI OP1 with layout <<LAYOUT_MISSION3>> presses function key MISSIONS
-Then HMI OP1 has a list of 8 missions available
-Then HMI OP1 has missions EAST-EXEC, MAN-NIGHT-TACT, WEST-EXEC available in the missions list
+Then HMI OP1 has a list of <<NUMBER_OF_MISSIONS>> missions available
+Then HMI OP1 has missions <<MISSIONS_LIST>> available in the missions list
 Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
