@@ -45,7 +45,13 @@ And waiting for 1 second
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label CONF
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 2 participants
-Then HMI OP2 has a notification that shows Conference call active
+
+Scenario: Verify conference call notification
+When HMI OP2 opens Notification Display list
+Then HMI OP2 verifies that list State contains text Conference call active
+
+Scenario: Close popup window
+Then HMI OP2 closes notification popup
 
 Scenario: Op1 call state verification
 Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
@@ -89,8 +95,12 @@ Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
 
-Scenario: Verify conference active notification on Op2 position
-Then HMI OP2 has a notification that shows Conference call active
+Scenario: Verify conference call notification
+When HMI OP2 opens Notification Display list
+Then HMI OP2 verifies that list State contains text Conference call active
+
+Scenario: Close popup window
+Then HMI OP2 closes notification popup
 
 Scenario: Verify the call state for all operators
 		  @REQUIREMENTS: GID-3005111
@@ -151,8 +161,12 @@ Then HMI OP2 changes current mission to mission WEST-EXEC
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
 
-Scenario: Verify conference active notification on Op2 position
-Then HMI OP2 has a notification that shows Conference call active
+Scenario: Verify conference call notification
+When HMI OP2 opens Notification Display list
+Then HMI OP2 verifies that list State contains text Conference call active
+
+Scenario: Close popup window
+Then HMI OP2 closes notification popup
 
 Scenario: On Op2 position DA buttons of the participants are correctly signalized
 !-- Then HMI OP2 verifies that the DA key OP1 has the info label Conference

@@ -78,6 +78,7 @@ Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for callee
 Then HMI OP2 has in the call queue a number of 0 calls
+Then waiting for 1 second
 
 Scenario: Cleanup - always select first tab
 When HMI OP1 with layout <<LAYOUT_MISSION2>> selects grid tab 1

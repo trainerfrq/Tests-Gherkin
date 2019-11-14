@@ -37,7 +37,14 @@ When HMI OP2 starts a conference using an existing active call
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label CONF
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 2 participants
-Then HMI OP2 has a notification that shows Conference call active
+
+Scenario: Verify conference call notification
+When HMI OP2 opens Notification Display list
+When HMI OP2 selects tab state from notification display popup
+Then HMI OP2 verifies that list State contains text Conference call active
+
+Scenario: Close popup window
+Then HMI OP2 closes notification popup
 
 Scenario: Op1 call state verification
 Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
@@ -64,7 +71,14 @@ Scenario: Op2 verifies conference state
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label CONF
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 3 participants
-Then HMI OP2 has a notification that shows Conference call active
+
+Scenario: Verify conference call notification
+When HMI OP2 opens Notification Display list
+When HMI OP2 selects tab state from notification display popup
+Then HMI OP2 verifies that list State contains text Conference call active
+
+Scenario: Close popup window
+Then HMI OP2 closes notification popup
 
 Scenario: Op2 verifies conference participants list
 		  @REQUIREMENTS:GID-3229804
@@ -99,6 +113,9 @@ Then HMI OP1 verifies that leave conference button is enabled
 Then HMI OP1 leaves conference
 
 Scenario: Call is terminated for Op1
+Then HMI OP1 has in the call queue a number of 0 calls
+
+Scenario: Conference is not terminated for Op3
 Then HMI OP3 has in the call queue a number of 1 calls
 
 Scenario: Op2 verifies the conference participants list

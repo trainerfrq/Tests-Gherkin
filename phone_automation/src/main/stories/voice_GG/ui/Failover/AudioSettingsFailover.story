@@ -14,7 +14,7 @@ Then waiting for 60 seconds
 Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 
 Scenario: Op2 closes settings popup window
-Then HMI OP2 closes settings popup
+Then HMI OP2 closes popup settings if window is visible
 Scenario: Open settings
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key SETTINGS
 
@@ -99,11 +99,7 @@ Then HMI OP2 verifies that list State contains text Chime muted
 
 Scenario: Close popup window
 Then HMI OP2 closes notification popup
-Scenario: Close audio settings tab
-Then HMI OP2 closes volumeControl popup
 
-Scenario: Close settings tab
-Then HMI OP2 closes settings popup
 
 Scenario: Open settings
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key SETTINGS
@@ -146,6 +142,3 @@ Scenario: Verify displayed status after the starting the op voice instances
 GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost2.story
 Then waiting for 60 seconds
 Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
-
-Scenario: Time to wait between failover tests
-Then waiting for 1 minute

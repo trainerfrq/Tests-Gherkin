@@ -74,16 +74,7 @@ Scenario: Op3 closes monitoring popup
 Then HMI OP3 closes monitoring popup
 
 Scenario: Op2 has the visual indication that it is monitored
-Then HMI OP2 verifies that call queue container monitoring is visible
-Then HMI OP2 has the call queue item OP3-OP1-MONITORING in state connected
-Then HMI OP2 has the call queue item OP3-OP1-MONITORING in state tx_monitored
-Then HMI OP2 has in the call queue a number of 1 calls
-Then HMI OP2 verifies the call queue item OP3-OP1-MONITORING has label type showing ALL
-Then HMI OP2 verifies the call queue item OP3-OP1-MONITORING has label name showing <<ROLE_3_NAME>>
-
-Scenario: Op1 is not monitored
-Then HMI OP1 verifies that call queue container monitoring is not visible
-Then HMI OP1 has in the call queue a number of 0 calls
+Then the call queue item OP3-OP1-MONITORING is connected for only one of the operator positions: HMI OP1, HMI OP2
 
 Scenario: Op3 terminates all monitoring calls
 When HMI OP3 with layout <<LAYOUT_MISSION3>> terminates monitoring calls using function key MONITORING menu

@@ -37,7 +37,13 @@ When HMI OP2 starts a conference using an existing active call
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label CONF
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 2 participants
-Then HMI OP2 has a notification that shows Conference call active
+
+Scenario: Verify conference call notification
+When HMI OP2 opens Notification Display list
+Then HMI OP2 verifies that list State contains text Conference call active
+
+Scenario: Close popup window
+Then HMI OP2 closes notification popup
 
 Scenario: Op1 call state verification
 Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
