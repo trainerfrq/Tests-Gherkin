@@ -8,9 +8,9 @@ Meta: @BeforeStory: ../includes/@PrepareClientWithMissionAndSipPhone.story
 
 Scenario: Define phone book entries
 Given the following phone book entries:
-| key    | uri                    | name    | full-name | location | organization | notes | display-addon |
-| entry1 | sip:police@12.34.56.78 | Police1 |           |          |              |       |               |
-| entry2 | sip:police@12.34.56.89 | Police2 |           |          |              |       |               |
+| key    | uri                    | name    | full-name | location | organization | notes | display-addon | call-priority |
+| entry1 | sip:police@12.34.56.78 | Police1 |           |          |              |       |               |   NON_URGENT  |
+| entry2 | sip:police@12.34.56.89 | Police2 |           |          |              |       |               |   NON_URGENT  |
 
 Scenario: Create the message buffers
 When WS1 opens the message buffer for message type phoneBookResponse named PhoneBookResponseBuffer

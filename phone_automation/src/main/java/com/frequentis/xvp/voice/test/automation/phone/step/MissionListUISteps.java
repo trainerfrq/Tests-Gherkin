@@ -23,8 +23,10 @@ import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
 import com.frequentis.xvp.voice.test.automation.phone.data.StatusKey;
 import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.Mission.CleanUpMission;
 import scripts.cats.hmi.actions.Mission.ClickActivateMission;
+import scripts.cats.hmi.actions.Mission.ClickOnMissionScrollDownButton;
 import scripts.cats.hmi.actions.Mission.SelectMissionFromList;
 import scripts.cats.hmi.actions.Mission.SelectMissionFromListByPosition;
 import scripts.cats.hmi.asserts.Mission.VerifyCurrentActiveMission;
@@ -129,6 +131,15 @@ public class MissionListUISteps extends AutomationSteps
                 .input( CleanUpMission.IPARAM_STATUS_DISPLAY_LABEL, label + "Label" )
                 .input( CleanUpMission.IPARAM_STATUS_DISPLAY_TEXT, text )
                 .input( CleanUpMission.IPARAM_FUNCTION_KEY_ID, functionKey.getId() ));
+    }
+
+    @When("$profileName scrolls down $number page(s) in mission list")
+    public void scrollDownMission(final String profileName, final String number)
+    {
+        evaluate( remoteStep( "Scroll down mission" ).scriptOn(
+                profileScriptResolver().map( ClickOnMissionScrollDownButton.class, BookableProfileName.javafx ),
+                assertProfile( profileName ) )
+                .input( ClickOnMissionScrollDownButton.IPARAM_CLICK_NUMBER, number ));
     }
 
 

@@ -18,7 +18,7 @@ Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission MAN-
 
 Scenario: Change mission
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP1 has a list of 3 missions available
+Then HMI OP1 has a list of <<NUMBER_OF_MISSIONS>> missions available
 Then HMI OP1 changes current mission to mission WEST-EXEC
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
@@ -45,7 +45,7 @@ Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission WEST
 
 Scenario: Change mission
 When HMI OP1 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
-Then HMI OP1 has a list of 3 missions available
+Then HMI OP1 has a list of <<NUMBER_OF_MISSIONS>> missions available
 Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
 Then HMI OP1 activates mission
 Then waiting for 5 seconds

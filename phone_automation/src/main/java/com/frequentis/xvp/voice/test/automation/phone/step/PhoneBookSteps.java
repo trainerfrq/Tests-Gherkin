@@ -16,22 +16,6 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
-import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
-import com.frequentis.c4i.test.model.ExecutionDetails;
-import com.frequentis.xvp.tools.cats.websocket.automation.model.PhoneBookEntry;
-import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
-import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
-import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
-import com.frequentis.xvp.voice.common.sip.SipURI;
-import com.frequentis.xvp.voice.common.sip.SipUser;
-import com.frequentis.xvp.voice.opvoice.json.messages.JsonMessage;
-import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookRequest;
-import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookResponse;
-import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookResponseItem;
-import com.google.common.collect.ImmutableList;
-import org.jbehave.core.annotations.Named;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
 import scripts.cats.websocket.sequential.SendTextMessage;
 import scripts.cats.websocket.sequential.buffer.ReceiveAllReceivedMessages;
 import scripts.cats.websocket.sequential.buffer.ReceiveLastReceivedMessage;
@@ -52,6 +36,24 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
 import java.util.stream.Collectors;
+
+import org.jbehave.core.annotations.Named;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
+
+import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
+import com.frequentis.c4i.test.model.ExecutionDetails;
+import com.frequentis.xvp.tools.cats.websocket.automation.model.PhoneBookEntry;
+import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
+import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
+import com.frequentis.xvp.voice.common.sip.SipURI;
+import com.frequentis.xvp.voice.common.sip.SipUser;
+import com.frequentis.xvp.voice.opvoice.json.messages.JsonMessage;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookRequest;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookResponse;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookResponseItem;
+import com.google.common.collect.ImmutableList;
 
 public class PhoneBookSteps extends WebsocketAutomationSteps
 {
@@ -450,6 +452,8 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
                   equalTo( phoneBookEntry.getOrganization() ) ) )
             .details( match( "Phone book entry location matches", phoneBookResponseItem.getLocation(),
                   equalTo( phoneBookEntry.getLocation() ) ) )
+            .details( match( "Phone book entry call priority matches", phoneBookResponseItem.getCallPriority(),
+                  equalTo( phoneBookEntry.getCallPriority() ) ) )
             .details( match( "Phone book entry notes matches", phoneBookResponseItem.getNotes(),
                   equalTo( phoneBookEntry.getNotes() ) ) ) );
    }
@@ -459,7 +463,7 @@ public class PhoneBookSteps extends WebsocketAutomationSteps
 
       PhoneBookResponseItem entry = new PhoneBookResponseItem(phoneBookEntry.getName(), phoneBookEntry.getFullName(),phoneBookEntry.getLocation(),
                                                               phoneBookEntry.getOrganization(),phoneBookEntry.getNotes(),phoneBookEntry.getDisplayAddon(),
-                                                              phoneBookEntry.getUri(), getUserPartOfURI( phoneBookEntry.getUri() ));
+                                                              phoneBookEntry.getUri(), getUserPartOfURI( phoneBookEntry.getUri() ), phoneBookEntry.getCallPriority());
       evaluate( localStep( "Verify phone book entry exists in the entire phone book list" )
                         .details(match(entry,isIn(items))));
    }

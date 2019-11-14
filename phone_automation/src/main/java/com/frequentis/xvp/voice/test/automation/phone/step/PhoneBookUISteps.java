@@ -23,12 +23,8 @@ import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
 import com.frequentis.xvp.voice.test.automation.phone.data.Mission;
-import com.google.common.base.Charsets;
-import com.google.common.io.Resources;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-
 import org.apache.commons.io.FileUtils;
 import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Given;
@@ -36,8 +32,6 @@ import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import retrofit2.http.Url;
 import scripts.cats.hmi.actions.PhoneBook.ClickOnKeyboard;
 import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookCloseButton;
 import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookDeleteButton;
@@ -62,14 +56,11 @@ import scripts.cats.hmi.asserts.PhoneBook.VerifyToggleCallPriorityState;
 import scripts.cats.hmi.asserts.PhoneBook.VerifyTotalNumberOfEntries;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import javax.annotation.Resource;
 
 public class PhoneBookUISteps extends AutomationSteps
 {
@@ -244,12 +235,13 @@ public class PhoneBookUISteps extends AutomationSteps
             assertProfile( profileName ) ) );
    }
 
-   @When("$profileName scrolls down in phonebook")
-   public void scrollDownPhonebook(final String profileName)
+   @When("$profileName clicks on the scroll down button in phonebook for $number time(s)")
+   public void scrollDownPhonebook(final String profileName, final String number)
    {
       evaluate( remoteStep( "Scroll down phonebook" ).scriptOn(
             profileScriptResolver().map( ClickOnPhoneBookScrollDownButton.class, BookableProfileName.javafx ),
-            assertProfile( profileName ) ) );
+            assertProfile( profileName ) )
+             .input(ClickOnPhoneBookScrollDownButton.IPARAM_CLICK_NUMBER, number));
    }
 
 

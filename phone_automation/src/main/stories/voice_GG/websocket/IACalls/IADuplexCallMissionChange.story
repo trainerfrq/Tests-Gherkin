@@ -74,7 +74,7 @@ And waiting for 1 seconds
 Then WS1 is receiving call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status connected and audio direction TX_MONITORED
 
 Scenario: Callee client receives the incoming call
-When WS3 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer2 with callSourceCalling and callTargetCalling and names incomingPhoneCallId1 and audio direction RX_MONITORED
+When WS3 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer2 with callSourceCalling , callTargetCalling , audio direction RX_MONITORED and monitoring type ALL and names incomingPhoneCallId1
 
 Scenario: Caller client changes its mission
 When WS1 chooses mission with name WEST-EXEC from available missions named availableMissionIds1 and names missionIdToChange2
@@ -84,7 +84,8 @@ Then WS1 confirms mission change completed for mission missionId2
 Scenario: Caller does a full call status request
 		  @REQUIREMENTS:GID-2841714
 When WS1 queries full call status
-Then WS1 receives full call status on message buffer named FullCallStatusResponseBuffer1 with callSourceCalling , callTargetCalling , IA , TX_MONITORED , connected and URGENT
+!-- Fails due to Problem Report PVCSX - 2005
+Then WS1 receives full call status on message buffer named FullCallStatusResponseBuffer1 with callSourceCalling , callTargetCalling , IA , TX_MONITORED , connected , ALL and URGENT
 
 Scenario: Callee establishes an outgoing call
 When WS3 establishes an outgoing IA call with source callSourceCalled and target callTargetCalled and names outgoingPhoneCallId2
@@ -92,7 +93,7 @@ And waiting for 1 seconds
 Then WS3 is receiving call status indication on message buffer named CallStatusIndicationBuffer2 with callId outgoingPhoneCallId2 and status connected and audio direction DUPLEX
 
 Scenario: Caller client receives the incoming call
-When WS1 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer1 with callSourceCalled and callTargetCalled and names incomingPhoneCallId2 and audio direction DUPLEX
+When WS1 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer1 with callSourceCalled , callTargetCalled , audio direction DUPLEX and monitoring type GG and names incomingPhoneCallId2
 
 Scenario: Third client changes its mission
 When WS3 chooses mission with name WEST-EXEC from available missions named availableMissionIds3 and names missionIdToChange4
@@ -101,7 +102,7 @@ Then WS3 confirms mission change completed for mission missionId4
 
 Scenario: Callee does a full call status request
 When WS3 queries full call status
-Then WS3 receives full call status on message buffer named FullCallStatusResponseBuffer2 with callSourceCalled , callTargetCalled , IA , DUPLEX , connected and URGENT
+Then WS3 receives full call status on message buffer named FullCallStatusResponseBuffer2 with callSourceCalled , callTargetCalled , IA , DUPLEX , connected , ALL and URGENT
 
 Scenario: Caller cleans up phone call
 When WS1 clears the phone call with the callId outgoingPhoneCallId1
@@ -121,11 +122,11 @@ Then WS3 confirms mission change completed for mission missionId3
 
 Scenario: Caller does a full call status request
 When WS1 queries full call status
-Then WS1 receives full call status on message buffer named FullCallStatusResponseBuffer1 with callSourceCalling , callTargetCalling , IA , RX_MONITORED , connected and URGENT
+Then WS1 receives full call status on message buffer named FullCallStatusResponseBuffer1 with callSourceCalling , callTargetCalling , IA , RX_MONITORED , connected , ALL and URGENT
 
 Scenario: Callee does a full call status request
 When WS3 queries full call status
-Then WS3 receives full call status on message buffer named FullCallStatusResponseBuffer2 with callSourceCalled , callTargetCalled , IA , TX_MONITORED , connected and URGENT
+Then WS3 receives full call status on message buffer named FullCallStatusResponseBuffer2 with callSourceCalled , callTargetCalled , IA , TX_MONITORED , connected , ALL and URGENT
 
 Scenario: Callee cleans up phone call
 When WS3 clears the phone call with the callId outgoingPhoneCallId2

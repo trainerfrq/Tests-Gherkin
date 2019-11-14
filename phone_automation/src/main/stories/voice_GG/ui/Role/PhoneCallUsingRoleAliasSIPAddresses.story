@@ -127,6 +127,7 @@ Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Caller clears outgoing call
 Then HMI OP2 terminates the call queue item OP1-OP2-5
+Then waiting for 1 second
 
 Scenario: Call is terminated
 Then HMI OP1 has in the call queue a number of 0 calls
