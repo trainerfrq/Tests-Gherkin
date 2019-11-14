@@ -3,7 +3,7 @@
     <job>
         <name>System Testing AST Import</name>
         <simulation>false</simulation>
-        <incremental>false</incremental>
+        <incremental>true</incremental>
         <sources>
             <workingCopy path="./">
                 <filter regex="src/main/stories"/>

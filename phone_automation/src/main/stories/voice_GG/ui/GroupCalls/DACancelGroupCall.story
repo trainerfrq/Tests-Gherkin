@@ -27,7 +27,6 @@ Then HMI OP3 has the call queue item OP2-Role1 in state inc_initiated
 
 Scenario: Op2 cancels group call
 Then HMI OP2 cancels the call queue item Role1-OP2
-Then waiting for 1 seconds
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Call is canceled for target operators

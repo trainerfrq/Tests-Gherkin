@@ -20,22 +20,26 @@ import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import scripts.cats.hmi.actions.AudioSettings.CleanUpMuteButton;
-import scripts.cats.hmi.actions.AudioSettings.CleanUpMuteSideToneButton;
-import scripts.cats.hmi.actions.AudioSettings.ClickOnMuteButton;
-import scripts.cats.hmi.actions.AudioSettings.ClickOnMuteSideToneButton;
-import scripts.cats.hmi.actions.AudioSettings.ClickOnVolumeSlider;
+import scripts.cats.hmi.actions.Settings.CleanUpMuteButton;
+import scripts.cats.hmi.actions.Settings.CleanUpMuteSideToneButton;
+import scripts.cats.hmi.actions.Settings.ClickOnClosePanelButton;
+import scripts.cats.hmi.actions.Settings.ClickOnMuteButton;
+import scripts.cats.hmi.actions.Settings.ClickOnMuteSideToneButton;
+import scripts.cats.hmi.actions.Settings.ClickOnVolumeSlider;
 import scripts.cats.hmi.actions.ClickOnIdlePopupButton;
 import scripts.cats.hmi.actions.ClickOnPopupCloseButton;
 import scripts.cats.hmi.actions.ClickOnWarningPopupButton;
 import scripts.cats.hmi.asserts.Attended.VerifyIdlePopupText;
 import scripts.cats.hmi.asserts.Attended.VerifyWarningPopupCountDownIsVisible;
 import scripts.cats.hmi.asserts.Attended.VerifyWarningPopupText;
-import scripts.cats.hmi.asserts.AudioSettings.VerifyMuteButtonState;
-import scripts.cats.hmi.asserts.AudioSettings.VerifyMuteSidetoneButtonState;
-import scripts.cats.hmi.asserts.AudioSettings.VerifyVolumeSliderLevel;
+import scripts.cats.hmi.asserts.Settings.VerifyClosePanelButtonState;
+import scripts.cats.hmi.asserts.Settings.VerifyClosePanelButtonVisible;
+import scripts.cats.hmi.asserts.Settings.VerifyMuteButtonState;
+import scripts.cats.hmi.asserts.Settings.VerifyMuteSidetoneButtonState;
+import scripts.cats.hmi.asserts.Settings.VerifyVolumeSliderLevel;
+import scripts.cats.hmi.asserts.Settings.VerifySymbolButtonState;
 
-public class AudioUISteps extends AutomationSteps
+public class SettingsUISteps extends AutomationSteps
 {
    @When("$profileName clicks on mute button $buttonName")
    public void clickOnMuteButton(final String profileName, final String buttonName)
@@ -172,5 +176,55 @@ public class AudioUISteps extends AutomationSteps
                 profileScriptResolver().map( CleanUpMuteSideToneButton.class, BookableProfileName.javafx ),
                 assertProfile( profileName ) )
                 .input( CleanUpMuteSideToneButton.IPARAM_MUTE_BUTTON_NAME, buttonName ) );
+    }
+
+    @Then("$profileName verifies that the state of $btnName button is $state state")
+    public void verifyButtonState(final String profileName, final String btnName, final String state)
+    {
+        evaluate( remoteStep( "User verifies " + btnName + "state" ).scriptOn(
+            profileScriptResolver().map( VerifySymbolButtonState.class, BookableProfileName.javafx ),
+            assertProfile( profileName ) )
+            .input( VerifySymbolButtonState.IPARAM_BUTTON_NAME, btnName )
+            .input(VerifySymbolButtonState.IPARAM_BUTTON_STATE, state)
+        );
+    }
+
+    @Then("$profileName verifies that close panel button $number is visible")
+    public void verifyButtonVisible (final String profileName, final Integer number)
+    {
+        evaluate( remoteStep( "Verify clean button is visible" ).scriptOn(
+                profileScriptResolver().map( VerifyClosePanelButtonVisible.class, BookableProfileName.javafx ),
+                assertProfile( profileName ) )
+                .input( VerifyClosePanelButtonVisible.IPARAM_BUTTON_NUMBER, number )
+        );
+    }
+
+    @Then("$profileName verifies that close panel button number $number is marked $state")
+    public void verifyClosePanelButtonState(final String profileName, final String number, final String state)
+    {
+        String actualState = state;
+
+        if(state.equals("yellow")){
+            actualState = "next";
+        }
+        else if(state.equals("green"))
+        {  actualState = "selected";}
+
+        evaluate( remoteStep( "Verify close panel button is in expected state" ).scriptOn(
+                profileScriptResolver().map( VerifyClosePanelButtonState.class, BookableProfileName.javafx ),
+                assertProfile( profileName ) )
+                .input( VerifyClosePanelButtonState.IPARAM_BUTTON_NUMBER, number )
+                .input( VerifyClosePanelButtonState.IPARAM_STATE, actualState )
+        );
+    }
+
+    @When("$profileName clicks on close panel button number $number")
+    public void clicksClosePanelButtonVisible(final String profileName, final String number)
+    {
+        evaluate( remoteStep( "Clicks on  clean button is visible" ).scriptOn(
+                profileScriptResolver().map( ClickOnClosePanelButton.class, BookableProfileName.javafx ),
+                assertProfile( profileName ) )
+                .input( ClickOnClosePanelButton.IPARAM_BUTTON_NUMBER, number )
+        );
     }
 }

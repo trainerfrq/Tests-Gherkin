@@ -151,7 +151,6 @@ Scenario: Callee retrieves call from hold
 Then HMI OP2 retrieves from hold the call queue item SipContact-OP2
 Then HMI OP2 has the call queue item SipContact-OP2 in state connected
 Then HMI OP2 terminates the call queue item SipContact-OP2
-Then waiting for 1 second
 
 Scenario: Verify all cals were cleared
 Then HMI OP1 has in the call queue a number of 0 calls
