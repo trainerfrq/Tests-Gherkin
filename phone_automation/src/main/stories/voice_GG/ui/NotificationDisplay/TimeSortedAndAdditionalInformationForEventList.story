@@ -98,7 +98,6 @@ When HMI OP2 opens Notification Display list
 Then HMI OP2 verifies that popup notification is visible
 When HMI OP2 selects tab event from notification display popup
 Then HMI OP2 verifies that list Event contains on position 0 text General failure for phone call to
-!-- Then HMI OP2 verifies that list Event contains text General failure for phone call to
 
 Scenario: Operator closes the Notification popup
 Then HMI OP2 closes notification popup

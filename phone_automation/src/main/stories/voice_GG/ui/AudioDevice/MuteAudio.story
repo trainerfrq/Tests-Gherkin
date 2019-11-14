@@ -13,7 +13,6 @@ When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key SETTINGS
 
 Scenario: Op1 mutes the chime button
 When HMI OP1 clicks on mute button Chime
-!-- Then HMI OP1 has a notification that shows Chime muted
 Then HMI OP1 verifies that mute button Chime is in muted state
 
 Scenario: Verify notification that chime is muted

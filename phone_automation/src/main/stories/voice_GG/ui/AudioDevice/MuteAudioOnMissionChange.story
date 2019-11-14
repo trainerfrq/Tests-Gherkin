@@ -61,7 +61,6 @@ Scenario: Op1 opens settings tab
 When HMI OP1 with layout <<LAYOUT_MISSION3>> presses function key SETTINGS
 
 Scenario: Op1 verifies all buttons are in muted state
-!-- Then HMI OP1 has a notification that shows Chime muted
 Then HMI OP1 verifies that mute button Chime is in muted state
 Then HMI OP1 verifies that mute button UserInput is in muted state
 Then HMI OP1 verifies that mute button Coach is in muted state
@@ -100,7 +99,6 @@ Scenario: Op1 opens settings tab
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key SETTINGS
 
 Scenario: Op1 verifies all buttons remain in muted state
-!-- Then HMI OP1 has a notification that shows Chime muted
 Then HMI OP1 verifies that mute button Chime is in muted state
 Then HMI OP1 verifies that mute button UserInput is in muted state
 Then HMI OP1 verifies that mute button Coach is in muted state

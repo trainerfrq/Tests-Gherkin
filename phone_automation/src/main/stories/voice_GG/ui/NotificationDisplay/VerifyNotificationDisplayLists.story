@@ -45,7 +45,6 @@ Then HMI OP1 verifies that popup notification is visible
 
 Scenario: Operator verifies the size of state and events lists
 		  @REQUIREMENTS: GID-3281816
-!-- Then HMI OP1 verifies that Notification Display list State has 0 items
 Then HMI OP1 verifies that list State has StateListItems items
 When HMI OP1 selects tab event from notification display popup
 Then HMI OP1 verifies that Notification Display list Event has 1 items
@@ -66,7 +65,6 @@ When HMI OP1 opens Notification Display list
 Then HMI OP1 verifies that popup notification is visible
 
 Scenario: Operator verifies the size of state and events lists
-!-- Then HMI OP1 verifies that Notification Display list State has 1 items
 Then HMI OP1 verifies that list State has StateListItems items plus 1
 When HMI OP1 selects tab event from notification display popup
 Then HMI OP1 verifies that Notification Display list Event has 1 items
@@ -76,7 +74,6 @@ Scenario: Operator clears the event list
 When HMI OP1 clears the notification events from list
 Then HMI OP1 verifies that Notification Display list Event has 0 items
 When HMI OP1 selects tab state from notification display popup
-!-- Then HMI OP1 verifies that Notification Display list State has 1 items
 Then HMI OP1 verifies that list State has StateListItems items plus 1
 Then HMI OP1 closes notification popup
 
@@ -86,7 +83,6 @@ Then HMI OP1 verifies that call queue info container is not visible
 
 Scenario: Operator verifies the size of state list
 When HMI OP1 opens Notification Display list
-!-- Then HMI OP1 verifies that Notification Display list State has 0 items
 Then HMI OP1 verifies that list State has StateListItems items
 
 Scenario: Operator closes Notification Display popup
