@@ -120,7 +120,6 @@ Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Sip phone clears calls
 When SipContact terminates calls
-Then waiting for 1 seconds
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Remove phone

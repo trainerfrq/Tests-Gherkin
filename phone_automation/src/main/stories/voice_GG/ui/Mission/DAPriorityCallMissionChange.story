@@ -59,7 +59,6 @@ Then HMI OP1 has in the call queue the item OP2-OP1 with priority
 
 Scenario: Callee terminates call
 Then HMI OP2 terminates the call queue item OP1-OP2
-Then waiting for 1 second
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for caller

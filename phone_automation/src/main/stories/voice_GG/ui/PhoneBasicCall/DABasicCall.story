@@ -57,7 +57,6 @@ Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label 
 Scenario: Caller client clears the phone call
 		  @REQUIREMENTS:GID-2510109
 When HMI OP1 presses DA key OP2
-Then waiting for 1 second
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for caller
