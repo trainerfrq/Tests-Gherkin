@@ -1,4 +1,4 @@
-package scripts.cats.hmi.asserts.AudioSettings
+package scripts.cats.hmi.asserts.Settings
 
 import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.css.PseudoClass

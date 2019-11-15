@@ -33,7 +33,6 @@ Then HMI OP1 has the call queue item OP1-OP1 in state out_failed
 
 Scenario: Caller clears outgoing call
 Then HMI OP1 terminates the call queue item OP1-OP1
-And waiting for 1 second
 
 Scenario: Call is terminated
 Then HMI OP1 has in the call queue a number of 0 calls

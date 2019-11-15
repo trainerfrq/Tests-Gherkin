@@ -95,7 +95,6 @@ Then HMI OP1 has in the call queue a number of 1 calls
 
 Scenario: Op3 client clears the phone call
 When HMI OP3 presses IA key IA - OP2
-Then waiting for 1 seconds
 Then HMI OP2 has in the call queue a number of 1 calls
 
 Scenario: Verify conference call notification

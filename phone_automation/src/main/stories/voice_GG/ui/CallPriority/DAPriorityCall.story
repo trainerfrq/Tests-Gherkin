@@ -53,7 +53,6 @@ Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label 
 
 Scenario: Callee terminates call
 When HMI OP2 presses DA key OP1
-Then waiting for 1 second
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for caller
