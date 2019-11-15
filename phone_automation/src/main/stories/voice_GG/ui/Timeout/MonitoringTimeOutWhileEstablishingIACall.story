@@ -33,10 +33,8 @@ Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function
 
 Scenario: Op1 verifies notification message
 When HMI OP1 opens Notification Display list
-And waiting for 1 second
 Then HMI OP1 verifies that list State contains text Select Monitoring target
 Then HMI OP1 closes notification popup
-And waiting for 1 second
 
 Scenario: Op1 establishes an outgoing IA call to Op2
 When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
@@ -58,10 +56,8 @@ Then HMI OP1 has the DA key OP2 with visible state monitoringOngoingState
 
 Scenario: Op1 verifies notification message
 When HMI OP1 opens Notification Display list
-And waiting for 1 second
 Then HMI OP1 verifies that list State contains text Select Monitoring target
 Then HMI OP1 closes notification popup
-And waiting for 1 second
 
 Scenario: Op1 deactivates Monitoring button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MONITORING

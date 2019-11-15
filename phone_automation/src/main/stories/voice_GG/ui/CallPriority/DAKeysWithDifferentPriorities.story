@@ -19,8 +19,8 @@ Given the call queue items:
 | OP2-OP1          | <<OP2_URI>>           | <<OP1_URI>>                 | DA/IDA   |
 | OP1-OP3          | <<OP1_URI>>           | <<OP3_URI>>                 | DA/IDA   |
 | OP3-OP1          | <<OP3_URI>>           | <<OP1_URI>>                 | DA/IDA   |
-| OP3-OP1_uregent  | <<OP3_URI>>           | <<OP1_URI>>                 | DA/IDA   |
-| OP1_uregent-OP3  | <<OP1_URI>>           | <<OP3_URI>>                 | DA/IDA   |
+| OP3-OP1_urgent  | <<OP3_URI>>           | <<OP1_URI>>                 | DA/IDA   |
+| OP1_urgent-OP3  | <<OP1_URI>>           | <<OP3_URI>>                 | DA/IDA   |
 | OP1_Master-OP2   | <<ROLE1_URI>>         | <<OP2_URI>>                 | DA/IDA   |
 | OP2-OP1_Master   | <<OP2_URI>>           |                             | DA/IDA   |
 
@@ -106,16 +106,16 @@ When HMI OP3 has the DA key OP1-urgent with call priority URGENT
 Scenario: Op3 establishes an outgoing call
 When HMI OP3 presses DA key OP1-urgent
 Then HMI OP3 has the DA key OP1-urgent in state out_ringing
-Then HMI OP3 has the call queue item OP1_uregent-OP3 in state out_ringing
+Then HMI OP3 has the call queue item OP1_urgent-OP3 in state out_ringing
 
 Scenario: Op1 client receives the incoming call
-Then HMI OP1 has the call queue item OP3-OP1_uregent in state inc_initiated
+Then HMI OP1 has the call queue item OP3-OP1_urgent in state inc_initiated
 
 Scenario: Op1 client checks call priority
-When HMI OP1 has the call queue item OP3-OP1_uregent with priority URGENT
+When HMI OP1 has the call queue item OP3-OP1_urgent with priority URGENT
 
 Scenario: Op3 client checks call priority
-When HMI OP3 has the call queue item OP1_uregent-OP3 with priority URGENT
+When HMI OP3 has the call queue item OP1_urgent-OP3 with priority URGENT
 
 Scenario: Op3 client clears the phone call
 When HMI OP3 presses DA key OP1-urgent

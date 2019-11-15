@@ -27,10 +27,8 @@ Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function
 
 Scenario: Op1 verifies notification message
 When HMI OP1 opens Notification Display list
-And waiting for 1 second
 Then HMI OP1 verifies that list State contains text Select Monitoring target
 Then HMI OP1 closes notification popup
-And waiting for 1 second
 
 Scenario: Op1 deactivates Monitoring button and verifies the button state
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MONITORING

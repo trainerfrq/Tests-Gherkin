@@ -33,10 +33,8 @@ Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function
 
 Scenario: Op1 verifies notification message
 When HMI OP1 opens Notification Display list
-And waiting for 1 second
 Then HMI OP1 verifies that list State contains text Select Call Forward target
 Then HMI OP1 closes notification popup
-And waiting for 1 second
 
 Scenario: Op2 establish an outgoing call to Op1
 When HMI OP2 presses DA key OP1
@@ -68,7 +66,6 @@ Then HMI OP1 verifies that the DA key OP2 has the type label DA
 
 Scenario: Op1 clears the call
 When HMI OP1 presses DA key OP2
-And waiting for 10 milliseconds
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Op1 verifies Call Forward button state
@@ -79,10 +76,8 @@ Then HMI OP1 verifies that the DA key OP2 has the info label Call Fwd
 
 Scenario: Op1 verifies notification message
 When HMI OP1 opens Notification Display list
-And waiting for 1 second
 Then HMI OP1 verifies that list State contains text Select Call Forward target
 Then HMI OP1 closes notification popup
-And waiting for 1 second
 
 Scenario: Op1 deactivates Call Forward button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
