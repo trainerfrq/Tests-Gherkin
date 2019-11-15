@@ -34,8 +34,8 @@ Given the DA keys:
 | HMI OP2 | <<ROLE_3_NAME>>       | <<ACTIVE2_MISSION3>>          |
 | HMI OP2 | OP1(as Mission3)      | <<PhyOpPos3_CWP1>>            |
 | HMI OP2 | OP3(as Mission1)      | <<PhyOpPos1_CWP3>>            |
-| HMI OP2 | RoleEmergency(tower)  | <<PhyOpPos2_RoleEmergency>>   |
-| HMI OP2 | RoleEmergency         | <<OpPos2_RoleEmergency>>      |
+| HMI OP2 | RoleEmergency(tower)  | <<PhyOpPos2_RoleEmergency_MISSION4>>   |
+| HMI OP2 | RoleEmergency         | <<PhyOpPos2_RoleEmergency>>   |
 | HMI OP3 | OP1                   | <<PhyOpPos3_CWP1>>            |
 | HMI OP3 | OP2                   | <<PhyOpPos3_CWP2>>            |
 | HMI OP3 | ROLE1                 | <<PhyOpPos3_ROLE1>>           |
