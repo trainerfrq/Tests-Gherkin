@@ -90,7 +90,6 @@ Then HMI OP1 has the DA key OP2 in state out_ringing
 
 Scenario: Caller client clears the phone call
 When HMI OP1 presses DA key OP2
-Then wait for 2 seconds
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for caller

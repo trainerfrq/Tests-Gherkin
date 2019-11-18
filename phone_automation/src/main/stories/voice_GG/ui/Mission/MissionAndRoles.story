@@ -19,7 +19,7 @@ When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP1 has a list of <<NUMBER_OF_MISSIONS>> missions available
 Then HMI OP1 has missions <<MISSIONS_LIST>> available in the missions list
 Then HMI OP1 verifies that current active mission is mission MAN-NIGHT-TACT
-Then HMI OP1 has roles <<ROLE_1_NAME>>, role1alias2, groupall, role1, role1alias1, group1 available in the roles list
+Then HMI OP1 has roles <<ROLE_1_NAME>>, role1alias2, groupall, role1, role1alias1, group1, roleEmergency available in the roles list
 
 Scenario: Change mission
 Then HMI OP1 changes current mission to mission WEST-EXEC
@@ -51,7 +51,7 @@ When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP1 has a list of <<NUMBER_OF_MISSIONS>> missions available
 Then HMI OP1 has missions <<MISSIONS_LIST>> available in the missions list
 Then HMI OP1 verifies that current active mission is mission EAST-EXEC
-Then HMI OP1 has roles <<ROLE_3_NAME>>, role1alias1, groupall, role1, role1alias2, group1 available in the roles list
+Then HMI OP1 has roles <<ROLE_3_NAME>>, role1alias1, groupall, role1, role1alias2, group1, roleEmergency available in the roles list
 
 Scenario: Change mission
 Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT

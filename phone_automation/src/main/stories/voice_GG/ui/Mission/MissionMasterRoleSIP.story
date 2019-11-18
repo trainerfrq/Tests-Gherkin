@@ -24,7 +24,7 @@ Scenario: Verify current active mission has the expected roles
 		  @REQUIREMENTS: GID-2890901
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP1 verifies that current active mission is mission MAN-NIGHT-TACT
-Then HMI OP1 has roles <<ROLE_1_NAME>>, role1alias2, groupall, role1, role1alias1, group1 available in the roles list
+Then HMI OP1 has roles <<ROLE_1_NAME>>, role1alias2, groupall, role1, role1alias1, group1, roleEmergency available in the roles list
 
 Scenario: Close mission windows
 Then HMI OP1 closes mission popup
@@ -55,7 +55,7 @@ Then waiting for 5 seconds
 Scenario: Verify current active mission has the expected roles
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP1 verifies that current active mission is mission WEST-EXEC
-Then HMI OP1 has roles <<ROLE_2_NAME>>, role2alias2, groupall, role2, role2alias1, group1 available in the roles list
+Then HMI OP1 has roles <<ROLE_2_NAME>>, role2alias2, groupall, role2, role2alias1, group1, roleEmergency available in the roles list
 
 Scenario: Close mission windows
 Then HMI OP1 closes mission popup
@@ -86,7 +86,7 @@ Then waiting for 5 seconds
 Scenario: Verify current active mission has the expected roles
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP1 verifies that current active mission is mission EAST-EXEC
-Then HMI OP1 has roles <<ROLE_3_NAME>>, role1alias1, groupall, role1, role1alias2, group1 available in the roles list
+Then HMI OP1 has roles <<ROLE_3_NAME>>, role1alias1, groupall, role1, role1alias2, group1, roleEmergency available in the roles list
 
 Scenario: Close mission windows
 Then HMI OP1 closes mission popup
