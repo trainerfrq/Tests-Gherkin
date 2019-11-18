@@ -41,7 +41,6 @@ Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Caller clears outgoing call
 When HMI OP2 presses DA key ROLE1
-And waiting for 1 second
 
 Scenario: Call is terminated on both positions
 Then HMI OP1 has in the call queue a number of 0 calls

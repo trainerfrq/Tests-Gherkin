@@ -49,7 +49,6 @@ Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction rx
 
 Scenario: HMI OP2 also initiate a IA call, transforming the existing IA half duplex call in a full duplex
 Then HMI OP2 presses the call queue item OP1-OP2
-And waiting for 1 second
 Then HMI OP1 has in the call queue a number of 1 calls
 Then HMI OP2 has in the call queue a number of 1 calls
 
@@ -75,7 +74,6 @@ Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction duplex
 Scenario: Cleanup IA call
 Then HMI OP1 terminates the call queue item OP2-OP1
 Then HMI OP2 terminates the call queue item OP1-OP2
-And waiting for 1 second
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for callee
