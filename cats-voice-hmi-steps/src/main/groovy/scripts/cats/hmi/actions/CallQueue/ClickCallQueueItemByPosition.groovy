@@ -15,15 +15,15 @@ class ClickCallQueueItemByPosition extends FxScriptTemplate {
         Integer itemPosition = assertInput(IPARAM_QUEUE_ITEM_POSITION) as Integer;
         String itemType = assertInput(IPARAM_QUEUE_ITEM_TYPE) as String;
 
-        CallQueueListView waitingCallQueueList = robot.lookup("#"+itemType+"List").queryFirst();
-        ObservableList<CallQueueListItem> waitItems =  waitingCallQueueList.getContainerCallQueueListItemsReadOnly();
+        CallQueueListView callQueueList = robot.lookup("#"+itemType+"List").queryFirst();
+        ObservableList<CallQueueListItem> items =  callQueueList.getContainerCallQueueListItemsReadOnly();
 
-        evaluate(ExecutionDetails.create("Waiting list is not empty")
-                .expected("Waiting list not empty")
-                .success(waitItems != null));
+        evaluate(ExecutionDetails.create("Cal queue list is not empty")
+                .expected("Call queue list not empty")
+                .success(items != null));
 
-        if (waitItems != null) {
-            robot.clickOn(robot.point(waitItems.get(itemPosition)));
+        if (items != null) {
+            robot.clickOn(robot.point(items.get(itemPosition)));
         }
     }
 }

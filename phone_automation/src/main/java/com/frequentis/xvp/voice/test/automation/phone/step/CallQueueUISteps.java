@@ -34,6 +34,7 @@ import scripts.cats.hmi.actions.CallQueue.ClickOnCallQueueInfoContainer;
 import scripts.cats.hmi.actions.CallQueue.DragAndClickOnMenuButtonFirstCallQueueItem;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueBarState;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueCollapsedAreaLength;
+import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueCollapsedAreaSectionLength;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueContainerVisibility;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueInfoContainerIfVisible;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueInfoContainerLabel;
@@ -262,13 +263,15 @@ public class CallQueueUISteps extends AutomationSteps
    @Then("$profileName answers item $itemNumber from $listType call queue list")
    @Aliases(values = { "$profileName cancels item $itemNumber from $listType call queue list",
            "$profileName terminates item $itemNumber from $listType call queue list",
+           "$profileName retrives from hold item $itemNumber from $listType call queue list",
            "$profileName presses item $itemNumber from $listType call queue list" })
-   public void clickCallQueueItemByPosition( final String profileName, final String itemNumber, final String itemType )
+   public void clickCallQueueItemByPosition( final String profileName, final Integer itemNumber, final String itemType )
    {
+      Integer realItemPosition = itemNumber -1;
       evaluate( remoteStep( "Click on call queue item " +itemNumber+ " from waiting list" )
               .scriptOn( profileScriptResolver().map( ClickCallQueueItemByPosition.class, BookableProfileName.javafx ),
                       assertProfile( profileName ) )
-              .input(ClickCallQueueItemByPosition.IPARAM_QUEUE_ITEM_POSITION, itemNumber)
+              .input(ClickCallQueueItemByPosition.IPARAM_QUEUE_ITEM_POSITION, realItemPosition.toString())
               .input(ClickCallQueueItemByPosition.IPARAM_QUEUE_ITEM_TYPE, itemType));
    }
 
@@ -301,6 +304,16 @@ public class CallQueueUISteps extends AutomationSteps
                   assertProfile( profileName ) )
             .input( VerifyCallQueueCollapsedAreaLength.IPARAM_QUEUE_EXPECTED_LENGTH, numberOfCalls ) );
    }
+
+    @Then("$profileName has in the collapsed $listName area a number of $numberOfCalls calls")
+    public void verifyCallQueueCollapsedLength( final String profileName, final String listName, final Integer numberOfCalls )
+    {
+        evaluate( remoteStep( "Verify call queue collapsed area length" )
+                .scriptOn( profileScriptResolver().map( VerifyCallQueueCollapsedAreaSectionLength.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input(VerifyCallQueueCollapsedAreaSectionLength.IPARAM_LIST_NAME, listName)
+                .input( VerifyCallQueueCollapsedAreaSectionLength.IPARAM_QUEUE_EXPECTED_LENGTH, numberOfCalls ) );
+    }
 
    @When("$profileName puts on hold the active call")
    public void putOnHoldActiveCall( final String profileName )

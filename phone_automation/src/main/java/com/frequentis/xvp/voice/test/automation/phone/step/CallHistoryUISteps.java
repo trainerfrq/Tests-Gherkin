@@ -24,6 +24,7 @@ import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.CallHistory.ClickOnCallHistoryClearButton;
 import scripts.cats.hmi.actions.CallHistory.ClickOnCallHistoryCloseButton;
+import scripts.cats.hmi.actions.CallHistory.ClickOnCallHistoryScrollDownButton;
 import scripts.cats.hmi.actions.CallHistory.SelectCallHistoryEntry;
 import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryDialButtonLabel;
 import scripts.cats.hmi.asserts.CallHistory.VerifyCallHistoryDialButtonState;
@@ -177,5 +178,14 @@ public class CallHistoryUISteps extends AutomationSteps {
                                  profileScriptResolver().map(VerifyCallHistoryListIsTimeSorted.class, BookableProfileName.javafx),
                                  assertProfile(profileName))
                 .input(VerifyCallHistoryListIsTimeSorted.IPARAM_DATE_FORMAT, dateFormat));
+    }
+
+    @When("$profileName clicks on the scroll down button in call history for $number time(s)")
+    public void scrollDownCallHistory(final String profileName, final String number)
+    {
+        evaluate( remoteStep( "Scroll down call history" ).scriptOn(
+                profileScriptResolver().map( ClickOnCallHistoryScrollDownButton.class, BookableProfileName.javafx ),
+                assertProfile( profileName ) )
+                .input(ClickOnCallHistoryScrollDownButton.IPARAM_CLICK_NUMBER, number));
     }
 }
