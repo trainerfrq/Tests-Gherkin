@@ -24,39 +24,39 @@ class VerifyDateFormat extends FxScriptTemplate {
 
             evaluate(ExecutionDetails.create("Notification Display bar date was found")
                     .expected("Date is visible")
-                    .success(displayedDate != null))
+                    .success(displayedDate.isVisible()))
         } else {
 
             displayedDate = robot.lookup("#" + widgetID + " #dateLabel").queryFirst()
 
             evaluate(ExecutionDetails.create("Status Display date was found")
                     .expected("Date is visible")
-                    .success(displayedDate != null))
+                    .success(displayedDate.isVisible()))
         }
 
         checkDateFormat(displayedDate.getText(), format)
     }
 
     private void checkDateFormat(String displayedDate, String format) {
-        if (Pattern.matches("dd.MM.YYYY", format)) {
+
+        if (Pattern.matches("dd.MM.yyyy", format)) {
             evaluate(ExecutionDetails.create("Date format is correct")
                     .received("Received date: " + displayedDate)
                     .expected("Expected format: " + format)
                     .success(Pattern.matches("[0-3][0-9].[0-1][0-9].[0-9][0-9][0-9][0-9]", displayedDate)))
         }
-        if (Pattern.matches("MM.dd.YYYY", format)) {
+        else if (Pattern.matches("MM.dd.yyyy", format)) {
             evaluate(ExecutionDetails.create("Date format is correct")
                     .received("Received date: " + displayedDate)
                     .expected("Expected format: " + format)
                     .success(Pattern.matches("[0-1][0-9].[0-3][0-9].[0-9][0-9][0-9][0-9]", displayedDate)))
         }
-        if (Pattern.matches("YYYY.MM.dd", format)) {
+        else if (Pattern.matches("yyyy.MM.dd", format)) {
             evaluate(ExecutionDetails.create("Date format is correct")
                     .received("Received date: " + displayedDate)
                     .expected("Expected format: " + format)
                     .success(Pattern.matches("[0-9][0-9][0-9][0-9].[0-1][0-9].[0-3][0-9]", displayedDate)))
-        }
-        if (Pattern.matches("YYYY.dd.MM", format)) {
+        } else {
             evaluate(ExecutionDetails.create("Date format is correct")
                     .received("Received date: " + displayedDate)
                     .expected("Expected format: " + format)

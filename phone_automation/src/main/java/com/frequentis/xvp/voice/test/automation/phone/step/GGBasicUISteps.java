@@ -286,12 +286,12 @@ public class GGBasicUISteps extends AutomationSteps
                 .input(ClickOnNotificationScrollDownButton.IPARAM_LIST_NAME, listName));
     }
 
-   @When("$profileName checks the $dateOrTime of system and $elementName with format $format")
+   @Then("$profileName checks the $dateOrTime of system and $elementName with format $format")
    public void checkSystemAndDisplayedTime(final String profileName, final String dateOrTime, final String elementName, final String format)
    {
        StatusKey elementKey = retrieveStatusKey(profileName, elementName);
 
-       if(dateOrTime.toUpperCase().equals("TIME")) {
+       if(dateOrTime.equals("time")) {
            evaluate(remoteStep("Verify " + elementName + " time is the same with system time")
                    .scriptOn(profileScriptResolver().map(VerifySystemAndDisplayedTime.class, BookableProfileName.javafx),
                            assertProfile(profileName))
@@ -307,19 +307,7 @@ public class GGBasicUISteps extends AutomationSteps
        }
    }
 
-   @When(" HMI OP1 checks system's date and DISPLAY STATUS date with format dd-MM-YYYY")
-   public void checkSystemAndDisplayedDate(final String profileName, final String elementName, final String format)
-   {
-       StatusKey elementKey = retrieveStatusKey(profileName, elementName);
-
-       evaluate(remoteStep("Verify " + elementName + " time is the same with system time")
-               .scriptOn(profileScriptResolver().map(VerifySystemAndDisplayedTime.class, BookableProfileName.javafx),
-                       assertProfile(profileName))
-               .input(VerifySystemAndDisplayedTime.IPARAM_ELEMENT_ID, elementKey.getId())
-               .input(VerifySystemAndDisplayedTime.IPARAM_FORMAT, format));
-   }
-
-    @When("$profileName has $elementName with $dateOrTime format $format")
+    @Then("$profileName has $elementName with $dateOrTime format $format")
     public void checkDateOrTimeFormat(final String profileName, final String elementName, final String dateOrTime, final String format)
     {
         StatusKey elementKey = retrieveStatusKey(profileName, elementName);
@@ -341,20 +329,20 @@ public class GGBasicUISteps extends AutomationSteps
 
     }
 
-    @When("$profileName checks time synchronization between $displayElement1 time and $DisplayElement2 time")
-    public void checkSynchronizationBetweenDisplayedTimes(final String profileName, final String firstElementName, final String secondElementName)
+    @When("$profileName checks time synchronization between notification $notificationKey time and status $statusKey time")
+    public void checkSynchronizationBetweenDisplayedTimes(final String profileName, final String notificationKey, final String statusKey)
     {
-        StatusKey firstElementKey = retrieveStatusKey(profileName, firstElementName);
-        StatusKey secondElementKey = retrieveStatusKey(profileName, secondElementName);
+        StatusKey notificationDisplayElementKey = retrieveStatusKey(profileName, notificationKey);
+        StatusKey statusDisplayElementKey = retrieveStatusKey(profileName, statusKey);
 
-        evaluate(remoteStep("Check " + firstElementName + " time synchronization with " + secondElementName + " time")
+        evaluate(remoteStep("Check NOTIFICATION DISPLAY time synchronization with STATUS DISPLAY time")
                 .scriptOn(profileScriptResolver().map(VerifySynchronizationBetweenDisplayedTimes.class, BookableProfileName.javafx),
                         assertProfile(profileName))
-                .input(VerifySynchronizationBetweenDisplayedTimes.IPARAM_FIRST_ELEMENT_ID, firstElementKey.getId())
-                .input(VerifySynchronizationBetweenDisplayedTimes.IPARAM_SECOND_ELEMENT_ID, secondElementKey.getId()));
+                .input(VerifySynchronizationBetweenDisplayedTimes.IPARAM_NOTIFICATION_DISPLAY_ID, notificationDisplayElementKey.getId())
+                .input(VerifySynchronizationBetweenDisplayedTimes.IPARAM_STATUS_DISPLAY_ID, statusDisplayElementKey.getId()));
     }
 
-    @When("$profileName checks $displayElement time update")
+    @Then("$profileName checks $displayElement time update")
     public void checkHmiIsNotfrozen(final String profileName, final String elementName)
     {
         StatusKey elementKey = retrieveStatusKey(profileName, elementName);

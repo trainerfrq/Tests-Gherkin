@@ -40,7 +40,7 @@ class VerifySystemAndDisplayedTime extends FxScriptTemplate {
     }
 
     private void testSystemAndHmiTime(List<Node> displayedTime, String timeFormat) {
-        LocalTime systemTime = LocalTime.now()
+        LocalTime timeFromSystem = LocalTime.now()
         String displayedTimeText = ""
 
         for (final Node node : displayedTime) {
@@ -52,17 +52,16 @@ class VerifySystemAndDisplayedTime extends FxScriptTemplate {
         if (timeFormat.matches("HH.mm.ss")) {
             LocalTime timeFromHMI = LocalTime.of(Integer.parseInt(displayedTimeParts[0]), Integer.parseInt(displayedTimeParts[1]),
                     Integer.parseInt(displayedTimeParts[2]))
-            isBetween(timeFromHMI, systemTime.minusSeconds(2), systemTime.plusSeconds(2))
+            isBetween(timeFromHMI, timeFromSystem.minusSeconds(2), timeFromSystem.plusSeconds(2))
         }
-
-        if (timeFormat.matches("hh.mm.ss")) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss");
-            LocalTime localTimeMinusOneSecond = LocalTime.parse(systemTime.minusSeconds(2).format(formatter))
-            LocalTime localTimePlusOneSecond = LocalTime.parse(systemTime.plusSeconds(2).format(formatter))
+        else{
             LocalTime timeFromHMI = LocalTime.of(Integer.parseInt(displayedTimeParts[0]), Integer.parseInt(displayedTimeParts[1]),
                     Integer.parseInt(displayedTimeParts[2]))
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss");
+            LocalTime localTimeMinusTwoSeconds = LocalTime.parse(timeFromSystem.minusSeconds(2).format(formatter))
+            LocalTime localTimePlusOneSecond = LocalTime.parse(timeFromSystem.plusSeconds(1).format(formatter))
 
-            isBetween(timeFromHMI, localTimeMinusOneSecond, localTimePlusOneSecond)
+            isBetween(timeFromHMI, localTimeMinusTwoSeconds, localTimePlusOneSecond)
         }
     }
 

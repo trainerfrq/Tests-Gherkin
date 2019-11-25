@@ -11,29 +11,29 @@ import java.time.format.DateTimeFormatter
 
 
 class VerifySynchronizationBetweenDisplayedTimes extends FxScriptTemplate {
-    public static final String IPARAM_FIRST_ELEMENT_ID = "first_element_id"
-    public static final String IPARAM_SECOND_ELEMENT_ID = "second_element_id"
+    public static final String IPARAM_NOTIFICATION_DISPLAY_ID = "notification_display_id"
+    public static final String IPARAM_STATUS_DISPLAY_ID = "status_display_id"
 
     @Override
     protected void script() {
 
-        String firstWidgetID = assertInput(IPARAM_FIRST_ELEMENT_ID) as String
-        String secondWidgetID = assertInput(IPARAM_SECOND_ELEMENT_ID) as String
+        String notificationDisplayWidgetID = assertInput(IPARAM_NOTIFICATION_DISPLAY_ID) as String
+        String statusDisplayWidgetID = assertInput(IPARAM_STATUS_DISPLAY_ID) as String
 
-        HBox firstDisplayedTime = robot.lookup("#" + firstWidgetID + " #timeLabelContainer").queryFirst()
-        HBox secondDisplayedTime = robot.lookup("#" + secondWidgetID + " #timeLabelContainer").queryFirst()
+        HBox notificationDisplayedTime = robot.lookup("#" + notificationDisplayWidgetID + " #timeLabelContainer").queryFirst()
+        HBox statusDisplayedTime = robot.lookup("#" + statusDisplayWidgetID + " #timeLabelContainer").queryFirst()
 
         evaluate(ExecutionDetails.create("Displayed times were found")
                 .expected("Times are visible")
-                .success((firstDisplayedTime != null) && (secondDisplayedTime != null)))
+                .success((notificationDisplayedTime != null) && (statusDisplayedTime != null)))
 
-        String firstTimeText = get12hFormatDisplayedTimeText(firstDisplayedTime.getChildren())
-        String secondTimeText = get12hFormatDisplayedTimeText(secondDisplayedTime.getChildren())
+        String notificationDisplayTimeText = get12hFormatDisplayedTimeText(notificationDisplayedTime.getChildren())
+        String statusDisplayTimeText = get12hFormatDisplayedTimeText(statusDisplayedTime.getChildren())
 
         evaluate(ExecutionDetails.create("Displayed times are synchronized")
                 .expected("Times are synchronized")
-                .received("Received times: " + firstTimeText + " and " + secondTimeText)
-                .success((firstTimeText.equals(secondTimeText))))
+                .received("Received times: " + notificationDisplayTimeText + " and " + statusDisplayTimeText)
+                .success((notificationDisplayTimeText.equals(statusDisplayTimeText))))
     }
 
     private String get12hFormatDisplayedTimeText(List<Node> boxTimeContainer) {

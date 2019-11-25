@@ -15,17 +15,17 @@ class VerifyDiffTimeConsecutiveSeconds extends FxScriptTemplate {
         String widgetID = assertInput(IPARAM_ELEMENT_ID) as String
 
         HBox displayedTime = getDisplayedTime(widgetID)
-        String displayedTimeText1 = getDisplayedTimeText(displayedTime.getChildren())
+        String displayedTimeTextFirstMoment = getDisplayedTimeText(displayedTime.getChildren())
 
         Thread.sleep(1000)
 
         displayedTime = getDisplayedTime(widgetID)
-        String displayedTimeText2 = getDisplayedTimeText(displayedTime.getChildren())
+        String displayedTimeTextSecondMoment = getDisplayedTimeText(displayedTime.getChildren())
 
         evaluate(ExecutionDetails.create("HMI had different states")
-                .received("First: " + displayedTimeText1 + " then: " + displayedTimeText2)
+                .received("First: " + displayedTimeTextFirstMoment + " then: " + displayedTimeTextSecondMoment)
                 .expected("HMI not frozen")
-                .success(!(displayedTimeText1.equals(displayedTimeText2))))
+                .success(!(displayedTimeTextFirstMoment.equals(displayedTimeTextSecondMoment))))
     }
 
     private HBox getDisplayedTime(String widgetID) {
