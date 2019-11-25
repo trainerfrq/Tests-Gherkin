@@ -29,21 +29,11 @@ import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.ClickContainerTab;
 import scripts.cats.hmi.actions.ClickStatusLabel;
-import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationClearEventButton;
-import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationDisplay;
-import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationScrollDownButton;
-import scripts.cats.hmi.actions.NotificationDisplay.ClickOnNotificationTab;
-import scripts.cats.hmi.actions.NotificationDisplay.CountStateListItems;
+import scripts.cats.hmi.actions.NotificationDisplay.*;
 import scripts.cats.hmi.actions.Settings.CleanUpPopupWindow;
 import scripts.cats.hmi.actions.Settings.ClickOnSymbolButton;
-import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationLabel;
-import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListAllEntriesText;
-import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListEntryText;
-import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListIsTimeSorted;
-import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListLastEntryText;
-import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListSeverity;
-import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListSize;
-import scripts.cats.hmi.asserts.NotificationDisplay.VerifyNotificationListText;
+import scripts.cats.hmi.asserts.DateAndTime.*;
+import scripts.cats.hmi.asserts.NotificationDisplay.*;
 import scripts.cats.hmi.asserts.VerifyLoadingOverlayIsVisible;
 import scripts.cats.hmi.asserts.VerifyPopupVisible;
 
@@ -294,6 +284,85 @@ public class GGBasicUISteps extends AutomationSteps
                 .scriptOn(profileScriptResolver().map( ClickOnNotificationScrollDownButton.class, BookableProfileName.javafx ),
                         assertProfile( profileName ) )
                 .input(ClickOnNotificationScrollDownButton.IPARAM_LIST_NAME, listName));
+    }
+
+   @When("$profileName checks the $dateOrTime of system and $elementName with format $format")
+   public void checkSystemAndDisplayedTime(final String profileName, final String dateOrTime, final String elementName, final String format)
+   {
+       StatusKey elementKey = retrieveStatusKey(profileName, elementName);
+
+       if(dateOrTime.toUpperCase().equals("TIME")) {
+           evaluate(remoteStep("Verify " + elementName + " time is the same with system time")
+                   .scriptOn(profileScriptResolver().map(VerifySystemAndDisplayedTime.class, BookableProfileName.javafx),
+                           assertProfile(profileName))
+                   .input(VerifySystemAndDisplayedTime.IPARAM_ELEMENT_ID, elementKey.getId())
+                   .input(VerifySystemAndDisplayedTime.IPARAM_FORMAT, format));
+       }
+       else{
+           evaluate(remoteStep("Verify " + elementName + " date is the same with system date")
+                   .scriptOn(profileScriptResolver().map(VerifySystemAndDisplayedDate.class, BookableProfileName.javafx),
+                           assertProfile(profileName))
+                   .input(VerifySystemAndDisplayedDate.IPARAM_ELEMENT_ID, elementKey.getId())
+                   .input(VerifySystemAndDisplayedDate.IPARAM_FORMAT, format));
+       }
+   }
+
+   @When(" HMI OP1 checks system's date and DISPLAY STATUS date with format dd-MM-YYYY")
+   public void checkSystemAndDisplayedDate(final String profileName, final String elementName, final String format)
+   {
+       StatusKey elementKey = retrieveStatusKey(profileName, elementName);
+
+       evaluate(remoteStep("Verify " + elementName + " time is the same with system time")
+               .scriptOn(profileScriptResolver().map(VerifySystemAndDisplayedTime.class, BookableProfileName.javafx),
+                       assertProfile(profileName))
+               .input(VerifySystemAndDisplayedTime.IPARAM_ELEMENT_ID, elementKey.getId())
+               .input(VerifySystemAndDisplayedTime.IPARAM_FORMAT, format));
+   }
+
+    @When("$profileName has $elementName with $dateOrTime format $format")
+    public void checkDateOrTimeFormat(final String profileName, final String elementName, final String dateOrTime, final String format)
+    {
+        StatusKey elementKey = retrieveStatusKey(profileName, elementName);
+
+        if(dateOrTime.equals("time")) {
+            evaluate(remoteStep("Verify " + elementName + " time format")
+                    .scriptOn(profileScriptResolver().map(VerifyTimeFormat.class, BookableProfileName.javafx),
+                            assertProfile(profileName))
+                    .input(VerifyTimeFormat.IPARAM_ELEMENT_ID, elementKey.getId())
+                    .input(VerifyTimeFormat.IPARAM_FORMAT, format));
+        }
+        else{
+            evaluate(remoteStep("Verify " + elementName + " date format")
+                    .scriptOn(profileScriptResolver().map(VerifyDateFormat.class, BookableProfileName.javafx),
+                            assertProfile(profileName))
+                    .input(VerifyDateFormat.IPARAM_ELEMENT_ID, elementKey.getId())
+                    .input(VerifyDateFormat.IPARAM_FORMAT, format));
+        }
+
+    }
+
+    @When("$profileName checks time synchronization between $displayElement1 time and $DisplayElement2 time")
+    public void checkSynchronizationBetweenDisplayedTimes(final String profileName, final String firstElementName, final String secondElementName)
+    {
+        StatusKey firstElementKey = retrieveStatusKey(profileName, firstElementName);
+        StatusKey secondElementKey = retrieveStatusKey(profileName, secondElementName);
+
+        evaluate(remoteStep("Check " + firstElementName + " time synchronization with " + secondElementName + " time")
+                .scriptOn(profileScriptResolver().map(VerifySynchronizationBetweenDisplayedTimes.class, BookableProfileName.javafx),
+                        assertProfile(profileName))
+                .input(VerifySynchronizationBetweenDisplayedTimes.IPARAM_FIRST_ELEMENT_ID, firstElementKey.getId())
+                .input(VerifySynchronizationBetweenDisplayedTimes.IPARAM_SECOND_ELEMENT_ID, secondElementKey.getId()));
+    }
+
+    @When("$profileName checks $displayElement time update")
+    public void checkHmiIsNotfrozen(final String profileName, final String elementName)
+    {
+        StatusKey elementKey = retrieveStatusKey(profileName, elementName);
+
+        evaluate(remoteStep("Verify HMI is not frozen")
+                .scriptOn(profileScriptResolver().map(VerifyDiffTimeConsecutiveSeconds.class, BookableProfileName.javafx),
+                        assertProfile(profileName))
+                .input(VerifyDiffTimeConsecutiveSeconds.IPARAM_ELEMENT_ID, elementKey.getId()));
     }
 
     private StatusKey retrieveStatusKey(final String source, final String key) {
