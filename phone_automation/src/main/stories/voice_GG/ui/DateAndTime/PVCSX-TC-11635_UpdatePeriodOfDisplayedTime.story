@@ -51,4 +51,4 @@ Meta:
 @TEST_STEP_ACTION: Op1 verifies Notification Display bar's time and Status Display's time are the same
 @TEST_STEP_REACTION: Displayed time in Notification Display bar is the same with the one in Status Display 
 @TEST_STEP_REF: [CATS-REF: QV6N]
-When HMI OP1 checks time synchronization between notification NOTIFICATION DISPLAY time and status DISPLAY STATUS time
+Then HMI OP1 checks time synchronization between notification NOTIFICATION DISPLAY time and status DISPLAY STATUS time

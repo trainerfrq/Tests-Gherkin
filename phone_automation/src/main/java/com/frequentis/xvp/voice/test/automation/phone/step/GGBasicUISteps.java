@@ -329,7 +329,7 @@ public class GGBasicUISteps extends AutomationSteps
 
     }
 
-    @When("$profileName checks time synchronization between notification $notificationKey time and status $statusKey time")
+    @Then("$profileName checks time synchronization between notification $notificationKey time and status $statusKey time")
     public void checkSynchronizationBetweenDisplayedTimes(final String profileName, final String notificationKey, final String statusKey)
     {
         StatusKey notificationDisplayElementKey = retrieveStatusKey(profileName, notificationKey);
