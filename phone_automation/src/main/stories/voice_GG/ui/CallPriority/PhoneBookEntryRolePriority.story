@@ -23,7 +23,7 @@ Given the call queue items:
 | OP2-SipContact | <<SIP_PHONE6>>  |           | DA/IDA   |
 
 Scenario: Verify operator mission
-Then HMI OP2 has in the DISPLAY STATUS section mission the assigned mission WEST-EXEC
+Then HMI OP2 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_2_NAME>>
 
 Scenario: Op2 opens PhoneBook
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key PHONEBOOK
@@ -58,16 +58,16 @@ Scenario: Call is terminated
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Verify operator mission
-Then HMI OP2 has in the DISPLAY STATUS section mission the assigned mission WEST-EXEC
+Then HMI OP2 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_2_NAME>>
 
 Scenario: Op2 changes its mission
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
-Then HMI OP2 changes current mission to mission WEST-EXEC-TOWER
+Then HMI OP2 changes current mission to mission <<MISSION_4_NAME>>
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify operator mission
-Then HMI OP2 has in the DISPLAY STATUS section mission the assigned mission WEST-EXEC-TOWER
+Then HMI OP2 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_4_NAME>>
 
 Scenario: Op2 opens PhoneBook
 When HMI OP2 with layout <<LAYOUT_MISSION4>> presses function key PHONEBOOK
@@ -107,12 +107,12 @@ When SipContact is removed
 
 Scenario: Clean-up Op2 changes its mission back
 When HMI OP2 with layout <<LAYOUT_MISSION4>> presses function key MISSIONS
-Then HMI OP2 changes current mission to mission WEST-EXEC
+Then HMI OP2 changes current mission to mission <<MISSION_2_NAME>>
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify operator mission
-Then HMI OP2 has in the DISPLAY STATUS section mission the assigned mission WEST-EXEC
+Then HMI OP2 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_2_NAME>>
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure

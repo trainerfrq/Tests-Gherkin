@@ -39,10 +39,10 @@ Scenario: Op1 prevents Idle state
 		  @REQUIREMENTS:GID-2926855
 Then HMI OP1 click on Stay operational button from idle warning popup
 
-Scenario: Op1 changes to mission WEST-EXEC
+Scenario: Op1 changes to mission MISSION_2_NAME
 When HMI OP1 presses function key MISSIONS
 Then HMI OP1 has a list of <<NUMBER_OF_MISSIONS>> missions available
-Then HMI OP1 changes current mission to mission WEST-EXEC
+Then HMI OP1 changes current mission to mission <<MISSION_2_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
@@ -68,10 +68,10 @@ When HMI OP1 presses DA key OP3
 Then HMI OP1 has the DA key OP3 in state out_ringing
 When HMI OP1 presses DA key OP3
 
-Scenario: Op1 changes to mission MAN-NIGHT-TACT
+Scenario: Op1 changes to mission MISSION_1_NAME
 When HMI OP1 presses function key MISSIONS
 Then HMI OP1 has a list of <<NUMBER_OF_MISSIONS>> missions available
-Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
+Then HMI OP1 changes current mission to mission <<MISSION_1_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 

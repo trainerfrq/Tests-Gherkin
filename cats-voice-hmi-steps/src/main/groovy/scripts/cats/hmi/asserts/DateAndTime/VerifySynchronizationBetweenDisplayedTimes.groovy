@@ -9,7 +9,6 @@ import scripts.agent.testfx.automation.FxScriptTemplate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
-
 class VerifySynchronizationBetweenDisplayedTimes extends FxScriptTemplate {
     public static final String IPARAM_NOTIFICATION_DISPLAY_ID = "notification_display_id"
     public static final String IPARAM_STATUS_DISPLAY_ID = "status_display_id"
@@ -25,7 +24,7 @@ class VerifySynchronizationBetweenDisplayedTimes extends FxScriptTemplate {
 
         evaluate(ExecutionDetails.create("Displayed times were found")
                 .expected("Times are visible")
-                .success((notificationDisplayedTime != null) && (statusDisplayedTime != null)))
+                .success((notificationDisplayedTime.isVisible()) && (statusDisplayedTime.isVisible())))
 
         String notificationDisplayTimeText = get12hFormatDisplayedTimeText(notificationDisplayedTime.getChildren())
         String statusDisplayTimeText = get12hFormatDisplayedTimeText(statusDisplayedTime.getChildren())

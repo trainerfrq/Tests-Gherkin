@@ -41,7 +41,7 @@ Then HMI OP1 closes monitoring popup
 
 Scenario: Op1 changes mission
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP1 changes current mission to mission WEST-EXEC
+Then HMI OP1 changes current mission to mission <<MISSION_2_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
@@ -65,7 +65,7 @@ Then HMI OP3 verifies that call queue container monitoring is not visible
 
 Scenario: Op1 changes mission
 When HMI OP1 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
-Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
+Then HMI OP1 changes current mission to mission <<MISSION_1_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 

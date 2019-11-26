@@ -17,23 +17,11 @@ class VerifyTimeFormat extends FxScriptTemplate {
         String widgetID = assertInput(IPARAM_ELEMENT_ID) as String
         String format = assertInput(IPARAM_FORMAT) as String
 
-        HBox displayedTime = new HBox()
+        HBox displayedTime = robot.lookup("#" + widgetID + " #timeLabelContainer").queryFirst()
 
-        if (widgetID.contains("notification")) {
-
-            displayedTime = robot.lookup("#" + widgetID + " #timeLabelContainer").queryFirst()
-
-            evaluate(ExecutionDetails.create("Notification Display bar time was found")
-                    .expected("Time is visible")
-                    .success(displayedTime != null))
-        } else {
-
-            displayedTime = robot.lookup("#" + widgetID + " #timeLabelContainer").queryFirst()
-
-            evaluate(ExecutionDetails.create("Status Display time was found")
-                    .expected("Time is visible")
-                    .success(displayedTime != null))
-        }
+        evaluate(ExecutionDetails.create("Displayed time was found")
+                .expected("Time is visible")
+                .success(displayedTime.isVisible()))
 
         checkTimeFormat(displayedTime.getChildren(), format)
     }

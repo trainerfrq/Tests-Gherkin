@@ -33,17 +33,17 @@ Scenario: Op1 sets LSP to enabled
 When HMI OP1 presses function key LOUDSPEAKER
 Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
 
-Scenario: Op1 changes to mission WEST-EXEC
+Scenario: Op1 changes to mission MISSION_2_NAME
 When HMI OP1 presses function key MISSIONS
 Then HMI OP1 has a list of <<NUMBER_OF_MISSIONS>> missions available
-Then HMI OP1 changes current mission to mission WEST-EXEC
+Then HMI OP1 changes current mission to mission <<MISSION_2_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
-Scenario: Op2 changes to mission MAN-NIGHT-TACT
+Scenario: Op2 changes to mission MISSION_1_NAME
 When HMI OP2 presses function key MISSIONS
 Then HMI OP2 has a list of <<NUMBER_OF_MISSIONS>> missions available
-Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
+Then HMI OP2 changes current mission to mission <<MISSION_1_NAME>>
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
 
@@ -103,16 +103,16 @@ When HMI OP1 presses DA key OP3
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 
-Scenario: Op1 changes to mission MAN-NIGHT-TACT
+Scenario: Op1 changes to mission MISSION_1_NAME
 When HMI OP1 presses function key MISSIONS
 Then HMI OP1 has a list of <<NUMBER_OF_MISSIONS>> missions available
-Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
+Then HMI OP1 changes current mission to mission <<MISSION_1_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
-Scenario: Op2 changes to mission WEST-EXEC
+Scenario: Op2 changes to mission MISSION_2_NAME
 When HMI OP2 presses function key MISSIONS
 Then HMI OP2 has a list of <<NUMBER_OF_MISSIONS>> missions available
-Then HMI OP2 changes current mission to mission WEST-EXEC
+Then HMI OP2 changes current mission to mission <<MISSION_2_NAME>>
 Then HMI OP2 activates mission
 Then waiting for 5 seconds

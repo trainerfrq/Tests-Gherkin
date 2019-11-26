@@ -17,23 +17,11 @@ class VerifySystemAndDisplayedDate extends FxScriptTemplate {
         String widgetID = assertInput(IPARAM_ELEMENT_ID) as String
         String dateFormat = assertInput(IPARAM_FORMAT) as String
 
-        Label displayedDate = new Label()
+        Label displayedDate = robot.lookup("#" + widgetID + " #dateLabel").queryFirst()
 
-        if (widgetID.contains("notification")) {
-
-            displayedDate = robot.lookup("#" + widgetID + " #dateLabel").queryFirst()
-
-            evaluate(ExecutionDetails.create("Notification Display bar date was found")
-                    .expected("Date is visible")
-                    .success(displayedDate.isVisible()))
-        } else {
-
-            displayedDate = robot.lookup("#" + widgetID + " #dateLabel").queryFirst()
-
-            evaluate(ExecutionDetails.create("Status Display date was found")
-                    .expected("Date is visible")
-                    .success(displayedDate.isVisible()))
-        }
+        evaluate(ExecutionDetails.create("Displayed date was found")
+                .expected("Date is visible")
+                .success(displayedDate.isVisible()))
 
         testSystemAndHmiDate(displayedDate.getText(), dateFormat)
     }

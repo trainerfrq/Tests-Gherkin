@@ -19,7 +19,7 @@ Given the call queue items:
 
 Scenario: Change mission
 When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MISSIONS
-Then HMI OP3 changes current mission to mission MAN-NIGHT-TACT
+Then HMI OP3 changes current mission to mission <<MISSION_1_NAME>>
 Then HMI OP3 activates mission
 Then waiting for 5 seconds
 
@@ -110,7 +110,7 @@ When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1
 
 Scenario: Change mission
 When HMI OP3 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP3 changes current mission to mission EAST-EXEC
+Then HMI OP3 changes current mission to mission <<MISSION_3_NAME>>
 Then HMI OP3 activates mission
 Then waiting for 5 seconds
 

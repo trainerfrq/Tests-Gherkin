@@ -23,18 +23,18 @@ Given the call queue items:
 Scenario: Verify current active mission has the expected roles
 		  @REQUIREMENTS: GID-2890901
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP1 verifies that current active mission is mission MAN-NIGHT-TACT
+Then HMI OP1 verifies that current active mission is mission <<MISSION_1_NAME>>
 Then HMI OP1 has roles <<ROLE_1_NAME>>, role1alias2, groupall, role1, role1alias1, group1, roleEmergency available in the roles list
 
 Scenario: Close mission windows
 Then HMI OP1 closes mission popup
 
-Scenario: Call mission WEST-EXEC using SIP master role
+Scenario: Call mission MISSION_2_NAME using SIP master role
 When HMI OP1 presses DA key <<ROLE_2_NAME>>
 Then HMI OP1 has the DA key <<ROLE_2_NAME>> in state out_ringing
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
 
-Scenario: Position with mission WEST-EXEC receives call
+Scenario: Position with mission MISSION_2_NAME receives call
 		  @REQUIREMENTS: GID-2890901
 Then HMI OP2 has the call queue item OP1-OP2 in state inc_initiated
 Then HMI OP2 has the call queue item OP1-OP2 in the priority list with name label <<ROLE_1_NAME>>
@@ -48,13 +48,13 @@ Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Change mission
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP1 changes current mission to mission WEST-EXEC
+Then HMI OP1 changes current mission to mission <<MISSION_2_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify current active mission has the expected roles
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP1 verifies that current active mission is mission WEST-EXEC
+Then HMI OP1 verifies that current active mission is mission <<MISSION_2_NAME>>
 Then HMI OP1 has roles <<ROLE_2_NAME>>, role2alias2, groupall, role2, role2alias1, group1, roleEmergency available in the roles list
 
 Scenario: Close mission windows
@@ -65,7 +65,7 @@ When HMI OP1 presses DA key <<ROLE_3_NAME>>
 Then HMI OP1 has the DA key <<ROLE_3_NAME>> in state out_ringing
 Then HMI OP1 has the call queue item OP3-OP1 in state out_ringing
 
-Scenario: Position with mission WEST-EXEC receives call
+Scenario: Position with mission MISSION_2_NAME receives call
 		  @REQUIREMENTS: GID-2890901
 Then HMI OP3 has the call queue item OP1-OP3 in state inc_initiated
 Then HMI OP3 has the call queue item OP1-OP3 in the priority list with name label <<ROLE_2_NAME>>
@@ -79,24 +79,24 @@ Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Change mission
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP1 changes current mission to mission EAST-EXEC
+Then HMI OP1 changes current mission to mission <<MISSION_3_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify current active mission has the expected roles
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP1 verifies that current active mission is mission EAST-EXEC
+Then HMI OP1 verifies that current active mission is mission <<MISSION_3_NAME>>
 Then HMI OP1 has roles <<ROLE_3_NAME>>, role1alias1, groupall, role1, role1alias2, group1, roleEmergency available in the roles list
 
 Scenario: Close mission windows
 Then HMI OP1 closes mission popup
 
-Scenario: Call mission WEST-EXEC using SIP master role
+Scenario: Call mission MISSION_2_NAME using SIP master role
 When HMI OP1 presses DA key OP3 - <<ROLE_2_NAME>>
 Then HMI OP1 has the DA key OP3 - <<ROLE_2_NAME>> in state out_ringing
 Then HMI OP1 has the call queue item OP3-OP2 in state out_ringing
 
-Scenario: Position with mission WEST-EXEC receives call
+Scenario: Position with mission MISSION_2_NAME receives call
 		  @REQUIREMENTS: GID-2890901
 Then HMI OP2 has the call queue item OP2-OP3 in state inc_initiated
 Then HMI OP2 has the call queue item OP2-OP3 in the priority list with name label <<ROLE_3_NAME>>
@@ -110,12 +110,12 @@ Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Change mission
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
+Then HMI OP1 changes current mission to mission <<MISSION_1_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify operator mission
-Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission MAN-NIGHT-TACT
+Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_1_NAME>>
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure

@@ -29,23 +29,13 @@ class VerifyDiffTimeConsecutiveSeconds extends FxScriptTemplate {
     }
 
     private HBox getDisplayedTime(String widgetID) {
-        HBox displayedTime = new HBox()
 
-        if (widgetID.contains("notification")) {
+        HBox displayedTime = robot.lookup("#" + widgetID + " #timeLabelContainer").queryFirst()
 
-            displayedTime = robot.lookup("#" + widgetID + " #timeLabelContainer").queryFirst()
+        evaluate(ExecutionDetails.create("Displayed time was found")
+                .expected("Time is visible")
+                .success(displayedTime.isVisible()))
 
-            evaluate(ExecutionDetails.create("Notification Display bar time was found")
-                    .expected("Time is visible")
-                    .success(displayedTime != null))
-        } else {
-
-            displayedTime = robot.lookup("#" + widgetID + " #timeLabelContainer").queryFirst()
-
-            evaluate(ExecutionDetails.create("Status Display time was found")
-                    .expected("Time is visible")
-                    .success(displayedTime != null))
-        }
         return displayedTime
     }
 
@@ -57,4 +47,3 @@ class VerifyDiffTimeConsecutiveSeconds extends FxScriptTemplate {
         return displayedTimeText
     }
 }
-
