@@ -1,7 +1,7 @@
 Narrative:
-As a callee operator having an incoming call from a SIP contact
-I want to have a matching entry for the caller SIP contact
-So that I can verify that the telephone book entry display name will be displayed on the call queue item
+As an operator having 16 incoming external calls
+I want do a the transfer action
+So I can verify that transfer action can be done only when there are a maximum of 14 incoming calls
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -38,6 +38,8 @@ Given the call queue items:
 | key     | source      | target      | callType |
 | OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | DA/IDA   |
 | OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | DA/IDA   |
+| OP3-OP2 | <<OP3_URI>> | <<OP2_URI>> | DA/IDA   |
+| OP2-OP3 | <<OP2_URI>> | <<OP3_URI>> | DA/IDA   |
 
 Scenario: Sip phone calls operator
 When SipContact calls SIP URI <<OPVOICE1_PHONE_URI>>
@@ -67,7 +69,7 @@ Then HMI OP1 has in the call queue a number of 3 calls
 Then HMI OP1 has in the waiting list a number of 2 calls
 Then HMI OP1 has in the collapsed area a number of 13 calls
 
-Scenario: Op1 answers one call
+Scenario: Op1 tries to answers one call
 Then HMI OP1 answers item 1 from waiting call queue list
 
 Scenario: Verify answer call is not possible
@@ -91,43 +93,42 @@ Then HMI OP1 has in the call queue a number of 3 calls
 Then HMI OP1 has in the waiting list a number of 2 calls
 Then HMI OP1 has in the collapsed area a number of 13 calls
 
-Scenario: Op1 retrives from hold one call
+Scenario: Op1 retrieves from hold one call
 Then HMI OP1 retrives from hold item 1 from hold call queue list
+Then HMI OP1 has in the active list a number of 1 calls
 
-Scenario: Op3 terminates call
-Then HMI OP3 terminates item 1 from active call queue list
+Scenario: Op1 terminates call
+Then HMI OP1 terminates item 1 from active call queue list
 
 Scenario: Op1 answers one call
 Then HMI OP1 answers item 1 from waiting call queue list
-
-Scenario: Op1 verifies the number of calls in the queue
 Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 has in the call queue a number of 4 calls
-Then HMI OP1 has in the waiting list a number of 3 calls
-Then HMI OP1 has in the collapsed area a number of 11 calls
 
-Scenario: Op1 puts call on hold
-When HMI OP1 initiates a transfer on the active call
+Scenario: Op1 terminates call
+Then HMI OP1 terminates item 1 from active call queue list
+
+Scenario: Op1 receives call from Op2
+When HMI OP2 presses DA key OP1
+Then HMI OP2 has the DA key OP1 in state out_ringing
 
 Scenario: Op1 verifies the number of calls in the queue
 Then HMI OP1 has in the active list a number of 0 calls
-Then HMI OP1 has in the hold list a number of 1 calls
 Then HMI OP1 has in the call queue a number of 3 calls
-Then HMI OP1 has in the waiting list a number of 2 calls
+Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 12 calls
 
-Scenario: Op1 answers one call
-Then HMI OP1 answers item 1 from waiting call queue list
+Scenario: Op1 answers incoming call from Op2
+When HMI OP1 presses DA key OP2
 
-Scenario: Verify answer call is not possible
-When HMI OP1 opens Notification Display list
-Then HMI OP1 verifies that list State contains text Call Transfer in progress
-When HMI OP1 selects tab event from notification display popup
-Then HMI OP1 verifies that list Event contains on position 0 text Call can not be accepted, TRANSFER mode active
-When HMI OP1 selects tab state from notification display popup
+Scenario: Verify call is connected for both operators
+Then HMI OP1 has the call queue item OP2-OP1 in state connected
+Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
-Scenario: Close popup window
-Then HMI OP1 closes notification popup
+Scenario: Op1 initiates transfer
+When HMI OP1 initiates a transfer on the active call
+
+Scenario: Verify call is put on transfer
+Then HMI OP1 has the call queue item OP2-OP1 in the hold list with info label XFR Hold
 
 Scenario: Op1 initiates consultation call
 When HMI OP1 presses DA key OP3
@@ -140,14 +141,29 @@ Scenario: Op1 finishes transfer
 When HMI OP1 presses DA key OP3
 Then wait for 2 seconds
 
-Scenario: Op1 verifies the number of calls in the queue
+Scenario: Verify call was transferred
 Then HMI OP1 has in the active list a number of 0 calls
-Then HMI OP1 has in the hold list a number of 0 calls
 Then HMI OP1 has in the call queue a number of 3 calls
 Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 11 calls
 
+Scenario: Verify call state for the other 2 operators
+Then HMI OP2 has the call queue item OP3-OP2 in state out_ringing
+Then HMI OP3 has the call queue item OP2-OP3 in state inc_initiated
+
+Scenario: Cleanup call
+When HMI OP2 presses DA key OP3
+And waiting for 1 seconds
+Then HMI OP2 has in the call queue a number of 0 calls
+Then HMI OP3 has in the call queue a number of 0 calls
+
 Scenario: Op1 answers and terminates the rest of the waiting calls
+Then HMI OP1 answers item 1 from waiting call queue list
+Then HMI OP1 has in the active list a number of 1 calls
+Then HMI OP1 answers item 1 from waiting call queue list
+Then HMI OP1 has in the active list a number of 1 calls
+Then HMI OP1 answers item 1 from waiting call queue list
+Then HMI OP1 has in the active list a number of 1 calls
 Then HMI OP1 answers item 1 from waiting call queue list
 Then HMI OP1 has in the active list a number of 1 calls
 Then HMI OP1 answers item 1 from waiting call queue list

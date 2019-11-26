@@ -1,7 +1,7 @@
 Narrative:
-As a callee operator having an incoming call from a SIP contact
-I want to have a matching entry for the caller SIP contact
-So that I can verify that the telephone book entry display name will be displayed on the call queue item
+As an operator having 16 incoming external calls
+I want to answer each of the incoming call
+So I can verify that the call queue is adapted accordingly with my actions
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -32,12 +32,6 @@ Given SipContacts group SipContact:
 | Caller16 | VOIP    | 16          | <<SIP16>> |
 
 Given phones for SipContact are created
-
-Scenario: Define call queue items
-Given the call queue items:
-| key         | source                 | target                 | callType |
-| OP1-OP2     | <<OP1_URI>>            | <<OP2_URI>>            | IA       |
-| OP2-OP1     | <<OP2_URI>>            | <<OP1_URI>>            | IA       |
 
 Scenario: Sip phone calls operator
 When SipContact calls SIP URI <<OPVOICE1_PHONE_URI>>
@@ -325,30 +319,6 @@ Scenario: Op1 verifies the number of calls in the queue
 Then HMI OP1 has in the active list a number of 0 calls
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP1 has in the waiting list a number of 0 calls
-
-Scenario: Op2 establishes an outgoing IA call to Op1
-When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
-When HMI OP2 presses IA key IA - OP1
-Then HMI OP1 has the call queue item OP2-OP1 in state connected
-Then HMI OP1 has the IA key IA - OP2 in state connected
-
-Scenario: Op1 establishes a duplex call to Op2
-When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
-When HMI OP1 presses IA key IA - OP2
-
-Scenario: Verify call direction
-Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction duplex
-Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction duplex
-
-Scenario: Op1 terminates call
-When HMI OP1 presses IA key IA - OP2
-
-Scenario: Op2 terminates call
-When HMI OP2 presses IA key IA - OP1
-
-Scenario: Cleanup - always select first tab
-When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1
-When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 1
 
 Scenario: Remove phone
 When SipContact is removed

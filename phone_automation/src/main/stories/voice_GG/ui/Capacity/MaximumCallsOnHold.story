@@ -1,7 +1,7 @@
 Narrative:
-As a callee operator having an incoming call from a SIP contact
-I want to have a matching entry for the caller SIP contact
-So that I can verify that the telephone book entry display name will be displayed on the call queue item
+As an operator having 16 incoming external calls
+I want to answer and put on hold 5 calls
+So I can verify that this is the maximum number of allowed calls on hold
 
 Scenario: Booking profiles
 Given booked profiles:

@@ -1,7 +1,7 @@
 Narrative:
-As a callee operator having an incoming call from a SIP contact
-I want to have a matching entry for the caller SIP contact
-So that I can verify that the telephone book entry display name will be displayed on the call queue item
+As an operator having an active conference with 2 participants
+I want to receive 16 incoming external calls
+So I can verify that only 15 of them will be visible on the operator position
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -77,9 +77,50 @@ When SipContact calls SIP URI <<OPVOICE1_PHONE_URI>>
 Then waiting for 2 seconds
 
 Scenario: Op1 verifies the number of incoming calls in the queue
+Then HMI OP1 has in the active list a number of 1 calls
+Then HMI OP1 has in the call queue a number of 4 calls
+Then HMI OP1 has in the waiting list a number of 3 calls
+Then HMI OP1 has in the collapsed area a number of 12 calls
+
+Scenario: Op1 (conference initiator) leaves the conference
+Then HMI OP1 terminates the call queue item OP2-OP1-Conf
+
+Scenario: Op1 verifies the number of incoming calls in the queue
+Then HMI OP1 has in the active list a number of 0 calls
 Then HMI OP1 has in the call queue a number of 3 calls
 Then HMI OP1 has in the waiting list a number of 3 calls
-Then HMI OP1 has in the collapsed area a number of 11 calls
+Then HMI OP1 has in the collapsed area a number of 12 calls
+
+Scenario: Op2 establishes an outgoing call
+When HMI OP2 presses DA key OP1
+Then HMI OP2 has the DA key OP1 in state out_ringing
+
+Scenario: Op1 client receives the incoming call and answers the call
+Then HMI OP1 has the DA key OP2 in state inc_initiated
+When HMI OP1 presses DA key OP2
+
+Scenario: Verify call is connected for both operators
+Then HMI OP1 has the call queue item OP2-OP1 in state connected
+Then HMI OP2 has the call queue item OP1-OP2 in state connected
+
+Scenario: Op1 starts a conference using an existing active call
+When HMI OP1 starts a conference using an existing active call
+And waiting for 1 second
+Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
+Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
+Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with info label 2 participants
+
+Scenario: Op1 verifies the number of calls in the queue
+Then HMI OP1 has in the active list a number of 1 calls
+Then HMI OP1 has in the call queue a number of 3 calls
+Then HMI OP1 has in the waiting list a number of 3 calls
+Then HMI OP1 has in the collapsed area a number of 12 calls
+
+Scenario: Op1 (conference initiator) leaves the conference
+Then HMI OP1 terminates the call queue item OP2-OP1-Conf
+
+Scenario: Op1 verifies the number of calls in the queue
+Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Sip phones are cleared
 When SipContact terminates calls

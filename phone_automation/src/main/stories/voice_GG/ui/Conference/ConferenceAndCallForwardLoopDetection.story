@@ -19,7 +19,6 @@ Given the call queue items:
 | OP3-OP2-Conf | <<OP3_URI>>           | <<OP2_URI>> | CONF     |
 | OP2-OP3-Conf | <<OPVOICE2_CONF_URI>> | <<OP3_URI>> | CONF     |
 
-
 Scenario: Op1 activates Call Forward
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
 When HMI OP1 presses DA key OP3
@@ -54,8 +53,6 @@ Then HMI OP2 closes notification popup
 
 Scenario: Op3 call state verification
 Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
-
-
 
 Scenario: Op2 verifies conference participants list
 		  @REQUIREMENTS:GID-3229804
