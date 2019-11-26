@@ -1,7 +1,7 @@
 Narrative:
-As a callee operator having an incoming call from a SIP contact
-I want to have a matching entry for the caller SIP contact
-So that I can verify that the telephone book entry display name will be displayed on the call queue item
+As an operator having 16 incoming external calls
+I want to answer calls, do recalls from call history, do role calls, do conference call
+So I can verify that the operator can't have more then 1 active call
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -228,12 +228,74 @@ Scenario: Op1 does call from call history
 When HMI OP1 initiates a call from the call history
 Then HMI OP1 has in the active list a number of 1 calls
 
+Scenario: Op2 establishes an outgoing call towards Role1
+When HMI OP2 presses DA key ROLE1
+Then HMI OP2 has the DA key ROLE1 in state out_ringing
+
+Scenario: Op1 verifies the number of calls in the queue
+Then HMI OP1 has in the active list a number of 1 calls
+Then HMI OP1 has in the call queue a number of 2 calls
+Then HMI OP1 has in the waiting list a number of 1 calls
+
+Scenario: Op1 answers Role1 call
+When HMI OP1 presses DA key ROLE1
+
 Scenario: Op1 terminates active call
 Then HMI OP1 terminates item 1 from active call queue list
+Then HMI OP1 has in the call queue a number of 1 calls
+Then HMI OP1 has in the waiting list a number of 0 calls
 
 Scenario: Op1 opens call history
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLHISTORY
 Then HMI OP1 verifies that call history list contains 32 entries
+
+Scenario: Op1 closes call history
+Then HMI OP1 closes Call History popup window
+
+Scenario: Op1 establishes an outgoing call towards Role2
+When HMI OP1 presses DA key ROLE2
+
+Scenario: Op1 verifies the number of calls in the queue
+Then HMI OP1 has in the active list a number of 1 calls
+Then HMI OP1 has in the call queue a number of 1 calls
+
+Scenario: Op2 answers Role2 call
+When HMI OP2 presses DA key ROLE2
+
+Scenario: Op1 starts a conference using an existing active call
+When HMI OP1 starts a conference using an existing active call
+
+Scenario: Op1 verifies the number of calls in the queue
+Then HMI OP1 has in the active list a number of 1 calls
+Then HMI OP1 has in the call queue a number of 1 calls
+
+Scenario: Op3 calls Op1
+When HMI OP3 presses DA key OP1
+
+Scenario: Op1 verifies the number of calls in the queue
+Then HMI OP1 has in the active list a number of 1 calls
+Then HMI OP1 has in the call queue a number of 2 calls
+Then HMI OP1 has in the waiting list a number of 1 calls
+
+Scenario: Op1 answers Op3 call
+When HMI OP1 presses DA key OP3
+
+Scenario: Op1 verifies the number of calls in the queue
+Then HMI OP1 has in the active list a number of 1 calls
+Then HMI OP1 has in the call queue a number of 1 calls
+Then HMI OP1 has in the waiting list a number of 0 calls
+
+Scenario: Op1 terminates Op3 call
+When HMI OP1 presses DA key OP3
+
+Scenario: Verify call queue for all operators
+Then HMI OP1 has in the call queue a number of 0 calls
+Then HMI OP2 has in the call queue a number of 0 calls
+Then HMI OP3 has in the call queue a number of 0 calls
+
+Scenario: Op1 opens call history
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLHISTORY
+Then HMI OP1 verifies that call history list contains 35 entries
 
 Scenario: Op1 closes call history
 Then HMI OP1 closes Call History popup window
