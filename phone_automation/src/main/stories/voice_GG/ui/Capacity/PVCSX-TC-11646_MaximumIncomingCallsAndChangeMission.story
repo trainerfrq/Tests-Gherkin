@@ -60,12 +60,12 @@ Meta:
 @TEST_STEP_REACTION: Op1 active mission is MISSION_2_NAME;
 @TEST_STEP_REF: [CATS-REF: yib2]
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP1 changes current mission to mission WEST-EXEC
+Then HMI OP1 changes current mission to mission <<MISSION_2_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: 2.1 Verify operator mission
-Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission WEST-EXEC
+Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_2_NAME>>
 
 Scenario: 3. Op1 verifies the number of incoming calls in the queue
 Meta:
@@ -132,12 +132,12 @@ Meta:
 @TEST_STEP_REACTION: Op1 active mission is MISSION_1_NAME. Op1 has 8 incoming calls
 @TEST_STEP_REF: [CATS-REF: hl0r]
 When HMI OP1 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
-Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
+Then HMI OP1 changes current mission to mission <<MISSION_1_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: 6.1 Verify operator mission
-Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission MAN-NIGHT-TACT
+Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_1_NAME>>
 
 Scenario: 6.2 Op1 verifies the number of calls in the queue
 Then HMI OP1 has in the active list a number of 0 calls
@@ -195,7 +195,7 @@ When SipContact is removed
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
-GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
+GivenStories: voice_GG/ui/includes/@CleanupUICallQueueCapacityTests.story,
 			  voice_GG/ui/includes/@CleanupUIMission.story,
 			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story,
 			  voice_GG/ui/includes/@CleanupUIWindows.story

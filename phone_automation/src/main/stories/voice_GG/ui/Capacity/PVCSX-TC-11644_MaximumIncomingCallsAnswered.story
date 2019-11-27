@@ -1,7 +1,7 @@
 Meta:
 @TEST_CASE_VERSION: V3
 @TEST_CASE_NAME: MaximumIncomingCallsAnswered
-@TEST_CASE_DESCRIPTION: narrative:As an operator having 16 incoming external calls I want to answer each of the incoming call So I can verify that the call queue is adapted accordingly with my actions
+@TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls I want to answer each of the incoming call So I can verify that the call queue is adapted accordingly with my actions
 @TEST_CASE_PRECONDITION:
 @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when each call is answered and call queue is updated with each answer action
 @TEST_CASE_DEVICES_IN_USE: CATS tool is used to simulate 16 external calls
@@ -36,6 +36,8 @@ Given SipContacts group SipContact:
 | Caller14 | VOIP    | 14          | <<SIP14>> |
 | Caller15 | VOIP    | 15          | <<SIP15>> |
 | Caller16 | VOIP    | 16          | <<SIP16>> |
+
+Given phones for SipContact are created
 
 Scenario: 1. Have 16 external calls that call Op1
 Meta:
@@ -359,7 +361,7 @@ When SipContact is removed
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
-GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
+GivenStories: voice_GG/ui/includes/@CleanupUICallQueueCapacityTests.story,
 			  voice_GG/ui/includes/@CleanupUIMission.story,
 			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story,
 			  voice_GG/ui/includes/@CleanupUIWindows.story
