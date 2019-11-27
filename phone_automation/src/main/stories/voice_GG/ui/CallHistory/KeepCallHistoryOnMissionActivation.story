@@ -115,7 +115,7 @@ Then HMI OP2 closes Call History popup window
 
 Scenario: Change mission for HMI OP1
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
-Then HMI OP2 changes current mission to mission WEST-EXEC
+Then HMI OP2 changes current mission to mission <<MISSION_2_NAME>>
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
 

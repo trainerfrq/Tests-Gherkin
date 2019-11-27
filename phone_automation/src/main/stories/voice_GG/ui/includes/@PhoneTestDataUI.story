@@ -85,16 +85,19 @@ Given the function keys:
 | <<LAYOUT_MISSION4>> | MISSIONS    | <<MISSIONS_ID>>            |
 | <<LAYOUT_MISSION4>> | CALLFORWARD | <<CALLFORWARD_ID>>         |
 | <<LAYOUT_MISSION4>> | LOUDSPEAKER | <<LOUDSPEAKER_ID>>         |
-| <<LAYOUT_MISSION4>> | SETTINGS    | <<SETTINGS_ID_MISSION4>>    |
+| <<LAYOUT_MISSION4>> | SETTINGS    | <<SETTINGS_ID_MISSION4>>   |
 | <<LAYOUT_MISSION4>> | MONITORING  | <<MONITORING_ID_MISSION4>> |
-| <<LAYOUT_MISSION4>> | EDIT        | <<EDIT_ID_MISSION4>>        |
+| <<LAYOUT_MISSION4>> | EDIT        | <<EDIT_ID_MISSION4>>       |
 
 Scenario: Define status key
 Given the status key:
-| source  | key            | id                    |
-| HMI OP1 | DISPLAY STATUS | <<DISPLAY_STATUS_ID>> |
-| HMI OP2 | DISPLAY STATUS | <<DISPLAY_STATUS_ID>> |
-| HMI OP3 | DISPLAY STATUS | <<DISPLAY_STATUS_ID>> |
+| source  | key                  | id                          |
+| HMI OP1 | DISPLAY STATUS       | <<DISPLAY_STATUS_ID>>       |
+| HMI OP2 | DISPLAY STATUS       | <<DISPLAY_STATUS_ID>>       |
+| HMI OP3 | DISPLAY STATUS       | <<DISPLAY_STATUS_ID>>       |
+| HMI OP1 | NOTIFICATION DISPLAY | <<NOTIFICATION_DISPLAY_ID>> |
+| HMI OP2 | NOTIFICATION DISPLAY | <<NOTIFICATION_DISPLAY_ID>> |
+| HMI OP3 | NOTIFICATION DISPLAY | <<NOTIFICATION_DISPLAY_ID>> |
 
 Scenario: Define call route selectors
 Given the call route selectors:

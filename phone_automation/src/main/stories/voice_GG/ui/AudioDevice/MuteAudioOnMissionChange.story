@@ -53,7 +53,7 @@ Then HMI OP1 closes settings popup
 
 Scenario: Op1 changes mission
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP1 changes current mission to mission EAST-EXEC
+Then HMI OP1 changes current mission to mission <<MISSION_3_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
@@ -91,7 +91,7 @@ Then HMI OP1 closes settings popup
 
 Scenario: Op1 changes to initial mission
 When HMI OP1 with layout <<LAYOUT_MISSION3>> presses function key MISSIONS
-Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
+Then HMI OP1 changes current mission to mission <<MISSION_1_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 

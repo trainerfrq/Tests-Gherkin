@@ -23,7 +23,7 @@ Given the call queue items:
 | OP1-SipContact  | <<SIP_PHONE5>>  |           | DA/IDA   |
 
 Scenario: Verify operator mission
-Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission MAN-NIGHT-TACT
+Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_1_NAME>>
 
 Scenario: Op1 opens PhoneBook
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
@@ -59,12 +59,12 @@ Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Op1 changes its mission
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP1 changes current mission to mission EAST-EXEC
+Then HMI OP1 changes current mission to mission <<MISSION_3_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify operator mission
-Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission EAST-EXEC
+Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_3_NAME>>
 
 Scenario: Op1 opens PhoneBook
 When HMI OP1 with layout <<LAYOUT_MISSION3>> presses function key PHONEBOOK
@@ -100,12 +100,12 @@ Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Op1 changes its mission back
 When HMI OP1 with layout <<LAYOUT_MISSION3>> presses function key MISSIONS
-Then HMI OP1 changes current mission to mission MAN-NIGHT-TACT
+Then HMI OP1 changes current mission to mission <<MISSION_1_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify operator mission
-Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission MAN-NIGHT-TACT
+Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_1_NAME>>
 
 Scenario: Remove phone
 When SipContact is removed

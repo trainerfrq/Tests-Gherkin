@@ -47,12 +47,12 @@ And WS3 receives mission changed indication on message buffer named MissionChang
 Then WS3 confirms mission change completed for mission missionId3
 
 Scenario: Caller client changes its mission
-When WS1 chooses mission with name MAN-NIGHT-TACT from available missions named availableMissionIds1 and names missionIdToChange1
+When WS1 chooses mission with name <<MISSION_1_NAME>> from available missions named availableMissionIds1 and names missionIdToChange1
 Then WS1 receives mission changed indication on buffer named MissionChangedIndicationBuffer1 equal to missionIdToChange1 and names missionId1 and roleId1
 Then WS1 confirms mission change completed for mission missionId1
 
 Scenario: Third client changes its mission
-When WS3 chooses mission with name EAST-EXEC from available missions named availableMissionIds3 and names missionIdToChange3
+When WS3 chooses mission with name <<MISSION_3_NAME>> from available missions named availableMissionIds3 and names missionIdToChange3
 Then WS3 receives mission changed indication on buffer named MissionChangedIndicationBuffer3 equal to missionIdToChange3 and names missionId3 and roleId3
 Then WS3 confirms mission change completed for mission missionId3
 
@@ -77,7 +77,7 @@ Scenario: Callee client receives the incoming call
 When WS3 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer2 with callSourceCalling , callTargetCalling , audio direction RX_MONITORED and monitoring type ALL and names incomingPhoneCallId1
 
 Scenario: Caller client changes its mission
-When WS1 chooses mission with name WEST-EXEC from available missions named availableMissionIds1 and names missionIdToChange2
+When WS1 chooses mission with name <<MISSION_2_NAME>> from available missions named availableMissionIds1 and names missionIdToChange2
 Then WS1 receives mission changed indication on buffer named MissionChangedIndicationBuffer1 equal to missionIdToChange2 and names missionId2 and roleId2
 Then WS1 confirms mission change completed for mission missionId2
 
@@ -96,7 +96,7 @@ Scenario: Caller client receives the incoming call
 When WS1 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer1 with callSourceCalled , callTargetCalled , audio direction DUPLEX and monitoring type GG and names incomingPhoneCallId2
 
 Scenario: Third client changes its mission
-When WS3 chooses mission with name WEST-EXEC from available missions named availableMissionIds3 and names missionIdToChange4
+When WS3 chooses mission with name <<MISSION_2_NAME>> from available missions named availableMissionIds3 and names missionIdToChange4
 Then WS3 receives mission changed indication on buffer named MissionChangedIndicationBuffer3 equal to missionIdToChange4 and names missionId4 and roleId4
 Then WS3 confirms mission change completed for mission missionId4
 
@@ -111,12 +111,12 @@ Then WS1 is receiving call status indication on message buffer named  CallStatus
 Then WS3 is receiving call status indication on message buffer named CallStatusIndicationBuffer2 with callId outgoingPhoneCallId2 and status connected and audio direction TX_MONITORED
 
 Scenario: Caller client changes its mission
-When WS1 chooses mission with name MAN-NIGHT-TACT from available missions named availableMissionIds1 and names missionIdToChange1
+When WS1 chooses mission with name <<MISSION_1_NAME>> from available missions named availableMissionIds1 and names missionIdToChange1
 Then WS1 receives mission changed indication on buffer named MissionChangedIndicationBuffer1 equal to missionIdToChange1 and names missionId1 and roleId1
 Then WS1 confirms mission change completed for mission missionId1
 
 Scenario: Third client changes its mission
-When WS3 chooses mission with name EAST-EXEC from available missions named availableMissionIds3 and names missionIdToChange3
+When WS3 chooses mission with name <<MISSION_3_NAME>> from available missions named availableMissionIds3 and names missionIdToChange3
 Then WS3 receives mission changed indication on buffer named MissionChangedIndicationBuffer3 equal to missionIdToChange3 and names missionId3 and roleId3
 Then WS3 confirms mission change completed for mission missionId3
 

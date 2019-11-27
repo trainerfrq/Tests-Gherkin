@@ -34,7 +34,7 @@ Then HMI OP1 terminates the call queue item OP2-OP1
 
 Scenario: Change mission for HMI OP1
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP1 changes current mission to mission WEST-EXEC
+Then HMI OP1 changes current mission to mission <<MISSION_2_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
