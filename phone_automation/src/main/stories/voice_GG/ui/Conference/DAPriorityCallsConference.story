@@ -111,6 +111,7 @@ Then HMI OP1 verifies that remove conference participant button is disabled
 Then HMI OP1 verifies that edit conference button is disabled
 Then HMI OP1 verifies that leave conference button is enabled
 Then HMI OP1 leaves conference
+And waiting for 1 second
 
 Scenario: Call is terminated for Op1
 Then HMI OP1 has in the call queue a number of 0 calls

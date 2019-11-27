@@ -28,7 +28,7 @@ Then HMI OP2 has in the call queue the item OP1-OP2 with priority
 
 Scenario: Change mission for HMI OP2
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
-Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
+Then HMI OP2 changes current mission to mission <<MISSION_1_NAME>>
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
 
@@ -47,7 +47,7 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: Change mission for HMI OP1
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP1 changes current mission to mission WEST-EXEC
+Then HMI OP1 changes current mission to mission <<MISSION_2_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 

@@ -42,7 +42,7 @@ Then HMI OP1 has the call queue item OP2-OP1 in state held
 
 Scenario: Change mission for HMI OP1
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP1 changes current mission to mission WEST-EXEC
+Then HMI OP1 changes current mission to mission <<MISSION_2_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
@@ -68,7 +68,7 @@ Then HMI OP2 has the call queue item OP3-OP2 in state connected
 
 Scenario: Change mission for HMI OP2
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
-Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
+Then HMI OP2 changes current mission to mission <<MISSION_1_NAME>>
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
 
@@ -85,7 +85,7 @@ Then HMI OP3 has the call queue item OP2-OP3 in state held
 
 Scenario: Change mission for HMI OP3
 When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MISSIONS
-Then HMI OP3 changes current mission to mission WEST-EXEC
+Then HMI OP3 changes current mission to mission <<MISSION_2_NAME>>
 Then HMI OP3 activates mission
 Then waiting for 5 seconds
 
@@ -99,12 +99,12 @@ Then HMI OP2 retrieves from hold the call queue item OP3-OP2
 
 Scenario: Op3 change mission
 When HMI OP3 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
-Then HMI OP3 changes current mission to mission EAST-EXEC
+Then HMI OP3 changes current mission to mission <<MISSION_3_NAME>>
 Then HMI OP3 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify operator mission
-Then HMI OP3 has in the DISPLAY STATUS section mission the assigned mission EAST-EXEC
+Then HMI OP3 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_3_NAME>>
 
 Scenario: Verify call is connected for both operators
 Then HMI OP3 has the call queue item OP2-OP3 in state connected

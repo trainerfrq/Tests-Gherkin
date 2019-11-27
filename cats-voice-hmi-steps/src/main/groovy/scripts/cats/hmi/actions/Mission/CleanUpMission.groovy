@@ -57,7 +57,7 @@ class CleanUpMission extends FxScriptTemplate {
                         .expected("Expected property: " + property)
                         .received("Found property: " + receivedProperty)
                         .success())
-                return receivedProperty.contains(property);
+                return receivedProperty.equals(property);
 
             }
         }

@@ -11,6 +11,12 @@ Given booked profiles:
 | javafx  | hmi   | <<CLIENT2_IP>> | HMI OP2    |
 | javafx  | hmi   | <<CLIENT3_IP>> | HMI OP3    |
 
+Scenario: Cleanup events list
+When HMI OP1 opens Notification Display list
+When HMI OP1 clears the notification events from list
+Then HMI OP1 verifies that Notification Display list Event has 0 items
+Then HMI OP1 closes notification popup
+
 Scenario: Op1 presses Call Forward button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in forwardOngoing state
@@ -21,7 +27,9 @@ Scenario: Op1 verifies Call Forward button state
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key CALLFORWARD is visible
 
 Scenario: Op1 verifies notification message
-Then HMI OP1 has a notification that shows Select Call Forward target
+When HMI OP1 opens Notification Display list
+Then HMI OP1 verifies that list State contains text Select Call Forward target
+Then HMI OP1 closes notification popup
 
 Scenario: Op1 presses Call History button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLHISTORY
@@ -44,7 +52,9 @@ Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function
 Then HMI OP1 verifies that the DA key OP2 has the info label Call Fwd
 
 Scenario: Op1 verifies notification message
-Then HMI OP1 has a notification that shows Select Call Forward target
+When HMI OP1 opens Notification Display list
+Then HMI OP1 verifies that list State contains text Select Call Forward target
+Then HMI OP1 closes notification popup
 
 Scenario: Op1 presses Settings button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key SETTINGS
@@ -59,7 +69,9 @@ Scenario: Op1 verifies Call Forward button state
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function key CALLFORWARD is visible
 
 Scenario: Op1 verifies notification message
-Then HMI OP1 has a notification that shows Select Call Forward target
+When HMI OP1 opens Notification Display list
+Then HMI OP1 verifies that list State contains text Select Call Forward target
+Then HMI OP1 closes notification popup
 
 Scenario: Op1 deactivates Call Forward button
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD

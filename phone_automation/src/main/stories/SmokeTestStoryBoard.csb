@@ -1025,7 +1025,7 @@
                             <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/PhoneBasicCall/DAPriorityCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/ui/CallPriority/DAPriorityCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
@@ -1055,7 +1055,7 @@
                             <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="false">
-                            <cats:storyPath>voice_GG/ui/PhoneBasicCall/DAPriorityCallFromTelephoneBook.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/ui/CallPriority/DAPriorityCallFromTelephoneBook.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
@@ -1541,7 +1541,7 @@
                             <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/CallHistory/DACallFromIncomingDAPriorityCall.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/ui/CallPriority/DACallFromIncomingDAPriorityCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>

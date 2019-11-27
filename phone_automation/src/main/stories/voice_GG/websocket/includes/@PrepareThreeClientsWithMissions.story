@@ -50,17 +50,17 @@ And WS3 receives mission changed indication on message buffer named MissionChang
 Then WS3 confirms mission change completed for mission missionId3
 
 Scenario: Caller client changes its mission
-When WS1 chooses mission with name MAN-NIGHT-TACT from available missions named availableMissionIds1 and names missionIdToChange1
+When WS1 chooses mission with name <<MISSION_1_NAME>> from available missions named availableMissionIds1 and names missionIdToChange1
 Then WS1 receives mission changed indication on buffer named MissionChangedIndicationBuffer1 equal to missionIdToChange1 and names missionId1 and roleId1
 Then WS1 confirms mission change completed for mission missionId1
 
 Scenario: Callee client changes its mission
-When WS2 chooses mission with name WEST-EXEC from available missions named availableMissionIds2 and names missionIdToChange2
+When WS2 chooses mission with name <<MISSION_2_NAME>> from available missions named availableMissionIds2 and names missionIdToChange2
 Then WS2 receives mission changed indication on buffer named MissionChangedIndicationBuffer2 equal to missionIdToChange2 and names missionId2  and roleId2
 Then WS2 confirms mission change completed for mission missionId2
 
 Scenario: Third client changes its mission
-When WS3 chooses mission with name EAST-EXEC from available missions named availableMissionIds3 and names missionIdToChange3
+When WS3 chooses mission with name <<MISSION_3_NAME>> from available missions named availableMissionIds3 and names missionIdToChange3
 Then WS3 receives mission changed indication on buffer named MissionChangedIndicationBuffer3 equal to missionIdToChange3 and names missionId3 and roleId3
 Then WS3 confirms mission change completed for mission missionId3
 

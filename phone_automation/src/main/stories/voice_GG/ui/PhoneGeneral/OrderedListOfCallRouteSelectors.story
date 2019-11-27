@@ -10,24 +10,24 @@ Given booked profiles:
 | javafx  | hmi   | <<CLIENT2_IP>> | HMI OP2    |
 | javafx  | hmi   | <<CLIENT3_IP>> | HMI OP3    |
 
-Scenario: Verify Call Route Selector List for mission MAN-NIGHT-TACT
+Scenario: Verify Call Route Selector List for mission MISSION_1_NAME
 		  @REQUIREMENTS:GID-2877918
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
-Then HMI OP1 verifies the Call Route Selector list for mission MAN-NIGHT-TACT from /configuration-files/<<systemName>>/missions.json
+Then HMI OP1 verifies the Call Route Selector list for mission <<MISSION_1_NAME>> from /configuration-files/<<systemName>>/missions.json
 
 Scenario: Op1 closes phone book
 When HMI OP1 closes phonebook
 
-Scenario: Verify Call Route Selector List for mission WEST-EXEC
+Scenario: Verify Call Route Selector List for mission MISSION_2_NAME
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key PHONEBOOK
-Then HMI OP2 verifies the Call Route Selector list for mission WEST-EXEC from /configuration-files/<<systemName>>/missions.json
+Then HMI OP2 verifies the Call Route Selector list for mission <<MISSION_2_NAME>> from /configuration-files/<<systemName>>/missions.json
 
 Scenario: Op2 closes phone book
 When HMI OP2 closes phonebook
 
-Scenario: Verify Call Route Selector List for mission EAST-EXEC
+Scenario: Verify Call Route Selector List for mission <ISSION_3_NAME
 When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key PHONEBOOK
-Then HMI OP3 verifies the Call Route Selector list for mission EAST-EXEC from /configuration-files/<<systemName>>/missions.json
+Then HMI OP3 verifies the Call Route Selector list for mission <<MISSION_3_NAME>> from /configuration-files/<<systemName>>/missions.json
 
 Scenario: Op3 closes phone book
 When HMI OP3 closes phonebook

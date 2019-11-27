@@ -23,10 +23,12 @@ import scripts.cats.hmi.actions.ClickFunctionKey;
 import scripts.cats.hmi.actions.DragAndClickOnMenuButtonDAKey;
 import scripts.cats.hmi.actions.DragAndClickOnMenuButtonFunctionKey;
 import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookCallButton;
+import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemPriority;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonState;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonUsageNotReady;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAButtonUsageReady;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAKeyLabel;
+import scripts.cats.hmi.asserts.DAKey.VerifyDAKeyPriority;
 import scripts.cats.hmi.asserts.DAKey.VerifyDAKeyProperty;
 import scripts.cats.hmi.asserts.TimeoutBar.VerifyTimeoutBarVisible;
 import scripts.cats.hmi.asserts.TimeoutBar.VerifyTimeoutBarVisibleForSpecificTime;
@@ -44,6 +46,7 @@ import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
 import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
 import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
@@ -413,6 +416,31 @@ public class CallUISteps extends AutomationSteps {
                   assertProfile( profileName ) )
             .input( VerifyTimeoutBarVisible.IPARAM_FUNCTION_KEY_ID, functionKey.getId() )
             .input( VerifyTimeoutBarVisible.IPARAM_IS_VISIBLE, isVisible ) );
+   }
+
+   @When("$profileName has the DA key $target with call priority $priority")
+   public void verifyingDAKeyPriority(final String profileName, final String target, final String priority)
+   {
+      DAKey daKey = retrieveDaKey( profileName, target );
+
+      evaluate( remoteStep( "Check DA key state" )
+            .scriptOn(
+                  profileScriptResolver().map( VerifyDAKeyPriority.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyDAKeyPriority.IPARAM_DA_KEY_ID, daKey.getId() )
+            .input( VerifyDAKeyPriority.IPARAM_DA_KEY_PRIORITY, priority ) );
+   }
+
+   @When("$profileName has the call queue item $callQueueItem with priority $priority")
+   public void verifyCallQueueItemPriority(final String profileName, final String namedCallQueueItem, final String priority)
+   {
+      CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
+
+      evaluate( remoteStep( "Verify call queue item priority" )
+            .scriptOn( profileScriptResolver().map( VerifyCallQueueItemPriority.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+            .input( VerifyCallQueueItemPriority.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
+            .input( VerifyCallQueueItemPriority.IPARAM_CALL_QUEUE_ITEM_PRIORITY, priority ) );
    }
 
     private DAKey retrieveDaKey(final String source, final String target) {

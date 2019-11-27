@@ -56,7 +56,7 @@ Then HMI OP3 has the DA key OP2 in state inc_initiated
 
 Scenario: Change mission for HMI OP2
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
-Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
+Then HMI OP2 changes current mission to mission <<MISSION_1_NAME>>
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
 
@@ -70,7 +70,7 @@ Then HMI OP3 has the call queue item OP2-OP3 in state inc_initiated
 
 Scenario: Change mission for HMI OP3
 When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MISSIONS
-Then HMI OP3 changes current mission to mission WEST-EXEC
+Then HMI OP3 changes current mission to mission <<MISSION_2_NAME>>
 Then HMI OP3 activates mission
 Then waiting for 5 seconds
 
@@ -94,7 +94,7 @@ Then HMI OP1 has the call queue item OP2-OP1 in state held
 
 Scenario: Transferor changes mission and finishes transfer
 When HMI OP2 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP2 changes current mission to mission WEST-EXEC
+Then HMI OP2 changes current mission to mission <<MISSION_2_NAME>>
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
 !-- TODO QXVP-8545 : re-enable this test after bug is fixed
@@ -108,7 +108,7 @@ Then HMI OP1 has the call queue item OP3-OP1 in state connected
 
 Scenario: Change missions back for HMI OP3
 When HMI OP3 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
-Then HMI OP3 changes current mission to mission EAST-EXEC
+Then HMI OP3 changes current mission to mission <<MISSION_3_NAME>>
 Then HMI OP3 activates mission
 Then waiting for 5 seconds
 

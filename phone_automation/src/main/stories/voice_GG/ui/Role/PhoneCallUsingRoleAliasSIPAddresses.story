@@ -44,6 +44,7 @@ Scenario: Caller writes target address in text box and initiates the call
 When HMI OP2 writes in phonebook text box the address: role1@example.com
 Then HMI OP2 verifies that phone book call button is enabled
 When HMI OP2 initiates a call from the phonebook
+And waiting for 1 second
 
 Scenario: Call is initiated
 Then HMI OP2 has the call queue item OP1-OP2-1 in state out_ringing

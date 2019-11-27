@@ -13,7 +13,7 @@ Given booked profiles:
 Scenario: Define call queue items
 Given the call queue items:
 | key     | source                 | target                 | callType |
-| OP1-OP2 | <<ROLE1_URI>>       | <<OPVOICE2_PHONE_URI>> | DA/IDA   |
+| OP1-OP2 | <<ROLE1_URI>>          | <<OPVOICE2_PHONE_URI>> | DA/IDA   |
 | OP2-OP1 | <<OPVOICE2_PHONE_URI>> |                        | DA/IDA   |
 
 Scenario: Op1 activates Call Forward
@@ -45,7 +45,7 @@ Then HMI OP1 verifies that phone book call button is disabled
 
 Scenario: Op1 selects an item from phonebook
 When HMI OP1 clicks on the scroll down button in phonebook for 1 time(s)
-When HMI OP1 selects phonebook entry number: 10
+When HMI OP1 selects phonebook entry number: 11
 Then HMI OP1 verifies that phone book call button is enabled
 Then HMI OP1 checks that phone book forward button is invisible
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state

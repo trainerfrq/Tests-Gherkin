@@ -91,7 +91,7 @@ Then HMI OP2 closes Conference list popup window
 
 Scenario: Op2 changes mission
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
-Then HMI OP2 changes current mission to mission MAN-NIGHT-TACT
+Then HMI OP2 changes current mission to mission <<MISSION_1_NAME>>
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
 
@@ -137,7 +137,7 @@ Scenario: Op2 adds a conference participant from phonebook
 		  @REQUIREMENTS:GID-2529024
 When HMI OP2 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
 When HMI OP2 selects call route selector: none
-When HMI OP2 selects phonebook entry number: 8
+When HMI OP2 selects phonebook entry number: 9
 Then HMI OP2 verifies that phone book text box displays text Madoline
 When HMI OP2 initiates a call from the phonebook
 When SipContact answers incoming calls
@@ -157,7 +157,7 @@ Then HMI OP2 closes Conference list popup window
 
 Scenario: Op2 changes mission
 When HMI OP2 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP2 changes current mission to mission WEST-EXEC
+Then HMI OP2 changes current mission to mission <<MISSION_2_NAME>>
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
 

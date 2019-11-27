@@ -90,6 +90,7 @@ When HMI OP1 presses key o
 When HMI OP1 presses key m
 Then HMI OP1 verifies that phone book call button is enabled
 When HMI OP1 initiates a call from the phonebook
+And waiting for 1 second
 
 Scenario: Call is initiated
 Then HMI OP1 has the call queue item OP2-OP1 in state out_ringing
