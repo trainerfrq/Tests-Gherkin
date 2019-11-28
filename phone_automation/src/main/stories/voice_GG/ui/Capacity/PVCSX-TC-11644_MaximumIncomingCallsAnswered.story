@@ -52,9 +52,9 @@ Then HMI OP1 has in the call queue a number of 3 calls
 Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 13 calls
 
-Scenario: 2. Op1 answers one calls
+Scenario: 2. Op1 answers one call
 Meta:
-@TEST_STEP_ACTION: Op1 answers one calls
+@TEST_STEP_ACTION: Op1 answers one call
 @TEST_STEP_REACTION: In the call queue there are: 1 active call, 3 calls are visible in the waiting call queue list and 12 are in a collapsed area
 @TEST_STEP_REF: [CATS-REF: aGUm]
 Then HMI OP1 answers item 1 from waiting call queue list

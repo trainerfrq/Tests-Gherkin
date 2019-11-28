@@ -58,9 +58,9 @@ Then HMI OP1 has in the call queue a number of 3 calls
 Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 13 calls
 
-Scenario: 2. Op1 answers one calls
+Scenario: 2. Op1 answers one call
 Meta:
-@TEST_STEP_ACTION: Op1 answers one calls
+@TEST_STEP_ACTION: Op1 answers one call
 @TEST_STEP_REACTION: In the call queue there are: 1 active call, 3 calls are visible in the waiting call queue list and 12 are in a collapsed area
 @TEST_STEP_REF: [CATS-REF: 8q0A]
 Then HMI OP1 answers item 1 from waiting call queue list
@@ -85,9 +85,9 @@ Then HMI OP1 has in the call queue a number of 3 calls
 Then HMI OP1 has in the waiting list a number of 2 calls
 Then HMI OP1 has in the collapsed area a number of 13 calls
 
-Scenario: 4. Op1 answers one calls
+Scenario: 4. Op1 answers one call
 Meta:
-@TEST_STEP_ACTION: Op1 answers one calls
+@TEST_STEP_ACTION: Op1 answers one call
 @TEST_STEP_REACTION: In the call queue there are: 1 active call, 1 call on hold, 2 calls are visible in the waiting call queue list and 12 are in a collapsed area
 @TEST_STEP_REF: [CATS-REF: bLDS]
 Then HMI OP1 answers item 1 from waiting call queue list
@@ -113,9 +113,9 @@ Then HMI OP1 has in the call queue a number of 3 calls
 Then HMI OP1 has in the waiting list a number of 1 calls
 Then HMI OP1 has in the collapsed area a number of 13 calls
 
-Scenario: 6. Op1 answers one calls
+Scenario: 6. Op1 answers one call
 Meta:
-@TEST_STEP_ACTION: Op1 answers one calls
+@TEST_STEP_ACTION: Op1 answers one call
 @TEST_STEP_REACTION: In the call queue there are: 1 active call, 2 calls on hold, 1 call is visible in the waiting call queue list and 12 are in a collapsed area
 @TEST_STEP_REF: [CATS-REF: ZNSQ]
 Then HMI OP1 answers item 1 from waiting call queue list
@@ -142,9 +142,9 @@ Then HMI OP1 has in the call queue a number of 2 calls
 Then HMI OP1 has in the waiting list a number of 1 calls
 Then HMI OP1 has in the collapsed waiting area a number of 12 calls
 
-Scenario: 8. Op1 answers one calls
+Scenario: 8. Op1 answers one call
 Meta:
-@TEST_STEP_ACTION: Op1 answers one calls
+@TEST_STEP_ACTION: Op1 answers one call
 @TEST_STEP_REACTION: In the call queue there are: 1 active call, 1 call visible on hold, 2 calls in the hold collapsed area, 1 call is visible in the waiting call queue list and 11 are in a collapsed area
 @TEST_STEP_REF: [CATS-REF: VFLk]
 Then HMI OP1 answers item 1 from waiting call queue list
@@ -172,9 +172,9 @@ Then HMI OP1 has in the call queue a number of 2 calls
 Then HMI OP1 has in the waiting list a number of 1 calls
 Then HMI OP1 has in the collapsed waiting area a number of 11 calls
 
-Scenario: 10. Op1 answers one calls
+Scenario: 10. Op1 answers one call
 Meta:
-@TEST_STEP_ACTION: Op1 answers one calls
+@TEST_STEP_ACTION: Op1 answers one call
 @TEST_STEP_REACTION: In the call queue there are: 1 active call, 1 call visible on hold, 3 calls in the hold collapsed area, 1 call is visible in the waiting call queue list and 10 are in a collapsed area
 @TEST_STEP_REF: [CATS-REF: xKmM]
 Then HMI OP1 answers item 1 from waiting call queue list
@@ -202,9 +202,9 @@ Then HMI OP1 has in the call queue a number of 2 calls
 Then HMI OP1 has in the waiting list a number of 1 calls
 Then HMI OP1 has in the collapsed waiting area a number of 10 calls
 
-Scenario: 12. Op1 answers one calls
+Scenario: 12. Op1 answers one call
 Meta:
-@TEST_STEP_ACTION: Op1 answers one calls
+@TEST_STEP_ACTION: Op1 answers one call
 @TEST_STEP_REACTION: In the call queue there are: 1 active call, 1 call visible on hold, 4 calls in the hold collapsed area, 1 call is visible in the waiting call queue list and 9 are in a collapsed area
 @TEST_STEP_REF: [CATS-REF: GwKB]
 Then HMI OP1 answers item 1 from waiting call queue list
