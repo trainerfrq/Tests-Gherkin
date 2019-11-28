@@ -4,7 +4,7 @@ import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class ClickCallQueueElementsList extends FxScriptTemplate {
+class ClickCallQueueElementsActiveList extends FxScriptTemplate {
 
     @Override
     void script() {

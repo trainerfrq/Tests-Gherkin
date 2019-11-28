@@ -42,7 +42,6 @@ Given phones for SipContact are created
 Scenario: Define call queue items
 Given the call queue items:
 | key         | source      | target                 | callType |
-| Caller1-OP1 | <<SIP1>>    | <<OPVOICE1_PHONE_URI>> | DA/IDA   |
 | OP1-OP2     | <<OP1_URI>> | <<OP2_URI>>            | IA       |
 | OP2-OP1     | <<OP2_URI>> | <<OP1_URI>>            | IA       |
 
@@ -79,7 +78,7 @@ Meta:
 @TEST_STEP_ACTION: Op1 answers one call and verifies the call queue
 @TEST_STEP_REACTION: The call queue has 1 active call, 3 calls visible in the waiting call queue and 12 waiting calls collapsed
 @TEST_STEP_REF: [CATS-REF: jUBb]
-Then HMI OP1 accepts the call queue item Caller1-OP1
+Then HMI OP1 answers item 1 from waiting call queue list
 
 Scenario: 3.1 Op1 verifies the number of calls in the queue
 Then HMI OP1 has in the active list a number of 1 calls
@@ -92,7 +91,7 @@ Meta:
 @TEST_STEP_ACTION: Op1 terminates call and verifies queue
 @TEST_STEP_REACTION: The call queue has 0 active call, 3 calls visible in the waiting call queue and 12 waiting calls collapsed
 @TEST_STEP_REF: [CATS-REF: 4NP6]
-Then HMI OP1 terminates the call queue item Caller1-OP1
+Then HMI OP1 terminates item 1 from active call queue list
 
 Scenario: 4.1 Op1 verifies the number of calls in the queue
 Then HMI OP1 has in the active list a number of 0 calls
@@ -154,7 +153,8 @@ Meta:
 @TEST_STEP_ACTION: All external calls are terminated by the external sources
 @TEST_STEP_REACTION: Op1 has 0 calls in the queue
 @TEST_STEP_REF: [CATS-REF: CmEE]
-When SipContact terminates calls
+GivenStories: voice_GG/ui/includes/@CleanupCollapsedCallQueue.story,
+			  voice_GG/ui/includes/@CleanupUICallQueueByPosition.story
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Remove phone
@@ -166,7 +166,8 @@ When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 1
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
-GivenStories: voice_GG/ui/includes/@CleanupUICallQueueCapacityTests.story,
+GivenStories: voice_GG/ui/includes/@CleanupCollapsedCallQueue.story,
+			  voice_GG/ui/includes/@CleanupUICallQueueByPosition.story,
 			  voice_GG/ui/includes/@CleanupUIMission.story,
 			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story,
 			  voice_GG/ui/includes/@CleanupUIWindows.story

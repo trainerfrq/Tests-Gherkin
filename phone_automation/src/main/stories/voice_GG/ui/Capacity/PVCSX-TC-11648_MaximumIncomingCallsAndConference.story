@@ -173,9 +173,8 @@ Meta:
 @TEST_STEP_ACTION: External source terminates all 15 incoming calls
 @TEST_STEP_REACTION: Op1 has no calls in the call queue
 @TEST_STEP_REF: [CATS-REF: MR4B]
-When SipContact terminates calls
-
-Scenario: 10.1 Op1 verifies the number of calls in the queue
+GivenStories: voice_GG/ui/includes/@CleanupCollapsedCallQueue.story,
+			  voice_GG/ui/includes/@CleanupUICallQueueByPosition.story
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Remove phone
@@ -183,7 +182,8 @@ When SipContact is removed
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
-GivenStories: voice_GG/ui/includes/@CleanupUICallQueueCapacityTests.story,
+GivenStories: voice_GG/ui/includes/@CleanupCollapsedCallQueue.story,
+			  voice_GG/ui/includes/@CleanupUICallQueueByPosition.story,
 			  voice_GG/ui/includes/@CleanupUIMission.story,
 			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story,
 			  voice_GG/ui/includes/@CleanupUIWindows.story

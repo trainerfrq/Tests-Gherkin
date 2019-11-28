@@ -46,7 +46,7 @@ Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: Op1 has a visible indication that it is monitoring Op3
-Then HMI OP1 has the DA key OP3 with visible state monitoringActiveState
+Then HMI OP1 has the DA key OP3(as Mission2) with visible state monitoringActiveState
 
 Scenario: Op1 opens monitoring list
 When HMI OP1 with layout <<LAYOUT_MISSION1>> opens monitoring list using function key MONITORING menu

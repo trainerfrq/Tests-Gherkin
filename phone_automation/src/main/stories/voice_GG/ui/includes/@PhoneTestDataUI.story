@@ -12,6 +12,7 @@ Given the DA keys:
 | HMI OP1 | ROLE2-ALIAS           | <<ROLE1_ROLE2ALIAS1>>         |
 | HMI OP1 | Madoline              | <<IA_PhyOpPos1_Madoline>>     |
 | HMI OP1 | OP2(as Mission3)      | <<MISSION3_CWP2>>             |
+| HMI OP1 | OP3(as Mission2)      | <<PhyOpPos2_CWP3>>             |
 | HMI OP1 | OP2(as ActiveMission) | <<ACTIVE1_CWP2>>              |
 | HMI OP1 | OP1(as Mission3)      | <<MISSION3_CWP1>>             |
 | HMI OP1 | IA - <<ROLE_2_NAME>>  | <<IA_ACTIVE_MISSION2>>        |

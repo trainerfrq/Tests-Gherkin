@@ -27,7 +27,9 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.CallQueue.CleanUpCallQueue;
-import scripts.cats.hmi.actions.CallQueue.ClickCallQueueElementsList;
+import scripts.cats.hmi.actions.CallQueue.CleanUpCallQueueByPosition;
+import scripts.cats.hmi.actions.CallQueue.CleanUpCallQueueCollapsed;
+import scripts.cats.hmi.actions.CallQueue.ClickCallQueueElementsActiveList;
 import scripts.cats.hmi.actions.CallQueue.ClickCallQueueItem;
 import scripts.cats.hmi.actions.CallQueue.ClickCallQueueItemByPosition;
 import scripts.cats.hmi.actions.CallQueue.ClickOnCallQueueInfoContainer;
@@ -256,7 +258,7 @@ public class CallQueueUISteps extends AutomationSteps
    public void clickCallQueueElements( final String profileName )
    {
       evaluate( remoteStep( "Click call queue elements list" )
-            .scriptOn( profileScriptResolver().map( ClickCallQueueElementsList.class, BookableProfileName.javafx ),
+            .scriptOn( profileScriptResolver().map( ClickCallQueueElementsActiveList.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) ) );
    }
 
@@ -515,6 +517,24 @@ public class CallQueueUISteps extends AutomationSteps
               .input( CleanUpCallQueue.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
               .input(CleanUpCallQueue.IPARAM_LIST_NAME, callQueueItemList));
    }
+
+   @Then("$profileName cleans collapsed call queue list $callQueueItemList")
+   public void cleanUpCollapsedCallQueueItem( final String profileName, final String callQueueItemList )
+   {
+      evaluate( remoteStep( "Cleanup call queue item" )
+              .scriptOn( profileScriptResolver().map( CleanUpCallQueueCollapsed.class, BookableProfileName.javafx ),
+                      assertProfile( profileName ) )
+              .input(CleanUpCallQueueCollapsed.IPARAM_LIST_NAME, callQueueItemList));
+   }
+
+    @Then("$profileName cleans call queue list $callQueueItemList")
+    public void cleanUpCallQueueItemByPosition( final String profileName, final String callQueueItemList )
+    {
+        evaluate( remoteStep( "Cleanup call queue item" )
+                .scriptOn( profileScriptResolver().map( CleanUpCallQueueByPosition.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input(CleanUpCallQueueByPosition.IPARAM_LIST_NAME, callQueueItemList));
+    }
 
    private String reformatSipUris( final String sipUri )
    {

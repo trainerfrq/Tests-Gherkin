@@ -2228,7 +2228,7 @@
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Monitoring/IncomingMonitoringCallChangeMission.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
@@ -2288,7 +2288,7 @@
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="false">
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/Monitoring/OutgoingMonitoringCallChangeMission.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
@@ -2681,7 +2681,7 @@
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>voice_GG/ui/Capacity/PVCSX-TC-11648_MaximumIncomingCallsAndConference.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
