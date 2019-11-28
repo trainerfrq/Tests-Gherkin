@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V3
+@TEST_CASE_VERSION: V4
 @TEST_CASE_NAME: MaximumIncomingCallsAnswered
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls I want to answer each of the incoming call So I can verify that the call queue is adapted accordingly with my actions
 @TEST_CASE_PRECONDITION:

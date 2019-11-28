@@ -197,6 +197,12 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/includes/@PhoneTestData.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/DACalls/CallerClearsActiveCall.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
@@ -259,6 +265,12 @@
                     </cats:report>
                     <cats:reports/>
                     <cats:stories>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/includes/@PhoneTestData.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
                         <cats:story enabled="false">
                             <cats:storyPath>voice_GG/websocket/IACalls/IACallCallerClearsBeforeTimerExpires.story</cats:storyPath>
                             <cats:storyParameters/>
@@ -520,6 +532,12 @@
                     </cats:report>
                     <cats:reports/>
                     <cats:stories>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/websocket/includes/@PhoneTestData.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/websocket/PriorityCall/DAPriorityCall.story</cats:storyPath>
                             <cats:storyParameters/>

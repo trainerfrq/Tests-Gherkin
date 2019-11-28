@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V3
+@TEST_CASE_VERSION: V4
 @TEST_CASE_NAME: MaximumIncomingCallsAndConference
 @TEST_CASE_DESCRIPTION: As an operator having an active conference with 2 participants I want to receive 16 incoming external calls So I can verify that only 15 of them will be visible on the operator position
 @TEST_CASE_PRECONDITION: 

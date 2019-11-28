@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V4
+@TEST_CASE_VERSION: V5
 @TEST_CASE_NAME: MaximumIncomingCallsAndCallForward
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls I want to activate call forward So I can verify that all other calls made towards my position will be forward to another operator position
 @TEST_CASE_PRECONDITION: 

@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V5
+@TEST_CASE_VERSION: V6
 @TEST_CASE_NAME: MaximumOutgoingCalls
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls I want to answer calls, do recalls from call history, do role calls, do conference call So I can verify that the operator can't have more then 1 active call
 @TEST_CASE_PRECONDITION: 
@@ -247,6 +247,8 @@ Then HMI OP1 answers item 1 from waiting call queue list
 
 Scenario: 7.1 Op1 terminates active call
 Then HMI OP1 terminates item 1 from active call queue list
+
+Scenario: 7.2 Op1 doesn't have any calls in the waiting list
 Then HMI OP1 has in the waiting list a number of 0 calls
 
 Scenario: 8. Op1 opens Call History list and verifies the number of calls in the list
