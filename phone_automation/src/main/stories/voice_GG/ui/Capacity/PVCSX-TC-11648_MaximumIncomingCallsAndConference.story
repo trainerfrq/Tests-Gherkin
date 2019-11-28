@@ -168,13 +168,12 @@ Then HMI OP1 has in the call queue a number of 3 calls
 Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 12 calls
 
-Scenario: 10. External source terminates all 15 incoming calls
+Scenario: 10. Op1 terminates all 15 incoming calls
 Meta:
-@TEST_STEP_ACTION: External source terminates all 15 incoming calls
+@TEST_STEP_ACTION: Op1 terminates all 15 incoming calls
 @TEST_STEP_REACTION: Op1 has no calls in the call queue
 @TEST_STEP_REF: [CATS-REF: MR4B]
-GivenStories: voice_GG/ui/includes/@CleanupCollapsedCallQueue.story,
-			  voice_GG/ui/includes/@CleanupUICallQueueByPosition.story
+Then HMI OP1 answers and terminates a number of 15 calls
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Remove phone

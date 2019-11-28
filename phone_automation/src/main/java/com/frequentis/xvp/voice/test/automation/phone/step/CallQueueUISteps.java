@@ -270,13 +270,30 @@ public class CallQueueUISteps extends AutomationSteps
    public void clickCallQueueItemByPosition( final String profileName, final Integer itemNumber, final String itemType )
    {
       Integer realItemPosition = itemNumber -1;
-      evaluate( remoteStep( "Click on call queue item " +itemNumber+ " from waiting list" )
+      evaluate( remoteStep( "Click on call queue item " +itemNumber+ " from "+itemType+" list" )
               .scriptOn( profileScriptResolver().map( ClickCallQueueItemByPosition.class, BookableProfileName.javafx ),
                       assertProfile( profileName ) )
               .input(ClickCallQueueItemByPosition.IPARAM_QUEUE_ITEM_POSITION, realItemPosition.toString())
               .input(ClickCallQueueItemByPosition.IPARAM_QUEUE_ITEM_TYPE, itemType));
    }
 
+   @Then("$profileName answers and terminates a number of $number calls")
+   public void terminatesCalls( final String profileName, final int number )
+   {
+      for(int i=1; i<=number ; i++){
+         evaluate( remoteStep( "Click on call queue item 1 from waiting list" )
+                 .scriptOn( profileScriptResolver().map( ClickCallQueueItemByPosition.class, BookableProfileName.javafx ),
+                         assertProfile( profileName ) )
+                 .input(ClickCallQueueItemByPosition.IPARAM_QUEUE_ITEM_POSITION, 0)
+                 .input(ClickCallQueueItemByPosition.IPARAM_QUEUE_ITEM_TYPE, "waiting"));
+         waitForSeconds( 1 );
+         evaluate( remoteStep( "Click on call queue item 1 from active list" )
+                 .scriptOn( profileScriptResolver().map( ClickCallQueueItemByPosition.class, BookableProfileName.javafx ),
+                         assertProfile( profileName ) )
+                 .input(ClickCallQueueItemByPosition.IPARAM_QUEUE_ITEM_POSITION, 0)
+                 .input(ClickCallQueueItemByPosition.IPARAM_QUEUE_ITEM_TYPE, "active"));
+      }
+   }
 
    @Then("$profileName has in the call queue a number of $numberOfCalls calls")
    public void verifyCallQueueLength( final String profileName, final Integer numberOfCalls )

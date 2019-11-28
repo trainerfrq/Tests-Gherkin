@@ -148,9 +148,9 @@ Scenario: 8.1 Call is terminated also for both operators
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP1 has in the active list a number of 0 calls
 
-Scenario: 9. All external calls are terminated by the external sources
+Scenario: 9. All external calls are terminated by Op1
 Meta:
-@TEST_STEP_ACTION: All external calls are terminated by the external sources
+@TEST_STEP_ACTION: All external calls are terminated by Op1
 @TEST_STEP_REACTION: Op1 has 0 calls in the queue
 @TEST_STEP_REF: [CATS-REF: CmEE]
 GivenStories: voice_GG/ui/includes/@CleanupCollapsedCallQueue.story,

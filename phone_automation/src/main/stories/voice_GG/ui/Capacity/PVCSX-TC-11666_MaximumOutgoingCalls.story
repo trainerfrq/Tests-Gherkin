@@ -69,38 +69,7 @@ Meta:
 @TEST_STEP_ACTION: Op1 answers all 16 calls
 @TEST_STEP_REACTION: Only 1 active call is visible, all the time
 @TEST_STEP_REF: [CATS-REF: Mq6q]
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
+Then HMI OP1 answers and terminates a number of 16 calls
 
 Scenario: 3.1 Op1 terminates the active call
 Then HMI OP1 terminates item 1 from active call queue list

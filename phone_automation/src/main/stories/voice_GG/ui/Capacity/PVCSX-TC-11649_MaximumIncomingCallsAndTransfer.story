@@ -253,35 +253,7 @@ Meta:
 @TEST_STEP_ACTION: Op1 answers and terminates the 14 incoming calls
 @TEST_STEP_REACTION: Op1 has no calls in the call queue
 @TEST_STEP_REF: [CATS-REF: jPjg]
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 answers item 1 from waiting call queue list
-Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 terminates item 1 from active call queue list
+Then HMI OP1 answers and terminates a number of 14 calls
 
 Scenario: 14.1  Verify the number of calls in the queue
 Then HMI OP1 has in the call queue a number of 0 calls
