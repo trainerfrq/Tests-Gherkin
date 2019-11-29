@@ -27,12 +27,16 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.CallQueue.CleanUpCallQueue;
-import scripts.cats.hmi.actions.CallQueue.ClickCallQueueElementsList;
+import scripts.cats.hmi.actions.CallQueue.CleanUpCallQueueByPosition;
+import scripts.cats.hmi.actions.CallQueue.CleanUpCallQueueCollapsed;
+import scripts.cats.hmi.actions.CallQueue.ClickCallQueueElementsActiveList;
 import scripts.cats.hmi.actions.CallQueue.ClickCallQueueItem;
+import scripts.cats.hmi.actions.CallQueue.ClickCallQueueItemByPosition;
 import scripts.cats.hmi.actions.CallQueue.ClickOnCallQueueInfoContainer;
 import scripts.cats.hmi.actions.CallQueue.DragAndClickOnMenuButtonFirstCallQueueItem;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueBarState;
-import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueCollapsedAreaSize;
+import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueCollapsedAreaLength;
+import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueCollapsedAreaSectionLength;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueContainerVisibility;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueInfoContainerIfVisible;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueInfoContainerLabel;
@@ -254,10 +258,42 @@ public class CallQueueUISteps extends AutomationSteps
    public void clickCallQueueElements( final String profileName )
    {
       evaluate( remoteStep( "Click call queue elements list" )
-            .scriptOn( profileScriptResolver().map( ClickCallQueueElementsList.class, BookableProfileName.javafx ),
+            .scriptOn( profileScriptResolver().map( ClickCallQueueElementsActiveList.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) ) );
    }
 
+   @Then("$profileName answers item $itemNumber from $listType call queue list")
+   @Aliases(values = { "$profileName cancels item $itemNumber from $listType call queue list",
+           "$profileName terminates item $itemNumber from $listType call queue list",
+           "$profileName retrives from hold item $itemNumber from $listType call queue list",
+           "$profileName presses item $itemNumber from $listType call queue list" })
+   public void clickCallQueueItemByPosition( final String profileName, final Integer itemNumber, final String itemType )
+   {
+      Integer realItemPosition = itemNumber -1;
+      evaluate( remoteStep( "Click on call queue item " +itemNumber+ " from "+itemType+" list" )
+              .scriptOn( profileScriptResolver().map( ClickCallQueueItemByPosition.class, BookableProfileName.javafx ),
+                      assertProfile( profileName ) )
+              .input(ClickCallQueueItemByPosition.IPARAM_QUEUE_ITEM_POSITION, realItemPosition.toString())
+              .input(ClickCallQueueItemByPosition.IPARAM_QUEUE_ITEM_TYPE, itemType));
+   }
+
+   @Then("$profileName answers and terminates a number of $number calls")
+   public void terminatesCalls( final String profileName, final int number )
+   {
+      for(int i=1; i<=number ; i++){
+         evaluate( remoteStep( "Click on call queue item 1 from waiting list" )
+                 .scriptOn( profileScriptResolver().map( ClickCallQueueItemByPosition.class, BookableProfileName.javafx ),
+                         assertProfile( profileName ) )
+                 .input(ClickCallQueueItemByPosition.IPARAM_QUEUE_ITEM_POSITION, 0)
+                 .input(ClickCallQueueItemByPosition.IPARAM_QUEUE_ITEM_TYPE, "waiting"));
+         waitForSeconds( 1 );
+         evaluate( remoteStep( "Click on call queue item 1 from active list" )
+                 .scriptOn( profileScriptResolver().map( ClickCallQueueItemByPosition.class, BookableProfileName.javafx ),
+                         assertProfile( profileName ) )
+                 .input(ClickCallQueueItemByPosition.IPARAM_QUEUE_ITEM_POSITION, 0)
+                 .input(ClickCallQueueItemByPosition.IPARAM_QUEUE_ITEM_TYPE, "active"));
+      }
+   }
 
    @Then("$profileName has in the call queue a number of $numberOfCalls calls")
    public void verifyCallQueueLength( final String profileName, final Integer numberOfCalls )
@@ -283,10 +319,20 @@ public class CallQueueUISteps extends AutomationSteps
    public void verifyCallQueueCollapsedLength( final String profileName, final Integer numberOfCalls )
    {
       evaluate( remoteStep( "Verify call queue collapsed area length" )
-            .scriptOn( profileScriptResolver().map( VerifyCallQueueCollapsedAreaSize.class, BookableProfileName.javafx ),
+            .scriptOn( profileScriptResolver().map( VerifyCallQueueCollapsedAreaLength.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
-            .input( VerifyCallQueueCollapsedAreaSize.IPARAM_QUEUE_MENU_EXPECTED_LENGTH, numberOfCalls ) );
+            .input( VerifyCallQueueCollapsedAreaLength.IPARAM_QUEUE_EXPECTED_LENGTH, numberOfCalls ) );
    }
+
+    @Then("$profileName has in the collapsed $listName area a number of $numberOfCalls calls")
+    public void verifyCallQueueCollapsedLength( final String profileName, final String listName, final Integer numberOfCalls )
+    {
+        evaluate( remoteStep( "Verify call queue collapsed area length" )
+                .scriptOn( profileScriptResolver().map( VerifyCallQueueCollapsedAreaSectionLength.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input(VerifyCallQueueCollapsedAreaSectionLength.IPARAM_LIST_NAME, listName)
+                .input( VerifyCallQueueCollapsedAreaSectionLength.IPARAM_QUEUE_EXPECTED_LENGTH, numberOfCalls ) );
+    }
 
    @When("$profileName puts on hold the active call")
    public void putOnHoldActiveCall( final String profileName )
@@ -488,6 +534,24 @@ public class CallQueueUISteps extends AutomationSteps
               .input( CleanUpCallQueue.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
               .input(CleanUpCallQueue.IPARAM_LIST_NAME, callQueueItemList));
    }
+
+   @Then("$profileName cleans collapsed call queue list $callQueueItemList")
+   public void cleanUpCollapsedCallQueueItem( final String profileName, final String callQueueItemList )
+   {
+      evaluate( remoteStep( "Cleanup call queue item" )
+              .scriptOn( profileScriptResolver().map( CleanUpCallQueueCollapsed.class, BookableProfileName.javafx ),
+                      assertProfile( profileName ) )
+              .input(CleanUpCallQueueCollapsed.IPARAM_LIST_NAME, callQueueItemList));
+   }
+
+    @Then("$profileName cleans call queue list $callQueueItemList")
+    public void cleanUpCallQueueItemByPosition( final String profileName, final String callQueueItemList )
+    {
+        evaluate( remoteStep( "Cleanup call queue item" )
+                .scriptOn( profileScriptResolver().map( CleanUpCallQueueByPosition.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input(CleanUpCallQueueByPosition.IPARAM_LIST_NAME, callQueueItemList));
+    }
 
    private String reformatSipUris( final String sipUri )
    {

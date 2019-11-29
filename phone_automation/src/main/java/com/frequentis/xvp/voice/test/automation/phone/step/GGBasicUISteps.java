@@ -286,7 +286,7 @@ public class GGBasicUISteps extends AutomationSteps
                 .input(ClickOnNotificationScrollDownButton.IPARAM_LIST_NAME, listName));
     }
 
-   @Then("$profileName checks the $dateOrTime of system and $elementName with format $format")
+   @Then("$profileName verifies that the system $dateOrTime and the one displayed on $elementName with format $format are the same")
    public void checkSystemAndDisplayedTime(final String profileName, final String dateOrTime, final String elementName, final String format)
    {
        StatusKey elementKey = retrieveStatusKey(profileName, elementName);
@@ -307,7 +307,7 @@ public class GGBasicUISteps extends AutomationSteps
        }
    }
 
-    @Then("$profileName has $elementName with $dateOrTime format $format")
+    @Then("$profileName has $elementName with the expected $dateOrTime format $format")
     public void checkDateOrTimeFormat(final String profileName, final String elementName, final String dateOrTime, final String format)
     {
         StatusKey elementKey = retrieveStatusKey(profileName, elementName);
@@ -329,7 +329,7 @@ public class GGBasicUISteps extends AutomationSteps
 
     }
 
-    @Then("$profileName checks time synchronization between notification $notificationKey time and status $statusKey time")
+    @Then("$profileName verifies that time values from $notificationKey and from $statusKey are synchronized")
     public void checkSynchronizationBetweenDisplayedTimes(final String profileName, final String notificationKey, final String statusKey)
     {
         StatusKey notificationDisplayElementKey = retrieveStatusKey(profileName, notificationKey);
@@ -342,7 +342,7 @@ public class GGBasicUISteps extends AutomationSteps
                 .input(VerifySynchronizationBetweenDisplayedTimes.IPARAM_STATUS_DISPLAY_ID, statusDisplayElementKey.getId()));
     }
 
-    @Then("$profileName checks $displayElement time update")
+    @Then("$profileName verifies that time displayed on $displayElement is updated")
     public void checkHmiIsNotfrozen(final String profileName, final String elementName)
     {
         StatusKey elementKey = retrieveStatusKey(profileName, elementName);

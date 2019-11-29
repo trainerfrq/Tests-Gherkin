@@ -75,7 +75,6 @@ Then HMI OP3 has the call queue item OP2-OP3 in state connected
 
 Scenario: Cleanup call
 When HMI OP2 presses DA key OP3
-And waiting for 1 seconds
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 

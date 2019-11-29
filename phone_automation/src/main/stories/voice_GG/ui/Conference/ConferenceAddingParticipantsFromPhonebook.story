@@ -126,7 +126,6 @@ Then HMI OP2 closes Conference list popup window
 Scenario: Op2 (conference initiator) leaves the conference
 		  @REQUIREMENTS:GID-2529028
 Then HMI OP2 terminates the call queue item OP1-OP2-Conf
-And waiting for 1 second
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: Remove phone
