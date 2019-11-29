@@ -1,10 +1,10 @@
 Meta:
-@TEST_CASE_VERSION: V4
+@TEST_CASE_VERSION: V5
 @TEST_CASE_NAME: MaximumIncomingCallsAnswered
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls I want to answer each of the incoming call So I can verify that the call queue is adapted accordingly with my actions
 @TEST_CASE_PRECONDITION:
 @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when each call is answered and call queue is updated with each answer action
-@TEST_CASE_DEVICES_IN_USE: CATS tool is used to simulate 16 external calls
+@TEST_CASE_DEVICES_IN_USE: CATS tool is used to simulate 16 external DA calls
 @TEST_CASE_ID: PVCSX-TC-11644
 @TEST_CASE_GLOBAL_ID: GID-5109361
 @TEST_CASE_API_ID: 16974420
@@ -39,9 +39,9 @@ Given SipContacts group SipContact:
 
 Given phones for SipContact are created
 
-Scenario: 1. Have 16 external calls that call Op1
+Scenario: 1. Have 16 external DA calls that call Op1
 Meta:
-@TEST_STEP_ACTION: Have 16 external calls that call Op1
+@TEST_STEP_ACTION: Have 16 external DA calls that call Op1
 @TEST_STEP_REACTION: Op1 has 16 incoming calls. 3 calls are visible in the waiting list and 13 are in a collapsed area
 @TEST_STEP_REF: [CATS-REF: phco]
 When SipContact calls SIP URI <<OPVOICE1_PHONE_URI>>

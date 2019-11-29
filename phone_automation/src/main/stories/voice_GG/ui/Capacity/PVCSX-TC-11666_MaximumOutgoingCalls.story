@@ -1,10 +1,10 @@
 Meta:
-@TEST_CASE_VERSION: V6
+@TEST_CASE_VERSION: V7
 @TEST_CASE_NAME: MaximumOutgoingCalls
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls I want to answer calls, do recalls from call history, do role calls, do conference call So I can verify that the operator can't have more then 1 active call
 @TEST_CASE_PRECONDITION: 
 @TEST_CASE_PASS_FAIL_CRITERIA: 
-@TEST_CASE_DEVICES_IN_USE: CATS tool is used to simulate 16 external calls
+@TEST_CASE_DEVICES_IN_USE: CATS tool is used to simulate 16 external DA calls
 @TEST_CASE_ID: PVCSX-TC-11666
 @TEST_CASE_GLOBAL_ID: GID-5114234
 @TEST_CASE_API_ID: 17094569
@@ -51,9 +51,9 @@ Then HMI OP1 verifies that call history list contains 0 entries
 Scenario: 1.1 Op1 closes Call History window
 Then HMI OP1 closes Call History popup window
 
-Scenario: 2. Have 16 external calls that call Op1
+Scenario: 2. Have 16 external DA calls that call Op1
 Meta:
-@TEST_STEP_ACTION: Have 16 external calls that call Op1
+@TEST_STEP_ACTION: Have 16 external DA calls that call Op1
 @TEST_STEP_REACTION: Op1 has 16 incoming calls
 @TEST_STEP_REF: [CATS-REF: birS]
 When SipContact calls SIP URI <<OPVOICE1_PHONE_URI>>

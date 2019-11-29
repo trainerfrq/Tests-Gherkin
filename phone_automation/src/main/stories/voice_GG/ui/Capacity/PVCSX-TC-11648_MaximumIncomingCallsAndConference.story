@@ -1,10 +1,10 @@
 Meta:
-@TEST_CASE_VERSION: V4
+@TEST_CASE_VERSION: V5
 @TEST_CASE_NAME: MaximumIncomingCallsAndConference
 @TEST_CASE_DESCRIPTION: As an operator having an active conference with 2 participants I want to receive 16 incoming external calls So I can verify that only 15 of them will be visible on the operator position
 @TEST_CASE_PRECONDITION: 
 @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when the operator has 1 active conference call and 15 incoming calls
-@TEST_CASE_DEVICES_IN_USE: CATS tool is used to simulate 16 external calls
+@TEST_CASE_DEVICES_IN_USE: CATS tool is used to simulate 16 external DA calls
 @TEST_CASE_ID: PVCSX-TC-11648
 @TEST_CASE_GLOBAL_ID: GID-5112026
 @TEST_CASE_API_ID: 17055692
@@ -95,9 +95,9 @@ Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
 Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
 Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with info label 3 participants
 
-Scenario: 5. Have 16 external calls that call Op1
+Scenario: 5. Have 16 external DA calls that call Op1
 Meta:
-@TEST_STEP_ACTION: Have 16 external calls that call Op1
+@TEST_STEP_ACTION: Have 16 external DA calls that call Op1
 @TEST_STEP_REACTION: Op1 has 15 incoming calls and 1 active conference call
 @TEST_STEP_REF: [CATS-REF: rAOg]
 When SipContact calls SIP URI <<OPVOICE1_PHONE_URI>>

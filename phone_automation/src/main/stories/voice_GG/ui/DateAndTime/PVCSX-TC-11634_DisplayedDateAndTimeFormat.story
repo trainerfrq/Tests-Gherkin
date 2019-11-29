@@ -72,7 +72,7 @@ Meta:
 @TEST_STEP_REACTION: System's date and time are the same with Status Display's ones
 @TEST_STEP_REF: [CATS-REF: dvhf]
 Then HMI OP1 verifies that the system time and the one displayed on DISPLAY STATUS with format <<timeFormat>> are the same
-Then HMI OP1 verifies that the system time and the one displayed on DISPLAY STATUS with format <<dateFormat>> are the same
+Then HMI OP1 verifies that the system date and the one displayed on DISPLAY STATUS with format <<dateFormat>> are the same
 
 Scenario: 6. Op1 checks Notification Display bar's time and Status Display's time are the same
 Meta:
@@ -106,7 +106,7 @@ Meta:
 @TEST_STEP_REACTION: System's date and time are the same with Notification Display bar's ones
 @TEST_STEP_REF: [CATS-REF: 4tde]
 Then HMI OP1 verifies that the system time and the one displayed on NOTIFICATION DISPLAY with format HH:mm:ss are the same
-Then HMI OP1 verifies that the system time and the one displayed on NOTIFICATION DISPLAY with format yyyy-MM-dd are the same
+Then HMI OP1 verifies that the system date and the one displayed on NOTIFICATION DISPLAY with format yyyy-MM-dd are the same
 
 Scenario: 10. Op1 checks Status Display date and time format
 Meta:
@@ -122,7 +122,7 @@ Meta:
 @TEST_STEP_REACTION: System's date and time are the same with Status Display's ones
 @TEST_STEP_REF: [CATS-REF: HsDv]
 Then HMI OP1 verifies that the system time and the one displayed on DISPLAY STATUS with format <<timeFormat>> are the same
-Then HMI OP1 verifies that the system time and the one displayed on DISPLAY STATUS with format <<dateFormat>> are the same
+Then HMI OP1 verifies that the system date and the one displayed on DISPLAY STATUS with format <<dateFormat>> are the same
 
 Scenario: 12. Op1 checks Notification Display bar's time and Status Display's time are the same
 Meta:
