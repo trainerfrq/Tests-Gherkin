@@ -35,7 +35,7 @@ import java.util.List;
 public class NotificationUISteps extends AutomationSteps
 {
     @Then("$profileName has a notification that shows $notification")
-    public void namedCallParties( final String profileName, final String notification  )
+    public void verifyShownNotification(final String profileName, final String notification  )
     {
         evaluate( remoteStep( "Verify operator position has the correct notification" ).scriptOn(
                 profileScriptResolver().map( VerifyNotificationLabel.class, BookableProfileName.javafx ),

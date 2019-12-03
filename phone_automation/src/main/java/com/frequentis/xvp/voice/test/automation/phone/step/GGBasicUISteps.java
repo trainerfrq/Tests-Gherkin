@@ -185,9 +185,10 @@ public class GGBasicUISteps extends AutomationSteps
                 .input(VerifyConnectionsNumber.IPARAM_CONNECTIONS_NUMBER, connectionsNumber));
     }
 
-    @Then("$profileName verifies that connection number $connectionNumber with IP $IPAddress has status $status")
-    public void verifyConnectionsIPsAddressesAndStatus(final String profileName, final String connectionNumber, final String IPAddress, final String status)
+    @Then("$profileName verifies that connection number $connectionNumber of Op Voice instance $OpVoiceURI has status $status")
+    public void verifyConnectionsIPsAddressesAndStatus(final String profileName, final String connectionNumber, final String OpVoiceURI, final String status)
     {
+        String IPAddress = OpVoiceURI.split("/")[2].split("/")[0];
         evaluate(remoteStep("Verifying connection status and IP Address")
                 .scriptOn(profileScriptResolver().map(VerifyConnectionsAddressesAndStatus.class, BookableProfileName.javafx),
                         assertProfile(profileName))

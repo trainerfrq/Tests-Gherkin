@@ -1,13 +1,13 @@
 Meta:
-@TEST_CASE_VERSION: V13
+@TEST_CASE_VERSION: V17
 @TEST_CASE_NAME: DisplayedTechnicalOpInformation
-@TEST_CASE_DESCRIPTION: As an operator having a working HMI machine
+@TEST_CASE_DESCRIPTION: As an operator
 I want to open the Maintenance window
-So I can verify the information regarding the connections and OP-Voice-HMI version
+So I can verify the information regarding the Op Voice connections and OP-Voice-HMI version
 @TEST_CASE_PRECONDITION: An operator with a HMI that is working properly
 Both OP-Voice-Service instances must be stopped and restarted in the next order:
-1. OP-Voice-Service with ip: OPVOICE1_IP
-2. OP-Voice-Service with ip: OPVOICE2_IP
+1. First instance of OP-Voice-Service
+2. Second instance of OP-Voice-Service
 @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if the Maintenance window displays the required technical information
 @TEST_CASE_DEVICES_IN_USE: 
 @TEST_CASE_ID: PVCSX-TC-11712
@@ -21,12 +21,12 @@ Given booked profiles:
 | javafx  | hmi   | <<CLIENT2_IP>> | HMI OP2    |
 | javafx  | hmi   | <<CLIENT3_IP>> | HMI OP3    |
 
-Scenario: Precondition - Restart OPVOICE1_IP OP-Voice-Services
+Scenario: Precondition - Restart first OP-Voice-Services instance
 GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost1.story
-Then waiting for 60 seconds
+Then waiting for 70 seconds
 Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
 
-Scenario: Precondition - Restart OPVOICE2_IP OP-Voice-Services
+Scenario: Precondition - Restart second OP-Voice-Services instance
 GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost2.story
 Then waiting for 60 seconds
 Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
@@ -40,36 +40,36 @@ When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key SETTINGS
 When HMI OP1 clicks on maintenancePanel button
 Then HMI OP1 verifies that popup maintenance is visible
 
-Scenario: 2. Operator checks the number of expected connections
+Scenario: 2. Operator checks the number of expected OP-Voice connections
 Meta:
-@TEST_STEP_ACTION: Operator checks the number of expected connections
-@TEST_STEP_REACTION: The number of expected connections is the desired one 
+@TEST_STEP_ACTION: Operator checks the number of expected OP-Voice connections
+@TEST_STEP_REACTION: The number of expected OP-Voice connections is the desired one
 @TEST_STEP_REF: [CATS-REF: Tqwl]
-Then HMI OP1 verifies that the number of expecting connections is <<EXPECTED_CONNECTIONS>>
+Then HMI OP1 verifies that the number of expecting connections is 2
 
-Scenario: 3. Operator checks the number of available connections
+Scenario: 3. Operator checks the number of available OP-Voice connections
 Meta:
-@TEST_STEP_ACTION: Operator checks the number of available connections
-@TEST_STEP_REACTION: The number of available connections is the desired one
+@TEST_STEP_ACTION: Operator checks the number of available OP-Voice connections
+@TEST_STEP_REACTION: The number of available OP-VOice connections is the desired one
 @TEST_STEP_REF: [CATS-REF: mDqb]
-Then HMI OP1 verifies that the number of available connections is <<AVAILABLE_CONNECTIONS>>
+Then HMI OP1 verifies that the number of available connections is 2
 
-Scenario: 4. Operator checks the connections IPs and the connectivity status
+Scenario: 4. Operator checks the OP-Voice connections IPs and connectivity status
 Meta:
-@TEST_STEP_ACTION: Operator checks the connections IPs and the connectivity status
-@TEST_STEP_REACTION: The IPs are the desired ones with the desired status
+@TEST_STEP_ACTION: Operator checks the OP-Voice connections IPs and connectivity status
+@TEST_STEP_REACTION: The OP-Voice connections IPs are the desired ones and connections have the desired status
 @TEST_STEP_REF: [CATS-REF: auE9]
-Then HMI OP1 verifies that connection number 1 with IP <<OPVOICE2_IP>> has status PASSIVE
-Then HMI OP1 verifies that connection number 2 with IP <<OPVOICE1_IP>> has status ACTIVE
+Then HMI OP1 verifies that connection number 1 of Op Voice instance <<OPVOICE1_WS.URI>> has status ACTIVE
+Then HMI OP1 verifies that connection number 2 of Op Voice instance <<OPVOICE2_WS.URI>> has status PASSIVE
 
-Scenario: 5. Operator checks OP-Voice-HMI version
+Scenario: 5. Operator checks Voice-HMI version
 Meta:
-@TEST_STEP_ACTION: Operator checks OP-Voice version 
-@TEST_STEP_REACTION: Displayed OP-Voice version is the desired one
+@TEST_STEP_ACTION: Operator checks Voice-HMI version
+@TEST_STEP_REACTION: Displayed Voice-HMI version is the desired one
 @TEST_STEP_REF: [CATS-REF: a3sA]
 Then HMI OP1 verifies that version of OP-Voice-HMI version is the same with the version from /configuration-files/<<systemName>>/voice-hmi-service-docker-image.json
 
 Scenario: Clean-up - Operator closes the Maintenance window
 Then HMI OP1 closes maintenance popup
-
-
+Then HMI OP1 verifies that popup maintenance is not visible
+Then HMI OP1 verifies that popup settings is not visible
