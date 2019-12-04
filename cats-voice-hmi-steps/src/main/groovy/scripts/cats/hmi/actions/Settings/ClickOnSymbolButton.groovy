@@ -14,8 +14,8 @@ class ClickOnSymbolButton extends FxScriptTemplate{
         Node settingsButton = robot.lookup("#" + buttonName + "Symbol").queryFirst();
 
         evaluate(ExecutionDetails.create("Symbol button found ")
-                .expected("Symbol button is not null")
-                .success(settingsButton != null));
+                .expected("Symbol button is visible")
+                .success(settingsButton.isVisible()));
 
         robot.clickOn(robot.point(settingsButton));
     }
