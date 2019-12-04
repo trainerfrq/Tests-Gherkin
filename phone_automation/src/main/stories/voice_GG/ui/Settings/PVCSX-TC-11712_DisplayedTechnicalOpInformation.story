@@ -18,16 +18,10 @@ Scenario: Booking profiles
 Given booked profiles:
 | profile | group | host           | identifier |
 | javafx  | hmi   | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi   | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi   | <<CLIENT3_IP>> | HMI OP3    |
 
-Scenario: Precondition - Restart first OP-Voice-Services instance
-GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost1.story
-Then waiting for 70 seconds
-Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
-
-Scenario: Precondition - Restart second OP-Voice-Services instance
-GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost2.story
+Scenario: Precondition - Restart OP-Voice-Service instances
+GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost1.story,
+			  voice_GG/includes/KillStartOpVoiceActiveOnDockerHost2.story
 Then waiting for 60 seconds
 Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
 

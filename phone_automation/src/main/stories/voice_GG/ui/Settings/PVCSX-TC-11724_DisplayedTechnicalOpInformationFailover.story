@@ -15,8 +15,6 @@ Scenario: Booking profiles
 Given booked profiles:
 | profile | group | host           | identifier |
 | javafx  | hmi   | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi   | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi   | <<CLIENT3_IP>> | HMI OP3    |
 
 Scenario: 1. Operator stops first OP-Voice-Service instance
 Meta:
@@ -104,5 +102,4 @@ Scenario: Clean-up Operator starts OP-Voice-Service instances
 GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost1.story,
 			  voice_GG/includes/StartOpVoiceActiveOnDockerHost2.story
 Then waiting for 60 seconds
-Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
 Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED

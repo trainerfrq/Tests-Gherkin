@@ -108,7 +108,7 @@ public class GGBasicUISteps extends AutomationSteps
                 .input( CleanUpPopupWindow.IPARAM_POPUP_NAME, popupName ));
     }
 
-   @Then("$profileName checks the $dateOrTime of system and $elementName with format $format")
+   @Then("$profileName verifies that the system $dateOrTime and the one displayed on $elementName with format $format are the same")
    public void checkSystemAndDisplayedTime(final String profileName, final String dateOrTime, final String elementName, final String format)
    {
        StatusKey elementKey = retrieveStatusKey(profileName, elementName);
