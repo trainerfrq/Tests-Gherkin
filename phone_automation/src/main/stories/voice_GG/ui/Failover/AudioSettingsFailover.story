@@ -10,7 +10,7 @@ Given booked profiles:
 
 Scenario: Verify display status after stopping and starting op voice instances from one partition
 GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost1.story
-Then waiting for 60 seconds
+Then waiting for 70 seconds
 Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 
 Scenario: Op2 closes settings popup window
@@ -140,5 +140,5 @@ Then HMI OP2 closes settings popup
 
 Scenario: Verify displayed status after the starting the op voice instances
 GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost2.story
-Then waiting for 60 seconds
+Then waiting for 70 seconds
 Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED

@@ -63,6 +63,7 @@ Scenario: Verify calls state for op1 and op2
 Then HMI OP1 has the call queue item SipContact-OP1 in state connected
 Then HMI OP1 has the call queue item OP2-OP1 in state hold
 Then HMI OP2 has the call queue item OP1-OP2 in state held
+Then wait for 5 seconds
 
 Scenario: Op1 retrieves call from hold
 Then HMI OP1 retrieves from hold the call queue item OP2-OP1

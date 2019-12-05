@@ -96,7 +96,7 @@ Then HMI OP1 answers item 1 from waiting call queue list
 
 Scenario: 4.1 Verify answer call is not possible
 When HMI OP1 opens Notification Display list
-Then HMI OP1 verifies that list State contains text Call Transfer in progress
+Then HMI OP1 verifies that list State contains text Select Call Transfer target
 When HMI OP1 selects tab event from notification display popup
 Then HMI OP1 verifies that list Event contains on position 0 text Call can not be accepted, TRANSFER mode active
 When HMI OP1 selects tab state from notification display popup

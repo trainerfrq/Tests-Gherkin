@@ -89,8 +89,8 @@ Then wait for 2 seconds
 Then HMI OP1 terminates the call queue item OP3-OP1
 Then wait for 2 seconds
 Then HMI OP1 retrieves from hold the call queue item SipContact-OP1
-Then HMI OP1 terminates the call queue item SipContact-OP1
 Then wait for 4 seconds
+Then HMI OP1 terminates the call queue item SipContact-OP1
 
 Scenario: Verify call is terminated for all operators
 Then HMI OP2 has in the call queue a number of 0 calls
