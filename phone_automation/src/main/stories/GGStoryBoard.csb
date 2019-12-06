@@ -2350,14 +2350,14 @@
                 </cats:storyList>
             </cats:storyLists>
         </cats:storyCollection>
-        <cats:storyCollection enabled="false">
+        <cats:storyCollection enabled="true">
             <cats:name>UI - Failover</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
                 <cats:status>CREATED</cats:status>
             </cats:report>
             <cats:storyLists>
-                <cats:storyList enabled="false">
+                <cats:storyList enabled="true">
                     <cats:name>UI - Failover</cats:name>
                     <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
                     <cats:repetitions>1</cats:repetitions>

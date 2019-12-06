@@ -195,7 +195,7 @@ When the named websocket WS4 removes the message buffer named CallIncomingIndica
 When the named websocket WS4 removes the message buffer named CallStatusIndicationBuffer2
 
 Scenario: Wait until passive op voice instances are started properly
-GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost1.stor7
+GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost1.story
 When waiting for 70 seconds
 Given that connection can be open (although instances are Passive) using websocket configuration:
 | key | profile-name | websocket-config-name |
