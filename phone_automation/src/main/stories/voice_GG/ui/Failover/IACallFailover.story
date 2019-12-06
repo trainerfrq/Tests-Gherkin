@@ -70,10 +70,6 @@ Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 
 Scenario: Cleanup - always select first tab
 When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 1
-When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1
-
-Scenario: Time to wait between failover tests
-Then waiting for 1 minute
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure

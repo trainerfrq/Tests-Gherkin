@@ -22,6 +22,12 @@ Then waiting for 70 seconds
 Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
 Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 
+Scenario: Verify displayed status after the stopping the op voice instances from one partition
+GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost2.story
+When HMI OP1 verifies that loading screen is visible
+Then HMI OP1 has in the DISPLAY STATUS section connection the state DEGRADED
+When HMI OP2 verifies that loading screen is visible
+Then HMI OP2 has in the DISPLAY STATUS section connection the state DEGRADED
 Scenario: Verify DA keys state
 Given HMI OP1 has the DA key OP2 in ready to be used state
 Given HMI OP2 has the DA key OP1 in ready to be used state
@@ -59,6 +65,11 @@ Scenario: Verify call queue section
 Then HMI OP1 has the call queue item OP2-OP1 in the active list with name label <<OP2_NAME>>
 Then HMI OP2 has the call queue item OP1-OP2 in the active list with name label <<OP1_NAME>>
 
+Scenario: Verify displayed status after the starting the op voice instances
+GivenStories: voice_GG/include/StartOpVoiceActiveOnDockerHost2.story
+Then waiting for 40 seconds
+Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
+Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 Scenario: Verify displayed status after the stopping the op voice instances from one partition
 		  @REQUIREMENTS:GID-4034511
 GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost2.story
@@ -100,9 +111,6 @@ GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost2.story
 Then waiting for 70 seconds
 Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
 Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
-
-Scenario: Time to wait between failover tests
-Then waiting for 1 minute
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
