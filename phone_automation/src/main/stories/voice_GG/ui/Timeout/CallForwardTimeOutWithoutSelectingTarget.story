@@ -43,7 +43,8 @@ Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
-GivenStories: voice_GG/ui/includes/@CleanupCollapsedCallQueue.story,			  voice_GG/ui/includes/@CleanupUICallQueueByPosition.story,
+GivenStories: voice_GG/ui/includes/@CleanupCollapsedCallQueue.story,
+			  voice_GG/ui/includes/@CleanupUICallQueueByPosition.story,
 			  voice_GG/ui/includes/@CleanupUIMission.story,
 			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story
 Then waiting for 1 millisecond

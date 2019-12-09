@@ -59,6 +59,7 @@ GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost2.story
 Then waiting for 40 seconds
 Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
 Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
+
 Scenario: Verify displayed status after the stopping the op voice instances from one partition
 		  @REQUIREMENTS:GID-4034511
 GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost2.story
@@ -113,7 +114,8 @@ When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
-GivenStories: voice_GG/ui/includes/@CleanupCollapsedCallQueue.story,			  voice_GG/ui/includes/@CleanupUICallQueueByPosition.story,
+GivenStories: voice_GG/ui/includes/@CleanupCollapsedCallQueue.story,
+			  voice_GG/ui/includes/@CleanupUICallQueueByPosition.story,
 			  voice_GG/ui/includes/@CleanupUIMission.story,
 			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story
 Then waiting for 1 millisecond

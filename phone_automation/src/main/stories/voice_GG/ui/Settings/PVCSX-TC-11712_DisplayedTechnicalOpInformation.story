@@ -67,3 +67,11 @@ Scenario: Clean-up - Operator closes the Maintenance window
 Then HMI OP1 closes maintenance popup
 Then HMI OP1 verifies that popup maintenance is not visible
 Then HMI OP1 verifies that popup settings is not visible
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupCollapsedCallQueue.story,
+			  voice_GG/ui/includes/@CleanupUICallQueueByPosition.story,
+			  voice_GG/ui/includes/@CleanupUIMission.story,
+			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story
+Then waiting for 1 millisecond
