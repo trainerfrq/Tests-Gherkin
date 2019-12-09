@@ -43,6 +43,7 @@ Scenario: Op2 closes open popup window
 Then HMI OP2 closes popup settings if window is visible
 
 Scenario: Op1 verifies that Loudspeaker state is unchanged
+Then wait for 5 seconds 
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP on
 
 Scenario: Verify DA keys state

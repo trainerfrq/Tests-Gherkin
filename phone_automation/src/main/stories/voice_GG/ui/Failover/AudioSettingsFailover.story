@@ -43,9 +43,10 @@ Then HMI OP2 verifies that list State contains text Chime muted
 Scenario: Close popup window
 Then HMI OP2 closes notification popup
 
-Scenario: Op1 opens settings tab
+Scenario: Op2 opens settings tab
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key SETTINGS
-Scenario: Open audio settings
+
+Scenario: Op2 opens audio settings tab
 When HMI OP2 clicks on volumeControlPanel button
 
 Scenario: Mutes audio sliders and buttons
@@ -62,8 +63,8 @@ Then HMI OP2 verifies that mute sidetone button operator is in muted state
 When HMI OP2 clicks on mute button NotificationError
 Then HMI OP2 verifies that mute button NotificationError is in muted state
 
-Scenario: Close audio settings tab
-Then HMI OP2 closes volumeControl popup
+Scenario: Op2 closes audio settings tab
+Then HMI OP2 closes advancedSetting popup
 
 Scenario: Close settings tab
 Then HMI OP2 closes settings popup
@@ -75,6 +76,7 @@ Then HMI OP2 has in the DISPLAY STATUS section connection the state DEGRADED
 
 Scenario: Op2 closes settings popup window
 Then HMI OP2 closes settings popup
+
 Scenario: Verify audio settings
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key SETTINGS
 Then HMI OP2 verifies that volume slider userInput is set to level 0
@@ -100,7 +102,6 @@ Then HMI OP2 verifies that list State contains text Chime muted
 Scenario: Close popup window
 Then HMI OP2 closes notification popup
 
-
 Scenario: Open settings
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key SETTINGS
 
@@ -118,7 +119,7 @@ When HMI OP2 drags volume slider operator to maximum level
 Then HMI OP2 verifies that volume slider operator is set to level 100
 Then HMI OP2 verifies that mute button Operator is in unmuted state
 
-Scenario: Open audio settings
+Scenario: Op2 opens audio settings tab
 When HMI OP2 clicks on volumeControlPanel button
 
 Scenario: Change the sliders to maximum
@@ -132,8 +133,8 @@ When HMI OP2 drags volume slider notificationError to maximum level
 Then HMI OP2 verifies that volume slider notificationError is set to level 100
 Then HMI OP2 verifies that mute button NotificationError is in unmuted state
 
-Scenario: Close audio settings tab
-Then HMI OP2 closes volumeControl popup
+Scenario: Op2 closes audio settings tab
+Then HMI OP2 closes advancedSetting popup
 
 Scenario: Close settings tab
 Then HMI OP2 closes settings popup
