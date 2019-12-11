@@ -20,7 +20,7 @@ class VerifyDAButtonState extends FxScriptTemplate {
 
         evaluate(ExecutionDetails.create("Verify DA key was found")
                 .expected("DA key with id " + daKeyId + " was found")
-                .success(daWidget != null));
+                .success(daWidget.isVisible()));
 
         evaluate(ExecutionDetails.create("Verify DA key has styleClass: " + daKeyState)
                 .success(verifyNodeHasClass(daWidget, daKeyState, 10000)));
