@@ -63,4 +63,4 @@ When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 1
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
 GivenStories: voice_GG/ui/includes/@CleanupStory.story
-Then waiting for 1 millisecond
+Then waiting until the cleanup is done

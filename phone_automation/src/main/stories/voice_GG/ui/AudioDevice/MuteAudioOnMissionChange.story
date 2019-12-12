@@ -177,4 +177,4 @@ Then HMI OP1 closes settings popup
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
 GivenStories: voice_GG/ui/includes/@CleanupStory.story
-Then waiting for 1 millisecond
+Then waiting until the cleanup is done

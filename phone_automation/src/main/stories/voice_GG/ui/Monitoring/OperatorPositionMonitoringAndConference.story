@@ -133,4 +133,4 @@ Then HMI OP1 has the DA key OP3 with not visible state monitoringActiveState
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
 GivenStories: voice_GG/ui/includes/@CleanupStory.story
-Then waiting for 1 millisecond
+Then waiting until the cleanup is done
