@@ -18,7 +18,7 @@ Given the call queue items:
 
 Scenario: Verify displayed status after stopping and starting op voice instances from one partition
 GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost1.story
-Then waiting for 60 seconds
+Then waiting for 70 seconds
 Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
 Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 
@@ -73,17 +73,11 @@ Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Verify displayed status after the starting the op voice instances
 GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost2.story
-Then waiting for 60 seconds
+Then waiting for 70 seconds
 Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
 Then HMI OP2 has in the DISPLAY STATUS section connection the state CONNECTED
 
-Scenario: Time to wait between failover tests
-Then waiting for 1 minute
-
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
-GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
-			  voice_GG/ui/includes/@CleanupUIMission.story,
-			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story,
-			  voice_GG/ui/includes/@CleanupUIWindows.story
-Then waiting for 1 millisecond
+GivenStories: voice_GG/ui/includes/@CleanupStory.story
+Then waiting until the cleanup is done

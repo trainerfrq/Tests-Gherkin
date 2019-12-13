@@ -63,6 +63,7 @@ Scenario: Verify calls state for op1 and op2
 Then HMI OP1 has the call queue item SipContact-OP1 in state connected
 Then HMI OP1 has the call queue item OP2-OP1 in state hold
 Then HMI OP2 has the call queue item OP1-OP2 in state held
+Then wait for 5 seconds
 
 Scenario: Op1 retrieves call from hold
 Then HMI OP1 retrieves from hold the call queue item OP2-OP1
@@ -99,8 +100,5 @@ When SipContact is removed
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
-GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
-			  voice_GG/ui/includes/@CleanupUIMission.story,
-			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story,
-			  voice_GG/ui/includes/@CleanupUIWindows.story
-Then waiting for 1 millisecond
+GivenStories: voice_GG/ui/includes/@CleanupStory.story
+Then waiting until the cleanup is done

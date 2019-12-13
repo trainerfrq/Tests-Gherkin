@@ -118,9 +118,6 @@ Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
-GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
-			  voice_GG/ui/includes/@CleanupUIMission.story,
-			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story,
-			  voice_GG/ui/includes/@CleanupUIWindows.story
-Then waiting for 1 millisecond
+GivenStories: voice_GG/ui/includes/@CleanupStory.story
+Then waiting until the cleanup is done
 

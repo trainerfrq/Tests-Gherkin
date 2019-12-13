@@ -97,7 +97,10 @@ Meta:
 When HMI OP3 presses DA key OP1
 Then HMI OP3 has the DA key OP1 in state out_failed
 
-Scenario: 5.1 Op1 verifies the number of calls in the queue
+Scenario: 5.1 Op3 ends failed call
+When HMI OP3 presses DA key OP1
+
+Scenario: 5.2 Op1 verifies the number of calls in the queue
 Then HMI OP1 has in the active list a number of 0 calls
 Then HMI OP1 has in the call queue a number of 3 calls
 Then HMI OP1 has in the waiting list a number of 3 calls
@@ -154,12 +157,8 @@ When SipContact is removed
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
-GivenStories: voice_GG/ui/includes/@CleanupCollapsedCallQueue.story,
-			  voice_GG/ui/includes/@CleanupUICallQueueByPosition.story,
-			  voice_GG/ui/includes/@CleanupUIMission.story,
-			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story,
-			  voice_GG/ui/includes/@CleanupUIWindows.story
-Then waiting for 1 millisecond
+GivenStories: voice_GG/ui/includes/@CleanupStory.story
+Then waiting until the cleanup is done
 
 
 

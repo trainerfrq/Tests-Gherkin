@@ -13,19 +13,19 @@ Given booked profiles:
 Scenario: Define call queue items
 Given the call queue items:
 | key       | source                  | target                      | callType |
-| OP2-OP1-1 | <<ROLE2_URI>>        | sip:role1@example.com       | DA/IDA   |
-| OP2-OP3-1 | <<ROLE2_URI>>        | sip:role1@example.com       | DA/IDA   |
+| OP2-OP1-1 | <<ROLE2_URI>>           | sip:role1@example.com       | DA/IDA   |
+| OP2-OP3-1 | <<ROLE2_URI>>           | sip:role1@example.com       | DA/IDA   |
 | OP1-OP2-1 | role1@example.com       |                             | DA/IDA   |
-| OP2-OP1-2 | <<ROLE2_URI>>        | sip:group1@example.com      | DA/IDA   |
-| OP2-OP3-2 | <<ROLE2_URI>>        | sip:group1@example.com      | DA/IDA   |
+| OP2-OP1-2 | <<ROLE2_URI>>           | sip:group1@example.com      | DA/IDA   |
+| OP2-OP3-2 | <<ROLE2_URI>>           | sip:group1@example.com      | DA/IDA   |
 | OP1-OP2-2 | group1@example.com      |                             | DA/IDA   |
-| OP2-OP1-3 | <<ROLE2_URI>>        | sip:role1alias2@example.com | DA/IDA   |
-| OP2-OP3-3 | <<ROLE2_URI>>        | sip:role1alias2@example.com | DA/IDA   |
+| OP2-OP1-3 | <<ROLE2_URI>>           | sip:role1alias2@example.com | DA/IDA   |
+| OP2-OP3-3 | <<ROLE2_URI>>           | sip:role1alias2@example.com | DA/IDA   |
 | OP1-OP2-3 | role1alias2@example.com |                             | DA/IDA   |
-| OP2-OP1-4 | <<ROLE2_URI>>        | sip:role1alias1@example.com | DA/IDA   |
-| OP2-OP3-4 | <<ROLE2_URI>>        | sip:role1alias1@example.com | DA/IDA   |
+| OP2-OP1-4 | <<ROLE2_URI>>           | sip:role1alias1@example.com | DA/IDA   |
+| OP2-OP3-4 | <<ROLE2_URI>>           | sip:role1alias1@example.com | DA/IDA   |
 | OP1-OP2-4 | role1alias1@example.com |                             | DA/IDA   |
-| OP2-OP1-5 | <<ROLE2_URI>>        | sip:operator1@example.com   | DA/IDA   |
+| OP2-OP1-5 | <<ROLE2_URI>>           | sip:operator1@example.com   | DA/IDA   |
 | OP1-OP2-5 | operator1@example.com   |                             | DA/IDA   |
 
 Scenario: Caller opens phonebook
@@ -136,9 +136,6 @@ Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
-GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
-			  voice_GG/ui/includes/@CleanupUIMission.story,
-			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story,
-			  voice_GG/ui/includes/@CleanupUIWindows.story
-Then waiting for 1 millisecond
+GivenStories: voice_GG/ui/includes/@CleanupStory.story
+Then waiting until the cleanup is done
 

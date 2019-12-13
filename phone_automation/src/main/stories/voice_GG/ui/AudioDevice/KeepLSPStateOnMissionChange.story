@@ -66,3 +66,8 @@ Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Op1 verifies if Loudspeaker state is unmodified
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP off
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupStory.story
+Then waiting until the cleanup is done

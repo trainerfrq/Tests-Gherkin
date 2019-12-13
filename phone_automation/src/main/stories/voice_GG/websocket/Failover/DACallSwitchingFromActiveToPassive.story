@@ -103,7 +103,7 @@ When the named websocket WS2 removes the message buffer named CallStatusIndicati
 
 Scenario: Wait until passive op voice instances are started properly
 GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost2.story
-When waiting for 60 seconds
+When waiting for 70 seconds
 Given that connection can be open (although instances are Passive) using websocket configuration:
 | key | profile-name | websocket-config-name |
 | WS3 | WEBSOCKET 1  | WS_Config-3           |
@@ -196,7 +196,7 @@ When the named websocket WS4 removes the message buffer named CallStatusIndicati
 
 Scenario: Wait until passive op voice instances are started properly
 GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost1.story
-When waiting for 60 seconds
+When waiting for 70 seconds
 Given that connection can be open (although instances are Passive) using websocket configuration:
 | key | profile-name | websocket-config-name |
 | WS1 | WEBSOCKET 1  | WS_Config-1           |

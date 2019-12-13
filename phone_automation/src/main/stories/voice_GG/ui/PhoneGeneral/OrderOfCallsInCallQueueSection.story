@@ -89,8 +89,8 @@ Then wait for 2 seconds
 Then HMI OP1 terminates the call queue item OP3-OP1
 Then wait for 2 seconds
 Then HMI OP1 retrieves from hold the call queue item SipContact-OP1
-Then HMI OP1 terminates the call queue item SipContact-OP1
 Then wait for 4 seconds
+Then HMI OP1 terminates the call queue item SipContact-OP1
 
 Scenario: Verify call is terminated for all operators
 Then HMI OP2 has in the call queue a number of 0 calls
@@ -102,8 +102,5 @@ When SipContact is removed
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
-GivenStories: voice_GG/ui/includes/@CleanupUICallQueue.story,
-			  voice_GG/ui/includes/@CleanupUIMission.story,
-			  voice_GG/ui/includes/@CleanupUIFunctionKeys.story,
-			  voice_GG/ui/includes/@CleanupUIWindows.story
-Then waiting for 1 millisecond
+GivenStories: voice_GG/ui/includes/@CleanupStory.story
+Then waiting until the cleanup is done
