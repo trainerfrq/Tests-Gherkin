@@ -30,9 +30,9 @@ class VerifyNotificationListLastEntryText extends FxScriptTemplate {
             Label textLabel = robot.lookup("#notification"+listName+"List #notificationEntry_"+lastEntryIndex+" #notificationTextLabel").queryFirst()
 
                 evaluate(ExecutionDetails.create("Notification list "+listName+" text is the expected one")
-                        .received(textLabel.toString())
+                        .received(textLabel.getText())
                         .expected(text)
-                        .success(textLabel.toString().contains(text)));
+                        .success(textLabel.getText().contains(text)));
 
 
         }

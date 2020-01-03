@@ -4,7 +4,7 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>com.frequentis.xvp.voice.phone</groupId>
    <artifactId>phone-test-automation</artifactId>
-   <version>1.1.0-SNAPSHOT</version>
+   <version>1.1.1-1.1.0-SNAPSHOT</version>
    <packaging>pom</packaging>
    <url>http://www.frequentis.com</url>
    <organization>
@@ -23,7 +23,7 @@
       <voice.service.interface.version>1.1.0-6.7.1</voice.service.interface.version>
       <audio-simulator-service.version>0.56.0</audio-simulator-service.version>
       <audio-service-interface.version>0.30.0</audio-service-interface.version>
-       <voice.hmi.service.version>2.3.0-SNAPSHOT</voice.hmi.service.version>
+       <voice.hmi.service.version>1.1.0-2.6.7</voice.hmi.service.version>
 
       <!-- FW DEPENDENCY VERSIONS -->
       <mission-configurator-plugin.version>1.0.0</mission-configurator-plugin.version>
@@ -98,32 +98,32 @@
            <dependency>
                 <groupId>com.frequentis.xvp.voice.phone</groupId>
                 <artifactId>cats-websocket-dto</artifactId>
-                <version>1.1.0-SNAPSHOT</version>
+                <version>1.1.1-1.1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.frequentis.xvp.voice.phone</groupId>
                 <artifactId>cats-websocket-plugin</artifactId>
-                <version>1.1.0-SNAPSHOT</version>
+                <version>1.1.1-1.1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.frequentis.xvp.voice.phone</groupId>
                 <artifactId>cats-websocket-steps</artifactId>
-                <version>1.1.0-SNAPSHOT</version>
+                <version>1.1.1-1.1.0-SNAPSHOT</version>
             </dependency>
            <dependency>
                 <groupId>com.frequentis.xvp.voice.phone</groupId>
                 <artifactId>cats-voice-hmi-steps</artifactId>
-                <version>1.1.0-SNAPSHOT</version>
+                <version>1.1.1-1.1.0-SNAPSHOT</version>
             </dependency>
            <dependency>
                <groupId>com.frequentis.xvp.voice.phone</groupId>
                <artifactId>voice-hmi-dsl</artifactId>
-              <version>1.1.0-SNAPSHOT</version>
+              <version>1.1.1-1.1.0-SNAPSHOT</version>
            </dependency>
            <dependency>
                <groupId>com.frequentis.xvp.voice.phone</groupId>
                <artifactId>voice-hmi-dsl-co-support</artifactId>
-              <version>1.1.0-SNAPSHOT</version>
+              <version>1.1.1-1.1.0-SNAPSHOT</version>
            </dependency>
 
            <!-- General CATS dependencies -->

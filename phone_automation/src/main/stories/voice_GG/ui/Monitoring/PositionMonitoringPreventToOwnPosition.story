@@ -10,6 +10,15 @@ Given booked profiles:
 | javafx  | hmi   | <<CLIENT2_IP>> | HMI OP2    |
 | javafx  | hmi   | <<CLIENT3_IP>> | HMI OP3    |
 
+Scenario: Operator opens Notification Display popup and clears the event list
+When HMI OP1 opens Notification Display list
+When HMI OP1 selects tab event from notification display popup
+When HMI OP1 clears the notification events from list
+When HMI OP1 selects tab state from notification display popup
+
+Scenario: Operator closes the Notification popup
+Then HMI OP1 closes notification popup
+
 Scenario: Op1 activates Monitoring
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MONITORING
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key MONITORING in monitoringOnGoing state
