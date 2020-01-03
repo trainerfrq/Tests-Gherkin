@@ -75,7 +75,7 @@ When HMI OP2 verifies that loading screen is visible
 Then HMI OP2 has in the DISPLAY STATUS section connection the state DEGRADED
 
 Scenario: Op2 closes settings popup window
-Then HMI OP2 closes settings popup
+Then HMI OP2 closes popup settings if window is visible
 
 Scenario: Verify audio settings
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key SETTINGS

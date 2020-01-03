@@ -18,7 +18,10 @@ class CleanUpPopupWindow extends FxScriptTemplate {
         Pane popup = robot.lookup("#"+popupName+"Popup").queryFirst()
         final Node closePopupButton = robot.lookup("#"+ popupName +"Popup #closePopupButton").queryFirst()
 
-        if(popup != null){
+        if(popup.isVisible()){
+            evaluate(ExecutionDetails.create("Close popup button was found")
+                    .expected("Close popup button is not null")
+                    .success(closePopupButton != null))
             robot.clickOn(robot.point(closePopupButton))
         }
         else{
