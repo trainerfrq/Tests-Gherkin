@@ -98,7 +98,7 @@ Meta:
 @TEST_STEP_REACTION: Date and time format in the Notification Display bar are the desired ones
 @TEST_STEP_REF: [CATS-REF: 0WuV]
 Then HMI OP1 has NOTIFICATION DISPLAY with the expected time format HH:mm:ss
-Then HMI OP1 has NOTIFICATION DISPLAY with the expected date format yyyy-MM-dd
+Then HMI OP1 has NOTIFICATION DISPLAY with the expected date format dd-MM-yyyy
 
 Scenario: 9. Op1 checks Notification Display bar date and time are the same with the system's ones
 Meta:
@@ -106,7 +106,7 @@ Meta:
 @TEST_STEP_REACTION: System's date and time are the same with Notification Display bar's ones
 @TEST_STEP_REF: [CATS-REF: 4tde]
 Then HMI OP1 verifies that the system time and the one displayed on NOTIFICATION DISPLAY with format HH:mm:ss are the same
-Then HMI OP1 verifies that the system date and the one displayed on NOTIFICATION DISPLAY with format yyyy-MM-dd are the same
+Then HMI OP1 verifies that the system date and the one displayed on NOTIFICATION DISPLAY with format dd-MM-yyyy are the same
 
 Scenario: 10. Op1 checks Status Display date and time format
 Meta:

@@ -21,9 +21,9 @@ class VerifyCallQueueItemStyleClass extends FxScriptTemplate {
         int i = 1
         while (callQueueItem == null){
             WaitTimer.pause(250);
-            boolean queueNotNull = callQueueItem != null
+            callQueueItem = robot.lookup("#" + callQueueItemId).queryFirst();
             i++
-            if(queueNotNull || i > 9)
+            if(callQueueItem != null || i > 9)
                 break
         }
 
