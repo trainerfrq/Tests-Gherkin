@@ -29,6 +29,5 @@ class CleanUpPopupWindow extends FxScriptTemplate {
                     .expected("Popup window is not visible")
                     .success(true))
         }
-
     }
 }

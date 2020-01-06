@@ -33,9 +33,9 @@ class VerifyNotificationListText extends FxScriptTemplate {
                     .success(textLabel != null))
 
             evaluate(ExecutionDetails.create("Notification list "+listName+" text is the expected one")
-                    .received(textLabel.toString())
+                    .received(textLabel.getText())
                     .expected(text)
-                    .success(textLabel.toString().contains(text)));
+                    .success(textLabel.getText().contains(text)));
 
         }
     }

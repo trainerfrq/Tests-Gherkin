@@ -71,9 +71,6 @@ Meta:
 @TEST_STEP_REF: [CATS-REF: Mq6q]
 Then HMI OP1 answers and terminates a number of 16 calls
 
-Scenario: 3.1 Op1 terminates the active call
-Then HMI OP1 terminates item 1 from active call queue list
-
 Scenario: 4. Op1 opens Call History list and verifies the number of calls in the list
 Meta:
 @TEST_STEP_ACTION: Op1 opens Call History list and verifies the number of calls in the list

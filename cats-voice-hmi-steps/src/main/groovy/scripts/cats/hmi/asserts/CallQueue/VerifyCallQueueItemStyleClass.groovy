@@ -18,9 +18,18 @@ class VerifyCallQueueItemStyleClass extends FxScriptTemplate {
 
         Node callQueueItem = robot.lookup("#" + callQueueItemId).queryFirst();
 
+        int i = 1
+        while (callQueueItem == null){
+            WaitTimer.pause(250);
+            callQueueItem = robot.lookup("#" + callQueueItemId).queryFirst();
+            i++
+            if(callQueueItem != null || i > 9)
+                break
+        }
+
         evaluate(ExecutionDetails.create("Verify call queue item was found")
                 .expected("Call queue item with id " + callQueueItemId + " was found")
-                .success(callQueueItem != null));
+                .success(callQueueItem.isVisible()));
 
         evaluate(ExecutionDetails.create("Verify call queue item has styleClass: " + callQueueItemState)
                 .success(verifyNodeHasClass(callQueueItem, callQueueItemState, 10000)));

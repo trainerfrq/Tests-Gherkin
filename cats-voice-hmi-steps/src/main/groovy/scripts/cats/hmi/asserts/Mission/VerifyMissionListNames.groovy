@@ -23,12 +23,13 @@ class VerifyMissionListNames extends FxScriptTemplate {
         final ListView items = robot.lookup("#missionPopup #missionList").queryFirst()
         evaluate(ExecutionDetails.create("Verify mission list exists")
                 .expected("mission item exists")
-                .success(items != null));
+                .success(items.isVisible()));
+
         for(String missionName : missionNames){
             final Node mission = robot.lookup(missionName).queryFirst()
             evaluate(ExecutionDetails.create("Verify mission name exists")
                     .expected("mission name exists in the list")
-                    .success(mission != null));
+                    .success(mission.isVisible()));
             Label label = (Label)mission;
             String text = label.getText();
             evaluate(ExecutionDetails.create("Verify mission label")
