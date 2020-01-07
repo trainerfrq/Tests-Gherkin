@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V7
+@TEST_CASE_VERSION: V9
 @TEST_CASE_NAME: MaximumOutgoingCalls
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls I want to answer calls, do recalls from call history, do role calls, do conference call So I can verify that the operator can't have more then 1 active call
 @TEST_CASE_PRECONDITION: 
@@ -345,5 +345,3 @@ Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
 GivenStories: voice_GG/ui/includes/@CleanupStory.story
 Then waiting until the cleanup is done
-
-

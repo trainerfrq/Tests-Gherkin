@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V5
+@TEST_CASE_VERSION: V7
 @TEST_CASE_NAME: MaximumIncomingCallsAndTransfer
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls I want do a the transfer action So I can verify that transfer action can be done only when there are a maximum of 14 incoming calls
 @TEST_CASE_PRECONDITION: 
@@ -265,5 +265,3 @@ Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
 GivenStories: voice_GG/ui/includes/@CleanupStory.story
 Then waiting until the cleanup is done
-
-

@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V17
+@TEST_CASE_VERSION: V23
 @TEST_CASE_NAME: DisplayedTechnicalOpInformation
 @TEST_CASE_DESCRIPTION: As an operator
 I want to open the Maintenance window

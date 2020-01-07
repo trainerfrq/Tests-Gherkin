@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V6
+@TEST_CASE_VERSION: V8
 @TEST_CASE_NAME: MaximumIncomingCallsAndChangeMission
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls I want to change mission So I can verify that the incoming calls are not affected by the mission active role settings
 @TEST_CASE_PRECONDITION: Test starts with Op1 having mission MISSION_1_NAME
@@ -159,6 +159,3 @@ Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
 GivenStories: voice_GG/ui/includes/@CleanupStory.story
 Then waiting until the cleanup is done
-
-
-

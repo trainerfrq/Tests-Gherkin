@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V6
+@TEST_CASE_VERSION: V8
 @TEST_CASE_NAME: MaximumIncomingCallsAndCallForward
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls I want to activate call forward So I can verify that all other calls made towards my position will be forward to another operator position
 @TEST_CASE_PRECONDITION: 
@@ -126,5 +126,3 @@ Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
 GivenStories: voice_GG/ui/includes/@CleanupStory.story
 Then waiting until the cleanup is done
-
-

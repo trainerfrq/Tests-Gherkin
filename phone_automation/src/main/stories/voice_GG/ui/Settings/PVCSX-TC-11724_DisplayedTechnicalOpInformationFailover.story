@@ -1,6 +1,6 @@
 Meta:
-@TEST_CASE_VERSION: V6
-@TEST_CASE_NAME: TechnicalOpInformationWhileStoppingOPVoiceInstances
+@TEST_CASE_VERSION: V11
+@TEST_CASE_NAME: DisplayedTechnicalOpInformationFailover
 @TEST_CASE_DESCRIPTION: As an operator having a running HMI machine 
 I want to stop the OP-Voice-Service instances and open the Maintenance window
 So I can verify the information regarding the connections and OP-Voice-HMI version

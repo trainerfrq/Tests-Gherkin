@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V5
+@TEST_CASE_VERSION: V9
 @TEST_CASE_NAME: MaximumIncomingCallsAnswered
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls I want to answer each of the incoming call So I can verify that the call queue is adapted accordingly with my actions
 @TEST_CASE_PRECONDITION:
@@ -363,6 +363,3 @@ Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
 GivenStories: voice_GG/ui/includes/@CleanupStory.story
 Then waiting until the cleanup is done
-
-
-

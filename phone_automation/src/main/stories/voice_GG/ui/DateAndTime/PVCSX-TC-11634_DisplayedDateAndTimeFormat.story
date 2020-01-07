@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V13
+@TEST_CASE_VERSION: V22
 @TEST_CASE_NAME: DisplayedDateAndTimeFormat
 @TEST_CASE_DESCRIPTION: As an operator having a HMI machine working properly I want to check the date and the time in Notification Display bar and Status Display So I can verify that the Date and Time are the same with the system's ones and in the expected format
 @TEST_CASE_PRECONDITION: On CWP1 the HMI is working properly with mission MISSION_1_NAME activated.

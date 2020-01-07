@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V2
+@TEST_CASE_VERSION: V6
 @TEST_CASE_NAME: PanelCleanMode
 @TEST_CASE_DESCRIPTION: As an operator that wants to clean the Touch Input Display I want to use the Clean Screen function So I can clean the screen in a safe mode
 @TEST_CASE_PRECONDITION: 
@@ -76,6 +76,3 @@ Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
 GivenStories: voice_GG/ui/includes/@CleanupStory.story
 Then waiting until the cleanup is done
-
-
-

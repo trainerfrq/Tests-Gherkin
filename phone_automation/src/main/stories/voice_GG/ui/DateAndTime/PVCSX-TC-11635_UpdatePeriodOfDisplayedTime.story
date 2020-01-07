@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V13
+@TEST_CASE_VERSION: V18
 @TEST_CASE_NAME: UpdatePeriodOfDisplayedTime
 @TEST_CASE_DESCRIPTION: As an operator having a HMI machine working properly I want to check the interface displayed time So I can verify that the displayed time is updated every second
 @TEST_CASE_PRECONDITION: On CWP1 the HMI is working properly with mission MISSION_1_NAME activated.

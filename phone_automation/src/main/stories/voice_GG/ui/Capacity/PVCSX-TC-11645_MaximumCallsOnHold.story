@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V6
+@TEST_CASE_VERSION: V9
 @TEST_CASE_NAME: MaximumCallsOnHold
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls I want to answer and put on hold 5 calls So I can verify that this is the maximum number of allowed calls on hold
 @TEST_CASE_PRECONDITION: 
@@ -353,6 +353,3 @@ Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
 GivenStories: voice_GG/ui/includes/@CleanupStory.story
 Then waiting until the cleanup is done
-
-
-

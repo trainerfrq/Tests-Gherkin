@@ -2,7 +2,7 @@
 <jobs xmlns="http://req_pro_trace_import.com/configuration">
     <job>
         <name>System Testing AST Import</name>
-        <simulation>false</simulation>
+        <simulation>true</simulation>
         <incremental>true</incremental>
         <sources>
             <workingCopy path="./">
