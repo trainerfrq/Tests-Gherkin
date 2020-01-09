@@ -68,7 +68,7 @@ When HMI OP2 presses IA key IA - OP1
 
 Scenario: 2.1 Op2 has a failed call in the call queue
 Then HMI OP2 has in the call queue a number of 1 calls
-Then HMI OP2 has the IA key IA - OP2 in state terminated
+Then HMI OP2 has the IA key IA - OP1 in state out_failed
 
 Scenario: 2.2 Op2 terminates failed call
 When HMI OP2 presses IA key IA - OP1
