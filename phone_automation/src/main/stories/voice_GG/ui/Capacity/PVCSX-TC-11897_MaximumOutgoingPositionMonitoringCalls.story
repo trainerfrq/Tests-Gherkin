@@ -41,6 +41,15 @@ Given SipContacts group SipContact:
 | Caller5 | VOIP    | 5           | <<SIP5>> |
 And phones for SipContact are created applying configuration MonitoringCall-1
 
+Scenario: Change mission
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
+Then HMI OP1 changes current mission to mission <<MISSION_4_NAME>>
+Then HMI OP1 activates mission
+Then waiting for 5 seconds
+
+Scenario: Verify operator mission
+Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_4_NAME>>
+
 Scenario: 1. Op1 establishes 5 outgoing GG monitoring call
 Meta:
 @TEST_STEP_ACTION: Op1 establishes 5 outgoing GG monitoring call
@@ -175,6 +184,15 @@ When HMI OP1 with layout <<LAYOUT_MISSION4>> presses function key MONITORING
 
 Scenario: Remove phone
 When SipContact is removed
+
+Scenario: Change mission
+When HMI OP1 with layout <<LAYOUT_MISSION4>> presses function key MISSIONS
+Then HMI OP1 changes current mission to mission <<MISSION_1_NAME>>
+Then HMI OP1 activates mission
+Then waiting for 5 seconds
+
+Scenario: Verify operator mission
+Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_1_NAME>>
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure

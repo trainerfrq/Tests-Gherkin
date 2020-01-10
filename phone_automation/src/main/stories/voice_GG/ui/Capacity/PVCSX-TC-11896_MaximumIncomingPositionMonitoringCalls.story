@@ -54,6 +54,15 @@ Given the call queue items:
 | Caller5-OP1-MONITORING | <<SIP5>>    | <<OPVOICE1_PHONE_URI>> | MONITORING |
 | OP3-OP1-MONITORING     | <<OP3_URI>> | <<OP1_URI>>            | MONITORING |
 
+Scenario: Change mission
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
+Then HMI OP1 changes current mission to mission <<MISSION_4_NAME>>
+Then HMI OP1 activates mission
+Then waiting for 5 seconds
+
+Scenario: Verify operator mission
+Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_4_NAME>>
+
 Scenario: 1. Have 5 external incoming position monitoring calls that call Op1
 Meta: @TEST_STEP_ACTION: Have 5 external incoming position monitoring calls that call Op1
 	  @TEST_STEP_REACTION: Op1 receives 5 position monitoring calls
@@ -144,6 +153,15 @@ Then HMI OP1 has in the call queue a number of 0 calls
 Scenario: Remove phone
 When SipContact1 is removed
 When SipContact2 is removed
+
+Scenario: Change mission
+When HMI OP1 with layout <<LAYOUT_MISSION4>> presses function key MISSIONS
+Then HMI OP1 changes current mission to mission <<MISSION_1_NAME>>
+Then HMI OP1 activates mission
+Then waiting for 5 seconds
+
+Scenario: Verify operator mission
+Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_1_NAME>>
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
