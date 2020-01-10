@@ -42,7 +42,7 @@ Then HMI OP3 has the IA key IA - OP2 in state connected
 
 Scenario: Callee Op2 receives incoming IA call from Op3
 		  @REQUIREMENTS:GID-3236103
-Then HMI OP2 click on call queue Elements list
+Then HMI OP2 click on call queue Elements of active list
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
 Then HMI OP2 has in the collapsed area a number of 1 calls
 Then HMI OP2 has in the call queue a number of 1 calls
@@ -61,7 +61,7 @@ Scenario: Callee Op2 remains connected in both IA calls
 When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
 Then HMI OP2 has the IA key IA - OP1 in state connected
 Then HMI OP2 has the IA key IA - OP3 in state connected
-Then HMI OP2 click on call queue Elements list
+Then HMI OP2 click on call queue Elements of active list
 Then HMI OP2 has in the collapsed area a number of 1 calls
 Then HMI OP2 has in the call queue a number of 1 calls
 Then HMI OP2 has the call queue item OP1-OP2 in state connected

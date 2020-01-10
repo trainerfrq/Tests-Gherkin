@@ -46,6 +46,7 @@ Meta:
 @TEST_STEP_REF: [CATS-REF: NPk2]
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLHISTORY
 Then HMI OP1 clears Call History list
+Then wait for 2 seconds
 Then HMI OP1 verifies that call history list contains 0 entries
 
 Scenario: 1.1 Op1 closes Call History window
@@ -241,6 +242,7 @@ Meta:
 @TEST_STEP_REACTION: Op1 has 1 active call
 @TEST_STEP_REF: [CATS-REF: cGA9]
 Then HMI OP1 answers item 1 from waiting call queue list
+Then wait for 2 seconds
 
 Scenario: 7.1 Op1 terminates active call
 Then HMI OP1 terminates item 1 from active call queue list
@@ -275,7 +277,7 @@ Meta:
 @TEST_STEP_ACTION: Op2 answers role call
 @TEST_STEP_REACTION: Op1 has 1 active call
 @TEST_STEP_REF: [CATS-REF: WuJY]
-When HMI OP2 presses DA key ROLE1
+When HMI OP2 presses DA key ROLE1(as ROLE2)
 
 Scenario: 10.1 Op1 verifies the number of calls in the queue
 Then HMI OP1 has in the active list a number of 1 calls
