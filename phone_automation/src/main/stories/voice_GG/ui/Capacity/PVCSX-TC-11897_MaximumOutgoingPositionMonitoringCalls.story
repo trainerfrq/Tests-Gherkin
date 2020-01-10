@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V4
+@TEST_CASE_VERSION: V5
 @TEST_CASE_NAME: MaximumOutgoingPositionMonitoringCalls
 @TEST_CASE_DESCRIPTION: As an operator having 5 outgoing Position Monitoring calls I want to verify I'm not able to do a 6th Position Monitoring call only after one of the existing monitoring calls is terminated
 @TEST_CASE_PRECONDITION: Op1 active mission has a role that allows maximum number of outgoing position monitoring calls
