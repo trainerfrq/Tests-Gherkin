@@ -16,6 +16,20 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
+import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
+import com.frequentis.c4i.test.model.ExecutionDetails;
+import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
+import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
+import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
+import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
+import com.frequentis.xvp.voice.test.automation.phone.data.GridWidgetKey;
+import com.frequentis.xvp.voice.test.automation.phone.data.StatusKey;
+import org.jbehave.core.annotations.Alias;
+import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.CallHistory.ClickOnCallHistoryCallButton;
 import scripts.cats.hmi.actions.CleanUpFunctionKey;
 import scripts.cats.hmi.actions.ClickDAButton;
@@ -36,22 +50,6 @@ import scripts.cats.hmi.asserts.VerifyFunctionKeyLabel;
 import scripts.cats.hmi.asserts.VerifyFunctionKeyState;
 
 import java.util.List;
-
-import org.jbehave.core.annotations.Alias;
-import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
-
-import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
-import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
-import com.frequentis.c4i.test.model.ExecutionDetails;
-import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
-import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
-import com.frequentis.xvp.voice.test.automation.phone.data.CallRouteSelector;
-import com.frequentis.xvp.voice.test.automation.phone.data.DAKey;
-import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
-import com.frequentis.xvp.voice.test.automation.phone.data.GridWidgetKey;
-import com.frequentis.xvp.voice.test.automation.phone.data.StatusKey;
 
 public class CallUISteps extends AutomationSteps {
     private static final String PRIORITY_CALL_MENU_BUTTON_ID = "priority_call_menu_button";
@@ -293,7 +291,7 @@ public class CallUISteps extends AutomationSteps {
    public void verifyLoudspeakerState(final String profileName, final String layoutName, final String target, final String label) {
       FunctionKey key = retrieveFunctionKey(layoutName + "-" + target);
 
-      evaluate( remoteStep( "Verify operator position has the loudspeaker in " + label + " state" )
+      evaluate( remoteStep( "Verify operator position has the function key " + label )
             .scriptOn(profileScriptResolver().map( VerifyFunctionKeyLabel.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
             .input( VerifyFunctionKeyLabel.IPARAM_KEY_ID, key.getId())

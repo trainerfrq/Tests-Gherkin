@@ -29,7 +29,7 @@ import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.CallQueue.CleanUpCallQueue;
 import scripts.cats.hmi.actions.CallQueue.CleanUpCallQueueByPosition;
 import scripts.cats.hmi.actions.CallQueue.CleanUpCallQueueCollapsed;
-import scripts.cats.hmi.actions.CallQueue.ClickCallQueueElementsActiveList;
+import scripts.cats.hmi.actions.CallQueue.ClickCallQueueElementsList;
 import scripts.cats.hmi.actions.CallQueue.ClickCallQueueItem;
 import scripts.cats.hmi.actions.CallQueue.ClickCallQueueItemByPosition;
 import scripts.cats.hmi.actions.CallQueue.ClickOnCallQueueInfoContainer;
@@ -254,12 +254,13 @@ public class CallQueueUISteps extends AutomationSteps
             .input( ClickCallQueueItem.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() ) );
    }
 
-   @Then("$profileName click on call queue Elements list")
-   public void clickCallQueueElements( final String profileName )
+   @Then("$profileName click on call queue Elements of $listType list")
+   public void clickCallQueueElements( final String profileName, final String listType )
    {
       evaluate( remoteStep( "Click call queue elements list" )
-            .scriptOn( profileScriptResolver().map( ClickCallQueueElementsActiveList.class, BookableProfileName.javafx ),
-                  assertProfile( profileName ) ) );
+            .scriptOn( profileScriptResolver().map( ClickCallQueueElementsList.class, BookableProfileName.javafx ),
+                  assertProfile( profileName ) )
+              .input(ClickCallQueueElementsList.IPARAM_QUEUE_LIST_TYPE, listType));
    }
 
    @Then("$profileName answers item $itemNumber from $listType call queue list")

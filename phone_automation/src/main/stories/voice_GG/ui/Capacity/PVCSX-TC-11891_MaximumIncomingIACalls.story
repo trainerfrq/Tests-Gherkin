@@ -65,7 +65,7 @@ Then HMI OP1 has in the active list a number of 1 calls
 Then HMI OP1 has in the collapsed area a number of 2 calls
 
 Scenario: 1.2 Verify call direction
-Then HMI OP1 click on call queue Elements list
+Then HMI OP1 click on call queue Elements of active list
 Then HMI OP1 has the IA call queue item Caller1-OP1 with audio direction rx_monitored
 Then HMI OP1 has the IA call queue item Caller2-OP1 with audio direction rx_monitored
 Then HMI OP1 has the IA call queue item Caller3-OP1 with audio direction rx_monitored
@@ -100,7 +100,6 @@ Meta: @TEST_STEP_ACTION: Op2 establishes an IA call to Op1
 @TEST_STEP_REF: [CATS-REF: 4BrG]
 When HMI OP2 presses IA key IA - OP1
 When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
-Then HMI OP1 click on call queue Elements list
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP1 has the IA key IA - OP2 in state connected
 
@@ -156,3 +155,8 @@ When SipContact2 is removed
 Scenario: Cleanup - always select first tab
 When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1
 When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 1
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupStory.story
+Then waiting until the cleanup is done

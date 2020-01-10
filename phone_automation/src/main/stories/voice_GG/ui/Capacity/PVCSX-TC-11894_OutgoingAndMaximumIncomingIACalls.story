@@ -77,7 +77,7 @@ Then HMI OP1 has in the active list a number of 1 calls
 Then HMI OP1 has in the collapsed area a number of 3 calls
 
 Scenario: 2.2 Verify call direction
-Then HMI OP1 click on call queue Elements list
+Then HMI OP1 click on call queue Elements of active list
 Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction tx
 Then HMI OP1 has the IA call queue item Caller1-OP1 with audio direction rx_monitored
 Then HMI OP1 has the IA call queue item Caller2-OP1 with audio direction rx_monitored
@@ -172,3 +172,8 @@ Scenario: Cleanup - always select first tab
 When HMI OP3 with layout <<LAYOUT_MISSION3>> selects grid tab 1
 When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1
 When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 1
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupStory.story
+Then waiting until the cleanup is done
