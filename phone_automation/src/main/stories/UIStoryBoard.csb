@@ -2553,7 +2553,7 @@
                             <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/Capacity/PVCSX-TC-11643_MaximumIncomingCalls.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/ui/Capacity/PVCSX-TC-11643_MaximumIncomingDACalls.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
@@ -2607,7 +2607,7 @@
                             <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/Capacity/PVCSX-TC-11892_MaximumIncomingIACallsandChangeMission.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/ui/Capacity/PVCSX-TC-11892_MaximumIncomingIACallsAndChangeMission.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
