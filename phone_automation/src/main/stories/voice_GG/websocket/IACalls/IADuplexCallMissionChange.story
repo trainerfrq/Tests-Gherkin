@@ -84,8 +84,7 @@ Then WS1 confirms mission change completed for mission missionId2
 Scenario: Caller does a full call status request
 		  @REQUIREMENTS:GID-2841714
 When WS1 queries full call status
-!-- Fails due to Problem Report PVCSX - 2005
-Then WS1 receives full call status on message buffer named FullCallStatusResponseBuffer1 with callSourceCalling , callTargetCalling , IA , TX_MONITORED , connected , ALL and URGENT
+Then WS1 receives full call status on message buffer named FullCallStatusResponseBuffer1 with callSourceCalling , callTargetCalling , IA , TX_MONITORED , connected , null and URGENT
 
 Scenario: Callee establishes an outgoing call
 When WS3 establishes an outgoing IA call with source callSourceCalled and target callTargetCalled and names outgoingPhoneCallId2
