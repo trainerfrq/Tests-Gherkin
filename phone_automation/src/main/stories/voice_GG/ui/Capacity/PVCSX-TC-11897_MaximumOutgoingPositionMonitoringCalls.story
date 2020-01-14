@@ -1,10 +1,10 @@
 Meta:
-@TEST_CASE_VERSION: V5
+@TEST_CASE_VERSION: V6
 @TEST_CASE_NAME: MaximumOutgoingPositionMonitoringCalls
 @TEST_CASE_DESCRIPTION: As an operator having 5 outgoing Position Monitoring calls I want to verify I'm not able to do a 6th Position Monitoring call only after one of the existing monitoring calls is terminated
-@TEST_CASE_PRECONDITION: Op1 active mission has a role that allows maximum number of outgoing position monitoring calls
+@TEST_CASE_PRECONDITION: Op1 active mission has a role that has the maximum allowed number of outgoing position monitoring calls
 @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when all 5 outgoing position monitoring calls are visible on the operator position and no other outgoing position monitoring call can be made to that position, until one of the existing position monitoring calls is terminated
-@TEST_CASE_DEVICES_IN_USE: Op1, CATS tool is used to simulate 5 external operator positions
+@TEST_CASE_DEVICES_IN_USE: Op1, Op3, CATS tool is used to simulate 5 external operator positions
 @TEST_CASE_ID: PVCSX-TC-11897
 @TEST_CASE_GLOBAL_ID: GID-5157554
 @TEST_CASE_API_ID: 17716880
@@ -24,7 +24,8 @@ Given the SIP header configuration named SipConfig:
 | *       | Allow         | INVITE, ACK, BYE, CANCEL, INFO, UPDATE, REFER, NOTIFY, SUBSCRIBE, OPTIONS |
 | *       | Max-Forwards  | 70                                                                        |
 | *       | WG67-Version  | phone.01                                                                  |
-| *       | WG67-CallType | monitoring                                                                |
+| *       | WG67-Version  | phone.02                                                                  |
+| *       | WG67-CallType | phone.02;monitoring                                                       |
 | INVITE  | Priority      | non-urgent                                                                |
 
 Given named MEP configuration:

@@ -1,9 +1,9 @@
-Meta: @TEST_CASE_VERSION: V4
+Meta: @TEST_CASE_VERSION: V5
 	  @TEST_CASE_NAME: OutgoingAndMaximumIncomingIACalls
-	  @TEST_CASE_DESCRIPTION: As an operator having and outgoing IA call I want to verify that I can receive 3 incoming IA calls
-	  @TEST_CASE_PRECONDITION: The test is passed when all 3 IA calls are visible on the operator position and the outgoing call is still connected
-	  @TEST_CASE_PASS_FAIL_CRITERIA:
-	  @TEST_CASE_DEVICES_IN_USE: CATS tool is used to simulate 3 external IA calls
+	  @TEST_CASE_DESCRIPTION: As an operator having an outgoing IA call I want to verify that I can receive 3 incoming IA calls
+	  @TEST_CASE_PRECONDITION: Op1 active mission has a role configured with maximum allowed number of incoming IA calls
+	  @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when all 3 IA calls are visible on the operator position and the outgoing call is still connected
+	  @TEST_CASE_DEVICES_IN_USE: Op1, Op2, Op3, CATS tool is used to simulate 3 external IA calls
 	  @TEST_CASE_ID: PVCSX-TC-11894
 	  @TEST_CASE_GLOBAL_ID: GID-5155642
 	  @TEST_CASE_API_ID: 17704058
@@ -23,7 +23,8 @@ Given the SIP header configuration named SipConfig:
 | *       | Allow         | INVITE, ACK, BYE, CANCEL, INFO, UPDATE, REFER, NOTIFY, SUBSCRIBE, OPTIONS |
 | *       | Max-Forwards  | 70                                                                        |
 | *       | WG67-Version  | phone.01                                                                  |
-| *       | WG67-CallType | ia call                                                                   |
+| *       | WG67-Version  | phone.add03.02                                                            |
+| *       | WG67-CallType | phone.add03.02;ia call                                                    |
 | INVITE  | Priority      | urgent                                                                    |
 
 Given named MEP configuration:

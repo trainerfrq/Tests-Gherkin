@@ -1,14 +1,12 @@
-Meta:
-@TEST_CASE_VERSION: V5
-@TEST_CASE_NAME: MaximumIncomingIACallsandChangeMission
-@TEST_CASE_DESCRIPTION: As an operator having 3 incoming external IA calls I want to change mission So I can verify that the incoming calls are not affected by the mission active role settings
-@TEST_CASE_PRECONDITION: Test starts with Op1 having mission MISSION_1_NAME MISSION_1_NAME has an active role that allows 3 incoming IA calls MISSION_2_NAME has an active role that allows 1 incoming IA call
-@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when the call limit is applied after changing mission
-@TEST_CASE_DEVICES_IN_USE:  
-CATS tool is used to simulate 3 external AA calls
-@TEST_CASE_ID: PVCSX-TC-11892
-@TEST_CASE_GLOBAL_ID: GID-5154906
-@TEST_CASE_API_ID: 17697570
+Meta: @TEST_CASE_VERSION: V6
+	  @TEST_CASE_NAME: MaximumIncomingIACallsAndChangeMission
+	  @TEST_CASE_DESCRIPTION: As an operator having 3 incoming external IA calls I want to change mission So I can verify that the ongoing incoming calls are not affected by the mission active role settings
+	  @TEST_CASE_PRECONDITION: Test starts with Op1 having mission MISSION_1_NAME MISSION_1_NAME has an active role configured with maximum allowed number of incoming IA calls; MISSION_2_NAME has an active role configured to allow only 1 incoming IA call
+	  @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when the call limit is applied after changing mission
+	  @TEST_CASE_DEVICES_IN_USE: Op1, Op2, Op3, CATS tool is used to simulate 3 external AA calls
+	  @TEST_CASE_ID: PVCSX-TC-11892
+	  @TEST_CASE_GLOBAL_ID: GID-5154906
+	  @TEST_CASE_API_ID: 17697570
 
 Scenario: Booking profiles
 Given booked profiles:
@@ -25,7 +23,8 @@ Given the SIP header configuration named SipConfig:
 | *       | Allow         | INVITE, ACK, BYE, CANCEL, INFO, UPDATE, REFER, NOTIFY, SUBSCRIBE, OPTIONS |
 | *       | Max-Forwards  | 70                                                                        |
 | *       | WG67-Version  | phone.01                                                                  |
-| *       | WG67-CallType | ia call                                                                   |
+| *       | WG67-Version  | phone.add03.02                                                            |
+| *       | WG67-CallType | phone.add03.02;ia call                                                    |
 | INVITE  | Priority      | urgent                                                                    |
 
 Given named MEP configuration:
@@ -34,14 +33,14 @@ Given named MEP configuration:
 
 Scenario: Create sip phones
 Given SipContacts group SipContact1:
-| key      | profile | user-entity | sip-uri   |
-| Caller1  | VOIP    | 1           | <<SIP1>>  |
-| Caller2  | VOIP    | 2           | <<SIP2>>  |
+| key     | profile | user-entity | sip-uri  |
+| Caller1 | VOIP    | 1           | <<SIP1>> |
+| Caller2 | VOIP    | 2           | <<SIP2>> |
 And phones for SipContact1 are created applying configuration IACall-1
 
 Given SipContacts group SipContact2:
-| key      | profile | user-entity | sip-uri   |
-| Caller3  | VOIP    | 3           | <<SIP3>>  |
+| key     | profile | user-entity | sip-uri  |
+| Caller3 | VOIP    | 3           | <<SIP3>> |
 And phones for SipContact2 are created applying configuration IACall-1
 
 Scenario: Define call queue items
@@ -54,8 +53,7 @@ Given the call queue items:
 | Caller3-OP1 | <<SIP3>>    | <<OPVOICE1_PHONE_URI>> | IA       |
 
 Scenario: 1. Have 3 external IA calls that call Op1
-Meta:
-@TEST_STEP_ACTION: Have 3 external IA calls that call Op1
+Meta: @TEST_STEP_ACTION: Have 3 external IA calls that call Op1
 @TEST_STEP_REACTION: Op1 has 3 half-duplex IA calls
 @TEST_STEP_REF: [CATS-REF: ejyL]
 When SipContact1 calls SIP URI <<OPVOICE1_PHONE_URI>>
@@ -73,8 +71,7 @@ Then HMI OP1 has the IA call queue item Caller2-OP1 with audio direction rx_moni
 Then HMI OP1 has the IA call queue item Caller3-OP1 with audio direction rx_monitored
 
 Scenario: 2. Op1 changes mission to MISSION_2_NAME
-Meta:
-@TEST_STEP_ACTION: Op1 changes mission to MISSION_2_NAME
+Meta: @TEST_STEP_ACTION: Op1 changes mission to MISSION_2_NAME
 @TEST_STEP_REACTION: Op1 active mission is MISSION_2_NAME
 @TEST_STEP_REF: [CATS-REF: cq3z]
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
@@ -86,8 +83,7 @@ Scenario: 2.1 Verify operator mission
 Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_2_NAME>>
 
 Scenario: 3. Op1 verifies the number of incoming calls in the queue
-Meta:
-@TEST_STEP_ACTION: Op1 verifies the number of incoming calls in the queue
+Meta: @TEST_STEP_ACTION: Op1 verifies the number of incoming calls in the queue
 @TEST_STEP_REACTION: Op1 has 3 half-duplex IA calls
 @TEST_STEP_REF: [CATS-REF: 5nNX]
 Then HMI OP1 has in the active list a number of 1 calls
@@ -100,8 +96,7 @@ Then HMI OP1 has the IA call queue item Caller2-OP1 with audio direction rx_moni
 Then HMI OP1 has the IA call queue item Caller3-OP1 with audio direction rx_monitored
 
 Scenario: 4. 2 external IA calls are terminated
-Meta:
-@TEST_STEP_ACTION: 2 external IA calls are terminated
+Meta: @TEST_STEP_ACTION: 2 external IA calls are terminated
 @TEST_STEP_REACTION: Op1 has 1 half-duplex IA calls
 @TEST_STEP_REF: [CATS-REF: S5Qx]
 When VoIP SipContact1 gets terminated
@@ -113,8 +108,7 @@ Scenario: 4.2 Verify call direction
 Then HMI OP1 has the IA call queue item Caller3-OP1 with audio direction rx_monitored
 
 Scenario: 5. Op3 attempts to do an IA call to Op1
-Meta:
-@TEST_STEP_ACTION: Op3 attempts to do an IA call to Op1
+Meta: @TEST_STEP_ACTION: Op3 attempts to do an IA call to Op1
 @TEST_STEP_REACTION: Op3 attempt to call fails
 @TEST_STEP_REF: [CATS-REF: bI7P]
 When HMI OP3 with layout <<LAYOUT_MISSION3>> selects grid tab 2
@@ -128,8 +122,7 @@ Scenario: 5.2 Op3 terminates failed call
 When HMI OP3 presses IA key IA - OP1
 
 Scenario: 6. Op1 changes mission to MISSION_1_NAME
-Meta:
-@TEST_STEP_ACTION: Op1 changes mission to MISSION_1_NAME
+Meta: @TEST_STEP_ACTION: Op1 changes mission to MISSION_1_NAME
 @TEST_STEP_REACTION: Op1 active mission is MISSION_1_NAME. Op1 has 1 half-duplex IA calls
 @TEST_STEP_REF: [CATS-REF: lkYl]
 When HMI OP1 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
@@ -147,8 +140,7 @@ Scenario: 6.3 Verify call direction
 Then HMI OP1 has the IA call queue item Caller3-OP1 with audio direction rx_monitored
 
 Scenario: 7. Op2 establishes an IA call to Op1
-Meta:
-@TEST_STEP_ACTION: Op2 establishes an IA call to Op1
+Meta: @TEST_STEP_ACTION: Op2 establishes an IA call to Op1
 @TEST_STEP_REACTION: Op1 has 2 half-duplex IA calls
 @TEST_STEP_REF: [CATS-REF: SOKX]
 When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
@@ -170,8 +162,7 @@ Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction rx_monitore
 Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction tx_monitored
 
 Scenario: 8. IA external call is terminated
-Meta:
-@TEST_STEP_ACTION: IA external call is terminated
+Meta: @TEST_STEP_ACTION: IA external call is terminated
 @TEST_STEP_REACTION: Op1 has 1 call in the queue
 @TEST_STEP_REF: [CATS-REF: bNNh]
 When VoIP SipContact2 gets terminated
@@ -182,8 +173,7 @@ Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction rx_monitore
 Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction tx_monitored
 
 Scenario: 9. Op2 terminates IA call
-Meta:
-@TEST_STEP_ACTION: Op2 terminates IA call
+Meta: @TEST_STEP_ACTION: Op2 terminates IA call
 @TEST_STEP_REACTION: Op1 has 0 calls in the queue
 @TEST_STEP_REF: [CATS-REF: FVWg]
 When HMI OP2 presses IA key IA - OP1
