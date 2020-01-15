@@ -38,7 +38,7 @@ Then HMI OP2 has in the active list a number of 1 calls
 
 Scenario: Op2 establishes an another outgoing IA call
 When HMI OP2 presses IA key IA - OP3
-Then HMI OP2 click on call queue Elements list
+Then HMI OP2 click on call queue Elements of active list
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
 Then HMI OP2 has the IA key IA - OP3 in state connected
 
@@ -49,7 +49,7 @@ Scenario: Verify calls state for all operators
 		  @REQUIREMENTS:GID-2878005
           @REQUIREMENTS:GID-2878006
 Then HMI OP3 has the call queue item OP2-OP3 in state connected
-Then HMI OP2 click on call queue Elements list
+Then HMI OP2 click on call queue Elements of active list
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
 Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction rx
 Then HMI OP2 has the IA call queue item OP3-OP2 with audio direction tx

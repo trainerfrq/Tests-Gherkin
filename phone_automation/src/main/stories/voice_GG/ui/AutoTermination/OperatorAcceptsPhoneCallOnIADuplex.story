@@ -54,7 +54,7 @@ And waiting for 1 second
 Scenario: Verify calls state for all operators
 		  @REQUIREMENTS:GID-2878006
 Then HMI OP3 has the call queue item OP2-OP3 in state connected
-Then HMI OP2 click on call queue Elements list
+Then HMI OP2 click on call queue Elements of active list
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
 Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction rx
 Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction tx

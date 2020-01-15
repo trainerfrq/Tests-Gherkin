@@ -1,6 +1,6 @@
 Meta:
-@TEST_CASE_VERSION: V8
-@TEST_CASE_NAME: MaximumIncomingCalls
+@TEST_CASE_VERSION: V9
+@TEST_CASE_NAME: MaximumIncomingDACalls
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls and another operator attempts to call my position I want to verify that the operator will not be able to call my position only after one of the waiting calls is terminated
 @TEST_CASE_PRECONDITION:
 @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when all 16 calls are visible on the operator position and no other call can be made to that position, until one of the 16 calls is terminated
@@ -68,7 +68,7 @@ When HMI OP2 presses IA key IA - OP1
 
 Scenario: 2.1 Op2 has a failed call in the call queue
 Then HMI OP2 has in the call queue a number of 1 calls
-Then HMI OP2 has the IA key IA - OP2 in state terminated
+Then HMI OP2 has the IA key IA - OP1 in state out_failed
 
 Scenario: 2.2 Op2 terminates failed call
 When HMI OP2 presses IA key IA - OP1
@@ -168,4 +168,3 @@ Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
 GivenStories: voice_GG/ui/includes/@CleanupStory.story
 Then waiting until the cleanup is done
-
