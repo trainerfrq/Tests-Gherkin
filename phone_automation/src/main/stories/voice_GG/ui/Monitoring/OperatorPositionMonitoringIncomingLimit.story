@@ -27,6 +27,7 @@ Scenario: Op1 chooses to monitor Op2
 		  @REQUIREMENTS:GID-2834339
 When HMI OP1 presses DA key OP2
 Then HMI OP1 has the DA key OP2 with visible state monitoringOngoingState
+Then wait for 2 seconds
 Then HMI OP1 verifies that the DA key OP2 has the info label failed
 
 Scenario: Stop monitoring ongoing on the function key

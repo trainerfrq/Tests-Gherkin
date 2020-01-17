@@ -84,7 +84,7 @@ Then WS1 confirms mission change completed for mission missionId2
 Scenario: Caller does a full call status request
 		  @REQUIREMENTS:GID-2841714
 When WS1 queries full call status
-Then WS1 receives full call status on message buffer named FullCallStatusResponseBuffer1 with callSourceCalling , callTargetCalling , IA , TX_MONITORED , connected , null and URGENT
+Then WS1 has a full call status on message buffer named FullCallStatusResponseBuffer1 with callSourceCalling , callTargetCalling , IA , TX_MONITORED , connected and URGENT
 
 Scenario: Callee establishes an outgoing call
 When WS3 establishes an outgoing IA call with source callSourceCalled and target callTargetCalled and names outgoingPhoneCallId2
@@ -121,11 +121,11 @@ Then WS3 confirms mission change completed for mission missionId3
 
 Scenario: Caller does a full call status request
 When WS1 queries full call status
-Then WS1 receives full call status on message buffer named FullCallStatusResponseBuffer1 with callSourceCalling , callTargetCalling , IA , RX_MONITORED , connected , ALL and URGENT
+Then WS1 receives full call status on message buffer named FullCallStatusResponseBuffer1 with callSourceCalling , callTargetCalling , IA , RX_MONITORED , connected , GG and URGENT
 
 Scenario: Callee does a full call status request
 When WS3 queries full call status
-Then WS3 receives full call status on message buffer named FullCallStatusResponseBuffer2 with callSourceCalled , callTargetCalled , IA , TX_MONITORED , connected , ALL and URGENT
+Then WS3 has a full call status on message buffer named FullCallStatusResponseBuffer2 with callSourceCalled , callTargetCalled , IA , TX_MONITORED , connected and URGENT
 
 Scenario: Callee cleans up phone call
 When WS3 clears the phone call with the callId outgoingPhoneCallId2
@@ -144,3 +144,11 @@ When the named websocket WS1 removes the message buffer named MissionsAvailableI
 When the named websocket WS1 removes the message buffer named MissionChangedIndicationBuffer1
 When the named websocket WS3 removes the message buffer named MissionsAvailableIndicationBuffer3
 When the named websocket WS3 removes the message buffer named MissionChangedIndicationBuffer3
+
+Scenario: Cleanup
+When WS1 disassociates from Op Voice Service
+When WS3 disassociates from Op Voice Service
+
+Scenario: Close Web Socket Client connections
+When WS1 closes websocket client connection
+When WS3 closes websocket client connection

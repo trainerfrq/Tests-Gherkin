@@ -13,7 +13,7 @@ Given booked profiles:
 Scenario: Define call queue items
 Given the call queue items:
 | key     | source                 | target                 | callType |
-| OP1-OP3 | <<ROLE1_URI>>       | <<OPVOICE3_PHONE_URI>> | DA/IDA   |
+| OP1-OP3 | <<ROLE1_URI>>          | <<OPVOICE3_PHONE_URI>> | DA/IDA   |
 | OP3-OP1 | <<OPVOICE3_PHONE_URI>> |                        | DA/IDA   |
 
 Scenario: Caller opens phonebook

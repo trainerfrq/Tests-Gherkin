@@ -12,7 +12,7 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key     | source                 | target                 | callType |
+| key     | source      | target      | callType |
 | OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | IA       |
 
 Scenario: Caller establishes an outgoing IA call

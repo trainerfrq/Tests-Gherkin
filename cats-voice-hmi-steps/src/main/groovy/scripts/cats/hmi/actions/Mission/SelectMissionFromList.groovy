@@ -1,6 +1,7 @@
 package scripts.cats.hmi.actions.Mission
 
 import com.frequentis.c4i.test.model.ExecutionDetails
+import com.frequentis.c4i.test.util.timer.WaitTimer
 import javafx.scene.Node
 import javafx.scene.control.Label
 import javafx.scene.control.ListView
@@ -17,6 +18,14 @@ class SelectMissionFromList extends FxScriptTemplate {
     void script() {
 
         String missionName = assertInput(IPARAM_MISSION_NAME) as String
+
+        Node missionPopup = robot.lookup("#missionPopup").queryFirst();
+
+        evaluate(ExecutionDetails.create("Mission popup was found")
+                .expected("missionPopup is visible")
+                .success(missionPopup.isVisible()));
+
+        WaitTimer.pause(150); //this wait is needed to make sure that mission window is really visible for CATS
 
         final ListView items = robot.lookup("#missionPopup #missionList").queryFirst()
         evaluate(ExecutionDetails.create("Verify mission list exists")

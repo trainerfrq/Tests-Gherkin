@@ -15,9 +15,9 @@ class VerifyDAKeyLabel extends FxScriptTemplate {
 
         String daKeyId = assertInput(IPARAM_DA_KEY_ID) as String
         String daKeyCallType = assertInput(IPARAM_DA_KEY_CALL_TYPE) as String
-        String labeltype = assertInput(IPARAM_LABEL_TYPE) as String
+        String labelType = assertInput(IPARAM_LABEL_TYPE) as String
 
-        Label label = robot.lookup("#" + daKeyId + " #"+labeltype+"Label").queryFirst()
+        Label label = robot.lookup("#" + daKeyId + " #"+labelType+"Label").queryFirst()
         String typeText = label.getText()
         evaluate(ExecutionDetails.create("Verify DA key display call type")
                 .expected(daKeyCallType)

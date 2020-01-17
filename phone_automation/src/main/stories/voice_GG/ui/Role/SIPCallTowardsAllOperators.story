@@ -19,8 +19,8 @@ And phones for SipContact are created
 
 Scenario: Define call queue items
 Given the call queue items:
-| key       | source                      | target                      | callType |
-| SIP-allOp | <<SIP_PHONE2>>              | <<ALL_PHONES>>              | DA/IDA   |
+| key       | source         | target         | callType |
+| SIP-allOp | <<SIP_PHONE2>> | <<ALL_PHONES>> | DA/IDA   |
 
 Scenario: SIP group call is initiated to all operators
 		  @REQUIREMENTS:GID-2897826

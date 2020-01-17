@@ -31,7 +31,7 @@ Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MI
 
 Scenario: Verify current active mission has the expected roles
 		  @REQUIREMENTS: GID-2397112
-When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
 Then HMI OP1 has a list of <<NUMBER_OF_MISSIONS>> missions available
 Then HMI OP1 has missions <<MISSIONS_LIST>> available in the missions list
 Then HMI OP1 verifies that current active mission is mission <<MISSION_2_NAME>>
@@ -47,7 +47,7 @@ Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MI
 
 Scenario: Verify current active mission has the expected roles
 		  @REQUIREMENTS: GID-2397112
-When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_MISSION3>> presses function key MISSIONS
 Then HMI OP1 has a list of <<NUMBER_OF_MISSIONS>> missions available
 Then HMI OP1 has missions <<MISSIONS_LIST>> available in the missions list
 Then HMI OP1 verifies that current active mission is mission <<MISSION_3_NAME>>
