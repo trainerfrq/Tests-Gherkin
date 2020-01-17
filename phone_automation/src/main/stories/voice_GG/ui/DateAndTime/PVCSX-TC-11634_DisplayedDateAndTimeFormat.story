@@ -49,14 +49,14 @@ Meta:
 @TEST_STEP_ACTION: Op1 checks the time format in Notification Display bar
 @TEST_STEP_REACTION: Time format in the Notification Display bar is the desired one
 @TEST_STEP_REF: [CATS-REF: KxSP]
-Then HMI OP1 has NOTIFICATION DISPLAY with the expected time format hh:mm:ss
+Then HMI OP1 has NOTIFICATION DISPLAY with the expected time format <<timeFormat>>
 
 Scenario: 3. Op1 checks Notification Display bar time is the same with the system time
 Meta:
 @TEST_STEP_ACTION: Op1 checks Notification Display bar time is the same with the system time
 @TEST_STEP_REACTION: The system time is the same with the time in the Notification Display bar
 @TEST_STEP_REF: [CATS-REF: UT1c]
-Then HMI OP1 verifies that the system time and the one displayed on NOTIFICATION DISPLAY with format hh:mm:ss are the same
+Then HMI OP1 verifies that the system time and the one displayed on NOTIFICATION DISPLAY with format <<timeFormat>> are the same
 
 Scenario: 4. Op1 checks Status Display date and time format
 Meta:
