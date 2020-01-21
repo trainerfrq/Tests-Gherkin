@@ -62,11 +62,11 @@ Then HMI OP2 has in the DISPLAY STATUS section mission the assigned mission <<MI
 
 Scenario: Op2 checks DAKey priority
 		  @REQUIREMENTS:GID-4698739
-When HMI OP2 has the DA key RoleEmergency(tower) with call priority EMERGENCY
+When HMI OP2 has the DA key RoleEmergency(as Mission4) with call priority EMERGENCY
 
 Scenario: Op2 establishes an outgoing call
-When HMI OP2 presses DA key RoleEmergency(tower)
-Then HMI OP2 has the DA key RoleEmergency(tower) in state out_ringing
+When HMI OP2 presses DA key RoleEmergency(as Mission4)
+Then HMI OP2 has the DA key RoleEmergency(as Mission4) in state out_ringing
 Then HMI OP2 has the call queue item RoleEmergency-OP2 in state out_ringing
 
 Scenario: Operators part of called role receive the incoming call
@@ -80,7 +80,7 @@ Scenario: Op1 checks call priority
 When HMI OP1 has the call queue item OP2-RoleEmergency with priority EMERGENCY
 
 Scenario: Op2 client clears the phone call
-When HMI OP2 presses DA key RoleEmergency(tower)
+When HMI OP2 presses DA key RoleEmergency(as Mission4)
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Call is terminated also for Op2
