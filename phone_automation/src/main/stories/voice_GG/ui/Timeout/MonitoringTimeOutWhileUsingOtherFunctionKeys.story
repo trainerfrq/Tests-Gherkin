@@ -15,6 +15,8 @@ Scenario: Cleanup events list
 When HMI OP1 opens Notification Display list
 When HMI OP1 clears the notification events from list
 Then HMI OP1 verifies that Notification Display list Event has 0 items
+
+Scenario: Operator closes the Notification popup
 Then HMI OP1 closes notification popup
 
 Scenario: Op1 presses Monitoring button
@@ -29,6 +31,8 @@ Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function
 Scenario: Op1 verifies notification message
 When HMI OP1 opens Notification Display list
 Then HMI OP1 verifies that list State contains text Select Monitoring target
+
+Scenario: Operator closes the Notification popup
 Then HMI OP1 closes notification popup
 
 Scenario: Op1 presses Settings button
@@ -42,6 +46,8 @@ Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function
 Scenario: Op1 verifies notification message
 When HMI OP1 opens Notification Display list
 Then HMI OP1 verifies that list State contains text Select Monitoring target
+
+Scenario: Operator closes the Notification popup
 Then HMI OP1 closes notification popup
 
 Scenario: Op1 presses Call History button
@@ -79,6 +85,8 @@ Then HMI OP1 has the DA key OP2 with visible state monitoringOngoingState
 Scenario: Op1 verifies notification message
 When HMI OP1 opens Notification Display list
 Then HMI OP1 verifies that list State contains text Select Monitoring target
+
+Scenario: Operator closes the Notification popup
 Then HMI OP1 closes notification popup
 
 Scenario: Op1 presses Call Forward button
@@ -90,6 +98,8 @@ Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function
 Scenario: Op1 verifies notification message
 When HMI OP1 opens Notification Display list
 Then HMI OP1 verifies that list State contains text Select Call Forward target
+
+Scenario: Operator closes the Notification popup
 Then HMI OP1 closes notification popup
 
 Scenario: Op1 verifies Call Forward button state
