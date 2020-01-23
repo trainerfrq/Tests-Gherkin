@@ -27,6 +27,7 @@ import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.Mission.CleanUpMission;
 import scripts.cats.hmi.actions.Mission.ClickActivateMission;
 import scripts.cats.hmi.actions.Mission.ClickOnMissionScrollDownButton;
+import scripts.cats.hmi.actions.Mission.ClickOnMissionScrollUpButton;
 import scripts.cats.hmi.actions.Mission.SelectMissionFromList;
 import scripts.cats.hmi.actions.Mission.SelectMissionFromListByPosition;
 import scripts.cats.hmi.asserts.Mission.VerifyCurrentActiveMission;
@@ -92,7 +93,15 @@ public class MissionListUISteps extends AutomationSteps
    @Then("$profileName changes current mission to mission $mission")
    public void changeMission( final String profileName, final String mission )
    {
-      evaluate( remoteStep( "user selects mission: " + mission )
+       evaluate( remoteStep( "Scroll down mission" ).scriptOn(
+               profileScriptResolver().map( ClickOnMissionScrollDownButton.class, BookableProfileName.javafx ),
+               assertProfile( profileName ) )
+               .input( ClickOnMissionScrollDownButton.IPARAM_CLICK_NUMBER, 1 ));
+       evaluate( remoteStep( "Scroll up mission" ).scriptOn(
+               profileScriptResolver().map( ClickOnMissionScrollUpButton.class, BookableProfileName.javafx ),
+               assertProfile( profileName ) )
+               .input( ClickOnMissionScrollUpButton.IPARAM_CLICK_NUMBER, 1 ));
+      evaluate( remoteStep( "User selects mission: " + mission )
             .scriptOn( profileScriptResolver().map( SelectMissionFromList.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
             .input( SelectMissionFromList.IPARAM_MISSION_NAME, mission ) );

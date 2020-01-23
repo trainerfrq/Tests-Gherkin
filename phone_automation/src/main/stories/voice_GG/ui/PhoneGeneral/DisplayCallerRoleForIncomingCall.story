@@ -12,10 +12,10 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key              | source                   | target                         | callType |
-| OP2-Role1        | <<OP2_URI>>              | sip:role1@example.com       | DA/IDA   |
+| key              | source                | target                      | callType |
+| OP2-Role1        | <<OP2_URI>>           | sip:role1@example.com       | DA/IDA   |
 | Role2-Role1      | sip:role2@example.com | sip:role1@example.com       | DA/IDA   |
-| OP2-Role1Alias   | <<OP2_URI>>              | sip:role1alias1@example.com | DA/IDA   |
+| OP2-Role1Alias   | <<OP2_URI>>           | sip:role1alias1@example.com | DA/IDA   |
 | Role2-Role1Alias | sip:role2@example.com | sip:role1alias1@example.com | DA/IDA   |
 
 Scenario: Caller establishes an outgoing call towards Role1 as OP2

@@ -1,7 +1,9 @@
 package scripts.cats.hmi.asserts.Mission
 
 import com.frequentis.c4i.test.model.ExecutionDetails
+import com.frequentis.c4i.test.util.timer.WaitTimer
 import javafx.scene.Node
+import javafx.scene.control.ListView
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import scripts.agent.testfx.automation.FxScriptTemplate
@@ -19,15 +21,17 @@ class VerifyMissionListSize extends FxScriptTemplate {
         Node missionPopup = robot.lookup("#missionPopup").queryFirst();
 
         evaluate(ExecutionDetails.create("Mission popup was found")
-                .expected("missionPopup is visible")
+                .expected("Mission popup is visible")
                 .success(missionPopup.isVisible()));
+        WaitTimer.pause(150); //this wait is needed to make sure that mission window is really visible for CATS
 
         if (missionPopup.isVisible()) {
-            final Set<Node> missionItems = robot.lookup("#missionPopup #missionList .missionListItem").queryAll();
+            Node missionList = robot.lookup("#missionPopup #missionList").queryFirst();
+            ListView list = (ListView)missionList;
             evaluate(ExecutionDetails.create("Mission list size is the expected one")
-                    .received(missionItems.size().toString())
+                    .received(list.getItems().size().toString())
                     .expected(IPARAM_MISSION_LIST_SIZE)
-                    .success(missionItems.size().equals(missionListSize)));
+                    .success(list.getItems().size().equals(missionListSize)));
         }
     }
 }

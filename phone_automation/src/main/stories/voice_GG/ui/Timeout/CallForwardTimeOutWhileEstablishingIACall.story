@@ -20,6 +20,8 @@ Scenario: Cleanup events list
 When HMI OP1 opens Notification Display list
 When HMI OP1 clears the notification events from list
 Then HMI OP1 verifies that Notification Display list Event has 0 items
+
+Scenario: Operator closes the Notification popup
 Then HMI OP1 closes notification popup
 
 Scenario: Op1 presses Call Forward button
@@ -34,6 +36,8 @@ Then HMI OP1 with layout <<LAYOUT_MISSION1>> verifies that timerBar for function
 Scenario: Op1 verifies notification message
 When HMI OP1 opens Notification Display list
 Then HMI OP1 verifies that list State contains text Select Call Forward target
+
+Scenario: Operator closes the Notification popup
 Then HMI OP1 closes notification popup
 
 Scenario: Op1 establishes an outgoing IA call to Op2
@@ -55,6 +59,8 @@ Then HMI OP1 verifies that the DA key OP2 has the info label Call Fwd
 Scenario: Op1 verifies notification message
 When HMI OP1 opens Notification Display list
 Then HMI OP1 verifies that list State contains text Select Call Forward target
+
+Scenario: Operator closes the Notification popup
 Then HMI OP1 closes notification popup
 
 Scenario: Op1 deactivates Call Forward button
