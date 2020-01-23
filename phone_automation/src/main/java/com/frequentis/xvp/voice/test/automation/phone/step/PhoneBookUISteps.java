@@ -26,34 +26,11 @@ import com.frequentis.xvp.voice.test.automation.phone.data.Mission;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import org.apache.commons.io.FileUtils;
-import org.jbehave.core.annotations.Alias;
-import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
+import org.jbehave.core.annotations.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import scripts.cats.hmi.actions.PhoneBook.ClickOnKeyboard;
-import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookCloseButton;
-import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookDeleteButton;
-import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookForwardButton;
-import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookScrollDownButton;
-import scripts.cats.hmi.actions.PhoneBook.SelectCallRouteSelector;
-import scripts.cats.hmi.actions.PhoneBook.SelectPhoneBookEntry;
-import scripts.cats.hmi.actions.PhoneBook.ToggleCallPriority;
-import scripts.cats.hmi.actions.PhoneBook.ToggleKeyboard;
-import scripts.cats.hmi.actions.PhoneBook.WriteInPhoneBookTextBox;
-import scripts.cats.hmi.asserts.PhoneBook.VerifyCallRouteSelector;
-import scripts.cats.hmi.asserts.PhoneBook.VerifyCallRouteSelectorList;
-import scripts.cats.hmi.asserts.PhoneBook.VerifyKeyboardLayout;
-import scripts.cats.hmi.asserts.PhoneBook.VerifyPhoneBookCallButtonState;
-import scripts.cats.hmi.asserts.PhoneBook.VerifyPhoneBookForwardButtonIfVisible;
-import scripts.cats.hmi.asserts.PhoneBook.VerifyPhoneBookForwardButtonState;
-import scripts.cats.hmi.asserts.PhoneBook.VerifyPhoneBookHighlightText;
-import scripts.cats.hmi.asserts.PhoneBook.VerifyPhoneBookInputTextBox;
-import scripts.cats.hmi.asserts.PhoneBook.VerifyPhoneBookListSize;
-import scripts.cats.hmi.asserts.PhoneBook.VerifyPhoneBookSelectionTextBox;
-import scripts.cats.hmi.asserts.PhoneBook.VerifyToggleCallPriorityState;
-import scripts.cats.hmi.asserts.PhoneBook.VerifyTotalNumberOfEntries;
+import scripts.cats.hmi.actions.PhoneBook.*;
+import scripts.cats.hmi.asserts.PhoneBook.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -66,7 +43,8 @@ public class PhoneBookUISteps extends AutomationSteps
 {
    @When("$profileName writes in phonebook text box the address: $address")
    @Alias("$profileName writes in phonebook text box: $address")
-   public void writeInPhoneBookTextBox( final String profileName, final String address )
+   @Then("$profileName inserts in phonebook text box the address: <address>")
+   public void writeInPhoneBookTextBox( @Named("profileName") final String profileName, @Named("address") final String address )
    {
       evaluate(
             remoteStep( "Write in phonebook text box" )
