@@ -26,13 +26,12 @@ class VerifyNotificationListAllEntriesText extends FxScriptTemplate {
         if (notificationPopup.isVisible()) {
             final CustomListView list = robot.lookup( "#notification"+listName+"List" ).queryFirst()
             List<String> allEntriesTextLabels = new ArrayList<>()
-            int receivedListSize = list.getItems().size();
-            int roundValue = Math.ceil(receivedListSize/6)
-            int pageSize = 6;
+            int receivedListSize = list.getItems().size()
+            int pageSize = 6
+            int roundValue = Math.ceil(receivedListSize/pageSize)
 
             for(int index=0; index<roundValue; index++){
                 for(int i=0; i<pageSize; i++){
-
                     Label textLabel = robot.lookup("#notification"+listName+"List #notificationEntry_"+i+" #notificationTextLabel").queryFirst()
                     if(textLabel!=null){
                         allEntriesTextLabels.add(textLabel.getText())
