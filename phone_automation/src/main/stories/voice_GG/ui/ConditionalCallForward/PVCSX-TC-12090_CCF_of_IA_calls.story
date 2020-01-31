@@ -1,10 +1,10 @@
 Meta:
 @TEST_CASE_VERSION: V2
-@TEST_CASE_NAME: CCF with IA call
+@TEST_CASE_NAME: CCF of IA calls
 @TEST_CASE_DESCRIPTION: As an operator having set a Conditional Call Forward rule
 I want to establish an IA call
 So i can verify that the call is forwarded according to the rule
-@TEST_CASE_PRECONDITION: A mission TWR has a single role assigned called TWR
+@TEST_CASE_PRECONDITION: Mission TWR has a single role assigned called TWR
 Settings:
 A Conditional Call Forward with:
 - matching call destinations: TWR
@@ -33,85 +33,76 @@ Given booked profiles:
 Scenario: Define call queue items
 Given the call queue items:
 | key             | source                  | target                 | callType   |
-| TWR-GND         | sip:507721@example.com  |                        | IA         |
-| TWR-GND-1       | sip:507721@example.com  | sip:507722@example.com | IA         |
-| GND-TWR         | sip:507722@example.com  | sip:507721@example.com | IA         |
-
-Scenario: Precondition - OP3 changes its mission to GND
-When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MISSIONS
-Then HMI OP3 changes current mission to mission <<MISSION_GND_NAME>>
-Then HMI OP3 activates mission
-Then waiting for 5 seconds
+| TWR-ROLE3       | sip:507721@example.com  |                        | IA         |
+| TWR-ROLE3-1     | sip:507721@example.com  | <<ROLE3_URI>>          | IA         |
+| ROLE3-TWR       | <<ROLE3_URI>>           | sip:507721@example.com | IA         |
 
 Scenario: 1. OP3 presses IA key TWR
 Meta:
 @TEST_STEP_ACTION: OP3 presses IA key TWR 
 @TEST_STEP_REACTION: OP3 has a connected IA call to TWR. Because TWR is Out of Service, OP1 has a connected call from OP3's master role
 @TEST_STEP_REF: [CATS-REF: bBgk]
-When HMI OP3 with layout <<COMMON_LAYOUT>> selects grid tab 2
+When HMI OP3 with layout <<LAYOUT_MISSION3>> selects grid tab 2
 When HMI OP3 presses IA key IA - TWR
 Then HMI OP3 has the IA key IA - TWR in state connected
 
 Scenario: 1.1 OP3 verifies its calls queue
-Then HMI OP3 has the call queue item TWR-GND in state connected
-Then HMI OP3 has the call queue item TWR-GND in the active list with name label TWR
+Then HMI OP3 has the call queue item TWR-ROLE3 in state connected
+Then HMI OP3 has the call queue item TWR-ROLE3 in the active list with name label <<MISSION_TWR_NAME>>
 
 Scenario: 1.2 OP1 verifies its calls queue
-Then HMI OP1 has the call queue item GND-TWR in state connected
-Then HMI OP1 has the call queue item GND-TWR in the active list with name label GND
+Then HMI OP1 has the call queue item ROLE3-TWR in state connected
+Then HMI OP1 has the call queue item ROLE3-TWR in the active list with name label <<ROLE_3_NAME>>
 
 Scenario: 2. Verifying call's audio direction
 Meta:
 @TEST_STEP_ACTION: Verifying call directions
 @TEST_STEP_REACTION: OP3 has an IA call with audio direction TX and OP1 has an IA call with audio direction RX
 @TEST_STEP_REF: [CATS-REF: f4aC]
-Then HMI OP3 has the IA call queue item TWR-GND with audio direction tx
-Then HMI OP1 has the IA call queue item GND-TWR with audio direction rx
+Then HMI OP3 has the IA call queue item TWR-ROLE3 with audio direction tx
+Then HMI OP1 has the IA call queue item ROLE3-TWR with audio direction rx
 
 Scenario: 3. OP1 changes active's IA call audio direction by clicking on the active call queue item
 Meta:
 @TEST_STEP_ACTION: OP1 changes active's IA call audio direction by clicking on the active call queue item
 @TEST_STEP_REACTION: OP1 and OP3 have an active IA call with audio direction DUPLEX
 @TEST_STEP_REF: [CATS-REF: OxI3]
-Then HMI OP1 presses the call queue item GND-TWR
-Then HMI OP1 has the call queue item GND-TWR in state connected
-Then HMI OP1 has the call queue item GND-TWR in the active list with name label GND
+Then HMI OP1 presses the call queue item ROLE3-TWR
+Then HMI OP1 has the call queue item ROLE3-TWR in state connected
+Then HMI OP1 has the call queue item ROLE3-TWR in the active list with name label <<ROLE_3_NAME>>
 
 Scenario: 3.1 OP1 verifies call's audio direction
-Then HMI OP1 has the IA call queue item GND-TWR with audio direction duplex
+Then HMI OP1 has the IA call queue item ROLE3-TWR with audio direction duplex
 
 Scenario: 3.2 OP3 verifies calls queue section and call's audio direction
-Then HMI OP3 has the call queue item TWR-GND-1 in state connected
-Then HMI OP3 has the call queue item TWR-GND-1 in the active list with name label TWR
-Then HMI OP3 has the IA call queue item TWR-GND-1 with audio direction duplex
+Then HMI OP3 has the call queue item TWR-ROLE3-1 in state connected
+Then HMI OP3 has the call queue item TWR-ROLE3-1 in the active list with name label <<MISSION_TWR_NAME>>
+Then HMI OP3 has the IA call queue item TWR-ROLE3-1 with audio direction duplex
 
 Scenario: 4. OP3 terminates the IA call by clicking on the active call queue item
 Meta:
 @TEST_STEP_ACTION: OP3 terminates the IA call by clicking on the active call queue item
 @TEST_STEP_REACTION: OP3 has an active IA call with audio direction RX and OP1 has an active IA call with audio direction TX
 @TEST_STEP_REF: [CATS-REF: l0PX]
-Then HMI OP3 presses the call queue item TWR-GND-1
+Then HMI OP3 presses the call queue item TWR-ROLE3-1
 
 Scenario: 4.1 Verifying calls' audio direction
-Then HMI OP3 has the IA call queue item TWR-GND-1 with audio direction rx
-Then HMI OP1 has the IA call queue item GND-TWR with audio direction tx
+Then HMI OP3 has the IA call queue item TWR-ROLE3-1 with audio direction rx
+Then HMI OP1 has the IA call queue item ROLE3-TWR with audio direction tx
 
 Scenario: 5. OP1 terminates the IA call by clicking on the active call queue item
 Meta:
 @TEST_STEP_ACTION: OP1 terminates the IA call by clicking on the active call queue item
 @TEST_STEP_REACTION: The call is terminated for both operators
 @TEST_STEP_REF: [CATS-REF: k3K1]
-Then HMI OP1 presses the call queue item GND-TWR
+Then HMI OP1 presses the call queue item ROLE3-TWR
 
 Scenario: 5.1 Verifying calls queue section
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 
-Scenario: Cleanup - OP3 changes its mission back
-When HMI OP3 with layout <<COMMON_LAYOUT>> presses function key MISSIONS
-Then HMI OP3 changes current mission to mission <<MISSION_3_NAME>>
-Then HMI OP3 activates mission
-Then waiting for 5 seconds
+Scenario: Cleanup - OP3 changes its layout grid tab back
+When HMI OP3 with layout <<LAYOUT_MISSION3>> selects grid tab 1
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure

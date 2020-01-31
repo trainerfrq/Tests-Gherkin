@@ -45,6 +45,7 @@ Given the DA keys:
 | HMI OP2 | RoleEmergency              | <<PhyOpPos2_RoleEmergency>>          |
 | HMI OP2 | TWR                        | <<ACTIVE2_TWR>>                      |
 | HMI OP2 | GND                        | <<ACTIVE2_GND>>                      |
+| HMI OP2 | APP                        | <<ACTIVE2_APP>>                      |
 | HMI OP3 | OP1                        | <<PhyOpPos3_CWP1>>                   |
 | HMI OP3 | OP2                        | <<PhyOpPos3_CWP2>>                   |
 | HMI OP3 | ROLE1                      | <<PhyOpPos3_ROLE1>>                  |

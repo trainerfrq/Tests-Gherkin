@@ -27,11 +27,12 @@ class SelectMissionFromList extends FxScriptTemplate {
         WaitTimer.pause(150); //this wait is needed to make sure that mission window is really visible for CATS
 
         SmartListView items = robot.lookup("#missionPopup #missionList").queryFirst()
+
         evaluate(ExecutionDetails.create("Verify mission list exists")
                 .expected("mission item exists")
                 .success(items != null));
 
-        final Node mission = robot.lookup(missionName).queryFirst()
+        final Node mission = robot.lookup("#" + missionName).queryFirst()
 
         evaluate(ExecutionDetails.create("Verify mission " + missionName + " exists in the missions list")
                 .expected(missionName + " mission was found")
@@ -42,14 +43,13 @@ class SelectMissionFromList extends FxScriptTemplate {
         while (notFound) {
             for (int i = items.getFirstVisibleListElementIndex(); i <= items.getLastVisibleListElementIndex(); i++) {
                 MissionItemData missionData = (MissionItemData) items.getItems().get(i)
-
                 if (missionData.getMissionName() == missionName) {
                     notFound = false
-                    robot.clickOn(robot.point(missionData.getMissionName()))
+                    robot.clickOn(robot.point(mission))
                     break
                 }
             }
-            if(notFound) {
+            if (notFound) {
                 final Node scrollDownButton = robot.lookup("#missionPopup #scrollDown").queryFirst()
                 robot.clickOn(robot.point(scrollDownButton))
                 WaitTimer.pause(150)

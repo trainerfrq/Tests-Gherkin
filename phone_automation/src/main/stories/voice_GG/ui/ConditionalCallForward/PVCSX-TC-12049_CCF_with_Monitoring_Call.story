@@ -4,7 +4,7 @@ Meta:
 @TEST_CASE_DESCRIPTION: As an operator having set a Conditional Call Forward rule 
 I want to establish a Monitoring Call
 So I can verify that the call is forwarded according to the rule
-@TEST_CASE_PRECONDITION: A mission TWR has a single role assigned called TWR
+@TEST_CASE_PRECONDITION: Mission TWR has a single role assigned called TWR
 Settings:
 A Conditional Call Forward with:
 - matching call destinations: TWR
@@ -35,22 +35,16 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key                | source                 | target                 | callType   |
-| GND-TWR-MONITORING | sip:507722@example.com | sip:507721@example.com | MONITORING |
-
-Scenario: Precondition - OP3 changes its mission to GND
-When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MISSIONS
-Then HMI OP3 changes current mission to mission <<MISSION_GND_NAME>>
-Then HMI OP3 activates mission
-Then waiting for 5 seconds
+| key                  | source                 | target                 | callType   |
+| ROLE3-TWR-MONITORING | <<ROLE3_URI>>          | sip:507721@example.com | MONITORING |
 
 Scenario: 1. OP3 presses function key Monitoring
 Meta:
 @TEST_STEP_ACTION: OP3 presses function key Monitoring
 @TEST_STEP_REACTION: Function key Monitoring is in Monitoring On Going state
 @TEST_STEP_REF: [CATS-REF: pfMc]
-When HMI OP3 with layout <<COMMON_LAYOUT>> presses function key MONITORING
-Then HMI OP3 with layout <<COMMON_LAYOUT>> has the function key MONITORING in monitoringOnGoing state
+When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MONITORING
+Then HMI OP3 with layout <<LAYOUT_MISSION3>> has the function key MONITORING in monitoringOnGoing state
 Then HMI OP3 has the DA key TWR with visible state monitoringOngoingState
 
 Scenario: 2. OP3 presses DA key TWR
@@ -58,6 +52,7 @@ Meta:
 @TEST_STEP_ACTION: OP3 presses DA key TWR
 @TEST_STEP_REACTION: OP3 has DA key TWR in Monitoring Active State
 @TEST_STEP_REF: [CATS-REF: 00Rq]
+When HMI OP3 with layout <<LAYOUT_MISSION3>> selects grid tab 3
 When HMI OP3 presses DA key TWR
 Then HMI OP3 has the DA key TWR with visible state monitoringActiveState
 
@@ -68,17 +63,17 @@ Meta:
 @TEST_STEP_REF: [CATS-REF: xH0t]
 Then HMI OP1 has in the call queue a number of 1 calls
 Then HMI OP1 verifies that call queue container monitoring is visible
-Then HMI OP1 has the call queue item GND-TWR-MONITORING in state connected
-Then HMI OP1 has the call queue item GND-TWR-MONITORING in state tx_monitored
-Then HMI OP1 verifies the call queue item GND-TWR-MONITORING has label type showing ALL
-Then HMI OP1 verifies the call queue item GND-TWR-MONITORING has label name showing GND
+Then HMI OP1 has the call queue item ROLE3-TWR-MONITORING in state connected
+Then HMI OP1 has the call queue item ROLE3-TWR-MONITORING in state tx_monitored
+Then HMI OP1 verifies the call queue item ROLE3-TWR-MONITORING has label type showing ALL
+Then HMI OP1 verifies the call queue item ROLE3-TWR-MONITORING has label name showing <<ROLE_3_NAME>>
 
 Scenario: 4. OP3 verifies monitoring list
 Meta:
 @TEST_STEP_ACTION: OP3 verifies monitoring list
 @TEST_STEP_REACTION: OP3 has one item in the list with Monitoring type ALL and Monitored Role TWR
 @TEST_STEP_REF: [CATS-REF: aMa7]
-When HMI OP3 with layout <<COMMON_LAYOUT>> opens monitoring list using function key MONITORING menu
+When HMI OP3 with layout <<LAYOUT_MISSION3>> opens monitoring list using function key MONITORING menu
 Then HMI OP3 verifies that popup monitoring is visible
 
 Scenario: 4.1 OP3 verifies monitoring list entries
@@ -94,19 +89,16 @@ Meta:
 @TEST_STEP_ACTION: OP3 terminates all monitoring calls
 @TEST_STEP_REACTION: OP3 doesn't have anymore Monitoring function key in Monitoring Active state and Op1 has 0 calls in monitoring queue container
 @TEST_STEP_REF: [CATS-REF: KkkK]
-When HMI OP3 with layout <<COMMON_LAYOUT>> terminates monitoring calls using function key MONITORING menu
-Then HMI OP3 with layout <<COMMON_LAYOUT>> has the function key MONITORING in monitoringOnGoing state
-When HMI OP3 with layout <<COMMON_LAYOUT>> presses function key MONITORING
+When HMI OP3 with layout <<LAYOUT_MISSION3>> terminates monitoring calls using function key MONITORING menu
+Then HMI OP3 with layout <<LAYOUT_MISSION3>> has the function key MONITORING in monitoringOnGoing state
+When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MONITORING
 
 Scenario: 5.1 Monitoring terminated on Op1
 Then HMI OP1 verifies that call queue container monitoring is not visible
 Then HMI OP1 has in the call queue a number of 0 calls
 
-Scenario: Cleanup - OP3 changes its mission back
-When HMI OP3 with layout <<COMMON_LAYOUT>> presses function key MISSIONS
-Then HMI OP3 changes current mission to mission <<MISSION_3_NAME>>
-Then HMI OP3 activates mission
-Then waiting for 5 seconds
+Scenario: Cleanup - OP3 changes its layout grid tab back
+When HMI OP3 with layout <<LAYOUT_MISSION3>> selects grid tab 1
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure

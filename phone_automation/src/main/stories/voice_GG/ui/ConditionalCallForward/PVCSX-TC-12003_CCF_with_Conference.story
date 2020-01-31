@@ -1,6 +1,6 @@
 Meta:
 @TEST_CASE_VERSION: V11
-@TEST_CASE_NAME: Add to Conference call Forwarded CCF
+@TEST_CASE_NAME: CCF with Conference
 @TEST_CASE_DESCRIPTION: As an operator having set a Conditional Call Forward rule
 I want to establish a conference and to invite a third party, that matches the rule's call destination
 So I can verify that the invitation is forwarded according to rule's forwarding conditions
@@ -67,12 +67,12 @@ Meta:
 When HMI OP2 starts a conference using an existing active call
 And waiting for 1 second
 
-Scenario: 3.1 Vefifying OP2 queue section
+Scenario: 3.1 Vefifying OP2 calls queue section
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label CONF
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 2 participants
 
-Scenario: 3.2 Vefifying OP1 queue section
+Scenario: 3.2 Vefifying OP1 calls queue section
 Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
 Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
 Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with info label 2 participants
@@ -98,7 +98,7 @@ Scenario: 4.3 OP2 initiates the call
 When HMI OP2 initiates a call from the phonebook
 And waiting for 1 second
 
-Scenario: 4.4 OP3 verifies call queue section
+Scenario: 4.4 OP3 verifies calls queue section
 Then HMI OP3 has the call queue item OP2-OP3-Conf in state inc_initiated
 Then HMI OP3 has the call queue item OP2-OP3-Conf in the waiting list with name label CONF
 
@@ -118,7 +118,7 @@ Meta:
 @TEST_STEP_REF: [CATS-REF: HCUa]
 Then HMI OP3 accepts the call queue item OP2-OP3-Conf
 
-Scenario: 5.1 Vefifying OP3 queue section
+Scenario: 5.1 Vefifying OP3 calls queue section
 Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
 Then HMI OP3 has the call queue item OP2-OP3-Conf in the active list with name label CONF
 Then HMI OP3 has the call queue item OP2-OP3-Conf in the active list with info label 3 participants

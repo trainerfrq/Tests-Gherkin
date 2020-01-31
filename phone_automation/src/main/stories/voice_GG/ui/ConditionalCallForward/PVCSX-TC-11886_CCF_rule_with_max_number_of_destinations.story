@@ -1,6 +1,6 @@
 Meta:
 @TEST_CASE_VERSION: V10
-@TEST_CASE_NAME: Max Number Of Destinations CCF Rule
+@TEST_CASE_NAME: CCF rule with max number of destinations
 @TEST_CASE_DESCRIPTION: As an operator having set 20 destinations for a Conditional Call Forward Rule
 I want to establish a call to each set destination
 So I can verify that the rule is applied for each destination
