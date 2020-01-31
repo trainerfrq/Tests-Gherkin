@@ -62,7 +62,8 @@ Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name l
 Scenario: Op1 adds a conference participant from phonebook
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
 When HMI OP1 selects call route selector: none
-When HMI OP1 selects phonebook entry number: 9
+When HMI OP1 clicks on the scroll down button in phonebook for 1 time(s)
+When HMI OP1 selects phonebook entry number: 12
 Then HMI OP1 verifies that phone book text box displays text Madoline
 When HMI OP1 initiates a call from the phonebook
 When SipContact answers incoming calls

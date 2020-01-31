@@ -1,6 +1,51 @@
 [
   {
     "fullName": "",
+    "displayName": "ALL",
+    "location": "",
+    "organization": "",
+    "notes": "",
+    "dataSets": [
+      {
+        "destination": "sip:507799@example.com",
+        "callType": "DA/IDA",
+        "priority": "normal",
+        "displayAddon": ""
+      }
+    ]
+  },
+  {
+    "fullName": "",
+    "displayName": "APP",
+    "location": "",
+    "organization": "",
+    "notes": "",
+    "dataSets": [
+      {
+        "destination": "sip:507723@example.com",
+        "callType": "DA/IDA",
+        "priority": "normal",
+        "displayAddon": ""
+      }
+    ]
+  },
+  {
+    "fullName": "",
+    "displayName": "GND",
+    "location": "",
+    "organization": "",
+    "notes": "",
+    "dataSets": [
+      {
+        "destination": "sip:507722@example.com",
+        "callType": "DA/IDA",
+        "priority": "normal",
+        "displayAddon": ""
+      }
+    ]
+  },
+  {
+    "fullName": "",
     "displayName": "LOWER-EAST-EXEC",
     "location": "",
     "organization": "",
@@ -172,6 +217,21 @@
   },
   {
     "fullName": "",
+    "displayName": "SUP-TWR",
+    "location": "",
+    "organization": "",
+    "notes": "",
+    "dataSets": [
+      {
+        "destination": "sip:507724@example.com",
+        "callType": "DA/IDA",
+        "priority": "normal",
+        "displayAddon": ""
+      }
+    ]
+  },
+  {
+    "fullName": "",
     "displayName": "Snom 370 (Carol)",
     "location": "",
     "organization": "",
@@ -180,6 +240,21 @@
       {
         "destination": "sip:gg-snom1@example.com",
         "callType": "DA/IDA",
+        "displayAddon": ""
+      }
+    ]
+  },
+  {
+    "fullName": "",
+    "displayName": "TWR",
+    "location": "",
+    "organization": "",
+    "notes": "",
+    "dataSets": [
+      {
+        "destination": "sip:507721@example.com",
+        "callType": "DA/IDA",
+        "priority": "normal",
         "displayAddon": ""
       }
     ]
@@ -332,7 +407,7 @@
     "notes": "",
     "dataSets": [
       {
-        "destination": "sip:305891@example.com",
+        "destination": "sip:2@10.31.205.9:5070",
         "callType": "DA/IDA",
         "displayAddon": ""
       }
@@ -6017,7 +6092,7 @@
     "notes": "",
     "dataSets": [
       {
-        "destination": "sip:794130@example.com",
+        "destination": "sip:4@10.31.205.9:5070",
         "callType": "DA/IDA",
         "displayAddon": ""
       }
@@ -6199,7 +6274,7 @@
     "notes": "",
     "dataSets": [
       {
-        "destination": "sip:528122@example.com",
+        "destination": "sip:3@10.31.205.9:5070",
         "callType": "DA/IDA",
         "displayAddon": ""
       }
@@ -7389,7 +7464,7 @@
     "notes": "",
     "dataSets": [
       {
-        "destination": "sip:205000@example.com",
+        "destination": "sip:1@10.31.205.9:5070",
         "callType": "DA/IDA",
         "displayAddon": ""
       }
@@ -8831,7 +8906,7 @@
     "notes": "",
     "dataSets": [
       {
-        "destination": "sip:708904@example.com",
+        "destination": "sip:5@10.31.205.9:5070",
         "callType": "DA/IDA",
         "displayAddon": ""
       }
@@ -14045,6 +14120,22 @@
     "dataSets": [
       {
         "destination": "sip:op3@example.com",
+        "callType": "DA/IDA",
+        "priority": "normal",
+        "displayAddon": ""
+      }
+    ]
+  },
+  {
+    "fullName": "",
+    "displayName": "defaultRouteSelector",
+    "location": "",
+    "organization": "",
+    "notes": "",
+    "dataSets": [
+      {
+        "destination": "sip:defaultRouteSelector@example.com",
+        "routeSelector": "default",
         "callType": "DA/IDA",
         "priority": "normal",
         "displayAddon": ""

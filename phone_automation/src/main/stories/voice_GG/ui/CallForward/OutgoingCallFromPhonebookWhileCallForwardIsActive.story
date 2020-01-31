@@ -25,7 +25,7 @@ When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
 Then HMI OP1 verifies that phone book forward button state is disabled
 
 Scenario: Op1 selects an item from phonebook for the call forward action
-When HMI OP1 selects phonebook entry number: 1
+When HMI OP1 selects phonebook entry number: 3
 
 Then HMI OP1 verifies that phone book forward button state is enabled
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in forwardOngoing state
@@ -45,7 +45,7 @@ Then HMI OP1 verifies that phone book call button is disabled
 
 Scenario: Op1 selects an item from phonebook
 When HMI OP1 clicks on the scroll down button in phonebook for 1 time(s)
-When HMI OP1 selects phonebook entry number: 11
+When HMI OP1 selects phonebook entry number: 14
 Then HMI OP1 verifies that phone book call button is enabled
 Then HMI OP1 checks that phone book forward button is invisible
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state

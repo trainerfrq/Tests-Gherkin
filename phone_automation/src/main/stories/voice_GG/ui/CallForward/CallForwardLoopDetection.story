@@ -47,7 +47,8 @@ Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Op3 establishes an outgoing call towards someone that is not in call forward loop
 When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key PHONEBOOK
-When HMI OP3 selects phonebook entry number: 9
+When HMI OP3 clicks on the scroll down button in phonebook for 1 time(s)
+When HMI OP3 selects phonebook entry number: 12
 Then HMI OP3 verifies that phone book text box displays text Madoline
 When HMI OP3 initiates a call from the phonebook
 

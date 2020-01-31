@@ -138,41 +138,45 @@ Scenario: 7.2 Verify call is connected for both operators
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
-Scenario: 8. Op1 starts a conference using the existing active call
+Scenario: 8. Op1 tries to start a new conference using the existing active call
 Meta:
 @TEST_STEP_ACTION: Op1 starts a conference using the existing active call
-@TEST_STEP_REACTION: Op1 has a conference with 2 participants. Op1 has 15 incoming calls
+@TEST_STEP_REACTION: Conference (indicated with 0 participants on the call queue) can't be created due to lack of resources. Op1 has 1 call on hold, 15 incoming calls
 @TEST_STEP_REF: [CATS-REF: axKc]
 When HMI OP1 starts a conference using an existing active call
 And waiting for 1 second
 Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
 Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
-Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with info label 2 participants
+Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with info label 0 participants
 
 Scenario: 8.1 Op1 verifies the number calls in the queue
 Then HMI OP1 has in the active list a number of 1 calls
-Then HMI OP1 has in the call queue a number of 3 calls
-Then HMI OP1 has in the waiting list a number of 3 calls
-Then HMI OP1 has in the collapsed area a number of 12 calls
+Then HMI OP1 has in the call queue a number of 4 calls
+Then HMI OP1 has in the waiting list a number of 2 calls
+Then HMI OP1 has in the hold list a number of 1 calls
+Then HMI OP1 has in the collapsed area a number of 13 calls
 
 Scenario: 9. Op1 terminates conference call
 Meta:
 @TEST_STEP_ACTION: Op1 terminates conference call
-@TEST_STEP_REACTION: Op1 has 15 incoming calls and 0 active calls
+@TEST_STEP_REACTION: Op1 has 16 incoming calls and 0 active calls
 @TEST_STEP_REF: [CATS-REF: Mx0X]
 Then HMI OP1 terminates the call queue item OP2-OP1-Conf
 
 Scenario: 9.1 Op1 verifies the number of calls in the queue
 Then HMI OP1 has in the active list a number of 0 calls
 Then HMI OP1 has in the call queue a number of 3 calls
-Then HMI OP1 has in the waiting list a number of 3 calls
-Then HMI OP1 has in the collapsed area a number of 12 calls
+Then HMI OP1 has in the waiting list a number of 2 calls
+Then HMI OP1 has in the hold list a number of 1 calls
+Then HMI OP1 has in the collapsed area a number of 13 calls
 
-Scenario: 10. Op1 terminates all 15 incoming calls
+Scenario: 10. Op1 terminates all 16 incoming calls
 Meta:
-@TEST_STEP_ACTION: Op1 terminates all 15 incoming calls
+@TEST_STEP_ACTION: Op1 terminates all 16 incoming calls
 @TEST_STEP_REACTION: Op1 has no calls in the call queue
 @TEST_STEP_REF: [CATS-REF: MR4B]
+Then HMI OP1 retrives from hold item 1 from hold call queue list
+Then HMI OP1 terminates item 1 from active call queue list
 Then HMI OP1 answers and terminates a number of 15 calls
 Then HMI OP1 has in the call queue a number of 0 calls
 
