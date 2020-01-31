@@ -30,7 +30,7 @@ class VerifyMissionListNames extends FxScriptTemplate {
         int receivedListSize = list.getItems().size()
 
         for(int i=0;i<receivedListSize;i++){
-        MissionItemData item = (MissionItemData)list.getItems().get(i)
+        MissionItemData item = (MissionItemData) list.getItems().get(i)
             String missionName = item.getMissionName();
             missionsList.add(missionName)
         }
