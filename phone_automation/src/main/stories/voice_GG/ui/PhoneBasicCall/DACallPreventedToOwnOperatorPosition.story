@@ -20,7 +20,7 @@ When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
 
 Scenario: Caller selects target address
 When HMI OP1 clicks on the scroll down button in phonebook for 1 time(s)
-When HMI OP1 selects phonebook entry number: 10
+When HMI OP1 selects phonebook entry number: 13
 Then HMI OP1 verifies that phone book text box displays text OP1 Physical
 
 Scenario: Caller hits phonebook call button

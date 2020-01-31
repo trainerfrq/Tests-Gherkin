@@ -1,6 +1,7 @@
 package scripts.cats.hmi.asserts.Mission
 
 import com.frequentis.c4i.test.model.ExecutionDetails
+import com.frequentis.voice.hmi.component.layout.list.item.mission.MissionItemData
 import javafx.scene.Node
 import javafx.scene.control.Label
 import javafx.scene.control.ListView
@@ -18,25 +19,25 @@ class VerifyMissionListNames extends FxScriptTemplate {
 
         String missionListNames = assertInput(IPARAM_MISSION_LIST_NAMES) as String
 
-        List<String> missionNames = Arrays.asList(missionListNames.split("\\s*,\\s*"));
+        List<String> expectedMissionsList = Arrays.asList(missionListNames.split("\\s*,\\s*"));
 
-        final ListView items = robot.lookup("#missionPopup #missionList").queryFirst()
+        final ListView list = robot.lookup("#missionPopup #missionList").queryFirst()
         evaluate(ExecutionDetails.create("Verify mission list exists")
                 .expected("mission item exists")
-                .success(items.isVisible()));
+                .success(list.isVisible()));
 
-        for(String missionName : missionNames){
-            final Node mission = robot.lookup(missionName).queryFirst()
-            evaluate(ExecutionDetails.create("Verify mission name exists")
-                    .expected("mission name exists in the list")
-                    .success(mission.isVisible()));
-            Label label = (Label)mission;
-            String text = label.getText();
-            evaluate(ExecutionDetails.create("Verify mission label")
-                    .expected(missionName)
-                    .received(text)
-                    .success(text.equals(missionName)));
+        List<String> missionsList = new ArrayList<>()
+        int receivedListSize = list.getItems().size()
 
+        for(int i=0;i<receivedListSize;i++){
+        MissionItemData item = (MissionItemData) list.getItems().get(i)
+            String missionName = item.getMissionName();
+            missionsList.add(missionName)
         }
+
+        evaluate(ExecutionDetails.create("Verify mission lists")
+                .expected(expectedMissionsList.toString())
+                .received(missionsList.toString())
+                .success(missionsList.equals(expectedMissionsList)));
     }
 }
