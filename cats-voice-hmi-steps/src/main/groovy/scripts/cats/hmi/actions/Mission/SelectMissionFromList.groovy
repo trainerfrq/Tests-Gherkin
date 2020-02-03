@@ -19,7 +19,6 @@ class SelectMissionFromList extends FxScriptTemplate {
         String missionName = assertInput(IPARAM_MISSION_NAME) as String
 
         Node missionPopup = robot.lookup("#missionPopup").queryFirst();
-
         evaluate(ExecutionDetails.create("Mission popup was found")
                 .expected("missionPopup is visible")
                 .success(missionPopup.isVisible()));
@@ -27,33 +26,37 @@ class SelectMissionFromList extends FxScriptTemplate {
         WaitTimer.pause(150); //this wait is needed to make sure that mission window is really visible for CATS
 
         SmartListView items = robot.lookup("#missionPopup #missionList").queryFirst()
-
         evaluate(ExecutionDetails.create("Verify mission list exists")
                 .expected("mission item exists")
                 .success(items != null));
 
-        final Node mission = robot.lookup("#" + missionName).queryFirst()
+        final Node scrollDownButton = robot.lookup("#missionPopup #scrollDown").queryFirst()
+        boolean wasMissionFound = false
 
-        evaluate(ExecutionDetails.create("Verify mission " + missionName + " exists in the missions list")
-                .expected(missionName + " mission was found")
-                .success(mission != null));
-
-        boolean notFound = true
-
-        while (notFound) {
-            for (int i = items.getFirstVisibleListElementIndex(); i <= items.getLastVisibleListElementIndex(); i++) {
-                MissionItemData missionData = (MissionItemData) items.getItems().get(i)
-                if (missionData.getMissionName() == missionName) {
-                    notFound = false
-                    robot.clickOn(robot.point(mission))
-                    break
-                }
+        while (!(scrollDownButton.isDisabled())) {
+            wasMissionFound = clickOnMission(items, missionName);
+            if (wasMissionFound) {
+                break
             }
-            if (notFound) {
-                final Node scrollDownButton = robot.lookup("#missionPopup #scrollDown").queryFirst()
+            else {
                 robot.clickOn(robot.point(scrollDownButton))
                 WaitTimer.pause(150)
             }
         }
+        if (!wasMissionFound)
+            clickOnMission(items, missionName)
+    }
+
+    private boolean clickOnMission(SmartListView items, String missionName) {
+        for (int i = items.getFirstVisibleListElementIndex(); i <= items.getLastVisibleListElementIndex(); i++) {
+            MissionItemData missionData = (MissionItemData) items.getItems().get(i)
+
+            if (missionData.getMissionName().equals(missionName)) {
+                final Node mission = robot.lookup("#" + missionName).queryFirst()
+                robot.clickOn(robot.point(mission))
+                return true
+            }
+        }
+        return false
     }
 }
