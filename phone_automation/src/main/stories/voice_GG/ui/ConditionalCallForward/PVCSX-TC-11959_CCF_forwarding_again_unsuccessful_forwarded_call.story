@@ -1,28 +1,22 @@
 Meta:
 @TEST_CASE_VERSION: V9
-@TEST_CASE_NAME: CCF of re forwarded unsuccessful forwarded call
+@TEST_CASE_NAME: CCF forwarding again unsuccessful forwarded call
 @TEST_CASE_DESCRIPTION: As an operator having set a Conditional Call Forward rule with number of rule iterations 1
 and forward condition of this rule, matches call destination of Conditional Call Forward rule number 2
 I want to establish a call that activates the first rule
 So I can verify that the call is forwarded according to the second rule forwarding conditions
-@TEST_CASE_PRECONDITION: Mission GND will have a single role assigned called GND
-Settings:
-1) Conditional call forward rule with parameters:
-- matching call destination: GND-role
-- forward calls on:                               * out of service: no forwarding                             * reject: phonebook_entry                             * no reply: no forwarding
-- number of rule iterations: 1
-2) Conditional call forward rule with parameters:
-- matching call destination: phonebook_entry
-- forward calls on:                               * out of service: skip rule                             * reject: no forwarding                             * no reply: skip rule
-- number of rule iterations: 0
-3) Conditional call forward rule with parameters:
-- matching call destination: phonebook_entry
-- forward calls on:                               * out of service: OP3                             * reject: no forwarding                             * no reply: no forwarding
-- number of rule iterations: 0
-4) Conditional call forward rule with parameters:
-- matching call destination: phonebook_entry
-- forward calls on:                               * out of service: OP1                             * reject: no forwarding                             * no reply: no forwarding
-- number of rule iterations: 0
+@TEST_CASE_PRECONDITION: Settings:
+Mission GND will have a single role assigned called GND
+4 Conditional Call Forward Rules with the following parameters:
+
+| Parameter           |  Rule 1            |  Rule 2          |  Rule 3            |  Rule 4          |
+| - - - - - - - - - - | - - - - - - - -  - | - - - - - - - -- | - - - - - - - -  - | - - -- - - - -- -|
+| Call destination    | GND                | Phonebook_entry  | Phonebook_entry    | Phonebook_entry  |
+| Out of Service      | no forwarding      | skip rule        | OP3                | OP1              |
+| Reject              | Phonebook_entry    | no forwarding    | no forwarding      | no forwarding    |
+| No reply            | no forwarding      | skip rule        | no forwarding      | no forwarding    |
+| No. of iterations   | 1                  | 0                | 0                  | 0                |
+
 OP1 will have the GND mission assigned.
 Phonebook_entry <example: sip:134656@example.com> is Out of Service
 @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if OP3 will receive the call
@@ -45,7 +39,7 @@ Given the call queue items:
 | GND-ROLE2 | sip:507722@example.com |                         | DA/IDA   |
 | ROLE2-GND | <<ROLE2_URI>>          | sip:507722@example.com  | DA/IDA   |
 
-Scenario: Precondition 1- OP1 changes its mission to GND
+Scenario: OP1 changes its mission to GND
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP1 changes current mission to mission <<MISSION_GND_NAME>>
 Then HMI OP1 activates mission
@@ -70,7 +64,7 @@ Then HMI OP1 has the call queue item ROLE2-GND in the waiting list with name lab
 Scenario: 2. OP1 rejects the call
 Meta:
 @TEST_STEP_ACTION: OP1 rejects the call
-@TEST_STEP_REACTION: OP2 has a ringing call to GND and the call is forwarded to phonebook_entry_1. The call will be forwarded again due to skip condition. Number of iterations will not be decremented
+@TEST_STEP_REACTION: OP2 has a ringing call to GND and the call is forwarded to phonebook_entry_1. The call will be forwarded again due to skip condition.
 @TEST_STEP_REF: [CATS-REF: qplp]
 Then HMI OP1 rejects the waiting call queue item from waiting list
 Then HMI OP1 has in the call queue a number of 0 calls

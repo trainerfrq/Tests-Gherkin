@@ -31,6 +31,7 @@ Given the call queue items:
 | OP1-OP2         | <<OP1_URI>>             | <<OP2_URI>>            | DA/IDA     |
 | OP2-OP1         | <<OP2_URI>>             | <<OP1_URI>>            | DA/IDA     |
 | ROLE2-TWR       | <<ROLE2_URI>>           | sip:507721@example.com | DA/IDA     |
+| TWR-OP1         | sip:507721@example.com  | <<OP1_URI>>            | DA/IDA     |
 
 Scenario: 1. OP2 establishes a call to OP1
 Meta:
@@ -98,16 +99,18 @@ Then HMI OP1 has the call queue item OP2-OP1 in state held
 Scenario: 5. OP2 transfers the call to TWR
 Meta:
 @TEST_STEP_ACTION: OP2 transfers the call to TWR
-@TEST_STEP_REACTION: OP1 has a ringing call from OP2's master role, the call in held being terminated. OP2 has an active call to TWR, the call on hold being terminated
+@TEST_STEP_REACTION: OP1 has 2 calls in queue, the call which was on held being failed and another call in ringing state from OP2's master role. OP2 has an active call to TWR, the call on hold being terminated
 @TEST_STEP_REF: [CATS-REF: CLAA]
 When HMI OP2 presses DA key TWR
 Then HMI OP2 has in the call queue a number of 1 calls
 Then HMI OP2 has the DA key TWR in state out_ringing
 
-Scenario: Veryfing OP1 call queue section
-Then HMI OP1 has the DA key OP2 in state terminated
+Scenario: Verifying OP1 call queue section
+Then HMI OP1 has in the call queue a number of 2 calls
+Then HMI OP1 has the call queue item TWR-OP1 in state failed
+Then HMI OP1 has the call queue item TWR-OP1 in the active list with name label <<MISSION_TWR_NAME>>
 Then HMI OP1 has the call queue item ROLE2-TWR in state inc_initiated
-Then HMI OP1 has the DA key <<ROLE_2_NAME>> in state inc_initiated
+Then HMI OP1 has the call queue item ROLE2-TWR in the waiting list with name label <<ROLE_2_NAME>>
 
 Scenario: 6. OP2 terminates the call
 Meta:
@@ -119,10 +122,14 @@ Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP2 has the DA key TWR in state terminated
 
 Scenario: 6.1 The call is terminated also for OP1
+Then HMI OP1 has in the call queue a number of 1 calls
 Then HMI OP1 has the DA key <<ROLE_2_NAME>> in state terminated
+Then HMI OP1 has the call queue item TWR-OP1 in state failed
+Then HMI OP1 has the call queue item TWR-OP1 in the active list with name label <<MISSION_TWR_NAME>>
 
 Scenario: Cleanup - OP1 cleans the calls queue
 Then HMI OP1 presses item 1 from active call queue list
+Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Cleanup - OP2 changes its layout grid tab back
 When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1

@@ -34,7 +34,7 @@ Given the call queue items:
 | OP1-OP2         | <<OP1_URI>>             | <<OP2_URI>>            | DA/IDA     |
 | OP2-OP1         | <<OP2_URI>>             | <<OP1_URI>>            | DA/IDA     |
 
-Scenario: Precondition 1- OP1 changes its mission to TWR
+Scenario: OP1 changes its mission to TWR
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP1 changes current mission to mission <<MISSION_TWR_NAME>>
 Then HMI OP1 activates mission

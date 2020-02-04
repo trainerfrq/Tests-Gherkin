@@ -31,11 +31,11 @@ class SelectMissionFromList extends FxScriptTemplate {
                 .success(items != null));
 
         final Node scrollDownButton = robot.lookup("#missionPopup #scrollDown").queryFirst()
-        boolean wasMissionFound = false
+        boolean wasMissionSelected = false
 
         while (!(scrollDownButton.isDisabled())) {
-            wasMissionFound = clickOnMission(items, missionName);
-            if (wasMissionFound) {
+            wasMissionSelected = clickOnMission(items, missionName);
+            if (wasMissionSelected) {
                 break
             }
             else {
@@ -43,7 +43,7 @@ class SelectMissionFromList extends FxScriptTemplate {
                 WaitTimer.pause(150)
             }
         }
-        if (!wasMissionFound)
+        if (!wasMissionSelected)
             clickOnMission(items, missionName)
     }
 

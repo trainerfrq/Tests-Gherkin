@@ -67,12 +67,12 @@ Meta:
 When HMI OP2 starts a conference using an existing active call
 And waiting for 1 second
 
-Scenario: 3.1 Vefifying OP2 calls queue section
+Scenario: 3.1 Verifying OP2 calls queue section
 Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label CONF
 Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 2 participants
 
-Scenario: 3.2 Vefifying OP1 calls queue section
+Scenario: 3.2 Verifying OP1 calls queue section
 Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
 Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
 Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with info label 2 participants

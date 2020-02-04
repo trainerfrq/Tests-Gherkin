@@ -4,22 +4,23 @@ Meta:
 @TEST_CASE_DESCRIPTION: As an operator having set 2 Conditional Call Forward rules that forward a matching call from one to the other for 5 times
 I want to establish a call that activates a rule
 So I can verify that call is forwarded between the rules for 5 times
-@TEST_CASE_PRECONDITION:  
-Mission APP has a single role assigned called APP with:
-- Call Route Selector: admin
-- Destination: 507723
-Mission SUP TWR has a single role assigned called SUP TWR with:
-- Call Route Selector: default
-- Destination: 507774
-Settings:
-A Conditional Call Forward with:
-- matching call destinations:                           *filter for Destination type: Call Route Selector                           *matching call destination: admin
-- forward calls on:                           *out of service: no call forwarding                           *reject: SUP TWR                           *no reply: no call forwarding
-- number of rule iterations: 5
-A Conditional Call Forward with:
-- matching call destinations:                           *filter for Destination type: SIP URI                           *matching call destination: 50777*@example.com
-- forward calls on:                           *out of service: no call forwarding                           *reject: no call forwarding                           *no reply: APP, within: 7 seconds
-- number of rule iterations: 0
+@TEST_CASE_PRECONDITION: Settings:
+Two missions APP and SUP-TWR have a single role assigned called APP, respectively SUP-TWR with:
+| Parameter                     | APP            | SUP-TWR    |
+| - - - - - - - - - - - - - - - | - - - - -- -  -|- - - - -   |
+| Call Route Selector           | admin          | default    |
+| Destination                   | 507723         | 507774     |
+
+Two Conditional Call Forward rules with the following parameters:
+| Parameter                    |  Rule 1               |  Rule 2             |
+| - - - - - - - - - - - - - - -| - - - - - - -- - --   | - - - - - - - - -   |
+| filter Destination type      | Call Route Selector   | SIP URI             |
+| Call destination             | admin                 | 50777*@example.com  |
+| Out of Service               | no forwarding         | no forwarding       |
+| Reject                       | SUP-TWR               | no forwarding       |
+| No reply                     | no forwarding         | APP, within: 7 sec  |
+| No. of iterations            | 5                     | 0                   |
+
 At the beginning, OP1 has APP role assigned and OP3 has SUP TWR role assigned
 @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if the call is terminated after 5 iterations
 @TEST_CASE_DEVICES_IN_USE: OP1, OP2, OP3
@@ -41,13 +42,13 @@ Given the call queue items:
 | ROLE2-APP       | <<ROLE2_URI>>              | sip:222507723@example.com | DA/IDA     |
 | APP-ROLE2       | sip:222507723@example.com  |                           | DA/IDA     |
 
-Scenario: Precondition 1- OP1 changes its mission to APP
+Scenario: OP1 changes its mission to APP
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP1 changes current mission to mission APP
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
-Scenario: Precondition 2- OP3 changes its mission to SUP TWR
+Scenario: OP3 changes its mission to SUP TWR
 When HMI OP3 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP3 changes current mission to mission SUP-TWR
 Then HMI OP3 activates mission
@@ -99,6 +100,8 @@ Then HMI OP2 has the call queue item APP-ROLE2 in state out_failed
 Scenario: Cleanup - OP2 changes its layout grid tab back and cleans the calls queue
 When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1
 Then HMI OP2 presses item 1 from active call queue list
+Then HMI OP2 has in the call queue a number of 0 calls
+Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Cleanup - OP1 changes its mission back
 When HMI OP1 with layout <<COMMON_LAYOUT>> presses function key MISSIONS

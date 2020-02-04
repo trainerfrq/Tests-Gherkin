@@ -1,21 +1,21 @@
 Meta:
-@TEST_CASE_VERSION: V2
+@TEST_CASE_VERSION: V4
 @TEST_CASE_NAME: CCF with No call Forwarding Condition
-@TEST_CASE_DESCRIPTION: As an operator having set a Conditional Call Forward rule with No call forwarding
+@TEST_CASE_DESCRIPTION: As an operator having set a Conditional Call Forward rule with No call forwarding condition
 I want to establish a call that activates the rule
 So I can verify that the call is not forwarded
-@TEST_CASE_PRECONDITION: Mission APP has a single role assigned called APP
+@TEST_CASE_PRECONDITION: Settings:
+Mission APP has a single role assigned called APP
 Mission SUP-TWR has a single role assigned called SUP-TWR
-Settings:
-A Conditional Call Forward rule is set with:
-- matching call destination: APP
-- forward calls on:                           *out of service: no call forwarding                           *reject: SUP-TWR                           *no reply: no call forwarding
--number of rule iterations: 5
-Settings:
-A Conditional Call Forward rule is set with:
-- matching call destination: SUP-TWR
-- forward calls on:                           *out of service: no call forwarding                           *reject: no call forwarding                           *no reply: APP, within: 15 seconds
--number of rule iterations: 0
+
+| Parameter                    |  Rule 1               |  Rule 2             |
+| - - - - - - - - - - - - - - -| - - - - - - -- - --   | - - - - - - - - -   |
+| Call destination             | APP                   | SUP-TWR             |
+| Out of Service               | no forwarding         | no forwarding       |
+| Reject                       | SUP-TWR               | no forwarding       |
+| No reply                     | no forwarding         | APP, within: 15 sec |
+| No. of iterations            | 5                     | 0                   |
+
 At the beginning, OP1 have APP role assigned and OP3 have SUP-TWR role assigned
 @TEST_CASE_PASS_FAIL_CRITERIA: 
 @TEST_CASE_DEVICES_IN_USE: 
@@ -37,13 +37,13 @@ Given the call queue items:
 | ROLE2-APP       | <<ROLE2_URI>>              | sip:222507723@example.com | DA/IDA     |
 | APP-ROLE2       | sip:222507723@example.com  |                           | DA/IDA     |
 
-Scenario: Precondition 1- OP1 changes its mission to APP
+Scenario: OP1 changes its mission to APP
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP1 changes current mission to mission APP
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
-Scenario: Precondition 2- OP3 changes its mission to SUP TWR
+Scenario: OP3 changes its mission to SUP TWR
 When HMI OP3 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP3 changes current mission to mission SUP-TWR
 Then HMI OP3 activates mission

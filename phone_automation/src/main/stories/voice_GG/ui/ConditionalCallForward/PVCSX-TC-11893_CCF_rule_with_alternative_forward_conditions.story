@@ -40,7 +40,7 @@ When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 3
 When HMI OP2 presses DA key TWR
 Then HMI OP2 has the call queue item TWR-ROLE2 in state out_ringing
 
-Scenario: 1.1 OP1 receives the call
+Scenario: 1.1 Call is forwarded to OP1
 Then HMI OP1 has the call queue item ROLE2-TWR in state inc_initiated
 
 Scenario: 1.2 Verifying call queue section
