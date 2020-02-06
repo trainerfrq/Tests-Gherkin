@@ -17,11 +17,14 @@
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
+import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
+import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.Monitoring.ClickOnMonitoringPopupButton;
 import scripts.cats.hmi.actions.Monitoring.SelectMonitoringTableEntry;
+import scripts.cats.hmi.actions.Monitoring.TerminateRemainingMonitoringCalls;
 import scripts.cats.hmi.asserts.Monitoring.VerifyMonitoringPopupButtonState;
 import scripts.cats.hmi.asserts.Monitoring.VerifyMonitoringTableEntryValue;
 import scripts.cats.hmi.asserts.Monitoring.VerifyMonitoringTableSize;
@@ -77,5 +80,25 @@ public class MonitoringUISteps extends AutomationSteps
                 profileScriptResolver().map( ClickOnMonitoringPopupButton.class, BookableProfileName.javafx ),
                 assertProfile( profileName ) )
                 .input( ClickOnMonitoringPopupButton.IPARAM_BUTTON_NAME, buttonName ) );
+    }
+
+    @Then("$profileName with layout $layout terminates active monitoring calls displayed on function key $target")
+    public void terminateAllMonitoringCalls( final String profileName, final String layout, final String target)
+    {
+        String key = layout + "-" + target;
+        FunctionKey functionKey = retrieveFunctionKey(key);
+
+        evaluate( remoteStep( "Verify if there are remaining Monitoring calls and terminate them" )
+                .scriptOn( profileScriptResolver().map( TerminateRemainingMonitoringCalls.class,
+                        BookableProfileName.javafx ), assertProfile( profileName ) )
+                .input( TerminateRemainingMonitoringCalls.IPARAM_MENU_BUTTON_ID, "terminate_monitoring_calls_menu_button" )
+                .input( TerminateRemainingMonitoringCalls.IPARAM_FUNCTION_KEY_ID, functionKey.getId() ));
+    }
+
+    private FunctionKey retrieveFunctionKey(final String key) {
+        final FunctionKey functionKey = getStoryListData(key, FunctionKey.class);
+        evaluate(localStep("Check Function Key").details(ExecutionDetails.create("Verify Function key is defined")
+                .usedData("key", key).success(functionKey.getId() != null)));
+        return functionKey;
     }
 }

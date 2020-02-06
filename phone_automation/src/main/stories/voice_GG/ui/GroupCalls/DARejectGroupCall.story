@@ -28,7 +28,7 @@ Then HMI OP3 has the call queue item OP2-Role1 in state inc_initiated
 
 Scenario: Op1 rejects incoming call
 !-- TODO QXVP-13447 : re-enable this test after bug is fixed
-Then HMI OP1 rejects the waiting call queue item
+Then HMI OP1 rejects the waiting call queue item from waiting list
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Verify call is still ringing for Op3

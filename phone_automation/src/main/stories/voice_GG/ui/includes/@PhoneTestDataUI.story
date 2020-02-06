@@ -43,6 +43,9 @@ Given the DA keys:
 | HMI OP2 | OP3(as Mission1)           | <<PhyOpPos1_CWP3>>                   |
 | HMI OP2 | RoleEmergency(as Mission4) | <<PhyOpPos2_RoleEmergency_MISSION4>> |
 | HMI OP2 | RoleEmergency              | <<PhyOpPos2_RoleEmergency>>          |
+| HMI OP2 | TWR                        | <<ACTIVE2_TWR>>                      |
+| HMI OP2 | GND                        | <<ACTIVE2_GND>>                      |
+| HMI OP2 | APP                        | <<ACTIVE2_APP>>                      |
 | HMI OP3 | OP1                        | <<PhyOpPos3_CWP1>>                   |
 | HMI OP3 | OP2                        | <<PhyOpPos3_CWP2>>                   |
 | HMI OP3 | ROLE1                      | <<PhyOpPos3_ROLE1>>                  |
@@ -51,7 +54,8 @@ Given the DA keys:
 | HMI OP3 | IA - OP2                   | <<IA_PhyOpPos3_CWP2>>                |
 | HMI OP3 | <<ROLE_1_NAME>>            | <<ACTIVE3_MISSION1>>                 |
 | HMI OP3 | OP1-urgent                 | <<PhyOpPos3_CWP1_urgent>>            |
-
+| HMI OP3 | TWR                        | <<ACTIVE3_TWR>>                      |
+| HMI OP3 | IA - TWR                   | <<IA_ACTIVE3_TWR>>                   |
 Scenario: Define grid widget keys
 Given the grid widget keys:
 | layout              | id                   |
@@ -59,6 +63,7 @@ Given the grid widget keys:
 | <<LAYOUT_MISSION2>> | <<GRID_ID_MISSION2>> |
 | <<LAYOUT_MISSION3>> | <<GRID_ID_MISSION3>> |
 | <<LAYOUT_MISSION4>> | <<GRID_ID_MISSION4>> |
+| <<COMMON_LAYOUT>>   | <<GRID_ID_COMMON_LAYOUT>> |
 
 Scenario: Define function keys
 Given the function keys:
@@ -95,6 +100,14 @@ Given the function keys:
 | <<LAYOUT_MISSION4>> | SETTINGS    | <<SETTINGS_ID_MISSION4>>   |
 | <<LAYOUT_MISSION4>> | MONITORING  | <<MONITORING_ID_MISSION4>> |
 | <<LAYOUT_MISSION4>> | EDIT        | <<EDIT_ID_MISSION4>>       |
+| <<COMMON_LAYOUT>>   | PHONEBOOK   | <<PHONEBOOK_ID>>           |
+| <<COMMON_LAYOUT>>   | CALLHISTORY | <<CALLHISTORY_ID>>         |
+| <<COMMON_LAYOUT>>   | MISSIONS    | <<MISSIONS_ID>>            |
+| <<COMMON_LAYOUT>>   | CALLFORWARD | <<CALLFORWARD_ID>>         |
+| <<COMMON_LAYOUT>>   | LOUDSPEAKER | <<LOUDSPEAKER_ID>>         |
+| <<COMMON_LAYOUT>>   | SETTINGS    | <<SETTINGS_ID_TWR_MISSION>>   |
+| <<COMMON_LAYOUT>>   | MONITORING  | <<MONITORING_ID_TWR_MISSION>> |
+| <<COMMON_LAYOUT>>   | EDIT        | <<EDIT_ID_TWR_MISSION>>       |
 
 Scenario: Define status key
 Given the status key:

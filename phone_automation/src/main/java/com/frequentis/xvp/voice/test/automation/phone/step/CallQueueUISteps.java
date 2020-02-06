@@ -23,9 +23,11 @@ import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
 import org.jbehave.core.annotations.Aliases;
+import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+import org.jbehave.core.annotations.Named;
 import scripts.cats.hmi.actions.CallQueue.CleanUpCallQueue;
 import scripts.cats.hmi.actions.CallQueue.CleanUpCallQueueByPosition;
 import scripts.cats.hmi.actions.CallQueue.CleanUpCallQueueCollapsed;
@@ -135,8 +137,9 @@ public class CallQueueUISteps extends AutomationSteps
 
 
    @Then("$profileName has the call queue item $callQueueItem in state $state")
-   public void verifyPriorityCallQueueItem( final String profileName, final String namedCallQueueItem,
-         final String state )
+   @Alias("$profileName has the call queue item <callQueueItem> in state $state")
+   public void verifyPriorityCallQueueItem( @Named("profileName") final String profileName, @Named("callQueueItem") final String namedCallQueueItem,
+        @Named("state") final String state )
    {
       CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
 
@@ -182,8 +185,9 @@ public class CallQueueUISteps extends AutomationSteps
 
 
    @Then("$profileName has the call queue item $callQueueItem in the $callQueueList list with $labelType label $label")
-   public void verifyCallQueueItemLabelActiveList( final String profileName, final String namedCallQueueItem,
-         final String callQueueList, final String labelType, final String label )
+   @Alias("$profileName has the call queue item <callQueueItem> in the $callQueueList list with $labelType label <label>")
+   public void verifyCallQueueItemLabelActiveList( @Named("profileName") final String profileName, @Named("callQueueItem") final String namedCallQueueItem,
+        @Named("callQueueList") final String callQueueList, @Named("labelType") final String labelType, @Named("label") final String label )
    {
       waitForSeconds( 1 );
       CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
@@ -243,8 +247,9 @@ public class CallQueueUISteps extends AutomationSteps
    @Aliases(values = { "$profileName cancels the call queue item $callQueueItem",
          "$profileName retrieves from hold the call queue item $callQueueItem",
          "$profileName terminates the call queue item $callQueueItem",
+         "$profileName terminates the call queue item <callQueueItem>",
          "$profileName presses the call queue item $callQueueItem" })
-   public void clickCallQueueItem( final String profileName, final String namedCallQueueItem )
+   public void clickCallQueueItem( @Named("profileName") final String profileName, @Named("callQueueItem") final String namedCallQueueItem )
    {
       CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
 
@@ -346,14 +351,21 @@ public class CallQueueUISteps extends AutomationSteps
    }
 
 
-   @Then("$profileName rejects the waiting call queue item")
-   public void rejectWaitingCall( final String profileName )
+   @Then("$profileName rejects the waiting call queue item from $listType list")
+   public void rejectWaitingCall( final String profileName, final String listType )
    {
+      String listName ="";
+      if(listType.toLowerCase().contains("priority")){
+         listName = PRIORITY_LIST_NAME;
+      }
+      else{
+         listName = WAITING_LIST_NAME;
+      }
       evaluate( remoteStep( "Reject waiting call queue item" )
             .scriptOn( profileScriptResolver().map( DragAndClickOnMenuButtonFirstCallQueueItem.class,
                   BookableProfileName.javafx ), assertProfile( profileName ) )
             .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_MENU_BUTTON_ID, DECLINE_CALL_MENU_BUTTON_ID )
-            .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_LIST_NAME, WAITING_LIST_NAME ) );
+            .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_LIST_NAME, listName ) );
    }
 
 
