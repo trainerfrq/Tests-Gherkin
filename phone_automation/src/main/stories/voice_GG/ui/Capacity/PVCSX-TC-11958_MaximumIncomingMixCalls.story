@@ -1,20 +1,20 @@
 Meta: @TEST_CASE_VERSION: V3
-	  @TEST_CASE_NAME: MaximumIncomingMixCalls
-	  @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls (DA, IA, Position Monitoring calls) I want to verify that all calls are received and take into account the audio resources limitation
-	  @TEST_CASE_PRECONDITION: System is configured to allow the maximum number of calls (16).
-	  System is configured to allow maximum audio resources (16). Op2 active mission has a role configured with maximum allowed number of incoming position monitoring calls, incoming IA calls and incoming DA calls.
-	  @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when audio resources limitation is take into account and calls are visible on the operator position, but not 16 calls at once, because one IA call allocates 2 audio resources.
-	  @TEST_CASE_DEVICES_IN_USE: Op2, CATS tool is used to simulate 16 external calls
-	  @TEST_CASE_ID: PVCSX-TC-11958
-	  @TEST_CASE_GLOBAL_ID: GID-5165662
-	  @TEST_CASE_API_ID: 17778245
+@TEST_CASE_NAME: MaximumIncomingMixCalls
+@TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls (DA, IA, Position Monitoring calls) I want to verify that all calls are received and take into account the audio resources limitation
+@TEST_CASE_PRECONDITION: System is configured to allow the maximum number of calls (16).
+System is configured to allow maximum audio resources (16). Op2 active mission has a role configured with maximum allowed number of incoming position monitoring calls, incoming IA calls and incoming DA calls.
+      @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when audio resources limitation is take into account and calls are visible on the operator position, but not 16 calls at once, because one IA call allocates 2 audio resources.
+      @TEST_CASE_DEVICES_IN_USE: Op2, CATS tool is used to simulate 16 external calls
+@TEST_CASE_ID: PVCSX-TC-11958
+@TEST_CASE_GLOBAL_ID: GID-5165662
+@TEST_CASE_API_ID: 17778245
 
 Scenario: Booking profiles
 Given booked profiles:
-| profile | group          | host           | identifier |
-| javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
-| voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
+| profile             | group          | host           | identifier |
+| javafx              | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
+| voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Create endpoint configuration
 Given the SIP header configuration named SipConfigIACall:
@@ -174,6 +174,7 @@ Then wait for 2 seconds
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: 4. Have 16 external calls that call Op2. Calls are done in this order: 8 DA incoming calls, 3 IA incoming calls, 5 incoming position monitoring calls.
+
 Meta: @TEST_STEP_ACTION: Have 16 external calls that call Op2. Calls are done in this order: 8 DA incoming calls, 3 IA incoming calls, 5 incoming position monitoring calls.
 @TEST_STEP_REACTION: Op2 receives: 8 DA incoming calls, 3 IA incoming calls, 2 incoming position monitoring calls
 @TEST_STEP_REF: [CATS-REF: VUKH]
@@ -224,6 +225,7 @@ Then wait for 2 seconds
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: 7. Have 16 external calls that call Op2. Calls are done in this order:3 IA incoming calls, 5 incoming position monitoring calls,  8 DA incoming calls.
+
 Meta: @TEST_STEP_ACTION: Have 16 external calls that call Op2. Calls are done in this order:3 IA incoming calls, 5 incoming position monitoring calls,  8 DA incoming calls.
 @TEST_STEP_REACTION: Op2 receives: 3 IA incoming calls, 5 incoming position monitoring calls, 6 DA incoming calls.
 @TEST_STEP_REF: [CATS-REF: 26Lc]

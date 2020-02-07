@@ -1,8 +1,8 @@
 Scenario: Booking profiles
 Given booked profiles:
-| profile   | group          | host       | identifier |
-| websocket | hmi            | <<CO3_IP>> |            |
-| voip      | <<systemName>> | <<CO3_IP>> | VOIP       |
+| profile             | group          | host       | identifier |
+| websocket           | hmi            | <<CO3_IP>> |            |
+| voip/<<systemName>> | <<systemName>> | <<CO3_IP>> | VOIP       |
 
 Scenario: Open Web Socket Client connections
 Given named the websocket configurations:

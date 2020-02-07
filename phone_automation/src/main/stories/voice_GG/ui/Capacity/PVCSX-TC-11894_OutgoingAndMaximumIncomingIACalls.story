@@ -1,20 +1,20 @@
 Meta: @TEST_CASE_VERSION: V5
-	  @TEST_CASE_NAME: OutgoingAndMaximumIncomingIACalls
-	  @TEST_CASE_DESCRIPTION: As an operator having an outgoing IA call I want to verify that I can receive 3 incoming IA calls
-	  @TEST_CASE_PRECONDITION: Op1 active mission has a role configured with maximum allowed number of incoming IA calls
-	  @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when all 3 IA calls are visible on the operator position and the outgoing call is still connected
-	  @TEST_CASE_DEVICES_IN_USE: Op1, Op2, Op3, CATS tool is used to simulate 3 external IA calls
-	  @TEST_CASE_ID: PVCSX-TC-11894
-	  @TEST_CASE_GLOBAL_ID: GID-5155642
-	  @TEST_CASE_API_ID: 17704058
+@TEST_CASE_NAME: OutgoingAndMaximumIncomingIACalls
+@TEST_CASE_DESCRIPTION: As an operator having an outgoing IA call I want to verify that I can receive 3 incoming IA calls
+@TEST_CASE_PRECONDITION: Op1 active mission has a role configured with maximum allowed number of incoming IA calls
+@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when all 3 IA calls are visible on the operator position and the outgoing call is still connected
+@TEST_CASE_DEVICES_IN_USE: Op1, Op2, Op3, CATS tool is used to simulate 3 external IA calls
+@TEST_CASE_ID: PVCSX-TC-11894
+@TEST_CASE_GLOBAL_ID: GID-5155642
+@TEST_CASE_API_ID: 17704058
 
 Scenario: Booking profiles
 Given booked profiles:
-| profile | group          | host           | identifier |
-| javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
-| voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
+| profile             | group          | host           | identifier |
+| javafx              | hmi            | <<CLIENT1_IP>> | HMI OP1    |
+| javafx              | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
+| voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Create endpoint configuration
 Given the SIP header configuration named SipConfig:

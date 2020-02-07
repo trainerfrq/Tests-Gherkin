@@ -12,9 +12,9 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key                  | source                         | target                         | callType |
-| OP2-RoleEmergency    | <<OP2_URI>>                    | <<ROLE_EMERGENCY_URI>>         | DA/IDA   |
-| RoleEmergency-OP2    | <<ROLE_EMERGENCY_URI>>         | <<OP2_URI>>                    | DA/IDA   |
+| key               | source                 | target                 | callType |
+| OP2-RoleEmergency | <<OP2_URI>>            | <<ROLE_EMERGENCY_URI>> | DA/IDA   |
+| RoleEmergency-OP2 | <<ROLE_EMERGENCY_URI>> | <<OP2_URI>>            | DA/IDA   |
 
 Scenario: Verify operator mission
 Then HMI OP2 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_2_NAME>>

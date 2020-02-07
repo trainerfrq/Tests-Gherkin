@@ -1,5 +1,4 @@
-Meta:
-@TEST_CASE_VERSION: V9
+Meta: @TEST_CASE_VERSION: V9
 @TEST_CASE_NAME: MaximumIncomingDACalls
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls and another operator attempts to call my position I want to verify that the operator will not be able to call my position only after one of the waiting calls is terminated
 @TEST_CASE_PRECONDITION:
@@ -11,11 +10,11 @@ Meta:
 
 Scenario: Booking profiles
 Given booked profiles:
-| profile | group          | host           | identifier |
-| javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
-| voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
+| profile             | group          | host           | identifier |
+| javafx              | hmi            | <<CLIENT1_IP>> | HMI OP1    |
+| javafx              | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
+| voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Create sip phone
 Given SipContacts group SipContact:
@@ -41,13 +40,12 @@ Given phones for SipContact are created
 
 Scenario: Define call queue items
 Given the call queue items:
-| key         | source      | target                 | callType |
-| OP1-OP2     | <<OP1_URI>> | <<OP2_URI>>            | IA       |
-| OP2-OP1     | <<OP2_URI>> | <<OP1_URI>>            | IA       |
+| key     | source      | target      | callType |
+| OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | IA       |
+| OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | IA       |
 
 Scenario: 1. Have 16 external DA calls that call Op1
-Meta:
-@TEST_STEP_ACTION: Have 16 external DA calls that call Op1
+Meta: @TEST_STEP_ACTION: Have 16 external DA calls that call Op1
 @TEST_STEP_REACTION: Op1 has 16 incoming calls
 @TEST_STEP_REF: [CATS-REF: 2WMl]
 When SipContact calls SIP URI <<OPVOICE1_PHONE_URI>>
@@ -59,8 +57,7 @@ Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 13 calls
 
 Scenario: 2. Op2 attempts to do an IA call to Op1
-Meta:
-@TEST_STEP_ACTION: Op2 attempts to do an IA call to Op1
+Meta: @TEST_STEP_ACTION: Op2 attempts to do an IA call to Op1
 @TEST_STEP_REACTION: Op2 attempt to call fails
 @TEST_STEP_REF: [CATS-REF: gK2M]
 When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
@@ -74,8 +71,7 @@ Scenario: 2.2 Op2 terminates failed call
 When HMI OP2 presses IA key IA - OP1
 
 Scenario: 3. Op1 answers one call and verifies the call queue
-Meta:
-@TEST_STEP_ACTION: Op1 answers one call and verifies the call queue
+Meta: @TEST_STEP_ACTION: Op1 answers one call and verifies the call queue
 @TEST_STEP_REACTION: The call queue has 1 active call, 3 calls visible in the waiting call queue and 12 waiting calls collapsed
 @TEST_STEP_REF: [CATS-REF: jUBb]
 Then HMI OP1 answers item 1 from waiting call queue list
@@ -87,8 +83,7 @@ Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 12 calls
 
 Scenario: 4. Op1 terminates call and verifies queue
-Meta:
-@TEST_STEP_ACTION: Op1 terminates call and verifies queue
+Meta: @TEST_STEP_ACTION: Op1 terminates call and verifies queue
 @TEST_STEP_REACTION: The call queue has 0 active call, 3 calls visible in the waiting call queue and 12 waiting calls collapsed
 @TEST_STEP_REF: [CATS-REF: 4NP6]
 Then HMI OP1 terminates item 1 from active call queue list
@@ -100,8 +95,7 @@ Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 12 calls
 
 Scenario: 5. Op2 attempts to do an IA call to Op1
-Meta:
-@TEST_STEP_ACTION: Op2 attempts to do an IA call to Op1
+Meta: @TEST_STEP_ACTION: Op2 attempts to do an IA call to Op1
 @TEST_STEP_REACTION: IA call is done succesfully
 @TEST_STEP_REF: [CATS-REF: 1yKl]
 When HMI OP2 presses IA key IA - OP1
@@ -109,8 +103,7 @@ Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP1 has the IA key IA - OP2 in state connected
 
 Scenario: 6. Op1 answers the IA call
-Meta:
-@TEST_STEP_ACTION: Op1 answers the IA call
+Meta: @TEST_STEP_ACTION: Op1 answers the IA call
 @TEST_STEP_REACTION: Op1 and Op2 have an IA duplex call
 @TEST_STEP_REF: [CATS-REF: juJb]
 When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
@@ -127,8 +120,7 @@ Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 12 calls
 
 Scenario: 7. Op1 terminates IA call
-Meta:
-@TEST_STEP_ACTION: Op1 terminates IA call
+Meta: @TEST_STEP_ACTION: Op1 terminates IA call
 @TEST_STEP_REACTION: IA call changes from a full duplex to a half duplex call
 @TEST_STEP_REF: [CATS-REF: v7MY]
 When HMI OP1 presses IA key IA - OP2
@@ -138,8 +130,7 @@ Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction rx_monitore
 Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction tx_monitored
 
 Scenario: 8. Op2 terminates IA call
-Meta:
-@TEST_STEP_ACTION: Op2 terminates IA call
+Meta: @TEST_STEP_ACTION: Op2 terminates IA call
 @TEST_STEP_REACTION: IA call is terminated
 @TEST_STEP_REF: [CATS-REF: Ji1W]
 When HMI OP2 presses IA key IA - OP1
@@ -149,8 +140,7 @@ Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP1 has in the active list a number of 0 calls
 
 Scenario: 9. All external calls are terminated by Op1
-Meta:
-@TEST_STEP_ACTION: All external calls are terminated by Op1
+Meta: @TEST_STEP_ACTION: All external calls are terminated by Op1
 @TEST_STEP_REACTION: Op1 has 0 calls in the queue
 @TEST_STEP_REF: [CATS-REF: CmEE]
 GivenStories: voice_GG/ui/includes/@CleanupCollapsedCallQueue.story,

@@ -5,11 +5,11 @@ So I can add participants to the call from phone book
 
 Scenario: Booking profiles
 Given booked profiles:
-| profile | group          | host           | identifier |
-| javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
-| voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
+| profile             | group          | host           | identifier |
+| javafx              | hmi            | <<CLIENT1_IP>> | HMI OP1    |
+| javafx              | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
+| voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Define call queue items
 Given the call queue items:
@@ -77,7 +77,7 @@ When HMI OP2 initiates a call from the phonebook
 When SipContact answers incoming calls
 
 Scenario: Op2 verifies conference participants list
- @REQUIREMENTS:GID-3229804
+		  @REQUIREMENTS:GID-3229804
 When HMI OP2 opens the conference participants list
 Then HMI OP2 verifies that conference participants list contains 3 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
