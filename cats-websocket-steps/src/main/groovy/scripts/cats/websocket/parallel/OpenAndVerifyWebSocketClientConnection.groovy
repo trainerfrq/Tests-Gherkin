@@ -13,6 +13,7 @@ class OpenAndVerifyWebSocketClientConnection extends WebsocketScriptTemplate {
 
     public static final String IPARAM_ENDPOINTCONFIGURATION = "endpoint-configuration";
     public static final String IPARAM_MULTIPLEENDPOINTNAMES = "multiple-endpointnames";
+    public static final String IPARAM_STATE = "state";
 
     public static final String OPARAM_RECEIVEDMESSAGE = "received_message";
 
@@ -20,7 +21,7 @@ class OpenAndVerifyWebSocketClientConnection extends WebsocketScriptTemplate {
     protected void script() {
 
 // get the target endpoint names. Can be null --> default websocket endpoint name is used on creation.
-        List<String> endpointNames = assertInput(IPARAM_MULTIPLEENDPOINTNAMES) as List;
+        List<String> endpointNames = assertInput(IPARAM_MULTIPLEENDPOINTNAMES) as List<String>;
 
         if (endpointNames != null) {
             if (endpointNames.size() > 0) {
@@ -44,18 +45,16 @@ class OpenAndVerifyWebSocketClientConnection extends WebsocketScriptTemplate {
         }
 
         final ClientEndpointConfiguration config = assertInput(IPARAM_ENDPOINTCONFIGURATION) as ClientEndpointConfiguration;
+        String state = assertInput(IPARAM_STATE) as String;
         evaluate(ExecutionDetails.create("Reading web socket configuration")
                 .expected("Input parameters can be read")
                 .received("Created config: " + config)
                 .success(config != null))
         Integer count = 1;
         for (String endpointName : endpointNames) {
-
-            int i = 1
-            while (!waitForState(endpointName, config)){
+            while (!waitForState(endpointName, config, state)){
                 WaitTimer.pause(250);
-                i++
-                if(waitForState(endpointName, config) || i > 15)
+                if(waitForState(endpointName, config, state))
                     break
             }
             ClientEndpoint webSocketEndpoint = createWebSocketEndpoint(endpointName, config);
@@ -95,7 +94,7 @@ class OpenAndVerifyWebSocketClientConnection extends WebsocketScriptTemplate {
         }
     }
 
-    protected boolean waitForState(String endpointName, ClientEndpointConfiguration config) {
+    protected boolean waitForState(String endpointName, ClientEndpointConfiguration config, String state) {
 
         //open websocket connection
         ClientEndpoint webSocketEndpoint = createWebSocketEndpoint(endpointName, config);
@@ -103,14 +102,14 @@ class OpenAndVerifyWebSocketClientConnection extends WebsocketScriptTemplate {
         TextMessage message = buffer.pollTextMessage();
         String shortenMessage = reportMessage(message.getContent())
         record(ExecutionDetails.create("Redundancy state")
-                .expected("Redundancy state is Active")
+                .expected("Redundancy state is"+state)
                 .received(shortenMessage)
                 .success(true))
 
         //close websocket connection
         webSocketEndpoint.dispose();
 
-        return shortenMessage.contains("Active");
+        return shortenMessage.contains(state);
     }
 
     public static String reportMessage(String message) {

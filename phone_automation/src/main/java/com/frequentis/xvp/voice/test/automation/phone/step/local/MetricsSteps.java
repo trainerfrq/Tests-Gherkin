@@ -72,9 +72,9 @@ public class MetricsSteps extends AutomationSteps {
         );
     }
 
-    @When("a timer named $timername is stopped")
-    @Then("a timer named $timername is stopped")
-    public void whenTimerIsStopped(final String timername) {
+    @When("timer $timername is stopped and verified that is lower then $seconds seconds")
+    @Then("timer $timername is stopped and verified that is lower then $seconds seconds")
+    public void whenTimerIsStopped(final String timername, final Integer seconds) {
         LocalStep step = localStep("Stopping a timing");
         TimingSensor.Context context = timingContextMap.get(timername);
         if (context != null) {
@@ -83,7 +83,7 @@ public class MetricsSteps extends AutomationSteps {
                     .expected("Timing context found and stopped")
                     .received("Success")
                     .receivedData("timeout", timing)
-                    .success(true));
+                    .success(timing<=seconds*1000));
             final String responseContent = Long.toString(timing);
             final Path path = Paths.get(getCatsResourcesFolderPath(), timername);
 

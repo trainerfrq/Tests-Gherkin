@@ -3,12 +3,14 @@ As a callee operator using Op Voice service immediately after service startup
 I want to make a phone call
 So I can verify that the phone call is made even after 15 seconds from the service startup
 
-Meta: @AfterStory: ../includes/@StoreMetrics.story
-
 Scenario: Booking profiles
 Given booked profiles:
 | profile   | group | host       |
 | websocket | hmi   | <<CO3_IP>> |
+
+Scenario: Preparation step: kill and start op voice instances on host 1, in order to make sure that op voice instances on host 2 are the active ones
+GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost1.story
+Then wait for 70 seconds
 
 Scenario: Open Web Socket Client connections
 GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost2.story
@@ -19,18 +21,19 @@ Given named the websocket configurations:
 | WS_Config-3 | <<OPVOICE2_WS.URI>> | 1000             |
 | WS_Config-4 | <<OPVOICE4_WS.URI>> | 1000             |
 
-Scenario: Open Web Socket Client connections
+Scenario: Open Web Socket Client connection to op voice first instance on host 1
 When a timer named failoverTimerWS1 is started
 Given it is known what op voice instances are Active, the websocket configuration is applied:
 | key | profile-name | websocket-config-name |
 | WS1 | WEBSOCKET 1  | WS_Config-1           |
-Then a timer named failoverTimerWS1 is stopped
+Then timer failoverTimerWS1 is stopped and verified that is lower then <<opVoiceFailoverTime>> seconds
 
+Scenario: Open Web Socket Client connection to op voice second instance on host 1
 When a timer named failoverTimerWS2 is started
 Given it is known what op voice instances are Active, the websocket configuration is applied:
 | key | profile-name | websocket-config-name |
 | WS2 | WEBSOCKET 1  | WS_Config-2           |
-Then a timer named failoverTimerWS2 is stopped
+Then timer failoverTimerWS2 is stopped and verified that is lower then <<opVoiceFailoverTime>> seconds
 
 Scenario: Create the message buffers for missions
 When WS1 opens the message buffer for message type missionsAvailableIndication named MissionsAvailableIndicationBuffer1
