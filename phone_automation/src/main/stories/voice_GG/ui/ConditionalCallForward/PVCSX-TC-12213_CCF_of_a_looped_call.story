@@ -39,18 +39,18 @@ Given booked profiles:
 Scenario: Define call queue items
 Given the call queue items:
 | key             | source                     | target                    | callType   |
-| ROLE2-APP       | <<ROLE2_URI>>              | sip:222507723@example.com | DA/IDA     |
-| APP-ROLE2       | sip:222507723@example.com  |                           | DA/IDA     |
+| ROLE2-APP       | <<ROLE2_URI>>              | sip:999507723@example.com | DA/IDA     |
+| APP-ROLE2       | sip:999507723@example.com  |                           | DA/IDA     |
 
 Scenario: OP1 changes its mission to APP
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP1 changes current mission to mission APP
+Then HMI OP1 changes current mission to mission <<MISSION_APP_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: OP3 changes its mission to SUP TWR
 When HMI OP3 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP3 changes current mission to mission SUP-TWR
+Then HMI OP3 changes current mission to mission <<MISSION_SUP-TWR_NAME>>
 Then HMI OP3 activates mission
 Then waiting for 5 seconds
 
@@ -72,13 +72,13 @@ Scenario: 2. OP1 rejects the call and OP2 waits for 7 seconds
 Then HMI OP1 rejects the waiting call queue item from waiting list
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP2 has the call queue item APP-ROLE2 in state out_ringing
-Then HMI OP2 has the call queue item APP-ROLE2 in the active list with name label APP
+Then HMI OP2 has the call queue item APP-ROLE2 in the active list with name label <<MISSION_APP_NAME>>
 Then HMI OP3 has the call queue item ROLE2-APP in state inc_initiated
 Then HMI OP3 has the call queue item ROLE2-APP in the waiting list with name label <<ROLE_2_NAME>>
 When waiting for 7 seconds
 Then HMI OP3 has in the call queue a number of 0 calls
 Then HMI OP2 has the call queue item APP-ROLE2 in state out_ringing
-Then HMI OP2 has the call queue item APP-ROLE2 in the active list with name label APP
+Then HMI OP2 has the call queue item APP-ROLE2 in the active list with name label <<MISSION_APP_NAME>>
 Then HMI OP1 has the call queue item ROLE2-APP in state inc_initiated
 Then HMI OP1 has the call queue item ROLE2-APP in the waiting list with name label <<ROLE_2_NAME>>
 
@@ -104,13 +104,13 @@ Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Cleanup - OP1 changes its mission back
-When HMI OP1 with layout <<COMMON_LAYOUT>> presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_APP>> presses function key MISSIONS
 Then HMI OP1 changes current mission to mission <<MISSION_1_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: Cleanup - OP3 changes its mission back
-When HMI OP3 with layout <<COMMON_LAYOUT>> presses function key MISSIONS
+When HMI OP3 with layout <<LAYOUT_SUP-TWR>> presses function key MISSIONS
 Then HMI OP3 changes current mission to mission <<MISSION_3_NAME>>
 Then HMI OP3 activates mission
 Then waiting for 5 seconds

@@ -35,6 +35,7 @@ import scripts.cats.hmi.asserts.Settings.Maintenance.VerifyConnectionsNumber;
 import scripts.cats.hmi.asserts.Settings.Maintenance.VerifyServiceVersion;
 import scripts.cats.hmi.asserts.VerifyLoadingOverlayIsVisible;
 import scripts.cats.hmi.asserts.VerifyPopupVisible;
+import scripts.cats.hmi.asserts.VerifyItemVisibility;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -206,6 +207,30 @@ public class GGBasicUISteps extends AutomationSteps
                         assertProfile(profileName))
                 .input(VerifyServiceVersion.IPARAM_SERVICE_NAME, serviceName)
                 .input(VerifyServiceVersion.IPARAM_SERVICE_VERSION, serviceVersion));
+    }
+
+    @Then("$profileName verifies that section $label is $visible in the $displaySection")
+    public void verifyItemVisibilityIntoDisplaySection(final String profileName, final String label, final String visibility, final String displaySection)
+    {
+        String searchedLabel = label + "Label";
+        boolean isVisible = true;
+
+        StatusKey displayKey = retrieveStatusKey(profileName, displaySection);
+
+        if(visibility.contains("not")){
+            isVisible = false;
+        }
+
+        if(label.contains("clock")){
+            searchedLabel = "timeLabelContainer";
+        }
+
+        evaluate(remoteStep(" Verifying " + label + " field visibility in " + displaySection)
+                .scriptOn(profileScriptResolver().map(VerifyItemVisibility.class, BookableProfileName.javafx),
+                        assertProfile(profileName))
+                .input(VerifyItemVisibility.IPARAM_DISPLAY_PANEL_KEY, displayKey.getId())
+                .input(VerifyItemVisibility.IPARAM_DISPLAYED_LABEL, searchedLabel)
+                .input(VerifyItemVisibility.IPARAM_IS_VISIBLE, isVisible));
     }
 
 
