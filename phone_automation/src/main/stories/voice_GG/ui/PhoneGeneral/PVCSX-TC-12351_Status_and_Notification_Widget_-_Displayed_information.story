@@ -252,6 +252,5 @@ Then HMI OP1 has in the NOTIFICATION DISPLAY section connection the state CONNEC
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
-GivenStories: voice_GG/ui/includes/@CleanupUIWindows.story,
-voice_GG/ui/includes/@CleanupStory.story
+GivenStories: voice_GG/ui/includes/@CleanupStory.story
 Then waiting until the cleanup is done

@@ -19,6 +19,7 @@ class VerifyItemVisibility extends FxScriptTemplate {
         def displayedItem = robot.lookup("#" + key + " #" + label).queryFirst()
         //when date and time are both not visible, parent node is not created. displayDate is an aux variable for double check
         def displayedDate = robot.lookup("#" + key + " #" + "dateLabel").queryFirst()
+        def displayedTime = robot.lookup("#" + key + " #" + "timeLabelContainer").queryFirst()
 
         if (isVisible) {
             evaluate(ExecutionDetails.create("Display item was found")
@@ -29,7 +30,7 @@ class VerifyItemVisibility extends FxScriptTemplate {
                     .expected(label + " is visible")
                     .success(displayedItem.isVisible()))
 
-        } else if ((label.contains("time")) && (displayedDate != null)) {
+        } else if ( ((label.contains("time")) && (displayedDate != null)) || (((label.contains("date"))) && (displayedTime!=null))) {
 
             evaluate(ExecutionDetails.create("Display item was found")
                     .expected("Display item is not null")
