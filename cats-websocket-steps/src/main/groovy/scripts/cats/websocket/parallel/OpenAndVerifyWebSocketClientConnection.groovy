@@ -53,7 +53,7 @@ class OpenAndVerifyWebSocketClientConnection extends WebsocketScriptTemplate {
         Integer count = 1;
         for (String endpointName : endpointNames) {
             while (!waitForState(endpointName, config, state)){
-                WaitTimer.pause(300);
+                WaitTimer.pause(250);
                 if(waitForState(endpointName, config, state))
                     break
             }
@@ -98,21 +98,16 @@ class OpenAndVerifyWebSocketClientConnection extends WebsocketScriptTemplate {
 
         //open websocket connection
         ClientEndpoint webSocketEndpoint = createWebSocketEndpoint(endpointName, config);
-        evaluate(ExecutionDetails.create("Creating a new WebSocketEndpoint instance")
-                .expected("Instance is not null")
-                .success(webSocketEndpoint != null))
         MessageBuffer buffer = webSocketEndpoint.getMessageBuffer();
-        evaluate(ExecutionDetails.create("Get message buffer for the WebSocketEndpoint instance")
-                .expected("Buffer is not null")
-                .success(buffer != null))
+        WaitTimer.pause(100);
         TextMessage message = buffer.pollTextMessage();
         evaluate(ExecutionDetails.create("Get message text from the buffer message")
                 .expected("Text is not null " + message.toString())
                 .success(message != null))
-        if(message != null){
+        if(message != null) {
             String shortenMessage = reportMessage(message.getContent())
             record(ExecutionDetails.create("Redundancy state")
-                    .expected("Redundancy state is"+state)
+                    .expected("Redundancy state is" + state)
                     .received(shortenMessage)
                     .success(true))
 
@@ -121,25 +116,6 @@ class OpenAndVerifyWebSocketClientConnection extends WebsocketScriptTemplate {
 
             return shortenMessage.contains(state);
         }
-        else {
-            List<TextMessage> listMessages = buffer.pollAllTextMessages()
-            evaluate(ExecutionDetails.create("Get list of messages from the buffer message")
-                    .expected("Text is not null " + listMessages.toString())
-                    .success(message != null))
-            for(TextMessage otherMessage:listMessages){
-                String shortenMessage = reportMessage(otherMessage.getContent())
-                record(ExecutionDetails.create("Redundancy state")
-                        .expected("Redundancy state is"+state)
-                        .received(shortenMessage)
-                        .success(true))
-
-                //close websocket connection
-                webSocketEndpoint.dispose();
-
-                return shortenMessage.contains(state);
-            }
-        }
-
     }
 
     public static String reportMessage(String message) {
