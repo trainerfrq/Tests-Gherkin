@@ -16,8 +16,9 @@ And waiting for 5 seconds
 
 Scenario: Stop profiles
 When stopping profiles:
-| hostIp     | profile             | timeout        | nr |
-| <<CO3_IP>> | voip/<<systemName>> | <<Timeout|60>> | 1  |
+| hostIp     | profile               | timeout        | nr |
+| <<CO3_IP>> | voip/<<systemName>>   | <<Timeout|60>> | 1  |
+| <<CO3_IP>> | voip/<<systemName>>GW | <<Timeout|60>> | 1  |
 Then waiting for 5 seconds
 
 Scenario: Stop case officer

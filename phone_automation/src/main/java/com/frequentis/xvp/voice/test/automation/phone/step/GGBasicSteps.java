@@ -217,10 +217,6 @@ public class GGBasicSteps extends WebsocketAutomationSteps
             JsonMessage.newChangeMissionRequest( new ChangeMissionRequest( missionId ),
                     CorrelationId.fromId( UUID.randomUUID() ) );
 
-       /*final JsonMessage request =
-               JsonMessage.builder().withChangeMissionRequest(new ChangeMissionRequest( missionId ))
-                       .withCorrelationId( UUID.randomUUID() ).build();*/
-
       final RemoteStepResult remoteStepResult =
             evaluate(
                   remoteStep( "Changing mission to mission " + missionId )
