@@ -104,17 +104,34 @@ class OpenAndVerifyWebSocketClientConnection extends WebsocketScriptTemplate {
         evaluate(ExecutionDetails.create("Get message text from the buffer message")
                 .expected("Text is not null " + message.toString())
                 .success(message != null))
-        if(message != null) {
+        if(message != null){
             String shortenMessage = reportMessage(message.getContent())
             record(ExecutionDetails.create("Redundancy state")
-                    .expected("Redundancy state is" + state)
+                    .expected("Redundancy state is"+state)
                     .received(shortenMessage)
                     .success(true))
-
             //close websocket connection
             webSocketEndpoint.dispose();
 
             return shortenMessage.contains(state);
+        }
+        else {
+            List<TextMessage> listMessages = buffer.pollAllTextMessages()
+            evaluate(ExecutionDetails.create("Get list of messages from the buffer message")
+                    .expected("Text is not null " + listMessages.toString())
+                    .success(message != null))
+            for(TextMessage otherMessage:listMessages){
+                String shortenMessage = reportMessage(otherMessage.getContent())
+                record(ExecutionDetails.create("Redundancy state")
+                        .expected("Redundancy state is"+state)
+                        .received(shortenMessage)
+                        .success(true))
+
+                //close websocket connection
+                webSocketEndpoint.dispose();
+
+                return shortenMessage.contains(state);
+            }
         }
     }
 

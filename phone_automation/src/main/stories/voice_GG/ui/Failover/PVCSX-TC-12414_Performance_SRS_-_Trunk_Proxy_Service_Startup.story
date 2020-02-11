@@ -117,9 +117,9 @@ Meta:
 @TEST_STEP_ACTION: DOCKERHOST-01: from the docker CLI, start Trunk Proxy Service instance 1.
 @TEST_STEP_REACTION: DOCKERHOST-01: Trunk Proxy Service instance 1 appears in list of active services (run "docker ps") within 15 sec.
 @TEST_STEP_REF: [CATS-REF: cdSz]
-When SSH host dockerHost1 executes docker start trunk-location-service-1
+When SSH host dockerHost1 executes docker start trunk-proxy-service-1
 Then waiting for <<trunkProxyFailoverTime>> seconds
-When SSH host dockerHost1 executes docker inspect -f '{{.State.Status}}' trunk-location-service-1 and the output contains running
+When SSH host dockerHost1 executes docker inspect -f '{{.State.Status}}' trunk-proxy-service-1 and the output contains running
 
 Scenario: 8. CWP-01 ends call
 Meta:
