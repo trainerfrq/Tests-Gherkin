@@ -12,17 +12,17 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key              | source                | target                      | callType |
-| OP3-Role1        | <<OP3_URI>>           | sip:role1@example.com       | DA/IDA   |
-| Role1-OP3        | sip:role1@example.com | <<OP3_URI>>                 | DA/IDA   |
-| OP1-OP2          | <<OP1_URI>>           | <<OP2_URI>>                 | DA/IDA   |
-| OP2-OP1          | <<OP2_URI>>           | <<OP1_URI>>                 | DA/IDA   |
-| OP1-OP3          | <<OP1_URI>>           | <<OP3_URI>>                 | DA/IDA   |
-| OP3-OP1          | <<OP3_URI>>           | <<OP1_URI>>                 | DA/IDA   |
-| OP3-OP1_urgent  | <<OP3_URI>>           | <<OP1_URI>>                 | DA/IDA   |
-| OP1_urgent-OP3  | <<OP1_URI>>           | <<OP3_URI>>                 | DA/IDA   |
-| OP1_Master-OP2   | <<ROLE1_URI>>         | <<OP2_URI>>                 | DA/IDA   |
-| OP2-OP1_Master   | <<OP2_URI>>           |                             | DA/IDA   |
+| key            | source                | target                | callType |
+| OP3-Role1      | <<OP3_URI>>           | sip:role1@example.com | DA/IDA   |
+| Role1-OP3      | sip:role1@example.com | <<OP3_URI>>           | DA/IDA   |
+| OP1-OP2        | <<OP1_URI>>           | <<OP2_URI>>           | DA/IDA   |
+| OP2-OP1        | <<OP2_URI>>           | <<OP1_URI>>           | DA/IDA   |
+| OP1-OP3        | <<OP1_URI>>           | <<OP3_URI>>           | DA/IDA   |
+| OP3-OP1        | <<OP3_URI>>           | <<OP1_URI>>           | DA/IDA   |
+| OP3-OP1_urgent | <<OP3_URI>>           | <<OP1_URI>>           | DA/IDA   |
+| OP1_urgent-OP3 | <<OP1_URI>>           | <<OP3_URI>>           | DA/IDA   |
+| OP1_Master-OP2 | <<ROLE1_URI>>         | <<OP2_URI>>           | DA/IDA   |
+| OP2-OP1_Master | <<OP2_URI>>           |                       | DA/IDA   |
 
 Scenario: Op3 checks DAKey priority
 		  @REQUIREMENTS:GID-4698739
@@ -75,7 +75,7 @@ Scenario: Call is terminated also for Op1
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Op1 checks DAKey priority
-	 @REQUIREMENTS:GID-4698739
+		  @REQUIREMENTS:GID-4698739
 When HMI OP1 has the DA key OP2(as ActiveMission) with call priority NORMAL
 
 Scenario: Op1 establishes an outgoing call

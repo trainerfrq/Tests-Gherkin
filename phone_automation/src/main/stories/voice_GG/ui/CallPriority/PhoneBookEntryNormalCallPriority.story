@@ -5,11 +5,11 @@ So I can verify that the call has priority: NORMAL
 
 Scenario: Booking profiles
 Given booked profiles:
-| profile | group          | host           | identifier |
-| javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
-| voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
+| profile             | group          | host           | identifier |
+| javafx              | hmi            | <<CLIENT1_IP>> | HMI OP1    |
+| javafx              | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
+| voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Create sip phone
 Given SipContacts group SipContact:
@@ -19,8 +19,8 @@ And phones for SipContact are created
 
 Scenario: Define call queue items
 Given the call queue items:
-| key             | source          | target    | callType |
-| OP1-SipContact | <<SIP_PHONE4>>  |           | DA/IDA   |
+| key            | source         | target | callType |
+| OP1-SipContact | <<SIP_PHONE4>> |        | DA/IDA   |
 
 Scenario: Op1 opens PhoneBook
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK

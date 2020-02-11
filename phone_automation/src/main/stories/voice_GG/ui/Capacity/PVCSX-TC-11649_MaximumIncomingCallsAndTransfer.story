@@ -1,8 +1,7 @@
-Meta:
-@TEST_CASE_VERSION: V7
+Meta: @TEST_CASE_VERSION: V7
 @TEST_CASE_NAME: MaximumIncomingCallsAndTransfer
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls I want do a the transfer action So I can verify that transfer action can be done only when there are a maximum of 14 incoming calls
-@TEST_CASE_PRECONDITION: 
+@TEST_CASE_PRECONDITION:
 @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when call transfer is done successfully while there are 14 incoming calls.
 @TEST_CASE_DEVICES_IN_USE: CATS tool is used to simulate 16 external DA calls
 @TEST_CASE_ID: PVCSX-TC-11649
@@ -11,11 +10,11 @@ Meta:
 
 Scenario: Booking profiles
 Given booked profiles:
-| profile | group          | host           | identifier |
-| javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
-| voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
+| profile             | group          | host           | identifier |
+| javafx              | hmi            | <<CLIENT1_IP>> | HMI OP1    |
+| javafx              | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
+| voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Create sip phone
 Given SipContacts group SipContact:
@@ -48,8 +47,7 @@ Given the call queue items:
 | OP2-OP3 | <<OP2_URI>> | <<OP3_URI>> | DA/IDA   |
 
 Scenario: 1. Have 16 external DA calls that call Op1
-Meta:
-@TEST_STEP_ACTION: Have 16 external DA calls that call Op1
+Meta: @TEST_STEP_ACTION: Have 16 external DA calls that call Op1
 @TEST_STEP_REACTION: Op1 has 16 incoming calls
 @TEST_STEP_REF: [CATS-REF: uKr0]
 When SipContact calls SIP URI <<OPVOICE1_PHONE_URI>>
@@ -61,8 +59,7 @@ Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 13 calls
 
 Scenario: 2. Op1 answers one call
-Meta:
-@TEST_STEP_ACTION: Op1 answers one call
+Meta: @TEST_STEP_ACTION: Op1 answers one call
 @TEST_STEP_REACTION: Op1 has 1 active call and 15 incoming calls
 @TEST_STEP_REF: [CATS-REF: yQra]
 Then HMI OP1 answers item 1 from waiting call queue list
@@ -74,8 +71,7 @@ Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 12 calls
 
 Scenario: 3. Op1 sets the active call for transfer
-Meta:
-@TEST_STEP_ACTION: Op1 sets the active call for transfer
+Meta: @TEST_STEP_ACTION: Op1 sets the active call for transfer
 @TEST_STEP_REACTION: Op1 has one call set for transfer, 0 active calls and 15 incoming calls
 @TEST_STEP_REF: [CATS-REF: O4Op]
 When HMI OP1 initiates a transfer on the active call
@@ -88,8 +84,7 @@ Then HMI OP1 has in the waiting list a number of 2 calls
 Then HMI OP1 has in the collapsed area a number of 13 calls
 
 Scenario: 4. Op1 tries to answer another calls
-Meta:
-@TEST_STEP_ACTION: Op1 tries to answer another calls
+Meta: @TEST_STEP_ACTION: Op1 tries to answer another calls
 @TEST_STEP_REACTION: Op1 gets a message in The Notification Display bar "Call can not be accepted, TRANSFER mode active"
 @TEST_STEP_REF: [CATS-REF: U4Oc]
 Then HMI OP1 answers item 1 from waiting call queue list
@@ -105,8 +100,7 @@ Scenario: 4.2 Close popup window
 Then HMI OP1 closes notification popup
 
 Scenario: 5. Op1 tries to initiate consultation calls to Op3
-Meta:
-@TEST_STEP_ACTION: Op1 tries to initiate consultation calls to Op3
+Meta: @TEST_STEP_ACTION: Op1 tries to initiate consultation calls to Op3
 @TEST_STEP_REACTION: Op1 is not able to initiate call. Op1 has one call set for transfer, 0 active calls and 15 incoming calls
 @TEST_STEP_REF: [CATS-REF: kTPy]
 When HMI OP1 presses DA key OP3
@@ -120,8 +114,7 @@ Then HMI OP1 has in the waiting list a number of 2 calls
 Then HMI OP1 has in the collapsed area a number of 13 calls
 
 Scenario: 6. Op1 retrieves call from transfer state and ends call
-Meta:
-@TEST_STEP_ACTION: Op1 retrieves call from transfer state and ends call
+Meta: @TEST_STEP_ACTION: Op1 retrieves call from transfer state and ends call
 @TEST_STEP_REACTION: Op1 has 0 active calls and 15 incoming calls
 @TEST_STEP_REF: [CATS-REF: yx2B]
 Then HMI OP1 retrives from hold item 1 from hold call queue list
@@ -138,8 +131,7 @@ Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 12 calls
 
 Scenario: 7. Op1 answers and terminates another call
-Meta:
-@TEST_STEP_ACTION: Op1 answers and terminates another call
+Meta: @TEST_STEP_ACTION: Op1 answers and terminates another call
 @TEST_STEP_REACTION: Op1 has 0 active calls and 14 incoming calls
 @TEST_STEP_REF: [CATS-REF: OVGE]
 Then HMI OP1 answers item 1 from waiting call queue list
@@ -156,8 +148,7 @@ Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 11 calls
 
 Scenario: 8. Op2 calls Op1
-Meta:
-@TEST_STEP_ACTION: Op2 calls Op1
+Meta: @TEST_STEP_ACTION: Op2 calls Op1
 @TEST_STEP_REACTION: Op1 has 0 active calls and 15 incoming calls
 @TEST_STEP_REF: [CATS-REF: dzwI]
 When HMI OP2 presses DA key OP1
@@ -170,8 +161,7 @@ Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 12 calls
 
 Scenario: 9. Op1 answers calls
-Meta:
-@TEST_STEP_ACTION: Op1 answers calls
+Meta: @TEST_STEP_ACTION: Op1 answers calls
 @TEST_STEP_REACTION: Op1 has 1 active call and 14 incoming calls
 @TEST_STEP_REF: [CATS-REF: HMfN]
 When HMI OP1 presses DA key OP2
@@ -187,8 +177,7 @@ Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 11 calls
 
 Scenario: 10. Op1 sets the active call for transfer
-Meta:
-@TEST_STEP_ACTION: Op1 sets the active call for transfer
+Meta: @TEST_STEP_ACTION: Op1 sets the active call for transfer
 @TEST_STEP_REACTION: Op1 has 1 call set for transfer, 0 active calls and 14 incoming calls
 @TEST_STEP_REF: [CATS-REF: 07zV]
 When HMI OP1 initiates a transfer on the active call
@@ -204,8 +193,7 @@ Then HMI OP1 has in the waiting list a number of 2 calls
 Then HMI OP1 has in the collapsed area a number of 12 calls
 
 Scenario: Autogenerated Scenario 11
-Meta:
-@TEST_STEP_ACTION: Op1 initiate consultation calls to Op3
+Meta: @TEST_STEP_ACTION: Op1 initiate consultation calls to Op3
 @TEST_STEP_REACTION: Op1 has 1 call set for transfer, 1 outgoing call and 14 incoming calls
 @TEST_STEP_REF: [CATS-REF: etrv]
 When HMI OP1 presses DA key OP3
@@ -222,8 +210,7 @@ Then HMI OP1 has in the waiting list a number of 2 calls
 Then HMI OP1 has in the collapsed area a number of 12 calls
 
 Scenario: 12. Op1 transfers calls to Op3
-Meta:
-@TEST_STEP_ACTION: Op1 transfers calls to Op3
+Meta: @TEST_STEP_ACTION: Op1 transfers calls to Op3
 @TEST_STEP_REACTION: Op1 has 14 incoming calls, 0 calls set to transfer, 0 outgoing calls. Op2 has a ringing call and Op3 has call initiated
 @TEST_STEP_REF: [CATS-REF: ctxk]
 When HMI OP1 presses DA key OP3
@@ -240,8 +227,7 @@ Then HMI OP2 has the call queue item OP3-OP2 in state out_ringing
 Then HMI OP3 has the call queue item OP2-OP3 in state inc_initiated
 
 Scenario: 13. Op2 ends call
-Meta:
-@TEST_STEP_ACTION: Op2 ends call
+Meta: @TEST_STEP_ACTION: Op2 ends call
 @TEST_STEP_REACTION: Op2 and Op3 have no calls in the call queue
 @TEST_STEP_REF: [CATS-REF: fAON]
 When HMI OP2 presses DA key OP3
@@ -249,8 +235,7 @@ Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: 14. Op1 answers and terminates the 14 incoming calls
-Meta:
-@TEST_STEP_ACTION: Op1 answers and terminates the 14 incoming calls
+Meta: @TEST_STEP_ACTION: Op1 answers and terminates the 14 incoming calls
 @TEST_STEP_REACTION: Op1 has no calls in the call queue
 @TEST_STEP_REF: [CATS-REF: jPjg]
 Then HMI OP1 answers and terminates a number of 14 calls

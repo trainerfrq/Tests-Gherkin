@@ -5,11 +5,11 @@ So I can verify that calls are not affected by these actions
 
 Scenario: Booking profiles
 Given booked profiles:
-| profile | group          | host           | identifier |
-| javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
-| voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
+| profile             | group          | host           | identifier |
+| javafx              | hmi            | <<CLIENT1_IP>> | HMI OP1    |
+| javafx              | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
+| voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Define call queue items
 Given the call queue items:
@@ -69,7 +69,7 @@ Then HMI OP2 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify call state
-		   @REQUIREMENTS: GID-3005111
+		  @REQUIREMENTS: GID-3005111
 Then HMI OP2 has the call queue item SipContact-OP2 in state hold
 Then HMI OP2 has the call queue item OP1-OP2 in state inc_ringing
 
@@ -121,7 +121,7 @@ Then HMI OP2 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify call state
-		   @REQUIREMENTS: GID-3005111
+		  @REQUIREMENTS: GID-3005111
 Then HMI OP2 has the call queue item SipContact-OP2 in state hold
 Then HMI OP2 has the call queue item OP1-OP2 in state hold
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
@@ -137,7 +137,7 @@ Then HMI OP2 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify call state
-		   @REQUIREMENTS: GID-3005111
+		  @REQUIREMENTS: GID-3005111
 Then HMI OP2 has the call queue item SipContact-OP2 in state hold
 Then HMI OP2 has the call queue item OP1-OP2 in state hold
 Then HMI OP2 has the call queue item OP3-OP2 in state hold

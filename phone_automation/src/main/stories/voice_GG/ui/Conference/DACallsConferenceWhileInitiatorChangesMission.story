@@ -5,11 +5,11 @@ So I can verify that the conference is not affected by this action
 
 Scenario: Booking profiles
 Given booked profiles:
-| profile | group          | host           | identifier |
-| javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
-| voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
+| profile             | group          | host           | identifier |
+| javafx              | hmi            | <<CLIENT1_IP>> | HMI OP1    |
+| javafx              | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
+| voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Define call queue items
 Given the call queue items:
@@ -196,7 +196,6 @@ Then HMI OP2 verifies in the list that conference participant on position 2 has 
 
 Scenario: Op2 closes conference participants list
 Then HMI OP2 closes Conference list popup window
-
 
 Scenario: Op2 leaves the conference
 		  @REQUIREMENTS:GID-2529028

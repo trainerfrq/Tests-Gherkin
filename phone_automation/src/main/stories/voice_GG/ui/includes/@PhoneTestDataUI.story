@@ -25,6 +25,7 @@ Given the DA keys:
 | HMI OP1 | Test_Ivy                   | <<PhyOpPos1_Test_Ivy>>               |
 | HMI OP1 | Test_Kristi                | <<PhyOpPos1_Test_Kristi>>            |
 | HMI OP1 | OP3(as Mission4)           | <<PhyOpPos1_CWP2>>                   |
+| HMI OP1 | LegacyPhone                | <<Active1_LegacyPhone>>              |
 | HMI OP2 | OP1                        | <<PhyOpPos2_CWP1>>                   |
 | HMI OP2 | OP2                        |                                      |
 | HMI OP2 | OP3                        | <<PhyOpPos2_CWP3>>                   |
@@ -56,55 +57,56 @@ Given the DA keys:
 | HMI OP3 | OP1-urgent                 | <<PhyOpPos3_CWP1_urgent>>            |
 | HMI OP3 | TWR                        | <<ACTIVE3_TWR>>                      |
 | HMI OP3 | IA - TWR                   | <<IA_ACTIVE3_TWR>>                   |
+
 Scenario: Define grid widget keys
 Given the grid widget keys:
-| layout              | id                   |
-| <<LAYOUT_MISSION1>> | <<GRID_ID_MISSION1>> |
-| <<LAYOUT_MISSION2>> | <<GRID_ID_MISSION2>> |
-| <<LAYOUT_MISSION3>> | <<GRID_ID_MISSION3>> |
-| <<LAYOUT_MISSION4>> | <<GRID_ID_MISSION4>> |
+| layout              | id                        |
+| <<LAYOUT_MISSION1>> | <<GRID_ID_MISSION1>>      |
+| <<LAYOUT_MISSION2>> | <<GRID_ID_MISSION2>>      |
+| <<LAYOUT_MISSION3>> | <<GRID_ID_MISSION3>>      |
+| <<LAYOUT_MISSION4>> | <<GRID_ID_MISSION4>>      |
 | <<COMMON_LAYOUT>>   | <<GRID_ID_COMMON_LAYOUT>> |
 
 Scenario: Define function keys
 Given the function keys:
-| layout              | key         | id                         |
-| <<LAYOUT_MISSION1>> | PHONEBOOK   | <<PHONEBOOK_ID>>           |
-| <<LAYOUT_MISSION1>> | CALLHISTORY | <<CALLHISTORY_ID>>         |
-| <<LAYOUT_MISSION1>> | MISSIONS    | <<MISSIONS_ID>>            |
-| <<LAYOUT_MISSION1>> | CALLFORWARD | <<CALLFORWARD_ID>>         |
-| <<LAYOUT_MISSION1>> | LOUDSPEAKER | <<LOUDSPEAKER_ID>>         |
-| <<LAYOUT_MISSION1>> | SETTINGS    | <<SETTINGS_ID_MISSION1>>   |
-| <<LAYOUT_MISSION1>> | MONITORING  | <<MONITORING_ID_MISSION1>> |
-| <<LAYOUT_MISSION1>> | EDIT        | <<EDIT_ID_MISSION1>>       |
-| <<LAYOUT_MISSION2>> | PHONEBOOK   | <<PHONEBOOK_ID>>           |
-| <<LAYOUT_MISSION2>> | CALLHISTORY | <<CALLHISTORY_ID>>         |
-| <<LAYOUT_MISSION2>> | MISSIONS    | <<MISSIONS_ID>>            |
-| <<LAYOUT_MISSION2>> | CALLFORWARD | <<CALLFORWARD_ID>>         |
-| <<LAYOUT_MISSION2>> | LOUDSPEAKER | <<LOUDSPEAKER_ID>>         |
-| <<LAYOUT_MISSION2>> | SETTINGS    | <<SETTINGS_ID_MISSION2>>   |
-| <<LAYOUT_MISSION2>> | MONITORING  | <<MONITORING_ID_MISSION2>> |
-| <<LAYOUT_MISSION2>> | EDIT        | <<EDIT_ID_MISSION2>>       |
-| <<LAYOUT_MISSION3>> | PHONEBOOK   | <<PHONEBOOK_ID>>           |
-| <<LAYOUT_MISSION3>> | CALLHISTORY | <<CALLHISTORY_ID>>         |
-| <<LAYOUT_MISSION3>> | MISSIONS    | <<MISSIONS_ID>>            |
-| <<LAYOUT_MISSION3>> | CALLFORWARD | <<CALLFORWARD_ID>>         |
-| <<LAYOUT_MISSION3>> | LOUDSPEAKER | <<LOUDSPEAKER_ID>>         |
-| <<LAYOUT_MISSION3>> | SETTINGS    | <<SETTINGS_ID_MISSION3>>   |
-| <<LAYOUT_MISSION3>> | MONITORING  | <<MONITORING_ID_MISSION3>> |
-| <<LAYOUT_MISSION3>> | EDIT        | <<EDIT_ID_MISSION3>>       |
-| <<LAYOUT_MISSION4>> | PHONEBOOK   | <<PHONEBOOK_ID>>           |
-| <<LAYOUT_MISSION4>> | CALLHISTORY | <<CALLHISTORY_ID>>         |
-| <<LAYOUT_MISSION4>> | MISSIONS    | <<MISSIONS_ID>>            |
-| <<LAYOUT_MISSION4>> | CALLFORWARD | <<CALLFORWARD_ID>>         |
-| <<LAYOUT_MISSION4>> | LOUDSPEAKER | <<LOUDSPEAKER_ID>>         |
-| <<LAYOUT_MISSION4>> | SETTINGS    | <<SETTINGS_ID_MISSION4>>   |
-| <<LAYOUT_MISSION4>> | MONITORING  | <<MONITORING_ID_MISSION4>> |
-| <<LAYOUT_MISSION4>> | EDIT        | <<EDIT_ID_MISSION4>>       |
-| <<COMMON_LAYOUT>>   | PHONEBOOK   | <<PHONEBOOK_ID>>           |
-| <<COMMON_LAYOUT>>   | CALLHISTORY | <<CALLHISTORY_ID>>         |
-| <<COMMON_LAYOUT>>   | MISSIONS    | <<MISSIONS_ID>>            |
-| <<COMMON_LAYOUT>>   | CALLFORWARD | <<CALLFORWARD_ID>>         |
-| <<COMMON_LAYOUT>>   | LOUDSPEAKER | <<LOUDSPEAKER_ID>>         |
+| layout              | key         | id                            |
+| <<LAYOUT_MISSION1>> | PHONEBOOK   | <<PHONEBOOK_ID>>              |
+| <<LAYOUT_MISSION1>> | CALLHISTORY | <<CALLHISTORY_ID>>            |
+| <<LAYOUT_MISSION1>> | MISSIONS    | <<MISSIONS_ID>>               |
+| <<LAYOUT_MISSION1>> | CALLFORWARD | <<CALLFORWARD_ID>>            |
+| <<LAYOUT_MISSION1>> | LOUDSPEAKER | <<LOUDSPEAKER_ID>>            |
+| <<LAYOUT_MISSION1>> | SETTINGS    | <<SETTINGS_ID_MISSION1>>      |
+| <<LAYOUT_MISSION1>> | MONITORING  | <<MONITORING_ID_MISSION1>>    |
+| <<LAYOUT_MISSION1>> | EDIT        | <<EDIT_ID_MISSION1>>          |
+| <<LAYOUT_MISSION2>> | PHONEBOOK   | <<PHONEBOOK_ID>>              |
+| <<LAYOUT_MISSION2>> | CALLHISTORY | <<CALLHISTORY_ID>>            |
+| <<LAYOUT_MISSION2>> | MISSIONS    | <<MISSIONS_ID>>               |
+| <<LAYOUT_MISSION2>> | CALLFORWARD | <<CALLFORWARD_ID>>            |
+| <<LAYOUT_MISSION2>> | LOUDSPEAKER | <<LOUDSPEAKER_ID>>            |
+| <<LAYOUT_MISSION2>> | SETTINGS    | <<SETTINGS_ID_MISSION2>>      |
+| <<LAYOUT_MISSION2>> | MONITORING  | <<MONITORING_ID_MISSION2>>    |
+| <<LAYOUT_MISSION2>> | EDIT        | <<EDIT_ID_MISSION2>>          |
+| <<LAYOUT_MISSION3>> | PHONEBOOK   | <<PHONEBOOK_ID>>              |
+| <<LAYOUT_MISSION3>> | CALLHISTORY | <<CALLHISTORY_ID>>            |
+| <<LAYOUT_MISSION3>> | MISSIONS    | <<MISSIONS_ID>>               |
+| <<LAYOUT_MISSION3>> | CALLFORWARD | <<CALLFORWARD_ID>>            |
+| <<LAYOUT_MISSION3>> | LOUDSPEAKER | <<LOUDSPEAKER_ID>>            |
+| <<LAYOUT_MISSION3>> | SETTINGS    | <<SETTINGS_ID_MISSION3>>      |
+| <<LAYOUT_MISSION3>> | MONITORING  | <<MONITORING_ID_MISSION3>>    |
+| <<LAYOUT_MISSION3>> | EDIT        | <<EDIT_ID_MISSION3>>          |
+| <<LAYOUT_MISSION4>> | PHONEBOOK   | <<PHONEBOOK_ID>>              |
+| <<LAYOUT_MISSION4>> | CALLHISTORY | <<CALLHISTORY_ID>>            |
+| <<LAYOUT_MISSION4>> | MISSIONS    | <<MISSIONS_ID>>               |
+| <<LAYOUT_MISSION4>> | CALLFORWARD | <<CALLFORWARD_ID>>            |
+| <<LAYOUT_MISSION4>> | LOUDSPEAKER | <<LOUDSPEAKER_ID>>            |
+| <<LAYOUT_MISSION4>> | SETTINGS    | <<SETTINGS_ID_MISSION4>>      |
+| <<LAYOUT_MISSION4>> | MONITORING  | <<MONITORING_ID_MISSION4>>    |
+| <<LAYOUT_MISSION4>> | EDIT        | <<EDIT_ID_MISSION4>>          |
+| <<COMMON_LAYOUT>>   | PHONEBOOK   | <<PHONEBOOK_ID>>              |
+| <<COMMON_LAYOUT>>   | CALLHISTORY | <<CALLHISTORY_ID>>            |
+| <<COMMON_LAYOUT>>   | MISSIONS    | <<MISSIONS_ID>>               |
+| <<COMMON_LAYOUT>>   | CALLFORWARD | <<CALLFORWARD_ID>>            |
+| <<COMMON_LAYOUT>>   | LOUDSPEAKER | <<LOUDSPEAKER_ID>>            |
 | <<COMMON_LAYOUT>>   | SETTINGS    | <<SETTINGS_ID_TWR_MISSION>>   |
 | <<COMMON_LAYOUT>>   | MONITORING  | <<MONITORING_ID_TWR_MISSION>> |
 | <<COMMON_LAYOUT>>   | EDIT        | <<EDIT_ID_TWR_MISSION>>       |

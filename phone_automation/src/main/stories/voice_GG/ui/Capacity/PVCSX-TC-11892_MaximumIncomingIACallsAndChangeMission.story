@@ -1,20 +1,20 @@
 Meta: @TEST_CASE_VERSION: V6
-	  @TEST_CASE_NAME: MaximumIncomingIACallsAndChangeMission
-	  @TEST_CASE_DESCRIPTION: As an operator having 3 incoming external IA calls I want to change mission So I can verify that the ongoing incoming calls are not affected by the mission active role settings
-	  @TEST_CASE_PRECONDITION: Test starts with Op1 having mission MISSION_1_NAME MISSION_1_NAME has an active role configured with maximum allowed number of incoming IA calls; MISSION_2_NAME has an active role configured to allow only 1 incoming IA call
-	  @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when the call limit is applied after changing mission
-	  @TEST_CASE_DEVICES_IN_USE: Op1, Op2, Op3, CATS tool is used to simulate 3 external AA calls
-	  @TEST_CASE_ID: PVCSX-TC-11892
-	  @TEST_CASE_GLOBAL_ID: GID-5154906
-	  @TEST_CASE_API_ID: 17697570
+@TEST_CASE_NAME: MaximumIncomingIACallsAndChangeMission
+@TEST_CASE_DESCRIPTION: As an operator having 3 incoming external IA calls I want to change mission So I can verify that the ongoing incoming calls are not affected by the mission active role settings
+@TEST_CASE_PRECONDITION: Test starts with Op1 having mission MISSION_1_NAME MISSION_1_NAME has an active role configured with maximum allowed number of incoming IA calls; MISSION_2_NAME has an active role configured to allow only 1 incoming IA call
+@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when the call limit is applied after changing mission
+@TEST_CASE_DEVICES_IN_USE: Op1, Op2, Op3, CATS tool is used to simulate 3 external AA calls
+@TEST_CASE_ID: PVCSX-TC-11892
+@TEST_CASE_GLOBAL_ID: GID-5154906
+@TEST_CASE_API_ID: 17697570
 
 Scenario: Booking profiles
 Given booked profiles:
-| profile | group          | host           | identifier |
-| javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
-| voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
+| profile             | group          | host           | identifier |
+| javafx              | hmi            | <<CLIENT1_IP>> | HMI OP1    |
+| javafx              | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
+| voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Create endpoint configuration
 Given the SIP header configuration named SipConfig:

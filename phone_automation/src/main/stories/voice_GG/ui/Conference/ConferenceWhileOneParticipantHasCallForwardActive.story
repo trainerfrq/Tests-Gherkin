@@ -5,11 +5,11 @@ So I can make sure that the conference call will be re-directed to selected targ
 
 Scenario: Booking profiles
 Given booked profiles:
-| profile | group          | host           | identifier |
-| javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
-| voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
+| profile             | group          | host           | identifier |
+| javafx              | hmi            | <<CLIENT1_IP>> | HMI OP1    |
+| javafx              | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
+| voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Define call queue items
 Given the call queue items:
@@ -81,6 +81,7 @@ Then HMI OP2 verifies in the list that conference participant on position 3 has 
 Then HMI OP2 verifies in the list that conference participant on position 3 has name <<OP1_NAME>>
 Then HMI OP2 verifies in the list that conference participant on position 4 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 4 has name Madoline
+
 Scenario: Op2 removes ringing conference participant
 When HMI OP2 selects conference participant: 2
 Then HMI OP2 verifies that remove conference participant button is enabled

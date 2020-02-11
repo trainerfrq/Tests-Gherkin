@@ -161,7 +161,8 @@ public class WebsocketClientRemoteSteps extends WebsocketAutomationSteps
                          .scriptOn(profileScriptResolver().map(OpenAndVerifyWebSocketClientConnection.class,
                                  BookableProfileName.websocket), requireProfile(reference.getProfileName()))
                          .input(OpenAndVerifyWebSocketClientConnection.IPARAM_ENDPOINTCONFIGURATION, (Serializable) config)
-                         .input(OpenAndVerifyWebSocketClientConnection.IPARAM_MULTIPLEENDPOINTNAMES, endpointName));
+                         .input(OpenAndVerifyWebSocketClientConnection.IPARAM_MULTIPLEENDPOINTNAMES, endpointName)
+                         .input(OpenAndVerifyWebSocketClientConnection.IPARAM_STATE, state));
 
          final String redundancyState =
                  (String) remoteStepResult.getOutput(OpenAndVerifyWebSocketClientConnection.OPARAM_RECEIVEDMESSAGE);

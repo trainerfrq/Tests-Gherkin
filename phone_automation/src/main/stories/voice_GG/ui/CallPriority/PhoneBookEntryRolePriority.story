@@ -5,22 +5,22 @@ So I can verify that the call has the priority of the active role
 
 Scenario: Booking profiles
 Given booked profiles:
-| profile | group          | host           | identifier |
-| javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
-| voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
+| profile             | group          | host           | identifier |
+| javafx              | hmi            | <<CLIENT1_IP>> | HMI OP1    |
+| javafx              | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
+| voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Create sip phone
 Given SipContacts group SipContact:
 | key        | profile | user-entity | sip-uri        |
-| SipContact | VOIP    | 656750       | <<SIP_PHONE6>> |
+| SipContact | VOIP    | 656750      | <<SIP_PHONE6>> |
 And phones for SipContact are created
 
 Scenario: Define call queue items
 Given the call queue items:
-| key            | source          | target    | callType |
-| OP2-SipContact | <<SIP_PHONE6>>  |           | DA/IDA   |
+| key            | source         | target | callType |
+| OP2-SipContact | <<SIP_PHONE6>> |        | DA/IDA   |
 
 Scenario: Verify operator mission
 Then HMI OP2 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_2_NAME>>

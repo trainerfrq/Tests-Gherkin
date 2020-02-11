@@ -1,20 +1,20 @@
 Meta: @TEST_CASE_VERSION: V9
-	  @TEST_CASE_NAME: MaximumIncomingPositionMonitoringCalls
-	  @TEST_CASE_DESCRIPTION: As an operator having 5 incoming Position Monitoring calls and another operator attempts to do a Position Monitoring call to my position I want to verify that the operator will not be able to do Position Monitoring to  my position only after one of the monitoring calls is terminated
-	  @TEST_CASE_PRECONDITION: Op1 active mission has a role that has the maximum allowed number of incoming position monitoring calls
-	  @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when all 5 incoming position monitoring calls are visible on the operator position and no other incoming position monitoring call can be made to that position, until one of the existing position monitoring calls is terminated
-	  @TEST_CASE_DEVICES_IN_USE: Op1, Op3, CATS tool is used to simulate 5 external position monitoring calls
-	  @TEST_CASE_ID: PVCSX-TC-11896
-	  @TEST_CASE_GLOBAL_ID: GID-5156986
-	  @TEST_CASE_API_ID: 17715979
+@TEST_CASE_NAME: MaximumIncomingPositionMonitoringCalls
+@TEST_CASE_DESCRIPTION: As an operator having 5 incoming Position Monitoring calls and another operator attempts to do a Position Monitoring call to my position I want to verify that the operator will not be able to do Position Monitoring to  my position only after one of the monitoring calls is terminated
+@TEST_CASE_PRECONDITION: Op1 active mission has a role that has the maximum allowed number of incoming position monitoring calls
+@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when all 5 incoming position monitoring calls are visible on the operator position and no other incoming position monitoring call can be made to that position, until one of the existing position monitoring calls is terminated
+@TEST_CASE_DEVICES_IN_USE: Op1, Op3, CATS tool is used to simulate 5 external position monitoring calls
+@TEST_CASE_ID: PVCSX-TC-11896
+@TEST_CASE_GLOBAL_ID: GID-5156986
+@TEST_CASE_API_ID: 17715979
 
 Scenario: Booking profiles
 Given booked profiles:
-| profile | group          | host           | identifier |
-| javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
-| voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
+| profile             | group          | host           | identifier |
+| javafx              | hmi            | <<CLIENT1_IP>> | HMI OP1    |
+| javafx              | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
+| voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Create endpoint configuration
 Given the SIP header configuration named SipConfig:

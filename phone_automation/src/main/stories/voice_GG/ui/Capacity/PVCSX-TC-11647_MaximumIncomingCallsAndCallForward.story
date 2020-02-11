@@ -1,8 +1,7 @@
-Meta:
-@TEST_CASE_VERSION: V8
+Meta: @TEST_CASE_VERSION: V8
 @TEST_CASE_NAME: MaximumIncomingCallsAndCallForward
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls I want to activate call forward So I can verify that all other calls made towards my position will be forward to another operator position
-@TEST_CASE_PRECONDITION: 
+@TEST_CASE_PRECONDITION:
 @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when calls are forwarded automatically to the selected target and operator can answers the 16 incoming calls
 @TEST_CASE_DEVICES_IN_USE: CATS tool is used to simulate 16 external DA calls
 @TEST_CASE_ID: PVCSX-TC-11647
@@ -11,11 +10,11 @@ Meta:
 
 Scenario: Booking profiles
 Given booked profiles:
-| profile | group          | host           | identifier |
-| javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
-| voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
+| profile             | group          | host           | identifier |
+| javafx              | hmi            | <<CLIENT1_IP>> | HMI OP1    |
+| javafx              | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
+| voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Create sip phone
 Given SipContacts group SipContact:
@@ -40,8 +39,7 @@ Given SipContacts group SipContact:
 Given phones for SipContact are created
 
 Scenario: 1. Have 16 external DA calls that call Op1
-Meta:
-@TEST_STEP_ACTION: Have 16 external DA calls that call Op1
+Meta: @TEST_STEP_ACTION: Have 16 external DA calls that call Op1
 @TEST_STEP_REACTION: Op1 has 16 incoming calls
 @TEST_STEP_REF: [CATS-REF: 6GOg]
 When SipContact calls SIP URI <<OPVOICE1_PHONE_URI>>
@@ -53,8 +51,7 @@ Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 13 calls
 
 Scenario: 2. Op1 activates Call Forward and chooses Op2 as call forward target
-Meta:
-@TEST_STEP_ACTION: Op1 activates Call Forward and chooses Op2 as call forward target
+Meta: @TEST_STEP_ACTION: Op1 activates Call Forward and chooses Op2 as call forward target
 @TEST_STEP_REACTION: Op1 has Call Forward activated with target Op2. Op1 has 16 incoming calls
 @TEST_STEP_REF: [CATS-REF: kJNr]
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key CALLFORWARD
@@ -69,8 +66,7 @@ Then HMI OP1 has in the waiting list a number of 2 calls
 Then HMI OP1 has in the collapsed area a number of 14 calls
 
 Scenario: 3. Op3 calls Op1
-Meta:
-@TEST_STEP_ACTION: Op3 calls Op1
+Meta: @TEST_STEP_ACTION: Op3 calls Op1
 @TEST_STEP_REACTION: Call is forwarded automatically to Op2. Op1 has 16 incoming calls
 @TEST_STEP_REF: [CATS-REF: vA2n]
 When HMI OP3 presses DA key OP1
@@ -85,8 +81,7 @@ Then HMI OP1 has in the waiting list a number of 2 calls
 Then HMI OP1 has in the collapsed area a number of 14 calls
 
 Scenario: 4. Op3 ends call
-Meta:
-@TEST_STEP_ACTION: Op3 ends call
+Meta: @TEST_STEP_ACTION: Op3 ends call
 @TEST_STEP_REACTION: Op3 and Op2 have no calls in the call queue. Op1 has 16 incoming calls
 @TEST_STEP_REF: [CATS-REF: 0KGZ]
 When HMI OP3 presses DA key OP1
@@ -101,8 +96,7 @@ Then HMI OP1 has in the waiting list a number of 2 calls
 Then HMI OP1 has in the collapsed area a number of 14 calls
 
 Scenario: 5. Op1 answers and terminates the 16 incoming calls
-Meta:
-@TEST_STEP_ACTION: Op1 answers and terminates the 16 incoming calls
+Meta: @TEST_STEP_ACTION: Op1 answers and terminates the 16 incoming calls
 @TEST_STEP_REACTION: Op1 has no calls in the call queue
 @TEST_STEP_REF: [CATS-REF: pwi7]
 Then HMI OP1 answers and terminates a number of 16 calls
@@ -111,8 +105,7 @@ Scenario: 5.1 Op1 verifies the number of calls in the queue
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: 6. Op1 deactivates Call Forward
-Meta:
-@TEST_STEP_ACTION: Op1 deactivates Call Forward
+Meta: @TEST_STEP_ACTION: Op1 deactivates Call Forward
 @TEST_STEP_REACTION: Op1 has Call Forward deactivated
 @TEST_STEP_REF: [CATS-REF: tEu4]
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key CALLFORWARD in active state
