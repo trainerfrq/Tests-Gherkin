@@ -1,4 +1,4 @@
-Meta: @TEST_CASE_VERSION: V6
+Meta: @TEST_CASE_VERSION: V7
 @TEST_CASE_NAME: MaximumIncomingIACallsAndChangeMission
 @TEST_CASE_DESCRIPTION: As an operator having 3 incoming external IA calls I want to change mission So I can verify that the ongoing incoming calls are not affected by the mission active role settings
 @TEST_CASE_PRECONDITION: Test starts with Op1 having mission MISSION_1_NAME MISSION_1_NAME has an active role configured with maximum allowed number of incoming IA calls; MISSION_2_NAME has an active role configured to allow only 1 incoming IA call

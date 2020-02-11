@@ -1,9 +1,9 @@
-Meta: @TEST_CASE_VERSION: V8
+Meta: @TEST_CASE_VERSION: V10
 @TEST_CASE_NAME: MaximumIncomingCallsAndChangeMission
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls I want to change mission So I can verify that the incoming calls are not affected by the mission active role settings
 @TEST_CASE_PRECONDITION: Test starts with Op1 having mission MISSION_1_NAME
-						MISSION_1_NAME has an active role that allows 16 incoming calls
-						MISSION_2_NAME has an active role that allows 8 incoming calls
+MISSION_1_NAME has an active role that allows 16 incoming calls
+MISSION_2_NAME has an active role that allows 8 incoming calls
 @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when the call limit is applied after changing mission
 @TEST_CASE_DEVICES_IN_USE: CATS tool is used to simulate 16 external DA calls
 @TEST_CASE_ID: PVCSX-TC-11646
@@ -40,8 +40,8 @@ Given SipContacts group SipContact:
 
 Given phones for SipContact are created
 
-Scenario: 1. Have 16 external DA calls that call Op1
-Meta: @TEST_STEP_ACTION: Have 16 external DA calls that call Op1
+Scenario: 1. Set up 16 external DA calls that call Op1
+Meta: @TEST_STEP_ACTION: Set up 16 external DA calls that call Op1
 @TEST_STEP_REACTION: Op1 has 16 incoming calls
 @TEST_STEP_REF: [CATS-REF: 3c4d]
 When SipContact calls SIP URI <<OPVOICE1_PHONE_URI>>

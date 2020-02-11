@@ -1,8 +1,8 @@
-Meta: @TEST_CASE_VERSION: V8
+Meta: @TEST_CASE_VERSION: V10
 @TEST_CASE_NAME: MaximumIncomingCallsAndCallForward
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls I want to activate call forward So I can verify that all other calls made towards my position will be forward to another operator position
 @TEST_CASE_PRECONDITION:
-@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when calls are forwarded automatically to the selected target and operator can answers the 16 incoming calls
+@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when it is possible to automatically forward calls from one operator position to another , while up to 16 already incoming calls can be processed by the initiator.
 @TEST_CASE_DEVICES_IN_USE: CATS tool is used to simulate 16 external DA calls
 @TEST_CASE_ID: PVCSX-TC-11647
 @TEST_CASE_GLOBAL_ID: GID-5112013
@@ -38,8 +38,8 @@ Given SipContacts group SipContact:
 
 Given phones for SipContact are created
 
-Scenario: 1. Have 16 external DA calls that call Op1
-Meta: @TEST_STEP_ACTION: Have 16 external DA calls that call Op1
+Scenario: 1. Set up 16 external DA calls that call Op1
+Meta: @TEST_STEP_ACTION: Set up 16 external DA calls that call Op1
 @TEST_STEP_REACTION: Op1 has 16 incoming calls
 @TEST_STEP_REF: [CATS-REF: 6GOg]
 When SipContact calls SIP URI <<OPVOICE1_PHONE_URI>>

@@ -1,8 +1,8 @@
-Meta: @TEST_CASE_VERSION: V9
+Meta: @TEST_CASE_VERSION: V12
 @TEST_CASE_NAME: MaximumCallsOnHold
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls I want to answer and put on hold 5 calls So I can verify that this is the maximum number of allowed calls on hold
 @TEST_CASE_PRECONDITION:
-@TEST_CASE_PASS_FAIL_CRITERIA:
+@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when it is possible to put on hold handle up to 5 calls and the call queue is updated with each put on hold action.
 @TEST_CASE_DEVICES_IN_USE: CATS tool is used to simulate 16 external DA calls
 @TEST_CASE_ID: PVCSX-TC-11645
 @TEST_CASE_GLOBAL_ID: GID-5109366
@@ -44,8 +44,8 @@ Given the call queue items:
 | OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | DA/IDA   |
 | OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | DA/IDA   |
 
-Scenario: 1. Have 16 external DA calls that call Op1
-Meta: @TEST_STEP_ACTION: Have 16 external DA calls that call Op1
+Scenario: 1. Set up 16 external DA calls that call Op1
+Meta: @TEST_STEP_ACTION: Set up 16 external DA calls that call Op1
 @TEST_STEP_REACTION: Op1 has 16 incoming calls. 3 calls are visible in the waiting list and 13 are in a collapsed area
 @TEST_STEP_REF: [CATS-REF: PnZo]
 When SipContact calls SIP URI <<OPVOICE1_PHONE_URI>>
@@ -248,6 +248,7 @@ Then HMI OP1 has in the waiting list a number of 0 calls
 Scenario: 16. Op1 retrives from hold one call
 Meta: @TEST_STEP_ACTION: Op1 retrives from hold one call
 @TEST_STEP_REACTION: In the call queue there are: 1 active call, 4 call visible on hold
+@TEST_STEP_REF: [CATS-REF: a0e9]
 Then HMI OP1 retrives from hold item 1 from hold call queue list
 
 Scenario: 16.1 Op1 verifies the number of calls in the queue

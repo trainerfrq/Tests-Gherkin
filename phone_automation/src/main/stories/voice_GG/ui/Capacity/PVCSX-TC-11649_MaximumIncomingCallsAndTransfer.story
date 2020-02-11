@@ -1,4 +1,4 @@
-Meta: @TEST_CASE_VERSION: V7
+Meta: @TEST_CASE_VERSION: V9
 @TEST_CASE_NAME: MaximumIncomingCallsAndTransfer
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls I want do a the transfer action So I can verify that transfer action can be done only when there are a maximum of 14 incoming calls
 @TEST_CASE_PRECONDITION:
@@ -46,8 +46,8 @@ Given the call queue items:
 | OP3-OP2 | <<OP3_URI>> | <<OP2_URI>> | DA/IDA   |
 | OP2-OP3 | <<OP2_URI>> | <<OP3_URI>> | DA/IDA   |
 
-Scenario: 1. Have 16 external DA calls that call Op1
-Meta: @TEST_STEP_ACTION: Have 16 external DA calls that call Op1
+Scenario: 1. Set up 16 external DA calls that call Op1
+Meta: @TEST_STEP_ACTION: Set up 16 external DA calls that call Op1
 @TEST_STEP_REACTION: Op1 has 16 incoming calls
 @TEST_STEP_REF: [CATS-REF: uKr0]
 When SipContact calls SIP URI <<OPVOICE1_PHONE_URI>>

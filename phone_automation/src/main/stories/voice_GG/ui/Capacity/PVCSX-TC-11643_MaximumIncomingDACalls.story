@@ -1,4 +1,4 @@
-Meta: @TEST_CASE_VERSION: V9
+Meta: @TEST_CASE_VERSION: V11
 @TEST_CASE_NAME: MaximumIncomingDACalls
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls and another operator attempts to call my position I want to verify that the operator will not be able to call my position only after one of the waiting calls is terminated
 @TEST_CASE_PRECONDITION:
@@ -44,8 +44,8 @@ Given the call queue items:
 | OP1-OP2 | <<OP1_URI>> | <<OP2_URI>> | IA       |
 | OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | IA       |
 
-Scenario: 1. Have 16 external DA calls that call Op1
-Meta: @TEST_STEP_ACTION: Have 16 external DA calls that call Op1
+Scenario: 1. Set up 16 external DA calls that call Op1
+Meta: @TEST_STEP_ACTION: Set up 16 external DA calls that call Op1
 @TEST_STEP_REACTION: Op1 has 16 incoming calls
 @TEST_STEP_REF: [CATS-REF: 2WMl]
 When SipContact calls SIP URI <<OPVOICE1_PHONE_URI>>
@@ -144,7 +144,7 @@ Meta: @TEST_STEP_ACTION: All external calls are terminated by Op1
 @TEST_STEP_REACTION: Op1 has 0 calls in the queue
 @TEST_STEP_REF: [CATS-REF: CmEE]
 GivenStories: voice_GG/ui/includes/@CleanupCollapsedCallQueue.story,
-			  voice_GG/ui/includes/@CleanupUICallQueueByPosition.story
+voice_GG/ui/includes/@CleanupUICallQueueByPosition.story
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Remove phone
