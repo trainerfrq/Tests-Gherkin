@@ -107,18 +107,39 @@ class OpenAndVerifyWebSocketClientConnection extends WebsocketScriptTemplate {
                 .success(buffer != null))
         TextMessage message = buffer.pollTextMessage();
         evaluate(ExecutionDetails.create("Get message text from the buffer message")
-                .expected("Text is not null")
+                .expected("Text is not null " + message.toString())
                 .success(message != null))
-        String shortenMessage = reportMessage(message.getContent())
-        record(ExecutionDetails.create("Redundancy state")
-                .expected("Redundancy state is"+state)
-                .received(shortenMessage)
-                .success(true))
+        if(message != null){
+            String shortenMessage = reportMessage(message.getContent())
+            record(ExecutionDetails.create("Redundancy state")
+                    .expected("Redundancy state is"+state)
+                    .received(shortenMessage)
+                    .success(true))
 
-        //close websocket connection
-        webSocketEndpoint.dispose();
+            //close websocket connection
+            webSocketEndpoint.dispose();
 
-        return shortenMessage.contains(state);
+            return shortenMessage.contains(state);
+        }
+        else {
+            List<TextMessage> listMessages = buffer.pollAllTextMessages()
+            evaluate(ExecutionDetails.create("Get list of messages from the buffer message")
+                    .expected("Text is not null " + listMessages.toString())
+                    .success(message != null))
+            for(TextMessage otherMessage:listMessages){
+                String shortenMessage = reportMessage(otherMessage.getContent())
+                record(ExecutionDetails.create("Redundancy state")
+                        .expected("Redundancy state is"+state)
+                        .received(shortenMessage)
+                        .success(true))
+
+                //close websocket connection
+                webSocketEndpoint.dispose();
+
+                return shortenMessage.contains(state);
+            }
+        }
+
     }
 
     public static String reportMessage(String message) {
