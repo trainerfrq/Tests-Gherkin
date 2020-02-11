@@ -1,5 +1,4 @@
-Meta:
-@TEST_CASE_VERSION: V9
+Meta: @TEST_CASE_VERSION: V9
 @TEST_CASE_NAME: MaximumIncomingCallsAnswered
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls I want to answer each of the incoming call So I can verify that the call queue is adapted accordingly with my actions
 @TEST_CASE_PRECONDITION:
@@ -11,11 +10,11 @@ Meta:
 
 Scenario: Booking profiles
 Given booked profiles:
-| profile | group          | host           | identifier |
-| javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
-| voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
+| profile             | group          | host           | identifier |
+| javafx              | hmi            | <<CLIENT1_IP>> | HMI OP1    |
+| javafx              | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
+| voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Create sip phone
 Given SipContacts group SipContact:
@@ -40,8 +39,7 @@ Given SipContacts group SipContact:
 Given phones for SipContact are created
 
 Scenario: 1. Have 16 external DA calls that call Op1
-Meta:
-@TEST_STEP_ACTION: Have 16 external DA calls that call Op1
+Meta: @TEST_STEP_ACTION: Have 16 external DA calls that call Op1
 @TEST_STEP_REACTION: Op1 has 16 incoming calls. 3 calls are visible in the waiting list and 13 are in a collapsed area
 @TEST_STEP_REF: [CATS-REF: phco]
 When SipContact calls SIP URI <<OPVOICE1_PHONE_URI>>
@@ -53,8 +51,7 @@ Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 13 calls
 
 Scenario: 2. Op1 answers one call
-Meta:
-@TEST_STEP_ACTION: Op1 answers one call
+Meta: @TEST_STEP_ACTION: Op1 answers one call
 @TEST_STEP_REACTION: In the call queue there are: 1 active call, 3 calls are visible in the waiting call queue list and 12 are in a collapsed area
 @TEST_STEP_REF: [CATS-REF: aGUm]
 Then HMI OP1 answers item 1 from waiting call queue list
@@ -66,8 +63,7 @@ Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 12 calls
 
 Scenario: 3. Op1 terminates active call
-Meta:
-@TEST_STEP_ACTION: Op1 terminates active call 
+Meta: @TEST_STEP_ACTION: Op1 terminates active call
 @TEST_STEP_REACTION: In the call queue there are: 0 active call, 3 calls are visible in the waiting call queue list and 12 are in a collapsed area
 @TEST_STEP_REF: [CATS-REF: NFCi]
 Then HMI OP1 terminates item 1 from active call queue list
@@ -79,10 +75,10 @@ Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 12 calls
 
 Scenario: 4. Answering and terminate calls actions are repeated for the next 10 calls
-Meta:
-@TEST_STEP_ACTION: Answering and terminate calls actions are repeated for the next 10 calls
+Meta: @TEST_STEP_ACTION: Answering and terminate calls actions are repeated for the next 10 calls
 @TEST_STEP_REACTION: The call queue will be adapted accordingly: active call visible when answered, not visible when terminated, 3 calls visible in the waiting call queue list and calls shown in the collapsed area is decreasing by one with every answered call
 @TEST_STEP_REF: [CATS-REF: yjsJ]
+
 Scenario: 4.1 Op1 answers one call
 Then HMI OP1 answers item 1 from waiting call queue list
 
@@ -264,8 +260,7 @@ Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 2 calls
 
 Scenario: 5. Op1 answers one call
-Meta:
-@TEST_STEP_ACTION: Op1 answers one call
+Meta: @TEST_STEP_ACTION: Op1 answers one call
 @TEST_STEP_REACTION: In the call queue there are: 1 active call, 3 calls are visible in the waiting list and collapsed area is not visible anymore
 @TEST_STEP_REF: [CATS-REF: wXi5]
 Then HMI OP1 answers item 1 from waiting call queue list
@@ -276,8 +271,7 @@ Then HMI OP1 has in the call queue a number of 5 calls
 Then HMI OP1 has in the waiting list a number of 4 calls
 
 Scenario: 6. Op1 terminates active call
-Meta:
-@TEST_STEP_ACTION: Op1 terminates active call 
+Meta: @TEST_STEP_ACTION: Op1 terminates active call
 @TEST_STEP_REACTION: In the call queue there are: 0 active call, 3 calls are visible in the waiting list and collapsed area is not visible anymore
 @TEST_STEP_REF: [CATS-REF: lLjw]
 Then HMI OP1 terminates item 1 from active call queue list
@@ -288,10 +282,10 @@ Then HMI OP1 has in the call queue a number of 4 calls
 Then HMI OP1 has in the waiting list a number of 4 calls
 
 Scenario: 7. Answering and terminate calls actions are repeated for the next 4 calls
-Meta:
-@TEST_STEP_ACTION: Answering and terminate calls actions are repeated for the next 4 calls
+Meta: @TEST_STEP_ACTION: Answering and terminate calls actions are repeated for the next 4 calls
 @TEST_STEP_REACTION: The call queue will be adapted accordingly: active call visible when answered, not visible when terminated, calls visible in the waiting call queue list will be decreasing by one with every answered call
 @TEST_STEP_REF: [CATS-REF: TUWs]
+
 Scenario: 7.1 Op1 answers one call
 Then HMI OP1 answers item 1 from waiting call queue list
 

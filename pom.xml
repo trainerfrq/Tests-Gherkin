@@ -20,16 +20,16 @@
       <cats.version>5.15.0</cats.version>
       
       <!-- DEPENDENCY VERSIONS -->
-      <voice.service.interface.version>1.1.0-6.7.1</voice.service.interface.version>
+      <voice.service.interface.version>7.5.0-SNAPSHOT</voice.service.interface.version>
       <audio-simulator-service.version>0.56.0</audio-simulator-service.version>
       <audio-service-interface.version>0.30.0</audio-service-interface.version>
-       <voice.hmi.service.version>1.1.0-2.6.7</voice.hmi.service.version>
+       <voice.hmi.service.version>1.1.2-2.6.7</voice.hmi.service.version>
 
       <!-- FW DEPENDENCY VERSIONS -->
-      <mission-configurator-plugin.version>1.0.0</mission-configurator-plugin.version>
-      <websocket-lib.version>1.0.0</websocket-lib.version>
-      <xvp-cats-rest-configuration.version>1.1.0</xvp-cats-rest-configuration.version>
-      <xvp-cats-ssh.version>1.1.0</xvp-cats-ssh.version>
+      <mission-configurator-plugin.version>1.2.1</mission-configurator-plugin.version>
+      <websocket-lib.version>1.2.0</websocket-lib.version>
+      <xvp-cats-rest-configuration.version>1.1.3</xvp-cats-rest-configuration.version>
+      <xvp-cats-ssh.version>1.2.0</xvp-cats-ssh.version>
 
       <!-- 3RD PARTY VERSIONS -->
       <guava.version>23.0</guava.version>

@@ -3,12 +3,14 @@ As a callee operator using a redundant Op Voice service
 I want to make a phone call
 So I can verify that the phone call is always made even when op voice instances are restarted
 
-Meta: @AfterStory: ../includes/@StoreMetrics.story
-
 Scenario: Booking profiles
 Given booked profiles:
 | profile   | group | host       |
 | websocket | hmi   | <<CO3_IP>> |
+
+Scenario: Preparation step: kill and start op voice instances on host 1, in order to make sure that op voice instances on host 2 are the active ones
+GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost1.story
+Then wait for 70 seconds
 
 Scenario: Open Web Socket Client connections
 GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost2.story
@@ -19,19 +21,20 @@ Given named the websocket configurations:
 | WS_Config-3 | <<OPVOICE2_WS.URI>> | 1000             |
 | WS_Config-4 | <<OPVOICE4_WS.URI>> | 1000             |
 
-Scenario: Open Web Socket Client connections
+Scenario: Open Web Socket Client connection to op voice first instance on host 1
 		  @REQUIREMENTS:GID-4461959
 When a timer named failoverTimerWS1 is started
 Given it is known what op voice instances are Active, the websocket configuration is applied:
 | key | profile-name | websocket-config-name |
 | WS1 | WEBSOCKET 1  | WS_Config-1           |
-Then a timer named failoverTimerWS1 is stopped
+Then timer failoverTimerWS1 is stopped and verified that is lower then <<opVoiceFailoverTime>> seconds
 
+Scenario: Open Web Socket Client connection to op voice second instance on host 1
 When a timer named failoverTimerWS2 is started
 Given it is known what op voice instances are Active, the websocket configuration is applied:
 | key | profile-name | websocket-config-name |
 | WS2 | WEBSOCKET 1  | WS_Config-2           |
-Then a timer named failoverTimerWS2 is stopped
+Then timer failoverTimerWS2 is stopped and verified that is lower then <<opVoiceFailoverTime>> seconds
 
 Scenario: Create the message buffers for missions
 When WS1 opens the message buffer for message type missionsAvailableIndication named MissionsAvailableIndicationBuffer1
@@ -109,7 +112,7 @@ Given that connection can be open (although instances are Passive) using websock
 | WS3 | WEBSOCKET 1  | WS_Config-3           |
 | WS4 | WEBSOCKET 1  | WS_Config-4           |
 
-Scenario: Open Web Socket Client connections
+Scenario: Open Web Socket Client connection to op voice first instance on host 2
 		  @REQUIREMENTS:GID-4034511
 		  @REQUIREMENTS:GID-4435108
 GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost1.story
@@ -117,13 +120,14 @@ When a timer named failoverTimerWS3 is started
 Given it is known what op voice instances are Active, the websocket configuration is applied:
 | key | profile-name | websocket-config-name |
 | WS3 | WEBSOCKET 1  | WS_Config-3           |
-Then a timer named failoverTimerWS3 is stopped
+Then timer failoverTimerWS3 is stopped and verified that is lower then <<opVoiceFailoverTime>> seconds
 
+Scenario: Open Web Socket Client connection to op voice second instance on host 2
 When a timer named failoverTimerWS4 is started
 Given it is known what op voice instances are Active, the websocket configuration is applied:
 | key | profile-name | websocket-config-name |
 | WS4 | WEBSOCKET 1  | WS_Config-4           |
-Then a timer named failoverTimerWS4 is stopped
+Then timer failoverTimerWS4 is stopped and verified that is lower then <<opVoiceFailoverTime>> seconds
 
 Scenario: Create the message buffers for missions
 When WS3 opens the message buffer for message type missionsAvailableIndication named MissionsAvailableIndicationBuffer1
@@ -165,7 +169,7 @@ When WS4 opens the message buffer for message type callIncomingIndication named 
 When WS4 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer2
 
 Scenario: Caller client retrieves phone data
-When WS3 loads phone data for mission missionId1 and names callSource and callTarget from the entry number 3
+When WS3 queries phone data for mission missionId1 in order to call OP2 and names them callSource and callTarget
 
 Scenario: Caller establishes an outgoing call
 When WS3 establishes an outgoing phone call using source callSource ang target callTarget and names outgoingPhoneCallId

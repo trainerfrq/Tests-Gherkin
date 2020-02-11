@@ -11,9 +11,9 @@ import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.automation.model.ProfileToWebSocketConfigurationReference;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.tools.cats.websocket.dto.WebsocketAutomationSteps;
+import com.frequentis.xvp.voice.common.CorrelationId;
 import com.frequentis.xvp.voice.common.op.AppId;
 import com.frequentis.xvp.voice.common.op.OpId;
-import com.frequentis.xvp.voice.controlbase.CorrelationId;
 import com.frequentis.xvp.voice.opvoice.config.layout.JsonDaDataElement;
 import com.frequentis.xvp.voice.opvoice.config.layout.JsonWidgetElement;
 import com.frequentis.xvp.voice.opvoice.json.messages.JsonMessage;
@@ -215,7 +215,7 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       final String missionId = availableMissions.get( missionName );
       final JsonMessage request =
             JsonMessage.newChangeMissionRequest( new ChangeMissionRequest( missionId ),
-                  CorrelationId.fromId( UUID.randomUUID() ) );
+                    CorrelationId.fromId( UUID.randomUUID() ) );
 
       final RemoteStepResult remoteStepResult =
             evaluate(

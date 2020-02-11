@@ -1,5 +1,4 @@
-Meta:
-@TEST_CASE_VERSION: V8
+Meta: @TEST_CASE_VERSION: V8
 @TEST_CASE_NAME: MaximumIncomingCallsAndChangeMission
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls I want to change mission So I can verify that the incoming calls are not affected by the mission active role settings
 @TEST_CASE_PRECONDITION: Test starts with Op1 having mission MISSION_1_NAME
@@ -13,11 +12,11 @@ Meta:
 
 Scenario: Booking profiles
 Given booked profiles:
-| profile | group          | host           | identifier |
-| javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
-| voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
+| profile             | group          | host           | identifier |
+| javafx              | hmi            | <<CLIENT1_IP>> | HMI OP1    |
+| javafx              | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
+| voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Create sip phone
 Given SipContacts group SipContact:
@@ -42,8 +41,7 @@ Given SipContacts group SipContact:
 Given phones for SipContact are created
 
 Scenario: 1. Have 16 external DA calls that call Op1
-Meta:
-@TEST_STEP_ACTION: Have 16 external DA calls that call Op1
+Meta: @TEST_STEP_ACTION: Have 16 external DA calls that call Op1
 @TEST_STEP_REACTION: Op1 has 16 incoming calls
 @TEST_STEP_REF: [CATS-REF: 3c4d]
 When SipContact calls SIP URI <<OPVOICE1_PHONE_URI>>
@@ -55,8 +53,7 @@ Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 13 calls
 
 Scenario: 2. Op1 changes mission to MISSION_2_NAME
-Meta:
-@TEST_STEP_ACTION: Op1 changes mission to MISSION_2_NAME;
+Meta: @TEST_STEP_ACTION: Op1 changes mission to MISSION_2_NAME;
 @TEST_STEP_REACTION: Op1 active mission is MISSION_2_NAME;
 @TEST_STEP_REF: [CATS-REF: yib2]
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
@@ -68,8 +65,7 @@ Scenario: 2.1 Verify operator mission
 Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_2_NAME>>
 
 Scenario: 3. Op1 verifies the number of incoming calls in the queue
-Meta:
-@TEST_STEP_ACTION: Op1 verifies the number of incoming calls in the queue
+Meta: @TEST_STEP_ACTION: Op1 verifies the number of incoming calls in the queue
 @TEST_STEP_REACTION: Op1 has 16 incoming calls
 @TEST_STEP_REF: [CATS-REF: W1cM]
 Then HMI OP1 has in the call queue a number of 3 calls
@@ -77,8 +73,7 @@ Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 13 calls
 
 Scenario: 4. Op1 answers and terminates 8 of the incoming calls
-Meta:
-@TEST_STEP_ACTION: Op1 answers and terminates 8 of the incoming calls
+Meta: @TEST_STEP_ACTION: Op1 answers and terminates 8 of the incoming calls
 @TEST_STEP_REACTION: Op1 has 8 incoming calls
 @TEST_STEP_REF: [CATS-REF: JGVl]
 Then HMI OP1 answers and terminates a number of 8 calls
@@ -90,8 +85,7 @@ Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 5 calls
 
 Scenario: 5. Op3 tries to establishes an outgoing call to Op1
-Meta:
-@TEST_STEP_ACTION: Op3 tries to establishes an outgoing call to Op1
+Meta: @TEST_STEP_ACTION: Op3 tries to establishes an outgoing call to Op1
 @TEST_STEP_REACTION: Op3 is not able to call Op1
 @TEST_STEP_REF: [CATS-REF: Qt2a]
 When HMI OP3 presses DA key OP1
@@ -107,8 +101,7 @@ Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 5 calls
 
 Scenario: 6. Op1 changes mission to MISSION_1_NAME
-Meta:
-@TEST_STEP_ACTION: Op1 changes mission to MISSION_1_NAME;
+Meta: @TEST_STEP_ACTION: Op1 changes mission to MISSION_1_NAME;
 @TEST_STEP_REACTION: Op1 active mission is MISSION_1_NAME. Op1 has 8 incoming calls
 @TEST_STEP_REF: [CATS-REF: hl0r]
 When HMI OP1 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
@@ -126,8 +119,7 @@ Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 5 calls
 
 Scenario: 7. Op3 tries to establishes an outgoing call to Op1
-Meta:
-@TEST_STEP_ACTION: Op3 tries to establishes an outgoing call to Op1
+Meta: @TEST_STEP_ACTION: Op3 tries to establishes an outgoing call to Op1
 @TEST_STEP_REACTION: Op3 has a ringing call. Op1 has one more call in the call queue
 @TEST_STEP_REF: [CATS-REF: 5rW1]
 When HMI OP3 presses DA key OP1
@@ -143,8 +135,7 @@ Then HMI OP1 has in the waiting list a number of 3 calls
 Then HMI OP1 has in the collapsed area a number of 6 calls
 
 Scenario: 8. Op1 answers and terminates 8 of the incoming calls
-Meta:
-@TEST_STEP_ACTION: Op1 answers and terminates 9 of the incoming calls
+Meta: @TEST_STEP_ACTION: Op1 answers and terminates 9 of the incoming calls
 @TEST_STEP_REACTION: Op1 has 0 calls in the call queue
 @TEST_STEP_REF: [CATS-REF: u5eF]
 Then HMI OP1 answers and terminates a number of 9 calls

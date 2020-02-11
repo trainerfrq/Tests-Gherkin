@@ -1,5 +1,4 @@
-Meta:
-@TEST_CASE_VERSION: V6
+Meta: @TEST_CASE_VERSION: V6
 @TEST_CASE_NAME: MaximumOutgoingPositionMonitoringCalls
 @TEST_CASE_DESCRIPTION: As an operator having 5 outgoing Position Monitoring calls I want to verify I'm not able to do a 6th Position Monitoring call only after one of the existing monitoring calls is terminated
 @TEST_CASE_PRECONDITION: Op1 active mission has a role that has the maximum allowed number of outgoing position monitoring calls
@@ -11,11 +10,11 @@ Meta:
 
 Scenario: Booking profiles
 Given booked profiles:
-| profile | group          | host           | identifier |
-| javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
-| javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
-| voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
+| profile             | group          | host           | identifier |
+| javafx              | hmi            | <<CLIENT1_IP>> | HMI OP1    |
+| javafx              | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
+| voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Create endpoint configuration
 Given the SIP header configuration named SipConfig:
@@ -52,8 +51,7 @@ Scenario: Verify operator mission
 Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_4_NAME>>
 
 Scenario: 1. Op1 establishes 5 outgoing GG monitoring call
-Meta:
-@TEST_STEP_ACTION: Op1 establishes 5 outgoing GG monitoring call
+Meta: @TEST_STEP_ACTION: Op1 establishes 5 outgoing GG monitoring call
 @TEST_STEP_REACTION: The 5 outgoing monitoring calls are done successfully. DA keys are signalized as having monitoring state active.
 @TEST_STEP_REF: [CATS-REF: rwHd]
 When HMI OP1 with layout <<LAYOUT_MISSION4>> presses function key MONITORING
@@ -73,15 +71,13 @@ When HMI OP1 with layout <<LAYOUT_MISSION4>> presses function key MONITORING
 Then HMI OP1 with layout <<LAYOUT_MISSION4>> has the function key MONITORING in monitoringActive state
 
 Scenario: 2. Op1 verifies the Position Monitoring function key
-Meta:
-@TEST_STEP_ACTION: Op1 verifies the Position Monitoring function key
+Meta: @TEST_STEP_ACTION: Op1 verifies the Position Monitoring function key
 @TEST_STEP_REACTION: Position Monitoring function key signalizes 5 outgoing monitoring calls
 @TEST_STEP_REF: [CATS-REF: bxvK]
 Then HMI OP1 with layout <<LAYOUT_MISSION4>> has the function key MONITORING label Monitoring: 5
 
 Scenario: 3. Op1 opens the monitoring list
-Meta:
-@TEST_STEP_ACTION: Op1 opens the monitoring list
+Meta: @TEST_STEP_ACTION: Op1 opens the monitoring list
 @TEST_STEP_REACTION: Monitoring list is open and contains 5 outgoing GG monitoring calls
 @TEST_STEP_REF: [CATS-REF: IaBX]
 When HMI OP1 with layout <<LAYOUT_MISSION4>> opens monitoring list using function key MONITORING menu
@@ -99,8 +95,7 @@ Scenario: 3.2 Op1 closes monitoring popup
 Then HMI OP1 closes monitoring popup
 
 Scenario: 4. Op1 attempts to  do an outgoing monitoring call to Op3
-Meta:
-@TEST_STEP_ACTION: Op1 attempts to  do an outgoing monitoring call to Op3
+Meta: @TEST_STEP_ACTION: Op1 attempts to  do an outgoing monitoring call to Op3
 @TEST_STEP_REACTION: Op1 has a failed call to Op3
 @TEST_STEP_REF: [CATS-REF: 0THP]
 When HMI OP1 with layout <<LAYOUT_MISSION4>> presses function key MONITORING
@@ -115,8 +110,7 @@ Scenario: 4.2 Position Monitoring function key signalizes 5 outgoing monitoring 
 Then HMI OP1 with layout <<LAYOUT_MISSION4>> has the function key MONITORING label Monitoring: 5
 
 Scenario: 5. Op1 terminates one outgoing position monitoring call
-Meta:
-@TEST_STEP_ACTION: Op1 terminates one outgoing position monitoring call
+Meta: @TEST_STEP_ACTION: Op1 terminates one outgoing position monitoring call
 @TEST_STEP_REACTION: On Op1 position 4 outgoing position monitoring calls are visible
 @TEST_STEP_REF: [CATS-REF: iFgC]
 When HMI OP1 with layout <<LAYOUT_MISSION4>> opens monitoring list using function key MONITORING menu
@@ -136,8 +130,7 @@ Scenario: 5.4 Position Monitoring function key signalizes 4 outgoing monitoring 
 Then HMI OP1 with layout <<LAYOUT_MISSION4>> has the function key MONITORING label Monitoring: 4
 
 Scenario: 6. Op1 makes an outgoing monitoring call to Op3
-Meta:
-@TEST_STEP_ACTION: Op1 makes an outgoing monitoring call to Op3
+Meta: @TEST_STEP_ACTION: Op1 makes an outgoing monitoring call to Op3
 @TEST_STEP_REACTION: Op1 has a successful outgoing monitoring call to Op3
 @TEST_STEP_REF: [CATS-REF: 6B3Q]
 When HMI OP1 with layout <<LAYOUT_MISSION4>> presses function key MONITORING
@@ -154,8 +147,7 @@ Then HMI OP1 verifies in the monitoring list that for entry 4 the second column 
 Then HMI OP1 verifies in the monitoring list that for entry 5 the second column has value Test_Mayo
 
 Scenario: 7. Op1 terminates the position monitoring call to Op3
-Meta:
-@TEST_STEP_ACTION: Op1 terminates the position monitoring call to Op3
+Meta: @TEST_STEP_ACTION: Op1 terminates the position monitoring call to Op3
 @TEST_STEP_REACTION: On Op1 position 4 outgoing position monitoring calls are visible
 @TEST_STEP_REF: [CATS-REF: wppn]
 When HMI OP1 selects entry 3 in the monitoring list
@@ -168,8 +160,7 @@ Scenario: 7.2 Op1 verifies monitoring list entries
 Then HMI OP1 verifies that monitoring list contains 4 entries
 
 Scenario: 8. Op1 terminates all outgoing position monitoring calls
-Meta:
-@TEST_STEP_ACTION: Op1 terminates all outgoing position monitoring calls
+Meta: @TEST_STEP_ACTION: Op1 terminates all outgoing position monitoring calls
 @TEST_STEP_REACTION: Op1 has 0 calls in the monitoring list
 @TEST_STEP_REF: [CATS-REF: jqmC]
 Then HMI OP1 clicks on clearAllCalls button
