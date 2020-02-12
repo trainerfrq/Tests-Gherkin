@@ -53,6 +53,14 @@ Then HMI OP1 clears Call History list
 Then HMI OP1 verifies that call history list contains 0 entries
 Then HMI OP1 closes Call History popup window
 
+Scenario: Operator opens Notification Display popup and clears the event list
+When HMI OP1 opens Notification Display list
+When HMI OP1 selects tab event from notification display popup
+When HMI OP1 clears the notification events from list
+
+Scenario: Close popup window
+Then HMI OP1 closes notification popup
+
 Scenario: OP1 changes its mission to TWR
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP1 changes current mission to mission <<MISSION_TWR_NAME>>
@@ -198,20 +206,27 @@ Meta:
 @TEST_STEP_REACTION: OP1 has in Maintenance Panel first connection with status Connecting and the second connection with status ACTIVE
 @TEST_STEP_REF: [CATS-REF: J90m]
 GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost1.story
-Then HMI OP1 has a notification that shows Connection loss to OpVoice service
 When HMI OP1 verifies that loading screen is visible
-And waiting for 60 seconds
+And waiting for 15 seconds
 
-Scenario: 11.1 OP1 opens the Maintenance window
+Scenario: 11.1 Verify Notification Display list shows OpVoiceService Failover took place
+When HMI OP1 opens Notification Display list
+When HMI OP1 selects tab event from notification display popup
+Then HMI OP1 verifies that list Event contains on position 0 text OpVoiceService Failover took place
+
+Scenario: 11.2 Close popup window
+Then HMI OP1 closes notification popup
+
+Scenario: 11.3 OP1 opens the Maintenance window
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key SETTINGS
 When HMI OP1 clicks on maintenancePanel button
 Then HMI OP1 verifies that popup maintenance is visible
 
-Scenario: 11.2 OP1 checks the OP-Voice connections status
+Scenario: 11.4 OP1 checks the OP-Voice connections status
 Then HMI OP1 verifies that connection number 1 of Op Voice instance <<OPVOICE1_WS.URI>> has status CONNECTING
 Then HMI OP1 verifies that connection number 2 of Op Voice instance <<OPVOICE2_WS.URI>> has status ACTIVE
 
-Scenario: 11.3 OP1 closes Maintenance popup window
+Scenario: 11.5 OP1 closes Maintenance popup window
 Then HMI OP1 closes maintenance popup
 
 Scenario: 12. OP1 changes its mission to GND

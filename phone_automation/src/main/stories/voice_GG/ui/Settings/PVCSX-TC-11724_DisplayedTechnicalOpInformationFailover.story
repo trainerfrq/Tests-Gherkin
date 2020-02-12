@@ -37,12 +37,11 @@ Then HMI OP1 closes notification popup
 Scenario: 1. Operator stops first OP-Voice-Service instance
 Meta:
 @TEST_STEP_ACTION: Operator stops first OP-Voice-Service instance
-@TEST_STEP_REACTION: HMI displays DEGRADED in Notification and Status display. Notification Display shows message: Connection loss to OpVoice and Event list contains: OpVoiceService Failover took place
+@TEST_STEP_REACTION: HMI displays DEGRADED in Notification and Status display. Event list contains: OpVoiceService Failover took place
 @TEST_STEP_REF: [CATS-REF: fvoy]
 GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost1.story
-Then HMI OP1 has a notification that shows Connection loss to OpVoice service
 When HMI OP1 verifies that loading screen is visible
-And waiting for 60 seconds
+And waiting for 15 seconds
 Then HMI OP1 has in the DISPLAY STATUS section connection the state DEGRADED
 Then HMI OP1 has in the NOTIFICATION DISPLAY section connection the state DEGRADED
 
