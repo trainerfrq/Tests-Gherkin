@@ -1,10 +1,18 @@
 Meta:
-@TEST_CASE_VERSION: V11
+@TEST_CASE_VERSION: V16
 @TEST_CASE_NAME: DisplayedTechnicalOpInformationFailover
 @TEST_CASE_DESCRIPTION: As an operator having a running HMI machine 
 I want to stop the OP-Voice-Service instances and open the Maintenance window
 So I can verify the information regarding the connections and OP-Voice-HMI version
-@TEST_CASE_PRECONDITION: A HMI machine working properly
+@TEST_CASE_PRECONDITION: Mission assigned with the following settings:
+Layout settings:
+- show status bar: yes
+- show connection status: yes
+
+Status widget settings:
+- show connection status: yes
+
+The active OpVoice service instance will be first stopped
 @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if the Maintenance window displays the required technical information
 @TEST_CASE_DEVICES_IN_USE: 
 @TEST_CASE_ID: PVCSX-TC-11724
@@ -15,17 +23,35 @@ Scenario: Booking profiles
 Given booked profiles:
 | profile | group | host           | identifier |
 | javafx  | hmi   | <<CLIENT1_IP>> | HMI OP1    |
+| javafx  | hmi   | <<CLIENT2_IP>> | HMI OP2    |
+| javafx  | hmi   | <<CLIENT3_IP>> | HMI OP3    |
+
+Scenario: Operator opens Notification Display popup and clears the event list
+When HMI OP1 opens Notification Display list
+When HMI OP1 selects tab event from notification display popup
+When HMI OP1 clears the notification events from list
+
+Scenario: Close popup window
+Then HMI OP1 closes notification popup
 
 Scenario: 1. Operator stops first OP-Voice-Service instance
 Meta:
 @TEST_STEP_ACTION: Operator stops first OP-Voice-Service instance
-@TEST_STEP_REACTION: First OP-Voice-Service instance is closed
+@TEST_STEP_REACTION: HMI displays DEGRADED in Notification and Status display. Event list contains: OpVoiceService Failover took place
 @TEST_STEP_REF: [CATS-REF: fvoy]
 GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost1.story
 When HMI OP1 verifies that loading screen is visible
-And waiting for 60 seconds
+And waiting for 15 seconds
 Then HMI OP1 has in the DISPLAY STATUS section connection the state DEGRADED
-And waiting for 5 seconds
+Then HMI OP1 has in the NOTIFICATION DISPLAY section connection the state DEGRADED
+
+Scenario: 1.1 Verify Notification Display list shows OpVoiceService Failover took place
+When HMI OP1 opens Notification Display list
+When HMI OP1 selects tab event from notification display popup
+Then HMI OP1 verifies that list Event contains on position 0 text OpVoiceService Failover took place
+
+Scenario: 1.2 Close popup window
+Then HMI OP1 closes notification popup
 
 Scenario: 2. Operator opens the Maintenance window
 Meta:
@@ -55,11 +81,18 @@ Then HMI OP1 verifies that connection number 2 of Op Voice instance <<OPVOICE2_W
 Scenario: 5. Operator stops second OP-Voice-Service instance
 Meta:
 @TEST_STEP_ACTION: Operator stops second OP-Voice-Service instance
-@TEST_STEP_REACTION: Second OP-Voice-Service instance is closed
+@TEST_STEP_REACTION: HMI displays DISCONNECTED in Notification and Status display. Notification Display shows message: Connection loss to OpVoice
 @TEST_STEP_REF: [CATS-REF: Vgig]
 GivenStories: voice_GG/includes/KillOpVoiceActiveOnDockerHost2.story
+Then HMI OP1 has a notification that shows Connection loss to OpVoice service
 When HMI OP1 verifies that loading screen is visible
 Then HMI OP1 has in the DISPLAY STATUS section connection the state DISCONNECTED
+Then HMI OP1 has in the NOTIFICATION DISPLAY section connection the state DISCONNECTED
+
+Scenario: 5.1 Verify Notification Display list shows Connection loss to OpVoice service
+When HMI OP1 opens Notification Display list
+Then HMI OP1 verifies that list State contains text Connection loss to OpVoice service
+Then HMI OP1 closes notification popup
 
 Scenario: 6. Operator opens the Maintenance window
 Meta:
@@ -93,16 +126,21 @@ Meta:
 @TEST_STEP_REF: [CATS-REF: xX2x]
 Then HMI OP1 verifies that version of OP-Voice-HMI version is the same with the version from /configuration-files/<<systemName>>/voice-hmi-service-docker-image.json
 
-Scenario: Clean-up - Operator closes the Maintenance window
+Scenario: 9.1 Operator closes the Maintenance window
 Then HMI OP1 closes maintenance popup
 Then HMI OP1 verifies that popup maintenance is not visible
 Then HMI OP1 verifies that popup settings is not visible
 
-Scenario: Clean-up Operator starts OP-Voice-Service instances
+Scenario: 10. Operator starts OP-Voice-Service instances
+Meta:
+@TEST_STEP_ACTION: Operator starts OP-Voice-Service instances
+@TEST_STEP_REACTION: HMI displays CONNECTED in Notification and Status display
+@TEST_STEP_REF: [CATS-REF: j3ny]
 GivenStories: voice_GG/includes/StartOpVoiceActiveOnDockerHost1.story,
 			  voice_GG/includes/StartOpVoiceActiveOnDockerHost2.story
 Then waiting for 60 seconds
 Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
+Then HMI OP1 has in the NOTIFICATION DISPLAY section connection the state CONNECTED
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure

@@ -33,18 +33,18 @@ Given booked profiles:
 Scenario: Define call queue items
 Given the call queue items:
 | key             | source                     | target                    | callType   |
-| ROLE2-APP       | <<ROLE2_URI>>              | sip:222507723@example.com | DA/IDA     |
-| APP-ROLE2       | sip:222507723@example.com  |                           | DA/IDA     |
+| ROLE2-APP       | <<ROLE2_URI>>              | sip:999507723@example.com | DA/IDA     |
+| APP-ROLE2       | sip:999507723@example.com  |                           | DA/IDA     |
 
 Scenario: OP1 changes its mission to APP
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP1 changes current mission to mission APP
+Then HMI OP1 changes current mission to mission <<MISSION_APP_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: OP3 changes its mission to SUP TWR
 When HMI OP3 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
-Then HMI OP3 changes current mission to mission SUP-TWR
+Then HMI OP3 changes current mission to mission <<MISSION_SUP-TWR_NAME>>
 Then HMI OP3 activates mission
 Then waiting for 5 seconds
 
@@ -72,7 +72,7 @@ Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: 2.1 OP2 still has a call in queue
 Then HMI OP2 has the call queue item APP-ROLE2 in state out_ringing
-Then HMI OP2 has the call queue item APP-ROLE2 in the active list with name label APP
+Then HMI OP2 has the call queue item APP-ROLE2 in the active list with name label <<MISSION_APP_NAME>>
 
 Scenario: 2.2 OP3 receives the call
 Then HMI OP3 has the call queue item ROLE2-APP in state inc_initiated
@@ -94,13 +94,13 @@ When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1
 Then HMI OP2 presses item 1 from active call queue list
 
 Scenario: Cleanup - OP1 changes its mission back
-When HMI OP1 with layout <<COMMON_LAYOUT>> presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_APP>> presses function key MISSIONS
 Then HMI OP1 changes current mission to mission <<MISSION_1_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: Cleanup - OP3 changes its mission back
-When HMI OP3 with layout <<COMMON_LAYOUT>> presses function key MISSIONS
+When HMI OP3 with layout <<LAYOUT_SUP-TWR>> presses function key MISSIONS
 Then HMI OP3 changes current mission to mission <<MISSION_3_NAME>>
 Then HMI OP3 activates mission
 Then waiting for 5 seconds

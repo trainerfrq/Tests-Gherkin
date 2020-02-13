@@ -8,11 +8,11 @@ A Conditional Call Forward rule is set with:
 - matching call destination: 20 phonebook entries
 - forward calls on:                        *out of service: OP3                        *reject: no call forwarding                        *no reply: no call forwarding
 -number of rule iterations: 0
-The phonebook entries are Out of Service.
-@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if the call to each destination is forwarded to OP3
-																									   @TEST_CASE_DEVICES_IN_USE:
-																									   @TEST_CASE_ID: PVCSX-TC-11886
-																									   @TEST_CASE_GLOBAL_ID: GID-5154346
+All 20 phonebook entries are "Out of Service".
+@TEST_CASE_PASS_FAIL_CRITERIA: This test is passed when it is possible to configure up to 20 destinations for a conditional call forward rule and upon calling one of those 20 destinations the call will be forwarded as configured.
+@TEST_CASE_DEVICES_IN_USE:
+@TEST_CASE_ID: PVCSX-TC-11886
+@TEST_CASE_GLOBAL_ID: GID-5154346
 @TEST_CASE_API_ID: 17689047
 
 Scenario: Booking profiles

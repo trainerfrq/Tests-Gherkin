@@ -9,31 +9,30 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class VerifyStatusDisplay extends FxScriptTemplate {
+class VerifyDisplayedText extends FxScriptTemplate {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(VerifyStatusDisplay.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(VerifyDisplayedText.class);
 
-    public static final String IPARAM_STATUS_DISPLAY_KEY = "status_key";
-    public static final String IPARAM_STATUS_DISPLAY_TEXT = "status_display_text";
-    public static final String IPARAM_STATUS_DISPLAY_LABEL = "status_display_label";
+    public static final String IPARAM_DISPLAY_PANEL_KEY = "display_panel_key";
+    public static final String IPARAM_DISPLAYED_TEXT = "displayed_text";
+    public static final String IPARAM_DISPLAY_LABEL = "display_label";
 
     @Override
     void script() {
 
-        String key = assertInput (IPARAM_STATUS_DISPLAY_KEY) as String;
-        String text = assertInput (IPARAM_STATUS_DISPLAY_TEXT) as String;
-        String label = assertInput (IPARAM_STATUS_DISPLAY_LABEL) as String;
+        String key = assertInput(IPARAM_DISPLAY_PANEL_KEY) as String;
+        String text = assertInput(IPARAM_DISPLAYED_TEXT) as String;
+        String label = assertInput(IPARAM_DISPLAY_LABEL) as String;
 
-        Label statusDisplay = robot.lookup("#"+key+" #"+label).queryFirst();
+        Label displayPanel = robot.lookup("#" + key + " #" + label).queryFirst();
 
-        evaluate(ExecutionDetails.create("Status display was found")
-                .expected("statusDisplay is not null")
-                .success(statusDisplay != null));
+        evaluate(ExecutionDetails.create(key + " was found")
+                .expected(key + " is not null")
+                .success(displayPanel != null));
 
-        if(statusDisplay != null){
-            evaluate(ExecutionDetails.create("Verify status display has property: " + text)
-                    .success(verifyNodeHasProperty(statusDisplay, text, 10000)));
-        }
+        evaluate(ExecutionDetails.create("Verify " + key + " has property: " + text)
+                .success(verifyNodeHasProperty(displayPanel, text, 10000)));
+
     }
 
     protected static boolean verifyNodeHasProperty(Label node, String property, long nWait) {

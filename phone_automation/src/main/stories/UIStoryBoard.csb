@@ -1124,6 +1124,12 @@
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
                         </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/PhoneGeneral/PVCSX-TC-12351_Status_and_Notification_Widget_-_Displayed_information.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
                 </cats:storyList>
