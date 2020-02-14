@@ -18,6 +18,8 @@ Scenario: Booking profiles
 Given booked profiles:
 | profile | group | host           | identifier |
 | javafx  | hmi   | <<CLIENT1_IP>> | HMI OP1    |
+| javafx  | hmi   | <<CLIENT2_IP>> | HMI OP2    |
+| javafx  | hmi   | <<CLIENT3_IP>> | HMI OP3    |
 
 Scenario: Precondition - Restart OP-Voice-Service instances
 GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost1.story,

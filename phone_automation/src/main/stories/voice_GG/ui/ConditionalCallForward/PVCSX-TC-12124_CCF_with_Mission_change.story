@@ -136,7 +136,7 @@ Scenario: Cleanup - OP2 cleans the calls queue
 Then HMI OP2 presses item 1 from active call queue list
 
 Scenario: Cleanup - OP1 changes its mission back
-When HMI OP1 with layout <<COMMON_LAYOUT>> presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_TWR>> presses function key MISSIONS
 Then HMI OP1 changes current mission to mission <<MISSION_1_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds

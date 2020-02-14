@@ -29,22 +29,22 @@ import scripts.cats.hmi.asserts.Mission.VerifyCurrentActiveMission;
 import scripts.cats.hmi.asserts.Mission.VerifyMissionListNames;
 import scripts.cats.hmi.asserts.Mission.VerifyMissionListSize;
 import scripts.cats.hmi.asserts.Mission.VerifyRolesInMissionList;
-import scripts.cats.hmi.asserts.VerifyStatusDisplay;
+import scripts.cats.hmi.asserts.VerifyDisplayedText;
 
 public class MissionListUISteps extends AutomationSteps
 {
 
    @Then("$profileName has in the $key section $label the assigned mission $text")
    @Alias("$profileName has in the $key section $label the state $text")
-   public void verifyAssignedMission( final String profileName, final String key, final String label, final String text )
+   public void verifyTextInDisplayPanel(final String profileName, final String key, final String label, final String text )
    {
       StatusKey statusKey = retrieveStatusKey(profileName, key);
-      evaluate( remoteStep( "Verify that the user has the correct assigned mission" )
-            .scriptOn( profileScriptResolver().map( VerifyStatusDisplay.class, BookableProfileName.javafx ),
+      evaluate( remoteStep( "Verify that " + key + " shows the desired information" )
+            .scriptOn( profileScriptResolver().map( VerifyDisplayedText.class, BookableProfileName.javafx ),
                   assertProfile( profileName ) )
-            .input(VerifyStatusDisplay.IPARAM_STATUS_DISPLAY_KEY, statusKey.getId())
-            .input( VerifyStatusDisplay.IPARAM_STATUS_DISPLAY_LABEL, label + "Label" )
-            .input( VerifyStatusDisplay.IPARAM_STATUS_DISPLAY_TEXT, text ) );
+            .input(VerifyDisplayedText.IPARAM_DISPLAY_PANEL_KEY, statusKey.getId())
+            .input( VerifyDisplayedText.IPARAM_DISPLAY_LABEL, label + "Label" )
+            .input( VerifyDisplayedText.IPARAM_DISPLAYED_TEXT, text ) );
    }
 
 
