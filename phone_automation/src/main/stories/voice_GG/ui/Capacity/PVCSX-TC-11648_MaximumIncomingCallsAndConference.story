@@ -1,4 +1,4 @@
-Meta: @TEST_CASE_VERSION: V8
+Meta: @TEST_CASE_VERSION: V9
 @TEST_CASE_NAME: MaximumIncomingCallsAndConference
 @TEST_CASE_DESCRIPTION: As an operator having an active conference with 2 participants I want to receive 16 incoming external calls So I can verify that only 15 of them will be visible on the operator position
 @TEST_CASE_PRECONDITION:
@@ -62,9 +62,9 @@ Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: 2. Op1 starts a conference using the existing active call
-		  @TEST_STEP_ACTION: Op1 starts a conference using the existing active call
-		  @TEST_STEP_REACTION: Op1 has a conference with 2 participants
-		  @TEST_STEP_REF: [CATS-REF: 30wW]
+@TEST_STEP_ACTION: Op1 starts a conference using the existing active call
+@TEST_STEP_REACTION: Op1 has a conference with 2 participants
+@TEST_STEP_REF: [CATS-REF: 30wW]
 When HMI OP1 starts a conference using an existing active call
 And waiting for 1 second
 Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
@@ -91,8 +91,8 @@ Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
 Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
 Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with info label 3 participants
 
-Scenario: 5. Have 16 external DA calls that call Op1
-Meta: @TEST_STEP_ACTION: Have 16 external DA calls that call Op1
+Scenario: 5. Set up 16 external DA calls that call Op1
+Meta: @TEST_STEP_ACTION: Set up 16 external DA calls that call Op1
 @TEST_STEP_REACTION: Op1 has 15 incoming calls and 1 active conference call
 @TEST_STEP_REF: [CATS-REF: rAOg]
 When SipContact calls SIP URI <<OPVOICE1_PHONE_URI>>

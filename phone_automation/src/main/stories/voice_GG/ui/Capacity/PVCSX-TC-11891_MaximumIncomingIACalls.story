@@ -1,4 +1,4 @@
-Meta: @TEST_CASE_VERSION: V4
+Meta: @TEST_CASE_VERSION: V5
 @TEST_CASE_NAME: MaximumIncomingIACalls
 @TEST_CASE_DESCRIPTION: As an operator having 3 incoming IA calls and another operator attempts to do an IA call to my position I want to verify that the operator will not be able to do an IA call to  my position only after one of the IA call is terminated
 @TEST_CASE_PRECONDITION: Op1 active mission has a role configured with maximum allowed number of incoming IA calls

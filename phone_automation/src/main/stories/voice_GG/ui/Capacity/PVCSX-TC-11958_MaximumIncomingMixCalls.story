@@ -1,10 +1,10 @@
-Meta: @TEST_CASE_VERSION: V3
+Meta: @TEST_CASE_VERSION: V5
 @TEST_CASE_NAME: MaximumIncomingMixCalls
 @TEST_CASE_DESCRIPTION: As an operator having 16 incoming external calls (DA, IA, Position Monitoring calls) I want to verify that all calls are received and take into account the audio resources limitation
 @TEST_CASE_PRECONDITION: System is configured to allow the maximum number of calls (16).
 System is configured to allow maximum audio resources (16). Op2 active mission has a role configured with maximum allowed number of incoming position monitoring calls, incoming IA calls and incoming DA calls.
-      @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when audio resources limitation is take into account and calls are visible on the operator position, but not 16 calls at once, because one IA call allocates 2 audio resources.
-      @TEST_CASE_DEVICES_IN_USE: Op2, CATS tool is used to simulate 16 external calls
+@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when audio resources limitation is take into account and calls are visible on the operator position, but not 16 calls at once, because one IA call allocates 2 audio resources.
+@TEST_CASE_DEVICES_IN_USE: Op2, CATS tool is used to simulate 16 external calls
 @TEST_CASE_ID: PVCSX-TC-11958
 @TEST_CASE_GLOBAL_ID: GID-5165662
 @TEST_CASE_API_ID: 17778245
