@@ -31,8 +31,8 @@ Then HMI OP1 has a notification that shows Position Unattended
 Scenario: Verify that Idle Warning Popup is visible and contains expected text
 		  @REQUIREMENTS:GID-2926854
 Then HMI OP1 verifies that popup unattended is visible
-Then HMI OP1 verifies that warning popup contains the text: Position is unattended: all handsets/headsets are unplugged!
-Then HMI OP1 verifies that warning popup contains the text: Position goes into Idle state
+Then HMI OP1 verifies that warning popup contains the text: No handset or headset connected!
+Then HMI OP1 verifies that warning popup contains the text: Position will go idle automatically in
 Then HMI OP1 verifies warning popup countdown is visible
 
 Scenario: Op1 prevents Idle state
@@ -40,7 +40,7 @@ Scenario: Op1 prevents Idle state
 Then HMI OP1 click on Stay operational button from idle warning popup
 
 Scenario: Op1 changes to mission MISSION_2_NAME
-When HMI OP1 presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP1 has a list of <<NUMBER_OF_MISSIONS>> missions available
 Then HMI OP1 changes current mission to mission <<MISSION_2_NAME>>
 Then HMI OP1 activates mission
@@ -59,9 +59,9 @@ Then HMI OP1 verifies that popup idle is not visible
 
 Scenario: Op1 verifies that LSP is enabled and can't be disabled
 		  @REQUIREMENTS:GID-2926852
-Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
-When HMI OP1 presses function key LOUDSPEAKER
-Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
+Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP on
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key LOUDSPEAKER
+Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP on
 
 Scenario: Op1 verifies that calls can be sent
 When HMI OP1 presses DA key OP3
@@ -69,7 +69,7 @@ Then HMI OP1 has the DA key OP3 in state out_ringing
 When HMI OP1 presses DA key OP3
 
 Scenario: Op1 changes to mission MISSION_1_NAME
-When HMI OP1 presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
 Then HMI OP1 has a list of <<NUMBER_OF_MISSIONS>> missions available
 Then HMI OP1 changes current mission to mission <<MISSION_1_NAME>>
 Then HMI OP1 activates mission
@@ -77,8 +77,8 @@ Then waiting for 5 seconds
 
 Scenario: Verify that Idle Popup is visible and contains expected text
 Then HMI OP1 verifies that popup idle is visible
-Then HMI OP1 verifies that idle popup contains the text: Position is in Idle state: all handsets/headsets are unplugged!
-Then HMI OP1 verifies that idle popup contains the text: Connect a handset or headset to continue.
+Then HMI OP1 verifies that idle popup contains the text: No handset or headset connected!
+Then HMI OP1 verifies that idle popup contains the text: Connect a handset or headset to continue operation.
 
 Scenario: Check that interaction with settings and maintenance is allowed
 		  @REQUIREMENTS:GID-2926857
@@ -89,27 +89,29 @@ Then HMI OP1 closes settings popup
 
 Scenario: Connect headsets
 Then WS1 sends changed event request - connect headsets
+And waiting for 1 second
+Then HMI OP1 closes settings popup
 
 Scenario: Op1 verifies that DA keys are enabled
-Given HMI OP1 has the DA key OP2(as OP1) in ready to be used state
-Given HMI OP1 has the DA key OP3(as OP1) in ready to be used state
+Given HMI OP1 has the DA key OP2 in ready to be used state
+Given HMI OP1 has the DA key OP3 in ready to be used state
 
 Scenario: Op1 verifies that calls can be sent
-When HMI OP1 presses DA key OP2(as OP1)
-Then HMI OP1 has the DA key OP2(as OP1) in state out_ringing
-When HMI OP1 presses DA key OP2(as OP1)
+When HMI OP1 presses DA key OP2
+Then HMI OP1 has the DA key OP2 in state out_ringing
+When HMI OP1 presses DA key OP2
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Op1 verifies that calls can be received
-When HMI OP3 presses DA key OP1(as OP3)
-Then HMI OP1 has the DA key OP3(as OP1) in state inc_initiated
-When HMI OP3 presses DA key OP1(as OP3)
+When HMI OP3 presses DA key OP1
+Then HMI OP1 has the DA key OP3 in state inc_initiated
+When HMI OP3 presses DA key OP1
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: Op1 verifies that LSP is disabled and can be enabled
-Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled
-When HMI OP1 presses function key LOUDSPEAKER
-Then HMI OP1 has the function key LOUDSPEAKER label GG LSP enabled
-When HMI OP1 presses function key LOUDSPEAKER
-Then HMI OP1 has the function key LOUDSPEAKER label GG LSP disabled
+Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP off
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key LOUDSPEAKER
+Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP on
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key LOUDSPEAKER
+Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP off
