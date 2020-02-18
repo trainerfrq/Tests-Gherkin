@@ -1,88 +1,88 @@
 {
-  "partitions": [
-    {
-      "partitionKey": "gg-cats-cwp-3",
-      "clients": [
+    "partitions": [
         {
-          "opId": "gg-cats-cwp-3",
-          "reconnectionTimeout": 5,
-          "radioUserName": "OpUser3",
-          "audioAppUri": "ws://10.16.157.18:8805/ctrlif",
-          "voIpRecordingClusterId": "Init_RecordingCluster",
-          "voIpRecordingRadioSessionId": "Init_RTSPParameters",
-          "voIpRecordingRadioSessionConnRef": "c5e257a6-b5a4-43a3-ab9a-52c75401bbf4"
-        }
-      ],
-      "audioServiceConnections": {
-        "connectionTimeout": "4000",
-        "requestTimeout": "1000",
-        "connections": [
-          {
-            "mediaPlane": "A",
-            "uri": "ws://10.16.157.50:8805/ctrlif"
-          },
-          {
-            "mediaPlane": "B",
-            "uri": "ws://10.16.157.51:8805/ctrlif"
-          }
-        ]
-      }
-    },
-    {
-      "partitionKey": "gg-cats-cwp-1",
-      "clients": [
+            "partitionKey": "gg-cats-cwp-3",
+            "clients": [
+                {
+                    "opId": "gg-cats-cwp-3",
+                    "reconnectionTimeout": 5,
+                    "radioUserName": "OpUser3",
+                    "audioAppUri": "ws://10.16.157.18:8805/ctrlif",
+                    "voIpRecordingClusterId": "Init_RecordingCluster",
+                    "voIpRecordingRadioSessionId": "Init_RTSPParameters",
+                    "voIpRecordingRadioSessionConnRef": "a51dc6fb-fc3a-4b23-b2f0-4ae1eb60a7cc"
+                }
+            ],
+            "audioServiceConnections": {
+                "connectionTimeout": "4000",
+                "requestTimeout": "1000",
+                "connections": [
+                    {
+                        "mediaPlane": "A",
+                        "uri": "ws://10.16.157.50:8805/ctrlif"
+                    },
+                    {
+                        "mediaPlane": "B",
+                        "uri": "ws://10.16.157.51:8805/ctrlif"
+                    }
+                ]
+            }
+        },
         {
-          "opId": "gg-cats-cwp-1",
-          "reconnectionTimeout": 5,
-          "radioUserName": "OpUser1",
-          "audioAppUri": "ws://10.16.157.16:8805/ctrlif",
-          "voIpRecordingClusterId": "Init_RecordingCluster",
-          "voIpRecordingRadioSessionId": "Init_RTSPParameters",
-          "voIpRecordingRadioSessionConnRef": "0e893224-315c-470e-8dab-97aadfea81de"
-        }
-      ],
-      "audioServiceConnections": {
-        "connectionTimeout": "4000",
-        "requestTimeout": "1000",
-        "connections": [
-          {
-            "mediaPlane": "A",
-            "uri": "ws://10.16.157.50:8805/ctrlif"
-          },
-          {
-            "mediaPlane": "B",
-            "uri": "ws://10.16.157.51:8805/ctrlif"
-          }
-        ]
-      }
-    },
-    {
-      "partitionKey": "gg-cats-cwp-2",
-      "clients": [
+            "partitionKey": "gg-cats-cwp-2",
+            "clients": [
+                {
+                    "opId": "gg-cats-cwp-2",
+                    "reconnectionTimeout": 5,
+                    "radioUserName": "OpUser2",
+                    "audioAppUri": "ws://10.16.157.17:8805/ctrlif",
+                    "voIpRecordingClusterId": "Init_RecordingCluster",
+                    "voIpRecordingRadioSessionId": "Init_RTSPParameters",
+                    "voIpRecordingRadioSessionConnRef": "cca4fdff-4a51-41b8-bceb-85674a536119"
+                }
+            ],
+            "audioServiceConnections": {
+                "connectionTimeout": "4000",
+                "requestTimeout": "1000",
+                "connections": [
+                    {
+                        "mediaPlane": "A",
+                        "uri": "ws://10.16.157.50:8805/ctrlif"
+                    },
+                    {
+                        "mediaPlane": "B",
+                        "uri": "ws://10.16.157.51:8805/ctrlif"
+                    }
+                ]
+            }
+        },
         {
-          "opId": "gg-cats-cwp-2",
-          "reconnectionTimeout": 5,
-          "radioUserName": "OpUser2",
-          "audioAppUri": "ws://10.16.157.17:8805/ctrlif",
-          "voIpRecordingClusterId": "Init_RecordingCluster",
-          "voIpRecordingRadioSessionId": "Init_RTSPParameters",
-          "voIpRecordingRadioSessionConnRef": "870c796c-dee9-49ae-9033-f408c9c1842b"
+            "partitionKey": "gg-cats-cwp-1",
+            "clients": [
+                {
+                    "opId": "gg-cats-cwp-1",
+                    "reconnectionTimeout": 5,
+                    "radioUserName": "OpUser1",
+                    "audioAppUri": "ws://10.16.157.16:8805/ctrlif",
+                    "voIpRecordingClusterId": "Init_RecordingCluster",
+                    "voIpRecordingRadioSessionId": "Init_RTSPParameters",
+                    "voIpRecordingRadioSessionConnRef": "fbaff540-0e51-410c-b9c1-c89d30877bf3"
+                }
+            ],
+            "audioServiceConnections": {
+                "connectionTimeout": "4000",
+                "requestTimeout": "1000",
+                "connections": [
+                    {
+                        "mediaPlane": "A",
+                        "uri": "ws://10.16.157.50:8805/ctrlif"
+                    },
+                    {
+                        "mediaPlane": "B",
+                        "uri": "ws://10.16.157.51:8805/ctrlif"
+                    }
+                ]
+            }
         }
-      ],
-      "audioServiceConnections": {
-        "connectionTimeout": "4000",
-        "requestTimeout": "1000",
-        "connections": [
-          {
-            "mediaPlane": "A",
-            "uri": "ws://10.16.157.50:8805/ctrlif"
-          },
-          {
-            "mediaPlane": "B",
-            "uri": "ws://10.16.157.51:8805/ctrlif"
-          }
-        ]
-      }
-    }
-  ]
+    ]
 }

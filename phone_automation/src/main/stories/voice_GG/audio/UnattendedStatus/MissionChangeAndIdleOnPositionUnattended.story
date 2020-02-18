@@ -12,16 +12,6 @@ Given booked profiles:
 | javafx    | hmi   | <<CLIENT3_IP>> | HMI OP3    |
 | websocket | hmi   | <<CO3_IP>>     |            |
 
-Scenario: Open Web Socket Client connections
-Given named the websocket configurations:
-| named       | websocket-uri       | text-buffer-size |
-| WS_Config-1 | <<WS-Server.URI>>   | 1000             |
-
-Scenario: Open Web Socket Client connections
-Given applied the named websocket configuration:
-| profile-name | websocket-config-name |
-| WEBSOCKET 1  | WS_Config-1           |
-
 Scenario: Disconnect headsets for Op1
 Then WS1 sends changed event request - disconnect headsets
 
@@ -115,3 +105,11 @@ When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key LOUDSPEAKER
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP on
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key LOUDSPEAKER
 Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP off
+
+Scenario: Close Web Socket Client connections
+When WS1 closes websocket client connection
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupStory.story
+Then waiting until the cleanup is done

@@ -13,16 +13,6 @@ Given booked profiles:
 | javafx    | hmi   | <<CLIENT3_IP>> | HMI OP3    |
 | websocket | hmi   | <<CO3_IP>>     |            |
 
-Scenario: Open Web Socket Client connections
-Given named the websocket configurations:
-| named       | websocket-uri       | text-buffer-size |
-| WS_Config-1 | <<WS-Server.URI>>   | 1000             |
-
-Scenario: Open Web Socket Client connections
-Given applied the named websocket configuration:
-| profile-name | websocket-config-name |
-| WEBSOCKET 1  | WS_Config-1           |
-
 Scenario: Define call queue items
 Given the call queue items:
 | key     | source      | target      | callType |
@@ -31,7 +21,6 @@ Given the call queue items:
 | OP2-OP1 | <<OP2_URI>> | <<OP1_URI>> | DA/IDA   |
 
 Scenario: Close Settings popup
-When waiting for 1 second
 Then HMI OP1 closes popup settings if window is visible
 
 Scenario: Op1 establishes a call towards Op3
@@ -111,3 +100,11 @@ Scenario: Op1 client clears the phone call
 When HMI OP1 presses DA key OP2
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP1 has in the call queue a number of 0 calls
+
+Scenario: Close Web Socket Client connections
+When WS1 closes websocket client connection
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupStory.story
+Then waiting until the cleanup is done

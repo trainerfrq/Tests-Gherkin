@@ -19,18 +19,7 @@ Given the call queue items:
 | OP1-OP2(as Role1) | <<OP1_URI>>   |               | DA/IDA   |
 | OP2(as Role1)-OP1 | <<ROLE1_URI>> | <<OP1_URI>>   | DA/IDA   |
 
-Scenario: Open Web Socket Client connections
-Given named the websocket configurations:
-| named       | websocket-uri     | text-buffer-size |
-| WS_Config-1 | <<WS-Server.URI>> | 1000             |
-
-Scenario: Open Web Socket Client connections
-Given applied the named websocket configuration:
-| profile-name | websocket-config-name |
-| WEBSOCKET 1  | WS_Config-1           |
-
 Scenario: Close Settings popup
-When waiting for 1 second
 Then HMI OP1 closes popup settings if window is visible
 
 Scenario: Op1 sets LSP to enabled
@@ -122,3 +111,11 @@ Then HMI OP2 has a list of <<NUMBER_OF_MISSIONS>> missions available
 Then HMI OP2 changes current mission to mission <<MISSION_2_NAME>>
 Then HMI OP2 activates mission
 Then waiting for 5 seconds
+
+Scenario: Close Web Socket Client connections
+When WS1 closes websocket client connection
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupStory.story
+Then waiting until the cleanup is done
