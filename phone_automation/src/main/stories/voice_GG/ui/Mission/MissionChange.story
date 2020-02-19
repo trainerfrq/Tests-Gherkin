@@ -28,7 +28,7 @@ Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify operator mission
-Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_2_NAME>>
+Then HMI OP1 has in the DISPLAY STATUS 2 section mission the assigned mission <<MISSION_2_NAME>>
 
 Scenario: Opens missions window and verifies missions list
 When HMI OP1 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS
@@ -41,7 +41,7 @@ Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify operator mission
-Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_3_NAME>>
+Then HMI OP1 has in the DISPLAY STATUS 3 section mission the assigned mission <<MISSION_3_NAME>>
 
 Scenario: Opens missions window and verifies missions list
 When HMI OP1 with layout <<LAYOUT_MISSION3>> presses function key MISSIONS

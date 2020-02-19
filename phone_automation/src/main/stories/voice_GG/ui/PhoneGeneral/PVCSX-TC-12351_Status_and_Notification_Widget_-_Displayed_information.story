@@ -72,10 +72,10 @@ Meta:
 @TEST_STEP_ACTION: OP1 verifies that date, mission, connection status are visible and clock is not visible in Status and Notification Display
 @TEST_STEP_REACTION: Date, mission, connection status are visible and clock is not visible in Status and Notification Display
 @TEST_STEP_REF: [CATS-REF: FsMK]
-Then HMI OP1 verifies that section date is visible in the DISPLAY STATUS
-Then HMI OP1 verifies that section mission is visible in the DISPLAY STATUS
-Then HMI OP1 verifies that section connection is visible in the DISPLAY STATUS
-Then HMI OP1 verifies that section clock is not visible in the DISPLAY STATUS
+Then HMI OP1 verifies that section date is visible in the DISPLAY STATUS TWR
+Then HMI OP1 verifies that section mission is visible in the DISPLAY STATUS TWR
+Then HMI OP1 verifies that section connection is visible in the DISPLAY STATUS TWR
+Then HMI OP1 verifies that section clock is not visible in the DISPLAY STATUS TWR
 
 Scenario: 1.1 Verifying Notification Display
 Then HMI OP1 verifies that section date is visible in the NOTIFICATION DISPLAY
@@ -98,10 +98,10 @@ Meta:
 @TEST_STEP_ACTION: OP1 verifies that mission, connection status are visible and clock and date are not visible in Status and Notification Display
 @TEST_STEP_REACTION: Mission, connection status are visible and clock and date are not visible in Status and Notification Display
 @TEST_STEP_REF: [CATS-REF: snTJ]
-Then HMI OP1 verifies that section mission is visible in the DISPLAY STATUS
-Then HMI OP1 verifies that section connection is visible in the DISPLAY STATUS
-Then HMI OP1 verifies that section clock is not visible in the DISPLAY STATUS
-Then HMI OP1 verifies that section date is not visible in the DISPLAY STATUS
+Then HMI OP1 verifies that section mission is visible in the DISPLAY STATUS GND
+Then HMI OP1 verifies that section connection is visible in the DISPLAY STATUS GND
+Then HMI OP1 verifies that section clock is not visible in the DISPLAY STATUS GND
+Then HMI OP1 verifies that section date is not visible in the DISPLAY STATUS GND
 
 Scenario: 3.1 Verifying Notification Display
 Then HMI OP1 verifies that section mission is visible in the NOTIFICATION DISPLAY
@@ -163,10 +163,10 @@ Meta:
 @TEST_STEP_ACTION: OP1 verifies that clock, date, connection status are visible and mission is not visible in Status and Notification Display
 @TEST_STEP_REACTION: Clock, date, connection status are visible and mission is not visible in Status and Notification Display
 @TEST_STEP_REF: [CATS-REF: t8xt]
-Then HMI OP1 verifies that section clock is visible in the DISPLAY STATUS
-Then HMI OP1 verifies that section date is visible in the DISPLAY STATUS
-Then HMI OP1 verifies that section connection is visible in the DISPLAY STATUS
-Then HMI OP1 verifies that section mission is not visible in the DISPLAY STATUS
+Then HMI OP1 verifies that section clock is visible in the DISPLAY STATUS APP
+Then HMI OP1 verifies that section date is visible in the DISPLAY STATUS APP
+Then HMI OP1 verifies that section connection is visible in the DISPLAY STATUS APP
+Then HMI OP1 verifies that section mission is not visible in the DISPLAY STATUS APP
 
 Scenario: 8.1 Verifying Notification Display
 Then HMI OP1 verifies that section clock is visible in the NOTIFICATION DISPLAY
@@ -189,10 +189,10 @@ Meta:
 @TEST_STEP_ACTION: OP1 verifies that clock, date, mission are visible and connection status is not visible in Status and Notification Display
 @TEST_STEP_REACTION: Clock, date, mission are visible and connection status is not visible in Status and Notification Display
 @TEST_STEP_REF: [CATS-REF: Mlbq]
-Then HMI OP1 verifies that section clock is visible in the DISPLAY STATUS
-Then HMI OP1 verifies that section date is visible in the DISPLAY STATUS
-Then HMI OP1 verifies that section mission is visible in the DISPLAY STATUS
-Then HMI OP1 verifies that section connection is not visible in the DISPLAY STATUS
+Then HMI OP1 verifies that section clock is visible in the DISPLAY STATUS SUP-TWR
+Then HMI OP1 verifies that section date is visible in the DISPLAY STATUS SUP-TWR
+Then HMI OP1 verifies that section mission is visible in the DISPLAY STATUS SUP-TWR
+Then HMI OP1 verifies that section connection is not visible in the DISPLAY STATUS SUP-TWR
 
 Scenario: 10.1 Verifying Notification Display
 Then HMI OP1 verifies that section clock is visible in the NOTIFICATION DISPLAY
@@ -244,12 +244,12 @@ Meta:
 @TEST_STEP_ACTION: OP1 verifies connections status
 @TEST_STEP_REACTION: OP1 has connection status visible with message DEGRADED
 @TEST_STEP_REF: [CATS-REF: 1PE9]
-Then HMI OP1 verifies that section connection is visible in the DISPLAY STATUS
-Then HMI OP1 has in the DISPLAY STATUS section connection the state DEGRADED
+Then HMI OP1 verifies that section connection is visible in the DISPLAY STATUS GND
+Then HMI OP1 has in the DISPLAY STATUS GND section connection the state DEGRADED
 
 Scenario: 13.1 OP1 verifies connections status in Notification Display
 Then HMI OP1 verifies that section connection is visible in the NOTIFICATION DISPLAY
-Then HMI OP1 has in the DISPLAY STATUS section connection the state DEGRADED
+Then HMI OP1 has in the DISPLAY STATUS GND section connection the state DEGRADED
 
 Scenario: OP1 changes its mission to MAN-NIGHT-TACT
 When HMI OP1 with layout <<LAYOUT_GND>> presses function key MISSIONS

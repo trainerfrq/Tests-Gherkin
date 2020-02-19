@@ -66,7 +66,7 @@ Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: 2.1 Verify operator mission
-Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_2_NAME>>
+Then HMI OP1 has in the DISPLAY STATUS 2 section mission the assigned mission <<MISSION_2_NAME>>
 
 Scenario: 3. OP1 rejects the call
 Meta:
@@ -121,7 +121,7 @@ Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: 6.1 Verify operator mission
-Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_TWR_NAME>>
+Then HMI OP1 has in the DISPLAY STATUS TWR section mission the assigned mission <<MISSION_TWR_NAME>>
 
 Scenario: 7. OP1 rejects the call
 Meta:

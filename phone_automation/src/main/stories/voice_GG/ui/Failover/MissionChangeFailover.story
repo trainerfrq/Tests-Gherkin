@@ -24,7 +24,7 @@ Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify operator mission
-Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_2_NAME>>
+Then HMI OP1 has in the DISPLAY STATUS 2 section mission the assigned mission <<MISSION_2_NAME>>
 
 Scenario: Verify displayed status after stopping and starting op voice instances from one partition
 GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost1.story
@@ -41,7 +41,7 @@ Scenario: Op1 closes open popup window
 Then HMI OP1 closes popup settings if window is visible
 
 Scenario: Verify operator mission
-Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_2_NAME>>
+Then HMI OP1 has in the DISPLAY STATUS 2 section mission the assigned mission <<MISSION_2_NAME>>
 
 Scenario: Change mission
 When HMI OP1 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS

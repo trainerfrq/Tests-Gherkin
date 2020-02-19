@@ -33,11 +33,11 @@ class VerifyDAKeyProperty extends FxScriptTemplate {
         switch(propertyVisible){
             case "visible":
                 evaluate(ExecutionDetails.create("Verify PseudoClassStates contains: " + daKeyProperty)
-                        .success(verifyNodeHasPseudoClass(daWidget, pseudoClassState, 10000)))
+                        .success(verifyNodeHasPseudoClass(daWidget, pseudoClassState, 3000)))
                 break
             case "not visible":
                 evaluate(ExecutionDetails.create("Verify PseudoClassStates contains: " + daKeyProperty)
-                        .success(!verifyNodeHasPseudoClass(daWidget, pseudoClassState, 10000)))
+                        .success(!verifyNodeHasPseudoClass(daWidget, pseudoClassState, 3000)))
                 break
         }
     }

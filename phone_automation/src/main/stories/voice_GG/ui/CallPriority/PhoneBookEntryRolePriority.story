@@ -67,7 +67,7 @@ Then HMI OP2 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify operator mission
-Then HMI OP2 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_4_NAME>>
+Then HMI OP2 has in the DISPLAY STATUS 4 section mission the assigned mission <<MISSION_4_NAME>>
 
 Scenario: Op2 opens PhoneBook
 When HMI OP2 with layout <<LAYOUT_MISSION4>> presses function key PHONEBOOK

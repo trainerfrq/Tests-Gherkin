@@ -75,7 +75,7 @@ Scenario: Close popup window
 Then HMI OP1 closes notification popup
 
 Scenario: Op1 opens settings tab
-When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key SETTINGS
+When HMI OP1 with layout <<LAYOUT_MISSION3>> presses function key SETTINGS
 Scenario: Op1 opens audio settings tab
 When HMI OP1 clicks on volumeControlPanel button
 
