@@ -90,7 +90,7 @@ When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
 Then HMI OP1 changes current mission to mission <<MISSION_4_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
-Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_4_NAME>>
+Then HMI OP1 has in the DISPLAY STATUS 4 section mission the assigned mission <<MISSION_4_NAME>>
 
 Scenario: 8. Op1 checks the date and time format in Notification Display bar
 Meta:
@@ -113,23 +113,23 @@ Meta:
 @TEST_STEP_ACTION: Op1 checks Status Display date and time format
 @TEST_STEP_REACTION: Date and Time format in the Status Display are the desired ones
 @TEST_STEP_REF: [CATS-REF: NkG8]
-Then HMI OP1 has DISPLAY STATUS with the expected time format <<timeFormat>>
-Then HMI OP1 has DISPLAY STATUS with the expected date format <<dateFormat>>
+Then HMI OP1 has DISPLAY STATUS 4 with the expected time format <<timeFormat>>
+Then HMI OP1 has DISPLAY STATUS 4 with the expected date format <<dateFormat>>
 
 Scenario: 11. Op1 checks Status Display date and time are the same with the system's ones
 Meta:
 @TEST_STEP_ACTION: Op1 checks Status Display date and time are the same with the system's ones
 @TEST_STEP_REACTION: System's date and time are the same with Status Display's ones
 @TEST_STEP_REF: [CATS-REF: HsDv]
-Then HMI OP1 verifies that the system time and the one displayed on DISPLAY STATUS with format <<timeFormat>> are the same
-Then HMI OP1 verifies that the system date and the one displayed on DISPLAY STATUS with format <<dateFormat>> are the same
+Then HMI OP1 verifies that the system time and the one displayed on DISPLAY STATUS 4 with format <<timeFormat>> are the same
+Then HMI OP1 verifies that the system date and the one displayed on DISPLAY STATUS 4 with format <<dateFormat>> are the same
 
 Scenario: 12. Op1 checks Notification Display bar's time and Status Display's time are the same
 Meta:
 @TEST_STEP_ACTION: Op1 checks Notification Display bar's time and Status Display's time are the same
 @TEST_STEP_REACTION: Displayed time in Notification Display bar is the same with the one in Status Display 
 @TEST_STEP_REF: [CATS-REF: uBs8]
-Then HMI OP1 verifies that time values from NOTIFICATION DISPLAY and from DISPLAY STATUS are synchronized
+Then HMI OP1 verifies that time values from NOTIFICATION DISPLAY and from DISPLAY STATUS 4 are synchronized
 
 Scenario: Clean-up
 When HMI OP1 with layout <<LAYOUT_MISSION4>> presses function key MISSIONS

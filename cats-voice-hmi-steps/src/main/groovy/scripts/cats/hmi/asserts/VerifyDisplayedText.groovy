@@ -31,7 +31,7 @@ class VerifyDisplayedText extends FxScriptTemplate {
                 .success(displayPanel != null));
 
         evaluate(ExecutionDetails.create("Verify " + key + " has property: " + text)
-                .success(verifyNodeHasProperty(displayPanel, text, 10000)));
+                .success(verifyNodeHasProperty(displayPanel, text, 3000)));
 
     }
 

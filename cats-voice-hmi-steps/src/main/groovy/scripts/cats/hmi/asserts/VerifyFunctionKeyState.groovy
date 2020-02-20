@@ -28,7 +28,7 @@ class VerifyFunctionKeyState extends FxScriptTemplate {
                 .success(widget != null))
 
         evaluate(ExecutionDetails.create("Verify PseudoClassStates contains: " + KeyState)
-                .success(verifyNodeHasPseudoClass(widget, pseudoClassState, 10000)))
+                .success(verifyNodeHasPseudoClass(widget, pseudoClassState, 3000)))
     }
 
     protected static boolean verifyNodeHasPseudoClass(Node node, PseudoClass pseudoClassState, long nWait) {

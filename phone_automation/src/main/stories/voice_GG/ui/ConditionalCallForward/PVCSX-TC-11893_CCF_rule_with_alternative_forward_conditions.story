@@ -62,7 +62,7 @@ Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: 3.1 Verify operator mission
-Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_TWR_NAME>>
+Then HMI OP1 has in the DISPLAY STATUS TWR section mission the assigned mission <<MISSION_TWR_NAME>>
 
 Scenario: 4. OP2 establishes a call to TWR
 Meta: @TEST_STEP_ACTION: OP2 establishes a call to TWR

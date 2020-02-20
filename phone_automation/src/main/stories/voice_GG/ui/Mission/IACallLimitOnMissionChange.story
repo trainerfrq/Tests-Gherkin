@@ -32,7 +32,7 @@ Then HMI OP2 activates mission
 Then wait for 5 seconds
 
 Scenario: Verify mission change
-Then HMI OP2 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_1_NAME>>
+Then HMI OP2 has in the DISPLAY STATUS 1 section mission the assigned mission <<MISSION_1_NAME>>
 
 Scenario: Op3 establishes an outgoing IA call towards Op2
 When HMI OP3 with layout <<LAYOUT_MISSION3>> selects grid tab 2
@@ -48,7 +48,7 @@ Then HMI OP2 has in the collapsed area a number of 1 calls
 Then HMI OP2 has in the call queue a number of 1 calls
 
 Scenario: Callee Op2 changes to previous mission
-When HMI OP2 clicks on DISPLAY STATUS label mission
+When HMI OP2 clicks on DISPLAY STATUS 1 label mission
 Then HMI OP2 has a list of <<NUMBER_OF_MISSIONS>> missions available
 Then HMI OP2 changes current mission to mission <<MISSION_2_NAME>>
 Then HMI OP2 activates mission

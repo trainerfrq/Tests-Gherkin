@@ -62,7 +62,7 @@ Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: Verify operator mission
-Then HMI OP1 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_4_NAME>>
+Then HMI OP1 has in the DISPLAY STATUS 4 section mission the assigned mission <<MISSION_4_NAME>>
 
 Scenario: 1. Have 5 external incoming position monitoring calls that call Op1
 Meta: @TEST_STEP_ACTION: Have 5 external incoming position monitoring calls that call Op1

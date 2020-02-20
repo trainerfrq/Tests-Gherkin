@@ -23,7 +23,7 @@ Given the call queue items:
 | OP1-SipContact | <<PHONE2>> |        | DA/IDA   |
 
 Scenario: Caller opens phonebook
-When HMI OP2 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
+When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key PHONEBOOK
 Then HMI OP2 verifies that phone book call button is disabled
 
 Scenario: Caller selects call route selector

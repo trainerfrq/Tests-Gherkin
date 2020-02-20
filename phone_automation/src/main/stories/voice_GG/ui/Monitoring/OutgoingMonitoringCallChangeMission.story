@@ -49,7 +49,7 @@ Scenario: Op1 has a visible indication that it is monitoring Op3
 Then HMI OP1 has the DA key OP3(as Mission2) with visible state monitoringActiveState
 
 Scenario: Op1 opens monitoring list
-When HMI OP1 with layout <<LAYOUT_MISSION1>> opens monitoring list using function key MONITORING menu
+When HMI OP1 with layout <<LAYOUT_MISSION2>> opens monitoring list using function key MONITORING menu
 Then HMI OP1 verifies that popup monitoring is visible
 
 Scenario: Op1 verifies monitoring list entries
