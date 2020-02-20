@@ -136,5 +136,10 @@ Then HMI OP1 has in the call queue a number of 0 calls
 Scenario: Remove phone
 When SipContact is removed
 
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupStory.story
+Then waiting until the cleanup is done
+
 
 
