@@ -222,8 +222,6 @@ Meta: @TEST_STEP_ACTION: OP2 leaves the conference (as audio is no longer availa
 @TEST_STEP_REF: [CATS-REF: aluG]
 When HMI OP2 opens the conference participants list
 Then HMI OP2 leaves conference
-!-- Then HMI OP2 has the call queue item OP1-OP2-Conf in state out_failed
-!-- Then HMI OP2 cancels the call queue item OP1-OP2-Conf
 
 Scenario: 14.1 Conference is terminated for the initiator
 Then HMI OP2 has in the call queue a number of 0 calls
