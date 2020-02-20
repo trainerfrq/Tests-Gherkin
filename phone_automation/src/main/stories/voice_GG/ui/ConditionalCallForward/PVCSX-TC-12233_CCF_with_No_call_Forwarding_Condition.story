@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V4
+@TEST_CASE_VERSION: V8
 @TEST_CASE_NAME: CCF with No call Forwarding Condition
 @TEST_CASE_DESCRIPTION: As an operator having set a Conditional Call Forward rule with No call forwarding condition
 I want to establish a call that activates the rule
@@ -16,7 +16,7 @@ Mission SUP-TWR has a single role assigned called SUP-TWR
 | No reply                     | no forwarding         | APP, within: 15 sec |
 | No. of iterations            | 5                     | 0                   |
 
-At the beginning, OP1 have APP role assigned and OP3 have SUP-TWR role assigned
+OP1 has APP role assigned and OP3 has SUP-TWR role assigned
 @TEST_CASE_PASS_FAIL_CRITERIA: 
 @TEST_CASE_DEVICES_IN_USE: 
 @TEST_CASE_ID: PVCSX-TC-12233

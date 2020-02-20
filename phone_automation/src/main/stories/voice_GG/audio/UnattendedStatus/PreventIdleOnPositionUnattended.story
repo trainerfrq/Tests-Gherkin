@@ -19,7 +19,6 @@ Given the call queue items:
 | ROLE1-OP3 | <<ROLE1_URI>> | <<OP3_URI>> | DA/IDA   |
 
 Scenario: Close Settings popup
-When waiting for 1 second
 Then HMI OP1 closes popup settings if window is visible
 
 Scenario: Op1 verifies LSP state

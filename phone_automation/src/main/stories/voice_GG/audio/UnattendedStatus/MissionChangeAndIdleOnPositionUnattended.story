@@ -9,6 +9,7 @@ Scenario: Booking profiles
 Given booked profiles:
 | profile   | group | host           | identifier |
 | javafx    | hmi   | <<CLIENT1_IP>> | HMI OP1    |
+| javafx    | hmi   | <<CLIENT2_IP>> | HMI OP2    |
 | javafx    | hmi   | <<CLIENT3_IP>> | HMI OP3    |
 | websocket | hmi   | <<CO3_IP>>     |            |
 
@@ -49,14 +50,14 @@ Then HMI OP1 verifies that popup idle is not visible
 
 Scenario: Op1 verifies that LSP is enabled and can't be disabled
 		  @REQUIREMENTS:GID-2926852
-Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP on
-When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key LOUDSPEAKER
-Then HMI OP1 with layout <<LAYOUT_MISSION1>> has the function key LOUDSPEAKER label GG LSP on
+Then HMI OP1 with layout <<LAYOUT_MISSION2>> has the function key LOUDSPEAKER label GG LSP on
+When HMI OP1 with layout <<LAYOUT_MISSION2>> presses function key LOUDSPEAKER
+Then HMI OP1 with layout <<LAYOUT_MISSION2>> has the function key LOUDSPEAKER label GG LSP on
 
 Scenario: Op1 verifies that calls can be sent
-When HMI OP1 presses DA key OP3
-Then HMI OP1 has the DA key OP3 in state out_ringing
-When HMI OP1 presses DA key OP3
+When HMI OP1 presses DA key OP3(as Mission2)
+Then HMI OP1 has the DA key OP3(as Mission2) in state out_ringing
+When HMI OP1 presses DA key OP3(as Mission2)
 
 Scenario: Op1 changes to mission MISSION_1_NAME
 When HMI OP1 with layout <<LAYOUT_MISSION2>> presses function key MISSIONS

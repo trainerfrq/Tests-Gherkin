@@ -4,7 +4,7 @@ Meta:
 @TEST_CASE_DESCRIPTION: As an operator having set a Conditional Call Forward rule 
 I want to establish a Monitoring Call
 So I can verify that the call is forwarded according to the rule
-@TEST_CASE_PRECONDITION: Mission TWR has a single role assigned called TWR
+@TEST_CASE_PRECONDITION: Mission TWR has only Role TWR assigned
 Settings:
 A Conditional Call Forward with:
 - matching call destinations: TWR
@@ -18,8 +18,8 @@ OP3 has a role assigned with:
 OP3 has in its layout a DA key with:
 - call to: TWR
 - call as: Active Role (Master Role)
-None of the operators will have TWR role assigned
-@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if OP1 has an indication that is monitored
+None of the operators have TWR role assigned
+@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if monitoring call matching the Conditional Call Forward rule is forwarded as configured
 @TEST_CASE_DEVICES_IN_USE: OP1, OP3 
 @TEST_CASE_ID: PVCSX-TC-12049
 @TEST_CASE_GLOBAL_ID: GID-5173438

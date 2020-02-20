@@ -21,8 +21,8 @@ Two Conditional Call Forward rules with the following parameters:
 | No reply                     | no forwarding         | APP, within: 7 sec  |
 | No. of iterations            | 5                     | 0                   |
 
-At the beginning, OP1 has APP role assigned and OP3 has SUP TWR role assigned
-@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if the call is terminated after 5 iterations
+OP1 has APP role assigned and OP3 has SUP TWR role assigned
+@TEST_CASE_PASS_FAIL_CRITERIA: This test is passed, when after the number of iterations within a call forward rule have been reached, the system does not proceed with the call forward rule any more.
 @TEST_CASE_DEVICES_IN_USE: OP1, OP2, OP3
 @TEST_CASE_ID: PVCSX-TC-12213
 @TEST_CASE_GLOBAL_ID: GID-5188041
