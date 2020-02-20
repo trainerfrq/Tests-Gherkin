@@ -29,7 +29,7 @@ class VerifyCallQueueItemTransferState extends FxScriptTemplate {
                 .success(callQueueItem != null))
 
         evaluate(ExecutionDetails.create("Verify PseudoClassStates contains: " + callQueueState)
-                .success(verifyNodeHasPseudoClass(callQueueItem, pseudoClassState, 10000)))
+                .success(verifyNodeHasPseudoClass(callQueueItem, pseudoClassState, 3000)))
     }
 
     protected static boolean verifyNodeHasPseudoClass(Node node, PseudoClass pseudoClassState, long nWait) {

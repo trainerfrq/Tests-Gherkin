@@ -31,20 +31,23 @@ class CleanUpMission extends FxScriptTemplate {
         Label statusDisplay = robot.lookup("#"+key+" #"+label).queryFirst();
         Node functionKeyWidget = robot.lookup("#" + functionKeyId).queryFirst();
 
-        if(!verifyNodeHasProperty(statusDisplay, text, 100)){
-            evaluate(ExecutionDetails.create("Asserting that position has the expected mission")
-                    .expected("Expected mission is: " +text)
-                    .received("Received mission is: " + statusDisplay.textProperty().getValue()))
-            robot.clickOn(robot.point(functionKeyWidget));
-            final Node mission = robot.lookup(text).queryFirst();
-            Button activateButton = robot.lookup("#missionPopup #activateMissionButton").queryFirst();
-            robot.clickOn(robot.point(mission))
-            robot.clickOn(robot.point(activateButton));
+        if(statusDisplay != null){
+            if(!verifyNodeHasProperty(statusDisplay, text, 100)){
+                evaluate(ExecutionDetails.create("Asserting that position has the expected mission")
+                        .expected("Expected mission is: " +text)
+                        .received("Received mission is: " + statusDisplay.textProperty().getValue()))
+                robot.clickOn(robot.point(functionKeyWidget));
+                final Node mission = robot.lookup(text).queryFirst();
+                Button activateButton = robot.lookup("#missionPopup #activateMissionButton").queryFirst();
+                robot.clickOn(robot.point(mission))
+                robot.clickOn(robot.point(activateButton));
+            }
+            else{
+                evaluate(ExecutionDetails.create("Asserting that position has the expected mission")
+                        .success(true))
+            }
         }
-        else{
-            evaluate(ExecutionDetails.create("Asserting that position has the expected mission")
-                    .success(true))
-        }
+
     }
 
     protected static boolean verifyNodeHasProperty(Label node, String property, long nWait) {

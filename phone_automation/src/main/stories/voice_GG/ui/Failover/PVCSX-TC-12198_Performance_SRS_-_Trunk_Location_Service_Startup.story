@@ -2,10 +2,15 @@ Meta:
 @TEST_CASE_VERSION: V12
 @TEST_CASE_NAME: Performance SRS - Trunk Location Service Startup
 @TEST_CASE_DESCRIPTION: This testcase verifies the startup performance of the Trunk Location Service.
+@TEST_CASE_PRECONDITION:
+- Location service has been deployed on the physical target hardware in a redundancy mode, so there are 2 instances running (one on DOCKERHOST-01 and one on DOCKERHOST-02)
+- OP1 available
+- Legacy external phone available
 @TEST_CASE_PRECONDITION: Trunk Location service has been deployed on the physical target hardware in a redundancy mode, so there are 2 instances running (one on DOCKERHOST-01 and one on DOCKERHOST-02)
 OP1 available
 Legacy external phone available
 @TEST_CASE_PASS_FAIL_CRITERIA: This test is passed when Trunk Location  service is available and working properly after 15 seconds after the Trunk Location service was restarted.
+@TEST_CASE_DEVICES_IN_USE: DOCKERHOST-01, DOCKERHOST-02, OP1 and Legacy external phone
 @TEST_CASE_DEVICES_IN_USE: DOCKERHOST-01
 DOCKERHOST-02
 OP1
@@ -137,3 +142,8 @@ Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Remove phone
 When SipContact is removed
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupStory.story
+Then waiting until the cleanup is done

@@ -7,6 +7,8 @@ Scenario: Booking profiles
 Given booked profiles:
 | profile | group | host           | identifier |
 | javafx  | hmi   | <<CLIENT1_IP>> | HMI OP1    |
+| javafx  | hmi   | <<CLIENT2_IP>> | HMI OP2    |
+| javafx  | hmi   | <<CLIENT3_IP>> | HMI OP3    |
 
 Scenario: Op1 opens settings tab
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key SETTINGS
@@ -75,7 +77,7 @@ Scenario: Close popup window
 Then HMI OP1 closes notification popup
 
 Scenario: Op1 opens settings tab
-When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key SETTINGS
+When HMI OP1 with layout <<LAYOUT_MISSION3>> presses function key SETTINGS
 Scenario: Op1 opens audio settings tab
 When HMI OP1 clicks on volumeControlPanel button
 

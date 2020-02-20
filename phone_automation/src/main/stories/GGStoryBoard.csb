@@ -1703,12 +1703,6 @@
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
                         </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/Mission/MissionCleanUp.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyDataList/>
-                            <cats:storyStatistics/>
-                        </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
                 </cats:storyList>
@@ -1972,12 +1966,6 @@
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/CallForward/DACallForwardChooseTargetFromDialpad.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyDataList/>
-                            <cats:storyStatistics/>
-                        </cats:story>
-                        <cats:story enabled="false">
-                            <cats:storyPath>voice_GG/ui/CallForward/ValidSIPCallForward.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
@@ -2912,6 +2900,18 @@
                             <cats:storyParameters>
 <cats:entry key="trunkProxyFailoverTime"/>
                             </cats:storyParameters>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/Failover/PVCSX-TC-10686_Performance_SRS_-_ConferencerService_Startup.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/Failover/PVCSX-TC-9986_Redundancy_Switchover_-_G_G_Services_Failover.story</cats:storyPath>
+                            <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
                         </cats:story>

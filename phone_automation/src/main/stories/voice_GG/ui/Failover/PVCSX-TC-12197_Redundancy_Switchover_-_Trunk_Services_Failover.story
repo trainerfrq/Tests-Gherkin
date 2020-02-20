@@ -1,6 +1,10 @@
 Meta: @TEST_CASE_VERSION: V9
 @TEST_CASE_NAME: Redundancy Switchover - Trunk Services Failover
 @TEST_CASE_DESCRIPTION: This test case verifies the failover for the Trunk Location service and Trunk Proxy service works as expected (no interruption of any G/G calls for more than 1 second, either with call reestablishment or without)
+ @TEST_CASE_PRECONDITION:
+- OP1 available
+- Legacy external phone available- trunk-location-service on host server 1 and 2 available- trunk-proxy-service on host server 1 and 2 available
+- trunk-proxy-service and trunk-location-service on host server 2 are restarted before doing the test. This will assure that the active instance of the services is the instance on host server 1.
 @TEST_CASE_PRECONDITION:
 - OP1 available
 - Legacy external phone available- trunk-location-service on host server 1 and 2 available- trunk-proxy-service on host server 1 and 2 available
@@ -193,3 +197,8 @@ Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Remove phone
 When SipContact is removed
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupStory.story
+Then waiting until the cleanup is done
