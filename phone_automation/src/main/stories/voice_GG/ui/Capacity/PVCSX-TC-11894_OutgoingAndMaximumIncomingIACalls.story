@@ -1,4 +1,4 @@
-Meta: @TEST_CASE_VERSION: V5
+Meta: @TEST_CASE_VERSION: V7
 @TEST_CASE_NAME: OutgoingAndMaximumIncomingIACalls
 @TEST_CASE_DESCRIPTION: As an operator having an outgoing IA call I want to verify that I can receive 3 incoming IA calls
 @TEST_CASE_PRECONDITION: Op1 active mission has a role configured with maximum allowed number of incoming IA calls

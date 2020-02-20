@@ -6,8 +6,15 @@ Meta:
 - Location service has been deployed on the physical target hardware in a redundancy mode, so there are 2 instances running (one on DOCKERHOST-01 and one on DOCKERHOST-02)
 - OP1 available
 - Legacy external phone available
+@TEST_CASE_PRECONDITION: Trunk Location service has been deployed on the physical target hardware in a redundancy mode, so there are 2 instances running (one on DOCKERHOST-01 and one on DOCKERHOST-02)
+OP1 available
+Legacy external phone available
 @TEST_CASE_PASS_FAIL_CRITERIA: This test is passed when Trunk Location  service is available and working properly after 15 seconds after the Trunk Location service was restarted.
 @TEST_CASE_DEVICES_IN_USE: DOCKERHOST-01, DOCKERHOST-02, OP1 and Legacy external phone
+@TEST_CASE_DEVICES_IN_USE: DOCKERHOST-01
+DOCKERHOST-02
+OP1
+Legacy external phone
 @TEST_CASE_ID: PVCSX-TC-12198
 @TEST_CASE_GLOBAL_ID: GID-5187283
 @TEST_CASE_API_ID: 17966124

@@ -1,4 +1,4 @@
-Meta: @TEST_CASE_VERSION: V9
+Meta: @TEST_CASE_VERSION: V11
 @TEST_CASE_NAME: MaximumIncomingPositionMonitoringCalls
 @TEST_CASE_DESCRIPTION: As an operator having 5 incoming Position Monitoring calls and another operator attempts to do a Position Monitoring call to my position I want to verify that the operator will not be able to do Position Monitoring to  my position only after one of the monitoring calls is terminated
 @TEST_CASE_PRECONDITION: Op1 active mission has a role that has the maximum allowed number of incoming position monitoring calls
