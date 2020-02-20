@@ -26,7 +26,7 @@ class VerifyCallQueueItemStateIfPresent extends FxScriptTemplate {
                     .success(callQueueItem != null))
 
             evaluate(ExecutionDetails.create("Verify call queue item has styleClass: " + callQueueItemState)
-                    .success(verifyNodeHasClass(callQueueItem, callQueueItemState, 10000)))
+                    .success(verifyNodeHasClass(callQueueItem, callQueueItemState, 3000)))
         } else {
             evaluate(ExecutionDetails.create("Verify call queue item was found")
                     .expected("Call queue item with id " + callQueueItemId + " was NOT found")

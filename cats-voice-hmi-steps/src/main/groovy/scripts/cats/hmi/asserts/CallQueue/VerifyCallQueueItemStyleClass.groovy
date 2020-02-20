@@ -32,7 +32,7 @@ class VerifyCallQueueItemStyleClass extends FxScriptTemplate {
                 .success(callQueueItem.isVisible()));
 
         evaluate(ExecutionDetails.create("Verify call queue item has styleClass: " + callQueueItemState)
-                .success(verifyNodeHasClass(callQueueItem, callQueueItemState, 10000)));
+                .success(verifyNodeHasClass(callQueueItem, callQueueItemState, 3000)));
     }
 
     protected static boolean verifyNodeHasClass(Node node, String className, long nWait) {
