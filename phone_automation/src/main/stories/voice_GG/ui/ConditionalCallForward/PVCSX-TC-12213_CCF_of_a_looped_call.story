@@ -48,7 +48,7 @@ Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
 Scenario: OP3 changes its mission to SUP TWR
-When HMI OP3 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
+When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MISSIONS
 Then HMI OP3 changes current mission to mission <<MISSION_SUP-TWR_NAME>>
 Then HMI OP3 activates mission
 Then waiting for 5 seconds

@@ -48,7 +48,7 @@ Then HMI OP2 has in the collapsed area a number of 1 calls
 Then HMI OP2 has in the call queue a number of 1 calls
 
 Scenario: Callee Op2 changes to previous mission
-When HMI OP2 clicks on DISPLAY STATUS label mission
+When HMI OP2 clicks on DISPLAY STATUS 1 label mission
 Then HMI OP2 has a list of <<NUMBER_OF_MISSIONS>> missions available
 Then HMI OP2 changes current mission to mission <<MISSION_2_NAME>>
 Then HMI OP2 activates mission

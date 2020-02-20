@@ -60,7 +60,7 @@ Meta:
 @TEST_STEP_ACTION: OP1 changes its mission to WEST-EXEC
 @TEST_STEP_REACTION: OP1 has WEST-EXEC mission assigned
 @TEST_STEP_REF: [CATS-REF: 10Xr]
-When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_TWR>> presses function key MISSIONS
 Then HMI OP1 changes current mission to mission <<MISSION_2_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
