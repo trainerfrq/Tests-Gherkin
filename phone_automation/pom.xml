@@ -4,7 +4,7 @@
    <parent>
         <groupId>com.frequentis.xvp.voice.phone</groupId>
         <artifactId>phone-test-automation</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
+        <version>1.1.1-1.1.0-SNAPSHOT</version>
    </parent>
 
    <modelVersion>4.0.0</modelVersion>
@@ -22,9 +22,7 @@
       <dslHome>${project.build.directory}/automation/dsl</dslHome>
       <!--available.profiles>${project.basedir}/src/main/resources/profiles/</available.profiles-->
 
-      <voice.service.interface.version>0.37.0-SNAPSHOT</voice.service.interface.version>
-      <xvp-cats-libs.version>0.4.0-SNAPSHOT</xvp-cats-libs.version>
- </properties>
+   </properties>
 
    <dependencies>
       <dependency>
@@ -32,6 +30,43 @@
          <artifactId>op-voice-service-interface</artifactId>
          <version>${voice.service.interface.version}</version>
       </dependency>
+
+      <dependency>
+          <groupId>com.frequentis.xvp.framework</groupId>
+          <artifactId>mission-configurator-plugin</artifactId>
+          <version>${mission-configurator-plugin.version}</version>
+       </dependency>
+
+       <dependency>
+           <groupId>com.frequentis.xvp.framework.testing</groupId>
+           <artifactId>xvp-cats-rest-configuration</artifactId>
+           <version>${xvp-cats-rest-configuration.version}</version>
+           <exclusions>
+               <exclusion>
+                   <groupId>com.frequentis.xvp.framework.testing</groupId>
+                   <artifactId>xvp-cats-test-system</artifactId>
+               </exclusion>
+           </exclusions>
+
+       </dependency>
+
+       <dependency>
+       <groupId>com.frequentis.xvp.framework.testing</groupId>
+       <artifactId>xvp-cats-ssh</artifactId>
+       <version>${xvp-cats-ssh.version}</version>
+       </dependency>
+
+       <dependency>
+         <groupId>org.glassfish.jersey.core</groupId>
+         <artifactId>jersey-client</artifactId>
+         <version>${jersey-client.version}</version>
+      </dependency>
+
+       <dependency>
+           <groupId>com.frequentis.c4i.test</groupId>
+           <artifactId>cats-hypervisor-tecpac</artifactId>
+           <version>${cats.version}</version>
+       </dependency>
 
       <!-- Required for SOX / PSQM tools as they are not available from CATS Master and have to be provided -->
       <dependency>
@@ -74,15 +109,16 @@
          <version>${cats.version}</version>
       </dependency>
       <!-- DOMAIN PACKAGE WEBSOCKET -->
-      <dependency>
-         <groupId>com.frequentis.c4i.test</groupId>
-         <artifactId>cats-agent-websocket</artifactId>
-         <version>${cats.version}</version>
-      </dependency>
+
       <dependency>
          <groupId>com.frequentis.xvp.voice.phone</groupId>
          <artifactId>cats-websocket-steps</artifactId>
       </dependency>
+      <dependency>
+         <groupId>com.frequentis.xvp.voice.phone</groupId>
+         <artifactId>cats-websocket-plugin</artifactId>
+      </dependency>
+
       <!--SSH STEPS -->
       <dependency>
          <groupId>com.frequentis.c4i.test</groupId>
@@ -114,17 +150,17 @@
          <artifactId>dsl-co-support</artifactId>
      </dependency>
 
-      <!-- CATS STEPS FROM XVP FRAMEWORK -->
-      <dependency>
-         <groupId>com.frequentis.xvp.framework.testing</groupId>
-         <artifactId>xvp-cats-ssh</artifactId>
-         <version>${xvp-cats-libs.version}</version>
-      </dependency>
-      <dependency>
-         <groupId>com.frequentis.xvp.framework.testing</groupId>
-         <artifactId>xvp-cats-test-system</artifactId>
-         <version>${xvp-cats-libs.version}</version>
-      </dependency>
+       <!--PCAP DOMAIN-->
+       <dependency>
+           <groupId>com.frequentis.c4i.test</groupId>
+           <artifactId>cats-pcap-steps</artifactId>
+           <version>${cats.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>com.frequentis.c4i.test</groupId>
+           <artifactId>cats-io-pcap-steps</artifactId>
+           <version>${cats.version}</version>
+       </dependency>
 
       <!-- ZIP dependecies of CATS Platform needed for JUnit execution (normally provided by CATS CO) -->
       <dependency>
@@ -150,6 +186,25 @@
            <artifactId>guava</artifactId>
            <version>23.0</version>
        </dependency>
+           <dependency>
+         <groupId>javax.websocket</groupId>
+         <artifactId>javax.websocket-api</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.eclipse.jetty</groupId>
+         <artifactId>jetty-util</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>com.frequentis.xvp.framework</groupId>
+         <artifactId>websocket-lib</artifactId>
+         <!-- remove this exclusion once QXVP-12348 is resolved -->
+         <exclusions>
+            <exclusion>
+               <artifactId>javax.websocket-client-api</artifactId>
+               <groupId>javax.websocket</groupId>
+            </exclusion>
+         </exclusions>
+      </dependency>
 
        <!-- SELENIUM DOMAIN -->
        <dependency>
@@ -203,7 +258,7 @@
                      <arguments>
                         <argument>${project.basedir}/src/main/resources/system_testing_ast_config.xml</argument>
                      </arguments>
-                     <systemProperties/>
+                     <systemProperties />
                   </configuration>
                   <dependencies>
                      <dependency>
@@ -224,7 +279,9 @@
             <build>
                 <plugins>
                     <plugin>
-                        <artifactId>maven-assembly-plugin</artifactId>
+                        <groupId>com.frequentis.c4i.test</groupId>
+                        <artifactId>cats-maven-assembly-plugin</artifactId>
+                        <version>${cats.version}</version>
                         <configuration>
                             <descriptors>
                                 <descriptors>src/main/assembly/distribution.xml</descriptors>
@@ -233,7 +290,7 @@
                         </configuration>
                         <executions>
                             <execution>
-                                <id>make-assembly</id>
+                              <id>make-assembly</id>
                                 <phase>post-integration-test</phase>
                                 <goals>
                                     <goal>single</goal>
@@ -339,7 +396,7 @@
             <extensions>true</extensions>
             <configuration>
                <mixins>
-                  <mixin>
+                   <mixin>
                      <groupId>com.frequentis.xvp.dockerbuild</groupId>
                      <artifactId>xvp-cats-mixin</artifactId>
                      <version>${xvp-cats-mixin.version}</version>
@@ -347,6 +404,25 @@
                </mixins>
             </configuration>
          </plugin>
+          <!--plugin>
+              <groupId>com.frequentis.c4i.test</groupId>
+              <artifactId>cats-maven-plugin</artifactId>
+              <version>${cats.version}</version>
+              <executions>
+                  <execution>
+                      <id>copy-cats-domain-dependencies</id>
+                      <phase>generate-resources</phase>
+                      <goals>
+                          <goal>copy-domain-dependencies</goal>
+                      </goals>
+                  </execution>
+              </executions>
+              <configuration>
+                  <libsHome>${automation.target}/lib</libsHome>
+                  <pluginsHome>${automation.target}/plugins</pluginsHome>
+                  <agentsHome>${automation.target}/agents</agentsHome>
+              </configuration>
+          </plugin-->
          <plugin>
             <artifactId>maven-resources-plugin</artifactId>
             <version>${maven.resources.plugin.version}</version>
@@ -373,5 +449,4 @@
          </plugin>
       </plugins>
    </build>
-
 </project>

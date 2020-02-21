@@ -8,7 +8,7 @@ When SSH host coHost executes docker rm -f co1
 Then waiting for 5 seconds
 
 Scenario: Create case officer script
-When the start case officer script is copied to coHost
+When the script runCO from /configuration-files/<<systemName>>/ is copied to coHost
 And SSH host coHost executes chmod +x runCO.sh
 
 Scenario: Start case officer

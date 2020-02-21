@@ -3,7 +3,7 @@
     <parent>
         <groupId>com.frequentis.xvp.voice.phone</groupId>
         <artifactId>phone-test-automation</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
+        <version>1.1.1-1.1.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -114,10 +114,10 @@
                             <target>
                                 <delete>
                                     <fileset dir="${project.build.directory}/${lib.dir}" id="also-in-platform">
-                                        <present targetdir="${project.build.directory}/${lib.dir}/platform"/>
+                                        <present targetdir="${project.build.directory}/${lib.dir}/platform" />
                                     </fileset>
                                 </delete>
-                                <delete dir="${project.build.directory}/${lib.dir}/platform/"/>
+                                <delete dir="${project.build.directory}/${lib.dir}/platform/" />
                             </target>
                         </configuration>
                         <goals>
@@ -130,6 +130,14 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>com.frequentis.xvp.voice</groupId>
+            <artifactId>audio-simulator-service-interface</artifactId>
+      </dependency>
+      <dependency>
+            <groupId>com.frequentis.xvp.voice</groupId>
+            <artifactId>audio-service-interface</artifactId>
+      </dependency>
         <dependency>
             <groupId>com.frequentis.c4i.test</groupId>
             <artifactId>cats-platform</artifactId>
@@ -157,7 +165,15 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.frequentis.xvp.voice</groupId>
+            <artifactId>audio-simulator-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.frequentis.xvp.voice</groupId>
+            <artifactId>op-voice-service-interface</artifactId>
+            <version>${voice.service.interface.version}</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 </project>
-
-

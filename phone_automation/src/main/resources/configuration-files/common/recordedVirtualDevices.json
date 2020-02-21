@@ -1,0 +1,12 @@
+{
+  "recordedVirtualDevices": [
+    {
+      "virtualDeviceName": "RadMic1",
+      "gain": 0
+    },
+    {
+      "virtualDeviceName": "Headset",
+      "gain": 5
+    }
+  ]
+}

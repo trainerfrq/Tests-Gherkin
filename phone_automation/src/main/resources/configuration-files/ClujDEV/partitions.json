@@ -1,0 +1,76 @@
+{
+  "partitions": [
+    {
+      "partitionKey": "CJ-GG-DEV-CWP-2",
+      "clients": [
+        {
+          "opId": "CJ-GG-DEV-CWP-2",
+          "radioUserName": "OpVoiceUser02",
+          "audioAppUri": "ws://192.168.10.15:8805/ctrlif"
+        }
+      ],
+      "audioServiceConnections": {
+        "connectionTimeout": 2000,
+        "requestTimeout": 1000,
+        "connections": [
+          {
+            "mediaPlane": "A",
+            "uri": "ws://172.1.1.1:8805/ctrlif"
+          },
+          {
+            "mediaPlane": "B",
+            "uri": "ws://172.1.1.2:8805/ctrlif"
+          }
+        ]
+      }
+    },
+    {
+      "partitionKey": "CJ-GG-DEV-CWP-3",
+      "clients": [
+        {
+          "opId": "CJ-GG-DEV-CWP-3",
+          "radioUserName": "OpVoiceUser03",
+          "audioAppUri": "ws://192.168.10.16:8805/ctrlif"
+        }
+      ],
+      "audioServiceConnections": {
+        "connectionTimeout": 2000,
+        "requestTimeout": 1000,
+        "connections": [
+          {
+            "mediaPlane": "A",
+            "uri": "ws://172.1.1.1:8805/ctrlif"
+          },
+          {
+            "mediaPlane": "B",
+            "uri": "ws://172.1.1.2:8805/ctrlif"
+          }
+        ]
+      }
+    },
+    {
+      "partitionKey": "CJ-GG-DEV-CWP-1",
+      "clients": [
+        {
+          "opId": "CJ-GG-DEV-CWP-1",
+          "radioUserName": "OpVoiceUser01",
+          "audioAppUri": "ws://192.168.10.14:8805/ctrlif"
+        }
+      ],
+      "audioServiceConnections": {
+        "connectionTimeout": 2000,
+        "requestTimeout": 1000,
+        "connections": [
+          {
+            "mediaPlane": "A",
+            "uri": "ws://172.1.1.1:8805/ctrlif"
+          },
+          {
+            "mediaPlane": "B",
+            "uri": "ws://172.1.1.2:8805/ctrlif"
+          }
+        ]
+      }
+    }
+  ]
+}

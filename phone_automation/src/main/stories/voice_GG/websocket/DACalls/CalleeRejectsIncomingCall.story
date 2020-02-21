@@ -12,7 +12,7 @@ When WS2 opens the message buffer for message type callIncomingIndication named 
 When WS2 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer2
 
 Scenario: Caller client retrieves phone data
-When WS1 loads phone data for role roleId1 and names callSource and callTarget from the entry number 1
+When WS1 queries phone data for mission missionId1 in order to call OP2 and names them callSource and callTarget
 
 Scenario: Caller establishes an outgoing call
 When WS1 establishes an outgoing phone call using source callSource ang target callTarget and names outgoingPhoneCallId
@@ -26,6 +26,7 @@ Then WS1 receives call status indication on message buffer named CallStatusIndic
 
 Scenario: Callee client rejects the incoming call
 		  @REQUIREMENTS:GID-2510109
+ !-- TODO QXVP-13447 : re-enable this test after bug is fixed
 When WS2 clears the phone call with the callId incomingPhoneCallId
 And waiting for 3 seconds
 Then WS2 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId and terminationDetails normal

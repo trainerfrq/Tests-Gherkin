@@ -11,7 +11,7 @@ Scenario: Create the message buffers
 When WS1 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer1
 
 Scenario: Caller client retrieves phone data
-When WS1 loads phone data for role roleId1 and names callSource and callTarget from the entry number 1
+When WS1 queries phone data for mission missionId1 in order to call OP2 and names them callSource and callTarget
 
 Scenario: Define call target
 When define values in story data:
@@ -29,6 +29,7 @@ Then WS1 receives call status indication on message buffer named CallStatusIndic
 Then SipContact DialogState is CONFIRMED within 100 ms
 
 Scenario: Caller client puts the call on hold
+		  @REQUIREMENTS:GID-2505734
 When WS1 puts the phone call with the callId outgoingPhoneCallId on hold
 And waiting for 2 seconds
 

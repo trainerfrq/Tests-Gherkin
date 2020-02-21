@@ -21,6 +21,7 @@ import java.io.Serializable;
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameter;
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameterBase;
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameterClass;
+import com.frequentis.xvp.voice.opvoice.json.messages.payload.phone.PhoneBookResponseItem;
 
 @CatsCustomParameterClass
 public class PhoneBookEntry extends CatsCustomParameterBase implements Serializable
@@ -45,6 +46,9 @@ public class PhoneBookEntry extends CatsCustomParameterBase implements Serializa
 
    @CatsCustomParameter(parameterName = "display-addon")
    private String displayAddon;
+
+   @CatsCustomParameter(parameterName = "call-priority")
+   private PhoneBookResponseItem.CallPriority callPriority;
 
 
    public String getUri()
@@ -72,7 +76,9 @@ public class PhoneBookEntry extends CatsCustomParameterBase implements Serializa
 
 
    public String getFullName()
-   {
+   {if(fullName == null){
+      fullName = "";
+   }
       return fullName;
    }
 
@@ -84,7 +90,9 @@ public class PhoneBookEntry extends CatsCustomParameterBase implements Serializa
 
 
    public String getLocation()
-   {
+   {if(location == null){
+      location = "";
+   }
       return location;
    }
 
@@ -96,7 +104,9 @@ public class PhoneBookEntry extends CatsCustomParameterBase implements Serializa
 
 
    public String getOrganization()
-   {
+   { if(organization == null){
+      organization = "";
+   }
       return organization;
    }
 
@@ -108,7 +118,9 @@ public class PhoneBookEntry extends CatsCustomParameterBase implements Serializa
 
 
    public String getNotes()
-   {
+   {if(notes == null){
+      notes = "";
+   }
       return notes;
    }
 
@@ -120,7 +132,9 @@ public class PhoneBookEntry extends CatsCustomParameterBase implements Serializa
 
 
    public String getDisplayAddon()
-   {
+   {if(displayAddon == null){
+      displayAddon = "";
+   }
       return displayAddon;
    }
 
@@ -131,11 +145,17 @@ public class PhoneBookEntry extends CatsCustomParameterBase implements Serializa
    }
 
 
+   public PhoneBookResponseItem.CallPriority getCallPriority() { return callPriority; }
+
+
+   public void setCallPriority( final PhoneBookResponseItem.CallPriority callPriority ) { this.callPriority = callPriority; }
+
+
    @Override
    public String toString()
    {
       return "PhoneBookEntry{" + "uri='" + uri + '\'' + ", name='" + name + '\'' + ", fullName='" + fullName + '\''
             + ", location='" + location + '\'' + ", organization='" + organization + '\'' + ", notes='" + notes + '\''
-            + ", displayAddon='" + displayAddon + '\'' + '}';
+            + ", displayAddon='" + displayAddon + '\'' + ", callPriority='" + callPriority + '\'' + '}';
    }
 }

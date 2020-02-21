@@ -1,0 +1,169 @@
+[
+  {
+    "missionId": "31857b63-c15e-46fb-a88b-cc67f2b34be3",
+    "missionName": "MAN-NIGHT-TACT",
+    "missionAssignedRoles": [
+      "LOWER-EAST-EXEC"
+    ],
+    "missionMasterRole": "LOWER-EAST-EXEC",
+    "missionDefaultSourceSipAddress": "sip:mission1@example.com",
+    "iaCallTimeoutMilliseconds": 5000,
+    "maxIncomingIaCallsCount": 3,
+    "priorityCallHandling": "indication",
+    "priorityCallIntrusionWarningPeriod": 0,
+    "missionAssignedCallRouteSelectors": [
+      {
+        "id": "default",
+        "name": "Default",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:{user_input}@example.com"
+      },
+      {
+        "id": "none",
+        "name": "None",
+        "patternType": "replacePlaceholder",
+        "pattern": "{user_input}"
+      },
+      {
+        "id": "frqUser",
+        "name": "FrqUser",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:2{user_input}@example.com"
+      },
+      {
+        "id": "gmail",
+        "name": "Gmail",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:22{user_input}@example.com"
+      },
+      {
+        "id": "admin",
+        "name": "Admin",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:222{user_input}@example.com"
+      },
+      {
+        "id": "super",
+        "name": "Super",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:2222{user_input}@example.com"
+      },
+      {
+        "id": "student",
+        "name": "Student",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:22222{user_input}@example.com"
+      },
+      {
+        "id": "prof",
+        "name": "Professor",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:1{user_input}@example.com"
+      },
+      {
+        "id": "medic",
+        "name": "Medic",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:11{user_input}@example.com"
+      },
+      {
+        "id": "mail",
+        "name": "Mail",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:111{user_input}@example.com"
+      }
+    ],
+    "schemaVersion": "0.5.0-SNAPSHOT",
+    "phoneSettings": {
+      "sipAddresses": [
+        "sip:mission1@example.com",
+        "sip:role1@example.com",
+        "sip:group1@example.com",
+        "sip:role1alias2@example.com",
+        "sip:role1alias1@example.com",
+        "sip:operator1@example.com",
+        "sip:groupall@192.168.10.33:5060"
+      ]
+    },
+    "layoutId": "<<LAYOUT_MISSION1>>"
+  },
+  {
+    "missionId": "e43bacf4-9e67-42ea-ac39-4e30e2583809",
+    "missionName": "WEST-EXEC",
+    "missionAssignedRoles": [
+      "LOWER-WEST-EXEC"
+    ],
+    "missionMasterRole": "LOWER-WEST-EXEC",
+    "missionDefaultSourceSipAddress": "sip:mission2@example.com",
+    "iaCallTimeoutMilliseconds": 1000,
+    "maxIncomingIaCallsCount": 1,
+    "maxCallsOnHold": 1,
+    "priorityCallHandling": "indication",
+    "priorityCallIntrusionWarningPeriod": 0,
+    "missionAssignedCallRouteSelectors": [
+      {
+        "id": "default",
+        "name": "Default",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:{user_input}@example.com"
+      },
+      {
+        "id": "none",
+        "name": "None",
+        "patternType": "replacePlaceholder",
+        "pattern": "{user_input}"
+      }
+    ],
+    "schemaVersion": "0.5.0-SNAPSHOT",
+    "phoneSettings": {
+      "sipAddresses": [
+        "sip:mission2@example.com",
+        "sip:role2@example.com",
+        "sip:group1@example.com",
+        "sip:role2alias2@example.com",
+        "sip:role2alias1@example.com",
+        "sip:groupall@192.168.10.33:5060"
+      ]
+    },
+    "layoutId": "<<LAYOUT_MISSION2>>"
+  },
+  {
+    "missionId": "e8faa015-ad4d-4d11-b403-b9e4983cbf74",
+    "missionName": "EAST-EXEC",
+    "missionAssignedRoles": [
+      "LOWER-EAST-EXEC"
+    ],
+    "missionMasterRole": "LOWER-EAST-EXEC",
+    "missionDefaultSourceSipAddress": "sip:mission3@example.com",
+    "iaCallTimeoutMilliseconds": 1000,
+    "maxIncomingIaCallsCount": 3,
+    "priorityCallHandling": "indication",
+    "priorityCallIntrusionWarningPeriod": 0,
+    "missionAssignedCallRouteSelectors": [
+      {
+        "id": "default",
+        "name": "Default",
+        "patternType": "replacePlaceholder",
+        "pattern": "sip:{user_input}@example.com"
+      },
+      {
+        "id": "none",
+        "name": "None",
+        "patternType": "replacePlaceholder",
+        "pattern": "{user_input}"
+      }
+    ],
+    "schemaVersion": "0.5.0-SNAPSHOT",
+    "phoneSettings": {
+      "sipAddresses": [
+        "sip:mission3@example.com",
+        "sip:role1@example.com",
+        "sip:group1@example.com",
+        "sip:role1alias2@example.com",
+        "sip:role1alias1@example.com",
+        "sip:groupall@192.168.10.33:5060"
+      ]
+    },
+    "layoutId": "<<LAYOUT_MISSION1>>"
+  }
+]

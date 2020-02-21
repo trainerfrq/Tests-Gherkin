@@ -14,8 +14,8 @@ When WS1 opens the message buffer for message type callIncomingIndication named 
 When WS2 opens the message buffer for message type callIncomingIndication named CallIncomingIndicationBuffer2
 
 Scenario: Clients retrieve phone data
-When WS1 loads phone data for role roleId1 and names callSourceCalling and callTargetCalling from the entry number 1
-When WS2 loads phone data for role roleId2 and names callSourceCalled and callTargetCalled from the entry number 1
+When WS1 queries phone data for mission missionId1 in order to call IA - OP2 and names them callSourceCalling and callTargetCalling
+When WS2 queries phone data for mission missionId2 in order to call IA - OP1 and names them callSourceCalled and callTargetCalled
 
 Scenario: Caller establishes an outgoing call
 		  @REQUIREMENTS:GID-2505705
@@ -32,7 +32,7 @@ And waiting for 1 seconds
 Then WS2 is receiving call status indication on message buffer named CallStatusIndicationBuffer2 with callId callId2 and status connected and audio direction DUPLEX
 
 Scenario: Caller client receives the duplex call
-When WS1 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer1 with callSourceCalled and callTargetCalled and names callId1 and audio direction DUPLEX
+When WS1 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer1 with callSourceCalled , callTargetCalled , audio direction DUPLEX and monitoring type GG and names callId1
 
 Scenario: Callee client clears the phone call
 When WS2 clears the phone call with the callId callId2
@@ -46,7 +46,7 @@ And waiting for 1 seconds
 Then WS2 is receiving call status indication on message buffer named CallStatusIndicationBuffer2 with callId callId2 and status connected and audio direction DUPLEX
 
 Scenario: Caller client receives the duplex call
-When WS1 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer1 with callSourceCalled and callTargetCalled and names callId1 and audio direction DUPLEX
+When WS1 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer1 with callSourceCalled , callTargetCalled , audio direction DUPLEX and monitoring type GG and names callId1
 
 Scenario: Cleanup phone calls
 When WS1 clears the phone call with the callId callId1

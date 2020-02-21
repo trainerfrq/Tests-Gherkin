@@ -1,43 +1,48 @@
 {
   "sipProxy": {
-    "opSipProxyHost": "10.17.15.40",
+    "opSipProxyHost": "192.168.100.161",
     "opSipProxyListeningPort": 5060
   },
+  "conferencer": {
+    "conferencerFactoryUser": "conf",
+    "conferencerFactoryHost": "192.168.100.158",
+    "conferencerFactoryListeningPort": 5060
+  },
   "hostSpecificConfigurationMap": {
-    "op03": {
+    "cwp-vst02-14": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "10.17.15.41",
+          "opPhysicalHost": "192.168.100.150",
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",
         "opUserInfo": "111111",
-        "opSipRegistrationTimeoutInSeconds": 300,
-        "opMaxConcurrentCallsCount": 20
+        "opSipRegistrationTimeoutInSeconds": 10,
+        "opMaxConcurrentCallsCount": 16
       }
     },
-    "op04": {
+    "cwp-vst02-15": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "10.17.15.42",
+          "opPhysicalHost": "192.168.100.151",
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",
         "opUserInfo": "222222",
-        "opSipRegistrationTimeoutInSeconds": 300,
-        "opMaxConcurrentCallsCount": 20
+        "opSipRegistrationTimeoutInSeconds": 10,
+        "opMaxConcurrentCallsCount": 1
       }
     },
-    "op05": {
+    "cwp-vst02-16": {
       "opPhysicalEntity": {
         "opSipEndpoint": {
-          "opPhysicalHost": "10.17.15.43",
+          "opPhysicalHost": "192.168.100.154",
           "opSipListeningPort": 5060
         },
         "opSipDomain": "example.com",
         "opUserInfo": "op3",
-        "opSipRegistrationTimeoutInSeconds": 300,
-        "opMaxConcurrentCallsCount": 20
+        "opSipRegistrationTimeoutInSeconds": 10,
+        "opMaxConcurrentCallsCount": 1
       }
     }
   },

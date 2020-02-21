@@ -1,34 +1,88 @@
 {
   "partitions": [
     {
-      "partitionKey": "op03",
+      "partitionKey": "cwp-vst02-16",
       "clients": [
         {
-          "opId": "op03",
-          "radioUserName": "OpVoiceUser1",
-          "audioAppUri": "ws://10.17.15.44:5674/ctrlif"
+          "opId": "cwp-vst02-16",
+          "reconnectionTimeout": 5,
+          "radioUserName": "OpVoiceUser03",
+          "audioAppUri": "ws://192.168.100.52:8805/ctrlif",
+          "voIpRecordingClusterId": null,
+          "voIpRecordingRadioSessionId": null,
+          "voIpRecordingRadioSessionConnRef": null
         }
-      ]
+      ],
+      "audioServiceConnections": {
+        "connectionTimeout": "2000",
+        "requestTimeout": "1000",
+        "connections": [
+          {
+            "mediaPlane": "A",
+            "uri": "ws://192.168.100.153:8805/ctrlif"
+          },
+          {
+            "mediaPlane": "B",
+            "uri": "ws://192.168.100.155:8805/ctrlif"
+          }
+        ]
+      }
     },
     {
-      "partitionKey": "op04",
+      "partitionKey": "cwp-vst02-14",
       "clients": [
         {
-          "opId": "op04",
-          "radioUserName": "OpVoiceUser2",
-          "audioAppUri": "ws://10.17.15.45:5674/ctrlif"
+          "opId": "cwp-vst02-14",
+          "reconnectionTimeout": 5,
+          "radioUserName": "OpVoiceUser01",
+          "audioAppUri": "ws://192.168.100.50:8805/ctrlif",
+          "voIpRecordingClusterId": null,
+          "voIpRecordingRadioSessionId": null,
+          "voIpRecordingRadioSessionConnRef": null
         }
-      ]
+      ],
+      "audioServiceConnections": {
+        "connectionTimeout": "2000",
+        "requestTimeout": "1000",
+        "connections": [
+          {
+            "mediaPlane": "A",
+            "uri": "ws://192.168.100.153:8805/ctrlif"
+          },
+          {
+            "mediaPlane": "B",
+            "uri": "ws://192.168.100.155:8805/ctrlif"
+          }
+        ]
+      }
     },
     {
-      "partitionKey": "op05",
+      "partitionKey": "cwp-vst02-15",
       "clients": [
         {
-          "opId": "op05",
-          "radioUserName": "OpVoiceUser3",
-          "audioAppUri": "ws://10.17.15.46:5674/ctrlif"
+          "opId": "cwp-vst02-15",
+          "reconnectionTimeout": 5,
+          "radioUserName": "OpVoiceUser02",
+          "audioAppUri": "ws://192.168.100.51:8805/ctrlif",
+          "voIpRecordingClusterId": null,
+          "voIpRecordingRadioSessionId": null,
+          "voIpRecordingRadioSessionConnRef": null
         }
-      ]
+      ],
+      "audioServiceConnections": {
+        "connectionTimeout": "2000",
+        "requestTimeout": "1000",
+        "connections": [
+          {
+            "mediaPlane": "A",
+            "uri": "ws://192.168.100.153:8805/ctrlif"
+          },
+          {
+            "mediaPlane": "B",
+            "uri": "ws://192.168.100.155:8805/ctrlif"
+          }
+        ]
+      }
     }
   ]
 }

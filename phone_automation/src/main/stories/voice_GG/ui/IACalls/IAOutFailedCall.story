@@ -5,10 +5,11 @@ So that I can verify that after the IA call timeout expires the call will be in 
 
 Scenario: Booking profiles
 Given booked profiles:
-| profile | group          | host           | identifier |
-| javafx  | hmi            | <<CLIENT1_IP>> | HMI OP1    |
-| javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
-| voip    | <<systemName>> | <<CO3_IP>>     | VOIP       |
+| profile             | group          | host           | identifier |
+| javafx              | hmi            | <<CLIENT1_IP>> | HMI OP1    |
+| javafx              | hmi            | <<CLIENT2_IP>> | HMI OP2    |
+| javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
+| voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
 Scenario: Create sip phone
 Given SipContacts group SipContact:
@@ -18,11 +19,12 @@ And phones for SipContact are created
 
 Scenario: Define call queue items
 Given the call queue items:
-| key        | source         | target                 | callType |
-| OP1-PHONE2 | <<SIP_PHONE2>> | sip:111111@example.com | IA       |
+| key        | source         | target      | callType |
+| OP1-PHONE2 | <<SIP_PHONE2>> | <<OP1_URI>> | IA       |
 
 Scenario: Caller establishes an outgoing IA call
-When HMI OP1 presses IA key IA - PHONE2
+When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
+When HMI OP1 presses IA key Madoline
 Then HMI OP1 has the call queue item OP1-PHONE2 in state out_initiating
 
 Scenario: SipContact has incoming call
@@ -34,11 +36,11 @@ When waiting for 6 seconds
 Then HMI OP1 has the call queue item OP1-PHONE2 in state out_failed
 
 Scenario: Cleanup IA call
-When HMI OP1 presses IA key IA - PHONE2
+When HMI OP1 presses IA key Madoline
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Caller establishes an outgoing IA call
-When HMI OP1 presses IA key IA - PHONE2
+When HMI OP1 presses IA key Madoline
 Then HMI OP1 has the call queue item OP1-PHONE2 in state out_initiating
 
 Scenario: SipContact has incoming call
@@ -54,3 +56,11 @@ Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Remove SipContact
 When SipContact is removed
+
+Scenario: Cleanup - always select first tab
+When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 1
+
+Scenario: A scenario that is only executed in case of an execution failure
+Meta: @RunOnFailure
+GivenStories: voice_GG/ui/includes/@CleanupStory.story
+Then waiting until the cleanup is done

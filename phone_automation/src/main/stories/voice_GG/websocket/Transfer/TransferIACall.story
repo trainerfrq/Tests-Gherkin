@@ -14,12 +14,12 @@ When WS1 opens the message buffer for message type callIncomingIndication named 
 When WS2 opens the message buffer for message type callIncomingIndication named CallIncomingIndicationBuffer2
 
 Scenario: Clients retrieve phone data
-When WS1 loads phone data for role roleId1 and names callSourceCalling and callTargetCalling from the entry number 1
-When WS2 loads phone data for role roleId2 and names callSourceCalled and callTargetCalled from the entry number 1
+When WS1 queries phone data for mission missionId1 in order to call IA - OP2 and names them callSourceCalling and callTargetCalling
+When WS2 queries phone data for mission missionId2 in order to call IA - OP1 and names them callSourceCalled and callTargetCalled
 
 Scenario: Caller establishes an outgoing call
 When WS1 establishes an outgoing IA call with source callSourceCalling and target callTargetCalling and names outgoingPhoneCallId1
-And waiting for 1 seconds
+And waiting for 3 seconds
 Then WS1 is receiving call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status connected and audio direction TX
 
 Scenario: Callee client receives the incoming call
@@ -27,13 +27,15 @@ When WS2 receives call incoming indication for IA call on message buffer named C
 
 Scenario: Callee establishes an outgoing call
 When WS2 establishes an outgoing IA call with source callSourceCalled and target callTargetCalled and names outgoingPhoneCallId2
-And waiting for 1 seconds
+And waiting for 3 seconds
 Then WS2 is receiving call status indication on message buffer named CallStatusIndicationBuffer2 with callId outgoingPhoneCallId2 and status connected and audio direction DUPLEX
 
 Scenario: Caller client receives the incoming call
-When WS1 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer1 with callSourceCalled and callTargetCalled and names incomingPhoneCallId2 and audio direction DUPLEX
+When WS1 receives call incoming indication for IA call on message buffer named CallIncomingIndicationBuffer1 with callSourceCalled , callTargetCalled , audio direction DUPLEX and monitoring type GG and names incomingPhoneCallId2
 
 Scenario: Callee operator puts the call on hold with call conditional flag
+		  @REQUIREMENTS:GID-2510076
+		  @REQUIREMENTS:GID-2510078
 When WS1 puts the phone call with the callId outgoingPhoneCallId1 on hold with call conditional flag xfr
 
 Scenario: Verify call is not put on hold with call conditional flag

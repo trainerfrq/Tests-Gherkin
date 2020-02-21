@@ -14,8 +14,8 @@ When WS2 opens the message buffer for message type callStatusIndication named Ca
 When WS3 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer3
 
 Scenario: First client retrieves phone data
-When WS1 loads phone data for role roleId1 and names callSource1 and callTarget1 from the entry number 1
-When WS3 loads phone data for role roleId3 and names callSource2 and callTarget2 from the entry number 2
+When WS1 queries phone data for mission missionId1 in order to call OP2 and names them callSource1 and callTarget1
+When WS3 queries phone data for mission missionId3 in order to call OP2 and names them callSource2 and callTarget2
 
 Scenario: First client establishes an outgoing call
 When WS1 establishes an outgoing phone call using source callSource1 ang target callTarget1 and names outgoingPhoneCallId1
@@ -64,12 +64,12 @@ When WS3 clears all text messages from buffer named CallStatusIndicationBuffer3
 
 Scenario: Second client puts the call on hold
 		  @REQUIREMENTS:GID-2604614
-When WS2 puts the phone call with the callId outgoingPhoneCallId2 on hold
+When WS2 puts the phone call with the callId incomingPhoneCallId2 on hold
 And waiting for 2 seconds
+Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId2 and status connected
 
 Scenario: Verify call is not put on hold
 Then WS1 has on the message buffer named CallStatusIndicationBuffer1 a number of 0 messages
-Then WS2 has on the message buffer named CallStatusIndicationBuffer2 a number of 0 messages
 Then WS3 has on the message buffer named CallStatusIndicationBuffer3 a number of 0 messages
 
 Scenario: Cleanup calls

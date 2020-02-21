@@ -13,11 +13,11 @@ When WS2 opens the message buffer for message type callIncomingIndication named 
 When WS2 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer2
 
 Scenario: Transferor retrieves phone data
-When WS1 loads phone data for role roleId1 and names callSource1 and callTarget1 from the entry number 1
+When WS1 queries phone data for mission missionId1 in order to call OP2 and names them callSource1 and callTarget1
 
 Scenario: Transferor establishes an outgoing call
 When WS1 establishes an outgoing phone call using source callSource1 ang target callTarget1 and names outgoingPhoneCallId1
-And waiting for 1 seconds
+And waiting for 3 seconds
 Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status out_trying
 
 Scenario: Transferee receives the incoming call and confirms it
@@ -27,7 +27,7 @@ Then WS1 receives call status indication on message buffer named CallStatusIndic
 
 Scenario: Transferee answers the incoming call
 When WS2 answers the incoming phone call with the callId incomingPhoneCallId1
-And waiting for 1 seconds
+And waiting for 3 seconds
 Then WS2 receives call status indication on message buffer named CallStatusIndicationBuffer2 with callId incomingPhoneCallId1 and status connected
 And WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId1 and status connected
 
@@ -45,6 +45,8 @@ When define values in story data:
 | callTarget2 | <<SIP_PHONE1>> |
 
 Scenario: Transferor establishes consultation call towards an nonexistent target
+		  @REQUIREMENTS:GID-2510076
+		  @REQUIREMENTS:GID-2510077
 When WS1 establishes an outgoing phone call with call conditional flag xfr using source callSource1 ang target callTarget2 and names outgoingPhoneCallId2
 And waiting for 2 seconds
 

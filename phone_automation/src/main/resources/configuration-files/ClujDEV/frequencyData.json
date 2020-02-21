@@ -1,0 +1,33 @@
+{
+  "frequencies": [
+    {
+      "frequencyId": "123.700",
+      "frequencySignalingId": 0,
+      "destinationSipUri": "sip:ED137B_1@127.0.0.1:5060",
+      "rtpParameters": {}
+    },
+    {
+      "frequencyId": "124.600",
+      "frequencySignalingId": 1,
+      "destinationSipUri": "sip:ED137B_2@127.0.0.1:5060",
+      "rtpParameters": {}
+    },
+    {
+      "frequencyId": "125.500",
+      "frequencySignalingId": 2,
+      "destinationSipUri": "sip:ED137B_3@127.0.0.1:5060",
+      "rtpParameters": {}
+    },
+    {
+      "frequencyId": "126.700",
+      "frequencySignalingId": 3,
+      "destinationSipUri": "sip:ED137B_4@127.0.0.1:5060",
+      "rtpParameters": {}
+    }
+  ],
+  "rtLogicSignallingParameters": {
+    "rtLogicName": "opVoiceRtLogic",
+    "inputVirtualDeviceNames": [],
+    "outputVirtualDeviceNames": []
+  }
+}

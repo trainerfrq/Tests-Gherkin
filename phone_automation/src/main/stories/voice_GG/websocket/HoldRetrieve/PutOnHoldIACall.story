@@ -13,7 +13,7 @@ When WS2 opens the message buffer for message type callIncomingIndication named 
 When WS2 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer2
 
 Scenario: Caller client retrieves phone data
-When WS1 loads phone data for role roleId1 and names callSource and callTarget from the entry number 1
+When WS1 queries phone data for mission missionId1 in order to call OP2 and names them callSource and callTarget
 
 Scenario: Caller establishes an outgoing IA call
 When WS1 establishes an outgoing IA call with source callSource and target callTarget and names outgoingPhoneCallId
@@ -28,6 +28,7 @@ When WS1 clears all text messages from buffer named CallStatusIndicationBuffer1
 When WS2 clears all text messages from buffer named CallStatusIndicationBuffer2
 
 Scenario: Caller client puts the call on hold
+		  @REQUIREMENTS:GID-2505734
 When WS1 puts the phone call with the callId outgoingPhoneCallId on hold
 And waiting for 2 seconds
 

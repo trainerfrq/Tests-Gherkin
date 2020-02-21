@@ -10,18 +10,18 @@
        <join>
           <multicast enabled="false"/>
           <tcp-ip enabled="true">
-             <member>192.168.100.10:5701</member>
-             <member>192.168.100.13:5701</member>
-             <member>10.31.205.40:5701</member>
-             <member>10.31.205.51:5701</member>
-             <member>10.31.205.52:5701</member>
-             <member>10.31.205.53:5701</member>
-             <member>10.31.205.43:5701</member>
-             <member>10.17.15.47:5701</member>
-             <member>10.17.15.44:5701</member>
-             <member>10.17.15.45:5701</member>
-             <member>10.17.15.46:5701</member>
-             <member>10.17.15.48:5701</member>
+             <member>10.16.156.19:${CATS_HAZELCAST_PORT}</member>
+             <member>10.16.156.13:${CATS_HAZELCAST_PORT}</member>
+             <member>10.16.156.14:${CATS_HAZELCAST_PORT}</member>
+             <member>10.16.156.15:${CATS_HAZELCAST_PORT}</member>
+             <member>10.17.15.47:${CATS_HAZELCAST_PORT}</member>
+             <member>10.17.15.44:${CATS_HAZELCAST_PORT}</member>
+             <member>10.17.15.45:${CATS_HAZELCAST_PORT}</member>
+             <member>10.17.15.46:${CATS_HAZELCAST_PORT}</member>
+              <member>10.31.205.9:${CATS_HAZELCAST_PORT}</member>
+              <member>10.31.205.94:${CATS_HAZELCAST_PORT}</member>
+              <member>10.31.205.95:${CATS_HAZELCAST_PORT}</member>
+              <member>10.31.205.96:${CATS_HAZELCAST_PORT}</member>
           </tcp-ip>
        </join>
     </network>

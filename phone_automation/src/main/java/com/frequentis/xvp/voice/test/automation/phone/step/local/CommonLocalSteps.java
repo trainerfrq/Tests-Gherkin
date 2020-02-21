@@ -16,12 +16,14 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step.local;
 
-import java.util.List;
-
+import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
+import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
+import com.frequentis.c4i.test.model.ExecutionDetails;
+import com.frequentis.xvp.voice.test.automation.phone.data.NameValuePair;
+import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
-import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
-import com.frequentis.xvp.voice.test.automation.phone.data.NameValuePair;
+import java.util.List;
 
 /**
  * @author mayar
@@ -33,7 +35,23 @@ public class CommonLocalSteps extends AutomationSteps
    {
       for ( NameValuePair pair : pairs )
       {
-         setStoryData( pair.getName(), pair.getValue() );
+         setStoryListData( pair.getName(), pair.getValue() );
       }
+   }
+
+   @Then("waiting until the cleanup is done")
+   public void wait1Millisecond(){
+       LocalStep step = localStep("Wait for 1 millisecond");
+       try {
+           Thread.sleep(1);
+           step.details(ExecutionDetails.create("Wait for 1 millisecond")
+                   .expected("Waited")
+                   .success(true));
+       } catch (InterruptedException ex) {
+           step.details(ExecutionDetails.create("Wait for 1 millisecond")
+                   .expected("Waited with error")
+                   .success(true));
+       }
+       evaluate(step);
    }
 }

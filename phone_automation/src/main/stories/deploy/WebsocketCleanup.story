@@ -1,3 +1,8 @@
+Scenario: Connect to host
+Given SSH connections:
+| name     | remote-address | remotePort | username | password  |
+| coHost   | <<CO3_IP>>     | 22         | root     | !frqAdmin |
+
 Scenario: Stop profiles
 When stopping profiles:
 | hostIp     | profile             | timeout        | nr |

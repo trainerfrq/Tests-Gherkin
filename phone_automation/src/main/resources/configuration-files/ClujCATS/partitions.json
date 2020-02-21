@@ -1,34 +1,88 @@
 {
   "partitions": [
     {
-      "partitionKey": "op03",
+      "partitionKey": "cj-gg-cat-cwp-3",
       "clients": [
         {
-          "opId": "op03",
-          "radioUserName": "OpVoiceUser1",
-          "audioAppUri": "ws://192.168.50.51:5674/ctrlif"
+          "opId": "cj-gg-cat-cwp-3",
+          "reconnectionTimeout": 5,
+          "radioUserName": "OpVoiceUser03",
+          "audioAppUri": "ws://192.168.40.99:8805/ctrlif",
+          "voIpRecordingClusterId": null,
+          "voIpRecordingRadioSessionId": null,
+          "voIpRecordingRadioSessionConnRef": null
         }
-      ]
+      ],
+      "audioServiceConnections": {
+        "connectionTimeout": "2000",
+        "requestTimeout": "1000",
+        "connections": [
+          {
+            "mediaPlane": "A",
+            "uri": "ws://192.168.40.115:8805/ctrlif"
+          },
+          {
+            "mediaPlane": "B",
+            "uri": "ws://192.168.40.116:8805/ctrlif"
+          }
+        ]
+      }
     },
     {
-      "partitionKey": "op04",
+      "partitionKey": "cj-gg-cat-cwp-1",
       "clients": [
         {
-          "opId": "op04",
-          "radioUserName": "OpVoiceUser2",
-          "audioAppUri": "ws://192.168.50.52:5674/ctrlif"
+          "opId": "cj-gg-cat-cwp-1",
+          "reconnectionTimeout": 5,
+          "radioUserName": "OpVoiceUser01",
+          "audioAppUri": "ws://192.168.40.97:8805/ctrlif",
+          "voIpRecordingClusterId": null,
+          "voIpRecordingRadioSessionId": null,
+          "voIpRecordingRadioSessionConnRef": null
         }
-      ]
+      ],
+      "audioServiceConnections": {
+        "connectionTimeout": "2000",
+        "requestTimeout": "1000",
+        "connections": [
+          {
+            "mediaPlane": "A",
+            "uri": "ws://192.168.40.115:8805/ctrlif"
+          },
+          {
+            "mediaPlane": "B",
+            "uri": "ws://192.168.40.116:8805/ctrlif"
+          }
+        ]
+      }
     },
     {
-      "partitionKey": "op05",
+      "partitionKey": "cj-gg-cat-cwp-2",
       "clients": [
         {
-          "opId": "op05",
-          "radioUserName": "OpVoiceUser3",
-          "audioAppUri": "ws://192.168.50.53:5674/ctrlif"
+          "opId": "cj-gg-cat-cwp-2",
+          "reconnectionTimeout": 5,
+          "radioUserName": "OpVoiceUser02",
+          "audioAppUri": "ws://192.168.40.98:8805/ctrlif",
+          "voIpRecordingClusterId": null,
+          "voIpRecordingRadioSessionId": null,
+          "voIpRecordingRadioSessionConnRef": null
         }
-      ]
+      ],
+      "audioServiceConnections": {
+        "connectionTimeout": "2000",
+        "requestTimeout": "1000",
+        "connections": [
+          {
+            "mediaPlane": "A",
+            "uri": "ws://192.168.40.115:8805/ctrlif"
+          },
+          {
+            "mediaPlane": "B",
+            "uri": "ws://192.168.40.116:8805/ctrlif"
+          }
+        ]
+      }
     }
   ]
 }

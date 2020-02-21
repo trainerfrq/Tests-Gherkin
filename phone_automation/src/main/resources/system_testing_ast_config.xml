@@ -2,8 +2,8 @@
 <jobs xmlns="http://req_pro_trace_import.com/configuration">
     <job>
         <name>System Testing AST Import</name>
-        <simulation>false</simulation>
-        <incremental>false</incremental>
+        <simulation>true</simulation>
+        <incremental>true</incremental>
         <sources>
             <workingCopy path="./">
                 <filter regex="src/main/stories"/>
@@ -28,11 +28,18 @@
             <jama>
                 <username>svc-contour</username>
                 <password>tFJptJNAV481</password>
-                <project>QXVP</project>
-                <releaseId>XVP-VA-REL1.0</releaseId>
+                <project>PVCSX</project>
+                <releaseId>VCS3020X Rel. 10.1 Rev. 1.0</releaseId>
                 <testtype>Automated Test</testtype>
                 <documentType>TC</documentType>
                 <parentFolder>/Voice Application (VA)/SystemTests/Test Cases - System Tests/Automated Tests - Phone</parentFolder>
+                <jamaRestRootUrl>https://jama.frequentis.com/rest/latest</jamaRestRootUrl>
+                <jamaSqlHostName>DBJamaContour.frequentis.frq</jamaSqlHostName>
+                <jamaSqlPort>1433</jamaSqlPort>
+                <jamaSqlInstance>Jama</jamaSqlInstance>
+                <jamaSqlDatabaseName>JamaContour</jamaSqlDatabaseName>
+                <jamaSqlUser>contour</jamaSqlUser>
+                <jamaSqlPassword>contour</jamaSqlPassword>
             </jama>
             <file path="system_testing_ast_traces.xml" format="xml"/>
         </output>

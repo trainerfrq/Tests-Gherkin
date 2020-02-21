@@ -3,7 +3,7 @@
    <parent>
         <groupId>com.frequentis.xvp.voice.phone</groupId>
         <artifactId>phone-test-automation</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
+        <version>1.1.1-1.1.0-SNAPSHOT</version>
    </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -27,9 +27,17 @@
             <artifactId>cats-websocket-dto</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.frequentis.xvp.voice.phone</groupId>
-            <artifactId>cats-websocket-plugin</artifactId>
+            <groupId>com.frequentis.xvp.voice</groupId>
+            <artifactId>op-voice-service-interface</artifactId>
+            <version>${voice.service.interface.version}</version>
         </dependency>
+        <dependency>
+          <groupId>com.frequentis.c4i.test</groupId>
+          <artifactId>cats-agent-websocket</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>com.frequentis.xvp.voice.phone</groupId>
+          <artifactId>cats-websocket-plugin</artifactId></dependency>
     </dependencies>
 
     <build>
@@ -75,5 +83,3 @@
         </plugins>
     </build>
 </project>
-
-

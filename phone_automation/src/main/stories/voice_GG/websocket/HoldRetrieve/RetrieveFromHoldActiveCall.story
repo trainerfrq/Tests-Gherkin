@@ -14,7 +14,7 @@ When WS2 opens the message buffer for message type callIncomingIndication named 
 When WS2 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer2
 
 Scenario: Caller client retrieves phone data
-When WS1 loads phone data for role roleId1 and names callSource and callTarget from the entry number 1
+When WS1 queries phone data for mission missionId1 in order to call OP2 and names them callSource and callTarget
 
 Scenario: Caller establishes an outgoing call
 When WS1 establishes an outgoing phone call using source callSource ang target callTarget and names outgoingPhoneCallId
@@ -37,12 +37,13 @@ When WS1 clears all text messages from buffer named CallStatusIndicationBuffer1
 When WS2 clears all text messages from buffer named CallStatusIndicationBuffer2
 
 Scenario: Caller client retrieves call from hold
+		  @REQUIREMENTS:GID-2510075
 When WS1 retrieves the on hold phone call with the callId outgoingPhoneCallId
 And waiting for 1 seconds
 
 Scenario: Verify call is unchanged
-Then WS1 has on the message buffer named CallStatusIndicationBuffer1 a number of 0 messages
 Then WS2 has on the message buffer named CallStatusIndicationBuffer2 a number of 0 messages
+And WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingPhoneCallId and status connected
 
 Scenario: Cleanup call
 When WS1 clears the phone call with the callId outgoingPhoneCallId
