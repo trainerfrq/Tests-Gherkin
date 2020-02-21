@@ -212,14 +212,7 @@
            <artifactId>cats-agent-selenium</artifactId>
            <version>${cats.version}</version>
        </dependency>
-       <dependency>
-           <groupId>com.frequentis.xvp.voice.phone</groupId>
-           <artifactId>configurator-dsl</artifactId>
-       </dependency>
-       <dependency>
-           <groupId>com.frequentis.xvp.voice.phone</groupId>
-           <artifactId>cats-configurator-steps</artifactId>
-       </dependency>
+
    </dependencies>
 
 
