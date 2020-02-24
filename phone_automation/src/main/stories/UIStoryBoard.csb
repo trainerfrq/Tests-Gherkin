@@ -2931,12 +2931,6 @@
                             <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>deploy/UpdateOpVoiceServiceDescriptorsAndRedeployOpVoice.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyDataList/>
-                            <cats:storyStatistics/>
-                        </cats:story>
-                        <cats:story enabled="true">
                             <cats:storyPath>deploy/DeployHmi.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>

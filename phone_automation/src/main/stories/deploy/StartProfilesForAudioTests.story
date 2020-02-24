@@ -1,19 +1,3 @@
-Scenario: Install websocket hmi profile
-When installing profiles:
-| hostIp     | profile                        |
-| <<CO3_IP>> | websocket/hmi                  |
-
-Scenario: Start profile
-Given running profiles:
-| hostIp     | profile                        | timeout        | nr |
-| <<CO3_IP>> | websocket/hmi                  | <<Timeout|60>> | 1  |
-Then waiting for 10 seconds
-
-Scenario: Verify profile
-When verify profiles:
-| hostIp     | profile                        | nr |
-| <<CO3_IP>> | websocket/hmi                  | 1  |
-
 Scenario: Install websocket audio simulator profile
 When installing profiles:
 | hostIp     | profile                        |
@@ -29,4 +13,24 @@ Scenario: Verify profile
 When verify profiles:
 | hostIp     | profile                        | nr |
 | <<CO3_IP>> | websocket/audio_<<systemName>> | 1  |
+
+Scenario: Connect to deploymentServer
+Given SSH connections:
+| name             | remote-address       | remotePort | username | password  |
+| deploymentServer | <<DEP_SERVER_IP>>    | 22         | root     | !frqAdmin |
+| dockerHost1      | <<OPVOICE_HOST1_IP>> | 22         | root     | !frqAdmin |
+| dockerHost2      | <<OPVOICE_HOST2_IP>> | 22         | root     | !frqAdmin |
+
+Scenario: Publish the service descriptors and redeploy op-voice-service
+Then SSH host deploymentServer executes /usr/bin/xvp services remove op-voice-service -g
+Then SSH host deploymentServer executes /usr/bin/xvp services deploy --all -g
+And waiting for 120 seconds
+
+Scenario: Verify Op Voice Services are running
+When SSH host dockerHost1 executes docker inspect -f '{{.State.Status}}' op-voice-service-${OP_VOICE_PARTITION_KEY_1}-1 and the output contains running
+When SSH host dockerHost1 executes docker inspect -f '{{.State.Status}}' op-voice-service-${OP_VOICE_PARTITION_KEY_2}-1 and the output contains running
+When SSH host dockerHost1 executes docker inspect -f '{{.State.Status}}' op-voice-service-${OP_VOICE_PARTITION_KEY_3}-1 and the output contains running
+When SSH host dockerHost2 executes docker inspect -f '{{.State.Status}}' op-voice-service-${OP_VOICE_PARTITION_KEY_1}-2 and the output contains running
+When SSH host dockerHost2 executes docker inspect -f '{{.State.Status}}' op-voice-service-${OP_VOICE_PARTITION_KEY_2}-2 and the output contains running
+When SSH host dockerHost2 executes docker inspect -f '{{.State.Status}}' op-voice-service-${OP_VOICE_PARTITION_KEY_3}-2 and the output contains running
 
