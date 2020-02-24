@@ -11,7 +11,6 @@ Given booked profiles:
 | javafx    | hmi   | <<CLIENT1_IP>> | HMI OP1    |
 | javafx    | hmi   | <<CLIENT2_IP>> | HMI OP2    |
 | javafx    | hmi   | <<CLIENT3_IP>> | HMI OP3    |
-| websocket | hmi   | <<CO3_IP>>     |            |
 
 Scenario: Define call queue items
 Given the call queue items:
