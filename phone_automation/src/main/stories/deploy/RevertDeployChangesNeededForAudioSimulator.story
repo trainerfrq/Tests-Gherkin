@@ -14,7 +14,7 @@ Then waiting for 1 seconds
 When activating commit commitId to endpoint <<configurationMngEndpoint>> and path configurations/activate
 Then waiting for 3 seconds
 
-Scenario: Publish the service descriptors and redeploy op-voice-service
+Scenario: Redeploy op-voice-service
 Then SSH host deploymentServer executes /usr/bin/xvp services remove op-voice-service -g
 Then SSH host deploymentServer executes /usr/bin/xvp services deploy --all -g
 And waiting for 120 seconds
