@@ -1,16 +1,16 @@
 Meta:
 @TEST_CASE_VERSION: V7
 @TEST_CASE_NAME: CCF with AutoTerminated Transfer 
-@TEST_CASE_DESCRIPTION: As an operator having an active call and a Conditional Call Forward rule set
-I want to transfer the call to the rule matching destination 
-So I can verify that the call is transferred according to the rule and the initial call is terminated
+@TEST_CASE_DESCRIPTION: As an operator having an active call with the forwarding target of a Conditional Call Forward rule
+I want to transfer the active call to the rule matching destination
+So I can verify that the other party of the active call receives the consultation call and the transferred call is auto terminated
 @TEST_CASE_PRECONDITION: Mission TWR has a single role assigned called TWR
 Settings:
 A Conditional Call Forward with:
 - matching call destinations: TWR
 - forward calls on:                           *out of service: OP1                           *reject: no call forwarding                           *no reply: no call forwarding
 - number of rule iterations: 0
-None of the Operators will have TWR role assigned
+None of the Operators have TWR role assigned
 @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if initial call is terminated
 @TEST_CASE_DEVICES_IN_USE: OP1, OP2 
 @TEST_CASE_ID: PVCSX-TC-12214

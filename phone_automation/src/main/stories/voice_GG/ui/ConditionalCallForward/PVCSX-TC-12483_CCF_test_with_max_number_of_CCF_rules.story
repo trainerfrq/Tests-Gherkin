@@ -5,7 +5,7 @@ Meta:
 I want to establish calls
 So I can verify that the rules are activated
 @TEST_CASE_PRECONDITION: Settings:
-Mission GND will have a single role assigned called GND
+Mission GND has only Role GND assigned
 
 20 Conditional Call Forward rules with the following parameters:
 | Parameter            | Rule 1            | Rules 2-19        | Rule 20           | Rule 21              |
@@ -16,7 +16,7 @@ Mission GND will have a single role assigned called GND
 | No reply             | no forwarding     | no forwarding     | no forwarding     | the 21th rule        |
 | No. of iterations    | 1                 | 0                 | 0                 |                      |
 
-OP1 will have the GND mission assigned.
+OP1 has the GND mission assigned.
 Phonebook_entry <example: sip:134656@example.com> is Out of Service
 @TEST_CASE_PASS_FAIL_CRITERIA: This test is passed when it is possible to configure up to 20 Conditional Call Forward rules and each call matching a destination will be forwarded as configured
 @TEST_CASE_DEVICES_IN_USE: OP1, OP2, OP3

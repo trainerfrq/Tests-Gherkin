@@ -5,12 +5,12 @@ Meta:
 I want to establish a call to this operator
 So I can verify that the call is forwarded according to the Conditional Call Forward rule
 @TEST_CASE_PRECONDITION: Settings:
-- Mission TWR has a single role assigned called TWR
+- Mission TWR has only Role TWR assigned
 A Conditional Call Forward rule is set with:
 - matching call destination: TWR
 - forward calls on:                           *out of service: OP1                           *reject: no forwarding                           *no reply: no forwarding
 -number of rule iterations: 0
-At the beginning, none of the operators will have TWR role assigned.
+None of the operators have TWR role assigned.
 @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if OP1 has a ringing call 
 @TEST_CASE_DEVICES_IN_USE: OP1, OP2, OP3
 @TEST_CASE_ID: PVCSX-TC-12181

@@ -4,7 +4,7 @@ Meta:
 @TEST_CASE_DESCRIPTION: As an operator having set a Conditional Call Forward rule
 I want to establish an IA call
 So i can verify that the call is forwarded according to the rule
-@TEST_CASE_PRECONDITION: Mission TWR has a single role assigned called TWR
+@TEST_CASE_PRECONDITION: Mission TWR has only Role TWR assigned
 Settings:
 A Conditional Call Forward with:
 - matching call destinations: TWR
@@ -15,7 +15,7 @@ OP1 has a role assigned with:
 OP3 has in its layout a IA key with:
 - call to: TWR
 - call as: Active Role (Master Role)
-None of the operators will have TWR role assigned
+None of the operators have TWR role assigned
 @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if OP1 receives an IA call
 @TEST_CASE_DEVICES_IN_USE: OP1, OP3
 @TEST_CASE_ID: PVCSX-TC-12090

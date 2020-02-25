@@ -1,19 +1,3 @@
-Scenario: Install websocket hmi profile
-When installing profiles:
-| hostIp     | profile                        |
-| <<CO3_IP>> | websocket/hmi                  |
-
-Scenario: Start profile
-Given running profiles:
-| hostIp     | profile                        | timeout        | nr |
-| <<CO3_IP>> | websocket/hmi                  | <<Timeout|60>> | 1  |
-Then waiting for 10 seconds
-
-Scenario: Verify profile
-When verify profiles:
-| hostIp     | profile                        | nr |
-| <<CO3_IP>> | websocket/hmi                  | 1  |
-
 Scenario: Install websocket audio simulator profile
 When installing profiles:
 | hostIp     | profile                        |
@@ -29,4 +13,3 @@ Scenario: Verify profile
 When verify profiles:
 | hostIp     | profile                        | nr |
 | <<CO3_IP>> | websocket/audio_<<systemName>> | 1  |
-
