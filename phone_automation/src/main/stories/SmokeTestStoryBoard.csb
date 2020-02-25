@@ -8,6 +8,7 @@
     <cats:reportFormats>
         <cats:reportFormat>HTML</cats:reportFormat>
     </cats:reportFormats>
+    <cats:reportPersistenceMode>ALL</cats:reportPersistenceMode>
     <cats:storyCollections>
         <cats:storyCollection enabled="false">
             <cats:name>Deploy Services</cats:name>
@@ -2177,19 +2178,7 @@
                             <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>deploy/UpdateOpVoiceServiceDescriptorsAndRedeployOpVoice.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyDataList/>
-                            <cats:storyStatistics/>
-                        </cats:story>
-                        <cats:story enabled="true">
                             <cats:storyPath>deploy/DeployHmi.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyDataList/>
-                            <cats:storyStatistics/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/audio/UnattendedStatus/PrepareAudioSimulator.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>

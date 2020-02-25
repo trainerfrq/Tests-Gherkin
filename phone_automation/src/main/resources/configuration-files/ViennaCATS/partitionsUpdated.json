@@ -63,7 +63,7 @@
                     "opId": "gg-cats-cwp-1",
                     "reconnectionTimeout": 5,
                     "radioUserName": "OpUser1",
-                    "audioAppUri": "ws://10.16.157.16:8805/ctrlif",
+                    "audioAppUri": "ws://10.16.156.19:8085/ctrlif",
                     "voIpRecordingClusterId": "Init_RecordingCluster",
                     "voIpRecordingRadioSessionId": "Init_RTSPParameters",
                     "voIpRecordingRadioSessionConnRef": "fbaff540-0e51-410c-b9c1-c89d30877bf3"
