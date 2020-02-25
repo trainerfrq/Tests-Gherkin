@@ -33,9 +33,9 @@ import scripts.cats.hmi.asserts.DateAndTime.*;
 import scripts.cats.hmi.asserts.Settings.Maintenance.VerifyConnectionsAddressesAndStatus;
 import scripts.cats.hmi.asserts.Settings.Maintenance.VerifyConnectionsNumber;
 import scripts.cats.hmi.asserts.Settings.Maintenance.VerifyServiceVersion;
+import scripts.cats.hmi.asserts.VerifyItemVisibility;
 import scripts.cats.hmi.asserts.VerifyLoadingOverlayIsVisible;
 import scripts.cats.hmi.asserts.VerifyPopupVisible;
-import scripts.cats.hmi.asserts.VerifyItemVisibility;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -152,17 +152,26 @@ public class GGBasicUISteps extends AutomationSteps
 
     }
 
-    @Then("$profileName verifies that time values from $notificationKey and from $statusKey are synchronized")
-    public void checkSynchronizationBetweenDisplayedTimes(final String profileName, final String notificationKey, final String statusKey)
+    @Then("$profileName verifies that $dateOrTime values from $notificationKey and from $statusKey are synchronized")
+    public void checkSynchronizationBetweenDisplayedDatesOrTimes(final String profileName, final String dateOrTime, final String notificationKey, final String statusKey)
     {
         StatusKey notificationDisplayElementKey = retrieveStatusKey(profileName, notificationKey);
         StatusKey statusDisplayElementKey = retrieveStatusKey(profileName, statusKey);
 
-        evaluate(remoteStep("Check NOTIFICATION DISPLAY time synchronization with STATUS DISPLAY time")
-                .scriptOn(profileScriptResolver().map(VerifySynchronizationBetweenDisplayedTimes.class, BookableProfileName.javafx),
-                        assertProfile(profileName))
-                .input(VerifySynchronizationBetweenDisplayedTimes.IPARAM_NOTIFICATION_DISPLAY_ID, notificationDisplayElementKey.getId())
-                .input(VerifySynchronizationBetweenDisplayedTimes.IPARAM_STATUS_DISPLAY_ID, statusDisplayElementKey.getId()));
+        if(dateOrTime.equals("time")) {
+            evaluate(remoteStep("Check NOTIFICATION DISPLAY time synchronization with STATUS DISPLAY time")
+                    .scriptOn(profileScriptResolver().map(VerifySynchronizationBetweenDisplayedTimes.class, BookableProfileName.javafx),
+                            assertProfile(profileName))
+                    .input(VerifySynchronizationBetweenDisplayedTimes.IPARAM_NOTIFICATION_DISPLAY_ID, notificationDisplayElementKey.getId())
+                    .input(VerifySynchronizationBetweenDisplayedTimes.IPARAM_STATUS_DISPLAY_ID, statusDisplayElementKey.getId()));
+        }
+        else{
+            evaluate(remoteStep("Check NOTIFICATION DISPLAY date synchronization with STATUS DISPLAY date")
+                    .scriptOn(profileScriptResolver().map(VerifySynchronizationBetweenDisplayedDates.class, BookableProfileName.javafx),
+                            assertProfile(profileName))
+                    .input(VerifySynchronizationBetweenDisplayedDates.IPARAM_NOTIFICATION_DISPLAY_ID, notificationDisplayElementKey.getId())
+                    .input(VerifySynchronizationBetweenDisplayedDates.IPARAM_STATUS_DISPLAY_ID, statusDisplayElementKey.getId()));
+        }
     }
 
     @Then("$profileName verifies that time displayed on $displayElement is updated")

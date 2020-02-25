@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V3
+@TEST_CASE_VERSION: V11
 @TEST_CASE_NAME: CCF of a looped call
 @TEST_CASE_DESCRIPTION: As an operator having set 2 Conditional Call Forward rules that forward a matching call from one to the other for 5 times
 I want to establish a call that activates a rule
