@@ -1,6 +1,7 @@
 package scripts.cats.hmi.asserts.CallQueue
 
 import com.frequentis.c4i.test.model.ExecutionDetails
+import com.frequentis.c4i.test.util.timer.WaitTimer
 import javafx.scene.control.Label
 import scripts.agent.testfx.automation.FxScriptTemplate
 
@@ -23,6 +24,14 @@ class VerifyCallQueueItemLabel extends FxScriptTemplate {
                 .concat(" #" + labelType +"Label")
 
         Label callQueueItemLabel = robot.lookup(callQueueItemQueryString).queryFirst()
+
+        int i = 1
+        int numberOfVerificationRetries = 9 //it will verify the call queue label for maximum 2.3 seconds
+        while(callQueueItemLabel.getText() != callQueueItemDisplayName){
+            WaitTimer.pause(250);
+            if((callQueueItemLabel.getText() == callQueueItemDisplayName) || i > numberOfVerificationRetries)
+                break
+        }
 
         evaluate(ExecutionDetails.create("Assert call queue item name label")
                 .expected("Call queue item with id " + callQueueItemId + " and display name " + callQueueItemDisplayName + " was found")

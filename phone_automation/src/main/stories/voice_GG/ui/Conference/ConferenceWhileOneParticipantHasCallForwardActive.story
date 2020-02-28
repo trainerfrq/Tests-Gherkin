@@ -16,7 +16,7 @@ Given the call queue items:
 | key          | source                | target      | callType |
 | OP3-OP2      | <<OP3_URI>>           | <<OP2_URI>> | DA/IDA   |
 | OP2-OP3      | <<OP2_URI>>           | <<OP3_URI>> | DA/IDA   |
-| OP3-OP2-Conf | <<OP3_URI>>           | <<OP2_URI>> | CONF     |
+| OP3-OP2-CONF | <<OP3_URI>>           | <<OP2_URI>> | CONF     |
 | OP2-OP3-Conf | <<OPVOICE2_CONF_URI>> | <<OP3_URI>> | CONF     |
 
 Scenario: Create sip phone
@@ -47,9 +47,9 @@ Then HMI OP2 has the call queue item OP3-OP2 in state connected
 Scenario: Op2 starts a conference using an existing active call
 		  @REQUIREMENTS:GID-4021244
 When HMI OP2 starts a conference using an existing active call
-Then HMI OP2 has the call queue item OP3-OP2-Conf in state connected
-Then HMI OP2 has the call queue item OP3-OP2-Conf in the active list with name label CONF
-Then HMI OP2 has the call queue item OP3-OP2-Conf in the active list with info label 2 participants
+Then HMI OP2 has the call queue item OP3-OP2-CONF in state connected
+Then HMI OP2 has the call queue item OP3-OP2-CONF in the active list with name label CONF
+Then HMI OP2 has the call queue item OP3-OP2-CONF in the active list with info label 2 participants
 
 Scenario: Verify conference call notification
 When HMI OP2 opens Notification Display list
