@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V9
+@TEST_CASE_VERSION: V7
 @TEST_CASE_NAME: CCF with Mission change
 @TEST_CASE_DESCRIPTION: As an operator having an active role that fits the matching destination of a Conditional Call Forward rule
 I want to receive a call and then to change the mission

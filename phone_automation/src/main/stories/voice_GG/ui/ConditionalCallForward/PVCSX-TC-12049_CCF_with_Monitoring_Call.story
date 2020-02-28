@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V12
+@TEST_CASE_VERSION: V6
 @TEST_CASE_NAME: CCF with Monitoring Call
 @TEST_CASE_DESCRIPTION: As an operator having set a Conditional Call Forward rule 
 I want to establish a Monitoring Call
