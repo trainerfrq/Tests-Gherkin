@@ -41,7 +41,7 @@ Given phones for SipContact are created
 Scenario: Define call queue items
 Given the call queue items:
 | key          | source                | target           | callType |
-| OP2-OP1-Conf | <<OP2_URI>>           | <<OP1_URI>>      | CONF     |
+| OP2-OP1-CONF | <<OP2_URI>>           | <<OP1_URI>>      | CONF     |
 | OP1-OP2      | <<OP1_URI>>           | <<OP2_URI>>      | DA/IDA   |
 | OP2-OP1      | <<OP2_URI>>           | <<OP1_URI>>      | DA/IDA   |
 | OP1-OP3-Conf | <<OPVOICE1_CONF_URI>> | <<OP3_URI>>:5060 | CONF     |
@@ -67,9 +67,9 @@ Scenario: 2. Op1 starts a conference using the existing active call
 @TEST_STEP_REF: [CATS-REF: 30wW]
 When HMI OP1 starts a conference using an existing active call
 And waiting for 1 second
-Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
-Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
-Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with info label 2 participants
+Then HMI OP1 has the call queue item OP2-OP1-CONF in state connected
+Then HMI OP1 has the call queue item OP2-OP1-CONF in the active list with name label CONF
+Then HMI OP1 has the call queue item OP2-OP1-CONF in the active list with info label 2 participants
 
 Scenario: 3. Op1 invites Op3 to the conference
 Meta: @TEST_STEP_ACTION: Op1 invites Op3 to the conference.
@@ -87,9 +87,9 @@ Meta: @TEST_STEP_ACTION: Op3 answers conference call
 Then HMI OP3 accepts the call queue item OP1-OP3-Conf
 
 Scenario: 4.1 Op1 verifies conference state
-Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
-Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
-Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with info label 3 participants
+Then HMI OP1 has the call queue item OP2-OP1-CONF in state connected
+Then HMI OP1 has the call queue item OP2-OP1-CONF in the active list with name label CONF
+Then HMI OP1 has the call queue item OP2-OP1-CONF in the active list with info label 3 participants
 
 Scenario: 5. Set up 16 external DA calls that call Op1
 Meta: @TEST_STEP_ACTION: Set up 16 external DA calls that call Op1
@@ -108,7 +108,7 @@ Scenario: 6. Op1 leaves conference
 Meta: @TEST_STEP_ACTION: Op1 leaves conference
 @TEST_STEP_REACTION: Op1 has 15 incoming calls and 0 active calls
 @TEST_STEP_REF: [CATS-REF: z74m]
-Then HMI OP1 terminates the call queue item OP2-OP1-Conf
+Then HMI OP1 terminates the call queue item OP2-OP1-CONF
 
 Scenario: 6.1 Op1 verifies the number of incoming calls in the queue
 Then HMI OP1 has in the active list a number of 0 calls
@@ -137,9 +137,9 @@ Meta: @TEST_STEP_ACTION: Op1 starts a conference using the existing active call
 @TEST_STEP_REF: [CATS-REF: axKc]
 When HMI OP1 starts a conference using an existing active call
 And waiting for 1 second
-Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
-Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
-Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with info label 0 participants
+Then HMI OP1 has the call queue item OP2-OP1-CONF in state connected
+Then HMI OP1 has the call queue item OP2-OP1-CONF in the active list with name label CONF
+Then HMI OP1 has the call queue item OP2-OP1-CONF in the active list with info label 0 participants
 
 Scenario: 8.1 Op1 verifies the number calls in the queue
 Then HMI OP1 has in the active list a number of 1 calls
@@ -152,7 +152,7 @@ Scenario: 9. Op1 terminates conference call
 Meta: @TEST_STEP_ACTION: Op1 terminates conference call
 @TEST_STEP_REACTION: Op1 has 16 incoming calls and 0 active calls
 @TEST_STEP_REF: [CATS-REF: Mx0X]
-Then HMI OP1 terminates the call queue item OP2-OP1-Conf
+Then HMI OP1 terminates the call queue item OP2-OP1-CONF
 
 Scenario: 9.1 Op1 verifies the number of calls in the queue
 Then HMI OP1 has in the active list a number of 0 calls

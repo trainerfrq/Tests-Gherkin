@@ -36,22 +36,7 @@ import scripts.cats.hmi.actions.CallQueue.ClickCallQueueItem;
 import scripts.cats.hmi.actions.CallQueue.ClickCallQueueItemByPosition;
 import scripts.cats.hmi.actions.CallQueue.ClickOnCallQueueInfoContainer;
 import scripts.cats.hmi.actions.CallQueue.DragAndClickOnMenuButtonFirstCallQueueItem;
-import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueBarState;
-import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueCollapsedAreaLength;
-import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueCollapsedAreaSectionLength;
-import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueContainerVisibility;
-import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueInfoContainerIfVisible;
-import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueInfoContainerLabel;
-import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemCallType;
-import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemIndexInList;
-import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemLabel;
-import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemNotInList;
-import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemStateIfPresent;
-import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemStyleClass;
-import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemTransferState;
-import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueLength;
-import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueSectionLength;
-import scripts.cats.hmi.asserts.CallQueue.VerifyMenuButtonFirstCallQueueItemIsVisible;
+import scripts.cats.hmi.asserts.CallQueue.*;
 import scripts.cats.hmi.asserts.Monitoring.VerifyMonitoringCallQueueItem;
 
 import java.util.HashMap;
@@ -85,6 +70,8 @@ public class CallQueueUISteps extends AutomationSteps
    private static final String DECLINE_CALL_MENU_BUTTON_ID = "decline_call_menu_button";
 
    private static final String TRANSFER_MENU_BUTTON_ID = "transfer_call_menu_button";
+
+   private static final String CONFERENCE_CALL_QUEUE_ITEM = "conf_conf_CONF_callQueueItem";
 
    private static final String CONFERENCE_MENU_BUTTON_ID = "conference_call_menu_button";
 
@@ -141,13 +128,22 @@ public class CallQueueUISteps extends AutomationSteps
    public void verifyPriorityCallQueueItem( @Named("profileName") final String profileName, @Named("callQueueItem") final String namedCallQueueItem,
         @Named("state") final String state )
    {
-      CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
+      if(namedCallQueueItem.contains("CONF")){
+         evaluate( remoteStep( "Verify call queue item status" )
+                 .scriptOn( profileScriptResolver().map( VerifyCallQueueItemStyleClass.class, BookableProfileName.javafx ),
+                         assertProfile( profileName ) )
+                 .input( VerifyCallQueueItemStyleClass.IPARAM_CALL_QUEUE_ITEM_ID, ACTIVE_LIST_NAME+"Container"+" #"+CONFERENCE_CALL_QUEUE_ITEM )
+                 .input( VerifyCallQueueItemStyleClass.IPARAM_CALL_QUEUE_ITEM_CLASS_NAME, state ) );
+      }
+      else {
+         CallQueueItem callQueueItem = getStoryListData(namedCallQueueItem, CallQueueItem.class);
 
-      evaluate( remoteStep( "Verify call queue item status" )
-            .scriptOn( profileScriptResolver().map( VerifyCallQueueItemStyleClass.class, BookableProfileName.javafx ),
-                  assertProfile( profileName ) )
-            .input( VerifyCallQueueItemStyleClass.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
-            .input( VerifyCallQueueItemStyleClass.IPARAM_CALL_QUEUE_ITEM_CLASS_NAME, state ) );
+         evaluate(remoteStep("Verify call queue item status")
+                 .scriptOn(profileScriptResolver().map(VerifyCallQueueItemStyleClass.class, BookableProfileName.javafx),
+                         assertProfile(profileName))
+                 .input(VerifyCallQueueItemStyleClass.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId())
+                 .input(VerifyCallQueueItemStyleClass.IPARAM_CALL_QUEUE_ITEM_CLASS_NAME, state));
+      }
    }
 
 
@@ -189,16 +185,27 @@ public class CallQueueUISteps extends AutomationSteps
    public void verifyCallQueueItemLabelActiveList( @Named("profileName") final String profileName, @Named("callQueueItem") final String namedCallQueueItem,
         @Named("callQueueList") final String callQueueList, @Named("labelType") final String labelType, @Named("label") final String label )
    {
-      waitForSeconds( 1 );
-      CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
+      if(namedCallQueueItem.contains("CONF")){
+         evaluate( remoteStep( "Verify call queue item status" )
+                 .scriptOn( profileScriptResolver().map( VerifyCallQueueItemLabel.class, BookableProfileName.javafx ),
+                         assertProfile( profileName ) )
+                 .input( VerifyCallQueueItemLabel.IPARAM_CALL_QUEUE_ITEM_ID, CONFERENCE_CALL_QUEUE_ITEM )
+                 .input(VerifyCallQueueItemLabel.IPARAM_DISPLAY_NAME, label)
+                 .input(VerifyCallQueueItemLabel.IPARAM_LABEL_TYPE, labelType)
+                 .input(VerifyCallQueueItemLabel.IPARAM_LIST_NAME, CALL_QUEUE_LIST_MAP.get(callQueueList)));
+      }
+      else {
+         waitForSeconds(1);
+         CallQueueItem callQueueItem = getStoryListData(namedCallQueueItem, CallQueueItem.class);
 
-      evaluate( remoteStep( "Verify call queue item status" )
-            .scriptOn( profileScriptResolver().map( VerifyCallQueueItemLabel.class, BookableProfileName.javafx ),
-                  assertProfile( profileName ) )
-            .input( VerifyCallQueueItemLabel.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
-            .input( VerifyCallQueueItemLabel.IPARAM_DISPLAY_NAME, label )
-            .input( VerifyCallQueueItemLabel.IPARAM_LABEL_TYPE, labelType )
-            .input( VerifyCallQueueItemLabel.IPARAM_LIST_NAME, CALL_QUEUE_LIST_MAP.get( callQueueList ) ) );
+         evaluate(remoteStep("Verify call queue item status")
+                 .scriptOn(profileScriptResolver().map(VerifyCallQueueItemLabel.class, BookableProfileName.javafx),
+                         assertProfile(profileName))
+                 .input(VerifyCallQueueItemLabel.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId())
+                 .input(VerifyCallQueueItemLabel.IPARAM_DISPLAY_NAME, label)
+                 .input(VerifyCallQueueItemLabel.IPARAM_LABEL_TYPE, labelType)
+                 .input(VerifyCallQueueItemLabel.IPARAM_LIST_NAME, CALL_QUEUE_LIST_MAP.get(callQueueList)));
+      }
    }
 
    @Then("$profileName verifies that the call queue item $callQueueItem from the $callQueueList list has call type $givenCallType")
@@ -251,12 +258,20 @@ public class CallQueueUISteps extends AutomationSteps
          "$profileName presses the call queue item $callQueueItem" })
    public void clickCallQueueItem( @Named("profileName") final String profileName, @Named("callQueueItem") final String namedCallQueueItem )
    {
-      CallQueueItem callQueueItem = getStoryListData( namedCallQueueItem, CallQueueItem.class );
+      if(namedCallQueueItem.contains("CONF")){
+         evaluate( remoteStep( "Verify call queue item status" )
+                 .scriptOn( profileScriptResolver().map( ClickCallQueueItem.class, BookableProfileName.javafx ),
+                         assertProfile( profileName ) )
+                 .input( ClickCallQueueItem.IPARAM_CALL_QUEUE_ITEM_ID, ACTIVE_LIST_NAME+"Container"+" #"+CONFERENCE_CALL_QUEUE_ITEM ));
+      }
+      else {
+         CallQueueItem callQueueItem = getStoryListData(namedCallQueueItem, CallQueueItem.class);
 
-      evaluate( remoteStep( "Click call queue item" )
-            .scriptOn( profileScriptResolver().map( ClickCallQueueItem.class, BookableProfileName.javafx ),
-                  assertProfile( profileName ) )
-            .input( ClickCallQueueItem.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() ) );
+         evaluate(remoteStep("Click call queue item")
+                 .scriptOn(profileScriptResolver().map(ClickCallQueueItem.class, BookableProfileName.javafx),
+                         assertProfile(profileName))
+                 .input(ClickCallQueueItem.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId()));
+      }
    }
 
    @Then("$profileName click on call queue Elements of $listType list")

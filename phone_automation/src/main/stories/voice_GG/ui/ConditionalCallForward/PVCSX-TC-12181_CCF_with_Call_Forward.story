@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V2
+@TEST_CASE_VERSION: V7
 @TEST_CASE_NAME: CCF with Call Forward
 @TEST_CASE_DESCRIPTION: As an operator having Call Forward set to a target which is also a matching destination of a Conditional Call Forward rule
 I want to establish a call to this operator
@@ -11,7 +11,7 @@ A Conditional Call Forward rule is set with:
 - forward calls on:                           *out of service: OP1                           *reject: no forwarding                           *no reply: no forwarding
 -number of rule iterations: 0
 None of the operators have TWR role assigned.
-@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if OP1 has a ringing call 
+@TEST_CASE_PASS_FAIL_CRITERIA: This test is passed if it is possible to select an Out Of Service target for Call Forward and the new target is the destination of the Conditional Call Forward rule's Out Of Service condition. Each call to the operator that activated the Call Forward is forwarded according to the configured Conditional Call Forward rule.
 @TEST_CASE_DEVICES_IN_USE: OP1, OP2, OP3
 @TEST_CASE_ID: PVCSX-TC-12181
 @TEST_CASE_GLOBAL_ID: GID-5184180
@@ -64,7 +64,22 @@ Scenario: 3.1 OP1 verifies its call queue
 Then HMI OP1 has the call queue item OP2-TWR in state inc_initiated
 Then HMI OP1 has the call queue item OP2-TWR in the waiting list with name label <<OP2_NAME>>
 
-Scenario: 4. OP2 terminates the call
+Scenario: 4. OP1 accepts the call
+Meta:
+@TEST_STEP_ACTION: OP1 accepts the call
+@TEST_STEP_REACTION: The call is connected for both OP2 and OP1
+@TEST_STEP_REF: [CATS-REF: p0Xi]
+Then HMI OP1 accepts the call queue item OP2-TWR
+Then HMI OP1 has in the call queue a number of 1 calls
+Then HMI OP2 has in the call queue a number of 1 calls
+
+Scenario: 4.1 Verifying call queue section
+Then HMI OP2 has the call queue item OP3-OP2 in state connected
+Then HMI OP2 has the call queue item OP3-OP2 in the active list with name label <<MISSION_TWR_NAME>>
+Then HMI OP1 has the call queue item OP2-TWR in state connected
+Then HMI OP1 has the call queue item OP2-TWR in the active list with name label <<OP2_NAME>>
+
+Scenario: 5. OP2 terminates the call
 Meta:
 @TEST_STEP_ACTION: OP2 terminates the call
 @TEST_STEP_REACTION: The call is terminated for both OP2 and OP1
@@ -73,7 +88,7 @@ When HMI OP2 presses DA key OP3
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP2 has in the call queue a number of 0 calls
 
-Scenario: 5. OP3 deactivates Call Forward
+Scenario: 6. OP3 deactivates Call Forward
 Meta:
 @TEST_STEP_ACTION: OP3 deactivates Call Forward
 @TEST_STEP_REACTION: Call Forward mode is not active anymore

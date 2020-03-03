@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V11
+@TEST_CASE_VERSION: V16
 @TEST_CASE_NAME: CCF with Conference
 @TEST_CASE_DESCRIPTION: As an operator having set a Conditional Call Forward rule
 I want to establish a conference and to invite a third party, that matches the rule's call destination
@@ -10,7 +10,7 @@ A Conditional Call Forward with:
 - forward calls on:                           *out of service: OP3                           *reject: no call forwarding                           *no reply: no call forwarding
 - number of rule iterations: 0
 Phonebook_entry <example: sip:134656@example.com> is Out of Service.
-@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if a conference is established, containing OP1, OP2 and OP3 as conference parties.
+@TEST_CASE_PASS_FAIL_CRITERIA: This test is passed if the invitation to conference sent to a third party is forwarded according to a configured Conditional Call Forward rule.
 @TEST_CASE_DEVICES_IN_USE: OP1, OP2, OP3
 @TEST_CASE_ID: PVCSX-TC-12003
 @TEST_CASE_GLOBAL_ID: GID-5171613
@@ -28,7 +28,7 @@ Given the call queue items:
 | key          | source                | target                      | callType |
 | OP1-OP2      | <<OP1_URI>>           | <<OP2_URI>>                 | DA/IDA   |
 | OP2-OP1      | <<OP2_URI>>           | <<OP1_URI>>                 | DA/IDA   |
-| OP1-OP2-Conf | <<OP1_URI>>           | <<OP2_URI>>                 | CONF     |
+| OP1-OP2-CONF | <<OP1_URI>>           | <<OP2_URI>>                 | CONF     |
 | OP2-OP1-Conf | <<OPVOICE2_CONF_URI>> | <<OP1_URI>>                 | CONF     |
 | OP2-OP3-Conf | <<OPVOICE2_CONF_URI>> | sip:134656@example.com:5060 | CONF     |
 
@@ -67,9 +67,9 @@ When HMI OP2 starts a conference using an existing active call
 And waiting for 1 second
 
 Scenario: 3.1 Verifying OP2 calls queue section
-Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label CONF
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 2 participants
+Then HMI OP2 has the call queue item OP1-OP2-CONF in state connected
+Then HMI OP2 has the call queue item OP1-OP2-CONF in the active list with name label CONF
+Then HMI OP2 has the call queue item OP1-OP2-CONF in the active list with info label 2 participants
 
 Scenario: 3.2 Verifying OP1 calls queue section
 Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected

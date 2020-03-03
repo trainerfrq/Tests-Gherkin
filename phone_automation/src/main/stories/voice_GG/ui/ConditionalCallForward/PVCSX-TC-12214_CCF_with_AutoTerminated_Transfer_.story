@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V7
+@TEST_CASE_VERSION: V14
 @TEST_CASE_NAME: CCF with AutoTerminated Transfer 
 @TEST_CASE_DESCRIPTION: As an operator having an active call with the forwarding target of a Conditional Call Forward rule
 I want to transfer the active call to the rule matching destination
@@ -11,7 +11,7 @@ A Conditional Call Forward with:
 - forward calls on:                           *out of service: OP1                           *reject: no call forwarding                           *no reply: no call forwarding
 - number of rule iterations: 0
 None of the Operators have TWR role assigned
-@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if initial call is terminated
+@TEST_CASE_PASS_FAIL_CRITERIA: This test is passed if the transferred call reaching one of the initial call parties is auto terminated
 @TEST_CASE_DEVICES_IN_USE: OP1, OP2 
 @TEST_CASE_ID: PVCSX-TC-12214
 @TEST_CASE_GLOBAL_ID: GID-5188685
