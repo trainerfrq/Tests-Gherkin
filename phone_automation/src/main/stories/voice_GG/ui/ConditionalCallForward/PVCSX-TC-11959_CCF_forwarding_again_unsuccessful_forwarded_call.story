@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V20
+@TEST_CASE_VERSION: V22
 @TEST_CASE_NAME: CCF forwarding again unsuccessful forwarded call
 @TEST_CASE_DESCRIPTION: As an operator having set a Conditional Call Forward rule with number of rule iterations 1
 and forward condition of this rule, matches call destination of Conditional Call Forward rule number 2
@@ -19,7 +19,7 @@ Mission GND has only Role GND assigned
 
 OP1 has Mission GND assigned.
 Phonebook_entry <example: sip:134656@example.com> is Out of Service
-@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if OP3 will receive the call
+@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if a call is forwarded as configured, after the same call was forwarded by a previous rule
 @TEST_CASE_DEVICES_IN_USE: OP1, OP2, OP3
 @TEST_CASE_ID: PVCSX-TC-11959
 @TEST_CASE_GLOBAL_ID: GID-5165825
