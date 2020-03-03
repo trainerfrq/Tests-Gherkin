@@ -43,13 +43,13 @@ class VerifySystemAndDisplayedTime extends FxScriptTemplate {
             isBetween(timeFromHMI, timeFromSystem.minusSeconds(2), timeFromSystem.plusSeconds(2))
         }
         else{
-            LocalTime timeFromHMI = LocalTime.of(Integer.parseInt(displayedTimeParts[0]), Integer.parseInt(displayedTimeParts[1]))
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            LocalTime timeFromHMI = LocalTime.of(Integer.parseInt(displayedTimeParts[0]), Integer.parseInt(displayedTimeParts[1]),
+                    Integer.parseInt(displayedTimeParts[2]))
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss");
+            LocalTime localTimeMinusTwoSeconds = LocalTime.parse(timeFromSystem.minusSeconds(2).format(formatter))
+            LocalTime localTimePlusOneSecond = LocalTime.parse(timeFromSystem.plusSeconds(1).format(formatter))
 
-            evaluate(ExecutionDetails.create("Check System and Displayed Time")
-                    .expected(timeFromSystem.format(formatter).toString())
-                    .received(timeFromHMI.toString())
-                    .success(timeFromHMI.toString().equals(timeFromSystem.format(formatter).toString())))
+            isBetween(timeFromHMI, localTimeMinusTwoSeconds, localTimePlusOneSecond)
         }
     }
 

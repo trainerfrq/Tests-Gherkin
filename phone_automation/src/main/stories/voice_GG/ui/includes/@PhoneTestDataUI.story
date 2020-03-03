@@ -126,7 +126,6 @@ Given the function keys:
 | <<LAYOUT_SUP-TWR>>  | MISSIONS    | <<MISSIONS_ID>>             |
 | <<LAYOUT_SUP-TWR>>  | CALLFORWARD | <<CALLFORWARD_ID>>          |
 | <<LAYOUT_SUP-TWR>>  | MONITORING  | <<MONITORING_ID>>           |
-| <<LAYOUT_SUP-TWR>>  | SETTINGS    | <<SETTINGS_ID_SUP-TWR>>     |
 
 Scenario: Define status key
 Given the status key:

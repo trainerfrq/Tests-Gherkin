@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V10
+@TEST_CASE_VERSION: V8
 @TEST_CASE_NAME: CCF of Priority calls
 @TEST_CASE_DESCRIPTION: As an operator having a Conditional Call Forward Rule set with different destinations for each forward condition
 I want to establish priority calls that activate the rule and fits each forward condition
@@ -11,7 +11,7 @@ A Conditional Call Forward rule is set with:
 - forward calls on:                           *out of service: OP1                           *reject: OP3                           *no reply: OP3, within 20 seconds
 -number of rule iterations: 0
 None of the operators have TWR role assigned.
-@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when it is possible to configure a Conditional Call Forward rule with different destinations for each forward condition and each priority call matching the rule is forwarded as configured.
+@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if each priority call is forwarded with the respect to its matching condition
 @TEST_CASE_DEVICES_IN_USE: OP1, OP2, OP3
 @TEST_CASE_ID: PVCSX-TC-12050
 @TEST_CASE_GLOBAL_ID: GID-5174778

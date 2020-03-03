@@ -37,11 +37,11 @@ class VerifyTimeFormat extends FxScriptTemplate {
                     .received("Received time: " + displayedTimeText)
                     .expected("Expected format: " + format)
                     .success(Pattern.matches("[0-2][0-9].[0-5][0-9].[0-5][0-9]", displayedTimeText)))
-        } else if (Pattern.matches("HH.mm", format)) {
+        } else if (Pattern.matches("hh.mm.ss", format)) {
             evaluate(ExecutionDetails.create("Time format is correct")
                     .received("Received time: " + displayedTimeText)
                     .expected("Expected format: " + format)
-                    .success(Pattern.matches("[0-2][0-9].[0-5][0-9]", displayedTimeText)))
+                    .success(Pattern.matches("[0-1][0-9].[0-5][0-9].[0-5][0-9]", displayedTimeText)))
         }
     }
 }

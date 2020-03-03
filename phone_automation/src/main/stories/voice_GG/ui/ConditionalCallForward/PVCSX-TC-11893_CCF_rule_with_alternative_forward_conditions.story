@@ -1,4 +1,4 @@
-Meta: @TEST_CASE_VERSION: V16
+Meta: @TEST_CASE_VERSION: V15
 @TEST_CASE_NAME: CCF rule with alternative forward conditions
 @TEST_CASE_DESCRIPTION: As an operator having a Conditional Call Forward Rule set with different destinations for each forward condition
 I want to establish calls that activate the rule and fits each forward condition

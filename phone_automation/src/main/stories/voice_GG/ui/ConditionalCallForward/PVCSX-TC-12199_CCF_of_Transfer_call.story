@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V6
+@TEST_CASE_VERSION: V3
 @TEST_CASE_NAME: CCF of Transfer call
 @TEST_CASE_DESCRIPTION: As an operator having an active call and a Conditional Call Forward rule set
 I want to transfer the call to the rule matching destination
@@ -11,7 +11,7 @@ A Conditional Call Forward rule is set with:
 - forward calls on:                           *out of service: OP1                           *reject: no forwarding                           *no reply: no forwarding
 -number of rule iterations: 0
 None of the Operators have TWR role assigned.
-@TEST_CASE_PASS_FAIL_CRITERIA: This test is passed if the transferred call to matching call destination of the configured rule is forwarded as configured
+@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if OP1 receives a call
 @TEST_CASE_DEVICES_IN_USE: OP1, OP2, OP3
 @TEST_CASE_ID: PVCSX-TC-12199
 @TEST_CASE_GLOBAL_ID: GID-5187669
@@ -112,22 +112,7 @@ Then HMI OP1 has in the call queue a number of 1 calls
 Then HMI OP1 has the call queue item OP3-TWR in state inc_initiated
 Then HMI OP1 has the call queue item OP3-TWR in the waiting list with name label <<OP3_NAME>>
 
-Scenario: 6. OP1 accepts the call
-Meta:
-@TEST_STEP_ACTION: OP1 accepts the call
-@TEST_STEP_REACTION: The call is connected for both OP1 and OP3
-@TEST_STEP_REF: [CATS-REF: W8mF]
-Then HMI OP1 accepts the call queue item OP3-TWR
-Then HMI OP1 has in the call queue a number of 1 calls
-Then HMI OP3 has in the call queue a number of 1 calls
-
-Scenario: 6.1 Verifying call queue section
-Then HMI OP3 has the call queue item TWR-OP3 in state connected
-Then HMI OP3 has the call queue item TWR-OP3 in the active list with name label <<MISSION_TWR_NAME>>
-Then HMI OP1 has the call queue item OP3-TWR in state connected
-Then HMI OP1 has the call queue item OP3-TWR in the active list with name label <<OP3_NAME>>
-
-Scenario: 7. OP3 terminates the call
+Scenario: 6. OP3 terminates the call
 Meta:
 @TEST_STEP_ACTION: OP3 terminates the call
 @TEST_STEP_REACTION: The call is terminated for both OP1 and OP3

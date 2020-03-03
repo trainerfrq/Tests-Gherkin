@@ -179,7 +179,7 @@ Meta:
 @TEST_STEP_ACTION: OP1 changes its mission to SUP-TWR
 @TEST_STEP_REACTION: OP1 has SUP-TWR mission assigned
 @TEST_STEP_REF: [CATS-REF: J90m]
-When HMI OP1 with layout <<LAYOUT_APP>> presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_GND>> presses function key MISSIONS
 Then HMI OP1 changes current mission to mission <<MISSION_SUP-TWR_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
@@ -218,7 +218,7 @@ Scenario: 11.2 Close popup window
 Then HMI OP1 closes notification popup
 
 Scenario: 11.3 OP1 opens the Maintenance window
-When HMI OP1 with layout <<LAYOUT_SUP-TWR>> presses function key SETTINGS
+When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key SETTINGS
 When HMI OP1 clicks on maintenancePanel button
 Then HMI OP1 verifies that popup maintenance is visible
 
@@ -234,7 +234,7 @@ Meta:
 @TEST_STEP_ACTION: OP1 changes its mission to GND
 @TEST_STEP_REACTION: OP1 has GND mission assigned
 @TEST_STEP_REF: [CATS-REF: J90m]
-When HMI OP1 with layout <<LAYOUT_SUP-TWR>> presses function key MISSIONS
+When HMI OP1 with layout <<LAYOUT_APP>> presses function key MISSIONS
 Then HMI OP1 changes current mission to mission <<MISSION_GND_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
