@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V2
+@TEST_CASE_VERSION: V10
 @TEST_CASE_NAME: CCF of IA calls
 @TEST_CASE_DESCRIPTION: As an operator having set a Conditional Call Forward rule
 I want to establish an IA call
@@ -16,7 +16,7 @@ OP3 has in its layout a IA key with:
 - call to: TWR
 - call as: Active Role (Master Role)
 None of the operators have TWR role assigned
-@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if OP1 receives an IA call
+@TEST_CASE_PASS_FAIL_CRITERIA: This test is passed if an IA call matching the Conditional Call Forward rule is forwarded as configured
 @TEST_CASE_DEVICES_IN_USE: OP1, OP3
 @TEST_CASE_ID: PVCSX-TC-12090
 @TEST_CASE_GLOBAL_ID: GID-5176760
