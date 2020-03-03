@@ -17,7 +17,7 @@ Mission SUP-TWR has a single role assigned called SUP-TWR
 | No. of iterations            | 5                     | 0                   |
 
 OP1 has APP role assigned and OP3 has SUP-TWR role assigned
-@TEST_CASE_PASS_FAIL_CRITERIA: 
+@TEST_CASE_PASS_FAIL_CRITERIA:
 @TEST_CASE_DEVICES_IN_USE: 
 @TEST_CASE_ID: PVCSX-TC-12233
 @TEST_CASE_GLOBAL_ID: GID-5190026

@@ -11,7 +11,7 @@ A Conditional Call Forward rule is set with:
 - forward calls on:                           *out of service: OP1                           *reject: no forwarding                           *no reply: no forwarding
 -number of rule iterations: 0
 None of the operators have TWR role assigned.
-@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if OP1 has a ringing call 
+@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if OP1 has a ringing call
 @TEST_CASE_DEVICES_IN_USE: OP1, OP2, OP3
 @TEST_CASE_ID: PVCSX-TC-12181
 @TEST_CASE_GLOBAL_ID: GID-5184180

@@ -77,7 +77,7 @@ Then HMI OP1 verifies that the system date and the one displayed on DISPLAY STAT
 Scenario: 6. Op1 checks Notification Display bar's time and Status Display's time are the same
 Meta:
 @TEST_STEP_ACTION: Op1 checks Notification Display bar's time and Status Display's time are the same
-@TEST_STEP_REACTION: Displayed time in Notification Display bar is the same with the one in Status Display 
+@TEST_STEP_REACTION: Displayed time in Notification Display bar is the same with the one in Status Display
 @TEST_STEP_REF: [CATS-REF: JS3x]
 Then HMI OP1 verifies that time values from NOTIFICATION DISPLAY and from DISPLAY STATUS are synchronized
 
@@ -127,7 +127,7 @@ Then HMI OP1 verifies that the system date and the one displayed on DISPLAY STAT
 Scenario: 12. Op1 checks Notification Display bar's time and Status Display's time are the same
 Meta:
 @TEST_STEP_ACTION: Op1 checks Notification Display bar's time and Status Display's time are the same
-@TEST_STEP_REACTION: Displayed time in Notification Display bar is the same with the one in Status Display 
+@TEST_STEP_REACTION: Displayed time in Notification Display bar is the same with the one in Status Display
 @TEST_STEP_REF: [CATS-REF: uBs8]
 Then HMI OP1 verifies that time values from NOTIFICATION DISPLAY and from DISPLAY STATUS 4 are synchronized
 

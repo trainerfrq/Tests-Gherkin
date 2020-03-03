@@ -17,7 +17,7 @@ Given the call queue items:
 | OP1-OP2      | <<OP1_URI>>           | <<OP2_URI>> | DA/IDA   |
 | OP2-OP1      | <<OP2_URI>>           | <<OP1_URI>> | DA/IDA   |
 | OP1-OP2-Conf | <<OPVOICE1_CONF_URI>> | <<OP2_URI>> | CONF     |
-| OP2-OP1-Conf | <<OP2_URI>>           | <<OP1_URI>> | CONF     |
+| OP2-OP1-CONF | <<OP2_URI>>           | <<OP1_URI>> | CONF     |
 | OP3-OP2      | <<OP3_URI>>           | <<OP2_URI>> | IA       |
 | OP2-OP3      | <<OP2_URI>>           | <<OP3_URI>> | IA       |
 
@@ -43,9 +43,9 @@ Scenario: Op1 starts a conference using an existing active call
 		  @REQUIREMENTS:GID-4021244
 When HMI OP1 starts a conference using an existing active call
 And waiting for 1 second
-Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
-Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
-Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with info label 2 participants
+Then HMI OP1 has the call queue item OP2-OP1-CONF in state connected
+Then HMI OP1 has the call queue item OP2-OP1-CONF in the active list with name label CONF
+Then HMI OP1 has the call queue item OP2-OP1-CONF in the active list with info label 2 participants
 
 Scenario: Verify conference call notification
 When HMI OP1 opens Notification Display list
