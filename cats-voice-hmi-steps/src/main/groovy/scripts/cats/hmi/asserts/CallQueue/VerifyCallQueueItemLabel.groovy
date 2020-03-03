@@ -25,11 +25,12 @@ class VerifyCallQueueItemLabel extends FxScriptTemplate {
 
         Label callQueueItemLabel = robot.lookup(callQueueItemQueryString).queryFirst()
 
-        int i = 1
+        int attempt = 1
         int numberOfVerificationRetries = 9 //it will verify the call queue label for maximum 2.3 seconds
         while(callQueueItemLabel.getText() != callQueueItemDisplayName){
             WaitTimer.pause(250);
-            if((callQueueItemLabel.getText() == callQueueItemDisplayName) || i > numberOfVerificationRetries)
+            attempt++
+            if((callQueueItemLabel.getText() == callQueueItemDisplayName) || attempt > numberOfVerificationRetries)
                 break
         }
 
