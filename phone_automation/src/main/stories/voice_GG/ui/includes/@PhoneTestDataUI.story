@@ -58,6 +58,7 @@ Given the DA keys:
 | HMI OP3 | OP1-urgent                 | <<PhyOpPos3_CWP1_urgent>>            |
 | HMI OP3 | TWR                        | <<ACTIVE3_TWR>>                      |
 | HMI OP3 | IA - TWR                   | <<IA_ACTIVE3_TWR>>                   |
+| HMI OP3 | OP1(as Mission2)           | <<ACTIVE2_CWP1>>                     |
 
 Scenario: Define grid widget keys
 Given the grid widget keys:
