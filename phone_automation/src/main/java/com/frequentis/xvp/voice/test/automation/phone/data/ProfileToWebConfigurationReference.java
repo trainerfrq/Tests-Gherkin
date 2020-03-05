@@ -1,4 +1,4 @@
-package com.frequentis.xvp.voice.test.automation.phone.step;
+package com.frequentis.xvp.voice.test.automation.phone.data;
 
 
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameter;
@@ -15,19 +15,19 @@ public class ProfileToWebConfigurationReference extends CatsCustomParameterBase 
     @CatsCustomParameter(parameterName = "url")
     private String url;
 
-    String getProfileName() {
+    public String getProfileName() {
         return profileName;
     }
 
-    void setProfileName(String profileName) {
+    public void setProfileName(String profileName) {
         this.profileName = profileName;
     }
 
-    String getUrl() {
+    public String getUrl() {
         return url;
     }
 
-    void setUrl(String url) {
+    public void setUrl(String url) {
         this.url = url;
     }
 

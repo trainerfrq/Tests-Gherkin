@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <hazelcast>
     <group>
-        <name>cats-dev</name>
-        <password>cats-dev-pass</password>
+        <name>cats-home</name>
+        <password>cats-home</password>
     </group>
     <network>
         <port auto-increment="true" port-count="1000">5701</port>

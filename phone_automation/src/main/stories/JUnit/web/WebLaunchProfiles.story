@@ -10,5 +10,5 @@ Scenario: Launching Web Profiles via CATS Runtime
 Given a <profile> profile is available within <timeout> millis via provided runtime <runtime>
 
 Examples:
-| profile    | timeout | runtime         |
-| web/chrome | 100000   | profileLauncher |
+| profile     | timeout | runtime         |
+| web/firefox | 100000  | profileLauncher |

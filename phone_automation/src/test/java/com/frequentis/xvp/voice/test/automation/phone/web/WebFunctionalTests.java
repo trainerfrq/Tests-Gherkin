@@ -46,7 +46,7 @@ public class WebFunctionalTests implements CatsJunitTest {
     @Override
     public List<String> getBeforeStories() {
         final List<String> beforeStories = new ArrayList<>();
-        beforeStories.add("JUnit/web/LaunchProfiles.story");
+        beforeStories.add("JUnit/web/WebLaunchProfiles.story");
         return beforeStories;
     }
 

@@ -17,8 +17,8 @@
 <hazelcast-client >
     <!--Cluster name to connect-->
     <group>
-        <name>cats-dev</name>
-        <password>cats-dev-pass</password>
+        <name>cats-home</name>
+        <password>cats-home</password>
     </group>
 
     <!--Network configuration details-->

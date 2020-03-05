@@ -347,7 +347,6 @@
       <module>voice-hmi-dsl</module>
       <module>voice-hmi-dsl-co-support</module>
       <module>phone_automation_runner</module>
-      <module>configurator-dsl</module>
       <module>cats-configurator-steps</module>
    </modules>
 </project>
