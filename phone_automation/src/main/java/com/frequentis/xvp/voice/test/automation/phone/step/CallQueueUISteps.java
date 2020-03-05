@@ -146,6 +146,20 @@ public class CallQueueUISteps extends AutomationSteps
       }
    }
 
+   @Then("$profileName has in the $listName list the call queue item $callQueueItem with state $state")
+   public void verifyCallQueueItemStateInCallsQueueList(final String profileName, final String callQueueList, final String namedCallQueueItem,
+              final String state)
+   {
+      CallQueueItem callQueueItem = getStoryListData(namedCallQueueItem, CallQueueItem.class);
+
+      evaluate(remoteStep("Verify call queue item status in " + callQueueList + " list")
+              .scriptOn(profileScriptResolver().map(VerifyCallQueueItemStateInList.class, BookableProfileName.javafx),
+                      assertProfile(profileName))
+              .input(VerifyCallQueueItemStateInList.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId())
+              .input(VerifyCallQueueItemStateInList.IPARAM_CALL_QUEUE_ITEM_CLASS_NAME, state)
+              .input(VerifyCallQueueItemStateInList.IPARAM_LIST_NAME, CALL_QUEUE_LIST_MAP.get(callQueueList)));
+   }
+
 
    @Then("$profileName has the call conditional flag set for call queue item $callQueueItem")
    public void verifyCallConditionalFlagCallQueueItem( final String profileName, final String namedCallQueueItem )
