@@ -31,9 +31,11 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key       | source        | target        | callType |
-| OP1-ROLE2 | <<OP1_URI>>   |               | DA/IDA   |
-| ROLE2-OP1 | <<ROLE2_URI>> | <<OP1_URI>>   | DA/IDA   |
+| key               | source        | target        | callType |
+| OP1-ROLE2         | <<OP1_URI>>   |               | DA/IDA   |
+| ROLE2-OP1         | <<ROLE2_URI>> | <<OP1_URI>>   | DA/IDA   |
+| OP1-OP3(as ROLE2) | <<OP1_URI>>   |               | DA/IDA   |
+| OP3(as ROLE2)-OP1 | <<ROLE2_URI>> | <<OP1_URI>>   | DA/IDA   |
 
 Scenario: OP3 changes its mission to MISSION_2
 When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MISSIONS
@@ -76,17 +78,17 @@ Meta:
 @TEST_STEP_REACTION: OP1 has an indication of a pending call, from OP3's master role, in call queue
 @TEST_STEP_REF: [CATS-REF: 4YRF]
 When HMI OP3 presses DA key OP1(as Mission2)
-Then HMI OP3 has in the active list the call queue item OP1-ROLE2 with state out_ringing
+Then HMI OP3 has in the active list the call queue item OP1-OP3(as ROLE2) with state out_ringing
 
 Scenario: 2.1 OP1 receives the call from OP3
-Then HMI OP1 has in the waiting list the call queue item ROLE2-OP1 with state inc_initiated
+Then HMI OP1 has in the waiting list the call queue item OP3(as ROLE2)-OP1 with state inc_initiated
 
 Scenario: 2.2 OP1 still has the active call with OP2
 Then HMI OP1 has in the active list the call queue item ROLE2-OP1 with state connected
 
 Scenario: 2.3 Verifying call queue section
-Then HMI OP3 has the call queue item OP1-ROLE2 in the active list with name label <<OP1_NAME>>
-Then HMI OP1 has the call queue item ROLE2-OP1 in the waiting list with name label <<ROLE_2_NAME>>
+Then HMI OP3 has the call queue item OP1-OP3(as ROLE2) in the active list with name label <<OP1_NAME>>
+Then HMI OP1 has the call queue item OP3(as ROLE2)-OP1 in the waiting list with name label <<ROLE_2_NAME>>
 Then HMI OP1 has the call queue item ROLE2-OP1 in the active list with name label <<ROLE_2_NAME>>
 
 Scenario: 2.4 OP1 checks configured DA key state
@@ -103,7 +105,7 @@ Meta:
 @TEST_STEP_REF: [CATS-REF: PeC5]
 When HMI OP1 puts on hold the active call
 Then HMI OP1 has in the hold list the call queue item ROLE2-OP1 with state hold
-Then HMI OP1 has in the waiting list the call queue item ROLE2-OP1 with state inc_initiated
+Then HMI OP1 has in the waiting list the call queue item OP3(as ROLE2)-OP1 with state inc_initiated
 Then HMI OP2 has in the active list the call queue item OP1-ROLE2 with state held
 
 Scenario: 3.1 OP1 checks configured DA key state
@@ -119,9 +121,9 @@ Meta:
 @TEST_STEP_REACTION: All calls terminated
 @TEST_STEP_REF: [CATS-REF: egYh]
 When HMI OP1 presses DA key <<ROLE_2_NAME>>
-Then HMI OP1 has in the active list the call queue item ROLE2-OP1 with state connected
+Then HMI OP1 has in the active list the call queue item OP3(as ROLE2)-OP1 with state connected
 Then HMI OP2 has in the active list the call queue item OP1-ROLE2 with state held
-Then HMI OP3 has in the active list the call queue item OP1-ROLE2 with state connected
+Then HMI OP3 has in the active list the call queue item OP1-OP3(as ROLE2) with state connected
 
 Scenario: 4.1 OP1 retrieves call from hold, terminating the active call
 Then HMI OP1 retrieves from hold the call queue item ROLE2-OP1

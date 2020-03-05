@@ -18,24 +18,22 @@ class VerifyCallQueueItemStateInList extends FxScriptTemplate{
         String callQueueItemState = assertInput(IPARAM_CALL_QUEUE_ITEM_CLASS_NAME) as String
         String callQueueListName = assertInput(IPARAM_LIST_NAME) as String
 
-        String callQueueItemQueryString = "#".concat(callQueueListName)
-                .concat(" #")
-                .concat(callQueueItemId)
+        String callQueueItemQueryString = "#$callQueueListName #$callQueueItemId"
 
         Node callQueueItem = robot.lookup(callQueueItemQueryString).queryFirst()
 
-        int attempts = 1
+        int attempts = 10
         while (callQueueItem == null){
             WaitTimer.pause(250);
             callQueueItem = robot.lookup(callQueueItemQueryString).queryFirst()
-            attempts++
-            if(callQueueItem != null || attempts > 9)
+            attempts--
+            if(callQueueItem != null || attempts == 0)
                 break
         }
 
         evaluate(ExecutionDetails.create("Verify call queue item was found in " + callQueueListName + " list")
                 .expected("Call queue item with id " + callQueueItemId + " was found")
-                .success(callQueueItem.isVisible()));
+                .success(callQueueItem != null))
 
         evaluate(ExecutionDetails.create("Verify call queue item has styleClass: " + callQueueItemState)
                 .success(verifyNodeHasClass(callQueueItem, callQueueItemState, 3000)));
