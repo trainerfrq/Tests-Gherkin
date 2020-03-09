@@ -30,6 +30,12 @@
             <artifactId>cats-agent-selenium</artifactId>
             <version>${cats.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.frequentis.c4i.test</groupId>
+            <artifactId>cats-cluster</artifactId>
+            <version>${cats.version}</version>
+            <scope>compile</scope>
+        </dependency>
 
 
     </dependencies>
