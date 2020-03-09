@@ -180,7 +180,13 @@
            <artifactId>guava</artifactId>
            <version>23.0</version>
        </dependency>
-           <dependency>
+       <dependency>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-dependency-plugin</artifactId>
+           <version>3.0.0</version>
+       </dependency>
+
+       <dependency>
          <groupId>javax.websocket</groupId>
          <artifactId>javax.websocket-api</artifactId>
       </dependency>

@@ -94,7 +94,7 @@
                 <version>${guava.version}</version>
            </dependency>
 
-           <!-- Domain package dependencies -->
+            <!-- Domain package dependencies -->
            <dependency>
                 <groupId>com.frequentis.xvp.voice.phone</groupId>
                 <artifactId>cats-websocket-dto</artifactId>
