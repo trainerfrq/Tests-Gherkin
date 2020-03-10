@@ -13,12 +13,12 @@ And phones for SipContact are created
 
 Scenario: Define call queue items
 Given the call queue items:
-| key            | source         | target      | callType |
-| OP1-OP2-1      | <<OP1_URI>>    | <<OP2_URI>> | DA/IDA   |
-| OP2-OP1-1      | <<OP2_URI>>    |             | DA/IDA   |
-| OP1-OP2-2      | <<OP1_URI>>    |             | DA/IDA   |
-| OP2-OP1-2      | <<OP2_URI>>    | <<OP1_URI>> | DA/IDA   |
-| OP1-SipContact | <<SIP_PHONE2>> |             | DA/IDA   |
+| key            | source         | target        | callType |
+| OP1-OP2-1      | <<ROLE1_URI>>  | <<ROLE2_URI>> | DA/IDA   |
+| OP2-OP1-1      | <<ROLE2_URI>>  |               | DA/IDA   |
+| OP1-OP2-2      | <<ROLE1_URI>>  |               | DA/IDA   |
+| OP2-OP1-2      | <<ROLE2_URI>>  | <<ROLE1_URI>> | DA/IDA   |
+| OP1-SipContact | <<SIP_PHONE2>> |               | DA/IDA   |
 
 Scenario: Operator1 changes the mission on HMI screen
 When HMI OP1 clicks on DISPLAY STATUS label mission
