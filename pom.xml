@@ -237,6 +237,11 @@
             <version>${voice.service.interface.version}</version>
             <scope>compile</scope>
         </dependency>
+            <dependency>
+                <groupId>com.frequentis.c4i.test</groupId>
+                <artifactId>cats-zabbix-steps</artifactId>
+                <version>${cats.version}</version>
+            </dependency>
          
         </dependencies>
     </dependencyManagement>

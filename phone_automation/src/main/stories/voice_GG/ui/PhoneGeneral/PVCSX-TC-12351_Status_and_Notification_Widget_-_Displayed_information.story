@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V5
+@TEST_CASE_VERSION: V10
 @TEST_CASE_NAME: Status and Notification Widget - Displayed information
 @TEST_CASE_DESCRIPTION: As an operator having 4 missions configured with different layouts and different options for displayed information in Status and Notification Widget
 I want to change the mission to each of the configured ones
@@ -22,8 +22,20 @@ Status Widget settings of the four missions' layouts
 | mission                | yes   | yes   | no    | yes      |
 | connection status      | yes   | yes   | yes   | no       |
 
-Initially OP1 has TWR mission assigned
-@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if HMI displays the information as configured
+OP1 has TWR mission assigned
+@TEST_CASE_PASS_FAIL_CRITERIA: The test is passed if the HMI displays the following information as configured.
+Layout settings:
+-status bar
+-clock
+-date
+-mission
+-connection status
+
+Status widget:
+-clock
+-date
+-mission
+-connection status
 @TEST_CASE_DEVICES_IN_USE: OP1, OP2
 @TEST_CASE_ID: PVCSX-TC-12351
 @TEST_CASE_GLOBAL_ID: GID-5197940
@@ -67,10 +79,10 @@ Then HMI OP1 changes current mission to mission <<MISSION_TWR_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
-Scenario: 1. OP1 verifies that date, mission, connection status are visible and clock is not visible in Status and Notification Display
+Scenario: 1. OP1 verifies that date, mission, connection status are visible and clock is not visible in Status bar and Status widget
 Meta:
-@TEST_STEP_ACTION: OP1 verifies that date, mission, connection status are visible and clock is not visible in Status and Notification Display
-@TEST_STEP_REACTION: Date, mission, connection status are visible and clock is not visible in Status and Notification Display
+@TEST_STEP_ACTION: OP1 verifies that date, mission, connection status are visible and clock is not visible in Status bar and Status widget
+@TEST_STEP_REACTION: Date, mission, connection status are visible and clock is not visible in Status bar and Status widget
 @TEST_STEP_REF: [CATS-REF: FsMK]
 Then HMI OP1 verifies that section date is visible in the DISPLAY STATUS TWR
 Then HMI OP1 verifies that section mission is visible in the DISPLAY STATUS TWR
@@ -93,10 +105,10 @@ Then HMI OP1 changes current mission to mission <<MISSION_GND_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
-Scenario: 3. OP1 verifies that mission, connection status are visible and clock and date are not visible in Status and Notification Display
+Scenario: 3. OP1 verifies that mission, connection status are visible and clock and date are not visible in Status bar and Status widget
 Meta:
-@TEST_STEP_ACTION: OP1 verifies that mission, connection status are visible and clock and date are not visible in Status and Notification Display
-@TEST_STEP_REACTION: Mission, connection status are visible and clock and date are not visible in Status and Notification Display
+@TEST_STEP_ACTION: OP1 verifies that mission, connection status are visible and clock and date are not visible in Status bar and Status widget
+@TEST_STEP_REACTION: Mission, connection status are visible and clock and date are not visible in SStatus bar and Status widget
 @TEST_STEP_REF: [CATS-REF: snTJ]
 Then HMI OP1 verifies that section mission is visible in the DISPLAY STATUS GND
 Then HMI OP1 verifies that section connection is visible in the DISPLAY STATUS GND
@@ -158,10 +170,10 @@ Then HMI OP1 changes current mission to mission <<MISSION_APP_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
-Scenario: 8. OP1 verifies that clock, date, connection status are visible and mission is not visible in Status and Notification Display
+Scenario: 8. OP1 verifies that clock, date, connection status are visible and mission is not visible in Status bar and Status widget
 Meta:
-@TEST_STEP_ACTION: OP1 verifies that clock, date, connection status are visible and mission is not visible in Status and Notification Display
-@TEST_STEP_REACTION: Clock, date, connection status are visible and mission is not visible in Status and Notification Display
+@TEST_STEP_ACTION: OP1 verifies that clock, date, connection status are visible and mission is not visible in Status bar and Status widget
+@TEST_STEP_REACTION: Clock, date, connection status are visible and mission is not visible in Status bar and Status widget
 @TEST_STEP_REF: [CATS-REF: t8xt]
 Then HMI OP1 verifies that section clock is visible in the DISPLAY STATUS APP
 Then HMI OP1 verifies that section date is visible in the DISPLAY STATUS APP
@@ -184,10 +196,10 @@ Then HMI OP1 changes current mission to mission <<MISSION_SUP-TWR_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
-Scenario: 10. OP1 verifies that clock, date, mission are visible and connection status is not visible in Status display and Notification Display
+Scenario: 10. OP1 verifies that clock, date, mission are visible and connection status is not visible in Status bar and Status widget
 Meta:
-@TEST_STEP_ACTION: OP1 verifies that clock, date, mission are visible and connection status is not visible in Status and Notification Display
-@TEST_STEP_REACTION: Clock, date, mission are visible and connection status is not visible in Status and Notification Display
+@TEST_STEP_ACTION: OP1 verifies that clock, date, mission are visible and connection status is not visible in Status bar and Status widget
+@TEST_STEP_REACTION: Clock, date, mission are visible and connection status is not visible in Status bar and Status widget
 @TEST_STEP_REF: [CATS-REF: Mlbq]
 Then HMI OP1 verifies that section clock is visible in the DISPLAY STATUS SUP-TWR
 Then HMI OP1 verifies that section date is visible in the DISPLAY STATUS SUP-TWR

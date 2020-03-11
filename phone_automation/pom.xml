@@ -199,6 +199,10 @@
             </exclusion>
          </exclusions>
       </dependency>
+       <dependency>
+           <groupId>com.frequentis.c4i.test</groupId>
+           <artifactId>cats-zabbix-steps</artifactId>
+       </dependency>
 
    </dependencies>
 
