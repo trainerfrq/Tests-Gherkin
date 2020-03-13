@@ -1,6 +1,7 @@
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
+import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStep;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
@@ -22,36 +23,30 @@ import java.util.Map;
 
 public class ParallelSteps extends AutomationSteps
 {
+    private static final String PHONEBOOK_FN = "PHONEBOOK";
+
+    private static final String DISPLAY_STATUS_KEY = "DISPLAY STATUS";
+
+    private static final String MISSION_LABEL = "mission";
+
     @When("the following operators are changing mission to missions from the table: $tableEntries")
     public void changeMissionInParallel( final ExamplesTable tableEntries )
     {
-        final String key = "DISPLAY STATUS";
-        final String label = "mission";
-        List<String> profileList = new ArrayList<String>();
-        List<String> idList = new ArrayList<String>();
-        List<String> missionList = new ArrayList<String>();
+        RemoteStep remoteStep = remoteStep( "User changes mission" );
         for (Map<String, String> tableEntry : tableEntries.getRows()) {
-            profileList.add(tableEntry.get("profile"));
-            missionList.add(tableEntry.get("mission"));
-        }
-        for ( String profileName : profileList){
-            StatusKey statusKey = retrieveStatusKey(profileName, key);
-            String id = statusKey.getId();
-            idList.add(id);
-        }
+            String profileName = tableEntry.get("profile");
+            String missionName = tableEntry.get("mission");
 
-        evaluate( remoteStep( "user clicks on "+label+" label" )
-                .scriptOn( profileScriptResolver().map( ChangeMission.class, BookableProfileName.javafx ),
-                        assertProfile( profileList.get(0) ) )
-                .input( ChangeMission.IPARAM_STATUS_KEY_ID, idList.get(0))
-                .input( ChangeMission.IPARAM_DISPLAY_LABEL, label )
-                .input( ChangeMission.IPARAM_MISSION_NAME, missionList.get(0) )
-                .scriptOn( profileScriptResolver().map( ChangeMission.class, BookableProfileName.javafx ),
-                        assertProfile( profileList.get(1) ) )
-                .input( ChangeMission.IPARAM_STATUS_KEY_ID, idList.get(1))
-                .input( ChangeMission.IPARAM_DISPLAY_LABEL, label )
-                .input( ChangeMission.IPARAM_MISSION_NAME, missionList.get(1) ));
+        StatusKey statusKey = retrieveStatusKey(profileName, DISPLAY_STATUS_KEY);
+        String id = statusKey.getId();
 
+            remoteStep.scriptOn( profileScriptResolver().map( ChangeMission.class, BookableProfileName.javafx ),
+                            assertProfile( profileName) )
+                    .input( ChangeMission.IPARAM_STATUS_KEY_ID, id)
+                    .input( ChangeMission.IPARAM_DISPLAY_LABEL, MISSION_LABEL )
+                    .input( ChangeMission.IPARAM_MISSION_NAME, missionName );
+        }
+        evaluate(remoteStep);
     }
 
     @When("operators initiate calls by pressing DA keys: $daKeysTable")
@@ -59,106 +54,71 @@ public class ParallelSteps extends AutomationSteps
             "operators terminate calls by pressing DA keys: $daKeysTable",
             "operators answer calls by pressing DA keys: $daKeysTable"})
     public void clickDAInParallel(final ExamplesTable daKeysTable) {
-        List<String> profileList = new ArrayList<String>();
-        List<String> daKeyList = new ArrayList<String>();
-        List<String> idList = new ArrayList<String>();
+        RemoteStep remoteStep = remoteStep( "User makes call by clicking DA button" );
         for (Map<String, String> tableEntry : daKeysTable.getRows()) {
-            profileList.add(tableEntry.get("profile"));
-            daKeyList.add(tableEntry.get("daKey"));
+            String profileName = tableEntry.get("profile");
+            String daKey = tableEntry.get("daKey");
+            DAKey targetDAKey = retrieveDaKey(profileName, daKey);
+            String id = targetDAKey.getId();
+            remoteStep.scriptOn(
+                            profileScriptResolver().map(ClickDAButton.class, BookableProfileName.javafx),
+                            assertProfile(profileName))
+                    .input(ClickDAButton.IPARAM_DA_KEY_ID, id);
         }
-        for (String profile : profileList){
-            for(String daKey : daKeyList){
-                DAKey targetDAKey = retrieveDaKey(profile, daKey);
-                String id = targetDAKey.getId();
-                idList.add(id);
-            }
-        }
-
-        evaluate(remoteStep("Check application status")
-                .scriptOn(
-                        profileScriptResolver().map(ClickDAButton.class, BookableProfileName.javafx),
-                        assertProfile(profileList.get(0)))
-                .input(ClickDAButton.IPARAM_DA_KEY_ID, idList.get(0)));
+        evaluate(remoteStep);
     }
 
     @Then("call queue items are in the following state: $queuesTable")
-    public void verifycallQueueItemStateInParallel(final ExamplesTable queuesTable )
+    public void verifyCallQueueItemStateInParallel(final ExamplesTable queuesTable )
     {
-        List<String> profileList = new ArrayList<String>();
-        List<String> callQueueList = new ArrayList<String>();
-        List<String> stateList = new ArrayList<String>();
-        List<String> idList = new ArrayList<String>();
+        RemoteStep remoteStep = remoteStep( "User verifies call queue item status" );
         for (Map<String, String> tableEntry : queuesTable.getRows()) {
-            profileList.add(tableEntry.get("profile"));
-            callQueueList.add(tableEntry.get("callQueueItem"));
-            stateList.add(tableEntry.get("state"));
-        }
-        for(String callQueue : callQueueList ){
-            CallQueueItem callQueueItem = getStoryListData(callQueue, CallQueueItem.class);
+            String profileName = tableEntry.get("profile");
+            String callQueueEntry = tableEntry.get("callQueueItem");
+            String state = tableEntry.get("state");
+
+            CallQueueItem callQueueItem = getStoryListData(callQueueEntry, CallQueueItem.class);
             String id = callQueueItem.getId();
-            idList.add(id);
+
+            remoteStep.scriptOn(profileScriptResolver().map(VerifyCallQueueItemStyleClass.class, BookableProfileName.javafx),
+                            assertProfile(profileName))
+                    .input(VerifyCallQueueItemStyleClass.IPARAM_CALL_QUEUE_ITEM_ID, id)
+                    .input(VerifyCallQueueItemStyleClass.IPARAM_CALL_QUEUE_ITEM_CLASS_NAME, state);
         }
-
-        evaluate(remoteStep("Verify call queue item status")
-                    .scriptOn(profileScriptResolver().map(VerifyCallQueueItemStyleClass.class, BookableProfileName.javafx),
-                            assertProfile(profileList.get(0)))
-                    .input(VerifyCallQueueItemStyleClass.IPARAM_CALL_QUEUE_ITEM_ID, idList.get(0))
-                    .input(VerifyCallQueueItemStyleClass.IPARAM_CALL_QUEUE_ITEM_CLASS_NAME, stateList.get(0))
-                .scriptOn(profileScriptResolver().map(VerifyCallQueueItemStyleClass.class, BookableProfileName.javafx),
-                        assertProfile(profileList.get(1)))
-                .input(VerifyCallQueueItemStyleClass.IPARAM_CALL_QUEUE_ITEM_ID, idList.get(1))
-                .input(VerifyCallQueueItemStyleClass.IPARAM_CALL_QUEUE_ITEM_CLASS_NAME, stateList.get(1)));
-
+        evaluate(remoteStep);
     }
 
     @Then("the number of calls in the call queue is: $lengthTable")
-    public void verifyCallQueueLength( final ExamplesTable lengthTable )
+    public void verifyCallQueueLengthInParallel( final ExamplesTable lengthTable )
     {
-        List<String> profileList = new ArrayList<String>();
-        List<String> calls = new ArrayList<String>();
+        RemoteStep remoteStep = remoteStep( "User verifies call queue length" );
         for (Map<String, String> tableEntry : lengthTable.getRows()) {
-            profileList.add(tableEntry.get("profile"));
-            calls.add(tableEntry.get("numberOfCalls"));
+            String profileName = tableEntry.get("profile");
+            int numberOfCalls = Integer.parseInt(tableEntry.get("numberOfCalls"));
+            remoteStep.scriptOn(profileScriptResolver().map(VerifyCallQueueLength.class, BookableProfileName.javafx),
+                            assertProfile(profileName))
+                    .input(VerifyCallQueueLength.IPARAM_QUEUE_EXPECTED_LENGTH, numberOfCalls);
         }
-        evaluate( remoteStep( "Verify call queue length" )
-                .scriptOn( profileScriptResolver().map( VerifyCallQueueLength.class, BookableProfileName.javafx ),
-                        assertProfile( profileList.get(0) ) )
-                .input( VerifyCallQueueLength.IPARAM_QUEUE_EXPECTED_LENGTH, calls.get(0) )
-                .scriptOn( profileScriptResolver().map( VerifyCallQueueLength.class, BookableProfileName.javafx ),
-                        assertProfile( profileList.get(1) ) )
-                .input( VerifyCallQueueLength.IPARAM_QUEUE_EXPECTED_LENGTH, calls.get(1) ) );
+        evaluate(remoteStep);
     }
 
     @When("a call from phone book is done using the following entries: $tableEntries")
     public void callFromPhoneBookInParallel(final ExamplesTable tableEntries) {
-        final String type = "PHONEBOOK";
-        List<String> profileList = new ArrayList<String>();
-        List<String> idList = new ArrayList<String>();
-        List<String> layoutList = new ArrayList<String>();
-        List<String> nameList = new ArrayList<String>();
+        RemoteStep remoteStep = remoteStep( "User makes a call from phone book" );
         for (Map<String, String> tableEntry : tableEntries.getRows()) {
-            profileList.add(tableEntry.get("profile"));
-            layoutList.add(tableEntry.get("layout"));
-            nameList.add(tableEntry.get("calleeName"));
-        }
-        for(String layoutName : layoutList){
-            String key = layoutName + "-" + type;
+            String profileName = tableEntry.get("profile");
+            String layout = tableEntry.get("layout");
+            String calleeName = tableEntry.get("calleeName");
+            String key = layout + "-" + PHONEBOOK_FN;
             FunctionKey functionKey = retrieveFunctionKey(key);
             String id = functionKey.getId();
-            idList.add(id);
-        }
 
-        evaluate(remoteStep("Make a call from phone book")
-                .scriptOn(
-                        profileScriptResolver().map(CallFromPhoneBook.class, BookableProfileName.javafx),
-                        assertProfile(profileList.get(0)))
-                .input(CallFromPhoneBook.IPARAM_FUNCTION_KEY_ID, idList.get(0))
-                .input(CallFromPhoneBook.IPARAM_SEARCH_BOX_TEXT, nameList.get(0))
-                .scriptOn(
-                        profileScriptResolver().map(CallFromPhoneBook.class, BookableProfileName.javafx),
-                        assertProfile(profileList.get(1)))
-                .input(CallFromPhoneBook.IPARAM_FUNCTION_KEY_ID, idList.get(1))
-                .input(CallFromPhoneBook.IPARAM_SEARCH_BOX_TEXT, nameList.get(1)));
+            remoteStep.scriptOn(profileScriptResolver().map(CallFromPhoneBook.class, BookableProfileName.javafx),
+                            assertProfile(profileName))
+                    .input(CallFromPhoneBook.IPARAM_FUNCTION_KEY_ID, id)
+                    .input(CallFromPhoneBook.IPARAM_SEARCH_BOX_TEXT, calleeName);
+        }
+        evaluate(remoteStep);
     }
 
     @Then("all calls are accepted: $tableCalls")
@@ -166,27 +126,18 @@ public class ParallelSteps extends AutomationSteps
             "all calls are terminated: $tableCalls"})
     public void clickCallQueueItemInParallel(final ExamplesTable tableCalls )
     {
-        List<String> profileList = new ArrayList<String>();
-        List<String> callQueueList = new ArrayList<String>();
-        List<String> idList = new ArrayList<String>();
+        RemoteStep remoteStep = remoteStep( "User clicks on the call queue item" );
         for (Map<String, String> tableEntry : tableCalls.getRows()) {
-            profileList.add(tableEntry.get("profile"));
-            callQueueList.add(tableEntry.get("callQueueItem"));
-        }
-        for (String callQueue : callQueueList){
-            CallQueueItem callQueueItem = getStoryListData(callQueue, CallQueueItem.class);
+            String profileName = tableEntry.get("profile");
+            String callQueueEntry = tableEntry.get("callQueueItem");
+            CallQueueItem callQueueItem = getStoryListData(callQueueEntry, CallQueueItem.class);
             String id = callQueueItem.getId();
-            idList.add(id);
+
+            remoteStep.scriptOn(profileScriptResolver().map(ClickCallQueueItem.class, BookableProfileName.javafx),
+                            assertProfile(profileName))
+                    .input(ClickCallQueueItem.IPARAM_CALL_QUEUE_ITEM_ID, id);
         }
-
-            evaluate(remoteStep("Click call queue item")
-                    .scriptOn(profileScriptResolver().map(ClickCallQueueItem.class, BookableProfileName.javafx),
-                            assertProfile(profileList.get(0)))
-                    .input(ClickCallQueueItem.IPARAM_CALL_QUEUE_ITEM_ID, idList.get(0))
-                    .scriptOn(profileScriptResolver().map(ClickCallQueueItem.class, BookableProfileName.javafx),
-                            assertProfile(profileList.get(1)))
-                    .input(ClickCallQueueItem.IPARAM_CALL_QUEUE_ITEM_ID, idList.get(1)));
-
+        evaluate(remoteStep);
     }
 
     private StatusKey retrieveStatusKey(final String source, final String key) {
