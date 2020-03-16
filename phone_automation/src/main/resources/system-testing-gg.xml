@@ -35,4 +35,5 @@
     <import resource="classpath*:cats-automation-ssh-steps.xml"/>
     <import resource="classpath*:testSystem-steps.xml"/>
     <import resource="classpath*:deployment-steps.xml"/>
+    <import resource="classpath*:zabbix-automation-steps.xml"/>
 </beans>
