@@ -320,7 +320,7 @@
                                         </artifactItem>
                                         <artifactItem>
                                             <groupId>com.frequentis.xvp.voice.phone</groupId>
-                                            <artifactId>configurator-dsl</artifactId>
+                                            <artifactId>cats-configurator-steps</artifactId>
                                             <version>${project.version}</version>
                                             <type>zip</type>
                                             <overWrite>false</overWrite>
