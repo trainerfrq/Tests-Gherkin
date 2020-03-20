@@ -37,10 +37,10 @@ public class ParallelSteps extends AutomationSteps
             String profileName = tableEntry.get("profile");
             String missionName = tableEntry.get("mission");
 
-        StatusKey statusKey = retrieveStatusKey(profileName, DISPLAY_STATUS_KEY);
-        String id = statusKey.getId();
+            StatusKey statusKey = retrieveStatusKey(profileName, DISPLAY_STATUS_KEY);
+            String id = statusKey.getId();
 
-            remoteStep.scriptOn( profileScriptResolver().map( ChangeMission.class, BookableProfileName.javafx ),
+            remoteStep.scriptOn(profileScriptResolver().map( ChangeMission.class, BookableProfileName.javafx ),
                             assertProfile( profileName) )
                     .input( ChangeMission.IPARAM_STATUS_KEY_ID, id)
                     .input( ChangeMission.IPARAM_DISPLAY_LABEL, MISSION_LABEL )
@@ -60,8 +60,7 @@ public class ParallelSteps extends AutomationSteps
             String daKey = tableEntry.get("daKey");
             DAKey targetDAKey = retrieveDaKey(profileName, daKey);
             String id = targetDAKey.getId();
-            remoteStep.scriptOn(
-                            profileScriptResolver().map(ClickDAButton.class, BookableProfileName.javafx),
+            remoteStep.scriptOn(profileScriptResolver().map(ClickDAButton.class, BookableProfileName.javafx),
                             assertProfile(profileName))
                     .input(ClickDAButton.IPARAM_DA_KEY_ID, id);
         }
@@ -122,7 +121,7 @@ public class ParallelSteps extends AutomationSteps
     }
 
     @Then("all calls are accepted: $tableCalls")
-    @Aliases(values = { "all calls are cancels: $tableCalls",
+    @Aliases(values = { "all calls are canceled: $tableCalls",
             "all calls are terminated: $tableCalls"})
     public void clickCallQueueItemInParallel(final ExamplesTable tableCalls )
     {

@@ -39,10 +39,10 @@ class ChangeMission extends FxScriptTemplate {
         SmartListView missionList = robot.lookup("#missionPopup #missionList").queryFirst()
         final Node scrollDownButton = robot.lookup("#missionPopup #scrollDown").queryFirst()
 
-        boolean wasMissionSelected = false
+        boolean missionWasSelected = false
         while (!(scrollDownButton.isDisabled())) {
-            wasMissionSelected = clickOnMission(missionList, missionName);
-            if (wasMissionSelected) {
+            missionWasSelected = clickOnMission(missionList, missionName);
+            if (missionWasSelected) {
                 break
             }
             else {
@@ -50,8 +50,10 @@ class ChangeMission extends FxScriptTemplate {
                 WaitTimer.pause(150)
             }
         }
-        if (!wasMissionSelected)
+
+        if (!missionWasSelected){
             clickOnMission(items, missionName)
+        }
 
         //activate mission
         Button activateButton = robot.lookup("#missionPopup #activateMissionButton").queryFirst();
