@@ -6,7 +6,7 @@ Given SSH connections:
 Scenario: Stop profiles
 When stopping profiles:
 | hostIp     | profile                    | timeout        | nr |
-| <<CO3_IP>> | web/<<systemName>>/firefox | <<Timeout|60>> | 1  |
+| <<CO3_IP>> | web/firefox_<<systemName>> | <<Timeout|60>> | 1  |
 Then waiting for 5 seconds
 
 Scenario: Stop case officer
