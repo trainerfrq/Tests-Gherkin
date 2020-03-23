@@ -1,0 +1,3 @@
+| profile | callQueueItem | state     |
+| HMI OP1 | OP1-Callee1   | connected |
+| HMI OP2 | OP2-Callee2   | connected |

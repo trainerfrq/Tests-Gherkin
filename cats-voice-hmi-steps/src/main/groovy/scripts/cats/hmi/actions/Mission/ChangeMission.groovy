@@ -5,19 +5,29 @@ import com.frequentis.c4i.test.util.timer.WaitTimer
 import com.frequentis.voice.hmi.component.layout.list.item.mission.MissionItemData
 import com.frequentis.voice.hmi.component.layout.list.listview.SmartListView
 import javafx.scene.Node
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
+import javafx.scene.control.Button
+import javafx.scene.control.Label
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class SelectMissionFromList extends FxScriptTemplate {
-    private static final Logger LOGGER = LoggerFactory.getLogger(SelectMissionFromList.class);
+class ChangeMission extends FxScriptTemplate {
 
+    public static final String IPARAM_DISPLAY_LABEL = "display_label";
+    public static final String IPARAM_STATUS_KEY_ID = "status_key_id";
     public static final String IPARAM_MISSION_NAME = "mission_name"
 
     @Override
-    void script() {
+    protected void script() {
+        String label = assertInput(IPARAM_DISPLAY_LABEL) as String;
+        String statusKeyId = assertInput(IPARAM_STATUS_KEY_ID) as String;
         String missionName = assertInput(IPARAM_MISSION_NAME) as String
 
+        //open Mission pop-up window
+        Label expectedLabel = robot.lookup("#"+statusKeyId+" #" + label + "Label").queryFirst();
+        if (expectedLabel != null) {
+            robot.clickOn(robot.point(expectedLabel));
+        }
+
+        //verify Mission pop-up window is visible
         Node missionPopup = robot.lookup("#missionPopup").queryFirst();
         evaluate(ExecutionDetails.create("Mission popup was found")
                 .expected("missionPopup is visible")
@@ -25,16 +35,13 @@ class SelectMissionFromList extends FxScriptTemplate {
 
         WaitTimer.pause(150); //this wait is needed to make sure that mission window is really visible for CATS
 
-        SmartListView items = robot.lookup("#missionPopup #missionList").queryFirst()
-        evaluate(ExecutionDetails.create("Verify mission list exists")
-                .expected("mission item exists")
-                .success(items != null));
-
+        //select mission from list
+        SmartListView missionList = robot.lookup("#missionPopup #missionList").queryFirst()
         final Node scrollDownButton = robot.lookup("#missionPopup #scrollDown").queryFirst()
-        boolean missionWasSelected = false
 
+        boolean missionWasSelected = false
         while (!(scrollDownButton.isDisabled())) {
-            missionWasSelected = clickOnMission(items, missionName);
+            missionWasSelected = clickOnMission(missionList, missionName);
             if (missionWasSelected) {
                 break
             }
@@ -46,6 +53,12 @@ class SelectMissionFromList extends FxScriptTemplate {
 
         if (!missionWasSelected){
             clickOnMission(items, missionName)
+        }
+
+        //activate mission
+        Button activateButton = robot.lookup("#missionPopup #activateMissionButton").queryFirst();
+        if (activateButton != null) {
+            robot.clickOn(robot.point(activateButton));
         }
     }
 
@@ -61,4 +74,5 @@ class SelectMissionFromList extends FxScriptTemplate {
         }
         return false
     }
+
 }

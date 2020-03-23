@@ -27,6 +27,7 @@ Given the DA keys:
 | HMI OP1 | OP3(as Mission4)           | <<PhyOpPos1_CWP2>>                   |
 | HMI OP1 | LegacyPhone                | <<Active1_LegacyPhone>>              |
 | HMI OP1 | OP2(as GND)                | <<PhyOpPos1(GND)_CWP2>>              |
+| HMI OP1 | <<ROLE_1_NAME>>            | <<ACTIVE2_MISSION1>>                 |
 | HMI OP2 | OP1                        | <<PhyOpPos2_CWP1>>                   |
 | HMI OP2 | OP2                        |                                      |
 | HMI OP2 | OP3                        | <<PhyOpPos2_CWP3>>                   |
@@ -41,6 +42,8 @@ Given the DA keys:
 | HMI OP2 | OP1(as Mission2)           | <<ACTIVE2_CWP1>>                     |
 | HMI OP2 | IA - <<ROLE_1_NAME>>       | <<IA_ACTIVE2_MISSION1>>              |
 | HMI OP2 | <<ROLE_3_NAME>>            | <<ACTIVE2_MISSION3>>                 |
+| HMI OP2 | <<ROLE_1_NAME>>            | <<ACTIVE2_MISSION1>>                 |
+| HMI OP2 | <<ROLE_2_NAME>>            | <<ACTIVE1_MISSION2>>                 |
 | HMI OP2 | OP1(as Mission3)           | <<PhyOpPos3_CWP1>>                   |
 | HMI OP2 | OP3(as Mission1)           | <<PhyOpPos1_CWP3>>                   |
 | HMI OP2 | RoleEmergency(as Mission4) | <<PhyOpPos2_RoleEmergency_MISSION4>> |
