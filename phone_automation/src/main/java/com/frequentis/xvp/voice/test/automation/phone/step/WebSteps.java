@@ -14,7 +14,7 @@ import java.util.List;
 public class WebSteps extends AutomationSteps {
 
    @Given("defined XVP Configurator pages: $webAppConfigs")
-    public void GivenFollowingSettings(final List<ProfileToWebConfigurationReference> webAppConfigs) {
+    public void givenFollowingSettings(final List<ProfileToWebConfigurationReference> webAppConfigs) {
         int i = 1;
         for (ProfileToWebConfigurationReference webAppConfig : webAppConfigs) {
             String info = "WebApplicationConfig: " + i++;
@@ -24,7 +24,7 @@ public class WebSteps extends AutomationSteps {
     }
 
     @Then("add a new configuration")
-    public void AddNewConfiguration(){
+    public void addNewConfiguration(){
         ProfileToWebConfigurationReference webAppConfig = getStoryData("config-1", ProfileToWebConfigurationReference.class);
         if (webAppConfig != null) {
             Profile profile = getProfile(webAppConfig.getProfileName());
