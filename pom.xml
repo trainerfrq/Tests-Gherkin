@@ -128,6 +128,11 @@
 
            <!-- General CATS dependencies -->
            <dependency>
+            <groupId>com.frequentis.c4i.test</groupId>
+            <artifactId>cats-cluster</artifactId>
+            <version>${cats.version}</version>
+        </dependency>
+           <dependency>
                 <groupId>com.frequentis.c4i.test</groupId>
                 <artifactId>cats-bdd</artifactId>
                 <version>${cats.version}</version>
@@ -196,7 +201,6 @@
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <scope>test</scope>
                 <version>${junit.version}</version>
             </dependency>
              <dependency>
@@ -242,7 +246,11 @@
                 <artifactId>cats-zabbix-steps</artifactId>
                 <version>${cats.version}</version>
             </dependency>
-         
+           <dependency>
+            <groupId>com.frequentis.voice.hmi</groupId>
+            <artifactId>voice-hmi-service</artifactId>
+            <version>${voice.hmi.service.version}</version>
+        </dependency>
         </dependencies>
     </dependencyManagement>
 

@@ -194,17 +194,17 @@
          <groupId>org.eclipse.jetty</groupId>
          <artifactId>jetty-util</artifactId>
       </dependency>
-      <dependency>
+     <!-- <dependency>
          <groupId>com.frequentis.xvp.framework</groupId>
          <artifactId>websocket-lib</artifactId>
-         <!-- remove this exclusion once QXVP-12348 is resolved -->
+          remove this exclusion once QXVP-12348 is resolved
          <exclusions>
             <exclusion>
                <artifactId>javax.websocket-client-api</artifactId>
                <groupId>javax.websocket</groupId>
             </exclusion>
          </exclusions>
-      </dependency>
+      </dependency> -->
        <dependency>
            <groupId>com.frequentis.c4i.test</groupId>
            <artifactId>cats-zabbix-steps</artifactId>

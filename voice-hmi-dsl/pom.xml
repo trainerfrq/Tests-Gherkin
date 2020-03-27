@@ -76,13 +76,11 @@
         <dependency>
             <groupId>com.frequentis.c4i.test</groupId>
             <artifactId>cats-cluster</artifactId>
-            <version>${cats.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.frequentis.voice.hmi</groupId>
             <artifactId>voice-hmi-service</artifactId>
-            <version>${voice.hmi.service.version}</version>
         </dependency>
     </dependencies>
 </project>
