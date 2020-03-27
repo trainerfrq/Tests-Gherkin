@@ -353,12 +353,15 @@
 
    <modules>
       <module>phone_automation</module>
+      <module>cats-voice-hmi-steps</module>
+      <module>phone_automation_runner</module>
+      <!-- moved
       <module>cats-websocket-steps</module>
       <module>cats-websocket-dto</module>
       <module>cats-websocket-plugin</module>
-      <module>cats-voice-hmi-steps</module>
+
       <module>voice-hmi-dsl</module>
       <module>voice-hmi-dsl-co-support</module>
-      <module>phone_automation_runner</module>
+      -->
    </modules>
 </project>
