@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
    <modelVersion>4.0.0</modelVersion>
    <groupId>com.frequentis.xvp.voice.phone</groupId>
@@ -17,6 +17,7 @@
       <iso.name>xvp-deployment-rhel7.4.4-ggd-jenkins-cats.iso</iso.name>
 
       <!-- CATS VERSION -->
+      <cats.version>6.1.0</cats.version>
 
       <!-- common dependency version -->
       <voice.automation.common.version>0.1.0-SNAPSHOT</voice.automation.common.version>
@@ -30,9 +31,20 @@
       <!-- FW DEPENDENCY VERSIONS -->
       <mission-configurator-plugin.version>1.2.1</mission-configurator-plugin.version>
 
+      <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+      <maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
+      <maven-compiler-plugin.target>1.8</maven-compiler-plugin.target>
+
       <!-- PLUGIN VERSIONS -->
 
       <reqpro-trace-importer.version>1.21.0</reqpro-trace-importer.version>
+      <exec-maven-plugin.version>1.5.0</exec-maven-plugin.version>
+      <maven-gmavenplus-plugin.version>1.5</maven-gmavenplus-plugin.version>
+      <mixin-maven-plugin.version>0.1-alpha-39</mixin-maven-plugin.version>
+      <xvp-cats-mixin.version>5.0.1</xvp-cats-mixin.version>
+      <maven.resources.plugin.version>3.0.0</maven.resources.plugin.version>
+      <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+
    </properties>
 
     <profiles>
@@ -62,7 +74,7 @@
         <dependencies>
             <!-- Manually added dependency to avoid version conflicts -->
 
-            <!-- Domain package dependencies -->
+           <!-- Domain package dependencies -->
            <dependency>
                 <groupId>com.frequentis.xvp.voice.automation</groupId>
                 <artifactId>voice-test-automation-common-libs</artifactId>
@@ -70,96 +82,81 @@
               <type>pom</type>
                 <version>${voice.automation.common.version}</version>
             </dependency>
-           <dependency>
+        <dependency>
             <groupId>com.frequentis.xvp.voice.phone</groupId>
             <artifactId>cats-voice-hmi-steps</artifactId>
-            <version>1.1.1-1.1.0-SNAPSHOT</version>
-           </dependency>
-             <dependency>
-            <groupId>com.frequentis.xvp.voice</groupId>
-            <artifactId>op-voice-service-interface</artifactId>
-            <version>${voice.service.interface.version}</version>
-            <scope>compile</scope>
-        </dependency>
-                 <dependency>
+            <version>${project.version}</version>
+       </dependency>
+        <dependency>
           <groupId>com.frequentis.xvp.framework</groupId>
           <artifactId>mission-configurator-plugin</artifactId>
           <version>${mission-configurator-plugin.version}</version>
        </dependency>
-           <dependency>
-           <groupId>com.frequentis.xvp.framework.testing</groupId>
-           <artifactId>xvp-cats-rest-configuration</artifactId>
-           <version>${xvp-cats-rest-configuration.version}</version>
-       </dependency>
-         <dependency>
-       <groupId>com.frequentis.xvp.framework.testing</groupId>
-       <artifactId>xvp-cats-ssh</artifactId>
-       <version>${xvp-cats-ssh.version}</version>
-       </dependency>
-     <dependency>
-         <groupId>org.glassfish.jersey.core</groupId>
-         <artifactId>jersey-client</artifactId>
-         <version>${jersey-client.version}</version>
-      </dependency>
         </dependencies>
     </dependencyManagement>
 
 
     <build>
         <pluginManagement>
+
             <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>${maven-javadoc-plugin}</version>
-                    <configuration>
-                        <additionalparam>${javadoc.opts}</additionalparam>
-                    </configuration>
+               <plugin>
+                  <groupId>com.github.odavid.maven.plugins</groupId>
+                  <artifactId>mixin-maven-plugin</artifactId>
+                  <version>${mixin-maven-plugin.version}</version>
                 </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>build-helper-maven-plugin</artifactId>
-                    <version>${maven-build-helper-plugin}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>${maven-source-plugin}</version>
-                </plugin>
-                <plugin>
+               <plugin>
+                  <groupId>com.frequentis.c4i.test</groupId>
+                  <artifactId>cats-maven-assembly-plugin</artifactId>
+                  <version>${cats.version}</version>
+               </plugin>
+               <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+            </plugin>
+               <plugin>
+                  <groupId>org.codehaus.mojo</groupId>
+                  <artifactId>exec-maven-plugin</artifactId>
+                  <version>${exec-maven-plugin.version}</version>
+               </plugin>
+               <plugin>
                     <groupId>org.codehaus.gmavenplus</groupId>
                     <artifactId>gmavenplus-plugin</artifactId>
-                    <version>${maven-gmavenplus-plugin}</version>
+                    <version>${maven-gmavenplus-plugin.version}</version>
                 </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-antrun-plugin</artifactId>
-                    <version>${maven-antrun-plugin}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-assembly-plugin</artifactId>
-                    <version>${maven-assembly-plugin}</version>
-                </plugin>
-               <plugin>
-                  <groupId>io.fabric8</groupId>
-                  <artifactId>docker-maven-plugin</artifactId>
-                  <version>${fabric8-docker-maven-plugin.version}</version>
-               </plugin>
-               <plugin>
-                  <groupId>com.github.ekryd.echo-maven-plugin</groupId>
-                  <artifactId>echo-maven-plugin</artifactId>
-                  <version>${echo-maven-plugin.version}</version>
-               </plugin>
                <plugin>
                   <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-enforcer-plugin</artifactId>
-                  <version>${maven-enforcer-plugin.version}</version>
+               <artifactId>maven-resources-plugin</artifactId>
+               <version>${maven.resources.plugin.version}</version>
                </plugin>
+               <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin.version}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
 
         <plugins>
+           <!--<plugin>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>properties-maven-plugin</artifactId>
+              <version>1.0.0</version>
+              <executions>
+                <execution>
+                  <phase>initialize</phase>
+                  <goals>
+                    <goal>read-project-properties</goal>
+                  </goals>
+                  <configuration>
+                    <files>
+                      <file>etc/config/dev.properties</file>
+                    </files>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

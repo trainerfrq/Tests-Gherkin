@@ -84,7 +84,6 @@
       <dependency>
             <groupId>com.frequentis.c4i.test</groupId>
             <artifactId>cats-voip-steps</artifactId>
-            <version>${cats.version}</version>
       </dependency>
       <dependency>
          <groupId>com.frequentis.c4i.test</groupId>
@@ -204,7 +203,6 @@
                <plugin>
                   <groupId>org.codehaus.mojo</groupId>
                   <artifactId>exec-maven-plugin</artifactId>
-                  <version>${exec-maven-plugin.version}</version>
                   <executions>
                      <execution>
                         <phase>package</phase>
@@ -231,7 +229,6 @@
                         <groupId>com.frequentis.fcsc.tools</groupId>
                         <artifactId>reqpro-trace-import</artifactId>
                         <version>${reqpro-trace-importer.version}</version>
-                        <type>jar</type>
                      </dependency>
                   </dependencies>
                </plugin>
@@ -247,7 +244,6 @@
                     <plugin>
                         <groupId>com.frequentis.c4i.test</groupId>
                         <artifactId>cats-maven-assembly-plugin</artifactId>
-                        <version>${cats.version}</version>
                         <configuration>
                             <descriptors>
                                 <descriptors>src/main/assembly/distribution.xml</descriptors>
@@ -350,14 +346,13 @@
          <plugin>
             <groupId>com.github.odavid.maven.plugins</groupId>
             <artifactId>mixin-maven-plugin</artifactId>
-            <version>${mixin-maven-plugin.version}</version>
             <extensions>true</extensions>
             <configuration>
                <mixins>
                    <mixin>
                      <groupId>com.frequentis.xvp.dockerbuild</groupId>
                      <artifactId>xvp-cats-mixin</artifactId>
-                     <version>${xvp-cats-mixin.version}</version>
+                      <version>${xvp-cats-mixin.version}</version>
                   </mixin>
                </mixins>
             </configuration>
@@ -382,8 +377,8 @@
              </configuration>
          </plugin-->
          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-resources-plugin</artifactId>
-            <version>${maven.resources.plugin.version}</version>
             <executions>
                <execution>
                   <id>copy-own-jar</id>
