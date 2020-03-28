@@ -19,7 +19,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.frequentis.xvp.voice.phone</groupId>
+            <groupId>com.frequentis.xvp.voice.automation</groupId>
             <artifactId>voice-hmi-dsl</artifactId>
         </dependency>
     </dependencies>
