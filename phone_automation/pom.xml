@@ -283,14 +283,14 @@
                                 <configuration>
                                     <artifactItems>
                                         <artifactItem>
-                                            <groupId>com.frequentis.xvp.voice.phone</groupId>
+                                            <groupId>com.frequentis.xvp.voice.automation</groupId>
                                             <artifactId>voice-hmi-dsl</artifactId>
                                             <type>zip</type>
                                             <overWrite>false</overWrite>
                                             <outputDirectory>${dslHome}</outputDirectory>
                                         </artifactItem>
                                        <artifactItem>
-                                            <groupId>com.frequentis.xvp.voice.phone</groupId>
+                                            <groupId>com.frequentis.xvp.voice.automation</groupId>
                                             <artifactId>voice-hmi-dsl-co-support</artifactId>
                                             <type>zip</type>
                                             <overWrite>false</overWrite>
