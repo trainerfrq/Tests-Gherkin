@@ -3,8 +3,10 @@
 
    <modelVersion>4.0.0</modelVersion>
    <groupId>com.frequentis.xvp.voice.phone</groupId>
+
    <artifactId>phone-test-automation</artifactId>
-   <version>1.1.1-1.1.0-SNAPSHOT</version>
+   <version>1.1.1-1.2.1</version>
+
    <packaging>pom</packaging>
    <url>http://www.frequentis.com</url>
    <organization>
@@ -93,6 +95,13 @@
           <artifactId>mission-configurator-plugin</artifactId>
           <version>${mission-configurator-plugin.version}</version>
        </dependency>
+      <dependency>
+        <groupId>com.frequentis.xvp.voice.phone</groupId>
+        <artifactId>cats-configurator-steps</artifactId>
+        <version>${project.version}</version>
+    </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 
@@ -207,6 +216,7 @@
       <module>phone_automation</module>
       <module>cats-voice-hmi-steps</module>
       <module>phone_automation_runner</module>
+      <module>cats-configurator-steps</module>
       <!-- moved
       <module>cats-websocket-steps</module>
       <module>cats-websocket-dto</module>
