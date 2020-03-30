@@ -275,7 +275,6 @@
                                         <artifactItem>
                                             <groupId>com.frequentis.xvp.voice.phone</groupId>
                                             <artifactId>voice-hmi-dsl</artifactId>
-                                            <version>${project.version}</version>
                                             <type>zip</type>
                                             <overWrite>false</overWrite>
                                             <outputDirectory>${dslHome}</outputDirectory>
@@ -283,7 +282,6 @@
                                        <artifactItem>
                                             <groupId>com.frequentis.xvp.voice.phone</groupId>
                                             <artifactId>voice-hmi-dsl-co-support</artifactId>
-                                            <version>${project.version}</version>
                                             <type>zip</type>
                                             <overWrite>false</overWrite>
                                             <outputDirectory>${dslHome}</outputDirectory>
