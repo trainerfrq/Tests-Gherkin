@@ -37,7 +37,8 @@
         </dependency>
         <dependency>
           <groupId>com.frequentis.xvp.voice.phone</groupId>
-          <artifactId>cats-websocket-plugin</artifactId></dependency>
+          <artifactId>cats-websocket-plugin</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

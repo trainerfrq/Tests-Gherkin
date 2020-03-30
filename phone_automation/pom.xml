@@ -176,6 +176,12 @@
            <type>zip</type>
        </dependency>
        <dependency>
+           <groupId>com.frequentis.c4i.test</groupId>
+           <artifactId>cats-agent-selenium</artifactId>
+           <version>${cats.version}</version>
+           <type>zip</type>
+       </dependency>
+       <dependency>
            <groupId>com.google.guava</groupId>
            <artifactId>guava</artifactId>
            <version>23.0</version>
@@ -210,6 +216,22 @@
            <artifactId>cats-zabbix-steps</artifactId>
        </dependency>
 
+       <!-- SELENIUM DOMAIN -->
+       <dependency>
+           <groupId>com.frequentis.c4i.test</groupId>
+           <artifactId>cats-agent-selenium</artifactId>
+           <version>${cats.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>com.frequentis.c4i.test</groupId>
+           <artifactId>cats-agent-selenium</artifactId>
+           <version>${cats.version}</version>
+           <classifier>scripting</classifier>
+       </dependency>
+       <dependency>
+           <groupId>com.frequentis.xvp.voice.phone</groupId>
+           <artifactId>cats-configurator-steps</artifactId>
+       </dependency>
    </dependencies>
 
 
@@ -306,7 +328,15 @@
                                             <overWrite>false</overWrite>
                                             <outputDirectory>${dslHome}</outputDirectory>
                                         </artifactItem>
-                                       <artifactItem>
+                                        <artifactItem>
+                                            <groupId>com.frequentis.xvp.voice.phone</groupId>
+                                            <artifactId>cats-configurator-steps</artifactId>
+                                            <version>${project.version}</version>
+                                            <type>zip</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${dslHome}</outputDirectory>
+                                        </artifactItem>
+                                        <artifactItem>
                                             <groupId>com.frequentis.xvp.voice.phone</groupId>
                                             <artifactId>voice-hmi-dsl-co-support</artifactId>
                                             <version>${project.version}</version>

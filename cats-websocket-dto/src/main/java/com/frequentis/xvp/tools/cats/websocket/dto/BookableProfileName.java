@@ -12,7 +12,7 @@ import com.frequentis.c4i.test.bdd.fluent.step.ProfileType;
  */
 public enum BookableProfileName implements ProfileType
 {
-   websocket, mep, javafx;
+   websocket, mep, javafx, web;
 
    @Override
    public String getName()
