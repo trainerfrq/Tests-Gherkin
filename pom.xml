@@ -44,6 +44,7 @@
       <xvp-cats-mixin.version>5.0.1</xvp-cats-mixin.version>
       <maven.resources.plugin.version>3.0.0</maven.resources.plugin.version>
       <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+      <fabric8-docker-maven-plugin.version>0.16.8</fabric8-docker-maven-plugin.version>
 
    </properties>
 
@@ -135,6 +136,11 @@
                     <artifactId>maven-source-plugin</artifactId>
                     <version>${maven-source-plugin.version}</version>
                 </plugin>
+               <plugin>
+                  <groupId>io.fabric8</groupId>
+                  <artifactId>docker-maven-plugin</artifactId>
+                  <version>${fabric8-docker-maven-plugin.version}</version>
+               </plugin>
             </plugins>
         </pluginManagement>
 

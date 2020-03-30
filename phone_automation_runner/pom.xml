@@ -229,6 +229,7 @@
                   <mixin>
                      <groupId>com.frequentis.xvp.dockerbuild</groupId>
                      <artifactId>xvp-cats-mixin</artifactId>
+                     <version>${xvp-cats-mixin.version}</version>
                   </mixin>
                </mixins>
             </configuration>
