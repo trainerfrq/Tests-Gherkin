@@ -65,7 +65,6 @@
             <groupId>com.frequentis.c4i.test</groupId>
             <artifactId>cats-media-psqm</artifactId>
             <type>zip</type>
-            <scope>provided</scope>
       </dependency>
       <!-- CATS and 3rd party modules -->
       <dependency>
@@ -77,7 +76,6 @@
       <dependency>
          <groupId>com.frequentis.c4i.test</groupId>
          <artifactId>cats-report-resources</artifactId>
-         <scope>provided</scope>
       </dependency>
 
       <!-- DOMAIN PACKAGE VOIP/PCAP -->
