@@ -52,7 +52,7 @@ class ChangeMission extends FxScriptTemplate {
         }
 
         if (!missionWasSelected){
-            clickOnMission(items, missionName)
+            clickOnMission(missionList, missionName)
         }
 
         //activate mission
