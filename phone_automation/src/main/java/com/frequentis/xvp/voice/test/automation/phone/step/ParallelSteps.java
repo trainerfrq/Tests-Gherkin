@@ -163,7 +163,7 @@ public class ParallelSteps extends AutomationSteps
     @Then("clean up is done for the call queue items in the list: $tableEntries ")
     public void cleanUpCallQueueItemByPositionParallel( final ExamplesTable tableEntries )
     {
-        RemoteStep remoteStep = remoteStep( "Cal queue clean up" );
+        RemoteStep remoteStep = remoteStep( "Call queue clean up" );
         for (Map<String, String> tableEntry : tableEntries.getRows()) {
             String profileName = tableEntry.get("profile");
             String list = tableEntry.get("list");;
