@@ -27,7 +27,7 @@ Given the call queue items:
 | key          | source                | target           | callType |
 | OP1-OP2      | <<OP1_URI>>           | <<OP2_URI>>      | DA/IDA   |
 | OP2-OP1      | <<OP2_URI>>           | <<OP1_URI>>      | DA/IDA   |
-| OP2-OP1-Conf | <<OP2_URI>>           | <<OP1_URI>>      | CONF     |
+| OP1-OP2-CONF | <<OP2_URI>>           | <<OP1_URI>>      | CONF     |
 | OP3-OP1-Conf | <<OP3_URI>>           | <<OP1_URI>>      | CONF     |
 | OP1-OP2-Conf | <<OPVOICE1_CONF_URI>> | <<OP2_URI>>:5060 | CONF     |
 | OP1-OP3-Conf | <<OPVOICE1_CONF_URI>> | <<OP3_URI>>:5060 | CONF     |
@@ -81,9 +81,9 @@ Meta:
 @TEST_STEP_REF: [CATS-REF: rxKi]
 When HMI OP1 starts a conference using an existing active call
 Then wait for 2 seconds
-Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
-Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
-Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with info label 2 participants
+Then HMI OP1 has the call queue item OP1-OP2-CONF in state connected
+Then HMI OP1 has the call queue item OP1-OP2-CONF in the active list with name label CONF
+Then HMI OP1 has the call queue item OP1-OP2-CONF in the active list with info label 2 participants
 
 Scenario: 7. DOCKERHOST-01: from the docker CLI, start ConferencerService instance
 Meta:
@@ -104,9 +104,9 @@ Then HMI OP3 has the call queue item OP1-OP3-Conf in state inc_initiated
 Then HMI OP3 accepts the call queue item OP1-OP3-Conf
 
 Scenario: 8.2 OP1 verifies conference state
-Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
-Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
-Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with info label 3 participants
+Then HMI OP1 has the call queue item OP1-OP2-CONF in state connected
+Then HMI OP1 has the call queue item OP1-OP2-CONF in the active list with name label CONF
+Then HMI OP1 has the call queue item OP1-OP2-CONF in the active list with info label 3 participants
 
 Scenario: 9. OP1 removes one participant and ends the conference
 Meta: @TEST_STEP_ACTION: OP1 removes one participant and ends the conference
@@ -125,7 +125,7 @@ Then HMI OP3 has in the call queue a number of 0 calls
 Then HMI OP1 has in the call queue a number of 1 calls
 
 Scenario: 9.2 OP1 terminates the conference
-Then HMI OP1 terminates the call queue item OP2-OP1-Conf
+Then HMI OP1 terminates the call queue item OP1-OP2-CONF
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP1 has in the call queue a number of 0 calls
 

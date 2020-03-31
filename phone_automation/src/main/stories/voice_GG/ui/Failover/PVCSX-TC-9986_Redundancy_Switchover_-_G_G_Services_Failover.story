@@ -33,7 +33,7 @@ Given the call queue items:
 | key          | source                | target           | callType |
 | OP1-OP2      | <<OP1_URI>>           | <<OP2_URI>>      | DA/IDA   |
 | OP2-OP1      | <<OP2_URI>>           | <<OP1_URI>>      | DA/IDA   |
-| OP1-OP2-Conf | <<OP1_URI>>           | <<OP2_URI>>      | CONF     |
+| OP1-OP2-CONF | <<OP1_URI>>           | <<OP2_URI>>      | CONF     |
 | OP3-OP2-Conf | <<OP3_URI>>           | <<OP2_URI>>      | CONF     |
 | OP2-OP1-Conf | <<OPVOICE2_CONF_URI>> | <<OP1_URI>>:5060 | CONF     |
 | OP2-OP3-Conf | <<OPVOICE2_CONF_URI>> | <<OP3_URI>>:5060 | CONF     |
@@ -58,9 +58,9 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Scenario: 1.4 OP2 starts a conference using an existing active call
 When HMI OP2 starts a conference using an existing active call
 Then wait for 2 seconds
-Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label CONF
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 2 participants
+Then HMI OP2 has the call queue item OP1-OP2-CONF in state connected
+Then HMI OP2 has the call queue item OP1-OP2-CONF in the active list with name label CONF
+Then HMI OP2 has the call queue item OP1-OP2-CONF in the active list with info label 2 participants
 
 Scenario: 2. System Technician: Restart phone-routing-service on host 1 and try to add OP3 to the conference between OP1 and OP2 latest after 1 second
 Meta: @TEST_STEP_ACTION: System Technician: Restart phone-routing-service on host 1 and try to add OP3 to the conference between OP1 and OP2 latest after 1 second
@@ -87,9 +87,9 @@ Then HMI OP3 has the call queue item OP2-OP3-Conf in state inc_initiated
 Then HMI OP3 accepts the call queue item OP2-OP3-Conf
 
 Scenario: 3.2 OP2 verifies conference state
-Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label CONF
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 3 participants
+Then HMI OP2 has the call queue item OP1-OP2-CONF in state connected
+Then HMI OP2 has the call queue item OP1-OP2-CONF in the active list with name label CONF
+Then HMI OP2 has the call queue item OP1-OP2-CONF in the active list with info label 3 participants
 
 Scenario: 4. Wait until phone-routing-service on host 1 is up and running again
 Meta: @TEST_STEP_ACTION: Wait until phone-routing-service on host A is up and running again
@@ -131,7 +131,7 @@ Scenario: 6.2 Op2 closes conference participants list
 Then HMI OP2 closes Conference list popup window
 
 Scenario: 6.3 Op2 verifies that conference is correctly signalized on the call queue
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with info label 2 participants
+Then HMI OP2 has the call queue item OP1-OP2-CONF in the active list with info label 2 participants
 
 Scenario: 7. Wait until phone-routing-service on host 2 is up and running again
 Meta: @TEST_STEP_ACTION: Wait until phone-routing-service on host 2 is up and running again
