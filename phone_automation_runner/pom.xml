@@ -3,7 +3,7 @@
    <parent>
         <groupId>com.frequentis.xvp.voice.phone</groupId>
         <artifactId>phone-test-automation</artifactId>
-        <version>1.1.1-1.1.0-SNAPSHOT</version>
+        <version>1.1.1-1.2.1</version>
    </parent>
 
    <modelVersion>4.0.0</modelVersion>
@@ -127,7 +127,6 @@
                <plugin>
                   <groupId>com.frequentis.c4i.test</groupId>
                   <artifactId>cats-maven-integration-plugin</artifactId>
-                  <version>${cats.version}</version>
                   <executions>
                      <execution>
                         <phase>integration-test</phase>
@@ -224,7 +223,6 @@
          <plugin>
             <groupId>com.github.odavid.maven.plugins</groupId>
             <artifactId>mixin-maven-plugin</artifactId>
-            <version>${mixin-maven-plugin.version}</version>
             <extensions>true</extensions>
             <configuration>
                <mixins>
