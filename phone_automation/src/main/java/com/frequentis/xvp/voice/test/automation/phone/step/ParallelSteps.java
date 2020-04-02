@@ -10,7 +10,9 @@ import com.frequentis.xvp.voice.test.automation.phone.data.FunctionKey;
 import com.frequentis.xvp.voice.test.automation.phone.data.StatusKey;
 import org.jbehave.core.annotations.*;
 import org.jbehave.core.model.ExamplesTable;
+import scripts.cats.hmi.actions.CallQueue.CleanUpCallQueueByPosition;
 import scripts.cats.hmi.actions.CallQueue.ClickCallQueueItem;
+import scripts.cats.hmi.actions.CleanUpFunctionKey;
 import scripts.cats.hmi.actions.ClickDAButton;
 import scripts.cats.hmi.actions.Mission.ChangeMission;
 import scripts.cats.hmi.actions.PhoneBook.CallFromPhoneBook;
@@ -135,6 +137,39 @@ public class ParallelSteps extends AutomationSteps
             remoteStep.scriptOn(profileScriptResolver().map(ClickCallQueueItem.class, BookableProfileName.javafx),
                             assertProfile(profileName))
                     .input(ClickCallQueueItem.IPARAM_CALL_QUEUE_ITEM_ID, id);
+        }
+        evaluate(remoteStep);
+    }
+
+    @Then("clean up is done for function key that has the below state: $tableEntries")
+    public void cleanUpFunctionKeyParallel(final ExamplesTable tableEntries) {
+        RemoteStep remoteStep = remoteStep( "Function key clean up" );
+        for (Map<String, String> tableEntry : tableEntries.getRows()) {
+            String profileName = tableEntry.get("profile");
+            String layout = tableEntry.get("layout");
+            String state = tableEntry.get("state");
+            String key = layout + "-" + tableEntry.get("function_key");
+            FunctionKey functionKey = retrieveFunctionKey(key);
+            String id = functionKey.getId();
+
+            remoteStep.scriptOn(profileScriptResolver().map(CleanUpFunctionKey.class, BookableProfileName.javafx),
+                    assertProfile(profileName))
+                    .input(CleanUpFunctionKey.IPARAM_FUNCTION_KEY_ID, id)
+                    .input(CleanUpFunctionKey.IPARAM_KEY_STATE, state);
+        }
+        evaluate(remoteStep);
+    }
+
+    @Then("clean up is done for the call queue items in the list: $tableEntries ")
+    public void cleanUpCallQueueItemByPositionParallel( final ExamplesTable tableEntries )
+    {
+        RemoteStep remoteStep = remoteStep( "Call queue clean up" );
+        for (Map<String, String> tableEntry : tableEntries.getRows()) {
+            String profileName = tableEntry.get("profile");
+            String list = tableEntry.get("list");;
+            remoteStep.scriptOn(profileScriptResolver().map(CleanUpCallQueueByPosition.class, BookableProfileName.javafx),
+                    assertProfile(profileName))
+                    .input(CleanUpCallQueueByPosition.IPARAM_LIST_NAME, list);
         }
         evaluate(remoteStep);
     }
