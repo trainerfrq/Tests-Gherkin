@@ -62,16 +62,16 @@ Then evaluate ${items_values}["Number of active incoming Monitoring Calls"] equa
 
 Scenario: OP2 tries to Monitor APP
 When HMI OP2 with layout <<LAYOUT_GND>> presses function key MONITORING
-When HMI OP2 presses DA key APP
-Then HMI OP2 has the DA key APP in state out_failed
+When HMI OP2 presses DA key APP(as GND)
+Then HMI OP2 has the DA key APP(as GND) in state out_failed
 
 Scenario: OP2 chooses to Monitor TWR
-When HMI OP2 presses DA key TWR
-Then HMI OP2 has the DA key TWR with visible state monitoringActiveState
+When HMI OP2 presses DA key TWR(as GND)
+Then HMI OP2 has the DA key TWR(as GND) with visible state monitoringActiveState
 
-Scenario: OP2 chooses to Monitor APP
-When HMI OP2 presses DA key SUP-TWR
-Then HMI OP2 has the DA key SUP-TWR with visible state monitoringActiveState
+Scenario: OP2 chooses to Monitor SUP-TWR
+When HMI OP2 presses DA key SUP-TWR(as GND)
+Then HMI OP2 has the DA key SUP-TWR(as GND) with visible state monitoringActiveState
 
 Scenario: Stop monitoring ongoing on the function key
 Then HMI OP2 with layout <<LAYOUT_GND>> has the function key MONITORING in monitoringOnGoing state
@@ -159,8 +159,8 @@ When HMI OP3 with layout <<LAYOUT_TWR>> presses function key MONITORING
 
 Scenario: OP2 clears the Monitoring calls
 When HMI OP2 with layout <<LAYOUT_GND>> presses function key MONITORING
-When HMI OP2 presses DA key TWR
-When HMI OP2 presses DA key SUP-TWR
+When HMI OP2 presses DA key TWR(as GND)
+When HMI OP2 presses DA key SUP-TWR(as GND)
 When HMI OP2 with layout <<LAYOUT_GND>> presses function key MONITORING
 
 Scenario: OP1 changes mission back

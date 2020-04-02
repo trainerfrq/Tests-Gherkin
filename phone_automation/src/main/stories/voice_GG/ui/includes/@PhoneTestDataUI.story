@@ -50,6 +50,9 @@ Given the DA keys:
 | HMI OP2 | GND                        | <<ACTIVE2_GND>>                      |
 | HMI OP2 | APP                        | <<ACTIVE2_APP>>                      |
 | HMI OP2 | SUP-TWR                    | <<ACTIVE2_SUP-TWR>>                  |
+| HMI OP2 | TWR(as GND)                | <<ACTIVE2(GND)_TWR>>                 |
+| HMI OP2 | APP(as GND)                | <<ACTIVE2(GND)_APP>>                 |
+| HMI OP2 | SUP-TWR(as GND)            | <<ACTIVE2(GND)_SUP-TWR>>             |
 | HMI OP3 | OP1                        | <<PhyOpPos3_CWP1>>                   |
 | HMI OP3 | OP2                        | <<PhyOpPos3_CWP2>>                   |
 | HMI OP3 | ROLE1                      | <<PhyOpPos3_ROLE1>>                  |
