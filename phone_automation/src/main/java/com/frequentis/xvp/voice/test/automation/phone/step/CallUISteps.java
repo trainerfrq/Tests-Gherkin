@@ -27,6 +27,7 @@ import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.CallHistory.ClickOnCallHistoryCallButton;
 import scripts.cats.hmi.actions.*;
+import scripts.cats.hmi.actions.PhoneBook.CallFromPhoneBook;
 import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookCallButton;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemPriority;
 import scripts.cats.hmi.asserts.DAKey.*;
@@ -145,6 +146,19 @@ public class CallUISteps extends AutomationSteps {
                                  profileScriptResolver().map(ClickFunctionKey.class, BookableProfileName.javafx),
                                  assertProfile(profileName))
                          .input(ClickFunctionKey.IPARAM_FUNCTION_KEY_ID, functionKey.getId()));
+    }
+
+    @When("$profileName with layout $layoutName calls phonebook entry $text")
+    public void callFromPhoneBook( final String profileName, final String layoutName, final String text )
+    {
+        String key = layoutName + "-" + "PHONEBOOK";
+        FunctionKey functionKey = retrieveFunctionKey(key);
+        evaluate( remoteStep( "Select phone book entry" )
+                .scriptOn(
+                        profileScriptResolver().map( CallFromPhoneBook.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input( CallFromPhoneBook.IPARAM_FUNCTION_KEY_ID, functionKey.getId() )
+                .input(CallFromPhoneBook.IPARAM_SEARCH_BOX_TEXT, text));
     }
 
     @When("$profileName initiates a call from the $functionPopup")

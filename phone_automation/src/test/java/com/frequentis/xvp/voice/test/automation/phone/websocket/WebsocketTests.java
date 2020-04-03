@@ -17,7 +17,7 @@ import java.util.List;
 @RunWith(CatsJunitRunner.class)
 @CatsRunConfiguration(
         stories = {
-                "voice_GG\\includes\\StartOpVoiceActiveOnDockerHost1.story",
+                "voice_GG/websocket/includes/@PrepareTwoClientsWithMissions.story",
         },
         catsHomeLocation = ".",
         name = "WebsocketTests")
