@@ -2570,6 +2570,63 @@
             </cats:storyLists>
         </cats:storyCollection>
         <cats:storyCollection enabled="true">
+            <cats:name>UI - KPIs</cats:name>
+            <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
+            <cats:report>
+                <cats:status>CREATED</cats:status>
+            </cats:report>
+            <cats:storyLists>
+                <cats:storyList enabled="true">
+                    <cats:name>UI - KPIs</cats:name>
+                    <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
+                    <cats:repetitions>1</cats:repetitions>
+                    <cats:report>
+                        <cats:status>CREATED</cats:status>
+                    </cats:report>
+                    <cats:reports/>
+                    <cats:stories>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/KPIs/KPIs_Conferencer.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/KPIs/KPIs_IA_Calls.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/KPIs/KPIs_Monitoring_Calls.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/KPIs/KPIs_OpVoice_Interfaces.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/KPIs/KPIs_Phone_Routing.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                    </cats:stories>
+                    <cats:timeout>1800</cats:timeout>
+                </cats:storyList>
+            </cats:storyLists>
+        </cats:storyCollection>
+        <cats:storyCollection enabled="true">
             <cats:name>UI - Capacity</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
@@ -2794,63 +2851,6 @@
                         </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>voice_GG/ui/ConditionalCallForward/PVCSX-TC-12483_CCF_test_with_max_number_of_CCF_rules.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyDataList/>
-                            <cats:storyStatistics/>
-                        </cats:story>
-                    </cats:stories>
-                    <cats:timeout>1800</cats:timeout>
-                </cats:storyList>
-            </cats:storyLists>
-        </cats:storyCollection>
-        <cats:storyCollection enabled="true">
-            <cats:name>UI - KPIs</cats:name>
-            <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
-            <cats:report>
-                <cats:status>CREATED</cats:status>
-            </cats:report>
-            <cats:storyLists>
-                <cats:storyList enabled="true">
-                    <cats:name>UI - KPIs</cats:name>
-                    <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
-                    <cats:repetitions>1</cats:repetitions>
-                    <cats:report>
-                        <cats:status>CREATED</cats:status>
-                    </cats:report>
-                    <cats:reports/>
-                    <cats:stories>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/includes/@PhoneTestDataUI.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyDataList/>
-                            <cats:storyStatistics/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/KPIs/KPIs_Conferencer.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyDataList/>
-                            <cats:storyStatistics/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/KPIs/KPIs_IA_Calls.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyDataList/>
-                            <cats:storyStatistics/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/KPIs/KPIs_Monitoring_Calls.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyDataList/>
-                            <cats:storyStatistics/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/KPIs/KPIs_OpVoice_Interfaces.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyDataList/>
-                            <cats:storyStatistics/>
-                        </cats:story>
-                        <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/KPIs/KPIs_Phone_Routing.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>

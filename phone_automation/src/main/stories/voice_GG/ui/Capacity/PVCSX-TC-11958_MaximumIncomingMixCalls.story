@@ -281,6 +281,15 @@ Then waiting for 5 seconds
 Scenario: Verify operator mission
 Then HMI OP2 has in the DISPLAY STATUS section mission the assigned mission <<MISSION_2_NAME>>
 
+Scenario: Remove phone
+When SipContact1 is removed
+
+Scenario: Remove phone
+When SipContact2 is removed
+
+Scenario: Remove phone
+When SipContact3 is removed
+
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
 GivenStories: voice_GG/ui/includes/@CleanupStory.story
