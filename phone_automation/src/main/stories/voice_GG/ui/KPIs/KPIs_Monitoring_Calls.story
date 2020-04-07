@@ -52,13 +52,6 @@ Then evaluate ${items_values}["Number of active outgoing Monitoring Calls"] equa
 
 Scenario: Verifying number of active outgoing Monitoring calls
 Then evaluate ${items_values}["Number of active incoming Monitoring Calls"] equals 0
-!-- Scenario: Verifying active Monitoring calls KPIs values
-!-- Then host ${active_opVoice_items} contains Number of active outgoing Monitoring Calls with value: 0
-!-- Then host ${active_opVoice_items} contains Number of active incoming Monitoring Calls with value: 0
-
-!-- Scenario: Saving value of outgoing and incoming Monitoring calls KPIs counters
-!-- Then get Number of attempted outgoing Monitoring Calls value from ${active_opVoice_items} :=> initial_numberOutgoingMonitoringCalls
-!-- Then get Number of accepted incoming Monitoring Calls value from ${active_opVoice_items} :=> initial_numberIncomingMonitoringCalls
 
 Scenario: OP2 tries to Monitor APP
 When HMI OP2 with layout <<LAYOUT_GND>> presses function key MONITORING
@@ -95,17 +88,9 @@ Then evaluate ${items_values_update1}["Number of active outgoing Monitoring Call
 Scenario: Verifying number of active outgoing Monitoring calls
 Then evaluate ${items_values_update1}["Number of active incoming Monitoring Calls"] equals 0
 
-!-- Scenario: Verifying active Monitoring calls KPIs values
-!-- Then host ${active_opVoice_items_update1} contains Number of active outgoing Monitoring Calls with value: 2
-!-- Then host ${active_opVoice_items_update1} contains Number of active incoming Monitoring Calls with value: 0
-
 Scenario: Verifying KPIs counters value
 Then evaluate new Integer(${items_values_update1}["Number of attempted outgoing Monitoring Calls"]) > new Integer(${items_values}["Number of attempted outgoing Monitoring Calls"])
 Then evaluate new Integer(${items_values_update1}["Number of accepted incoming Monitoring Calls"]) equals new Integer(${items_values}["Number of accepted incoming Monitoring Calls"])
-
-!-- Then verify Number of attempted outgoing Monitoring Calls value from ${active_opVoice_items_update1} is incremented by 3 towards ${initial_numberOutgoingMonitoringCalls}
-!-- Then evaluate new Integer(${items_values_update1}["Number of accepted incoming Monitoring Calls"]) equals new Integer(${items_values}["Number of accepted incoming Monitoring Calls"])
-!-- Then verify Number of accepted incoming Monitoring Calls value from ${active_opVoice_items_update1} is the same with ${initial_numberIncomingMonitoringCalls}
 
 Scenario: OP1 chooses to Monitor GND
 When HMI OP1 with layout <<LAYOUT_TWR>> presses function key MONITORING
@@ -136,16 +121,9 @@ Then evaluate ${items_values_update2}["Number of active outgoing Monitoring Call
 Scenario: Verifying number of active outgoing Monitoring calls
 Then evaluate ${items_values_update2}["Number of active incoming Monitoring Calls"] equals 2
 
-!-- Scenario: Verifying active Monitoring calls KPIs values
-!-- Then host ${active_opVoice_items_update2} contains Number of active outgoing Monitoring Calls with value: 2
-!-- Then host ${active_opVoice_items_update2} contains Number of active incoming Monitoring Calls with value: 2
-
 Scenario: Verifying KPIs counters value
 Then evaluate new Integer(${items_values_update2}["Number of attempted outgoing Monitoring Calls"]) equals new Integer(${items_values_update1}["Number of attempted outgoing Monitoring Calls"])
 Then evaluate new Integer(${items_values_update2}["Number of accepted incoming Monitoring Calls"]) > new Integer(${items_values_update1}["Number of accepted incoming Monitoring Calls"])
-
-!-- Then verify Number of attempted outgoing Monitoring Calls value from ${active_opVoice_items_update2} is incremented by 3 towards ${initial_numberOutgoingMonitoringCalls}
-!-- Then verify Number of accepted incoming Monitoring Calls value from ${active_opVoice_items_update2} is incremented by 2 towards new String(${items_values}["Number of accepted incoming Monitoring Calls"])
 
 Scenario: OP1 clears the Monitoring call
 When HMI OP1 with layout <<LAYOUT_TWR>> presses function key MONITORING
