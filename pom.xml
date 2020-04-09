@@ -120,6 +120,11 @@
                   <artifactId>cats-maven-assembly-plugin</artifactId>
                   <version>${cats.version}</version>
                </plugin>
+                <plugin>
+                    <groupId>com.frequentis.c4i.test</groupId>
+                    <artifactId>cats-maven-integration-plugin</artifactId>
+                    <version>${cats.version}</version>
+                </plugin>
                <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
