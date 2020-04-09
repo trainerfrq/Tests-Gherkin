@@ -34,6 +34,7 @@
                <plugin>
                   <groupId>com.github.ekryd.echo-maven-plugin</groupId>
                   <artifactId>echo-maven-plugin</artifactId>
+                  <version>${echo-maven-plugin.version}</version>
                   <executions>
                      <execution>
                         <phase>pre-integration-test</phase>
@@ -53,6 +54,7 @@
                <plugin>
                   <groupId>io.fabric8</groupId>
                   <artifactId>docker-maven-plugin</artifactId>
+                  <version>${fabric8-docker-maven-plugin.version}</version>
                   <executions>
                      <execution>
                         <id>Launch CATS</id>
@@ -127,6 +129,7 @@
                <plugin>
                   <groupId>com.frequentis.c4i.test</groupId>
                   <artifactId>cats-maven-integration-plugin</artifactId>
+                  <version>${cats.version}</version>
                   <executions>
                      <execution>
                         <phase>integration-test</phase>
