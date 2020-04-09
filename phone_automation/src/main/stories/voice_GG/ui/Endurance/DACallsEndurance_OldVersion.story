@@ -59,7 +59,7 @@ Then HMI OP1 has in the call queue a number of 0 calls
 Then waiting for 5 seconds
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
 When HMI OP1 clicks on the scroll down button in phonebook for 1 time(s)
-When HMI OP1 selects phonebook entry number: 12
+When HMI OP1 selects phonebook entry number: 14
 Then HMI OP1 verifies that phone book text box displays text Madoline
 When HMI OP1 initiates a call from the phonebook
 When SipContact answers incoming calls
@@ -112,7 +112,7 @@ Then HMI OP2 has in the call queue a number of 0 calls
 Then waiting for 5 seconds
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key PHONEBOOK
 When HMI OP2 clicks on the scroll down button in phonebook for 1 time(s)
-When HMI OP2 selects phonebook entry number: 12
+When HMI OP2 selects phonebook entry number: 14
 Then HMI OP2 verifies that phone book text box displays text Madoline
 When HMI OP2 initiates a call from the phonebook
 When SipContact answers incoming calls
