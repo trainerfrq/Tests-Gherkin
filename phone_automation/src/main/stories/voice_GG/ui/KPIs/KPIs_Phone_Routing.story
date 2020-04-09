@@ -34,26 +34,26 @@ Scenario: Check status change reason
 Then evaluate ${items_values}["Lifecycle status change reason"] contains "active"
 
 Scenario: Check Registered Contacts
-Then evaluate ${items_values}["Number of currently registered contacts"] equals 23
+Then verify that ${items_values}["Number of currently registered contacts"] has the expected value 23
 
 Scenario: Check Registered Users
-Then evaluate ${items_values}["Number of currently registered users"] equals 16
+Then verify that ${items_values}["Number of currently registered users"] has the expected value 16
 
 Scenario: Check Service's operational Status
-Then evaluate ${items_values}["Service operationalStatus"] equals 0
+Then verify that ${items_values}["Service operationalStatus"] has the expected value 0
 
 Scenario: Check the details of Service's operational Status
-Then evaluate ${items_values}["Service operational status in details"] equals "OK"
+Then verify that ${items_values}["Service operational status in details"] has the expected value "OK"
 
 Scenario: Check Service's SIP signalling interface
-Then evaluate ${items_values}["SIP signalling interface operational status"] equals 0
+Then verify that ${items_values}["SIP signalling interface operational status"] has the expected value 0
 
 Scenario: Check the details of Service's SIP signalling interface
-Then evaluate ${items_values}["SIP signalling interface operational status in details"] equals "VIP OK, PHY OK"
+Then verify that ${items_values}["SIP signalling interface operational status in details"] has the expected value "VIP OK, PHY OK"
 
 Scenario: Create sip phone
 Given SipContacts group SipContact:
-| key        | profile | user-entity                                                                  | sip-uri                                                             |
+| key        | profile | user-entity                                                                  | sip-uri                                                                                           |
 | SipContact | VOIP    | ThiIsASipContactWhichWillNotBeRegisteredCorrectlyDueToTheLenghtOfTheAddress  | sip:ThiIsASipContactWhichWillNotBeRegisteredCorrectlyDueToTheLenghtOfTheAddress@invalidSipURI.com |
 And phones for SipContact are created
 
@@ -71,19 +71,19 @@ Scenario: Get KPI values
 Then get phone-routing KPIs values from zabbix host ${active_phoneRouting_items_update1} :=> items_values_update
 
 Scenario: Check new value of Currently registered contacts
-Then evaluate new Integer(${items_values_update}["Number of currently registered contacts"]) equals 0
+Then verify that new Integer(${items_values_update}["Number of currently registered contacts"]) has the expected value 0
 
 Scenario: Check new value of Currently registered users
-Then evaluate new Integer(${items_values_update}["Number of currently registered users"]) equals 0
+Then verify that new Integer(${items_values_update}["Number of currently registered users"]) has the expected value 0
 
 Scenario: Compare accepted registrations counters
-Then evaluate new Integer(${items_values_update}["Counter of accepted registrations"]) >= new Integer(${items_values}["Counter of accepted registrations"])
+Then verify that ${items_values_update}["Counter of accepted registrations"] is greater or equal to ${items_values}["Counter of accepted registrations"]
 
 Scenario: Compare expired registrations counters
-Then evaluate new Integer(${items_values_update}["Counter of expired registrations"]) > new Integer(${items_values}["Counter of expired registrations"])
+Then verify that ${items_values_update}["Counter of expired registrations"] is greater than ${items_values}["Counter of expired registrations"]
 
 Scenario: Compare rejected registrations counters
-Then evaluate new Integer(${items_values_update}["Counter of rejected registrations"]) > new Integer(${items_values}["Counter of rejected registrations"])
+Then verify that ${items_values_update}["Counter of rejected registrations"] is greater than ${items_values}["Counter of rejected registrations"]
 
 Scenario: Remove phone
 When SipContact is removed

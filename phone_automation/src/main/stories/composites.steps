@@ -42,7 +42,7 @@ Given {
 
 Composite: Then get opVoice interfaces KPIs values from zabbix host $host
 Then get Association status of phone to audio app value from <host> :=> audioAppAssociationStatus
-Then get Number of the association status changes to the audio app  value from <host> :=> audioAppAssociationStatusChanges
+Then get Number of the association status changes to the audio app value from <host> :=> audioAppAssociationStatusChanges
 Then get GUI connection status value from <host> :=> connectionStatusHMI
 Then get Number of websocket connection association status change value from <host> :=> connectionStatusChangesHMI
 Then get Connection status to the mission service value from <host> :=> connectionStatusMissionService

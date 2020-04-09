@@ -16,13 +16,17 @@
  ************************************************************************/
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import com.frequentis.c4i.test.bdd.api.ResolvedExpression;
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.cats.zabbix.tecpac.item.ItemGetResponse;
+import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Then;
 
 import java.util.List;
 import java.util.Optional;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ZabbixUISteps extends AutomationSteps {
     @Then("host $hostItems contains $itemName with value: $value")
@@ -86,7 +90,27 @@ public class ZabbixUISteps extends AutomationSteps {
         return item.getLastvalue();
     }
 
-    public void verifyInstancesAreMonitored(List<ItemGetResponse.Result> itemsList1, List<ItemGetResponse.Result> itemsList2){
+    @Then("verify that $itemValue has the expected value $expectedValue")
+    public void checkItemHasExpectedValue(ResolvedExpression itemValue, ResolvedExpression expectedValue) {
+        boolean equal = isEqual(itemValue, expectedValue);
+        evaluate(localStep("Check Zabbix Item value")
+                .details(ExecutionDetails.create("Verify that Zabbix Item has expected value")
+                        .received("Item value: " + itemValue.resultAs(String.class))
+                        .expected("Expected value " + expectedValue.resultAs(String.class))
+                        .success(equal)));
+    }
+
+    @Then("verify that $firstItemValue is $comparison than $secondItemValue")
+    @Alias("verify that $firstItemValue is $comparison to $secondItemValue")
+    public void compareTwoZabbixItemsValue(ResolvedExpression firstItemValue, String comparisonSign, ResolvedExpression secondItemValue) {
+        boolean comparisonIsTrue = compare(firstItemValue, secondItemValue, comparisonSign);
+        evaluate(localStep("Compare Zabbix Items values")
+                .details(ExecutionDetails.create("Compare " + firstItemValue.resultAs(String.class) + " and " + secondItemValue.resultAs(String.class))
+                        .expected(firstItemValue.resultAs(String.class) + " " +comparisonSign + " " + secondItemValue.resultAs(String.class))
+                        .success(comparisonIsTrue)));
+    }
+
+    public void verifyInstancesAreMonitored(List<ItemGetResponse.Result> itemsList1, List<ItemGetResponse.Result> itemsList2) {
         boolean isInstance1Monitored = Integer.parseInt(getValueOfZabbixItem("Monitoring Status", itemsList1)) == 0;
         boolean isInstance2Monitored = Integer.parseInt(getValueOfZabbixItem("Monitoring Status", itemsList2)) == 0;
 
@@ -97,8 +121,7 @@ public class ZabbixUISteps extends AutomationSteps {
                         .success(isInstance1Monitored && isInstance2Monitored)));
     }
 
-
-    public List<ItemGetResponse.Result> getItemsListOfActiveInstance(List<ItemGetResponse.Result> itemsList1, List<ItemGetResponse.Result> itemsList2){
+    public List<ItemGetResponse.Result> getItemsListOfActiveInstance(List<ItemGetResponse.Result> itemsList1, List<ItemGetResponse.Result> itemsList2) {
         int statusInstance1 = Integer.parseInt(getValueOfZabbixItem("Lifecycle status", itemsList1));
         int statusInstance2 = Integer.parseInt(getValueOfZabbixItem("Lifecycle status", itemsList2));
 
@@ -128,4 +151,53 @@ public class ZabbixUISteps extends AutomationSteps {
 
         return searchedItem.get();
     }
+
+    public void validateParameters(final ResolvedExpression leftOperand, final ResolvedExpression rightOperand) {
+        checkNotNull(leftOperand, "Value to be compared (leftOperand) must not be null");
+        checkNotNull(rightOperand, "Value to be compared (rightOperand) must not be null");
+    }
+
+    public boolean isEqual(final ResolvedExpression leftOperand, final ResolvedExpression rightOperand) {
+        validateParameters(leftOperand, rightOperand);
+        boolean equal;
+        if (leftOperand.getResult() != null) {
+            equal = leftOperand.getResult().equals(rightOperand.getResult())
+                    || leftOperand.getResult().toString().equals(rightOperand.getResult() != null ? rightOperand.getResult().toString() : null);
+        } else {
+            equal = rightOperand.getResult() == null;
+        }
+
+        return equal;
+    }
+
+    public boolean compare(final ResolvedExpression leftOperand, final ResolvedExpression rightOperand, String comparisonSign) {
+        validateParameters(leftOperand, rightOperand);
+        boolean expressionIsTrue = false;
+        switch (comparisonSign) {
+            case "equal":{
+                expressionIsTrue = Integer.parseInt((String)leftOperand.getResult()) == Integer.parseInt((String)rightOperand.getResult());
+                break;
+            }
+            case "greater": {
+                expressionIsTrue = Integer.parseInt((String)leftOperand.getResult()) > Integer.parseInt((String)rightOperand.getResult());
+                break;
+            }
+            case "smaller": {
+                expressionIsTrue = Integer.parseInt((String)leftOperand.getResult()) < Integer.parseInt((String)rightOperand.getResult());
+                break;
+            }
+            case "greater or equal": {
+                expressionIsTrue =Integer.parseInt((String)leftOperand.getResult()) >= Integer.parseInt((String)rightOperand.getResult());
+                break;
+            }
+            case "smaller or equal": {
+                expressionIsTrue = Integer.parseInt((String)leftOperand.getResult()) <= Integer.parseInt((String)rightOperand.getResult());
+                break;
+            }
+        }
+        return expressionIsTrue;
+    }
 }
+
+
+

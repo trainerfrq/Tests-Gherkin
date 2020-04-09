@@ -38,10 +38,9 @@ Then get items of active instance amongst ${opVoice_1_1_items} and ${opVoice_1_2
 Then get opVoice IA Calls KPIs values from zabbix host ${active_opVoice_items} :=> items_values
 
 Scenario: Check number of active outgoing IA Calls
-Then evaluate ${items_values}["Number of active outgoing IA Calls"] equals 0
-
+Then verify that ${items_values}["Number of active outgoing IA Calls"] has the expected value 0
 Scenario: Check number of active incoming IA Calls
-Then evaluate ${items_values}["Number of active incoming IA Calls"] equals 0
+Then verify that ${items_values}["Number of active incoming IA Calls"] has the expected value 0
 
 Scenario: OP1 establishes an outgoing IA call to OP3
 When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
@@ -66,14 +65,14 @@ Scenario: Get KPI values
 Then get opVoice IA Calls KPIs values from zabbix host ${active_opVoice_items_update1} :=> items_values_update1
 
 Scenario: Check number of active outgoing IA Calls
-Then evaluate ${items_values_update1}["Number of active outgoing IA Calls"] equals 1
+Then verify that ${items_values_update1}["Number of active outgoing IA Calls"] has the expected value 1
 
 Scenario: Check number of active incoming IA Calls
-Then evaluate ${items_values_update1}["Number of active incoming IA Calls"] equals 0
+Then verify that ${items_values_update1}["Number of active incoming IA Calls"] has the expected value 0
 
 Scenario: Verifying KPIs counters values are incremented
-Then evaluate new Integer(${items_values_update1}["Number of outgoing IA Calls"]) > new Integer(${items_values}["Number of outgoing IA Calls"])
-Then evaluate new Integer(${items_values_update1}["Number of accepted incoming IA Calls"]) equals new Integer(${items_values}["Number of accepted incoming IA Calls"])
+Then verify that ${items_values_update1}["Number of outgoing IA Calls"] is greater than ${items_values}["Number of outgoing IA Calls"]
+Then verify that ${items_values_update1}["Number of accepted incoming IA Calls"] is equal to ${items_values}["Number of accepted incoming IA Calls"]
 
 Scenario: OP2 establishes an outgoing IA call to OP1, using the IA key
 When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
@@ -99,14 +98,14 @@ Scenario: Get KPI values
 Then get opVoice IA Calls KPIs values from zabbix host ${active_opVoice_items_update2} :=> items_values_update2
 
 Scenario: Check number of active outgoing IA Calls
-Then evaluate ${items_values_update2}["Number of active outgoing IA Calls"] equals 1
+Then verify that ${items_values_update2}["Number of active outgoing IA Calls"] has the expected value 1
 
 Scenario: Check number of active incoming IA Calls
-Then evaluate ${items_values_update2}["Number of active incoming IA Calls"] equals 2
+Then verify that ${items_values_update2}["Number of active incoming IA Calls"] has the expected value 2
 
 Scenario: Verifying KPIs counters value
-Then evaluate new Integer(${items_values_update2}["Number of outgoing IA Calls"]) equals new Integer(${items_values_update1}["Number of outgoing IA Calls"])
-Then evaluate new Integer(${items_values_update2}["Number of accepted incoming IA Calls"]) > new Integer(${items_values_update1}["Number of accepted incoming IA Calls"])
+Then verify that ${items_values_update2}["Number of outgoing IA Calls"] is equal to ${items_values_update1}["Number of outgoing IA Calls"]
+Then verify that ${items_values_update2}["Number of accepted incoming IA Calls"] is greater than ${items_values_update1}["Number of accepted incoming IA Calls"]
 
 Scenario: Caller clears IA call
 When HMI OP1 presses IA key IA - OP2

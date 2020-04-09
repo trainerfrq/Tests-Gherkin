@@ -48,10 +48,10 @@ Then get items of active instance amongst ${opVoice_2_1_items} and ${opVoice_2_2
 Then get opVoice Monitoring Calls KPIs values from zabbix host ${active_opVoice_items} :=> items_values
 
 Scenario: Verifying number of active outgoing Monitoring calls
-Then evaluate ${items_values}["Number of active outgoing Monitoring Calls"] equals 0
+Then verify that ${items_values}["Number of active outgoing Monitoring Calls"] has the expected value 0
 
 Scenario: Verifying number of active outgoing Monitoring calls
-Then evaluate ${items_values}["Number of active incoming Monitoring Calls"] equals 0
+Then verify that ${items_values}["Number of active incoming Monitoring Calls"] has the expected value 0
 
 Scenario: OP2 tries to Monitor APP
 When HMI OP2 with layout <<LAYOUT_GND>> presses function key MONITORING
@@ -83,14 +83,14 @@ Scenario: Get KPI values
 Then get opVoice Monitoring Calls KPIs values from zabbix host ${active_opVoice_items_update1} :=> items_values_update1
 
 Scenario: Verifying number of active outgoing Monitoring calls
-Then evaluate ${items_values_update1}["Number of active outgoing Monitoring Calls"] equals 2
+Then verify that ${items_values_update1}["Number of active outgoing Monitoring Calls"] has the expected value 2
 
 Scenario: Verifying number of active outgoing Monitoring calls
-Then evaluate ${items_values_update1}["Number of active incoming Monitoring Calls"] equals 0
+Then verify that ${items_values_update1}["Number of active incoming Monitoring Calls"] has the expected value 0
 
 Scenario: Verifying KPIs counters value
-Then evaluate new Integer(${items_values_update1}["Number of attempted outgoing Monitoring Calls"]) > new Integer(${items_values}["Number of attempted outgoing Monitoring Calls"])
-Then evaluate new Integer(${items_values_update1}["Number of accepted incoming Monitoring Calls"]) equals new Integer(${items_values}["Number of accepted incoming Monitoring Calls"])
+Then verify that ${items_values_update1}["Number of attempted outgoing Monitoring Calls"] is greater than ${items_values}["Number of attempted outgoing Monitoring Calls"]
+Then verify that ${items_values_update1}["Number of accepted incoming Monitoring Calls"] is equal to ${items_values}["Number of accepted incoming Monitoring Calls"]
 
 Scenario: OP1 chooses to Monitor GND
 When HMI OP1 with layout <<LAYOUT_TWR>> presses function key MONITORING
@@ -116,14 +116,14 @@ Scenario: Get KPI values
 Then get opVoice Monitoring Calls KPIs values from zabbix host ${active_opVoice_items_update2} :=> items_values_update2
 
 Scenario: Verifying number of active outgoing Monitoring calls
-Then evaluate ${items_values_update2}["Number of active outgoing Monitoring Calls"] equals 2
+Then verify that ${items_values_update2}["Number of active outgoing Monitoring Calls"] has the expected value 2
 
 Scenario: Verifying number of active outgoing Monitoring calls
-Then evaluate ${items_values_update2}["Number of active incoming Monitoring Calls"] equals 2
+Then verify that ${items_values_update2}["Number of active incoming Monitoring Calls"] has the expected value 2
 
 Scenario: Verifying KPIs counters value
-Then evaluate new Integer(${items_values_update2}["Number of attempted outgoing Monitoring Calls"]) equals new Integer(${items_values_update1}["Number of attempted outgoing Monitoring Calls"])
-Then evaluate new Integer(${items_values_update2}["Number of accepted incoming Monitoring Calls"]) > new Integer(${items_values_update1}["Number of accepted incoming Monitoring Calls"])
+Then verify that ${items_values_update2}["Number of attempted outgoing Monitoring Calls"] is equal to ${items_values_update1}["Number of attempted outgoing Monitoring Calls"]
+Then verify that ${items_values_update2}["Number of accepted incoming Monitoring Calls"] is greater than ${items_values_update1}["Number of accepted incoming Monitoring Calls"]
 
 Scenario: OP1 clears the Monitoring call
 When HMI OP1 with layout <<LAYOUT_TWR>> presses function key MONITORING

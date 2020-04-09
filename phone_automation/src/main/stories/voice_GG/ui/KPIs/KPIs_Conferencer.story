@@ -26,14 +26,14 @@ Scenario: Check status change reason
 Then evaluate ${items_values}["Lifecycle status change reason"] contains "active"
 
 Scenario: Check Configuration validity
-Then evaluate ${items_values}["Configuration validity"] equals 0
-Then evaluate ${items_values}["Configuration validity in details"] equals "OK"
+Then verify that ${items_values}["Configuration validity"] has the expected value 0
+Then verify that ${items_values}["Configuration validity in details"] has the expected value "OK"
 
 Scenario: Check Service's operational Status
-Then evaluate ${items_values}["Service operationalStatus"] equals 0
-Then evaluate ${items_values}["Service operational status in details"] equals "OK"
+Then verify that ${items_values}["Service operationalStatus"] has the expected value 0
+Then verify that ${items_values}["Service operational status in details"] has the expected value "OK"
 
 Scenario: Check Service's SIP signalling interface
-Then evaluate ${items_values}["SIP signalling interface operational status"] equals 0
-Then evaluate ${items_values}["SIP signalling interface operational status in details"] equals "VIP OK"
+Then verify that ${items_values}["SIP signalling interface operational status"] has the expected value 0
+Then verify that ${items_values}["SIP signalling interface operational status in details"] has the expected value "VIP OK"
 
