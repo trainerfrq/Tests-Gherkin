@@ -78,13 +78,13 @@
             <!-- Manually added dependency to avoid version conflicts -->
 
            <!-- Domain package dependencies -->
-           <dependency>
-                <groupId>com.frequentis.xvp.voice.automation</groupId>
-                <artifactId>voice-test-automation-common-libs</artifactId>
-              <scope>import</scope>
-              <type>pom</type>
-                <version>${voice.automation.common.version}</version>
-            </dependency>
+        <dependency>
+             <groupId>com.frequentis.xvp.voice.automation</groupId>
+             <artifactId>voice-test-automation-common-libs</artifactId>
+             <scope>import</scope>
+             <type>pom</type>
+             <version>${voice.automation.common.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.frequentis.xvp.voice.phone</groupId>
             <artifactId>cats-voice-hmi-steps</artifactId>
