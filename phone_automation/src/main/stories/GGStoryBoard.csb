@@ -2616,7 +2616,7 @@
                             <cats:storyStatistics/>
                         </cats:story>
                         <cats:story enabled="true">
-                            <cats:storyPath>voice_GG/ui/KPIs/KPIs_Phone_Routing.story</cats:storyPath>
+                            <cats:storyPath>voice_GG/ui/KPIs/PVCSX-TC-7803_KPI_-_Call_Routing_Service.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>

@@ -22,18 +22,18 @@ Scenario: Get items of active conferencer-service instance
 Then get items of active instance amongst ${conferencer_1_items} and ${conferencer_2_items} :=> active_conferencer_items
 Then get Conferencer KPIs values from zabbix host ${active_conferencer_items} :=> items_values
 
-Scenario: Check status change reason
+Scenario: Verify that status change reason indicates an active instance
 Then evaluate ${items_values}["Lifecycle status change reason"] contains "active"
 
-Scenario: Check Configuration validity
+Scenario: Verify that service has a Valid Configuration
 Then verify that ${items_values}["Configuration validity"] has the expected value 0
 Then verify that ${items_values}["Configuration validity in details"] has the expected value "OK"
 
-Scenario: Check Service's operational Status
+Scenario: Verify that Service operates in normal conditions
 Then verify that ${items_values}["Service operationalStatus"] has the expected value 0
 Then verify that ${items_values}["Service operational status in details"] has the expected value "OK"
 
-Scenario: Check Service's SIP signalling interface
+Scenario: Verify that Service's SIP signalling interface operates in normal conditions
 Then verify that ${items_values}["SIP signalling interface operational status"] has the expected value 0
 Then verify that ${items_values}["SIP signalling interface operational status in details"] has the expected value "VIP OK"
 

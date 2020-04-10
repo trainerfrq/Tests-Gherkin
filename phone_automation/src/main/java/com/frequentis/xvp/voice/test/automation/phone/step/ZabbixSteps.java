@@ -28,7 +28,7 @@ import java.util.Optional;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class ZabbixUISteps extends AutomationSteps {
+public class ZabbixSteps extends AutomationSteps {
     @Then("host $hostItems contains $itemName with value: $value")
     public void checkZabbixHostContainsItemWithValue(List<ItemGetResponse.Result> itemsList, String searchedItemName, String value) {
 
@@ -42,29 +42,27 @@ public class ZabbixUISteps extends AutomationSteps {
     }
 
     @Then("verify $itemName value from $hostItems is incremented by $value towards $oldItemValue")
-    public void checkZabbixItemValueWasIncremented(String searchedItemName, List<ItemGetResponse.Result> itemsList, String incrementValue, String oldValue) {
+    public void checkZabbixItemValueWasIncremented(String searchedItemName, List<ItemGetResponse.Result> itemsList, Integer incrementValue, Integer oldValue) {
 
-        int previousValue = Integer.parseInt(oldValue);
         int actualValue = Integer.parseInt(getValueOfZabbixItem(searchedItemName, itemsList));
 
         evaluate(localStep("Verifying value was incremented")
                 .details(ExecutionDetails.create("Compare Current and Previous values")
                         .received("Current value: " + actualValue + "\nPrevious value: " + oldValue)
                         .expected("Current value is greater than Previous value with " + incrementValue)
-                        .success((previousValue + Integer.parseInt(incrementValue)) == actualValue)));
+                        .success((oldValue + incrementValue) == actualValue)));
     }
 
     @Then("verify $itemName value from $hostItems is the same with $oldItemValue")
-    public void checkZabbixItemValueIsTheSameAsPreviousValue(String searchedItemName, List<ItemGetResponse.Result> itemsList, String oldValue) {
+    public void checkZabbixItemValueIsTheSameAsPreviousValue(String searchedItemName, List<ItemGetResponse.Result> itemsList, Integer oldValue) {
 
-        int previousValue = Integer.parseInt(oldValue);
         int actualValue = Integer.parseInt(getValueOfZabbixItem(searchedItemName, itemsList));
 
         evaluate(localStep("Verifying values are the same")
                 .details(ExecutionDetails.create("Current and Previous values are the same")
                         .received("Current value: " + actualValue + "\nPrevious value: " + oldValue)
                         .expected("Values are the same")
-                        .success(previousValue == actualValue)));
+                        .success(oldValue == actualValue)));
     }
 
     @Then("get items of active instance amongst $hostItems1 and $hostItems2")

@@ -1,5 +1,5 @@
 Narrative:
-As an operator monitoring the KPIs
+As an operator monitoring the KPIs of Monitoring Calls
 I want to establish and receive Monitoring calls
 So I can verify that the KPIs are modified according to my actions
 
@@ -50,7 +50,7 @@ Then get opVoice Monitoring Calls KPIs values from zabbix host ${active_opVoice_
 Scenario: Verifying number of active outgoing Monitoring calls
 Then verify that ${items_values}["Number of active outgoing Monitoring Calls"] has the expected value 0
 
-Scenario: Verifying number of active outgoing Monitoring calls
+Scenario: Verifying number of active incoming Monitoring calls
 Then verify that ${items_values}["Number of active incoming Monitoring Calls"] has the expected value 0
 
 Scenario: OP2 tries to Monitor APP
@@ -76,7 +76,7 @@ Then waiting for 60 seconds
 
 Scenario: Interrogate Zabbix for data
 When Zabbix ZABBIX.test requests items:
-| hostids                            |
+| hostids                                   |
 | #{${active_opVoice_items}.get(0).hostid}  | :=> active_opVoice_items_update1
 
 Scenario: Get KPI values
@@ -85,7 +85,7 @@ Then get opVoice Monitoring Calls KPIs values from zabbix host ${active_opVoice_
 Scenario: Verifying number of active outgoing Monitoring calls
 Then verify that ${items_values_update1}["Number of active outgoing Monitoring Calls"] has the expected value 2
 
-Scenario: Verifying number of active outgoing Monitoring calls
+Scenario: Verifying number of active incoming Monitoring calls
 Then verify that ${items_values_update1}["Number of active incoming Monitoring Calls"] has the expected value 0
 
 Scenario: Verifying KPIs counters value
@@ -109,7 +109,7 @@ Then waiting for 60 seconds
 
 Scenario: Interrogate Zabbix for data
 When Zabbix ZABBIX.test requests items:
-| hostids                            |
+| hostids                                   |
 | #{${active_opVoice_items}.get(0).hostid}  | :=> active_opVoice_items_update2
 
 Scenario: Get KPI values

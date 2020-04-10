@@ -32,17 +32,18 @@ When Zabbix ZABBIX.test requests items:
 | host                         |
 | <<OPVOICE_1-2_NAME_ZABBIX>>  | :=> opVoice_1_2_items
 
+!-- TODO Fails due to PVCSX-4380. Also check PVCSX-4390 in order to test the KPIs
 Scenario: Get items of active op-voice-service instance
 Then get items of active instance amongst ${opVoice_1_1_items} and ${opVoice_1_2_items} :=> active_opVoice_items
 Then get opVoice interfaces KPIs values from zabbix host ${active_opVoice_items} :=> items_values
 
-Scenario: Check Audio Interface status KPI
+Scenario: Verify that phone is connected to the audio app
 Then verify that ${items_values}["Association status of phone to audio app"] has the expected value 0
 
-Scenario: Check GUI Interface status KPI
+Scenario: Verify that GUI service is connected
 Then verify that ${items_values}["GUI connection status"] has the expected value 0
 
-Scenario: Check Mission Service Interface status KPI
+Scenario: Verify that Mission service is connected
 Then verify that ${items_values}["Connection status to the mission service"] has the expected value 0
 
 Scenario: Remove Mission Service instances

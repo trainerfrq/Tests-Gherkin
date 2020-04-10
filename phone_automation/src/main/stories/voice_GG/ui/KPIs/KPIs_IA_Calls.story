@@ -1,5 +1,5 @@
 Narrative:
-As an operator monitoring the KPIs
+As an operator monitoring the KPIs of IA Calls
 I want to establish and receive IA calls
 So I can verify that the KPIs are modified according to my actions
 
@@ -39,6 +39,7 @@ Then get opVoice IA Calls KPIs values from zabbix host ${active_opVoice_items} :
 
 Scenario: Check number of active outgoing IA Calls
 Then verify that ${items_values}["Number of active outgoing IA Calls"] has the expected value 0
+
 Scenario: Check number of active incoming IA Calls
 Then verify that ${items_values}["Number of active incoming IA Calls"] has the expected value 0
 
