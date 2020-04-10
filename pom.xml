@@ -48,6 +48,7 @@
       <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
       <fabric8-docker-maven-plugin.version>0.16.8</fabric8-docker-maven-plugin.version>
       <echo-maven-plugin.version>1.2.0</echo-maven-plugin.version>
+      <maven-enforcer-plugin.version>3.0.0-M1</maven-enforcer-plugin.version>
 
    </properties>
 
