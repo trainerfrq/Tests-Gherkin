@@ -47,6 +47,8 @@
       <maven.resources.plugin.version>3.0.0</maven.resources.plugin.version>
       <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
       <fabric8-docker-maven-plugin.version>0.16.8</fabric8-docker-maven-plugin.version>
+      <echo-maven-plugin.version>1.2.0</echo-maven-plugin.version>
+      <maven-enforcer-plugin.version>3.0.0-M1</maven-enforcer-plugin.version>
 
    </properties>
 
@@ -78,13 +80,13 @@
             <!-- Manually added dependency to avoid version conflicts -->
 
            <!-- Domain package dependencies -->
-           <dependency>
-                <groupId>com.frequentis.xvp.voice.automation</groupId>
-                <artifactId>voice-test-automation-common-libs</artifactId>
-              <scope>import</scope>
-              <type>pom</type>
-                <version>${voice.automation.common.version}</version>
-            </dependency>
+        <dependency>
+             <groupId>com.frequentis.xvp.voice.automation</groupId>
+             <artifactId>voice-test-automation-common-libs</artifactId>
+             <scope>import</scope>
+             <type>pom</type>
+             <version>${voice.automation.common.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.frequentis.xvp.voice.phone</groupId>
             <artifactId>cats-voice-hmi-steps</artifactId>
@@ -120,6 +122,11 @@
                   <artifactId>cats-maven-assembly-plugin</artifactId>
                   <version>${cats.version}</version>
                </plugin>
+                <plugin>
+                    <groupId>com.frequentis.c4i.test</groupId>
+                    <artifactId>cats-maven-integration-plugin</artifactId>
+                    <version>${cats.version}</version>
+                </plugin>
                <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
