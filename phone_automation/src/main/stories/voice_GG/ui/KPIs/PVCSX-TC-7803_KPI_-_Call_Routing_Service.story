@@ -86,7 +86,7 @@ Then verify that ${items_values}["Number of currently registered users"] has the
 Scenario: 4. Register a new valid Phonebook entry, like: sip:12345@frequentis.com
 Meta:
 @TEST_STEP_ACTION:  Register a new valid Phonebook entry, like: sip:12345@frequentis.com
-@TEST_STEP_REACTION: Phonebook entry is created and registered successfully
+@TEST_STEP_REACTION: Phonebook entry is registered successfully
 @TEST_STEP_REF: [CATS-REF: oASC]
 Given SipContacts group SipContactValid:
 | key        | profile | user-entity | sip-uri        |
@@ -96,7 +96,7 @@ And phones for SipContactValid are created
 Scenario: 5. Register a new invalid Phonebook entry, like:sip:ThiIsASipContactWhichWillNotBeRegisteredCorrectlyDueToTheLenghtOfTheAddress@invalidSipURI.com
 Meta:
 @TEST_STEP_ACTION: Register a new invalid Phonebook entry, like:sip:ThiIsASipContactWhichWillNotBeRegisteredCorrectlyDueToTheLenghtOfTheAddress@invalidSipURI.com
-@TEST_STEP_REACTION: Phonebook entry is created, but it is not registered due its too long name. (registration is rejected)
+@TEST_STEP_REACTION: Phonebook entry is not registered due its too long name. (registration is rejected)
 @TEST_STEP_REF: [CATS-REF: vo1g]
 Given SipContacts group SipContactInvalid:
 | key        | profile | user-entity                                                                  | sip-uri                                                                                           |
