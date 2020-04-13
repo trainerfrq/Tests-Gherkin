@@ -83,9 +83,9 @@ Meta:
 @TEST_STEP_REF: [CATS-REF: coTF]
 Then verify that ${items_values}["Number of currently registered users"] has the expected value 16
 
-Scenario: 4. Create a valid Phonebook entry, like: sip:12345@frequentis.com
+Scenario: 4. Register a new valid Phonebook entry, like: sip:12345@frequentis.com
 Meta:
-@TEST_STEP_ACTION: Create a valid Phonebook entry, like: sip:12345@frequentis.com
+@TEST_STEP_ACTION:  Register a new valid Phonebook entry, like: sip:12345@frequentis.com
 @TEST_STEP_REACTION: Phonebook entry is created and registered successfully
 @TEST_STEP_REF: [CATS-REF: oASC]
 Given SipContacts group SipContactValid:
@@ -93,9 +93,9 @@ Given SipContacts group SipContactValid:
 | SipContact | VOIP    | 12345       | <<SIP_PHONE2>> |
 And phones for SipContactValid are created
 
-Scenario: 5. Create an invalid Phonebook entry, like:sip:ThiIsASipContactWhichWillNotBeRegisteredCorrectlyDueToTheLenghtOfTheAddress@invalidSipURI.com
+Scenario: 5. Register a new invalid Phonebook entry, like:sip:ThiIsASipContactWhichWillNotBeRegisteredCorrectlyDueToTheLenghtOfTheAddress@invalidSipURI.com
 Meta:
-@TEST_STEP_ACTION: Create an invalid Phonebook entry, like:sip:ThiIsASipContactWhichWillNotBeRegisteredCorrectlyDueToTheLenghtOfTheAddress@invalidSipURI.com
+@TEST_STEP_ACTION: Register a new invalid Phonebook entry, like:sip:ThiIsASipContactWhichWillNotBeRegisteredCorrectlyDueToTheLenghtOfTheAddress@invalidSipURI.com
 @TEST_STEP_REACTION: Phonebook entry is created, but it is not registered due its too long name. (registration is rejected)
 @TEST_STEP_REF: [CATS-REF: vo1g]
 Given SipContacts group SipContactInvalid:
