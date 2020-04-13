@@ -18,7 +18,6 @@ package com.frequentis.xvp.voice.test.automation.phone.step;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.c4i.test.model.ExecutionDetails;
-import com.frequentis.cats.zabbix.tecpac.item.ItemGetResponse;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.GridWidgetKey;
 import com.frequentis.xvp.voice.test.automation.phone.data.StatusKey;
@@ -42,8 +41,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
-import java.util.Optional;
 
 import static com.frequentis.xvp.voice.test.automation.phone.step.local.ConfigurationSteps.getCatsResourcesFolderPath;
 
@@ -245,26 +242,6 @@ public class GGBasicUISteps extends AutomationSteps
                 .input(VerifyItemVisibility.IPARAM_IS_VISIBLE, isVisible));
     }
 
-    @Then("Host $hostItems contains $itemName with value: $value")
-    public void checkSomething(List<ItemGetResponse.Result> itemsList, String itemName, String value) {
-
-        Optional<ItemGetResponse.Result> searchedItem = itemsList.stream()
-                .filter(x -> itemName.equals(x.getName()))
-                .findFirst();
-
-        evaluate(localStep("Check item")
-                .details(ExecutionDetails.create("Check item was found")
-                        .usedData("Searching for: ", itemName)
-                        .success(searchedItem.isPresent())));
-
-        final ItemGetResponse.Result result = searchedItem.get();
-
-        evaluate(localStep("Check for value")
-                .details(ExecutionDetails.create("Check value of item " + itemName)
-                        .received(result.getLastvalue())
-                        .expected(value)
-                        .success(result.getLastvalue().equals(value))));
-    }
 
     private String getFieldValueFromJsonFile(String filePath, String fieldName) {
         final Path path = Paths.get(getCatsResourcesFolderPath(), filePath);

@@ -20,7 +20,7 @@ Scenario: Check discovery service
 When Zabbix ZABBIX.test requests items:
 | host                                                   |
 | op-voice-service-cj-gg-cat-cwp-1-1.xvp.frequentis.frq  | :=> service_items0
-Then Host ${service_items0} contains Number of active outgoing IA Calls with value: 0
+Then host ${service_items0} contains Number of active outgoing IA Calls with value: 0
 
 Scenario: Caller establishes an outgoing IA call
 When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
@@ -38,7 +38,7 @@ Scenario: Check discovery service
 When Zabbix ZABBIX.test requests items:
 | host                                                   |
 | op-voice-service-cj-gg-cat-cwp-1-1.xvp.frequentis.frq  | :=> service_items1
-Then Host ${service_items1} contains Number of active outgoing IA Calls with value: 1
+Then host ${service_items1} contains Number of active outgoing IA Calls with value: 1
 
 Scenario: Clean up IA Call
 When HMI OP1 presses IA key IA - OP2

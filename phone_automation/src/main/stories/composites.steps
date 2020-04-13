@@ -1,0 +1,85 @@
+Composite: Then get phone-routing KPIs values from zabbix host $host
+Then get Lifecycle status change reason value from <host> :=> statusChangeReason
+Then get Counter of accepted registrations value from <host> :=> acceptedRegistrations
+Then get Counter of expired registrations value from <host> :=> expiredRegistrations
+Then get Counter of rejected registrations value from <host> :=> rejectedRegistrations
+Then get Number of currently registered contacts value from <host> :=> registeredContacts
+Then get Number of currently registered users value from <host> :=> registeredUsers
+Then get Service operationalStatus value from <host> :=> operationalStatus
+Then get Service operational status in details value from <host> :=> operationalStatusDetails
+Then get SIP signalling interface operational status value from <host> :=> SIPinterfaceOperationalStatus
+Then get SIP signalling interface operational status in details value from <host> :=> SIPinterfaceOperationalStatusDetails
+Given {
+    "Lifecycle status change reason":${statusChangeReason},
+    "Counter of accepted registrations":${acceptedRegistrations},
+    "Counter of expired registrations":${expiredRegistrations},
+    "Counter of rejected registrations":${rejectedRegistrations},
+    "Number of currently registered contacts":${registeredContacts},
+    "Number of currently registered users":${registeredUsers},
+    "Service operationalStatus":${operationalStatus},
+    "Service operational status in details":${operationalStatusDetails},
+    "SIP signalling interface operational status":${SIPinterfaceOperationalStatus},
+    "SIP signalling interface operational status in details":${SIPinterfaceOperationalStatusDetails}
+} is stored as :=> RESULT
+
+Composite: Then get Conferencer KPIs values from zabbix host $host
+Then get Lifecycle status change reason value from <host> :=> statusChangeReason
+Then get Configuration validity value from <host> :=> configValidity
+Then get Configuration validity in details value from <host> :=> configValidityDetails
+Then get Service operationalStatus value from <host> :=> operationalStatus
+Then get Service operational status in details value from <host> :=> operationalStatusDetails
+Then get SIP signalling interface operational status value from <host> :=> SIPinterfaceOperationalStatus
+Then get SIP signalling interface operational status in details value from <host> :=> SIPinterfaceOperationalStatusDetails
+Given {
+    "Lifecycle status change reason":${statusChangeReason},
+    "Configuration validity":${configValidity},
+    "Configuration validity in details":${configValidityDetails},
+    "Service operationalStatus":${operationalStatus},
+    "Service operational status in details":${operationalStatusDetails},
+    "SIP signalling interface operational status":${SIPinterfaceOperationalStatus},
+    "SIP signalling interface operational status in details":${SIPinterfaceOperationalStatusDetails}
+} is stored as :=> RESULT
+
+Composite: Then get opVoice interfaces KPIs values from zabbix host $host
+Then get Association status of phone to audio app value from <host> :=> audioAppAssociationStatus
+Then get Number of the association status changes to the audio app value from <host> :=> audioAppAssociationStatusChanges
+Then get GUI connection status value from <host> :=> connectionStatusHMI
+Then get Number of websocket connection association status change value from <host> :=> connectionStatusChangesHMI
+Then get Connection status to the mission service value from <host> :=> connectionStatusMissionService
+Then get Number of the association status changes to the mission service value from <host> :=> connectionStatusChangesMissionService
+Then get The Phone jSipLib initialization status value from <host> :=> jSipLibInitializationStatus
+Then get Number of the initialisation status changes value from <host> :=> jSipLibInitializationStatusChanges
+Given {
+    "Association status of phone to audio app":${audioAppAssociationStatus},
+    "Number of the association status changes to the audio app":${audioAppAssociationStatusChanges},
+    "GUI connection status":${connectionStatusHMI},
+    "Number of websocket connection association status change":${connectionStatusChangesHMI},
+    "Connection status to the mission service":${connectionStatusMissionService},
+    "Number of the association status changes to the mission service":${connectionStatusChangesMissionService},
+    "The Phone jSipLib initialization status":${jSipLibInitializationStatus},
+    "Number of the initialisation status changes":${jSipLibInitializationStatusChanges}
+} is stored as :=> RESULT
+
+Composite: Then get opVoice IA Calls KPIs values from zabbix host $host
+Then get Number of accepted incoming IA Calls value from <host> :=> acceptedIncomingIACalls
+Then get Number of active incoming IA Calls value from <host> :=> activeIncomingIACalls
+Then get Number of active outgoing IA Calls value from <host> :=> activeOutgoingIACalls
+Then get Number of outgoing IA Calls value from <host> :=> outgoingIACalls
+Given {
+    "Number of accepted incoming IA Calls":${acceptedIncomingIACalls},
+    "Number of active incoming IA Calls":${activeIncomingIACalls},
+    "Number of active outgoing IA Calls":${activeOutgoingIACalls},
+    "Number of outgoing IA Calls":${outgoingIACalls}
+} is stored as :=> RESULT
+
+Composite: Then get opVoice Monitoring Calls KPIs values from zabbix host $host
+Then get Number of accepted incoming Monitoring Calls value from <host> :=> acceptedIncomingMonitoringCalls
+Then get Number of active incoming Monitoring Calls value from <host> :=> activeIncomingMonitoringCalls
+Then get Number of active outgoing Monitoring Calls value from <host> :=> activeOutgoingMonitoringCalls
+Then get Number of attempted outgoing Monitoring Calls value from <host> :=> outgoingMonitoringCalls
+Given {
+    "Number of accepted incoming Monitoring Calls":${acceptedIncomingMonitoringCalls},
+    "Number of active incoming Monitoring Calls":${activeIncomingMonitoringCalls},
+    "Number of active outgoing Monitoring Calls":${activeOutgoingMonitoringCalls},
+    "Number of attempted outgoing Monitoring Calls":${outgoingMonitoringCalls}
+} is stored as :=> RESULT

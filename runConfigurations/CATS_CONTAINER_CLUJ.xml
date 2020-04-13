@@ -7,7 +7,7 @@
           <option name="environmentProperties">
             <map>
               <entry key="OP_VOICE_VERSION" value="0.14.0-SNAPSHOT" />
-              <entry key="PROJECT_URL" value="http://10.31.205.9/phone_automation-0.1.0-SNAPSHOT.zip" />
+              <entry key="PROJECT_URL" value="http://10.31.205.9/phone_automation-0.1.1.zip" />
               <entry key="VOICE_HMI_VERSION" value="0.11.0-SNAPSHOT" />
               <entry key="XVP_SYSTEM_PROPERTIES_FILENAME" value="ClujCATS.system.properties" />
               <entry key="XVP_TEST_SYSTEM" value="10.31.205.40" />

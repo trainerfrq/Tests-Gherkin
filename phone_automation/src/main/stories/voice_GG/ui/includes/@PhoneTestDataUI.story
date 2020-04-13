@@ -26,6 +26,7 @@ Given the DA keys:
 | HMI OP1 | Test_Kristi                | <<PhyOpPos1_Test_Kristi>>            |
 | HMI OP1 | OP3(as Mission4)           | <<PhyOpPos1_CWP2>>                   |
 | HMI OP1 | LegacyPhone                | <<Active1_LegacyPhone>>              |
+| HMI OP1 | GND(as TWR)                | <<ACTIVE1_GND>>                      |
 | HMI OP1 | OP2(as GND)                | <<PhyOpPos1(GND)_CWP2>>              |
 | HMI OP1 | <<ROLE_1_NAME>>            | <<ACTIVE2_MISSION1>>                 |
 | HMI OP2 | OP1                        | <<PhyOpPos2_CWP1>>                   |
@@ -51,6 +52,10 @@ Given the DA keys:
 | HMI OP2 | TWR                        | <<ACTIVE2_TWR>>                      |
 | HMI OP2 | GND                        | <<ACTIVE2_GND>>                      |
 | HMI OP2 | APP                        | <<ACTIVE2_APP>>                      |
+| HMI OP2 | SUP-TWR                    | <<ACTIVE2_SUP-TWR>>                  |
+| HMI OP2 | TWR(as GND)                | <<ACTIVE2(GND)_TWR>>                 |
+| HMI OP2 | APP(as GND)                | <<ACTIVE2(GND)_APP>>                 |
+| HMI OP2 | SUP-TWR(as GND)            | <<ACTIVE2(GND)_SUP-TWR>>             |
 | HMI OP3 | OP1                        | <<PhyOpPos3_CWP1>>                   |
 | HMI OP3 | OP2                        | <<PhyOpPos3_CWP2>>                   |
 | HMI OP3 | ROLE1                      | <<PhyOpPos3_ROLE1>>                  |
@@ -62,6 +67,7 @@ Given the DA keys:
 | HMI OP3 | TWR                        | <<ACTIVE3_TWR>>                      |
 | HMI OP3 | IA - TWR                   | <<IA_ACTIVE3_TWR>>                   |
 | HMI OP3 | OP1(as Mission2)           | <<ACTIVE2_CWP1>>                     |
+| HMI OP3 | GND(as SUP-TWR)            | <<ACTIVE3_GND>>                      |
 
 Scenario: Define grid widget keys
 Given the grid widget keys:
