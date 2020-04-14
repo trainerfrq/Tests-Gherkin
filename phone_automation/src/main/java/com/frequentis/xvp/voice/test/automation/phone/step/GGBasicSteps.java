@@ -564,7 +564,6 @@ public class GGBasicSteps extends WebsocketAutomationSteps
       );
    }
 
-
    @Then("$namedWebSocket has on the message buffer named $bufferName a number of $messageCount messages")
    public void checkBufferCount( final String namedWebSocket, final String bufferName, final Integer messageCount )
    {
@@ -1298,23 +1297,25 @@ public class GGBasicSteps extends WebsocketAutomationSteps
 
         List<CallStatus> responseList = jsonMessage.body().fullCallStatusResponse().getCallStatus();
 
-        for(CallStatus response : responseList){
-            evaluate( localStep( "Verify full call status response" )
-                    .details( match( "Call status matches", response.getStatus().getCallStatus(),
-                            equalTo( callStatus ) ) )
-                    .details( match( "Call type matches", response.getStatus().getCallType(),
-                            equalTo( callType ) ) )
-                    .details( match( "Calling party matches", response.getStatus().getLocalParty().getUri(),
-                            containsString( getStoryListData( callSourceName, String.class ) ) ) )
-                    .details(
-                            match( "Called party matches", response.getStatus().getRemoteParty().getUri(),
-                                    containsString( getStoryListData( callTargetName, String.class ) ) ) )
-                    .details( match( "AudioDirection matches", response.getStatus().getAudioDirection(),
-                            equalTo( audioDirection ) ) )
-                    .details( match( "Call priority matches", response.getStatus().getCallPriority(),
-                            equalTo( priority ) ) )
-                     .details( match( "Monitoring type matches", response.getStatus().getMonitoringType(),
-                            equalTo( monitoringType ) ) ) );
+        if(!(responseList.size()==0)) {
+            for (CallStatus response : responseList) {
+                evaluate(localStep("Verify full call status response")
+                        .details(match("Call status matches", response.getStatus().getCallStatus(),
+                                equalTo(callStatus)))
+                        .details(match("Call type matches", response.getStatus().getCallType(),
+                                equalTo(callType)))
+                        .details(match("Calling party matches", response.getStatus().getLocalParty().getUri(),
+                                containsString(getStoryListData(callSourceName, String.class))))
+                        .details(
+                                match("Called party matches", response.getStatus().getRemoteParty().getUri(),
+                                        containsString(getStoryListData(callTargetName, String.class))))
+                        .details(match("AudioDirection matches", response.getStatus().getAudioDirection(),
+                                equalTo(audioDirection)))
+                        .details(match("Call priority matches", response.getStatus().getCallPriority(),
+                                equalTo(priority)))
+                        .details(match("Monitoring type matches", response.getStatus().getMonitoringType(),
+                                equalTo(monitoringType))));
+            }
         }
     }
 

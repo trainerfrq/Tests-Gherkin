@@ -1,6 +1,6 @@
 CATS_HOME=/opt/cats-case-officer
-PROJECT_VERSION=1.1.1-1.1.0-SNAPSHOT
-CATS_VERSION=6.1.0
+PROJECT_VERSION=1.1.1-1.2.1
+CATS_VERSION=6.3.0
 docker cp master:/cats/phone_automation-$PROJECT_VERSION/agents/cats-agent-selenium-$CATS_VERSION.zip $CATS_HOME/agent
 unzip $CATS_HOME/agent/cats-agent-selenium*.zip $CATS_HOME/agent/
 mkdir $CATS_HOME/agent/cats-agent-selenium/$CATS_VERSION/dsl
