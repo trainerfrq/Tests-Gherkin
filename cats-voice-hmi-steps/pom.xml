@@ -21,6 +21,7 @@
         <dependency>
             <groupId>com.frequentis.xvp.voice.automation</groupId>
             <artifactId>voice-hmi-dsl</artifactId>
+            <version>${voice.automation.common.version}</version>
         </dependency>
     </dependencies>
 
