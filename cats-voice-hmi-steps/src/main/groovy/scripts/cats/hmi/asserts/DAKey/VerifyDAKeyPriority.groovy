@@ -1,6 +1,7 @@
 package scripts.cats.hmi.asserts.DAKey
 
 import com.frequentis.c4i.test.model.ExecutionDetails
+import javafx.css.PseudoClass
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
 
@@ -22,13 +23,13 @@ class VerifyDAKeyPriority extends FxScriptTemplate {
         if (daKeyPriority.toUpperCase().equals("EMERGENCY")) {
             evaluate(ExecutionDetails.create("Verify DA key has priority: " + daKeyPriority)
                     .expected("Expected priority: " + daKeyPriority)
-                    .received("Received priority: " + daWidget.getStyleClass())
-                    .success(daWidget.getStyleClass().contains("priority")));
+                    .received("Received priority: " + daWidget.getPseudoClassStates())
+                    .success(daWidget.getPseudoClassStates().contains( PseudoClass.getPseudoClass("priority"))));
         } else {
             evaluate(ExecutionDetails.create("Verify DA key has priority: " + daKeyPriority)
                     .expected("Expected priority: " + daKeyPriority)
-                    .received("Received priority: " + daWidget.getStyleClass())
-                    .success(!(daWidget.getStyleClass().contains("priority"))));
+                    .received("Received priority: " + daWidget.getPseudoClassStates())
+                    .success(!(daWidget.getPseudoClassStates().contains( PseudoClass.getPseudoClass("priority")))));
         }
     }
 }

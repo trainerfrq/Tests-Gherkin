@@ -8,6 +8,7 @@ import javafx.collections.ObservableSet
 import javafx.css.PseudoClass
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
+import scripts.utils.VerifyPseudoClassStates
 
 class VerifyCallQueueItemTransferState extends FxScriptTemplate {
 
@@ -29,22 +30,6 @@ class VerifyCallQueueItemTransferState extends FxScriptTemplate {
                 .success(callQueueItem != null))
 
         evaluate(ExecutionDetails.create("Verify PseudoClassStates contains: " + callQueueState)
-                .success(verifyNodeHasPseudoClass(callQueueItem, pseudoClassState, 3000)))
-    }
-
-    protected static boolean verifyNodeHasPseudoClass(Node node, PseudoClass pseudoClassState, long nWait) {
-
-        WaitCondition condition = new WaitCondition("Wait until node has [" + pseudoClassState + "] class") {
-            @Override
-            boolean test() {
-                ObservableSet<PseudoClass> pseudoClass = node.pseudoClassStates
-                DSLSupport.evaluate(ExecutionDetails.create("Verifying has class")
-                        .expected("Expected class: " + pseudoClassState)
-                        .received("Found classes: " + pseudoClass)
-                        .success())
-                return pseudoClass.contains(pseudoClassState)
-            }
-        }
-        return WaitTimer.pause(condition, nWait, 400)
+                .success(VerifyPseudoClassStates.verifyNodeHasPseudoClass(callQueueItem, pseudoClassState, 3000)))
     }
 }
