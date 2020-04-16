@@ -60,10 +60,12 @@ Scenario: Create the message buffers
 When WS1 opens the message buffer for message type callIncomingIndication named CallIncomingIndicationBuffer1
 When WS1 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer1
 When WS1 opens the message buffer for message type queryFullCallStatusResponse named FullCallStatusResponseBuffer1
+When WS1 opens the message buffer for message type queryFullCallStatusResponse named NewFullCallStatusResponseBuffer1
 
 When WS3 opens the message buffer for message type callIncomingIndication named CallIncomingIndicationBuffer3
 When WS3 opens the message buffer for message type callStatusIndication named CallStatusIndicationBuffer3
 When WS3 opens the message buffer for message type queryFullCallStatusResponse named FullCallStatusResponseBuffer3
+When WS3 opens the message buffer for message type queryFullCallStatusResponse named NewFullCallStatusResponseBuffer3
 
 Scenario: Op3 retrieves phone data
 When WS3 queries phone data for mission missionId3 in order to call OP1 and names them monitoringCallSource1 and monitoringCallTarget1
@@ -90,13 +92,26 @@ When WS1 chooses mission with name <<MISSION_2_NAME>> from available missions na
 Then WS1 receives mission changed indication on buffer named MissionChangedIndicationBuffer1 equal to missionIdToChange2 and names missionId2 and roleId2
 Then WS1 confirms mission change completed for mission missionId2
 
+Scenario: Position monitoring call to Op1 was terminated automatically
+Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId incomingMonitoringCallId1 and status terminated
+
+Scenario: Position monitoring call to Op3 was terminated automatically
+Then WS3 receives call status indication with terminated status on message buffer named CallStatusIndicationBuffer3 with callId outgoingMonitoringCallId1 and terminationDetails monitoring_remote_terminated
+
 Scenario: Op1 does a full call status request
 When WS1 queries full call status
-Then WS1 receives full call status on message buffer named FullCallStatusResponseBuffer1 with monitoringCallTarget1 , monitoringCallSource1 , MONITORING , TX_MONITORED , connected , ALL and NON-URGENT
+Then WS1 receives full call status on message buffer named NewFullCallStatusResponseBuffer1 with call status empty
 
 Scenario: Op3 does a full call status request
 When WS3 queries full call status
 Then WS3 receives full call status on message buffer named FullCallStatusResponseBuffer3 with call status empty
+
+Scenario: Empty buffers
+When WS1 clears all text messages from buffer named CallIncomingIndicationBuffer1
+When WS1 clears all text messages from buffer named CallStatusIndicationBuffer1
+When WS1 clears all text messages from buffer named FullCallStatusResponseBuffer1
+When WS3 clears all text messages from buffer named CallIncomingIndicationBuffer3
+When WS3 clears all text messages from buffer named CallStatusIndicationBuffer3
 
 Scenario: Op1 changes its mission back
 When WS1 chooses mission with name <<MISSION_1_NAME>> from available missions named availableMissionIds1 and names missionIdToChange4
@@ -105,11 +120,27 @@ Then WS1 confirms mission change completed for mission missionId4
 
 Scenario: Op1 does a full call status request
 When WS1 queries full call status
-Then WS1 receives full call status on message buffer named FullCallStatusResponseBuffer1 with monitoringCallTarget1 , monitoringCallSource1 , MONITORING , TX_MONITORED , connected , ALL and NON-URGENT
+Then WS1 receives full call status on message buffer named NewFullCallStatusResponseBuffer1 with call status empty
 
 Scenario: Op3 does a full call status request
 When WS3 queries full call status
 Then WS3 receives full call status on message buffer named FullCallStatusResponseBuffer3 with call status empty
+
+Scenario: Op3 establishes an outgoing monitoring call to Op1
+When WS3 establishes an outgoing monitoring call with source monitoringCallSource1 , target monitoringCallTarget1 and monitoring type ALL and names outgoingMonitoringCallId1
+And waiting for 1 second
+Then WS3 is receiving call status indication on message buffer named CallStatusIndicationBuffer3 with callId outgoingMonitoringCallId1 and status connected and audio direction RX_MONITORED
+
+Scenario: Op1 receives the incoming monitoring call
+When WS1 receives call incoming indication for monitoring call on message buffer named CallIncomingIndicationBuffer1 with monitoringCallSource1 , monitoringCallTarget1 ,audio direction TX_MONITORED and monitoring type ALL and names incomingMonitoringCallId1
+
+Scenario: Op1 does a full call status request
+When WS1 queries full call status
+Then WS1 receives full call status on message buffer named FullCallStatusResponseBuffer1 with monitoringCallTarget1 , monitoringCallSource1 , MONITORING , TX_MONITORED , connected , ALL and NON-URGENT
+
+Scenario: Op3 does a full call status request
+When WS3 queries full call status
+Then WS3 receives full call status on message buffer named NewFullCallStatusResponseBuffer3 with call status empty
 
 Scenario: Op3 cleans up phone call
 When WS3 clears the phone call with the callId outgoingMonitoringCallId1
@@ -121,9 +152,11 @@ Scenario: Delete the message buffers
 When the named websocket WS1 removes the message buffer named CallIncomingIndicationBuffer1
 When the named websocket WS1 removes the message buffer named CallStatusIndicationBuffer1
 When the named websocket WS1 removes the message buffer named FullCallStatusResponseBuffer1
+When the named websocket WS1 removes the message buffer named NewFullCallStatusResponseBuffer1
 When the named websocket WS3 removes the message buffer named CallIncomingIndicationBuffer3
 When the named websocket WS3 removes the message buffer named CallStatusIndicationBuffer3
 When the named websocket WS3 removes the message buffer named FullCallStatusResponseBuffer3
+When the named websocket WS3 removes the message buffer named NewFullCallStatusResponseBuffer3
 
 Scenario: Delete the message buffers for missions
 When the named websocket WS1 removes the message buffer named MissionsAvailableIndicationBuffer1

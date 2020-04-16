@@ -98,7 +98,7 @@ Then HMI OP3 has the DA key OP1 with visible state monitoringOngoingState
 Scenario: 3.1 Op3 chooses to monitor Op1
 When HMI OP3 presses DA key OP1
 And waiting for 1 second
-Then HMI OP3 verifies that the DA key OP1 has the info label busy
+Then HMI OP3 verifies that the DA key OP1 has the info label monitoring_remote_terminated
 
 Scenario: 3.2 Op3 stops monitoring ongoing on the function key
 When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MONITORING

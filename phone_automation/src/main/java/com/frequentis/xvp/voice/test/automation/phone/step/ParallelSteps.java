@@ -16,6 +16,7 @@ import scripts.cats.hmi.actions.CleanUpFunctionKey;
 import scripts.cats.hmi.actions.ClickDAButton;
 import scripts.cats.hmi.actions.Mission.ChangeMission;
 import scripts.cats.hmi.actions.PhoneBook.CallFromPhoneBook;
+import scripts.cats.hmi.actions.Settings.CleanUpPopupWindow;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemStyleClass;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueLength;
 
@@ -160,16 +161,29 @@ public class ParallelSteps extends AutomationSteps
         evaluate(remoteStep);
     }
 
-    @Then("clean up is done for the call queue items in the list: $tableEntries ")
+    @Then("clean up is done for the call queue items in the list: $tableEntries")
     public void cleanUpCallQueueItemByPositionParallel( final ExamplesTable tableEntries )
     {
         RemoteStep remoteStep = remoteStep( "Call queue clean up" );
         for (Map<String, String> tableEntry : tableEntries.getRows()) {
             String profileName = tableEntry.get("profile");
-            String list = tableEntry.get("list");;
+            String list = tableEntry.get("list");
             remoteStep.scriptOn(profileScriptResolver().map(CleanUpCallQueueByPosition.class, BookableProfileName.javafx),
                     assertProfile(profileName))
                     .input(CleanUpCallQueueByPosition.IPARAM_LIST_NAME, list);
+        }
+        evaluate(remoteStep);
+    }
+
+    @Then("clean up is done for the following pop-up windows if they are visible: $tableEntries")
+    public void cleanUpWindowsParallel(final ExamplesTable tableEntries) {
+        RemoteStep remoteStep = remoteStep( "Window clean up" );
+        for (Map<String, String> tableEntry : tableEntries.getRows()) {
+            String profileName = tableEntry.get("profile");
+            String window = tableEntry.get("window");
+            remoteStep.scriptOn(profileScriptResolver().map(CleanUpPopupWindow.class, BookableProfileName.javafx),
+                    assertProfile(profileName))
+                    .input(CleanUpPopupWindow.IPARAM_POPUP_NAME, window);
         }
         evaluate(remoteStep);
     }

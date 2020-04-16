@@ -84,7 +84,7 @@ Then HMI OP3 has the DA key OP1 with visible state monitoringOngoingState
 Scenario: Op3 chooses to monitor Op1
 When HMI OP3 starts monitoring gg calls for OP1
 Then wait for 1 seconds 
-Then HMI OP3 verifies that the DA key OP1 has the info label failed
+Then HMI OP3 verifies that the DA key OP1 has the info label monitoring_remote_terminated
 
 Scenario: Stop monitoring ongoing on the function key
 When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key MONITORING

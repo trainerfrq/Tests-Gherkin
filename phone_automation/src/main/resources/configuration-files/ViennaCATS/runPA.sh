@@ -1,1 +1,1 @@
-docker run -e CATS_PUBLIC_IP=10.16.156.19 -e CATS_HAZELCAST_PORT=5701 -e CATS_HOME_URI=ftp://cats-home:cats-home@10.16.156.19:1000/cats-home.zip -e CATS_PROFILE_NAME=javafx/hmi -v sharedVolume:/opt/frequentis/shared artidocker.frequentis.frq/cats/cats-agent-provision-image:6.1.0
+docker run -e CATS_PUBLIC_IP=10.16.156.19 -e CATS_HAZELCAST_PORT=5701 -e CATS_HOME_URI=ftp://cats-home:cats-home@10.16.156.19:1000/cats-home.zip -e CATS_PROFILE_NAME=javafx/hmi -v sharedVolume:/opt/frequentis/shared artidocker.frequentis.frq/cats/cats-agent-provision-image:6.3.0

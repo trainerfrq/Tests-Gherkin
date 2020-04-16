@@ -1,5 +1,5 @@
 CATS_HOME=/opt/cats-case-officer
-PROJECT_VERSION=1.1.1-1.1.0-SNAPSHOT
+PROJECT_VERSION=1.1.1-1.2.1
 docker cp master:/cats/phone_automation-$PROJECT_VERSION/.frequentis-cats $CATS_HOME
 rm -rf $CATS_HOME/.frequentis-cats/master
 rm -rf $CATS_HOME/.frequentis-cats/cats-accounts.properties
