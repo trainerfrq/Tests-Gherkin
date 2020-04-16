@@ -300,7 +300,7 @@ public class CallQueueUISteps extends AutomationSteps
    @Then("$profileName answers item $itemNumber from $listType call queue list")
    @Aliases(values = { "$profileName cancels item $itemNumber from $listType call queue list",
            "$profileName terminates item $itemNumber from $listType call queue list",
-           "$profileName retrives from hold item $itemNumber from $listType call queue list",
+           "$profileName retrieves from hold item $itemNumber from $listType call queue list",
            "$profileName presses item $itemNumber from $listType call queue list" })
    public void clickCallQueueItemByPosition( final String profileName, final Integer itemNumber, final String itemType )
    {

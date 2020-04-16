@@ -117,7 +117,7 @@ Scenario: 6. Op1 retrieves call from transfer state and ends call
 Meta: @TEST_STEP_ACTION: Op1 retrieves call from transfer state and ends call
 @TEST_STEP_REACTION: Op1 has 0 active calls and 15 incoming calls
 @TEST_STEP_REF: [CATS-REF: yx2B]
-Then HMI OP1 retrives from hold item 1 from hold call queue list
+Then HMI OP1 retrieves from hold item 1 from hold call queue list
 Then HMI OP1 has in the active list a number of 1 calls
 
 Scenario: 6.1 Op1 terminates call

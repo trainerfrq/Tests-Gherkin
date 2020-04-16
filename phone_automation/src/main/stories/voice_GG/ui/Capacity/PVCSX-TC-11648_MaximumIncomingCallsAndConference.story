@@ -62,7 +62,7 @@ Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
 Scenario: 2. Op1 starts a conference using the existing active call
-@TEST_STEP_ACTION: Op1 starts a conference using the existing active call
+Meta: @TEST_STEP_ACTION: Op1 starts a conference using the existing active call
 @TEST_STEP_REACTION: Op1 has a conference with 2 participants
 @TEST_STEP_REF: [CATS-REF: 30wW]
 When HMI OP1 starts a conference using an existing active call
@@ -165,7 +165,8 @@ Scenario: 10. Op1 terminates all 16 incoming calls
 Meta: @TEST_STEP_ACTION: Op1 terminates all 16 incoming calls
 @TEST_STEP_REACTION: Op1 has no calls in the call queue
 @TEST_STEP_REF: [CATS-REF: MR4B]
-Then HMI OP1 retrives from hold item 1 from hold call queue list
+Then HMI OP1 retrieves from hold item 1 from hold call queue list
+Then wait for 2 seconds
 Then HMI OP1 terminates item 1 from active call queue list
 Then HMI OP1 answers and terminates a number of 15 calls
 Then HMI OP1 has in the call queue a number of 0 calls
