@@ -92,7 +92,7 @@ Then WS1 receives mission changed indication on buffer named MissionChangedIndic
 Then WS1 confirms mission change completed for mission missionId2
 
 Scenario: Position monitoring call to Op1 was terminated automatically
-Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId incomingMonitoringCallId1 and status terminated
+Then WS1 receives call status indication on message buffer named CallStatusIndicationBuffer1 with callId outgoingMonitoringCallId1 and status terminated
 
 Scenario: Op1 does a full call status request
 When WS1 queries full call status
