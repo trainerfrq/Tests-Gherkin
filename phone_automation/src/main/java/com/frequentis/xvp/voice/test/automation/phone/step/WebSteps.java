@@ -1,13 +1,14 @@
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
+import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.c4i.test.bdd.fluent.step.Profile;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.voice.test.automation.phone.data.ProfileToWebConfigurationReference;
 import org.jbehave.core.annotations.Given;
-
-import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import org.jbehave.core.annotations.Then;
-import scripts.cats.web.*;
+import org.jbehave.core.annotations.When;
+import scripts.cats.web.OpenNewConfigurationBoxWebDriver;
+import scripts.cats.web.SelectConfigurator;
 
 import java.util.List;
 
@@ -34,4 +35,14 @@ public class WebSteps extends AutomationSteps {
         }
     }
 
+    @When("configurator $configuratorName is selected")
+    public void selectConfigurator(String configuratorName){
+        ProfileToWebConfigurationReference webAppConfig = getStoryData("config-1", ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Select " + configuratorName + " configurator")
+                    .scriptOn(SelectConfigurator.class, profile)
+                    .input(SelectConfigurator.IPARAM_CONFIG_NAME, configuratorName));
+        }
+    }
 }

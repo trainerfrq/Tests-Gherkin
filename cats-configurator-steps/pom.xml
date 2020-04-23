@@ -33,6 +33,11 @@
             <artifactId>cats-cluster</artifactId>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.frequentis.xvp.voice.automation</groupId>
+            <artifactId>config-management-dsl</artifactId>
+            <version>${voice.automation.common.version}</version>
+        </dependency>
 
 
     </dependencies>

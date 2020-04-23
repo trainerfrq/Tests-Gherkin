@@ -1,10 +1,8 @@
 package scripts.cats.web
 
 import com.frequentis.c4i.test.agent.selenium.WebDriverManager
-import com.frequentis.c4i.test.model.ExecutionDetails
 import com.frequentis.c4i.test.util.timer.WaitTimer
 import org.openqa.selenium.By
-import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import scripts.agent.selenium.automation.WebScriptTemplate
