@@ -44,9 +44,36 @@ public class ATISteps extends AutomationSteps
                             .request( MediaType.APPLICATION_JSON )
                             .post( Entity.json( jsonMessage ) );
 
+            final JsonMessage responseJson = JsonMessage.fromJson(response.toString());
+
             localStep.details( ExecutionDetails.create( "Executed POST request with payload! " )
-                    .received( Integer.toString( response.getStatus() ) )
+                    .expected(responseJson.toString())
+                    .received( response.toString() )
                     .success( requestWithSuccess( response ) ) );
+        }
+        else
+        {
+            localStep.details( ExecutionDetails.create( "Executed POST request! " ).expected( "Success" )
+                    .received( "Endpoint is not present", endpointUri != null ).failure() );
+        }
+    }
+
+    @When("doing http POST request to endpoint $endpointUri and path $resourcePath with payload $templatePath")
+    public void doingPOSTRequest( final String endpointUri, final String resourcePath, final String templatePath )
+            throws Throwable
+    {
+        final LocalStep localStep = localStep( "Execute POST request with payload" );
+
+        if ( endpointUri != null )
+        {
+            final URI configurationURI = new URI( endpointUri );
+            final String templateContent = FileUtils.readFileToString( StepsUtil.getConfigFile( templatePath ) );
+            Response response =
+                    getATIWebTarget( configurationURI + resourcePath ).request( MediaType.APPLICATION_JSON )
+                            .post( Entity.json( templateContent ) );
+
+            localStep.details( ExecutionDetails.create( "Executed POST request with payload! " ).expected( "200 or 201" )
+                    .received( response.toString() ).success( requestWithSuccess( response ) ) );
         }
         else
         {
