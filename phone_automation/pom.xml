@@ -214,6 +214,17 @@
            <groupId>com.frequentis.xvp.voice.phone</groupId>
            <artifactId>cats-configurator-steps</artifactId>
        </dependency>
+       <dependency>
+           <groupId>com.frequentis.xvp.voice.automation</groupId>
+           <artifactId>config-management-dsl</artifactId>
+           <version>${voice.automation.common.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>com.frequentis.xvp.voice.automation</groupId>
+           <artifactId>config-management-dsl</artifactId>
+           <version>${voice.automation.common.version}</version>
+           <type>zip</type>
+       </dependency>
    </dependencies>
 
 
@@ -316,6 +327,13 @@
                                         <artifactItem>
                                             <groupId>com.frequentis.xvp.voice.phone</groupId>
                                             <artifactId>cats-configurator-steps</artifactId>
+                                            <type>zip</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${dslHome}</outputDirectory>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>com.frequentis.xvp.voice.automation</groupId>
+                                            <artifactId>config-management-dsl</artifactId>
                                             <type>zip</type>
                                             <overWrite>false</overWrite>
                                             <outputDirectory>${dslHome}</outputDirectory>

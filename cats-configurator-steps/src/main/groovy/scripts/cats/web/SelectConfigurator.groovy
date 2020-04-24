@@ -9,9 +9,6 @@ import scripts.agent.selenium.automation.WebScriptTemplate
 
 import java.util.concurrent.TimeUnit
 
-//import TRunkEnum
-//class OpenNewConfigurationBoxWebDriver extends ConfiguratorBaseScripts<TrunkEnum> {
-
 class SelectConfigurator extends WebScriptTemplate {
     public static final String IPARAM_CONFIG_NAME = "configurator_name"
 

@@ -15,13 +15,15 @@ Given defined XVP Configurator pages:
 
 Scenario: Verify XVP Configurator main page
 Then wait for 10 seconds
-Then add a new configuration
+!-- Then add a new configuration
 !-- Then configurator management page is visible
 When configurator Global settings - Telephone is selected
 !-- Then Global settings - Telephone sub-configurators are visible
 
-!-- When sub-configurator Phone Book is selected
+When sub-configurator Phone Book is selected
 !-- Then Phone Book page is visible
+
+When new button is pressed
 
 !-- Then a new phone is created with Full Name Ana, Display Name Mary and Destination sip:example
 

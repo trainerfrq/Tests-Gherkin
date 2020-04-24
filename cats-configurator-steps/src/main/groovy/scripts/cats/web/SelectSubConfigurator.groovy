@@ -9,23 +9,23 @@ import scripts.agent.selenium.automation.WebScriptTemplate
 
 import java.util.concurrent.TimeUnit
 
-
 class SelectSubConfigurator extends WebScriptTemplate{
-    public static final String IPARAM_subCONFIG_NAME = "SubConfigurator_name"
+    public static final String IPARAM_SUBCONFIG_NAME = "SubConfigurator_name"
+
     @Override
     protected void script() {
+        String subConfiguratorName =  assertInput(IPARAM_SUBCONFIG_NAME) as String;
+
         WebDriver driver = WebDriverManager.getInstance().getWebDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-        List<WebElement> configuratorsContainer = driver.findElements(By.className("list-group-item-title"));
-        for (WebElement we : configuratorsContainer) {
-            if(we.getText().contains("Global settings - Telephone")){
-                evaluate(ExecutionDetails.create("button found ")
-                        .expected(we.getText())
-                        .success(true));
-                we.click()
-                break;
-            }
-        }
+        WebElement configurator = driver.findElement(By.cssSelector("div[title='"+ subConfiguratorName + "'" ))
+        configurator.click()
+
+        evaluate(ExecutionDetails.create("SubConfigurator " + subConfiguratorName + " was clicked")
+                .expected(subConfiguratorName)
+                .success(true));
+
+
     }
 }
