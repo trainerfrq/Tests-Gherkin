@@ -41,8 +41,6 @@ import java.io.FileReader;
 import java.net.URI;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
-import java.util.Set;
 
 import static com.frequentis.xvp.voice.test.automation.phone.step.local.ConfigurationSteps.getCatsResourcesFolderPath;
 
@@ -202,9 +200,9 @@ public class GGBasicUISteps extends AutomationSteps
     {
         String uri = opVoiceURI.split("/")[2].split("/")[0];
         evaluate(remoteStep("Verifying op voice URI")
-                .scriptOn(profileScriptResolver().map(VerifyConnectionsURI.class, BookableProfileName.javafx),
+                .scriptOn(profileScriptResolver().map(VerifyConnectionURI.class, BookableProfileName.javafx),
                         assertProfile(profileName))
-                .input(VerifyConnectionsURI.IPARAM_CONNECTION_URI, uri));
+                .input(VerifyConnectionURI.IPARAM_CONNECTION_URI, uri));
     }
 
     @Then("$profileName verifies that Op Voice URI $opVoiceURI has the expected status")
@@ -217,17 +215,17 @@ public class GGBasicUISteps extends AutomationSteps
 
         if(opVoiceURI.equals(opVoiceURIActive.toString())){
             evaluate(remoteStep("Verifying op voice URI with active status")
-                    .scriptOn(profileScriptResolver().map(VerifyConnectionsStatus.class, BookableProfileName.javafx),
+                    .scriptOn(profileScriptResolver().map(VerifyConnectionStatus.class, BookableProfileName.javafx),
                             assertProfile(profileName))
-                    .input(VerifyConnectionsStatus.IPARAM_CONNECTION_URI, opVoiceURI)
-                    .input(VerifyConnectionsStatus.IPARAM_CONNECTION_STATUS, "ACTIVE"));
+                    .input(VerifyConnectionStatus.IPARAM_CONNECTION_URI, opVoiceURI)
+                    .input(VerifyConnectionStatus.IPARAM_CONNECTION_STATUS, "ACTIVE"));
         }
         else if (opVoiceURI.equals(opVoiceURIPassive.toString())){
             evaluate(remoteStep("Verifying op voice URI with passive status")
-                    .scriptOn(profileScriptResolver().map(VerifyConnectionsStatus.class, BookableProfileName.javafx),
+                    .scriptOn(profileScriptResolver().map(VerifyConnectionStatus.class, BookableProfileName.javafx),
                             assertProfile(profileName))
-                    .input(VerifyConnectionsStatus.IPARAM_CONNECTION_URI, opVoiceURI)
-                    .input(VerifyConnectionsStatus.IPARAM_CONNECTION_STATUS, "PASSIVE"));
+                    .input(VerifyConnectionStatus.IPARAM_CONNECTION_URI, opVoiceURI)
+                    .input(VerifyConnectionStatus.IPARAM_CONNECTION_STATUS, "PASSIVE"));
         }
         else{
             localStep.details( ExecutionDetails.create( "verify if URIs host part available" )

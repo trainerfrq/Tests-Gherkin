@@ -6,7 +6,7 @@ import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class VerifyConnectionsURI extends FxScriptTemplate {
+class VerifyConnectionURI extends FxScriptTemplate {
 
     public static final String IPARAM_CONNECTION_URI = "connection_URI"
 

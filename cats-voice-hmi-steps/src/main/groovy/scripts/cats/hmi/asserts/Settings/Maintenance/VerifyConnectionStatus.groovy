@@ -6,7 +6,7 @@ import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class VerifyConnectionsStatus extends FxScriptTemplate {
+class VerifyConnectionStatus extends FxScriptTemplate {
 
     public static final String IPARAM_CONNECTION_STATUS = "connection_status";
     public static final String IPARAM_CONNECTION_URI = "connection_URI"
@@ -31,6 +31,7 @@ class VerifyConnectionsStatus extends FxScriptTemplate {
                         .expected(connectionStatus)
                         .success(connectionStatus.equals(receivedStatus)))
             }
+            break
         }
     }
 }

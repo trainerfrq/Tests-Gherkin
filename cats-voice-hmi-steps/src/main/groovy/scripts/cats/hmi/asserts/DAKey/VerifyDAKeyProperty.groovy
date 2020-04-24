@@ -1,14 +1,10 @@
 package scripts.cats.hmi.asserts.DAKey
 
-import com.frequentis.c4i.test.agent.DSLSupport
 import com.frequentis.c4i.test.model.ExecutionDetails
-import com.frequentis.c4i.test.util.timer.WaitCondition
-import com.frequentis.c4i.test.util.timer.WaitTimer
-import javafx.collections.ObservableSet
 import javafx.css.PseudoClass
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
-import scripts.utils.VerifyPseudoClassStates
+import scripts.utils.PseudoClassStates
 
 class VerifyDAKeyProperty extends FxScriptTemplate {
 
@@ -34,7 +30,7 @@ class VerifyDAKeyProperty extends FxScriptTemplate {
         switch(propertyVisible){
             case "visible":
                 evaluate(ExecutionDetails.create("Verify PseudoClassStates contains: " + daKeyProperty)
-                        .success(VerifyPseudoClassStates.verifyNodeHasPseudoClass(daWidget, pseudoClassState, 3000)))
+                        .success(PseudoClassStates.verifyNodeHasPseudoClass(daWidget, pseudoClassState, 3000)))
                 break
             case "not visible":
                 evaluate(ExecutionDetails.create("Verify PseudoClassStates contains: " + daKeyProperty)

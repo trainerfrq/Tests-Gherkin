@@ -1,14 +1,10 @@
 package scripts.cats.hmi.asserts.CallQueue
 
-import com.frequentis.c4i.test.agent.DSLSupport
 import com.frequentis.c4i.test.model.ExecutionDetails
-import com.frequentis.c4i.test.util.timer.WaitCondition
-import com.frequentis.c4i.test.util.timer.WaitTimer
-import javafx.collections.ObservableSet
 import javafx.css.PseudoClass
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
-import scripts.utils.VerifyPseudoClassStates
+import scripts.utils.PseudoClassStates
 
 class VerifyCallQueueItemTransferState extends FxScriptTemplate {
 
@@ -30,6 +26,6 @@ class VerifyCallQueueItemTransferState extends FxScriptTemplate {
                 .success(callQueueItem != null))
 
         evaluate(ExecutionDetails.create("Verify PseudoClassStates contains: " + callQueueState)
-                .success(VerifyPseudoClassStates.verifyNodeHasPseudoClass(callQueueItem, pseudoClassState, 3000)))
+                .success(PseudoClassStates.verifyNodeHasPseudoClass(callQueueItem, pseudoClassState, 3000)))
     }
 }

@@ -1,13 +1,10 @@
 package scripts.cats.hmi.asserts.DAKey
 
-import com.frequentis.c4i.test.agent.DSLSupport
 import com.frequentis.c4i.test.model.ExecutionDetails
-import com.frequentis.c4i.test.util.timer.WaitCondition
-import com.frequentis.c4i.test.util.timer.WaitTimer
 import javafx.css.PseudoClass
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
-import scripts.utils.VerifyPseudoClassStates
+import scripts.utils.PseudoClassStates
 
 class VerifyDAButtonState extends FxScriptTemplate {
     public static final String IPARAM_DA_KEY_ID = "da_key_id";
@@ -27,6 +24,6 @@ class VerifyDAButtonState extends FxScriptTemplate {
                 .success(daWidget.isVisible()));
 
         evaluate(ExecutionDetails.create("Verify DA key has state: " + daKeyState)
-                .success(VerifyPseudoClassStates.verifyNodeHasPseudoClass(daWidget, pseudoClassState, 3000)));
+                .success(PseudoClassStates.verifyNodeHasPseudoClass(daWidget, pseudoClassState, 3000)));
     }
 }

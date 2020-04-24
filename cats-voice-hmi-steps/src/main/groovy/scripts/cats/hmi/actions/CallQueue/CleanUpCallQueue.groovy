@@ -1,12 +1,9 @@
 package scripts.cats.hmi.actions.CallQueue
 
-import com.frequentis.c4i.test.agent.DSLSupport
 import com.frequentis.c4i.test.model.ExecutionDetails
-import com.frequentis.c4i.test.util.timer.WaitCondition
-import com.frequentis.c4i.test.util.timer.WaitTimer
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
-import scripts.utils.VerifyStyleClass
+import scripts.utils.StyleClass
 
 
 class CleanUpCallQueue extends FxScriptTemplate {
@@ -27,7 +24,7 @@ class CleanUpCallQueue extends FxScriptTemplate {
         Node callQueueItemInList = robot.lookup(callQueueItemQueryString).queryFirst()
         Node callQueueItem = robot.lookup("#" + callQueueItemId).queryFirst();
 
-        Boolean hasRxIACall = VerifyStyleClass.verifyNodeHasClass(callQueueItem, callQueueItemState, 100)
+        Boolean hasRxIACall = StyleClass.verifyNodeHasClass(callQueueItem, callQueueItemState, 100)
 
         if(callQueueItemInList == null && callQueueItem == null)
         {

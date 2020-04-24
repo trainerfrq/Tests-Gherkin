@@ -1,12 +1,10 @@
 package scripts.cats.hmi.asserts.CallQueue
 
-import com.frequentis.c4i.test.agent.DSLSupport
 import com.frequentis.c4i.test.model.ExecutionDetails
-import com.frequentis.c4i.test.util.timer.WaitCondition
 import com.frequentis.c4i.test.util.timer.WaitTimer
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
-import scripts.utils.VerifyStyleClass
+import scripts.utils.StyleClass
 
 class VerifyCallQueueItemStateInList extends FxScriptTemplate{
     public static final String IPARAM_CALL_QUEUE_ITEM_ID = "call_queue_item_id"
@@ -37,6 +35,6 @@ class VerifyCallQueueItemStateInList extends FxScriptTemplate{
                 .success(callQueueItem != null))
 
         evaluate(ExecutionDetails.create("Verify call queue item has styleClass: " + callQueueItemState)
-                .success(VerifyStyleClass.verifyNodeHasClass(callQueueItem, callQueueItemState, 3000)));
+                .success(StyleClass.verifyNodeHasClass(callQueueItem, callQueueItemState, 3000)));
     }
 }
