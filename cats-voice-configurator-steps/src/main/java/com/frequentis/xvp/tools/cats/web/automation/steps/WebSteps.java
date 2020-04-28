@@ -1,9 +1,9 @@
-package steps;
+package com.frequentis.xvp.tools.cats.web.automation.steps;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.c4i.test.bdd.fluent.step.Profile;
 import com.frequentis.c4i.test.model.ExecutionDetails;
-import data.ProfileToWebConfigurationReference;
+import com.frequentis.xvp.tools.cats.web.automation.data.ProfileToWebConfigurationReference;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;

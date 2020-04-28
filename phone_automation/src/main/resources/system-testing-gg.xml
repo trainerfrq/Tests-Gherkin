@@ -30,6 +30,7 @@
 
     <import resource="classpath*:cats-master-common-step-definitions.xml"/>
     <import resource="classpath*:websocket-automation-steps.xml"/>
+    <import resource="classpath*:web-automation-steps.xml"/>
     <import resource="classpath*:voip-automation-steps.xml"/>
     <import resource="classpath*:voip-pcap-automation-steps.xml"/>
     <import resource="classpath*:cats-automation-text-validation-steps.xml"/>

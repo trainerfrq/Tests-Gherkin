@@ -1,4 +1,4 @@
-package data;
+package com.frequentis.xvp.tools.cats.web.automation.data;
 
 
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameter;
