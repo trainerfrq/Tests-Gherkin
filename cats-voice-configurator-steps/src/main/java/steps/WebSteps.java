@@ -1,9 +1,9 @@
-package com.frequentis.xvp.voice.test.automation.phone.step;
+package steps;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.c4i.test.bdd.fluent.step.Profile;
 import com.frequentis.c4i.test.model.ExecutionDetails;
-import com.frequentis.xvp.voice.test.automation.phone.data.ProfileToWebConfigurationReference;
+import data.ProfileToWebConfigurationReference;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;

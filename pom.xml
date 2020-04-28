@@ -99,7 +99,7 @@
        </dependency>
       <dependency>
         <groupId>com.frequentis.xvp.voice.phone</groupId>
-        <artifactId>cats-configurator-steps</artifactId>
+        <artifactId>cats-voice-configurator-steps</artifactId>
         <version>${project.version}</version>
     </dependency>
 
@@ -223,7 +223,7 @@
       <module>phone_automation</module>
       <module>cats-voice-hmi-steps</module>
       <module>phone_automation_runner</module>
-      <module>cats-configurator-steps</module>
+      <module>cats-voice-configurator-steps</module>
       <!-- moved
       <module>cats-websocket-steps</module>
       <module>cats-websocket-dto</module>

@@ -8,7 +8,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>cats-configurator-steps</artifactId>
+    <artifactId>cats-voice-configurator-steps</artifactId>
     <packaging>jar</packaging>
     <name>CATS Configurator Steps</name>
     <description>CATS web automation steps and remote scripts for simulating web endpoints.</description>
@@ -37,6 +37,14 @@
             <groupId>com.frequentis.xvp.voice.automation</groupId>
             <artifactId>config-management-dsl</artifactId>
             <version>${voice.automation.common.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.frequentis.cats</groupId>
+            <artifactId>jbehave-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.frequentis.c4i.test</groupId>
+            <artifactId>cats-bdd</artifactId>
         </dependency>
 
 
@@ -92,7 +100,7 @@
                     <descriptors>
                         <descriptors>src/main/assembly/distribution.xml</descriptors>
                     </descriptors>
-                    <finalName>cats-configurator-steps</finalName>
+                    <finalName>cats-voice-configurator-steps</finalName>
                     <appendAssemblyId>false</appendAssemblyId>
                 </configuration>
                 <executions>

@@ -1,4 +1,4 @@
-package com.frequentis.xvp.voice.test.automation.phone.data;
+package data;
 
 
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameter;

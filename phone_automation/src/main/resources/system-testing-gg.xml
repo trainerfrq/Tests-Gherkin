@@ -25,7 +25,6 @@
     <bean class="com.frequentis.xvp.voice.test.automation.phone.step.MonitoringUISteps"/>
     <bean class="com.frequentis.xvp.voice.test.automation.phone.step.ConferenceSteps"/>
     <bean class="com.frequentis.xvp.voice.test.automation.phone.step.NotificationUISteps"/>
-    <bean class="com.frequentis.xvp.voice.test.automation.phone.step.WebSteps"/>
     <bean class="com.frequentis.xvp.voice.test.automation.phone.step.ParallelSteps"/>
     <bean class="com.frequentis.xvp.voice.test.automation.phone.step.ZabbixSteps"/>
 

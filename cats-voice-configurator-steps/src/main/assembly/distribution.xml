@@ -1,10 +1,10 @@
 <assembly>
-    <id>cats-configurator-steps</id>
+    <id>cats-voice-configurator-steps</id>
     <formats>
         <format>dir</format>
         <format>zip</format>
     </formats>
-    <baseDirectory>cats-configurator-steps</baseDirectory>
+    <baseDirectory>cats-voice-configurator-steps</baseDirectory>
     <includeBaseDirectory>true</includeBaseDirectory>
     <fileSets>
         <fileSet>

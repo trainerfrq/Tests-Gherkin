@@ -212,7 +212,7 @@
        </dependency>
        <dependency>
            <groupId>com.frequentis.xvp.voice.phone</groupId>
-           <artifactId>cats-configurator-steps</artifactId>
+           <artifactId>cats-voice-configurator-steps</artifactId>
        </dependency>
        <dependency>
            <groupId>com.frequentis.xvp.voice.automation</groupId>
@@ -326,7 +326,7 @@
                                         </artifactItem>
                                         <artifactItem>
                                             <groupId>com.frequentis.xvp.voice.phone</groupId>
-                                            <artifactId>cats-configurator-steps</artifactId>
+                                            <artifactId>cats-voice-configurator-steps</artifactId>
                                             <type>zip</type>
                                             <overWrite>false</overWrite>
                                             <outputDirectory>${dslHome}</outputDirectory>
