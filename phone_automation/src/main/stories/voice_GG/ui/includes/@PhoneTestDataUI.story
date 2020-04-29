@@ -24,7 +24,7 @@ Given the DA keys:
 | HMI OP1 | Test_Hurst                 | <<PhyOpPos1_Test_Hurst>>             |
 | HMI OP1 | Test_Ivy                   | <<PhyOpPos1_Test_Ivy>>               |
 | HMI OP1 | Test_Kristi                | <<PhyOpPos1_Test_Kristi>>            |
-| HMI OP1 | OP3(as Mission4)           | <<PhyOpPos1_CWP2>>                   |
+| HMI OP1 | OP3(as Mission4)           | <<PhyOpPos1(MISSION4)_CWP3>>                   |
 | HMI OP1 | LegacyPhone                | <<Active1_LegacyPhone>>              |
 | HMI OP1 | GND(as TWR)                | <<ACTIVE1_GND>>                      |
 | HMI OP1 | OP2(as GND)                | <<PhyOpPos1(GND)_CWP2>>              |

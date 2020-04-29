@@ -249,7 +249,8 @@ Scenario: 16. Op1 retrives from hold one call
 Meta: @TEST_STEP_ACTION: Op1 retrives from hold one call
 @TEST_STEP_REACTION: In the call queue there are: 1 active call, 4 call visible on hold
 @TEST_STEP_REF: [CATS-REF: a0e9]
-Then HMI OP1 retrives from hold item 1 from hold call queue list
+Then HMI OP1 retrieves from hold item 1 from hold call queue list
+Then wait for 2 seconds
 
 Scenario: 16.1 Op1 verifies the number of calls in the queue
 Then HMI OP1 has in the active list a number of 1 calls
