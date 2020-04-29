@@ -1,11 +1,10 @@
 package scripts.cats.hmi.asserts.CallQueue
 
-import com.frequentis.c4i.test.agent.DSLSupport
 import com.frequentis.c4i.test.model.ExecutionDetails
-import com.frequentis.c4i.test.util.timer.WaitCondition
 import com.frequentis.c4i.test.util.timer.WaitTimer
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
+import scripts.utils.StyleClass
 
 class VerifyCallQueueItemStateInList extends FxScriptTemplate{
     public static final String IPARAM_CALL_QUEUE_ITEM_ID = "call_queue_item_id"
@@ -36,23 +35,6 @@ class VerifyCallQueueItemStateInList extends FxScriptTemplate{
                 .success(callQueueItem != null))
 
         evaluate(ExecutionDetails.create("Verify call queue item has styleClass: " + callQueueItemState)
-                .success(verifyNodeHasClass(callQueueItem, callQueueItemState, 3000)));
-    }
-
-    protected static boolean verifyNodeHasClass(Node node, String className, long nWait) {
-
-        WaitCondition condition = new WaitCondition("Wait until node has [" + className + "] class") {
-            @Override
-            boolean test() {
-                String styleClass = node.styleClass.join(" ");
-                DSLSupport.evaluate(ExecutionDetails.create("Verifying has class")
-                        .expected("Expected class: " + className)
-                        .received("Found classes: " + styleClass)
-                        .success())
-                return styleClass.contains(className);
-
-            }
-        }
-        return WaitTimer.pause(condition, nWait, 400);
+                .success(StyleClass.verifyNodeHasClass(callQueueItem, callQueueItemState, 3000)));
     }
 }

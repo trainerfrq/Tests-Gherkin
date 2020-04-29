@@ -1,11 +1,10 @@
 package scripts.cats.hmi.asserts.DAKey
 
-import com.frequentis.c4i.test.agent.DSLSupport
 import com.frequentis.c4i.test.model.ExecutionDetails
-import com.frequentis.c4i.test.util.timer.WaitCondition
-import com.frequentis.c4i.test.util.timer.WaitTimer
+import javafx.css.PseudoClass
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
+import scripts.utils.PseudoClassStates
 
 class VerifyDAButtonState extends FxScriptTemplate {
     public static final String IPARAM_DA_KEY_ID = "da_key_id";
@@ -18,28 +17,13 @@ class VerifyDAButtonState extends FxScriptTemplate {
 
         Node daWidget = robot.lookup("#" + daKeyId).queryFirst();
 
+        final PseudoClass pseudoClassState = PseudoClass.getPseudoClass(daKeyState)
+
         evaluate(ExecutionDetails.create("Verify DA key was found")
                 .expected("DA key with id " + daKeyId + " was found")
                 .success(daWidget.isVisible()));
 
-        evaluate(ExecutionDetails.create("Verify DA key has styleClass: " + daKeyState)
-                .success(verifyNodeHasClass(daWidget, daKeyState, 3000)));
-    }
-
-    protected static boolean verifyNodeHasClass(Node node, String className, long nWait) {
-
-        WaitCondition condition = new WaitCondition("Wait until node has [" + className + "] class") {
-            @Override
-            boolean test() {
-                String styleClass = node.styleClass.join(" ");
-                DSLSupport.evaluate(ExecutionDetails.create("Verifying has class")
-                        .expected("Expected class: " + className)
-                        .received("Found classes: " + styleClass)
-                        .success())
-                return styleClass.contains(className);
-
-            }
-        }
-        return WaitTimer.pause(condition, nWait, 400);
+        evaluate(ExecutionDetails.create("Verify DA key has state: " + daKeyState)
+                .success(PseudoClassStates.verifyNodeHasPseudoClass(daWidget, pseudoClassState, 3000)));
     }
 }

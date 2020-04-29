@@ -1,13 +1,10 @@
 package scripts.cats.hmi.asserts
 
-import com.frequentis.c4i.test.agent.DSLSupport
 import com.frequentis.c4i.test.model.ExecutionDetails
-import com.frequentis.c4i.test.util.timer.WaitCondition
-import com.frequentis.c4i.test.util.timer.WaitTimer
-import javafx.collections.ObservableSet
 import javafx.css.PseudoClass
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
+import scripts.utils.PseudoClassStates
 
 class VerifyFunctionKeyState extends FxScriptTemplate {
 
@@ -28,22 +25,6 @@ class VerifyFunctionKeyState extends FxScriptTemplate {
                 .success(widget != null))
 
         evaluate(ExecutionDetails.create("Verify PseudoClassStates contains: " + KeyState)
-                .success(verifyNodeHasPseudoClass(widget, pseudoClassState, 3000)))
-    }
-
-    protected static boolean verifyNodeHasPseudoClass(Node node, PseudoClass pseudoClassState, long nWait) {
-
-        WaitCondition condition = new WaitCondition("Wait until node has [" + pseudoClassState + "] class") {
-            @Override
-            boolean test() {
-                ObservableSet<PseudoClass> pseudoClass = node.pseudoClassStates
-                DSLSupport.evaluate(ExecutionDetails.create("Verifying has class")
-                        .expected("Expected class: " + pseudoClassState)
-                        .received("Found classes: " + pseudoClass)
-                        .success())
-                return pseudoClass.contains(pseudoClassState)
-            }
-        }
-        return WaitTimer.pause(condition, nWait, 400)
+                .success(PseudoClassStates.verifyNodeHasPseudoClass(widget, pseudoClassState, 3000)))
     }
 }

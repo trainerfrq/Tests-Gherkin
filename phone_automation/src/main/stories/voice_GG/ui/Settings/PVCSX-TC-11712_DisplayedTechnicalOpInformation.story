@@ -22,12 +22,18 @@ Given booked profiles:
 | javafx  | hmi   | <<CLIENT1_IP>> | HMI OP1    |
 | javafx  | hmi   | <<CLIENT2_IP>> | HMI OP2    |
 | javafx  | hmi   | <<CLIENT3_IP>> | HMI OP3    |
+| websocket | hmi | <<CO3_IP>>     | WEBSOCKET  |
 
-Scenario: Precondition - Restart OP-Voice-Service instances
-GivenStories: voice_GG/includes/KillStartOpVoiceActiveOnDockerHost1.story,
-			  voice_GG/includes/KillStartOpVoiceActiveOnDockerHost2.story
-Then waiting for 60 seconds
-Then HMI OP1 has in the DISPLAY STATUS section connection the state CONNECTED
+Scenario: Precondition - find the passive and the active instance
+Given named the websocket configurations:
+| named       | websocket-uri       | text-buffer-size |
+| WS_Config-1 | <<OPVOICE1_WS.URI>> | 1000             |
+| WS_Config-2 | <<OPVOICE2_WS.URI>> | 1000             |
+
+Given applied the websocket configuration:
+| profile-name | websocket-config-name |
+| WEBSOCKET 1  | WS_Config-1           |
+| WEBSOCKET 1  | WS_Config-2           |
 
 Scenario: 1. OP1 opens the Maintenance window
 Meta:
@@ -57,20 +63,22 @@ Meta:
 @TEST_STEP_ACTION: OP1 checks the OP-Voice connections IPs and connectivity status
 @TEST_STEP_REACTION: The OP-Voice connections IPs are displayed
 @TEST_STEP_REF: [CATS-REF: auE9]
+Then HMI OP1 verifies that Op Voice URI <<OPVOICE1_WS.URI>> is visible in the connections area
+Then HMI OP1 verifies that Op Voice URI <<OPVOICE2_WS.URI>> is visible in the connections area
 
 Scenario: 4.1 Check first instance status and IP
 Meta:
 @TEST_STEP_ACTION: -
 @TEST_STEP_REACTION: Connection 1 displays ACTIVE
 @TEST_STEP_REF: [CATS-REF: abE2]
-Then HMI OP1 verifies that connection number 1 of Op Voice instance <<OPVOICE1_WS.URI>> has status ACTIVE
+Then HMI OP1 verifies that Op Voice URI <<OPVOICE1_WS.URI>> has the expected status
 
 Scenario: 4.2 Check second instance status and IP
 Meta:
 @TEST_STEP_ACTION: -
 @TEST_STEP_REACTION: Connection 2 displays PASSIVE
 @TEST_STEP_REF: [CATS-REF: bbq1]
-Then HMI OP1 verifies that connection number 2 of Op Voice instance <<OPVOICE2_WS.URI>> has status PASSIVE
+Then HMI OP1 verifies that Op Voice URI <<OPVOICE2_WS.URI>> has the expected status
 
 Scenario: 5. OP1 checks Voice-HMI version
 Meta:
