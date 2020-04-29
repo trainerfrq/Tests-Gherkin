@@ -30,8 +30,8 @@ class VerifyConnectionStatus extends FxScriptTemplate {
                         .received(receivedStatus)
                         .expected(connectionStatus)
                         .success(connectionStatus.equals(receivedStatus)))
-            }
             break
+            }
         }
     }
 }
