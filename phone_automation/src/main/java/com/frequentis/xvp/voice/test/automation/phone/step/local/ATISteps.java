@@ -36,8 +36,8 @@ public class ATISteps extends AutomationSteps
         final JsonMessage jsonMessage =
                 JsonMessage.builder()
                         .withCorrelationId(UUID.randomUUID())
-                        .withPayload( GgCommand.builder( GgCommandType.CLICK_DA, target )
-                                .withCallType( GgCallType.DA ).build() ).build();
+                        .withPayload( new GgCommand( target, GgCommandType.CLICK_DA )
+                        .withCallType( GgCallType.DA ) ).build();
 
             Response response =
                     getATIWebTarget( endpointUri )
@@ -47,10 +47,10 @@ public class ATISteps extends AutomationSteps
         final GgCommandResponse output = getGgResponseContent(response);
 
         evaluate( localStep( "Verify response for executed POST request - DA call" )
-                .details( match( output.commandType(), equalTo(GgCommandType.CLICK_DA)) )
-                .details( match( output.result(), equalTo(GgResult.OK)))
-                .details( match( output.id(), equalTo(target)) )
-                .details( match(output.data(), is(nullValue())) ));
+                .details( match( output.getCommandType(), equalTo(GgCommandType.CLICK_DA)) )
+                .details( match( output.getResult(), equalTo(GgResult.OK)))
+                .details( match( output.getId(), equalTo(target)) )
+                .details( match(output.getData(), is(nullValue())) ));
     }
 
     @When("$hmiOperator changes (via POST request) current mission to mission $missionName")
@@ -64,8 +64,7 @@ public class ATISteps extends AutomationSteps
         final JsonMessage jsonMessageRequest =
                 JsonMessage.builder()
                         .withCorrelationId(UUID.randomUUID())
-                        .withPayload( Command.builder( CommandType.MISSION_CHANGE )
-                        .withId( missionName ).build() ).build();
+                        .withPayload( new Command(missionName, CommandType.MISSION_CHANGE )).build();
 
         Response response =
                 getATIWebTarget( endpointUri )
@@ -75,9 +74,9 @@ public class ATISteps extends AutomationSteps
         final CommandResponse output = getResponseContent(response);
 
         evaluate( localStep( "Verify response for executed POST request - mission change" )
-                .details( match( output.commandType(), equalTo(CommandType.MISSION_CHANGE)) )
-                .details( match( output.result(), equalTo(Result.OK)))
-                .details( match( output.id(), equalTo(missionName)) ));
+                .details( match( output.getCommandType(), equalTo(CommandType.MISSION_CHANGE)) )
+                .details( match( output.getResult(), equalTo(Result.OK)))
+                .details( match( output.getId(), equalTo(missionName)) ));
 
     }
 
