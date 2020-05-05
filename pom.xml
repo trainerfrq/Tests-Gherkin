@@ -19,10 +19,10 @@
       <iso.name>xvp-deployment-rhel7.4.4-ggd-jenkins-cats.iso</iso.name>
 
       <!-- CATS VERSION -->
-      <cats.version>6.3.0</cats.version>
+      <cats.version>6.4.0</cats.version>
 
       <!-- common dependency version -->
-      <voice.automation.common.version>0.1.1</voice.automation.common.version>
+      <voice.automation.common.version>0.1.2</voice.automation.common.version>
 
       <!-- DEPENDENCY VERSIONS -->
       <voice.service.interface.version>7.5.0-SNAPSHOT</voice.service.interface.version>
