@@ -24,7 +24,7 @@ Then HMI OP3 activates mission
 Then waiting for 5 seconds
 
 Scenario: Caller establishes an outgoing IA call
-When HMI OP2 with layout <<LAYOUT_MISSION2>>  selects grid tab 2
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
 When HMI OP2 presses IA key IA - <<ROLE_1_NAME>>
 Then HMI OP2 has the call queue item OP1-OP2-ROLE in state connected
 Then HMI OP2 has the IA key IA - <<ROLE_1_NAME>> in state connected
@@ -45,7 +45,7 @@ Then HMI OP2 has the IA call queue item OP1-OP2-ROLE with audio direction tx_mon
 Scenario: Op1 establish an outgoing IA call to Op2 active role
 		  @REQUIREMENTS:GID-2505705
 		  @REQUIREMENTS:GID-3371939
-When HMI OP1 with layout <<LAYOUT_MISSION1>>  selects grid tab 2
+When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
 When HMI OP1 presses IA key IA - <<ROLE_2_NAME>>
 
 Scenario: Verify call direction

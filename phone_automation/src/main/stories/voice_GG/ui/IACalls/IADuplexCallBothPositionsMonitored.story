@@ -17,7 +17,7 @@ Given the call queue items:
 | OP3-OP1 | <<OP3_URI>> | <<OP1_URI>> | IA       |
 
 Scenario: Caller establishes an outgoing IA call
-When HMI OP3 with layout <<LAYOUT_MISSION3>>  selects grid tab 2
+When HMI OP3 with layout <<LAYOUT_MISSION3>> selects grid tab 2
 When HMI OP3 presses IA key IA - OP1
 Then HMI OP3 has the call queue item OP1-OP3 in state connected
 Then HMI OP3 has the IA key IA - OP1 in state connected
