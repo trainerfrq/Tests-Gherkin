@@ -14,19 +14,34 @@ Given defined XVP Configurator pages:
 | config-1 | web firefox_<<systemName>> | <<xvp.configurator.url>> |
 
 Scenario: Verify XVP Configurator main page
-Then wait for 10 seconds
-!-- Then add a new configuration
-!-- Then configurator management page is visible
+When wait 10 seconds for Config. Management page to be loaded
+Then configurator management page is visible
+
+Scenario: Open Global setting - Telephone configurator
 When configurator Global settings - Telephone is selected
-!-- Then Global settings - Telephone sub-configurators are visible
+Then Global settings - Telephone sub-configurators are visible
 
+Scenario: Open PhoneBook sub-configurator
 When sub-configurator Phone Book is selected
-!-- Then Phone Book page is visible
+Then wait 2 seconds for LoadingScreen to disappear
+Then Phone Book tree title is visible
 
+Scenario: Click on new button
 When new button is pressed
+Then a new phonebook is created with Full Name Ana, Display Name Mary and Destination sip:example
 
-!-- Then a new phone is created with Full Name Ana, Display Name Mary and Destination sip:example
+Scenario: Check phoneBook was created
+When configurator Operator Positions is selected
+When sub-configurator Diagnostic is selected
+Then wait 2 seconds for LoadingScreen to disappear
 
+Scenario: Check jsonFile
+Then json file phoneBook contains phone book with Display Name Mary and Destination sip:example
 
+Scenario: Open Phonebook in order to delete the new entry
+When sub-configurator Phone Book is selected
+Then wait 2 seconds for LoadingScreen to disappear
 
-
+Scenario: Search for new entry
+When write in search box Ana
+Then phonebook entry Ana is displayed in results list

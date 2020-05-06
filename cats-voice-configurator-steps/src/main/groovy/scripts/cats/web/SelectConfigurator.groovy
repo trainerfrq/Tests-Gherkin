@@ -14,37 +14,20 @@ class SelectConfigurator extends WebScriptTemplate {
 
     @Override
     protected void script() {
-        String name =  assertInput(IPARAM_CONFIG_NAME) as String;
+        String configuratorName = assertInput(IPARAM_CONFIG_NAME) as String;
 
-        WebDriver driver = WebDriverManager.getInstance().getWebDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        WebDriver driver = WebDriverManager.getInstance().getWebDriver()
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS)
 
-        WebElement configurator = driver.findElement(By.cssSelector("div[title='"+ name + "'" ))
+        WebElement configurator = driver.findElement(By.cssSelector("div[title='" + configuratorName + "'"))
+
+        evaluate(ExecutionDetails.create("Check for " + configuratorName)
+                .expected(configuratorName + " was found")
+                .success(configurator.isDisplayed()))
+
         configurator.click()
 
-        evaluate(ExecutionDetails.create("configurator " + name + " was clicked")
-                .expected(name)
-                .success(true));
-
-//        List<WebElement> configuratorsContainer = driver.findElements(By.className("list-group-item-title"));
-//        for (WebElement we : configuratorsContainer) {
-//            if(we.getText().contains("Global settings - Telephone")){
-//                evaluate(ExecutionDetails.create("button found ")
-//                        .expected(we.getText())
-//                        .success(true));
-//                we.click()
-//                break;
-//            }
-//
-//        }
-//        WebElement phonebook = configuratorsContainer.findElement(By.cssSelector("div[title='Global settings - Telephone']"));
-//        WaitTimer.pause(1000);
-
+        evaluate(ExecutionDetails.create("Configurator " + configuratorName + " was clicked")
+                .success(true))
     }
-
-//    WebElement countryUL= driver.findElement(By.xpath("//[@id='country_id']/ul"));
-//    List<WebElement> countriesList=countryUL.findElements(By.tagName("li"));
-//    for (WebElement li : countriesList) {
-//        if (li.getText().equals("India (+91")) {
-//            li.click();
 }

@@ -1,10 +1,10 @@
 package scripts.cats.web.GlobalSettingsTelephone
 
 import com.frequentis.c4i.test.agent.selenium.WebDriverManager
-import elements.ConfiguratorGeneralElements
-import elements.configurators.globalSettingsTelephone.PhoneBook
+import com.frequentis.c4i.test.model.ExecutionDetails
 import org.openqa.selenium.WebDriver
 import scripts.agent.selenium.automation.WebScriptTemplate
+import scripts.elements.configurators.globalSettingsTelephone.PhoneBook
 
 import java.util.concurrent.TimeUnit
 
@@ -19,27 +19,37 @@ class AddPhoneBookEntry extends WebScriptTemplate {
         String displayName = assertInput(IPARAM_DISPLAY_NAME) as String
         String destination = assertInput(IPARAM_DESTINATION) as String
 
-        WebDriver driver = WebDriverManager.getInstance().getWebDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        ConfiguratorGeneralElements
-        PhoneBook newPhonebook = new PhoneBook(driver);
+        WebDriver driver = WebDriverManager.getInstance().getWebDriver()
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS)
 
-        newPhonebook.write_FullName(fullName)
+        PhoneBook newPhonebook = new PhoneBook(driver)
 
-        //asert full name was entered
+        newPhonebook.writeFullName(fullName)
 
-        newPhonebook.write_DisplayName(displayName)
+        evaluate(ExecutionDetails.create("Full name " + fullName + " was entered")
+                .expected(fullName)
+                .received(newPhonebook.getContentFullNameTextArea())
+                .success(fullName.equals(newPhonebook.getContentFullNameTextArea())))
 
-        //asert display name was entered
+        newPhonebook.writeDisplayName(displayName)
 
-        newPhonebook.write_Destination(destination)
+        evaluate(ExecutionDetails.create("Display name " + displayName + " was entered")
+                .expected(displayName)
+                .received(newPhonebook.getContentDisplayNameTextArea())
+                .success(displayName.equals(newPhonebook.getContentDisplayNameTextArea())))
 
-        //asert destination was entered
+        newPhonebook.writeDestination(destination)
+
+        evaluate(ExecutionDetails.create("Destination " + destination + " was entered")
+                .expected(destination)
+                .received(newPhonebook.getContentDestinationTextArea())
+                .success(destination.equals(newPhonebook.getContentDestinationTextArea())))
 
         newPhonebook.clickSaveButton()
+        sleep(5000)
 
         ///check save pop-up showed
-        newPhonebook.isPhonebooKSaved()
-
+        evaluate(ExecutionDetails.create("New phonebook was saved succesfully")
+                .success(newPhonebook.getPopUpMessage().contains("Successfully saved the phonebook entry")));
     }
 }
