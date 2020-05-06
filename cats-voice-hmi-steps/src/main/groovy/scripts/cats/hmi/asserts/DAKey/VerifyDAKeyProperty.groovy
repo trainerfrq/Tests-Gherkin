@@ -1,13 +1,10 @@
 package scripts.cats.hmi.asserts.DAKey
 
-import com.frequentis.c4i.test.agent.DSLSupport
 import com.frequentis.c4i.test.model.ExecutionDetails
-import com.frequentis.c4i.test.util.timer.WaitCondition
-import com.frequentis.c4i.test.util.timer.WaitTimer
-import javafx.collections.ObservableSet
 import javafx.css.PseudoClass
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
+import scripts.utils.PseudoClassStates
 
 class VerifyDAKeyProperty extends FxScriptTemplate {
 
@@ -33,27 +30,12 @@ class VerifyDAKeyProperty extends FxScriptTemplate {
         switch(propertyVisible){
             case "visible":
                 evaluate(ExecutionDetails.create("Verify PseudoClassStates contains: " + daKeyProperty)
-                        .success(verifyNodeHasPseudoClass(daWidget, pseudoClassState, 3000)))
+                        .success(PseudoClassStates.verifyNodeHasPseudoClass(daWidget, pseudoClassState, 3000)))
                 break
             case "not visible":
                 evaluate(ExecutionDetails.create("Verify PseudoClassStates contains: " + daKeyProperty)
-                        .success(!verifyNodeHasPseudoClass(daWidget, pseudoClassState, 3000)))
+                        .success(!PseudoClassStates.verifyNodeHasPseudoClass(daWidget, pseudoClassState, 3000)))
                 break
         }
-    }
-    protected static boolean verifyNodeHasPseudoClass(Node node, PseudoClass pseudoClassState, long nWait) {
-
-        WaitCondition condition = new WaitCondition("Wait until node has [" + pseudoClassState + "] class") {
-            @Override
-            boolean test() {
-                ObservableSet<PseudoClass> pseudoClass = node.pseudoClassStates
-                DSLSupport.evaluate(ExecutionDetails.create("Verifying has class")
-                        .expected("Expected class: " + pseudoClassState)
-                        .received("Found classes: " + pseudoClass)
-                        .success())
-                return pseudoClass.contains(pseudoClassState)
-            }
-        }
-        return WaitTimer.pause(condition, nWait, 400)
     }
 }

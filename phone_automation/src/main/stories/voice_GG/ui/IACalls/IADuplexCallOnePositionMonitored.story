@@ -20,7 +20,7 @@ Given the call queue items:
 | OP1-OP2-1    | <<ROLE1_URI>> | <<ROLE2_URI>> | IA       |
 
 Scenario: Caller establishes an outgoing IA call
-When HMI OP2 with layout <<LAYOUT_MISSION2>>  selects grid tab 2
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 2
 When HMI OP2 presses IA key IA - OP1
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Then HMI OP2 has the IA key IA - OP1 in state connected

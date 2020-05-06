@@ -33,6 +33,11 @@
           <groupId>com.frequentis.xvp.framework</groupId>
           <artifactId>mission-configurator-plugin</artifactId>
        </dependency>
+       <dependency>
+           <groupId>com.frequentis.xvp.voice</groupId>
+           <artifactId>automated-test-service-interface</artifactId>
+           <version>${automated.test.interface.version}</version>
+       </dependency>
 
        <dependency>
            <groupId>com.frequentis.xvp.framework.testing</groupId>
@@ -108,6 +113,11 @@
          <groupId>com.frequentis.c4i.test</groupId>
          <artifactId>cats-ssh-steps</artifactId>
       </dependency>
+       <dependency>
+           <groupId>com.frequentis.c4i.test</groupId>
+           <artifactId>cats-rest-steps</artifactId>
+           <version>${cats.version}</version>
+       </dependency>
 
       <!--JAVAFX DOMAIN-->
       <dependency>

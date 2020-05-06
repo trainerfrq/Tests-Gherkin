@@ -17,6 +17,7 @@
 package com.frequentis.xvp.voice.test.automation.phone.step;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
+import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.GridWidgetKey;
@@ -30,15 +31,14 @@ import scripts.cats.hmi.actions.ClickStatusLabel;
 import scripts.cats.hmi.actions.Settings.CleanUpPopupWindow;
 import scripts.cats.hmi.actions.Settings.ClickOnSymbolButton;
 import scripts.cats.hmi.asserts.DateAndTime.*;
-import scripts.cats.hmi.asserts.Settings.Maintenance.VerifyConnectionsAddressesAndStatus;
-import scripts.cats.hmi.asserts.Settings.Maintenance.VerifyConnectionsNumber;
-import scripts.cats.hmi.asserts.Settings.Maintenance.VerifyServiceVersion;
+import scripts.cats.hmi.asserts.Settings.Maintenance.*;
 import scripts.cats.hmi.asserts.VerifyItemVisibility;
 import scripts.cats.hmi.asserts.VerifyLoadingOverlayIsVisible;
 import scripts.cats.hmi.asserts.VerifyPopupVisible;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.net.URI;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -193,6 +193,44 @@ public class GGBasicUISteps extends AutomationSteps
                         assertProfile(profileName))
                 .input(VerifyConnectionsNumber.IPARAM_CONNECTIONS_TYPE, connectionsType)
                 .input(VerifyConnectionsNumber.IPARAM_CONNECTIONS_NUMBER, connectionsNumber));
+    }
+
+    @Then("$profileName verifies that Op Voice URI $opVoiceURI is visible in the connections area")
+    public void verifyURI(final String profileName, final String opVoiceURI)
+    {
+        String uri = opVoiceURI.split("/")[2].split("/")[0];
+        evaluate(remoteStep("Verifying op voice URI")
+                .scriptOn(profileScriptResolver().map(VerifyConnectionURI.class, BookableProfileName.javafx),
+                        assertProfile(profileName))
+                .input(VerifyConnectionURI.IPARAM_CONNECTION_URI, uri));
+    }
+
+    @Then("$profileName verifies that Op Voice URI $opVoiceURI has the expected status")
+    public void verifyStatus(final String profileName, final String opVoiceURI)
+    {
+        final LocalStep localStep = localStep( "URIs verification" );
+
+        URI opVoiceURIActive = getStoryListData("active-instance", URI.class);
+        URI opVoiceURIPassive = getStoryListData("passive-instance", URI.class);
+
+        if(opVoiceURI.equals(opVoiceURIActive.toString())){
+            evaluate(remoteStep("Verifying op voice URI with active status")
+                    .scriptOn(profileScriptResolver().map(VerifyConnectionStatus.class, BookableProfileName.javafx),
+                            assertProfile(profileName))
+                    .input(VerifyConnectionStatus.IPARAM_CONNECTION_URI, opVoiceURI)
+                    .input(VerifyConnectionStatus.IPARAM_CONNECTION_STATUS, "ACTIVE"));
+        }
+        else if (opVoiceURI.equals(opVoiceURIPassive.toString())){
+            evaluate(remoteStep("Verifying op voice URI with passive status")
+                    .scriptOn(profileScriptResolver().map(VerifyConnectionStatus.class, BookableProfileName.javafx),
+                            assertProfile(profileName))
+                    .input(VerifyConnectionStatus.IPARAM_CONNECTION_URI, opVoiceURI)
+                    .input(VerifyConnectionStatus.IPARAM_CONNECTION_STATUS, "PASSIVE"));
+        }
+        else{
+            localStep.details( ExecutionDetails.create( "verify if URIs host part available" )
+                    .success( opVoiceURIActive.getHost()!= null && opVoiceURIPassive.getHost() != null ) );
+        }
     }
 
     @Then("$profileName verifies that connection number $connectionNumber of Op Voice instance $OpVoiceURI has status $status")

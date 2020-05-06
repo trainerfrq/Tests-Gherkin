@@ -1,0 +1,10 @@
+{"header":
+      {"correlationId":"46e705b3-127b-4dd0-b01a-ee8c56aedbc9"},
+         "body":
+         {"ggCommand":
+            {"commandType":"CLICK_DA",
+              "id":"role1",
+              "precondition":"PRIORITY",
+              "callType":"DA"}
+         }
+}

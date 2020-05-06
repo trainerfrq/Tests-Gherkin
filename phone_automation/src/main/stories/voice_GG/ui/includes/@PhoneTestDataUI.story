@@ -24,7 +24,7 @@ Given the DA keys:
 | HMI OP1 | Test_Hurst                 | <<PhyOpPos1_Test_Hurst>>             |
 | HMI OP1 | Test_Ivy                   | <<PhyOpPos1_Test_Ivy>>               |
 | HMI OP1 | Test_Kristi                | <<PhyOpPos1_Test_Kristi>>            |
-| HMI OP1 | OP3(as Mission4)           | <<PhyOpPos1_CWP2>>                   |
+| HMI OP1 | OP3(as Mission4)           | <<PhyOpPos1(MISSION4)_CWP3>>                   |
 | HMI OP1 | LegacyPhone                | <<Active1_LegacyPhone>>              |
 | HMI OP1 | GND(as TWR)                | <<ACTIVE1_GND>>                      |
 | HMI OP1 | OP2(as GND)                | <<PhyOpPos1(GND)_CWP2>>              |
@@ -140,28 +140,28 @@ Given the function keys:
 
 Scenario: Define status key
 Given the status key:
-| source  | key                    | id                                |
-| HMI OP1 | DISPLAY STATUS         | <<DISPLAY_STATUS_ID_MISSION1>>    |
-| HMI OP1 | DISPLAY STATUS 2       | <<DISPLAY_STATUS_ID_MISSION2>>    |
-| HMI OP1 | DISPLAY STATUS 3       | <<DISPLAY_STATUS_ID_MISSION3>>    |
-| HMI OP1 | DISPLAY STATUS 4       | <<DISPLAY_STATUS_ID_MISSION4>>    |
-| HMI OP1 | DISPLAY STATUS TWR     | <<DISPLAY_STATUS_ID_TWR>>         |
-| HMI OP1 | DISPLAY STATUS GND     | <<DISPLAY_STATUS_ID_GND>>         |
-| HMI OP1 | DISPLAY STATUS APP     | <<DISPLAY_STATUS_ID_APP>>         |
-| HMI OP1 | DISPLAY STATUS SUP-TWR | <<DISPLAY_STATUS_ID_SUP-TWR>>     |
-| HMI OP2 | DISPLAY STATUS         | <<DISPLAY_STATUS_ID_MISSION2>>    |
-| HMI OP2 | DISPLAY STATUS 1       | <<DISPLAY_STATUS_ID_MISSION1>>    |
-| HMI OP2 | DISPLAY STATUS 3       | <<DISPLAY_STATUS_ID_MISSION3>>    |
-| HMI OP2 | DISPLAY STATUS 4       | <<DISPLAY_STATUS_ID_MISSION4>>    |
-| HMI OP2 | DISPLAY STATUS TWR     | <<DISPLAY_STATUS_ID_TWR>> |
-| HMI OP3 | DISPLAY STATUS         | <<DISPLAY_STATUS_ID_MISSION3>>    |
-| HMI OP3 | DISPLAY STATUS 2       | <<DISPLAY_STATUS_ID_MISSION2>>    |
-| HMI OP3 | DISPLAY STATUS 1       | <<DISPLAY_STATUS_ID_MISSION1>>    |
-| HMI OP3 | DISPLAY STATUS 4       | <<DISPLAY_STATUS_ID_MISSION4>>    |
-| HMI OP3 | DISPLAY STATUS TWR     | <<DISPLAY_STATUS_ID_TWR>>         |
-| HMI OP1 | NOTIFICATION DISPLAY   | <<NOTIFICATION_DISPLAY_ID>>       |
-| HMI OP2 | NOTIFICATION DISPLAY   | <<NOTIFICATION_DISPLAY_ID>>       |
-| HMI OP3 | NOTIFICATION DISPLAY   | <<NOTIFICATION_DISPLAY_ID>>       |
+| source  | key                    | id                             |
+| HMI OP1 | DISPLAY STATUS         | <<DISPLAY_STATUS_ID_MISSION1>> |
+| HMI OP1 | DISPLAY STATUS 2       | <<DISPLAY_STATUS_ID_MISSION2>> |
+| HMI OP1 | DISPLAY STATUS 3       | <<DISPLAY_STATUS_ID_MISSION3>> |
+| HMI OP1 | DISPLAY STATUS 4       | <<DISPLAY_STATUS_ID_MISSION4>> |
+| HMI OP1 | DISPLAY STATUS TWR     | <<DISPLAY_STATUS_ID_TWR>>      |
+| HMI OP1 | DISPLAY STATUS GND     | <<DISPLAY_STATUS_ID_GND>>      |
+| HMI OP1 | DISPLAY STATUS APP     | <<DISPLAY_STATUS_ID_APP>>      |
+| HMI OP1 | DISPLAY STATUS SUP-TWR | <<DISPLAY_STATUS_ID_SUP-TWR>>  |
+| HMI OP2 | DISPLAY STATUS         | <<DISPLAY_STATUS_ID_MISSION2>> |
+| HMI OP2 | DISPLAY STATUS 1       | <<DISPLAY_STATUS_ID_MISSION1>> |
+| HMI OP2 | DISPLAY STATUS 3       | <<DISPLAY_STATUS_ID_MISSION3>> |
+| HMI OP2 | DISPLAY STATUS 4       | <<DISPLAY_STATUS_ID_MISSION4>> |
+| HMI OP2 | DISPLAY STATUS TWR     | <<DISPLAY_STATUS_ID_TWR>>      |
+| HMI OP3 | DISPLAY STATUS         | <<DISPLAY_STATUS_ID_MISSION3>> |
+| HMI OP3 | DISPLAY STATUS 2       | <<DISPLAY_STATUS_ID_MISSION2>> |
+| HMI OP3 | DISPLAY STATUS 1       | <<DISPLAY_STATUS_ID_MISSION1>> |
+| HMI OP3 | DISPLAY STATUS 4       | <<DISPLAY_STATUS_ID_MISSION4>> |
+| HMI OP3 | DISPLAY STATUS TWR     | <<DISPLAY_STATUS_ID_TWR>>      |
+| HMI OP1 | NOTIFICATION DISPLAY   | <<NOTIFICATION_DISPLAY_ID>>    |
+| HMI OP2 | NOTIFICATION DISPLAY   | <<NOTIFICATION_DISPLAY_ID>>    |
+| HMI OP3 | NOTIFICATION DISPLAY   | <<NOTIFICATION_DISPLAY_ID>>    |
 
 Scenario: Define call route selectors
 Given the call route selectors:
@@ -176,4 +176,11 @@ Given the call route selectors:
 | Professor | prof    |
 | Medic     | medic   |
 | Mail      | mail    |
+
+Scenario: Define call source and API URI
+When define values in story data:
+| name    | value            |
+| HMI OP1 | <<HMI1_API.URI>> |
+| HMI OP2 | <<HMI2_API.URI>> |
+| HMI OP3 | <<HMI3_API.URI>> |
 

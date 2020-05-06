@@ -50,7 +50,7 @@ Scenario: Op3 closes monitoring popup
 Then HMI OP3 closes monitoring popup
 
 Scenario: Op3 establishes an outgoing IA call
-When HMI OP3 with layout <<LAYOUT_MISSION3>>  selects grid tab 2
+When HMI OP3 with layout <<LAYOUT_MISSION3>> selects grid tab 2
 When HMI OP3 presses IA key IA - OP1
 Then HMI OP3 has the call queue item OP1-OP3 in state connected
 Then HMI OP3 has the IA key IA - OP1 in state connected
@@ -107,7 +107,7 @@ Then HMI OP1 has in the call queue a number of 1 calls
 Then HMI OP1 has the IA call queue item OP3-OP1 with audio direction rx_monitored
 
 Scenario: Op3 ends outgoing IA call
-When HMI OP3 with layout <<LAYOUT_MISSION3>>  selects grid tab 2
+When HMI OP3 with layout <<LAYOUT_MISSION3>> selects grid tab 2
 When HMI OP3 presses IA key IA - OP1
 Then HMI OP3 has in the call queue a number of 0 calls
 
