@@ -48,7 +48,7 @@ Then assign date time value for entry entry4
 Then HMI OP2 has the DA key OP1 in state out_ringing
 Then HMI OP1 has the DA key OP2 in state inc_initiated
 When HMI OP1 presses DA key OP2
-Then HMI OP1 has the DA key OP2  in state connected
+Then HMI OP1 has the DA key OP2 in state connected
 Then HMI OP2 has the DA key OP1 in state connected
 And wait for 5 seconds
 When HMI OP2 presses DA key OP1

@@ -10,7 +10,7 @@
         <outbound-ports>
             <ports>5701-5751</ports>
         </outbound-ports>
-        <reuse-address>true</reuse-address>
+        <!--reuse-address>true</reuse-address-->
        <join>
           <multicast enabled="false"/>
           <tcp-ip enabled="true">

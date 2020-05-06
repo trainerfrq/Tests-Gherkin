@@ -34,7 +34,7 @@ Given the call queue items:
 | OP1-OP2      | <<OP1_URI>>           | <<OP2_URI>>      | DA/IDA   |
 | OP2-OP1      | <<OP2_URI>>           | <<OP1_URI>>      | DA/IDA   |
 | OP1-OP2-CONF | <<OP1_URI>>           | <<OP2_URI>>      | CONF     |
-| OP3-OP2-Conf | <<OP3_URI>>           | <<OP2_URI>>      | CONF     |
+| OP3-OP2-CONF | <<OP3_URI>>           | <<OP2_URI>>      | CONF     |
 | OP2-OP1-Conf | <<OPVOICE2_CONF_URI>> | <<OP1_URI>>:5060 | CONF     |
 | OP2-OP3-Conf | <<OPVOICE2_CONF_URI>> | <<OP3_URI>>:5060 | CONF     |
 
@@ -161,10 +161,8 @@ Then HMI OP2 leaves conference
 
 Scenario: 9.1 Call is terminated initiator, but not for the participant
 Then HMI OP2 has in the call queue a number of 0 calls
-!-- Then HMI OP3 has in the call queue a number of 1 calls
 
 Scenario: 9.2 OP3 ends conference
-!-- Then HMI OP3 terminates the call queue item OP2-OP3-Conf
 Then HMI OP3 has in the call queue a number of 0 calls
 
 Scenario: 10. OP2 reestablishes the conference with OP3
@@ -175,9 +173,9 @@ When HMI OP2 presses DA key OP3
 When HMI OP3 presses DA key OP2
 When HMI OP2 starts a conference using an existing active call
 Then wait for 2 seconds
-Then HMI OP2 has the call queue item OP3-OP2-Conf in state connected
-Then HMI OP2 has the call queue item OP3-OP2-Conf in the active list with name label CONF
-Then HMI OP2 has the call queue item OP3-OP2-Conf in the active list with info label 2 participants
+Then HMI OP2 has the call queue item OP3-OP2-CONF in state connected
+Then HMI OP2 has the call queue item OP3-OP2-CONF in the active list with name label CONF
+Then HMI OP2 has the call queue item OP3-OP2-CONF in the active list with info label 2 participants
 
 Scenario: 11. OP2 adds OP1 to the conference
 Meta: @TEST_STEP_ACTION: OP2 adds OP1 to the conference
@@ -236,9 +234,9 @@ When HMI OP2 presses DA key OP3
 When HMI OP3 presses DA key OP2
 When HMI OP2 starts a conference using an existing active call
 Then wait for 2 seconds
-Then HMI OP2 has the call queue item OP3-OP2-Conf in state connected
-Then HMI OP2 has the call queue item OP3-OP2-Conf in the active list with name label CONF
-Then HMI OP2 has the call queue item OP3-OP2-Conf in the active list with info label 2 participants
+Then HMI OP2 has the call queue item OP3-OP2-CONF in state connected
+Then HMI OP2 has the call queue item OP3-OP2-CONF in the active list with name label CONF
+Then HMI OP2 has the call queue item OP3-OP2-CONF in the active list with info label 2 participants
 
 Scenario: 16. OP2 adds OP1 to the conference
 Meta: @TEST_STEP_ACTION: OP2 adds OP1 to the conference
@@ -282,7 +280,7 @@ Then HMI OP3 has in the call queue a number of 1 calls
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: 18.2 OP2 terminates the conference
-Then HMI OP2 terminates the call queue item OP3-OP2-Conf
+Then HMI OP2 terminates the call queue item OP3-OP2-CONF
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 
