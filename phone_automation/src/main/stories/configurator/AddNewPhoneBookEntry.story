@@ -14,7 +14,6 @@ Given defined XVP Configurator pages:
 | config-1 | web firefox_<<systemName>> | <<xvp.configurator.url>> |
 
 Scenario: Verify XVP Configurator main page
-When wait 10 seconds for Config. Management page to be loaded
 Then configurator management page is visible
 
 Scenario: Open Global setting - Telephone configurator
@@ -45,3 +44,12 @@ Then wait 2 seconds for LoadingScreen to disappear
 Scenario: Search for new entry
 When write in search box Ana
 Then phonebook entry Ana is displayed in results list
+
+Scenario: Delete new phonebook entry
+When delete phonebook entry Ana
+
+Scenario: Clean-up - Close Global setting - Telephone configurator
+When configurator Global settings - Telephone is selected
+
+Scenario: Clean-up - Close Operator Positions configurator
+When configurator Operator Positions is selected

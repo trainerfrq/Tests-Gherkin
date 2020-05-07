@@ -21,7 +21,7 @@ class SelectSubConfigurator extends WebScriptTemplate{
 
         WebElement subConfigurator = driver.findElement(By.cssSelector("div[title='"+ subConfiguratorName + "'" ))
 
-        evaluate(ExecutionDetails.create("Check for " + subConfiguratorName)
+        evaluate(ExecutionDetails.create("Check for " + subConfiguratorName + " sub-configurator")
                 .expected(subConfiguratorName + " was found")
                 .success(subConfigurator.isDisplayed()));
 

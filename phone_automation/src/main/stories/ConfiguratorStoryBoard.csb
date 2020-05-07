@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <cats:storyBoard xmlns:cats="http://webservice.test.c4i.frequentis.com/v1.1/" enabled="true">
     <cats:boardId>3348d3f1-8a3d-4c0a-8513-ae0a64d0e880</cats:boardId>
-    <cats:name>DemoStoryBoard</cats:name>
+    <cats:name>ConfiguratorStoryBoard</cats:name>
     <cats:report>
         <cats:status>CREATED</cats:status>
     </cats:report>
@@ -10,14 +10,14 @@
     </cats:reportFormats>
     <cats:reportPersistenceMode>ALL</cats:reportPersistenceMode>
     <cats:storyCollections>
-        <cats:storyCollection enabled="false">
+        <cats:storyCollection enabled="true">
             <cats:name>Web - Prepare Tests</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
                 <cats:status>CREATED</cats:status>
             </cats:report>
             <cats:storyLists>
-                <cats:storyList enabled="false">
+                <cats:storyList enabled="true">
                     <cats:name>Web - Prepare Tests</cats:name>
                     <cats:onErrorOption>FINISH_CURRENT_STORY</cats:onErrorOption>
                     <cats:repetitions>1</cats:repetitions>
@@ -27,7 +27,7 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
-                            <cats:storyPath>deploy/CreateCO_noDocker.story</cats:storyPath>
+                            <cats:storyPath>deploy/CreateCO.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
@@ -43,15 +43,15 @@
                 </cats:storyList>
             </cats:storyLists>
         </cats:storyCollection>
-        <cats:storyCollection enabled="false">
-            <cats:name>Web - Demo</cats:name>
+        <cats:storyCollection enabled="true">
+            <cats:name>Web - Global Settings - Telephone</cats:name>
             <cats:onStoryCollectionError>CONTINUE_EXECUTION</cats:onStoryCollectionError>
             <cats:report>
                 <cats:status>CREATED</cats:status>
             </cats:report>
             <cats:storyLists>
-                <cats:storyList enabled="false">
-                    <cats:name>Web - Demo</cats:name>
+                <cats:storyList enabled="true">
+                    <cats:name>Web - Global Settings - Telephone</cats:name>
                     <cats:onErrorOption>CONTINUE_NEXT_SCENARIO</cats:onErrorOption>
                     <cats:repetitions>1</cats:repetitions>
                     <cats:report>
@@ -59,8 +59,14 @@
                     </cats:report>
                     <cats:reports/>
                     <cats:stories>
-                        <cats:story enabled="true">
+                        <cats:story enabled="false">
                             <cats:storyPath>configurator/MosaiXConfiguratorDemo.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>configurator/AddNewPhoneBookEntry.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
                             <cats:storyStatistics/>

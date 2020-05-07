@@ -6,9 +6,8 @@ import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.web.automation.data.ProfileToWebConfigurationReference;
 import org.jbehave.core.annotations.*;
-import scripts.cats.web.GlobalSettingsTelephone.AddPhoneBookEntry;
-import scripts.cats.web.GlobalSettingsTelephone.VerifyPhoneBookTitleIsVisible;
 import scripts.cats.web.*;
+import scripts.cats.web.GlobalSettingsTelephone.*;
 import scripts.cats.web.OperatorPositions.VerifyPhoneBookEntryWasCreated;
 
 import java.util.List;
@@ -149,7 +148,7 @@ public class WebSteps extends AutomationSteps {
         if (webAppConfig != null) {
             Profile profile = getProfile(webAppConfig.getProfileName());
             evaluate(remoteStep("Writing " + text + " in Search Box")
-                    .scriptOn(VerifyPhoneBookTitleIsVisible.class, profile)
+                    .scriptOn(WriteInSearchBox.class, profile)
                     .input(WriteInSearchBox.IPARAM_SEARCHED_ENTRY, text));
         }
     }
@@ -159,9 +158,20 @@ public class WebSteps extends AutomationSteps {
         ProfileToWebConfigurationReference webAppConfig = getStoryData("config-1", ProfileToWebConfigurationReference.class);
         if (webAppConfig != null) {
             Profile profile = getProfile(webAppConfig.getProfileName());
-            evaluate(remoteStep("Writing " + text + " in Search Box")
+            evaluate(remoteStep("Checking for " + entryName + " in results list")
                     .scriptOn(CheckEntryInResultsList.class, profile)
-                    .input(CheckEntryInResultsList.IPARAM_ENTRY_NAME, text));
+                    .input(CheckEntryInResultsList.IPARAM_ENTRY_NAME, entryName));
+        }
+    }
+
+    @When("delete phonebook entry $entryName")
+    public void deletePhonebookEntry(String entryName){
+        ProfileToWebConfigurationReference webAppConfig = getStoryData("config-1", ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Delete phonebook entry " + entryName)
+                    .scriptOn(DeletePhoneBookEntry.class, profile)
+                    .input(DeletePhoneBookEntry.IPARAM_ENTRY_NAME, entryName));
         }
     }
 }
