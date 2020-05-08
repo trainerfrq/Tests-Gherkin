@@ -104,6 +104,7 @@
                                  <CATS_HAZELCAST_PORT>5701</CATS_HAZELCAST_PORT>
                                  <CATS_FTP_PORTS>1000-1005</CATS_FTP_PORTS>
                                  <PROJECTURL>${env.PROJECT_URL}</PROJECTURL>
+                                 <PROJECTUSER>${env.ARTIFACTORY_USER}</PROJECTUSER>
                                  <http_proxy>${env.HTTP_PROXY}</http_proxy>
                                  <OP_VOICE_VERSION>${env.OP_VOICE_VERSION}</OP_VOICE_VERSION>
                                  <VOICE_HMI_VERSION>${env.VOICE_HMI_VERSION}</VOICE_HMI_VERSION>
