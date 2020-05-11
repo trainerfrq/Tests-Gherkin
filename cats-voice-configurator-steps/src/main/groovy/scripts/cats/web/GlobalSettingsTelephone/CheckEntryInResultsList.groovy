@@ -7,8 +7,6 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import scripts.agent.selenium.automation.WebScriptTemplate
 
-import java.util.concurrent.TimeUnit
-
 class CheckEntryInResultsList extends WebScriptTemplate {
     public static final String IPARAM_ENTRY_NAME = "entry_name"
 
@@ -17,12 +15,11 @@ class CheckEntryInResultsList extends WebScriptTemplate {
         String entryName = assertInput(IPARAM_ENTRY_NAME) as String
 
         WebDriver driver = WebDriverManager.getInstance().getWebDriver()
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS)
 
         WebElement searchedItem = driver.findElement(By.cssSelector("div[title='" + entryName + "']"))
 
         evaluate(ExecutionDetails.create("Check if " + entryName + " is in results list")
                 .expected(entryName + " was found")
-                .success(searchedItem != null))
+                .success(searchedItem.isDisplayed()))
     }
 }

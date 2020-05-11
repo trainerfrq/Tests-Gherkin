@@ -6,14 +6,11 @@ import org.openqa.selenium.WebDriver
 import scripts.agent.selenium.automation.WebScriptTemplate
 import scripts.elements.ConfigManagementGeneral
 
-import java.util.concurrent.TimeUnit
-
 class VerifyConfigManagementPageIsVisible extends WebScriptTemplate {
     @Override
     protected void script() {
 
         WebDriver driver = WebDriverManager.getInstance().getWebDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         ConfigManagementGeneral configManagementGeneral = new ConfigManagementGeneral(driver)
 

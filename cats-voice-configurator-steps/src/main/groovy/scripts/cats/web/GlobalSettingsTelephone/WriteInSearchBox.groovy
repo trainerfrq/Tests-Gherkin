@@ -6,9 +6,6 @@ import org.openqa.selenium.WebDriver
 import scripts.agent.selenium.automation.WebScriptTemplate
 import scripts.elements.ConfigManagementGeneral
 
-import java.util.concurrent.TimeUnit
-
-
 class WriteInSearchBox extends WebScriptTemplate {
     public static final String IPARAM_SEARCHED_ENTRY = "searched_entry"
 
@@ -17,7 +14,6 @@ class WriteInSearchBox extends WebScriptTemplate {
         String searchedEntry = assertInput(IPARAM_SEARCHED_ENTRY) as String;
 
         WebDriver driver = WebDriverManager.getInstance().getWebDriver()
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS)
 
         ConfigManagementGeneral configurator = new ConfigManagementGeneral(driver)
 

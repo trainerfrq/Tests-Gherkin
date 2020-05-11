@@ -6,8 +6,6 @@ import org.openqa.selenium.WebDriver
 import scripts.agent.selenium.automation.WebScriptTemplate
 import scripts.elements.configurators.globalSettingsTelephone.PhoneBook
 
-import java.util.concurrent.TimeUnit
-
 class AddPhoneBookEntry extends WebScriptTemplate {
     public static final String IPARAM_FULL_NAME= "full_name"
     public static final String IPARAM_DISPLAY_NAME= "display_name"
@@ -20,7 +18,6 @@ class AddPhoneBookEntry extends WebScriptTemplate {
         String destination = assertInput(IPARAM_DESTINATION) as String
 
         WebDriver driver = WebDriverManager.getInstance().getWebDriver()
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS)
 
         PhoneBook newPhonebook = new PhoneBook(driver)
 
@@ -46,10 +43,5 @@ class AddPhoneBookEntry extends WebScriptTemplate {
                 .success(destination.equals(newPhonebook.getContentDestinationTextArea())))
 
         newPhonebook.clickSaveButton()
-        sleep(5000)
-
-        ///check save pop-up showed
-        evaluate(ExecutionDetails.create("New phonebook was saved succesfully")
-                .success(newPhonebook.getPopUpMessage().contains("Successfully saved the phonebook entry")));
     }
 }

@@ -7,8 +7,6 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import scripts.agent.selenium.automation.WebScriptTemplate
 
-import java.util.concurrent.TimeUnit
-
 class SelectSubConfigurator extends WebScriptTemplate{
     public static final String IPARAM_SUBCONFIG_NAME = "SubConfigurator_name"
 
@@ -17,7 +15,6 @@ class SelectSubConfigurator extends WebScriptTemplate{
         String subConfiguratorName =  assertInput(IPARAM_SUBCONFIG_NAME) as String;
 
         WebDriver driver = WebDriverManager.getInstance().getWebDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         WebElement subConfigurator = driver.findElement(By.cssSelector("div[title='"+ subConfiguratorName + "'" ))
 

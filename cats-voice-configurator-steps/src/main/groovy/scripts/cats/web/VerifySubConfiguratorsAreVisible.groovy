@@ -6,8 +6,6 @@ import org.openqa.selenium.WebDriver
 import scripts.agent.selenium.automation.WebScriptTemplate
 import scripts.elements.configurators.globalSettingsTelephone.GlobalSettingsTelephone
 
-import java.util.concurrent.TimeUnit
-
 class VerifySubConfiguratorsAreVisible  extends WebScriptTemplate {
     public static final String IPARAM_CONFIGURATOR_NAME = "configurator_name"
 
@@ -16,7 +14,6 @@ class VerifySubConfiguratorsAreVisible  extends WebScriptTemplate {
         String configuratorName = assertInput(IPARAM_CONFIGURATOR_NAME) as String
 
         WebDriver driver = WebDriverManager.getInstance().getWebDriver()
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS)
 
         boolean condition = checkSubConfigVisibility(driver,configuratorName)
 

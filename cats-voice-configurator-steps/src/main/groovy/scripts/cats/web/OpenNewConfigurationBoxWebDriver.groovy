@@ -7,14 +7,11 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import scripts.agent.selenium.automation.WebScriptTemplate
 
-import java.util.concurrent.TimeUnit
-
 class OpenNewConfigurationBoxWebDriver extends WebScriptTemplate {
 
     @Override
     void script() {
         WebDriver driver = WebDriverManager.getInstance().getWebDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         WebElement addButton = driver.findElement(By.cssSelector("button.button.add-button"));
         addButton.click();

@@ -80,6 +80,17 @@ public class WebSteps extends AutomationSteps {
         }
     }
 
+    @Then("verify pop-up displays message: $message")
+    public void checkPopUpMessage(String message){
+        ProfileToWebConfigurationReference webAppConfig = getStoryData("config-1", ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Check pop-up displayed message")
+                    .scriptOn(VerifyPopUpMessage.class, profile)
+                    .input(VerifyPopUpMessage.IPARAM_POPUP_MESSAGE, message));
+        }
+    }
+
     @Then("json file $fileName contains phone book with Display Name $displayName and Destination $destination")
     public void checkFileContainsPhonebookData(String fileName, String displayName, String destination) {
         ProfileToWebConfigurationReference webAppConfig = getStoryData("config-1", ProfileToWebConfigurationReference.class);
@@ -172,6 +183,30 @@ public class WebSteps extends AutomationSteps {
             evaluate(remoteStep("Delete phonebook entry " + entryName)
                     .scriptOn(DeletePhoneBookEntry.class, profile)
                     .input(DeletePhoneBookEntry.IPARAM_ENTRY_NAME, entryName));
+        }
+    }
+
+    @Then("an alert box dialog pops-up with message: $message")
+    public void checkAlertBoxDialogMessage(String warningMessage){
+        ProfileToWebConfigurationReference webAppConfig = getStoryData("config-1", ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Check alert box displayed message")
+                    .scriptOn(VerifyAlertBoxDialogMessage.class, profile)
+                    .input(VerifyAlertBoxDialogMessage.IPARAM_ALERT_BOX_MESSAGE, warningMessage));
+        }
+    }
+
+    @When("click on $buttonName button of $warningType alert box dialog")
+    public void clickOnButtonOfAlertBoxDialog(String buttonName, String alertType){
+        ProfileToWebConfigurationReference webAppConfig = getStoryData("config-1", ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Click on " + buttonName + " button of the alert box dialog")
+                    .scriptOn(ClickButtonAlertBoxDialog.class, profile)
+                    .input(ClickButtonAlertBoxDialog.IPARAM_BUTTON_NAME, buttonName)
+                    //alert types: delete or unsaved changes
+                    .input(ClickButtonAlertBoxDialog.IPARAM_DIALOG_ALERT_TYPE, alertType));
         }
     }
 }

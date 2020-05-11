@@ -7,8 +7,6 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import scripts.agent.selenium.automation.WebScriptTemplate
 
-import java.util.concurrent.TimeUnit
-
 class SelectConfigurator extends WebScriptTemplate {
     public static final String IPARAM_CONFIG_NAME = "configurator_name"
 
@@ -17,7 +15,6 @@ class SelectConfigurator extends WebScriptTemplate {
         String configuratorName = assertInput(IPARAM_CONFIG_NAME) as String;
 
         WebDriver driver = WebDriverManager.getInstance().getWebDriver()
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS)
 
         WebElement configurator = driver.findElement(By.cssSelector("div[title='" + configuratorName + "'"))
 
