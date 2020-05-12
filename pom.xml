@@ -29,7 +29,7 @@
       <audio-simulator-service.version>0.56.0</audio-simulator-service.version>
       <audio-service-interface.version>0.30.0</audio-service-interface.version>
       <voice.hmi.service.version>1.1.2-2.6.7</voice.hmi.service.version>
-      <automated.test.interface.version>1.0.0-SNAPSHOT</automated.test.interface.version>
+      <automated.test.interface.version>1.0.0-PVCSX-2763-SNAPSHOT</automated.test.interface.version>
 
       <!-- FW DEPENDENCY VERSIONS -->
       <mission-configurator-plugin.version>1.2.1</mission-configurator-plugin.version>

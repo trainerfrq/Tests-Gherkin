@@ -3,6 +3,9 @@ package com.frequentis.xvp.voice.test.automation.phone.step.local;
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.model.ExecutionDetails;
+import com.frequentis.c4i.test.util.timer.WaitCondition;
+import com.frequentis.c4i.test.util.timer.WaitTimer;
+import com.frequentis.xvp.tools.cats.websocket.plugin.WebsocketScriptTemplate;
 import com.frequentis.xvp.voice.if73.json.messages.JsonMessage;
 import com.frequentis.xvp.voice.if73.json.messages.payload.common_commands.Command;
 import com.frequentis.xvp.voice.if73.json.messages.payload.common_commands.CommandResponse;
@@ -13,14 +16,16 @@ import com.frequentis.xvp.voice.if73.json.utils.GsonUtils;
 import com.google.gson.Gson;
 import org.glassfish.jersey.client.JerseyClientBuilder;
 import org.glassfish.jersey.client.JerseyWebTarget;
-import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,6 +34,10 @@ import static org.hamcrest.Matchers.*;
 
 public class ATISteps extends AutomationSteps
 {
+    private static final Logger LOGGER = LoggerFactory.getLogger( WebsocketScriptTemplate.class );
+
+    private static final List<Integer> SUCCESS_RESPONSES = Arrays.asList( 200, 201 );
+
     @When("$hmiOperator presses (via POST request) DA key $target")
     public void apiDACall( final String hmiOperator, final String target )
             throws Throwable
@@ -102,6 +111,9 @@ public class ATISteps extends AutomationSteps
                         .request( MediaType.APPLICATION_JSON )
                         .post( Entity.json( jsonMessageRequest.toJson() ) );
 
+        localStep.details( ExecutionDetails.create( "Executed POST request with payload! " ).expected( "200 or 201" )
+                .received( Integer.toString( response.getStatus() ) ).success( requestWithSuccess( response ) ) );
+
         final CommandResponse output = getResponseContent(response);
 
         evaluate( localStep( "Verify response for executed POST request - verify mission change" )
@@ -134,12 +146,12 @@ public class ATISteps extends AutomationSteps
         List<GgCallStatusElement> elements = output.getData();
 
         for(GgCallStatusElement element : elements){
-            if(element.getId().contains(target)) {
+            if(element.getType().value().contains("DA")) {
                 evaluate(localStep("Verify response for executed POST request - verify DA call status")
                         .details(match(output.getCommandType(), equalTo(GgCommandType.GET_CALL_STATUS)))
                         .details(match(output.getResult(), equalTo(GgResult.OK)))
                         .details(match(output.getId(), equalTo(target)))
-                        .details(match(element.getStatus().toString(), equalTo(status))));
+                        .details(match(receivedGGCallStatus(element, status, 2000), equalTo(status))));
             }
             break;
         }
@@ -171,7 +183,7 @@ public class ATISteps extends AutomationSteps
                         .details(match(output.getCommandType(), equalTo(GgCommandType.GET_CALL_STATUS)))
                         .details(match(output.getResult(), equalTo(GgResult.OK)))
                         .details(match(output.getId(), equalTo("callQueue")))
-                        .details(match(element.getStatus().toString(), equalTo(status))));
+                        .details(match(receivedGGCallStatus(element, status, 2000), equalTo(status))));
         }
     }
 
@@ -223,5 +235,43 @@ public class ATISteps extends AutomationSteps
         final JsonMessage jsonMessage = gson.fromJson( responseContent, JsonMessage.class );
         final CommandResponse result = jsonMessage.body().getPayloadAs( CommandResponse.class );
         return result;
+    }
+
+    private String receivedGGCallStatus(final GgCallStatusElement element, final String expectedStatus, final long nWait )
+    {
+       String status = null;
+       if (element != null )
+        {
+            try
+            {
+                final WaitCondition condition = new WaitCondition( "Wait for certain amount of time" )
+                {
+                    @Override
+                    public boolean test()
+                    {
+                        return element.getStatus().toString().contains(expectedStatus);
+                    }
+                };
+
+                if ( WaitTimer.pause( condition, nWait ) )
+                {
+                    status = element.getStatus().toString();
+                }
+            }
+            catch ( final Exception ex )
+            {
+                LOGGER.error( "Error receiving status", ex );
+            }
+        }
+        else
+        {
+            LOGGER.error( "Couldn't find element" );
+        }
+        return status;
+    }
+
+    private boolean requestWithSuccess( final Response response )
+    {
+        return SUCCESS_RESPONSES.contains( response.getStatus() );
     }
 }
