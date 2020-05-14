@@ -202,7 +202,7 @@
          </snapshots>
          <id>artifactory</id>
          <name>Artifactory maven repository</name>
-         <url>http://artifactory.frequentis.frq:8081/artifactory/repo</url>
+         <url>http://artifactory.frequentis.frq:8081/artifactory/vcsr10-staging</url>
       </pluginRepository>
    </pluginRepositories>
    <repositories>
@@ -216,7 +216,7 @@
          </snapshots>
          <id>artifactory</id>
          <name>Artifactory maven repository</name>
-         <url>http://artifactory.frequentis.frq:8081/artifactory/repo</url>
+         <url>http://artifactory.frequentis.frq:8081/artifactory/vcsr10-staging</url>
       </repository>
    </repositories>
 

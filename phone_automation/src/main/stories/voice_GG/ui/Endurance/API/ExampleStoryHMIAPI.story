@@ -31,62 +31,94 @@ Scenario: Operator2 changes the mission on HMI screen
 When HMI OP2 changes (via POST request) current mission to mission <<MISSION_2_NAME>>
 Then HMI OP2 verifies (via POST request) change mission <<MISSION_2_NAME>> was successfully
 
-Scenario: Steps 1 and 2 described in the Narrative
+Scenario: Op1 calls Op2
 When HMI OP1 presses (via POST request) DA key <<ROLE_2_NAME>>
-Scenario: Steps 1 and 2 described in the Narrative
+Then wait for 2 seconds
+
+Scenario: Op1 verifies call state - outgoing
 Then HMI OP1 verify (via POST request) that DA key <<ROLE_2_NAME>> has status OUTGOING_PRIO
-Scenario: Steps 1 and 2 described in the Narrative
 Then HMI OP1 verify (via POST request) that call queue has status OUTGOING_PRIO
-Scenario: Steps 1 and 2 described in the Narrative
+
+Scenario: Op2 verifies call state - ringing
 Then HMI OP2 verify (via POST request) that DA key <<ROLE_1_NAME>> has status RINGING_PRIO
-Scenario: Steps 1 and 2 described in the Narrative
+Then HMI OP2 verify (via POST request) that call queue has status RINGING_PRIO
+
+Scenario: Op2 answers call
 When HMI OP2 presses (via POST request) DA key <<ROLE_1_NAME>>
-Scenario: Steps 1 and 2 described in the Narrative
+Then wait for 2 seconds
+
+Scenario: Op1 verifies call state - established
 Then HMI OP1 verify (via POST request) that call queue has status ESTABLISHED_DUPLEX
-Scenario: Steps 1 and 2 described in the Narrative
+
+Scenario: Op2 verifies call state - established
 Then HMI OP2 verify (via POST request) that call queue has status ESTABLISHED_DUPLEX
-Then waiting for 10 seconds
-Scenario: Steps 1 and 2 described in the Narrative
+Then waiting for 2 seconds
+
+Scenario: Op1 terminates call
 When HMI OP1 presses (via POST request) DA key <<ROLE_2_NAME>>
-Scenario: Steps 1 and 2 described in the Narrative
-Then HMI OP2 verify (via POST request) that call queue has status TERMINATED
-Scenario: Steps 1 and 2 described in the Narrative
+Then wait for 2 seconds
+
+Scenario: Op1 verifies call state - terminated
 Then HMI OP1 verify (via POST request) that call queue has status TERMINATED
-Then waiting for 5 seconds
-Scenario: Steps 1 and 2 described in the Narrative
+
+Scenario: Op2 verifies call state - terminated
+Then HMI OP2 verify (via POST request) that call queue has status TERMINATED
+Then waiting for 2 seconds
+
+Scenario: Op2 calls Op1
 When HMI OP2 presses (via POST request) DA key <<ROLE_1_NAME>>
-Scenario: Steps 1 and 2 described in the Narrative
+Then wait for 2 seconds
+
+Scenario: Op2 verifies call state - outgoing
 Then HMI OP2 verify (via POST request) that DA key <<ROLE_1_NAME>> has status OUTGOING_PRIO
-Scenario: Steps 1 and 2 described in the Narrative
 Then HMI OP2 verify (via POST request) that call queue has status OUTGOING_PRIO
-Scenario: Steps 1 and 2 described in the Narrative
+
+Scenario: Op2 verifies call state - ringing
 Then HMI OP1 verify (via POST request) that DA key <<ROLE_2_NAME>> has status RINGING_PRIO
-Scenario: Steps 1 and 2 described in the Narrative
+Then HMI OP1 verify (via POST request) that call queue has status RINGING_PRIO
+
+Scenario: Op1 answers call
 When HMI OP1 presses (via POST request) DA key <<ROLE_2_NAME>>
-Scenario: Steps 1 and 2 described in the Narrative
+Then wait for 2 seconds
+
+Scenario: Op1 verifies call state - established
 Then HMI OP1 verify (via POST request) that call queue has status ESTABLISHED_DUPLEX
-Scenario: Steps 1 and 2 described in the Narrative
+
+Scenario: Op2 verifies call state - established
 Then HMI OP2 verify (via POST request) that call queue has status ESTABLISHED_DUPLEX
-Then waiting for 10 seconds
-Scenario: Steps 1 and 2 described in the Narrative
+Then waiting for 2 seconds
+
+Scenario: Op2 terminates call
 When HMI OP2 presses (via POST request) DA key <<ROLE_1_NAME>>
-Scenario: Steps 1 and 2 described in the Narrative
+Then wait for 2 seconds
+
+Scenario: Op2 verifies call state - terminated
 Then HMI OP2 verify (via POST request) that call queue has status TERMINATED
-Scenario: Steps 1 and 2 described in the Narrative
+
+Scenario: Op1 verifies call state - terminated
 Then HMI OP1 verify (via POST request) that call queue has status TERMINATED
-Then waiting for 5 seconds
-Scenario: Steps 1 and 2 described in the Narrative
+Then waiting for 2 seconds
+
+Scenario: Operator does a call to an external callee
 When HMI OP1 start (via POST request) a call from phone book to Madoline
-Scenario: Steps 1 and 2 described in the Narrative
+Then wait for 2 seconds
+
+Scenario: Op1 verifies call state - outgoing
 Then HMI OP1 verify (via POST request) that call queue has status OUTGOING
-Scenario: Steps 1 and 2 described in the Narrative
+
+Scenario: Externals callee answer calls
 When SipContact answers incoming calls
-Scenario: Steps 1 and 2 described in the Narrative
+Then wait for 2 seconds
+
+Scenario: Op1 verifies call state - established
 Then HMI OP1 verify (via POST request) that call queue has status ESTABLISHED
-Then waiting for 10 seconds
-Scenario: Steps 1 and 2 described in the Narrative
+Then waiting for 2 seconds
+
+Scenario: Operator terminates calls
 When SipContact terminates calls
-Scenario: Steps 1 and 2 described in the Narrative
+Then wait for 2 seconds
+
+Scenario: Op1 verifies call state - terminated
 Then HMI OP1 verify (via POST request) that call queue has status TERMINATED
 
 Scenario: Remove SIP Contact
