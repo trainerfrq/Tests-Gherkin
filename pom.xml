@@ -5,7 +5,7 @@
    <groupId>com.frequentis.xvp.voice.phone</groupId>
 
    <artifactId>phone-test-automation</artifactId>
-   <version>1.1.1-2.2.1</version>
+   <version>1.1.1-2.2.2</version>
 
    <packaging>pom</packaging>
    <url>http://www.frequentis.com</url>
@@ -202,7 +202,7 @@
          </snapshots>
          <id>artifactory</id>
          <name>Artifactory maven repository</name>
-         <url>http://artifactory.frequentis.frq:8081/artifactory/vcsr10-staging</url>
+         <url>http://artifactory.frequentis.frq:8081/artifactory/virtxvp</url>
       </pluginRepository>
    </pluginRepositories>
    <repositories>
@@ -216,7 +216,7 @@
          </snapshots>
          <id>artifactory</id>
          <name>Artifactory maven repository</name>
-         <url>http://artifactory.frequentis.frq:8081/artifactory/vcsr10-staging</url>
+         <url>http://artifactory.frequentis.frq:8081/artifactory/virtxvp</url>
       </repository>
    </repositories>
 
