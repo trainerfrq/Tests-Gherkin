@@ -5,7 +5,7 @@
    <groupId>com.frequentis.xvp.voice.phone</groupId>
 
    <artifactId>phone-test-automation</artifactId>
-   <version>1.1.1-2.2.2</version>
+   <version>1.1.1-2.2.2-SNAPSHOT</version>
 
    <packaging>pom</packaging>
    <url>http://www.frequentis.com</url>
