@@ -19,70 +19,64 @@ class VerifyPhoneBookEntryFields extends WebScriptTemplate {
     @Override
     protected void script() {
 
-        String fullName = assertInputParameter(IPARAM_FULL_NAME)
-        String displayName = assertInputParameter(IPARAM_DISPLAY_NAME)
-        String location = assertInputParameter(IPARAM_LOCATION)
-        String organization = assertInputParameter(IPARAM_ORGANIZATION)
-        String comment = assertInputParameter(IPARAM_COMMENT)
-        String destination = assertInputParameter(IPARAM_DESTINATION)
-        String displayAddon = assertInputParameter(IPARAM_DISPLAY_ADDON)
+        String fullName = getInput(IPARAM_FULL_NAME, null)
+        String displayName = getInput(IPARAM_DISPLAY_NAME, null)
+        String location = getInput(IPARAM_LOCATION, null)
+        String organization = getInput(IPARAM_ORGANIZATION, null)
+        String comment = getInput(IPARAM_COMMENT, null)
+        String destination = getInput(IPARAM_DESTINATION, null)
+        String displayAddon = getInput(IPARAM_DISPLAY_ADDON, null)
 
         WebDriver driver = WebDriverManager.getInstance().getWebDriver()
         PhoneBookPage phoneBookPage = new PhoneBookPage(driver)
 
-        if (fullName != "-") {
+        if (fullName != null) {
             evaluate(ExecutionDetails.create("Verifying phonebook entry full name")
                     .expected(fullName)
                     .received(phoneBookPage.phoneBookEditor.getContentFullNameTextArea())
                     .success(phoneBookPage.phoneBookEditor.getContentFullNameTextArea().equals(fullName)))
         }
 
-        if (displayName != "-") {
+        if (displayName != null) {
             evaluate(ExecutionDetails.create("Verifying phonebook entry display name")
                     .expected(displayName)
                     .received(phoneBookPage.phoneBookEditor.getContentDisplayNameTextArea())
                     .success(phoneBookPage.phoneBookEditor.getContentDisplayNameTextArea().equals(displayName)))
         }
 
-        if (location != "-") {
+        if (location != null) {
             evaluate(ExecutionDetails.create("Verifying phonebook entry location")
                     .expected(location)
                     .received(phoneBookPage.phoneBookEditor.getContentLocationTextArea())
                     .success(phoneBookPage.phoneBookEditor.getContentLocationTextArea().equals(location)))
         }
 
-        if (organization != "-") {
+        if (organization != null) {
             evaluate(ExecutionDetails.create("Verifying phonebook entry organization")
                     .expected(organization)
                     .received(phoneBookPage.phoneBookEditor.getContentOrganizationTextArea())
                     .success(phoneBookPage.phoneBookEditor.getContentOrganizationTextArea().equals(organization)))
         }
 
-        if (comment != "-") {
+        if (comment != null) {
             evaluate(ExecutionDetails.create("Verifying phonebook entry comment")
                     .expected(comment)
                     .received(phoneBookPage.phoneBookEditor.getContentCommentTextArea())
                     .success(phoneBookPage.phoneBookEditor.getContentCommentTextArea().equals(comment)))
         }
 
-        if (destination != "-") {
+        if (destination != null) {
             evaluate(ExecutionDetails.create("Verifying phonebook entry destination")
-                    .expected(displayName)
+                    .expected(destination)
                     .received(phoneBookPage.phoneBookEditor.getContentDestinationTextArea())
                     .success(phoneBookPage.phoneBookEditor.getContentDestinationTextArea().equals(destination)))
         }
 
-        if (displayAddon != "-") {
+        if (displayAddon != null) {
             evaluate(ExecutionDetails.create("Verifying phonebook entry display Addon")
                     .expected(displayAddon)
                     .received(phoneBookPage.phoneBookEditor.getContentAddonTextArea())
                     .success(phoneBookPage.phoneBookEditor.getContentAddonTextArea().equals(displayAddon)))
         }
-    }
-
-    String assertInputParameter(String parameter) {
-        if (parameter == null)
-            return null
-        return assertInput(parameter) as String
     }
 }

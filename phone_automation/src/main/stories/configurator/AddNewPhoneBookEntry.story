@@ -32,11 +32,11 @@ Then editor page Phone Book is visible
 Scenario: Enter entry details
 When add or update phonebook entry with:
 | key    | fullName | displayName | location | organization | comment | destination | displayAddon |
-| entry  | Ana      | Mary        | Vienna   | FRQ          | -       | Senegal     | -            |
+| entry  | Ana      | Mary        | Vienna   |              |         | Senegal     |              |
 
 Then verify phonebook entry fields contain:
 | key    | fullName | displayName | location | organization | comment | destination | displayAddon |
-| entry  | Ana      | Mary        | Vienna   | FRQ          | -       | Senegal     | -            |
+| entry  | Ana      | Mary        | Vienna   |              |         | Senegal     |              |
 
 Then Save button is pressed in Phone Book editor
 Then wait 5 seconds for LoadingScreen to disappear
@@ -55,7 +55,7 @@ Then wait 2 seconds for LoadingScreen to disappear
 Then sub-menu title is visible displaying: Diagnostic
 
 Scenario: Check jsonFile
-Then json file phoneBook.json contains phone book with Display Name Mary and Destination sip:example
+Then json file phoneBook.json contains phone book with Display Name Mary and Destination Senegal
 
 Scenario: Close operator Positions menu
 When select Operator Positions item in main menu
