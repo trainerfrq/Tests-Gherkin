@@ -59,12 +59,6 @@
                     </cats:report>
                     <cats:reports/>
                     <cats:stories>
-                        <cats:story enabled="false">
-                            <cats:storyPath>configurator/MosaiXConfiguratorDemo.story</cats:storyPath>
-                            <cats:storyParameters/>
-                            <cats:storyDataList/>
-                            <cats:storyStatistics/>
-                        </cats:story>
                         <cats:story enabled="true">
                             <cats:storyPath>configurator/AddNewPhoneBookEntry.story</cats:storyPath>
                             <cats:storyParameters/>

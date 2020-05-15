@@ -2,12 +2,11 @@ package scripts.cats.web.GlobalSettingsTelephone
 
 import com.frequentis.c4i.test.agent.selenium.WebDriverManager
 import com.frequentis.c4i.test.model.ExecutionDetails
-import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
-import org.openqa.selenium.WebElement
 import scripts.agent.selenium.automation.WebScriptTemplate
+import scripts.elements.configurators.globalSettingsTelephone.PhoneBook.PhoneBookPage
 
-class CheckEntryInResultsList extends WebScriptTemplate {
+class CheckEntryIsInResultsListAfterSearch extends WebScriptTemplate {
     public static final String IPARAM_ENTRY_NAME = "entry_name"
 
     @Override
@@ -15,11 +14,11 @@ class CheckEntryInResultsList extends WebScriptTemplate {
         String entryName = assertInput(IPARAM_ENTRY_NAME) as String
 
         WebDriver driver = WebDriverManager.getInstance().getWebDriver()
-
-        WebElement searchedItem = driver.findElement(By.cssSelector("div[title='" + entryName + "']"))
+        PhoneBookPage phoneBookObject = new PhoneBookPage(driver)
+//        WebElement searchedItem = driver.findElement(By.cssSelector("div[title='" + entryName + "']"))
 
         evaluate(ExecutionDetails.create("Check if " + entryName + " is in results list")
                 .expected(entryName + " was found")
-                .success(searchedItem.isDisplayed()))
+                .success(phoneBookObject.leftHandSidePanel.findItem(entryName).isDisplayed()))
     }
 }

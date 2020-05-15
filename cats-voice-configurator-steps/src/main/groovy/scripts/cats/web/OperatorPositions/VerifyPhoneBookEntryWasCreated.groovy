@@ -8,8 +8,9 @@ import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import scripts.agent.selenium.automation.WebScriptTemplate
+import scripts.elements.ConfigManagementUtils
+import scripts.elements.general.mainPageComponents.ContentBody
 
-import java.util.concurrent.TimeUnit
 import java.util.stream.Collectors
 
 class VerifyPhoneBookEntryWasCreated extends WebScriptTemplate {
@@ -24,9 +25,8 @@ class VerifyPhoneBookEntryWasCreated extends WebScriptTemplate {
         String destination = assertInput(IPARAM_DESTINATION) as String
 
         WebDriver driver = WebDriverManager.getInstance().getWebDriver()
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS)
-
-        WebElement phonebookFile = driver.findElement(By.cssSelector("div[title='" + fileName + ".json']"))
+        ContentBody pageObject = ConfigManagementUtils.getSubMenuPageObject(driver, "Diagnostic")
+        WebElement phonebookFile = pageObject.leftHandSidePanel.findItem(fileName)
 
         evaluate(ExecutionDetails.create("File was found")
                 .success(phonebookFile!=null))

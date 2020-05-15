@@ -17,7 +17,7 @@ import java.util.List;
 @RunWith(CatsJunitRunner.class)
 @CatsRunConfiguration(
         stories = {
-                "configurator/MosaiXConfiguratorDemo.story"
+                "configurator/AddNewPhoneBookEntry.story"
         },
         catsHomeLocation = ".",
         name = "WebFunctionalTests")
