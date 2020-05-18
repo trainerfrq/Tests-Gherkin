@@ -11,7 +11,7 @@ class VerifyAlertBoxDialogMessage extends WebScriptTemplate {
 
     @Override
     protected void script() {
-        String alertBox_message = assertInput(IPARAM_ALERT_BOX_MESSAGE) as String;
+        String alertBoxMessage = assertInput(IPARAM_ALERT_BOX_MESSAGE) as String;
 
         WebDriver driver = WebDriverManager.getInstance().getWebDriver()
         ConfigManagementPage configManagementObject = new ConfigManagementPage(driver)
@@ -21,8 +21,8 @@ class VerifyAlertBoxDialogMessage extends WebScriptTemplate {
                 .success(configManagementObject.deleteAlertBox.isAlertBoxDisplayed()))
 
         evaluate(ExecutionDetails.create("Check alert box dialog contains message")
-                .expected(alertBox_message)
+                .expected(alertBoxMessage)
                 .received(configManagementObject.deleteAlertBox.getAlertBoxText())
-                .success(configManagementObject.deleteAlertBox.getAlertBoxText().contains(alertBox_message)))
+                .success(configManagementObject.deleteAlertBox.getAlertBoxText().contains(alertBoxMessage)))
     }
 }

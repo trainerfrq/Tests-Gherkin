@@ -14,19 +14,19 @@ import scripts.elements.general.mainPageComponents.ContentBody
 import java.util.stream.Collectors
 
 class VerifyPhoneBookEntryWasCreated extends WebScriptTemplate {
-    public static final String IPARAM_FILE_NAME="file_name"
+    public static final String IPARAM_CONFIGURATION_FILE_NAME ="configuration_file_name"
     public static final String IPARAM_DISPLAY_NAME= "display_name"
     public static final String IPARAM_DESTINATION= "destination"
 
     @Override
     protected void script() {
-        String fileName = assertInput(IPARAM_FILE_NAME) as String
+        String configurationFileName = assertInput(IPARAM_CONFIGURATION_FILE_NAME) as String
         String displayName = assertInput(IPARAM_DISPLAY_NAME) as String
         String destination = assertInput(IPARAM_DESTINATION) as String
 
         WebDriver driver = WebDriverManager.getInstance().getWebDriver()
         ContentBody pageObject = ConfigManagementUtils.getSubMenuPageObject(driver, "Diagnostic")
-        WebElement phonebookFile = pageObject.leftHandSidePanel.findItem(fileName)
+        WebElement phonebookFile = pageObject.leftHandSidePanel.findItem(configurationFileName)
 
         evaluate(ExecutionDetails.create("File was found")
                 .success(phonebookFile!=null))

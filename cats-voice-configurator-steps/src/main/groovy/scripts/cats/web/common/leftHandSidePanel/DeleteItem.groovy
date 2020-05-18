@@ -9,14 +9,16 @@ import scripts.elements.ConfigManagementUtils
 import scripts.elements.general.mainPageComponents.ContentBody
 
 class DeleteItem extends WebScriptTemplate {
+    public static final String IPARAM_SUB_MENU_NAME = "sub_menu_name"
     public static final String IPARAM_ENTRY_NAME = "entry_name"
 
     @Override
     protected void script() {
+        String subMenuName = assertInput(IPARAM_SUB_MENU_NAME) as String
         String entryName = assertInput(IPARAM_ENTRY_NAME) as String
 
         WebDriver driver = WebDriverManager.getInstance().getWebDriver()
-        ContentBody pageObject = ConfigManagementUtils.getSubMenuPageObject(driver, "Phone Book")
+        ContentBody pageObject = ConfigManagementUtils.getSubMenuPageObject(driver, subMenuName)
 
         WebElement searchedItem = pageObject.getLeftHandSidePanel().findItem(entryName)
 

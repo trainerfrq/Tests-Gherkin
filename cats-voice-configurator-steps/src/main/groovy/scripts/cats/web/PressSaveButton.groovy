@@ -1,4 +1,4 @@
-package scripts.cats.web.common.leftHandSidePanel
+package scripts.cats.web
 
 import com.frequentis.c4i.test.agent.selenium.WebDriverManager
 import com.frequentis.c4i.test.model.ExecutionDetails

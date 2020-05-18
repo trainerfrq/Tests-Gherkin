@@ -32,6 +32,5 @@ class VerifySubMenuItems extends WebScriptTemplate {
                 .expected(expectedSubMenuItemsList.toString())
                 .received(receivedList.toString())
                 .success(expectedSubMenuItemsList == receivedList))
-
     }
 }

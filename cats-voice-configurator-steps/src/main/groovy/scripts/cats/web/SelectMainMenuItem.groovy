@@ -24,7 +24,5 @@ class SelectMainMenuItem extends WebScriptTemplate {
 
         evaluate(ExecutionDetails.create("Menu item " + mainMenuItem + " was clicked")
                 .success(true))
-
-
     }
 }

@@ -15,7 +15,6 @@ class CheckEntryIsInResultsListAfterSearch extends WebScriptTemplate {
 
         WebDriver driver = WebDriverManager.getInstance().getWebDriver()
         PhoneBookPage phoneBookObject = new PhoneBookPage(driver)
-//        WebElement searchedItem = driver.findElement(By.cssSelector("div[title='" + entryName + "']"))
 
         evaluate(ExecutionDetails.create("Check if " + entryName + " is in results list")
                 .expected(entryName + " was found")

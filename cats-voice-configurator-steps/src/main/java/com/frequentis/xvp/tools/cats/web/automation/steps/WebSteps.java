@@ -27,18 +27,7 @@ public class WebSteps extends AutomationSteps {
         }
     }
 
-    @Then("add a new configuration")
-    public void addNewConfiguration() {
-        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
-        if (webAppConfig != null) {
-            Profile profile = getProfile(webAppConfig.getProfileName());
-            evaluate(remoteStep("Add a new configuration")
-                    .scriptOn(OpenNewConfigurationBoxWebDriver.class, profile));
-
-        }
-    }
-
-    @When("select $mainMenuItem item in main menu")
+    @When("selecting $mainMenuItem item in main menu")
     public void selectMainMenuItem(String mainMenuItem) {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
         if (webAppConfig != null) {
@@ -49,7 +38,7 @@ public class WebSteps extends AutomationSteps {
         }
     }
 
-    @When("select $subMenuName sub-menu item")
+    @When("selecting $subMenuName sub-menu item")
     public void selectSubMenuItem(String subMenuName) {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
         if (webAppConfig != null) {
@@ -82,7 +71,8 @@ public class WebSteps extends AutomationSteps {
         }
     }
 
-    @When("add or update phonebook entry with: $phonebookEntryDetails")
+    @When("add a phonebook entry with: $phonebookEntryDetails")
+    @Alias("update a phonebook entry with: $phonebookEntryDetails")
     public void createOrUpdatePhoneBook(final List<PhoneBookEntry> phoneBookEntryDetails) {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
         PhoneBookEntry phoneBookEntry = phoneBookEntryDetails.get(0);
@@ -129,7 +119,7 @@ public class WebSteps extends AutomationSteps {
         }
     }
 
-    @Then("verify pop-up displays message: $message")
+    @Then("verifying pop-up displays message: $message")
     public void checkPopUpMessage(String message) {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
         if (webAppConfig != null) {
@@ -147,16 +137,16 @@ public class WebSteps extends AutomationSteps {
             Profile profile = getProfile(webAppConfig.getProfileName());
             evaluate(remoteStep("Check file " + fileName + " contains phonebook " + displayName)
                     .scriptOn(VerifyPhoneBookEntryWasCreated.class, profile)
-                    .input(VerifyPhoneBookEntryWasCreated.IPARAM_FILE_NAME, fileName)
+                    .input(VerifyPhoneBookEntryWasCreated.IPARAM_CONFIGURATION_FILE_NAME, fileName)
                     .input(VerifyPhoneBookEntryWasCreated.IPARAM_DISPLAY_NAME, displayName)
                     .input(VerifyPhoneBookEntryWasCreated.IPARAM_DESTINATION, destination));
         }
     }
 
-    @When("wait $duration {second|seconds} for LoadingScreen to disappear")
-    @Then("wait $duration {second|seconds} for LoadingScreen to disappear")
-    @Aliases(values = {"wait $duration {second|seconds} for LoadingScreen to disappear",
-            "wait $duration {second|seconds} for Config. Management page to be loaded"})
+    @When("waiting $duration {second|seconds} for LoadingScreen to disappear")
+    @Then("waiting $duration {second|seconds} for LoadingScreen to disappear")
+    @Aliases(values = {"waiting $duration {second|seconds} for LoadingScreen to disappear",
+            "waiting $duration {second|seconds} for Config. Management page to be loaded"})
     public void waitUntilActionTakePlace(@Named("duration") int secs) {
         final LocalStep step = localStep("Wait for " + secs + " seconds");
 
@@ -193,7 +183,7 @@ public class WebSteps extends AutomationSteps {
         }
     }
 
-    @Then("sub-menu title is visible displaying: $subMenuName")
+    @Then("sub-menu title is displaying: $subMenuName")
     public void checkDisplayedSubMenuTitle(String subMenuName) {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
         if (webAppConfig != null) {
@@ -204,7 +194,7 @@ public class WebSteps extends AutomationSteps {
         }
     }
 
-    @When("write in $subMenuName search box: $text")
+    @When("writing in $subMenuName search box: $text")
     public void writeInSearchBox(String subMenuName, String text) {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
         if (webAppConfig != null) {
@@ -227,13 +217,14 @@ public class WebSteps extends AutomationSteps {
         }
     }
 
-    @When("delete phonebook entry $entryName")
-    public void deletePhonebookEntry(String entryName) {
+    @When("deleting $subMenuName sub-menu entry: $entryName")
+    public void deletePhonebookEntry(String subMenuName, String entryName) {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
         if (webAppConfig != null) {
             Profile profile = getProfile(webAppConfig.getProfileName());
             evaluate(remoteStep("Delete phonebook entry " + entryName)
                     .scriptOn(DeleteItem.class, profile)
+                    .input(DeleteItem.IPARAM_SUB_MENU_NAME, subMenuName)
                     .input(DeleteItem.IPARAM_ENTRY_NAME, entryName));
         }
     }
@@ -249,7 +240,7 @@ public class WebSteps extends AutomationSteps {
         }
     }
 
-    @When("click on $buttonName button of $warningType alert box dialog")
+    @When("clicking on $buttonName button of $warningType alert box dialog")
     public void clickOnButtonOfAlertBoxDialog(String buttonName, String alertType) {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
         if (webAppConfig != null) {

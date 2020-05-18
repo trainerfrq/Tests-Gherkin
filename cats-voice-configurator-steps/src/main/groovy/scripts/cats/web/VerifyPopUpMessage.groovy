@@ -1,4 +1,4 @@
-package scripts.cats.web.GlobalSettingsTelephone
+package scripts.cats.web
 
 import com.frequentis.c4i.test.agent.selenium.WebDriverManager
 import com.frequentis.c4i.test.model.ExecutionDetails
@@ -11,7 +11,7 @@ class VerifyPopUpMessage extends WebScriptTemplate {
 
     @Override
     protected void script() {
-        String popUp_message = assertInput(IPARAM_POPUP_MESSAGE) as String;
+        String popUpMessage = assertInput(IPARAM_POPUP_MESSAGE) as String;
 
         WebDriver driver = WebDriverManager.getInstance().getWebDriver()
         ConfigManagementPage configManagementObject = new ConfigManagementPage(driver)
@@ -21,8 +21,8 @@ class VerifyPopUpMessage extends WebScriptTemplate {
                 .success(configManagementObject.popUpMessageBox.isPopUpMessageDisplayed()))
 
         evaluate(ExecutionDetails.create("Check pop-up contains message")
-                .expected(popUp_message)
+                .expected(popUpMessage)
                 .received(configManagementObject.popUpMessageBox.getPopUpMessage())
-                .success(popUp_message.equals(configManagementObject.popUpMessageBox.getPopUpMessage())))
+                .success(popUpMessage.equals(configManagementObject.popUpMessageBox.getPopUpMessage())))
     }
 }

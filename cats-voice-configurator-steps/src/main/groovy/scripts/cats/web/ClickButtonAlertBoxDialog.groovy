@@ -15,14 +15,7 @@ class ClickButtonAlertBoxDialog extends WebScriptTemplate{
         String buttonName =  assertInput(IPARAM_BUTTON_NAME) as String
         String alertType =  assertInput(IPARAM_DIALOG_ALERT_TYPE) as String
 
-//        String locator = "//button[contains(text(),'"+buttonName+"')]"
-//
-//        if(alertType.equals("unsaved changes")) {
-//            locator = "//div[contains(text(),'" + buttonName + "')]"
-//        }
-
         WebDriver driver = WebDriverManager.getInstance().getWebDriver()
-
         ConfigManagementPage configManagementObject = new ConfigManagementPage(driver)
 
         if(alertType.equals("Delete")){
@@ -42,12 +35,7 @@ class ClickButtonAlertBoxDialog extends WebScriptTemplate{
             }
         }
 
-//        WebElement button = driver.findElement(By.xpath(locator))
-
-//        button.click()
-
         evaluate(ExecutionDetails.create("Button " + buttonName + " of alert box dialog was clicked")
                 .success(true))
     }
-
 }
