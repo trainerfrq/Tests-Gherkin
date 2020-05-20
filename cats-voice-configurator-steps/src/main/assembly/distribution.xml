@@ -1,0 +1,27 @@
+<assembly>
+    <id>cats-voice-configurator-steps</id>
+    <formats>
+        <format>dir</format>
+        <format>zip</format>
+    </formats>
+    <baseDirectory>cats-voice-configurator-steps</baseDirectory>
+    <includeBaseDirectory>true</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>src/main/groovy/scripts</directory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+            <outputDirectory>/scripts/</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/java/com/frequentis/xvp/tools/cats/web/automation</directory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+            <outputDirectory>/src/main/java/</outputDirectory>
+        </fileSet>
+    </fileSets>
+
+
+</assembly>

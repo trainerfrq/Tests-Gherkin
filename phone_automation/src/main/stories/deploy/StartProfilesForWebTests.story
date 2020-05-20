@@ -3,13 +3,6 @@ Given SSH connections:
 | name   | remote-address | remotePort | username | password  |
 | coHost | <<CO3_IP>>     | 22         | root     | !frqAdmin |
 
-Scenario: Copy setup agent script
-When the script setupSeleniumAgent from /configuration-files/<<systemName>>/ is copied to coHost
-And SSH host coHost executes chmod +x setupSeleniumAgent.sh
-
-Scenario: Run agent setup script
-When SSH host coHost executes ./setupSeleniumAgent.sh
-
 Scenario: Install profiles
 When installing profiles:
 | hostIp     | profile                    |

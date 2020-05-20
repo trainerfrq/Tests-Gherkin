@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>com.frequentis.xvp.voice.phone</groupId>
+        <artifactId>phone-test-automation</artifactId>      
+        <version>1.1.1-2.2.2-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>cats-voice-configurator-steps</artifactId>
+    <packaging>jar</packaging>
+    <name>CATS Voice Configurator Steps</name>
+    <description>CATS web automation steps and remote scripts for simulating web endpoints.</description>
+    <url>http://www.frequentis.com</url>
+    <organization>
+        <name>Frequentis AG</name>
+        <url>http://www.frequentis.com</url>
+    </organization>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.frequentis.c4i.test</groupId>
+            <artifactId>cats-agent-selenium</artifactId>
+            <classifier>scripting</classifier>
+        </dependency>
+        <dependency>
+            <groupId>com.frequentis.c4i.test</groupId>
+            <artifactId>cats-agent-selenium</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.frequentis.c4i.test</groupId>
+            <artifactId>cats-cluster</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.frequentis.xvp.voice.automation</groupId>
+            <artifactId>config-management-dsl</artifactId>
+            <version>${voice.automation.common.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.frequentis.cats</groupId>
+            <artifactId>jbehave-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.frequentis.c4i.test</groupId>
+            <artifactId>cats-bdd</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.frequentis.c4i.test</groupId>
+            <artifactId>cats-core-steps</artifactId>
+            <version>6.4.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+
+
+
+    </dependencies>
+
+    <build>
+        <!-- Important in order for groovy scripts to be included in the jar -->
+       <resources>
+            <resource>
+                <directory>src/main/groovy</directory>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>1</id>
+                        <goals>
+                            <goal>addSources</goal>
+                            <goal>generateStubs</goal>
+                            <goal>compile</goal>
+                            <goal>removeStubs</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+           <!-- Generate sources jar used by projects in their own automation projects -->
+           <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                            <goal>test-jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptors>
+                        <descriptors>src/main/assembly/distribution.xml</descriptors>
+                    </descriptors>
+                    <finalName>cats-voice-configurator-steps</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
