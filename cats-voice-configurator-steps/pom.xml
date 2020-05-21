@@ -46,10 +46,6 @@
             <groupId>com.frequentis.c4i.test</groupId>
             <artifactId>cats-bdd</artifactId>
         </dependency>
-
-
-
-
     </dependencies>
 
     <build>
