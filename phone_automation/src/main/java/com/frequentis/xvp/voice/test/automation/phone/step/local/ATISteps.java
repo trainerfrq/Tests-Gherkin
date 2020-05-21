@@ -29,8 +29,8 @@ public class ATISteps extends AutomationSteps
 
     private static final List<Integer> SUCCESS_RESPONSES = Arrays.asList( 200, 201 );
 
-    @When("$hmiOperator presses (via POST request) DA key $target")
-    public void apiDACall( final String hmiOperator, final String target )
+    @When("$hmiOperator presses (via POST request) DA key $daKeyTarget")
+    public void apiDACall( final String hmiOperator, final String daKeyTarget )
             throws Throwable
     {
         final LocalStep localStep = localStep( "Execute POST request - DA call" );
@@ -40,7 +40,7 @@ public class ATISteps extends AutomationSteps
         final JsonMessage jsonMessageRequest =
                 JsonMessage.builder()
                         .withCorrelationId(UUID.randomUUID())
-                        .withPayload( new GgCommand( target, GgCommandType.CLICK_DA )).build();
+                        .withPayload( new GgCommand( daKeyTarget, GgCommandType.CLICK_DA )).build();
 
         final String responseContent = ATIUtil.getResponse(endpointUri, jsonMessageRequest);
 
@@ -51,11 +51,11 @@ public class ATISteps extends AutomationSteps
         evaluate( localStep( "Verify response for executed POST request - DA call" )
                 .details( match( output.getCommandType(), equalTo(GgCommandType.CLICK_DA)) )
                 .details( match( output.getResult(), equalTo(GgResult.OK)))
-                .details( match( output.getId(), equalTo(target)) )
+                .details( match( output.getId(), equalTo(daKeyTarget)) )
                 .details( match(output.getData(), is(nullValue())) ));
     }
 
-    @When("HMI operators initiate calls to the following: $tableEntries")
+    @When("HMI operators initiate calls to the following targets: $tableEntries")
     @Aliases(values = { "HMI operators cancel the following calls: $tableEntries",
             "HMI operators terminate the following calls: $tableEntries",
             "HMI operators answer the following calls: $tableEntries"})
@@ -65,14 +65,14 @@ public class ATISteps extends AutomationSteps
         final LocalStep localStep = localStep( "Execute POST request - DA call" );
         for (Map<String, String> tableEntry : tableEntries.getRows()) {
             String hmiOperator = tableEntry.get("hmiOperator");
-            String target = tableEntry.get("target");
+            String daKeyTarget = tableEntry.get("target");
 
             String endpointUri = getStoryListData(hmiOperator, String.class);
 
             final JsonMessage jsonMessageRequest =
                     JsonMessage.builder()
                             .withCorrelationId(UUID.randomUUID())
-                            .withPayload(new GgCommand(target, GgCommandType.CLICK_DA)).build();
+                            .withPayload(new GgCommand(daKeyTarget, GgCommandType.CLICK_DA)).build();
 
             final String responseContent = ATIUtil.getResponse(endpointUri, jsonMessageRequest);
 
@@ -83,7 +83,7 @@ public class ATISteps extends AutomationSteps
             localStep("Verify response for executed POST request - DA call")
                     .details(match(output.getCommandType(), equalTo(GgCommandType.CLICK_DA)))
                     .details(match(output.getResult(), equalTo(GgResult.OK)))
-                    .details(match(output.getId(), equalTo(target)))
+                    .details(match(output.getId(), equalTo(daKeyTarget)))
                     .details(match(output.getData(), is(nullValue())));
         }
         evaluate(localStep);
@@ -115,7 +115,7 @@ public class ATISteps extends AutomationSteps
 
     }
 
-    @When("the following operators do a change mission to missions from the table: $tableEntries")
+    @When("the following operators change the current mission to mission from the table: $tableEntries")
     public void apiChangeMissionParallel( final ExamplesTable tableEntries )
             throws Throwable
     {
@@ -145,7 +145,7 @@ public class ATISteps extends AutomationSteps
         evaluate(localStep);
     }
 
-    @Then("$hmiOperator verifies (via POST request) change mission $missionName was successfully")
+    @Then("$hmiOperator verifies (via POST request) that the displayed mission is $missionName")
     public void apiVerifyChangeMission( final String hmiOperator, final String missionName )
             throws Throwable
     {
@@ -202,8 +202,8 @@ public class ATISteps extends AutomationSteps
 
     }
 
-    @Then("$hmiOperator verify (via POST request) that DA key $target has status $status")
-    public void apiDACallStatus( final String hmiOperator, final String target, final String status )
+    @Then("$hmiOperator verify (via POST request) that DA key $daKeyTarget has status $status")
+    public void apiDACallStatus( final String hmiOperator, final String daKeyTarget, final String status )
             throws Throwable
     {
         final LocalStep localStep = localStep( "Execute POST request - verify DA call status" );
@@ -213,7 +213,7 @@ public class ATISteps extends AutomationSteps
         final JsonMessage jsonMessageRequest =
                 JsonMessage.builder()
                         .withCorrelationId(UUID.randomUUID())
-                        .withPayload( new GgCommand( target, GgCommandType.GET_CALL_STATUS )
+                        .withPayload( new GgCommand( daKeyTarget, GgCommandType.GET_CALL_STATUS )
                         .withCallType( GgCallType.DA ) ).build();
 
         final String responseContent = ATIUtil.getResponse(endpointUri, jsonMessageRequest);
@@ -228,7 +228,7 @@ public class ATISteps extends AutomationSteps
                 evaluate(localStep("Verify response for executed POST request - verify DA call status")
                         .details(match(output.getCommandType(), equalTo(GgCommandType.GET_CALL_STATUS)))
                         .details(match(output.getResult(), equalTo(GgResult.OK)))
-                        .details(match(output.getId(), equalTo(target)))
+                        .details(match(output.getId(), equalTo(daKeyTarget)))
                         .details(match(ATIUtil.receivedGGCallStatus(element, status, 2000), equalTo(status))));
             }
             break;
@@ -239,11 +239,11 @@ public class ATISteps extends AutomationSteps
     public void apiDACallStatusParallel( final ExamplesTable tableEntries )
             throws Throwable
     {
-        final LocalStep localStep = localStep( "Execute POST request - verify DA call status" );
+        final LocalStep localStep = localStep( "Execute POST request - verify DA key call status" );
 
         for (Map<String, String> tableEntry : tableEntries.getRows()) {
             String hmiOperator = tableEntry.get("hmiOperator");
-            String target = tableEntry.get("target");
+            String daKeyTarget = tableEntry.get("target");
             String status = tableEntry.get("status");
 
             String endpointUri = getStoryListData(hmiOperator, String.class);
@@ -251,7 +251,7 @@ public class ATISteps extends AutomationSteps
             final JsonMessage jsonMessageRequest =
                     JsonMessage.builder()
                             .withCorrelationId(UUID.randomUUID())
-                            .withPayload(new GgCommand(target, GgCommandType.GET_CALL_STATUS)
+                            .withPayload(new GgCommand(daKeyTarget, GgCommandType.GET_CALL_STATUS)
                                     .withCallType(GgCallType.DA)).build();
 
             final String responseContent = ATIUtil.getResponse(endpointUri, jsonMessageRequest);
@@ -266,7 +266,7 @@ public class ATISteps extends AutomationSteps
                     localStep("Verify response for executed POST request - verify DA call status")
                             .details(match(output.getCommandType(), equalTo(GgCommandType.GET_CALL_STATUS)))
                             .details(match(output.getResult(), equalTo(GgResult.OK)))
-                            .details(match(output.getId(), equalTo(target)))
+                            .details(match(output.getId(), equalTo(daKeyTarget)))
                             .details(match(ATIUtil.receivedGGCallStatus(element, status, 2000), equalTo(status)));
                     break;
                 }

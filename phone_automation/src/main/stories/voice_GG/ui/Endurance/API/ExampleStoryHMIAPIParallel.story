@@ -24,7 +24,7 @@ When define values in story data:
 | HMI OP3 | <<HMI3_API.URI>> |
 
 Scenario: Operators change the mission
-When the following operators do a change mission to missions from the table:
+When the following operators change the current mission to mission from the table:
 | hmiOperator | mission            |
 | HMI OP1     | <<MISSION_1_NAME>> |
 | HMI OP2     | <<MISSION_2_NAME>> |
@@ -36,7 +36,7 @@ Then verify that the following operators changed the mission successfully:
 | HMI OP2     | <<MISSION_2_NAME>> |
 
 Scenario: Operators start calls
-When HMI operators initiate calls to the following:
+When HMI operators initiate calls to the following targets:
 | hmiOperator | target          |
 | HMI OP1     | <<ROLE_2_NAME>> |
 Then wait for 1 seconds
@@ -79,7 +79,7 @@ Then HMI operators verify that call queues have the expected status:
 Then wait for 2 seconds
 
 Scenario: Operators start calls
-When HMI operators initiate calls to the following:
+When HMI operators initiate calls to the following targets:
 | hmiOperator | target          |
 | HMI OP2     | <<ROLE_1_NAME>> |
 Then wait for 1 seconds

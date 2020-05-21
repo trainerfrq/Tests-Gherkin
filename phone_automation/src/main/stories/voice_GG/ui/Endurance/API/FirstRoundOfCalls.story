@@ -1,5 +1,5 @@
 Scenario: Operators start calls
-When HMI operators initiate calls to the following:
+When HMI operators initiate calls to the following targets:
 | hmiOperator | target          |
 | HMI OP1     | <<ROLE_2_NAME>> |
 Then wait for 1 seconds
@@ -41,7 +41,7 @@ Then HMI operators verify that call queues have the expected status:
 Then wait for 2 seconds
 
 Scenario: Operators start calls
-When HMI operators initiate calls to the following:
+When HMI operators initiate calls to the following targets:
 | hmiOperator | target          |
 | HMI OP2     | <<ROLE_1_NAME>> |
 Then wait for 1 seconds

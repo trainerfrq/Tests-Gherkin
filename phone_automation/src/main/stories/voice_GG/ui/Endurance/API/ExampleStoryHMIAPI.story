@@ -25,11 +25,11 @@ When define values in story data:
 
 Scenario: Operator1 changes the mission on HMI screen
 When HMI OP1 changes (via POST request) current mission to mission <<MISSION_1_NAME>>
-Then HMI OP1 verifies (via POST request) change mission <<MISSION_1_NAME>> was successfully
+Then HMI OP1 verifies (via POST request) that the displayed mission is <<MISSION_1_NAME>>
 
 Scenario: Operator2 changes the mission on HMI screen
 When HMI OP2 changes (via POST request) current mission to mission <<MISSION_2_NAME>>
-Then HMI OP2 verifies (via POST request) change mission <<MISSION_2_NAME>> was successfully
+Then HMI OP2 verifies (via POST request) that the displayed mission is <<MISSION_2_NAME>>
 
 Scenario: Op1 calls Op2
 When HMI OP1 presses (via POST request) DA key <<ROLE_2_NAME>>
