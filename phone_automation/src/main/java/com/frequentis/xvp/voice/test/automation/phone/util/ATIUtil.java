@@ -29,17 +29,18 @@ public class ATIUtil {
 
         String responseContent = response.readEntity( new GenericType<String>() {} );
         int i = 1;
-        int numberOfVerificationRetries = 9; //it will get and verify the response for 2 seconds
+        int numberOfVerificationRetries = 17; //it will get and verify the response for 2 seconds
         while(!responseContent.contains("OK")){
-            WaitTimer.pause(250);
+            WaitTimer.pause(450);
             response =
                     getATIWebTarget( endpointUri )
                         .request( MediaType.APPLICATION_JSON )
                         .post( Entity.json( jsonMessage.toString() ));
             responseContent = response.readEntity( new GenericType<String>() {} );
             i++;
-            if(responseContent.contains("OK") || i > numberOfVerificationRetries)
+            if( i > numberOfVerificationRetries) {
                 break;
+            }
         }
         return responseContent;
     }
