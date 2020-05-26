@@ -191,35 +191,6 @@
         </plugins>
     </build>
 
-   <pluginRepositories>
-      <pluginRepository>
-         <releases>
-            <enabled>true</enabled>
-            <updatePolicy>always</updatePolicy>
-         </releases>
-         <snapshots>
-            <enabled>true</enabled>
-         </snapshots>
-         <id>artifactory</id>
-         <name>Artifactory maven repository</name>
-         <url>http://artifactory.frequentis.frq:8081/artifactory/virtxvp</url>
-      </pluginRepository>
-   </pluginRepositories>
-   <repositories>
-      <repository>
-         <releases>
-            <enabled>true</enabled>
-            <updatePolicy>always</updatePolicy>
-         </releases>
-         <snapshots>
-            <enabled>true</enabled>
-         </snapshots>
-         <id>artifactory</id>
-         <name>Artifactory maven repository</name>
-         <url>http://artifactory.frequentis.frq:8081/artifactory/virtxvp</url>
-      </repository>
-   </repositories>
-
    <modules>
       <module>phone_automation</module>
       <module>cats-voice-hmi-steps</module>
