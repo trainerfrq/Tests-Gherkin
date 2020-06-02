@@ -6,4 +6,5 @@
 
 
     <bean class="com.frequentis.xvp.tools.cats.web.automation.steps.WebSteps"/>
+    <bean class="com.frequentis.xvp.tools.cats.web.automation.steps.CallRouteSelectorsSteps"/>
 </beans>

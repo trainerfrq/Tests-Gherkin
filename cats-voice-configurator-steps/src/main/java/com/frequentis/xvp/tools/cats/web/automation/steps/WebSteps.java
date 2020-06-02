@@ -4,6 +4,7 @@ import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.c4i.test.bdd.fluent.step.Profile;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.model.ExecutionDetails;
+import com.frequentis.xvp.tools.cats.web.automation.data.CallRouteSelectorsEntry;
 import com.frequentis.xvp.tools.cats.web.automation.data.PhoneBookEntry;
 import com.frequentis.xvp.tools.cats.web.automation.data.ProfileToWebConfigurationReference;
 import org.jbehave.core.annotations.*;
@@ -206,6 +207,42 @@ public class WebSteps extends AutomationSteps {
         }
     }
 
+    @Then("list size for $subMenuName is: $size")
+    public void subMenuListSize(String subMenuName, Integer size) {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Sub menu list size is " + size)
+                    .scriptOn(VerifyListSize.class, profile)
+                    .input(VerifyListSize.IPARAM_SUB_MENU_NAME, subMenuName)
+                    .input(VerifyListSize.IPARAM_SUB_MENU_LIST_SIZE, size));
+        }
+    }
+
+    @Then("for $subMenuName list scroll until item $name is visible")
+    public void subMenuListScrollUntilItemVisible(String subMenuName, String name) {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Sub menu list item is scrolled ")
+                    .scriptOn(ScrollIntoViewList.class, profile)
+                    .input(ScrollIntoViewList.IPARAM_SUB_MENU_NAME, subMenuName)
+                    .input(ScrollIntoViewList.IPARAM_ENTRY_NAME, name));
+        }
+    }
+
+    @Then("for $subMenuName list item $name is selected")
+    public void subMenuListItemSelected(String subMenuName, String name) {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Sub menu list item is selected ")
+                    .scriptOn(VerifyLastListItemIsSelected.class, profile)
+                    .input(VerifyLastListItemIsSelected.IPARAM_SUB_MENU_NAME, subMenuName)
+                    .input(VerifyLastListItemIsSelected.IPARAM_SUB_MENU_LIST_ITEM, name));
+        }
+    }
+
     @Then("phonebook entry $entryName is displayed in results list after search")
     public void checkEntryIsInResultsList(String entryName) {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
@@ -249,6 +286,65 @@ public class WebSteps extends AutomationSteps {
                     .scriptOn(ClickButtonAlertBoxDialog.class, profile)
                     .input(ClickButtonAlertBoxDialog.IPARAM_BUTTON_NAME, buttonName)
                     .input(ClickButtonAlertBoxDialog.IPARAM_DIALOG_ALERT_TYPE, alertType));
+        }
+    }
+
+    @Given("the following call route selectors entries: $callRouteEntries")
+    public void namedCallParties( final List<CallRouteSelectorsEntry> callRouteEntries )
+    {
+        final LocalStep localStep = localStep( "Call route selectors entries" );
+        for ( final CallRouteSelectorsEntry callRouteEntry : callRouteEntries )
+        {
+            final String key = callRouteEntry.getKey();
+            setStoryListData( key, callRouteEntry );
+            localStep
+                    .details( ExecutionDetails.create( "Define the call route entries" ).usedData( key, callRouteEntry ) );
+        }
+
+        record( localStep );
+    }
+
+    @When("the call route selector editor values are added:<CallRouteEntry> ")
+    public void createBulkCallRouteSelectors(@Named("CallRouteEntry") final CallRouteSelectorsEntry callRouteEntry) {
+        createOrUpdateCallRouteSelectors(callRouteEntry);
+    }
+
+    @When("call route selector editor is filled in with the following values: $callRouteEntry")
+    @Alias("update the call route selector entry following values: $callRouteEntry")
+    public void createOrUpdateCallRouteSelectors(final CallRouteSelectorsEntry callRouteEntry) {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+                evaluate(remoteStep("Adding or updating call route selector")
+                        .scriptOn(AddUpdateCallRouteSelectorsEntry.class, profile)
+                        .input(AddUpdateCallRouteSelectorsEntry.IPARAM_FULL_NAME, callRouteEntry.getFullName())
+                        .input(AddUpdateCallRouteSelectorsEntry.IPARAM_DISPLAY_NAME, callRouteEntry.getDisplayName())
+                        .input(AddUpdateCallRouteSelectorsEntry.IPARAM_COMMENT, callRouteEntry.getComment())
+                        .input(AddUpdateCallRouteSelectorsEntry.IPARAM_SIP_PREFIX, callRouteEntry.getSipPrefix())
+                        .input(AddUpdateCallRouteSelectorsEntry.IPARAM_SIP_POSTFIX, callRouteEntry.getSipPostfix())
+                        .input(AddUpdateCallRouteSelectorsEntry.IPARAM_SIP_DOMAIN, callRouteEntry.getSipDomain())
+                        .input(AddUpdateCallRouteSelectorsEntry.IPARAM_SIP_PORT, callRouteEntry.getSipPort()));
+        }
+    }
+
+    @Then("call route selector editor was filled in with the following expected values: $callRouteEntry")
+    @Alias("call route selector contains the following expected values: $callRouteEntry")
+    public void verifyCallRouteSelectors(final CallRouteSelectorsEntry callRouteEntry) {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+                evaluate(remoteStep("Verify call route selector fields")
+                        .scriptOn(VerifyCallRouteSelectorsEntryFields.class, profile)
+                        .input(VerifyCallRouteSelectorsEntryFields.IPARAM_FULL_NAME, callRouteEntry.getFullName())
+                        .input(VerifyCallRouteSelectorsEntryFields.IPARAM_DISPLAY_NAME, callRouteEntry.getDisplayName())
+                        .input(VerifyCallRouteSelectorsEntryFields.IPARAM_COMMENT, callRouteEntry.getComment())
+                        .input(VerifyCallRouteSelectorsEntryFields.IPARAM_SIP_PREFIX, callRouteEntry.getSipPrefix())
+                        .input(VerifyCallRouteSelectorsEntryFields.IPARAM_SIP_POSTFIX, callRouteEntry.getSipPostfix())
+                        .input(VerifyCallRouteSelectorsEntryFields.IPARAM_SIP_DOMAIN, callRouteEntry.getSipDomain())
+                        .input(VerifyCallRouteSelectorsEntryFields.IPARAM_SIP_PORT, callRouteEntry.getSipPort())
+                        .input(VerifyCallRouteSelectorsEntryFields.IPARAM_RESULT, callRouteEntry.getSipResult()));
         }
     }
 }
