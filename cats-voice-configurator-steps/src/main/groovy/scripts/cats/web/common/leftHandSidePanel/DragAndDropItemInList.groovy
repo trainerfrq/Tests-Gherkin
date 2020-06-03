@@ -2,6 +2,7 @@ package scripts.cats.web.common.leftHandSidePanel
 
 import com.frequentis.c4i.test.agent.selenium.WebDriverManager
 import com.frequentis.c4i.test.model.ExecutionDetails
+import com.frequentis.c4i.test.util.timer.WaitTimer
 import org.openqa.selenium.Dimension
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
@@ -27,11 +28,13 @@ class DragAndDropItemInList extends WebScriptTemplate {
         ContentBody pageObject = ConfigManagementUtils.getSubMenuPageObject(driver, subMenuName)
         pageObject.getLeftHandSidePanel().findItemByPosition(1).click()
 
-        WebElement fromItem = pageObject.getLeftHandSidePanel().findItemByPosition(fromPosition)
+        WebElement fromItem = pageObject.getLeftHandSidePanel().findItem("admin")
 
-        WebElement toItem = pageObject.getLeftHandSidePanel().dragAndDropBorder(toPosition)
+        WebElement toItem = pageObject.getLeftHandSidePanel().findItem("none")
+
 
         Actions act = new Actions(driver)
-        act.dragAndDrop(fromItem, toItem).perform()
+        act.dragAndDrop(fromItem, toItem).build().perform()
+        WaitTimer.pause(5000)
     }
 }
