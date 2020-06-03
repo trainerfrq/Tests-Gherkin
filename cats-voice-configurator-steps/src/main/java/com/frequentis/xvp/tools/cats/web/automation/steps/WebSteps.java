@@ -219,7 +219,20 @@ public class WebSteps extends AutomationSteps {
         }
     }
 
-    @Then("for $subMenuName list scroll until item $name is visible")
+    @Then("in $subMenuName list scroll until name of entry <key> is visible")
+    public void subMenuListScrollUntilItemVisibleExamples(String subMenuName, @Named("key") final String entry) {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        CallRouteSelectorsEntry callRouteEntry = getStoryListData(entry, CallRouteSelectorsEntry.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Sub menu list item is scrolled ")
+                    .scriptOn(ScrollIntoViewList.class, profile)
+                    .input(ScrollIntoViewList.IPARAM_SUB_MENU_NAME, subMenuName)
+                    .input(ScrollIntoViewList.IPARAM_ENTRY_NAME, callRouteEntry.getFullName()));
+        }
+    }
+
+    @Then("in $subMenuName list scroll until item $name is visible")
     public void subMenuListScrollUntilItemVisible(String subMenuName, String name) {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
         if (webAppConfig != null) {
@@ -231,15 +244,28 @@ public class WebSteps extends AutomationSteps {
         }
     }
 
-    @Then("for $subMenuName list item $name is selected")
-    public void subMenuListItemSelected(String subMenuName, String name) {
+    @Then("in $subMenuName list verify that last item has name from entry <key>")
+    public void subMenuLastItemListExamples(String subMenuName, @Named("key") final String entry) {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        CallRouteSelectorsEntry callRouteEntry = getStoryListData(entry, CallRouteSelectorsEntry.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("verify last item in list is "+callRouteEntry.getFullName())
+                    .scriptOn(VerifyLastItemInList.class, profile)
+                    .input(VerifyLastItemInList.IPARAM_SUB_MENU_NAME, subMenuName)
+                    .input(VerifyLastItemInList.IPARAM_ENTRY_NAME, callRouteEntry.getFullName()));
+        }
+    }
+
+    @Then("in $subMenuName list verify that last item is $name")
+    public void subMenuLastItemList(String subMenuName, String name) {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
         if (webAppConfig != null) {
             Profile profile = getProfile(webAppConfig.getProfileName());
-            evaluate(remoteStep("Sub menu list item is selected ")
-                    .scriptOn(VerifyLastListItemIsSelected.class, profile)
-                    .input(VerifyLastListItemIsSelected.IPARAM_SUB_MENU_NAME, subMenuName)
-                    .input(VerifyLastListItemIsSelected.IPARAM_SUB_MENU_LIST_ITEM, name));
+            evaluate(remoteStep("verify last item in list is "+name)
+                    .scriptOn(VerifyLastItemInList.class, profile)
+                    .input(VerifyLastItemInList.IPARAM_SUB_MENU_NAME, subMenuName)
+                    .input(VerifyLastItemInList.IPARAM_ENTRY_NAME, name));
         }
     }
 
@@ -289,62 +315,16 @@ public class WebSteps extends AutomationSteps {
         }
     }
 
-    @Given("the following call route selectors entries: $callRouteEntries")
-    public void namedCallParties( final List<CallRouteSelectorsEntry> callRouteEntries )
-    {
-        final LocalStep localStep = localStep( "Call route selectors entries" );
-        for ( final CallRouteSelectorsEntry callRouteEntry : callRouteEntries )
-        {
-            final String key = callRouteEntry.getKey();
-            setStoryListData( key, callRouteEntry );
-            localStep
-                    .details( ExecutionDetails.create( "Define the call route entries" ).usedData( key, callRouteEntry ) );
-        }
-
-        record( localStep );
-    }
-
-    @When("the call route selector editor values are added:<CallRouteEntry> ")
-    public void createBulkCallRouteSelectors(@Named("CallRouteEntry") final CallRouteSelectorsEntry callRouteEntry) {
-        createOrUpdateCallRouteSelectors(callRouteEntry);
-    }
-
-    @When("call route selector editor is filled in with the following values: $callRouteEntry")
-    @Alias("update the call route selector entry following values: $callRouteEntry")
-    public void createOrUpdateCallRouteSelectors(final CallRouteSelectorsEntry callRouteEntry) {
+    @When("in $subMenuName move item from position $from to position $to")
+    public void deletePhonebookEntry(String subMenuName, Integer from, Integer to) {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
-
         if (webAppConfig != null) {
             Profile profile = getProfile(webAppConfig.getProfileName());
-                evaluate(remoteStep("Adding or updating call route selector")
-                        .scriptOn(AddUpdateCallRouteSelectorsEntry.class, profile)
-                        .input(AddUpdateCallRouteSelectorsEntry.IPARAM_FULL_NAME, callRouteEntry.getFullName())
-                        .input(AddUpdateCallRouteSelectorsEntry.IPARAM_DISPLAY_NAME, callRouteEntry.getDisplayName())
-                        .input(AddUpdateCallRouteSelectorsEntry.IPARAM_COMMENT, callRouteEntry.getComment())
-                        .input(AddUpdateCallRouteSelectorsEntry.IPARAM_SIP_PREFIX, callRouteEntry.getSipPrefix())
-                        .input(AddUpdateCallRouteSelectorsEntry.IPARAM_SIP_POSTFIX, callRouteEntry.getSipPostfix())
-                        .input(AddUpdateCallRouteSelectorsEntry.IPARAM_SIP_DOMAIN, callRouteEntry.getSipDomain())
-                        .input(AddUpdateCallRouteSelectorsEntry.IPARAM_SIP_PORT, callRouteEntry.getSipPort()));
-        }
-    }
-
-    @Then("call route selector editor was filled in with the following expected values: $callRouteEntry")
-    @Alias("call route selector contains the following expected values: $callRouteEntry")
-    public void verifyCallRouteSelectors(final CallRouteSelectorsEntry callRouteEntry) {
-        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
-
-        if (webAppConfig != null) {
-            Profile profile = getProfile(webAppConfig.getProfileName());
-                evaluate(remoteStep("Verify call route selector fields")
-                        .scriptOn(VerifyCallRouteSelectorsEntryFields.class, profile)
-                        .input(VerifyCallRouteSelectorsEntryFields.IPARAM_FULL_NAME, callRouteEntry.getFullName())
-                        .input(VerifyCallRouteSelectorsEntryFields.IPARAM_DISPLAY_NAME, callRouteEntry.getDisplayName())
-                        .input(VerifyCallRouteSelectorsEntryFields.IPARAM_COMMENT, callRouteEntry.getComment())
-                        .input(VerifyCallRouteSelectorsEntryFields.IPARAM_SIP_PREFIX, callRouteEntry.getSipPrefix())
-                        .input(VerifyCallRouteSelectorsEntryFields.IPARAM_SIP_POSTFIX, callRouteEntry.getSipPostfix())
-                        .input(VerifyCallRouteSelectorsEntryFields.IPARAM_SIP_DOMAIN, callRouteEntry.getSipDomain())
-                        .input(VerifyCallRouteSelectorsEntryFields.IPARAM_SIP_PORT, callRouteEntry.getSipPort())
-                        .input(VerifyCallRouteSelectorsEntryFields.IPARAM_RESULT, callRouteEntry.getSipResult()));
+            evaluate(remoteStep("Drag and drop ")
+                    .scriptOn(DragAndDropItemInList.class, profile)
+                    .input(DragAndDropItemInList.IPARAM_SUB_MENU_NAME, subMenuName)
+                    .input(DragAndDropItemInList.IPARAM_FROM_POSITION, from)
+                    .input(DragAndDropItemInList.IPARAM_TO_POSITION, to));
         }
     }
 }

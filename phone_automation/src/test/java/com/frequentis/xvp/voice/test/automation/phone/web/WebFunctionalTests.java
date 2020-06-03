@@ -17,7 +17,7 @@ import java.util.List;
 @RunWith(CatsJunitRunner.class)
 @CatsRunConfiguration(
         stories = {
-                "configurator/Test.story"
+                "configurator/DragAndDropTest.story"
         },
         catsHomeLocation = ".",
         name = "WebFunctionalTests")
