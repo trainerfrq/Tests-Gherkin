@@ -5,7 +5,7 @@
    <groupId>com.frequentis.xvp.voice.phone</groupId>
 
    <artifactId>phone-test-automation</artifactId>
-   <version>2.2.3-SNAPSHOT</version>
+   <version>2.2.4</version>
 
    <packaging>pom</packaging>
    <url>http://www.frequentis.com</url>
@@ -190,35 +190,6 @@
             </plugin>
         </plugins>
     </build>
-
-   <pluginRepositories>
-      <pluginRepository>
-         <releases>
-            <enabled>true</enabled>
-            <updatePolicy>always</updatePolicy>
-         </releases>
-         <snapshots>
-            <enabled>true</enabled>
-         </snapshots>
-         <id>artifactory</id>
-         <name>Artifactory maven repository</name>
-         <url>http://artifactory.frequentis.frq:8081/artifactory/virtxvp</url>
-      </pluginRepository>
-   </pluginRepositories>
-   <repositories>
-      <repository>
-         <releases>
-            <enabled>true</enabled>
-            <updatePolicy>always</updatePolicy>
-         </releases>
-         <snapshots>
-            <enabled>true</enabled>
-         </snapshots>
-         <id>artifactory</id>
-         <name>Artifactory maven repository</name>
-         <url>http://artifactory.frequentis.frq:8081/artifactory/virtxvp</url>
-      </repository>
-   </repositories>
 
    <modules>
       <module>phone_automation</module>
