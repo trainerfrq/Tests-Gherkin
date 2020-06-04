@@ -26,38 +26,7 @@ public class ATIUtil extends AutomationSteps {
 
     private static final List<Integer> SUCCESS_RESPONSES = Arrays.asList( 200, 201 );
 
-    public String getResponse(final String endpointUri, final JsonMessage jsonMessage){
-
-        final LocalStep localStep = localStep( "Verify POST request was done successfully" );
-
-        Response response =
-                getATIWebTarget( endpointUri )
-                   .request( MediaType.APPLICATION_JSON )
-                   .post( Entity.json( jsonMessage.toString() ));
-
-        localStep.details( ExecutionDetails.create( "POST request was done successfully! " ).expected( "200 or 201" )
-                .received( Integer.toString( response.getStatus() ) ).success( requestWithSuccess( response ) ) );
-
-        String responseContent = response.readEntity( new GenericType<String>() {} );
-        int i = 1;
-        int numberOfVerificationRetries = 17; //it will get and verify the response for 2 seconds
-            while (!responseContent.contains("OK")) {
-                WaitTimer.pause(450);
-                response =
-                        getATIWebTarget(endpointUri)
-                                .request(MediaType.APPLICATION_JSON)
-                                .post(Entity.json(jsonMessage.toString()));
-                responseContent = response.readEntity(new GenericType<String>() {
-                });
-                i++;
-                if (i > numberOfVerificationRetries) {
-                    break;
-                }
-            }
-        return responseContent;
-    }
-
-    public String getResponseCallStatus(final String endpointUri, final JsonMessage jsonMessage, final String callStatus){
+    public String getResponseWithStatus(final String endpointUri, final JsonMessage jsonMessage, final String callStatus){
 
         final LocalStep localStep = localStep( "Verify POST request was done successfully" );
 

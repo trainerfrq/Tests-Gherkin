@@ -1,6 +1,5 @@
 package com.frequentis.xvp.voice.test.automation.phone.step.local;
 
-import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.xvp.voice.if73.json.messages.JsonMessage;
 import com.frequentis.xvp.voice.if73.json.messages.payload.common_commands.Command;
@@ -27,7 +26,7 @@ import static org.hamcrest.Matchers.*;
 public class ATISteps extends ATIUtil
 {
 
-    private static final List<Integer> SUCCESS_RESPONSES = Arrays.asList( 200, 201 );
+    private static final String STATUS_OK = "OK";
 
     @When("$hmiOperator presses (via POST request) DA key $daKeyTarget")
     public void apiDACall( final String hmiOperator, final String daKeyTarget )
@@ -42,7 +41,7 @@ public class ATISteps extends ATIUtil
                         .withCorrelationId(UUID.randomUUID())
                         .withPayload( new GgCommand( daKeyTarget, GgCommandType.CLICK_DA )).build();
 
-        final String responseContent = getResponse(endpointUri, jsonMessageRequest);
+        final String responseContent = getResponseWithStatus(endpointUri, jsonMessageRequest, STATUS_OK);
 
         final Gson gson = GsonUtils.getGson();
         final JsonMessage jsonMessage = gson.fromJson( responseContent, JsonMessage.class );
@@ -74,7 +73,7 @@ public class ATISteps extends ATIUtil
                             .withCorrelationId(UUID.randomUUID())
                             .withPayload(new GgCommand(daKeyTarget, GgCommandType.CLICK_DA)).build();
 
-            final String responseContent = getResponse(endpointUri, jsonMessageRequest);
+            final String responseContent = getResponseWithStatus(endpointUri, jsonMessageRequest, STATUS_OK);
 
             final Gson gson = GsonUtils.getGson();
             final JsonMessage jsonMessage = gson.fromJson(responseContent, JsonMessage.class);
@@ -102,7 +101,7 @@ public class ATISteps extends ATIUtil
                         .withCorrelationId(UUID.randomUUID())
                         .withPayload( new Command(missionName, CommandType.MISSION_CHANGE )).build();
 
-        final String responseContent = getResponse(endpointUri, jsonMessageRequest);
+        final String responseContent = getResponseWithStatus(endpointUri, jsonMessageRequest, STATUS_OK);
 
         final Gson gson = GsonUtils.getGson();
         final JsonMessage jsonMessage = gson.fromJson( responseContent, JsonMessage.class );
@@ -131,7 +130,7 @@ public class ATISteps extends ATIUtil
                             .withCorrelationId(UUID.randomUUID())
                             .withPayload(new Command(missionName, CommandType.MISSION_CHANGE)).build();
 
-            final String responseContent = getResponse(endpointUri, jsonMessageRequest);
+            final String responseContent = getResponseWithStatus(endpointUri, jsonMessageRequest, STATUS_OK);
 
             final Gson gson = GsonUtils.getGson();
             final JsonMessage jsonMessage = gson.fromJson(responseContent, JsonMessage.class);
@@ -158,7 +157,7 @@ public class ATISteps extends ATIUtil
                         .withCorrelationId(UUID.randomUUID())
                         .withPayload( new Command(null, CommandType.MISSION_STATUS )).build();
 
-        final String responseContent = getResponse(endpointUri, jsonMessageRequest);
+        final String responseContent = getResponseWithStatus(endpointUri, jsonMessageRequest, STATUS_OK);
 
         final Gson gson = GsonUtils.getGson();
         final JsonMessage jsonMessage = gson.fromJson( responseContent, JsonMessage.class );
@@ -187,7 +186,7 @@ public class ATISteps extends ATIUtil
                             .withCorrelationId(UUID.randomUUID())
                             .withPayload(new Command(null, CommandType.MISSION_STATUS)).build();
 
-            final String responseContent = getResponse(endpointUri, jsonMessageRequest);
+            final String responseContent = getResponseWithStatus(endpointUri, jsonMessageRequest, STATUS_OK);
 
             final Gson gson = GsonUtils.getGson();
             final JsonMessage jsonMessage = gson.fromJson(responseContent, JsonMessage.class);
@@ -216,7 +215,7 @@ public class ATISteps extends ATIUtil
                         .withPayload( new GgCommand( daKeyTarget, GgCommandType.GET_CALL_STATUS )
                         .withCallType( GgCallType.DA ) ).build();
 
-        final String responseContent = getResponse(endpointUri, jsonMessageRequest);
+        final String responseContent = getResponseWithStatus(endpointUri, jsonMessageRequest, STATUS_OK);
 
         final Gson gson = GsonUtils.getGson();
         final JsonMessage jsonMessage = gson.fromJson( responseContent, JsonMessage.class );
@@ -254,7 +253,7 @@ public class ATISteps extends ATIUtil
                             .withPayload(new GgCommand(daKeyTarget, GgCommandType.GET_CALL_STATUS)
                                     .withCallType(GgCallType.DA)).build();
 
-            final String responseContent = getResponseCallStatus(endpointUri, jsonMessageRequest, status);
+            final String responseContent = getResponseWithStatus(endpointUri, jsonMessageRequest, status);
 
             final Gson gson = GsonUtils.getGson();
             final JsonMessage jsonMessage = gson.fromJson(responseContent, JsonMessage.class);
@@ -288,7 +287,7 @@ public class ATISteps extends ATIUtil
                         .withCorrelationId(UUID.randomUUID())
                         .withPayload( new GgCommand( "callQueue", GgCommandType.GET_CALL_STATUS )).build();
 
-        final String responseContent = getResponse(endpointUri, jsonMessageRequest);
+        final String responseContent = getResponseWithStatus(endpointUri, jsonMessageRequest, STATUS_OK);
 
         final Gson gson = GsonUtils.getGson();
         final JsonMessage jsonMessage = gson.fromJson( responseContent, JsonMessage.class );
@@ -320,7 +319,7 @@ public class ATISteps extends ATIUtil
                             .withCorrelationId(UUID.randomUUID())
                             .withPayload(new GgCommand("callQueue", GgCommandType.GET_CALL_STATUS)).build();
 
-            final String responseContent = getResponse(endpointUri, jsonMessageRequest);
+            final String responseContent = getResponseWithStatus(endpointUri, jsonMessageRequest, STATUS_OK);
 
             final Gson gson = GsonUtils.getGson();
             final JsonMessage jsonMessage = gson.fromJson(responseContent, JsonMessage.class);
@@ -354,9 +353,9 @@ public class ATISteps extends ATIUtil
                     JsonMessage.builder()
                             .withCorrelationId(UUID.randomUUID())
                             .withPayload(new GgCommand("callQueue", GgCommandType.GET_CALL_STATUS)).build();
-
-            final String responseContent = getResponseCallStatus(endpointUri, jsonMessageRequest, status);
-
+            
+            final String responseContent = getResponseWithStatus(endpointUri, jsonMessageRequest, status);
+            
             final Gson gson = GsonUtils.getGson();
             final JsonMessage jsonMessage = gson.fromJson(responseContent, JsonMessage.class);
             final GgCommandResponse output = jsonMessage.body().getPayloadAs(GgCommandResponse.class);
@@ -386,7 +385,7 @@ public class ATISteps extends ATIUtil
                         .withCorrelationId(UUID.randomUUID())
                         .withPayload( new GgCommand( target, GgCommandType.PHONEBOOK_CALL )).build();
 
-        final String responseContent = getResponse(endpointUri, jsonMessageRequest);
+        final String responseContent = getResponseWithStatus(endpointUri, jsonMessageRequest, STATUS_OK);
 
         final Gson gson = GsonUtils.getGson();
         final JsonMessage jsonMessage = gson.fromJson( responseContent, JsonMessage.class );
@@ -416,7 +415,7 @@ public class ATISteps extends ATIUtil
                             .withCorrelationId(UUID.randomUUID())
                             .withPayload(new GgCommand(target, GgCommandType.PHONEBOOK_CALL)).build();
 
-            final String responseContent = getResponse(endpointUri, jsonMessageRequest);
+            final String responseContent = getResponseWithStatus(endpointUri, jsonMessageRequest, STATUS_OK);
 
             final Gson gson = GsonUtils.getGson();
             final JsonMessage jsonMessage = gson.fromJson(responseContent, JsonMessage.class);
