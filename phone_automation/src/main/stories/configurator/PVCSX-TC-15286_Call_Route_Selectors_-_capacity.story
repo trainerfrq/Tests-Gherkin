@@ -1,6 +1,6 @@
-Meta: @TEST_CASE_VERSION: V8
+Meta: @TEST_CASE_VERSION: V10
 @TEST_CASE_NAME: Call Route Selectors - capacity
-@TEST_CASE_DESCRIPTION: 
+@TEST_CASE_DESCRIPTION:
 As a system technician using Configuration Management
 I want to add the maximum number of Call Route Selectors (see Capacity_NumberOfCallRouteSelectors)
 So I can verify that they are added correctly in the Call Route Selectors page  and exceeding the maximum number is signalized with an error message for the user
@@ -48,37 +48,37 @@ Given the following call route selectors entries:
 | entry20 | entry20_name | entry20     | entry20_comment    | 99        | 99         | frequentis.frq | 5061    |
 
 Scenario: 1. Verify Configuration Management page is visible
-Meta: @TEST_STEP_ACTION: System Technician: Open a Configuration Management page
-@TEST_STEP_REACTION: Configuration Management page is visible
+Meta: @TEST_STEP_ACTION: Configurator: Open a Configuration Management page
+@TEST_STEP_REACTION: Configurator: Configuration Management page is visible
 @TEST_STEP_REF: [CATS-REF: mt6X]
 Then configurator management page is visible
 
-Scenario: 2. System Technician: Select Global settings - Telephone menu
-Meta: @TEST_STEP_ACTION: System Technician: Select Global settings - Telephone menu
-@TEST_STEP_REACTION: The following menus are visible: Call Route Selectors, Phone Book, Group Calls and Phone Data
+Scenario: 2. Configurator: Select Global settings - Telephone menu
+Meta: @TEST_STEP_ACTION: Configurator: Select 'Global settings - Telephone' menu
+@TEST_STEP_REACTION: Configurator: The following menus are visible - Call Route Selectors, Phone Book, Group Calls and Phone Data
 @TEST_STEP_REF: [CATS-REF: lyL0]
 When selecting Global settings - Telephone item in main menu
 Then Global settings - Telephone menu item contains following sub-menu items: <<GLOBAL_SETTINGS-TELEPHONE_SUB_MENUS>>
 
-Scenario: 3. System Technician: select sub-menu Call Route Selectors
-Meta: @TEST_STEP_ACTION: System Technician: select sub-menu Call Route Selectors
-@TEST_STEP_REACTION: Call Route Selectors page is visible and has 1 item (list can't be empty)
+Scenario: 3. Configurator: select sub-menu Call Route Selectors
+Meta: @TEST_STEP_ACTION: Configurator: Select sub-menu 'Call Route Selectors'
+@TEST_STEP_REACTION: Configurator: Call Route Selectors page is visible and has 1 item (list can't be empty)
 @TEST_STEP_REF: [CATS-REF: IfXE]
 When selecting Call Route Selectors sub-menu item
 Then waiting 2 seconds for LoadingScreen to disappear
 Then sub-menu title is displaying: Call Route Selectors
 Then list size for Call Route Selectors is: 1
 
-Scenario: 4. System Technician: Click on New button
-Meta: @TEST_STEP_ACTION: System Technician: Click on New button
-@TEST_STEP_REACTION: Call Route Selectors editor page is open and the following fields areas are visible: Name, Display name, Comment, SIP area, Example area
+Scenario: 4. Configurator: Click on New button
+Meta: @TEST_STEP_ACTION: Configurator: Click on 'New' button
+@TEST_STEP_REACTION: Configurator: Call Route Selectors editor page is open and the following fields areas are visible: Name, Display name, Comment, SIP area, Example area
 @TEST_STEP_REF: [CATS-REF: qRB7]
 When New button is pressed in Call Route Selectors sub-menu
 Then editor page Call Route Selectors is visible
 
-Scenario: 5. System Technician: Fills in the following fields: Name, Display name, SIP area. Note: SIP area can be fill in in an aleatory way: all fields (Prefix, Postfix, Domain, Port) or just one field or just 2 fields or just 3 fields
-Meta: @TEST_STEP_ACTION: System Technician: Fills in the following fields: Name, Display name, SIP area. Note: SIP area can be fill in in an aleatory way: all fields (Prefix, Postfix, Domain, Port) or just one field or just 2 fields or just 3 fields
-@TEST_STEP_REACTION: Name, Display name, SIP area display correctly the values filled in. In the Example area, the SIP is displayed according to the filled in field: - Prefix field value is inserted in front of "TestUser"text, Postfix field value is insterted after "TestUser"text, Domain field value is inserted after "TestUser"text and Postfix value, with a @ in front, Port value field value is inserted after "TestUser"text, Postfix value and Domain value with : in front.
+Scenario: 5. Configurator: Fills in the following fields: 'Name', 'Display name', 'SIP' area. Note: SIP area can be fill in in an aleatory way: all fields (Prefix, Postfix, Domain, Port) or just one field or just 2 fields or just 3 fields
+Meta: @TEST_STEP_ACTION: Configurator: Fill in the following fields: 'Name', 'Display name', 'SIP' area. Note: SIP area can be fill in in an aleatory way: all fields (Prefix, Postfix, Domain, Port) or just one field or just 2 fields or just 3 fields
+@TEST_STEP_REACTION: Configurator: 'Name', 'Display name', 'SIP' area displays correctly the values filled in. In the Example area, the SIP is displayed according to the filled in field: - Prefix field value is inserted in front of "TestUser"text, Postfix field value is insterted after "TestUser"text, Domain field value is inserted after "TestUser"text and Postfix value, with a @ in front, Port value field value is inserted after "TestUser"text, Postfix value and Domain value with : in front.
 @TEST_STEP_REF: [CATS-REF: LG1x]
 When call route selector editor is filled in with the following values:
 | key    | fullName    | displayName | comment          | sipPrefix | sipPostfix | sipDomain | sipPort |
@@ -89,32 +89,31 @@ Then call route selector editor was filled in with the following expected values
 | key    | fullName    | displayName | comment          | sipPrefix | sipPostfix | sipDomain | sipPort |
 | entry2 | entry2_name | entry2      | entry2_propriété |           | 2          | skype.at  | 7645    |
 
-Scenario: 6. System Technician: Clicks on Save button
-Meta: @TEST_STEP_ACTION: System Technician: Clicks on Save button
-@TEST_STEP_REACTION: Call Route Selectors page is visible and has 1 new item.
+Scenario: 6. Configurator: Clicks on Save button
+Meta: @TEST_STEP_ACTION: Configurator: Click on 'Save' button
+@TEST_STEP_REACTION: Configurator: Call Route Selectors page is visible and has 1 new item.
 @TEST_STEP_REF: [CATS-REF: sqwI]
 Then Save button is pressed in Call Route Selectors editor
 Then waiting 10 seconds for LoadingScreen to disappear
 
 Scenario: 7. A pop-up message is visible in the page and displays message "Successfully saved call route selector'
 Meta: @TEST_STEP_ACTION: -
-@TEST_STEP_REACTION: A pop-up message is visible in the page and displays message "Successfully saved the call route selector'
+@TEST_STEP_REACTION: Configurator: A pop-up message is visible in the page and displays message "Successfully saved the call route selector'
 @TEST_STEP_REF: [CATS-REF: tglR]
 Then verifying pop-up displays message: Successfully saved the call route selector
 Then list size for Call Route Selectors is: 2
 
-Scenario: 8. System Technician: Verifies that Call Route Selectors newest item is by default selected and displayed the correct values.
-
-Meta: @TEST_STEP_ACTION: System Technician: Verifies that Call Route Selectors newest item is by default selected and displayed the correct values.
-@TEST_STEP_REACTION: Name, Display name, SIP area display correctly the values filled in at step 5. In the Example area, the SIP is displayed according to the filled in field: - Prefix field value is inserted in front of "TestUser"text, Postfix field value is insterted after "TestUser"text, Domain field value is inserted after "TestUser"text and Postfix value, with a @ in front, Port value field value is inserted after "TestUser"text, Postfix value and Domain value with : in front.
+Scenario: 8. Configurator: Verifies that Call Route Selectors newest item is by default selected and displayed the correct values.
+Meta: @TEST_STEP_ACTION: Configurator: Verify that 'Call Route Selectors' list newest item is by default selected and correct values are displayed
+@TEST_STEP_REACTION: Configurator: 'Name', 'Display name', 'SIP' area displays correctly the values filled in at step 5. In the Example area, the SIP is displayed according to the filled in field: - Prefix field value is inserted in front of "TestUser"text, Postfix field value is inserted after "TestUser"text, Domain field value is inserted after "TestUser"text and Postfix value, with a @ in front, Port value field value is inserted after "TestUser"text, Postfix value and Domain value with : in front.
 @TEST_STEP_REF: [CATS-REF: 8dFJ]
 Then call route selector contains the following expected values:
 | key    | fullName    | displayName | comment          | sipPrefix | sipPostfix | sipDomain | sipPort |
 | entry2 | entry2_name | entry2      | entry2_propriété |           | 2          | skype.at  | 7645    |
 
-Scenario: 9. System Technician: Repeats steps 4 to 8 for 19 times
-Meta: @TEST_STEP_ACTION: System Technician: Repeats steps 4 to 8 for 19 times
-@TEST_STEP_REACTION: Call Route Selectors page is visible and has 20 new items
+Scenario: 9. Configurator: Repeats steps 4 to 8 for 19 times
+Meta: @TEST_STEP_ACTION: Configurator: Repeat steps 4 to 8 for 19 times
+@TEST_STEP_REACTION: Configurator: Call Route Selectors page is visible and has 20 new items
 @TEST_STEP_REF: [CATS-REF: ABBs]
 When New button is pressed in Call Route Selectors sub-menu
 Then editor page Call Route Selectors is visible
@@ -148,8 +147,8 @@ Examples:
 | entry20 |
 
 Scenario: Autogenerated Scenario 10
-Meta: @TEST_STEP_ACTION: System Technician: Repeats steps 4 and 5
-@TEST_STEP_REACTION: -
+Meta: @TEST_STEP_ACTION: Configurator: Repeat steps 4 and 5
+@TEST_STEP_REACTION: Configurator: 'Name', 'Display name', 'SIP' area displays correctly the values filled in
 @TEST_STEP_REF: [CATS-REF: igIi]
 When New button is pressed in Call Route Selectors sub-menu
 Then editor page Call Route Selectors is visible
@@ -160,23 +159,20 @@ Then Save button is pressed in Phone Book editor
 Then waiting 10 seconds for LoadingScreen to disappear
 
 Scenario: Autogenerated Scenario 11
-Meta: @TEST_STEP_ACTION: System Technician: Clicks on Save button
-@TEST_STEP_REACTION: A pop-up message is visible in the page and displays message "Could not saved call route selector. Maximum number of defined call route selectors (20) reached'
+Meta: @TEST_STEP_ACTION: Configurator: Click on 'Save' button
+@TEST_STEP_REACTION: Configurator: A pop-up message is visible in the page and displays message "Could not saved call route selector. Maximum number of defined call route selectors (20) reached'
 @TEST_STEP_REF: [CATS-REF: WxcC]
 Then verifying pop-up displays message: Could not saved call route selector. Maximum number of defined call route selectors (20) reached
 Then list size for Call Route Selectors is: 20
 
 Scenario: Autogenerated Scenario 12
-Meta: @TEST_STEP_ACTION: System Technician: Selects a Call Route Selectors item
-@TEST_STEP_REACTION: A pop-up window shows saying "You have unsaved changes and are about to leave this page. if you leave, your changes will be discarded". Window has 2 option buttons: "Discard changes" and "Stay on this page"
+Meta: @TEST_STEP_ACTION: Configurator: Select a 'Call Route Selectors' item
+@TEST_STEP_REACTION: Configurator: A pop-up window shows saying "You have unsaved changes and are about to leave this page. if you leave, your changes will be discarded". Window has 2 option buttons: "Discard changes" and "Stay on this page"
 @TEST_STEP_REF: [CATS-REF: 52k8]
 When selecting Call Route Selectors sub-menu entry: entry10
 
 Scenario: Autogenerated Scenario 13
-Meta: @TEST_STEP_ACTION: System Technician: Chooses to discard changes
-@TEST_STEP_REACTION: Call Route Selectors page is visible and has 20 new items
+Meta: @TEST_STEP_ACTION: Configurator: Choose to discard changes
+@TEST_STEP_REACTION: Configurator: Call Route Selectors page is visible and has 20 new items
 @TEST_STEP_REF: [CATS-REF: tY97]
 Then list size for Call Route Selectors is: 20
-
-
-
