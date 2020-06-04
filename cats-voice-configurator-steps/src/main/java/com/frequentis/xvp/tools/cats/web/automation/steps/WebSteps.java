@@ -269,6 +269,18 @@ public class WebSteps extends AutomationSteps {
         }
     }
 
+    @Then("in $subMenuName list verify that items are in the following order: $entriesList")
+    public void subMenuVerifyOrderList(String subMenuName, String entriesList) {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("verify items "+entriesList+" are in the correct order")
+                    .scriptOn(VerifyListItemsOrder.class, profile)
+                    .input(VerifyListItemsOrder.IPARAM_SUB_MENU_NAME, subMenuName)
+                    .input(VerifyListItemsOrder.IPARAM_ENTRIES_LIST, entriesList));
+        }
+    }
+
     @Then("phonebook entry $entryName is displayed in results list after search")
     public void checkEntryIsInResultsList(String entryName) {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
@@ -282,6 +294,18 @@ public class WebSteps extends AutomationSteps {
 
     @When("deleting $subMenuName sub-menu entry: $entryName")
     public void deletePhonebookEntry(String subMenuName, String entryName) {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Delete phonebook entry " + entryName)
+                    .scriptOn(DeleteItem.class, profile)
+                    .input(DeleteItem.IPARAM_SUB_MENU_NAME, subMenuName)
+                    .input(DeleteItem.IPARAM_ENTRY_NAME, entryName));
+        }
+    }
+
+    @When("selecting $subMenuName sub-menu entry: $entryName")
+    public void selectItemList(String subMenuName, String entryName) {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
         if (webAppConfig != null) {
             Profile profile = getProfile(webAppConfig.getProfileName());

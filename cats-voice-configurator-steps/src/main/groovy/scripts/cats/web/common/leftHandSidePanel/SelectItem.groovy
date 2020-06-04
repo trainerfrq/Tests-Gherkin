@@ -8,7 +8,7 @@ import scripts.agent.selenium.automation.WebScriptTemplate
 import scripts.elements.ConfigManagementUtils
 import scripts.elements.general.mainPageComponents.ContentBody
 
-class VerifyLastItemInList extends WebScriptTemplate {
+class SelectItem extends WebScriptTemplate {
     public static final String IPARAM_SUB_MENU_NAME = "sub_menu_name"
     public static final String IPARAM_ENTRY_NAME = "entry_name"
 
@@ -20,12 +20,12 @@ class VerifyLastItemInList extends WebScriptTemplate {
         WebDriver driver = WebDriverManager.getInstance().getWebDriver()
         ContentBody pageObject = ConfigManagementUtils.getSubMenuPageObject(driver, subMenuName)
 
-        WebElement item = pageObject.getLeftHandSidePanel().getListItems().last()
+        WebElement item = pageObject.getLeftHandSidePanel().findItem(entryName)
 
-        evaluate(ExecutionDetails.create("verify last item in the list")
-                .expected(entryName)
-                .received(item.getText())
-                .success(entryName.equals(item.getText())))
+        evaluate(ExecutionDetails.create("Check entry " + entryName + " is in list")
+                .expected(entryName + " was found")
+                .success(item.isDisplayed()))
+
+        item.click()
     }
 }
-

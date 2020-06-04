@@ -1,0 +1,12 @@
+{
+  "id" : "f61fcfea-b102-4b54-8031-8dc48753d7e7",
+  "name" : "super",
+  "displayName" : "Super",
+  "comment" : "",
+  "replacePlaceholder" : {
+    "prefix" : "2222",
+    "postfix" : "",
+    "domain" : "example.com",
+    "schema" : "sip"
+  }
+}

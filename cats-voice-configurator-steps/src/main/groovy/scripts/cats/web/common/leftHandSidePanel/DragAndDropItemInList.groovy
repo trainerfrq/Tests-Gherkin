@@ -7,6 +7,7 @@ import org.openqa.selenium.Dimension
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.interactions.Actions
+import scripts.agent.selenium.adapter.util.DragAndDropSupport
 import scripts.agent.selenium.automation.WebScriptTemplate
 import scripts.elements.ConfigManagementUtils
 import scripts.elements.general.mainPageComponents.ContentBody
@@ -24,17 +25,13 @@ class DragAndDropItemInList extends WebScriptTemplate {
         Integer toPosition = assertInput(IPARAM_TO_POSITION) as Integer
 
         WebDriver driver = WebDriverManager.getInstance().getWebDriver()
-        driver.manage().window().setSize(new Dimension(1936, 1056));
         ContentBody pageObject = ConfigManagementUtils.getSubMenuPageObject(driver, subMenuName)
-        pageObject.getLeftHandSidePanel().findItemByPosition(1).click()
 
-        WebElement fromItem = pageObject.getLeftHandSidePanel().findItem("admin")
+        WebElement fromItem = pageObject.getLeftHandSidePanel().draggableItem(fromPosition)
+        WebElement toItem = pageObject.getLeftHandSidePanel().dragAndDropBorder(toPosition)
 
-        WebElement toItem = pageObject.getLeftHandSidePanel().findItem("none")
-
-
-        Actions act = new Actions(driver)
-        act.dragAndDrop(fromItem, toItem).build().perform()
-        WaitTimer.pause(5000)
+        //Actions act = new Actions(driver)
+        //act.dragAndDrop(fromItem, toItem).build().perform()
+        DragAndDropSupport.dragAndDropElementViaRobot(driver, fromItem, toItem)
     }
 }
