@@ -175,7 +175,11 @@ public class ConfigurationSteps extends AutomationSteps
       {
          localStep.details( ExecutionDetails.create( "Downloading from: " + endpointUri ).success() );
 
-         Response response = getConfigurationItemsWebTarget( endpointUri ).request( MediaType.APPLICATION_JSON ).get();
+          Response response =
+                  getConfigurationItemsWebTarget( endpointUri )
+                          .request( MediaType.APPLICATION_JSON )
+                          .header("X-JFrog-Art-Api", "AKCp5ekSuisXi7A5d2k6uMYtvHEY5enDmpSSLCRhEd2zp4kkfTJtQHBr23Ge4ej4oe7G64gVU")
+                          .get();
 
          localStep.details( ExecutionDetails.create( "Executed GET request with payload! " ).expected( "200 or 201" )
                .received( Integer.toString( response.getStatus() ) ).success( requestWithSuccess( response ) ) );
