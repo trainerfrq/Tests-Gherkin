@@ -304,6 +304,40 @@ public class ATISteps extends ATIUtil
         }
     }
 
+    @Then("HMI operators verify that they have no calls in the call queue: $tableEntries")
+    public void apiCallQueueStatusTerminatedParallel( final ExamplesTable tableEntries )
+            throws Throwable
+    {
+        final LocalStep localStep = localStep( "Execute POST request - verify call queue status terminated" );
+
+        for (Map<String, String> tableEntry : tableEntries.getRows()) {
+            String hmiOperator = tableEntry.get("hmiOperator");
+
+            String endpointUri = getStoryListData(hmiOperator, String.class);
+
+            final JsonMessage jsonMessageRequest =
+                    JsonMessage.builder()
+                            .withCorrelationId(UUID.randomUUID())
+                            .withPayload(new GgCommand("callQueue", GgCommandType.GET_CALL_STATUS)).build();
+
+            final String responseContent = getResponse(endpointUri, jsonMessageRequest);
+
+            final Gson gson = GsonUtils.getGson();
+            final JsonMessage jsonMessage = gson.fromJson(responseContent, JsonMessage.class);
+            final GgCommandResponse output = jsonMessage.body().getPayloadAs(GgCommandResponse.class);
+            List<GgCallStatusElement> elements = output.getData();
+
+            for (GgCallStatusElement element : elements) {
+                localStep("Verify response for executed POST request - verify call queue status")
+                        .details(match(output.getCommandType(), equalTo(GgCommandType.GET_CALL_STATUS)))
+                        .details(match(output.getResult(), equalTo(GgResult.OK)))
+                        .details(match(output.getId(), equalTo("callQueue")))
+                        .details(match(output.getData(), equalTo(null)));
+            }
+        }
+        evaluate(localStep);
+    }
+
     @Then("HMI operators verify that call queues have the expected status: $tableEntries")
     public void apiCallQueueStatusParallel( final ExamplesTable tableEntries )
             throws Throwable
