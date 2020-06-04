@@ -17,7 +17,7 @@ import java.util.List;
 @RunWith(CatsJunitRunner.class)
 @CatsRunConfiguration(
         stories = {
-                "voice_GG/ui/Endurance/ExampleStoryHMIAPI.story"
+                "voice_GG/ui/Endurance/API/ExampleStoryHMIAPI_local.story"
         },
         catsHomeLocation = ".",
         name = "LocalFunctionalTests")
