@@ -24,7 +24,7 @@ import java.util.UUID;
 import static com.frequentis.c4i.test.model.MatcherDetails.match;
 import static org.hamcrest.Matchers.*;
 
-public class ATISteps extends AutomationSteps
+public class ATISteps extends ATIUtil
 {
 
     private static final List<Integer> SUCCESS_RESPONSES = Arrays.asList( 200, 201 );
@@ -42,7 +42,7 @@ public class ATISteps extends AutomationSteps
                         .withCorrelationId(UUID.randomUUID())
                         .withPayload( new GgCommand( daKeyTarget, GgCommandType.CLICK_DA )).build();
 
-        final String responseContent = ATIUtil.getResponse(endpointUri, jsonMessageRequest);
+        final String responseContent = getResponse(endpointUri, jsonMessageRequest);
 
         final Gson gson = GsonUtils.getGson();
         final JsonMessage jsonMessage = gson.fromJson( responseContent, JsonMessage.class );
@@ -74,7 +74,7 @@ public class ATISteps extends AutomationSteps
                             .withCorrelationId(UUID.randomUUID())
                             .withPayload(new GgCommand(daKeyTarget, GgCommandType.CLICK_DA)).build();
 
-            final String responseContent = ATIUtil.getResponse(endpointUri, jsonMessageRequest);
+            final String responseContent = getResponse(endpointUri, jsonMessageRequest);
 
             final Gson gson = GsonUtils.getGson();
             final JsonMessage jsonMessage = gson.fromJson(responseContent, JsonMessage.class);
@@ -102,7 +102,7 @@ public class ATISteps extends AutomationSteps
                         .withCorrelationId(UUID.randomUUID())
                         .withPayload( new Command(missionName, CommandType.MISSION_CHANGE )).build();
 
-        final String responseContent = ATIUtil.getResponse(endpointUri, jsonMessageRequest);
+        final String responseContent = getResponse(endpointUri, jsonMessageRequest);
 
         final Gson gson = GsonUtils.getGson();
         final JsonMessage jsonMessage = gson.fromJson( responseContent, JsonMessage.class );
@@ -131,7 +131,7 @@ public class ATISteps extends AutomationSteps
                             .withCorrelationId(UUID.randomUUID())
                             .withPayload(new Command(missionName, CommandType.MISSION_CHANGE)).build();
 
-            final String responseContent = ATIUtil.getResponse(endpointUri, jsonMessageRequest);
+            final String responseContent = getResponse(endpointUri, jsonMessageRequest);
 
             final Gson gson = GsonUtils.getGson();
             final JsonMessage jsonMessage = gson.fromJson(responseContent, JsonMessage.class);
@@ -158,7 +158,7 @@ public class ATISteps extends AutomationSteps
                         .withCorrelationId(UUID.randomUUID())
                         .withPayload( new Command(null, CommandType.MISSION_STATUS )).build();
 
-        final String responseContent = ATIUtil.getResponse(endpointUri, jsonMessageRequest);
+        final String responseContent = getResponse(endpointUri, jsonMessageRequest);
 
         final Gson gson = GsonUtils.getGson();
         final JsonMessage jsonMessage = gson.fromJson( responseContent, JsonMessage.class );
@@ -187,7 +187,7 @@ public class ATISteps extends AutomationSteps
                             .withCorrelationId(UUID.randomUUID())
                             .withPayload(new Command(null, CommandType.MISSION_STATUS)).build();
 
-            final String responseContent = ATIUtil.getResponse(endpointUri, jsonMessageRequest);
+            final String responseContent = getResponse(endpointUri, jsonMessageRequest);
 
             final Gson gson = GsonUtils.getGson();
             final JsonMessage jsonMessage = gson.fromJson(responseContent, JsonMessage.class);
@@ -216,7 +216,7 @@ public class ATISteps extends AutomationSteps
                         .withPayload( new GgCommand( daKeyTarget, GgCommandType.GET_CALL_STATUS )
                         .withCallType( GgCallType.DA ) ).build();
 
-        final String responseContent = ATIUtil.getResponse(endpointUri, jsonMessageRequest);
+        final String responseContent = getResponse(endpointUri, jsonMessageRequest);
 
         final Gson gson = GsonUtils.getGson();
         final JsonMessage jsonMessage = gson.fromJson( responseContent, JsonMessage.class );
@@ -229,7 +229,7 @@ public class ATISteps extends AutomationSteps
                         .details(match(output.getCommandType(), equalTo(GgCommandType.GET_CALL_STATUS)))
                         .details(match(output.getResult(), equalTo(GgResult.OK)))
                         .details(match(output.getId(), equalTo(daKeyTarget)))
-                        .details(match(ATIUtil.receivedGGCallStatus(element, status, 2000), equalTo(status))));
+                        .details(match(receivedGGCallStatus(element, status, 2000), equalTo(status))));
             }
             break;
         }
@@ -254,7 +254,7 @@ public class ATISteps extends AutomationSteps
                             .withPayload(new GgCommand(daKeyTarget, GgCommandType.GET_CALL_STATUS)
                                     .withCallType(GgCallType.DA)).build();
 
-            final String responseContent = ATIUtil.getResponse(endpointUri, jsonMessageRequest);
+            final String responseContent = getResponseCallStatus(endpointUri, jsonMessageRequest, status);
 
             final Gson gson = GsonUtils.getGson();
             final JsonMessage jsonMessage = gson.fromJson(responseContent, JsonMessage.class);
@@ -267,7 +267,7 @@ public class ATISteps extends AutomationSteps
                             .details(match(output.getCommandType(), equalTo(GgCommandType.GET_CALL_STATUS)))
                             .details(match(output.getResult(), equalTo(GgResult.OK)))
                             .details(match(output.getId(), equalTo(daKeyTarget)))
-                            .details(match(ATIUtil.receivedGGCallStatus(element, status, 2000), equalTo(status)));
+                            .details(match(receivedGGCallStatus(element, status, 2000), equalTo(status)));
                     break;
                 }
             }
@@ -288,7 +288,7 @@ public class ATISteps extends AutomationSteps
                         .withCorrelationId(UUID.randomUUID())
                         .withPayload( new GgCommand( "callQueue", GgCommandType.GET_CALL_STATUS )).build();
 
-        final String responseContent = ATIUtil.getResponse(endpointUri, jsonMessageRequest);
+        final String responseContent = getResponse(endpointUri, jsonMessageRequest);
 
         final Gson gson = GsonUtils.getGson();
         final JsonMessage jsonMessage = gson.fromJson( responseContent, JsonMessage.class );
@@ -300,7 +300,7 @@ public class ATISteps extends AutomationSteps
                         .details(match(output.getCommandType(), equalTo(GgCommandType.GET_CALL_STATUS)))
                         .details(match(output.getResult(), equalTo(GgResult.OK)))
                         .details(match(output.getId(), equalTo("callQueue")))
-                        .details(match(ATIUtil.receivedGGCallStatus(element, status, 2000), equalTo(status))));
+                        .details(match(receivedGGCallStatus(element, status, 2000), equalTo(status))));
         }
     }
 
@@ -321,7 +321,7 @@ public class ATISteps extends AutomationSteps
                             .withCorrelationId(UUID.randomUUID())
                             .withPayload(new GgCommand("callQueue", GgCommandType.GET_CALL_STATUS)).build();
 
-            final String responseContent = ATIUtil.getResponse(endpointUri, jsonMessageRequest);
+            final String responseContent = getResponseCallStatus(endpointUri, jsonMessageRequest, status);
 
             final Gson gson = GsonUtils.getGson();
             final JsonMessage jsonMessage = gson.fromJson(responseContent, JsonMessage.class);
@@ -333,7 +333,7 @@ public class ATISteps extends AutomationSteps
                         .details(match(output.getCommandType(), equalTo(GgCommandType.GET_CALL_STATUS)))
                         .details(match(output.getResult(), equalTo(GgResult.OK)))
                         .details(match(output.getId(), equalTo("callQueue")))
-                        .details(match(ATIUtil.receivedGGCallStatus(element, status, 2000), equalTo(status)));
+                        .details(match(receivedGGCallStatus(element, status, 2000), equalTo(status)));
             }
         }
         evaluate(localStep);
@@ -352,7 +352,7 @@ public class ATISteps extends AutomationSteps
                         .withCorrelationId(UUID.randomUUID())
                         .withPayload( new GgCommand( target, GgCommandType.PHONEBOOK_CALL )).build();
 
-        final String responseContent = ATIUtil.getResponse(endpointUri, jsonMessageRequest);
+        final String responseContent = getResponse(endpointUri, jsonMessageRequest);
 
         final Gson gson = GsonUtils.getGson();
         final JsonMessage jsonMessage = gson.fromJson( responseContent, JsonMessage.class );
@@ -382,7 +382,7 @@ public class ATISteps extends AutomationSteps
                             .withCorrelationId(UUID.randomUUID())
                             .withPayload(new GgCommand(target, GgCommandType.PHONEBOOK_CALL)).build();
 
-            final String responseContent = ATIUtil.getResponse(endpointUri, jsonMessageRequest);
+            final String responseContent = getResponse(endpointUri, jsonMessageRequest);
 
             final Gson gson = GsonUtils.getGson();
             final JsonMessage jsonMessage = gson.fromJson(responseContent, JsonMessage.class);
