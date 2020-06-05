@@ -12,6 +12,7 @@ import scripts.cats.web.*;
 import scripts.cats.web.GlobalSettingsTelephone.*;
 import scripts.cats.web.OperatorPositions.VerifyPhoneBookEntryWasCreated;
 import scripts.cats.web.common.leftHandSidePanel.*;
+import scripts.cats.web.common.leftHandSidePanel.PressNewButton;
 
 import java.util.List;
 
