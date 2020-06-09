@@ -1,4 +1,4 @@
-Meta: @TEST_CASE_VERSION: V6
+Meta: @TEST_CASE_VERSION: V7
 @TEST_CASE_NAME: Call Route Selectors - ordered list
 @TEST_CASE_DESCRIPTION:
 As a system technician using Configuration Management
@@ -38,7 +38,7 @@ Given the following call route selectors entries:
 | entry10 | entry10_name | entry10     | entry10_comment    | 1         |            | internal.int   | 5060    |
 
 Scenario: 1. System Technician: Opens a Configuration Management page
-Meta: @TEST_STEP_ACTION: Configurator: Opens a Configuration Management page
+Meta: @TEST_STEP_ACTION: Configurator: The main page of Configuration Management is open
 @TEST_STEP_REACTION: Configurator: Configuration Management page is visible
 @TEST_STEP_REF: [CATS-REF: acCu]
 Then configurator management page is visible

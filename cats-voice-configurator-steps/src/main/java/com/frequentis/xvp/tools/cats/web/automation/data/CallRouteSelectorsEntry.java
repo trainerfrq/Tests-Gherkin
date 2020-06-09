@@ -5,30 +5,38 @@ import com.frequentis.c4i.test.model.parameter.CatsCustomParameterBase;
 
 public class CallRouteSelectorsEntry extends CatsCustomParameterBase {
 
+    private String id;
     @CatsCustomParameter(parameterName = "fullName")
-    private String fullName;
+    private String name;
     @CatsCustomParameter(parameterName = "displayName")
     private String displayName;
     @CatsCustomParameter(parameterName = "comment")
     private String comment;
     @CatsCustomParameter(parameterName = "sipPrefix")
-    private String sipPrefix;
+    private String prefix;
     @CatsCustomParameter(parameterName = "sipPostfix")
-    private String sipPostfix;
+    private String postfix;
     @CatsCustomParameter(parameterName = "sipDomain")
-    private String sipDomain;
+    private String domain;
     @CatsCustomParameter(parameterName = "sipPort")
-    private String sipPort;
+    private String port;
     @CatsCustomParameter(parameterName = "sipResult")
     private String sipResult;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getFullName() {
-        return fullName;
+        return name;
     }
 
     public void setFullName(String fullName) {
-        this.fullName = fullName;
+        this.name = fullName;
     }
 
     public String getDisplayName() {
@@ -48,35 +56,35 @@ public class CallRouteSelectorsEntry extends CatsCustomParameterBase {
     }
 
     public String getSipPrefix() {
-        return sipPrefix;
+        return prefix;
     }
 
     public void setSipPrefix(String sipPrefix) {
-        this.sipPrefix = sipPrefix;
+        this.prefix = sipPrefix;
     }
 
     public String getSipPostfix() {
-        return sipPostfix;
+        return postfix;
     }
 
     public void setSipPostfix(String sipPostfix) {
-        this.sipPostfix = sipPostfix;
+        this.postfix = sipPostfix;
     }
 
     public String getSipDomain() {
-        return sipDomain;
+        return domain;
     }
 
     public void setSipDomain(String sipDomain) {
-        this.sipDomain = sipDomain;
+        this.domain = sipDomain;
     }
 
     public String getSipPort() {
-        return sipPort;
+        return port;
     }
 
     public void setSipPort(String sipPort) {
-        this.sipPort = sipPort;
+        this.port = sipPort;
     }
 
     public String getSipResult() {
@@ -90,13 +98,14 @@ public class CallRouteSelectorsEntry extends CatsCustomParameterBase {
     @Override
     public String toString() {
         return "CallRouteSelectorsEntry{" +
-                "fullName='" + fullName + '\'' +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
                 ", displayName='" + displayName + '\'' +
                 ", comment='" + comment + '\'' +
-                ", sipPrefix='" + sipPrefix + '\'' +
-                ", sipPostfix='" + sipPostfix + '\'' +
-                ", sipDomain='" + sipDomain + '\'' +
-                ", sipPort='" + sipPort + '\'' +
+                ", prefix='" + prefix + '\'' +
+                ", postfix='" + postfix + '\'' +
+                ", domain='" + domain + '\'' +
+                ", port='" + port + '\'' +
                 ", sipResult='" + sipResult + '\'' +
                 '}';
     }

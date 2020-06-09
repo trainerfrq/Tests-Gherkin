@@ -40,9 +40,9 @@ public class ATIUtil extends AutomationSteps {
 
         String responseContent = response.readEntity( new GenericType<String>() {} );
         int i = 1;
-        int numberOfVerificationRetries = 17; //it will get and verify the response for 2 seconds
+        int numberOfVerificationRetries = 10; //it will get and verify the response for 2.5 seconds
         while(!responseContent.contains(callStatus) ){
-            WaitTimer.pause(450);
+            WaitTimer.pause(250);
             response =
                     getATIWebTarget( endpointUri )
                             .request( MediaType.APPLICATION_JSON )
