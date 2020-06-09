@@ -27,6 +27,9 @@
       <!-- DEPENDENCY VERSIONS -->
       <voice.service.interface.version>7.5.0-SNAPSHOT</voice.service.interface.version>
       <voice.config.interface.version>9.4.1</voice.config.interface.version>
+      <voice.common.utilities.version>10.1.2</voice.common.utilities.version>
+      <voice.common.test.utilities.version>10.1.2</voice.common.test.utilities.version>
+      <hmi.config.interface.version>0.19.0</hmi.config.interface.version>
       <audio-simulator-service.version>0.56.0</audio-simulator-service.version>
       <audio-service-interface.version>0.30.0</audio-service-interface.version>
       <voice.hmi.service.version>1.1.2-2.6.7</voice.hmi.service.version>
@@ -102,8 +105,23 @@
        <dependency>
            <groupId>com.frequentis.xvp.voice</groupId>
            <artifactId>op-voice-config-interface</artifactId>
-            <version>${voice.config.interface.version}</version>
+           <version>${voice.config.interface.version}</version>
        </dependency>
+       <dependency>
+           <groupId>com.frequentis.xvp.voice</groupId>
+           <artifactId>hmi-configurator-interface</artifactId>
+           <version>${hmi.config.interface.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>com.frequentis.xvp.voice</groupId>
+           <artifactId>voice-common-test-utilities</artifactId>
+           <version>${voice.common.test.utilities.version}</version>
+       </dependency>
+            <dependency>
+                <groupId>com.frequentis.xvp.voice</groupId>
+                <artifactId>voice-common-utilities</artifactId>
+                <version>${voice.common.utilities.version}</version>
+            </dependency>
       <dependency>
         <groupId>com.frequentis.xvp.voice.phone</groupId>
         <artifactId>cats-voice-configurator-steps</artifactId>

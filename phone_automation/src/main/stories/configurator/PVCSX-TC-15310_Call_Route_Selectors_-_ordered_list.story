@@ -13,6 +13,9 @@ Configuration Management accessible from the machine where test is run
 @TEST_CASE_GLOBAL_ID: GID-5484488
 @TEST_CASE_API_ID: 19446095
 
+Scenario: Preparation step - delete call route selectors except one
+Then using <<xvp.configurator.url>> delete call route selectors except item with <<callRouteSelectorId>>
+
 Scenario: Book profile
 Given booked profiles:
 | profile | group                  | host       |
@@ -26,7 +29,7 @@ Given defined XVP Configurator:
 Scenario: Call route selectors entries
 Given the following call route selectors entries:
 | key     | fullName     | displayName | comment            | sipPrefix | sipPostfix | sipDomain      | sipPort |
-| entry1  | entry1_name  | entry1      | entry1_comment     | 1         |            | internal.int   | 5060    |
+| entry1  | default      | Default     |                    |           |            | example.com    |         |
 | entry2  | entry2_name  | entry2      | entry2_propriété   |           | 2          | skype.at       | 7645    |
 | entry3  | entry3_name  | entry3      | entry3_süßigkeit   | 33        |            | skype.ro       | 9999    |
 | entry4  | entry4_name  | entry4      | entry4_doména      |           | 44         | gmail.at       | 1234    |
@@ -132,14 +135,14 @@ Meta: @TEST_STEP_ACTION: -
 @TEST_STEP_REACTION: Configurator: Call Route Selectors page is visible and has 10 new items. The list has the following order: 1st item, 2nd item,3rd item, 4th item, 5th item, 6th item, 7th item, 8th item, 9th item, 10th item
 @TEST_STEP_REF: [CATS-REF: lkQR]
 Then list size for Call Route Selectors is: 10
-Then in Call Route Selectors list verify that items are in the following order: entry1,entry2,entry3,entry4,entry5,entry6,entry7,entry8,entry9,entry10
+Then in Call Route Selectors list verify that items are in the following order: default,entry2_name,entry3_name,entry4_name,entry5_name,entry6_name,entry7_name,entry8_name,entry9_name,entry10_name
 
 Scenario: System Technician: Drags and drop 5th item in the call route selector list and place it on the 3rd position in the list
 Meta: @TEST_STEP_ACTION: Configurator: Drag and drop 5th item in the call route selector list and place it on the 3rd position in the list
 @TEST_STEP_REACTION: Configurator: 5th item in the call route selector list is placed in the 3rd position. The order of the list changes, as it follows:  1st item, 2nd item,5th item, 3rd item, 4th item, 6th item, 7th item, 8th item, 9th item, 10th item
 @TEST_STEP_REF: [CATS-REF: Ieco]
 When in Call Route Selectors move item from position 5 to position 3
-Then in Call Route Selectors list verify that items are in the following order: entry1,entry2,entry5,entry3,entry4,entry6,entry7,entry8,entry9,entry10
+Then in Call Route Selectors list verify that items are in the following order: default,entry2_name,entry5_name,entry3_name,entry4_name,entry6_name,entry7_name,entry8_name,entry9_name,entry10_name
 
 Scenario: 12. System Technician: Selects sub-menu Call Route Selectors
 Meta: @TEST_STEP_ACTION: Configurator: Select sub-menu 'Call Route Selectors'
@@ -154,4 +157,22 @@ Meta: @TEST_STEP_ACTION: Configurator: Selects sub-menu 'Call Route Selectors'
 @TEST_STEP_REACTION: Configurator: Call Route Selectors page is visible and has 10 items. The items order is the same as the one verified at step 11
 @TEST_STEP_REF: [CATS-REF: 6p4U]
 Then list size for Call Route Selectors is: 1
-Then in Call Route Selectors list verify that items are in the following order: entry1,entry2,entry5,entry3,entry4,entry6,entry7,entry8,entry9,entry10
+Then in Call Route Selectors list verify that items are in the following order: default,entry2_name,entry5_name,entry3_name,entry4_name,entry6_name,entry7_name,entry8_name,entry9_name,entry10_name
+
+Scenario: Backend verification - call route selectors order
+Then using <<xvp.configurator.url>> verify that call route selectors order shown in Missions json is as in the below table:
+| key     |
+| entry1  |
+| entry2  |
+| entry3  |
+| entry4  |
+| entry5  |
+| entry6  |
+| entry7  |
+| entry8  |
+| entry9  |
+| entry10 |
+
+Scenario: Clean-up - Delete new created call route configurators and add default call route configurators
+Then using <<xvp.configurator.url>> delete call route selectors except item with <<callRouteSelectorId>>
+Then add call route selectors to <<xvp.configurator.url>> using default configurators from /configuration-files/<<systemName>>/CallRouteSelectors_default/callrouteselectorconfiguration/

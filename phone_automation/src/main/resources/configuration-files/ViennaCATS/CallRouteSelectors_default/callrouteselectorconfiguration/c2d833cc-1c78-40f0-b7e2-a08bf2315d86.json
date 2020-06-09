@@ -1,10 +1,10 @@
 {
-  "id" : "ea8c1025-0c52-4698-aa04-3efa9e8c863b",
-  "name" : "mail",
-  "displayName" : "Mail",
+  "id" : "c2d833cc-1c78-40f0-b7e2-a08bf2315d86",
+  "name" : "super",
+  "displayName" : "Super",
   "comment" : "",
   "replacePlaceholder" : {
-    "prefix" : "999",
+    "prefix" : "2222",
     "postfix" : "",
     "domain" : "example.com",
     "schema" : "sip"

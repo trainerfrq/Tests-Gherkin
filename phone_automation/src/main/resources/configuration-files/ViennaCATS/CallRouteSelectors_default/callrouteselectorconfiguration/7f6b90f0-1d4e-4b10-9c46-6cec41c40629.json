@@ -1,0 +1,12 @@
+{
+  "id" : "7f6b90f0-1d4e-4b10-9c46-6cec41c40629",
+  "name" : "default",
+  "displayName" : "Default",
+  "comment" : "",
+  "replacePlaceholder" : {
+    "prefix" : "",
+    "postfix" : "",
+    "domain" : "example.com",
+    "schema" : "sip"
+  }
+}

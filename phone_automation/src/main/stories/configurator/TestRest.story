@@ -21,17 +21,10 @@ Given the following call route selectors entries:
 | entry3 | entry3_name | entry3      | Vienna  | 3         |            | Senegal   |         |
 | entry4 | entry4_name | entry4      | Vienna  | 4         |            | Senegal   |         |
 
-Scenario: Verify
-Then using https://10.31.205.100/configurations verify that call route selectors order is as in the below table:
-| key    | fullName    | displayName | comment | sipPrefix | sipPostfix | sipDomain   | sipPort |
-| entry1 | mail        | Mail        |         | 999       |            | example.com |         |
-| entry2 | Ana         | Mary        | Vienna  | 1         |            | Senegal     |         |
-| entry3 | entry2_name | entry2      | Vienna  | 2         |            | Senegal     |         |
-| entry4 | entry3_name | entry3      | Vienna  | 3         |            | Senegal     |         |
-| entry5 | entry4_name | entry4      | Vienna  | 4         |            | Senegal     |         |
+Then try to add call route selectors to https://10.31.205.100/configurations using default configurators from /configuration-files/ClujCATS/CallRouteSelectors_default/callrouteselectorconfiguration/
 
-Then using https://10.31.205.100/configurations add below call route selector:
-| key    | fullName    | displayName | comment | sipPrefix | sipPostfix | sipDomain   | sipPort |
-| entry1 | aaa        | AAA        |         |        |            |  |         |
+
+
+
 
 

@@ -1,0 +1,12 @@
+{
+  "id" : "95616383-d4bc-4808-acee-1b9d5a329ab0",
+  "name" : "frqUser",
+  "displayName" : "FrqUser",
+  "comment" : "",
+  "replacePlaceholder" : {
+    "prefix" : "2",
+    "postfix" : "",
+    "domain" : "example.com",
+    "schema" : "sip"
+  }
+}

@@ -61,6 +61,21 @@
             <artifactId>op-voice-config-interface</artifactId>
             <version>${voice.config.interface.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.frequentis.xvp.voice</groupId>
+            <artifactId>hmi-configurator-interface</artifactId>
+            <version>${hmi.config.interface.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.frequentis.xvp.voice</groupId>
+            <artifactId>voice-common-test-utilities</artifactId>
+            <version>${voice.common.test.utilities.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.frequentis.xvp.voice</groupId>
+            <artifactId>voice-common-utilities</artifactId>
+            <version>${voice.common.utilities.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
