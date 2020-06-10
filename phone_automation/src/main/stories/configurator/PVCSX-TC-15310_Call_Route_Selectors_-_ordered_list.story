@@ -14,7 +14,8 @@ Configuration Management accessible from the machine where test is run
 @TEST_CASE_API_ID: 19446095
 
 Scenario: Preparation step - delete call route selectors except one
-Then using <<xvp.configurator.url>> delete call route selectors except item with <<callRouteSelectorId>>
+Given the call route selectors ids for configurator <<xvp.configurator.url>> are saved in list defaultCallRouteSelectors
+Then using <<xvp.configurator.url>> delete call route selectors with ids in list defaultCallRouteSelectors except item with <<callRouteSelectorId>>
 
 Scenario: Book profile
 Given booked profiles:
@@ -34,7 +35,7 @@ Given the following call route selectors entries:
 | entry3  | entry3_name  | entry3      | entry3_süßigkeit   | 33        |            | skype.ro       | 9999    |
 | entry4  | entry4_name  | entry4      | entry4_doména      |           | 44         | gmail.at       | 1234    |
 | entry5  | entry5_name  | entry5      | entry5_acasă       | 555       |            | gmail.ro       | 3456    |
-| entry6  | entry6_name  | entry6      | entry6_комментарий |           | 666        | frequentis.frq | 0000    |
+| entry6  | entry6_name  | entry6      | entry6_комментарий |           | 666        | frequentis.frq | 0001    |
 | entry7  | entry7_name  | entry7      | entry7_komentár    | 7         | 7          | examples.com   | 5070    |
 | entry8  | entry8_name  | entry8      | entry8_comment     | 8         | 8          | examples.com   | 8990    |
 | entry9  | entry9_name  | entry9      | entry9_comment     | 99        | 99         | frequentis.frq | 5061    |
@@ -88,7 +89,7 @@ Meta: @TEST_STEP_ACTION: Configurator: Click on 'Save' button
 @TEST_STEP_REF: [CATS-REF: xg84]
 Then Save button is pressed in Call Route Selectors editor
 Then waiting 5 seconds for LoadingScreen to disappear
-Then verifying pop-up displays message: Successfully saved call route selector
+Then verifying pop-up displays message: Successfully saved the call route selector
 
 Scenario: 7. Call Route Selectors page is visible and has 1 new item
 Meta: @TEST_STEP_ACTION: -
@@ -103,7 +104,7 @@ Meta: @TEST_STEP_ACTION: Configurator: Verify that Call Route Selectors newest i
 Then call route selector contains the following expected values:
 | key     | fullName     | displayName | comment            | sipPrefix | sipPostfix | sipDomain      | sipPort |
 | entry2  | entry2_name  | entry2      | entry2_propriété   |           | 2          | skype.at       | 7645    |
-Then in Call Route Selectors list verify that last item is entry2
+Then in Call Route Selectors list verify that last item is entry2_name
 
 Scenario: 9. Add 9 call route entries
 Meta: @TEST_STEP_ACTION: Configurator: Repeat steps 4 to 8 for 9 times. After each new added call route selector the order is the list is verified
@@ -113,7 +114,7 @@ When New button is pressed in Call Route Selectors sub-menu
 Then editor page Call Route Selectors is visible
 When the values are added in the call route selector editor using entry with <key>
 Then call route selector editor was filled in with the expected values from entry with <key>
-Then Save button is pressed in Phone Book editor
+Then Save button is pressed in Call Route Selectors editor
 Then waiting 7 seconds for LoadingScreen to disappear
 Then verifying pop-up displays message: Successfully saved the call route selector
 Then call route selector contains the expected values from entry with <key>
@@ -156,7 +157,7 @@ Scenario: 13. System Technician: Selects sub-menu Call Route Selectors
 Meta: @TEST_STEP_ACTION: Configurator: Selects sub-menu 'Call Route Selectors'
 @TEST_STEP_REACTION: Configurator: Call Route Selectors page is visible and has 10 items. The items order is the same as the one verified at step 11
 @TEST_STEP_REF: [CATS-REF: 6p4U]
-Then list size for Call Route Selectors is: 1
+Then list size for Call Route Selectors is: 10
 Then in Call Route Selectors list verify that items are in the following order: default,entry2_name,entry5_name,entry3_name,entry4_name,entry6_name,entry7_name,entry8_name,entry9_name,entry10_name
 
 Scenario: Backend verification - call route selectors order
@@ -174,5 +175,6 @@ Then using <<xvp.configurator.url>> verify that call route selectors order shown
 | entry10 |
 
 Scenario: Clean-up - Delete new created call route configurators and add default call route configurators
-Then using <<xvp.configurator.url>> delete call route selectors except item with <<callRouteSelectorId>>
-Then add call route selectors to <<xvp.configurator.url>> using default configurators from /configuration-files/<<systemName>>/CallRouteSelectors_default/callrouteselectorconfiguration/
+Given the call route selectors ids for configurator <<xvp.configurator.url>> are saved in list newCallRouteSelectors
+Then using <<xvp.configurator.url>> delete call route selectors with ids in list newCallRouteSelectors except item with <<callRouteSelectorId>>
+Then add call route selectors to <<xvp.configurator.url>> using configurators with ids from list defaultCallRouteSelectors found in path /configuration-files/<<systemName>>/CallRouteSelectors_default/callrouteselectorconfiguration/

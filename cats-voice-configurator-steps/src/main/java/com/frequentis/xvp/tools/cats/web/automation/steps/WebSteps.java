@@ -227,9 +227,9 @@ public class WebSteps extends AutomationSteps {
         if (webAppConfig != null) {
             Profile profile = getProfile(webAppConfig.getProfileName());
             evaluate(remoteStep("Sub menu list item is scrolled ")
-                    .scriptOn(ScrollIntoViewList.class, profile)
-                    .input(ScrollIntoViewList.IPARAM_SUB_MENU_NAME, subMenuName)
-                    .input(ScrollIntoViewList.IPARAM_ENTRY_NAME, callRouteEntry.getFullName()));
+                    .scriptOn(ScrollElementListIntoView.class, profile)
+                    .input(ScrollElementListIntoView.IPARAM_SUB_MENU_NAME, subMenuName)
+                    .input(ScrollElementListIntoView.IPARAM_ENTRY_NAME, callRouteEntry.getFullName()));
         }
     }
 
@@ -239,9 +239,9 @@ public class WebSteps extends AutomationSteps {
         if (webAppConfig != null) {
             Profile profile = getProfile(webAppConfig.getProfileName());
             evaluate(remoteStep("Sub menu list item is scrolled ")
-                    .scriptOn(ScrollIntoViewList.class, profile)
-                    .input(ScrollIntoViewList.IPARAM_SUB_MENU_NAME, subMenuName)
-                    .input(ScrollIntoViewList.IPARAM_ENTRY_NAME, name));
+                    .scriptOn(ScrollElementListIntoView.class, profile)
+                    .input(ScrollElementListIntoView.IPARAM_SUB_MENU_NAME, subMenuName)
+                    .input(ScrollElementListIntoView.IPARAM_ENTRY_NAME, name));
         }
     }
 

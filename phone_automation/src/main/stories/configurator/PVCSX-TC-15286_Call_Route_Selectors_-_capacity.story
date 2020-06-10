@@ -14,7 +14,8 @@ Configuration Management accessible from the machine where test is run
 @TEST_CASE_API_ID: 19445055
 
 Scenario: Preparation step - delete call route selectors except one
-Then using <<xvp.configurator.url>> delete call route selectors except item with <<callRouteSelectorId>>
+Given the call route selectors ids for configurator <<xvp.configurator.url>> are saved in list defaultCallRouteSelectors
+Then using <<xvp.configurator.url>> delete call route selectors with ids in list defaultCallRouteSelectors except item with <<callRouteSelectorId>>
 
 Scenario: Book profile
 Given booked profiles:
@@ -34,7 +35,7 @@ Given the following call route selectors entries:
 | entry3  | entry3_name  | entry3      | entry3_süßigkeit   | 33        |            | skype.ro       | 9999    |
 | entry4  | entry4_name  | entry4      | entry4_doména      |           | 44         | gmail.at       | 1234    |
 | entry5  | entry5_name  | entry5      | entry5_acasă       | 555       |            | gmail.ro       | 3456    |
-| entry6  | entry6_name  | entry6      | entry6_комментарий |           | 666        | frequentis.frq | 0000    |
+| entry6  | entry6_name  | entry6      | entry6_комментарий |           | 666        | frequentis.frq | 0001    |
 | entry7  | entry7_name  | entry7      | entry7_komentár    | 7         | 7          | examples.com   | 5070    |
 | entry8  | entry8_name  | entry8      | entry8_comment     | 8         | 8          | examples.com   | 8990    |
 | entry9  | entry9_name  | entry9      | entry9_comment     | 99        | 99         | frequentis.frq | 5061    |
@@ -43,7 +44,7 @@ Given the following call route selectors entries:
 | entry12 | entry12_name | entry12     | entry12_comment    | 33        |            | skype.ro       | 9999    |
 | entry13 | entry13_name | entry13     | entry13_comment    |           | 44         | gmail.at       | 1234    |
 | entry14 | entry14_name | entry14     | entry14_comment    | 555       |            | gmail.ro       | 3456    |
-| entry15 | entry15_name | entry15     | entry15_comment    |           | 666        | frequentis.frq | 0000    |
+| entry15 | entry15_name | entry15     | entry15_comment    |           | 666        | frequentis.frq | 0001    |
 | entry16 | entry16_name | entry16     | entry16_comment    | 7         | 7          | examples.com   | 5070    |
 | entry17 | entry17_name | entry17     | entry17_comment    | 8         | 8          | examples.com   | 8990    |
 | entry18 | entry18_name | entry18     | entry18_comment    | 99        | 99         | frequentis.frq | 5061    |
@@ -123,7 +124,7 @@ When New button is pressed in Call Route Selectors sub-menu
 Then editor page Call Route Selectors is visible
 When the values are added in the call route selector editor using entry with <key>
 Then call route selector editor was filled in with the expected values from entry with <key>
-Then Save button is pressed in Phone Book editor
+Then Save button is pressed in Call Route Selectors editor
 Then waiting 7 seconds for LoadingScreen to disappear
 Then verifying pop-up displays message: Successfully saved the call route selector
 Then call route selector contains the expected values from entry with <key>
@@ -206,5 +207,6 @@ Then using <<xvp.configurator.url>> verify that call route selectors order shown
 | entry20 |
 
 Scenario: Clean-up - Delete new created call route configurators and add default call route configurators
-Then using <<xvp.configurator.url>> delete call route selectors except item with <<callRouteSelectorId>>
-Then add call route selectors to <<xvp.configurator.url>> using default configurators from /configuration-files/<<systemName>>/CallRouteSelectors_default/callrouteselectorconfiguration/
+Given the call route selectors ids for configurator <<xvp.configurator.url>> are saved in list newCallRouteSelectors
+Then using <<xvp.configurator.url>> delete call route selectors with ids in list newCallRouteSelectors except item with <<callRouteSelectorId>>
+Then add call route selectors to <<xvp.configurator.url>> using configurators with ids from list defaultCallRouteSelectors found in path /configuration-files/<<systemName>>/CallRouteSelectors_default/callrouteselectorconfiguration/

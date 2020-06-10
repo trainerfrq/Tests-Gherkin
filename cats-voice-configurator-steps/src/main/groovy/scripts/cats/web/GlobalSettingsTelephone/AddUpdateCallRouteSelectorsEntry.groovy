@@ -68,7 +68,7 @@ class AddUpdateCallRouteSelectorsEntry extends WebScriptTemplate {
 
         if (sipPort != null) {
             callRouteSelectorsPage.callRouteSelectorsEditor.writeSipPort(sipPort)
-            evaluate(ExecutionDetails.create("Sip port " + sipport + " was entered")
+            evaluate(ExecutionDetails.create("Sip port " + sipPort + " was entered")
                     .success(true))
         }
 

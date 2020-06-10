@@ -21,7 +21,12 @@ Given the following call route selectors entries:
 | entry3 | entry3_name | entry3      | Vienna  | 3         |            | Senegal   |         |
 | entry4 | entry4_name | entry4      | Vienna  | 4         |            | Senegal   |         |
 
-Then try to add call route selectors to https://10.31.205.100/configurations using default configurators from /configuration-files/ClujCATS/CallRouteSelectors_default/callrouteselectorconfiguration/
+!-- Then try to add call route selectors to https://10.16.156.50/configurations using default configurators from /configuration-files/ViennaCATS/CallRouteSelectors_default/callrouteselectorconfiguration/
+
+Scenario: Preparation step - delete call route selectors except one
+Given the call route selectors ids for configurator https://10.16.156.50/configurations are saved in list defaultCallRouteSelectors
+Then using https://10.16.156.50/configurations delete call route selectors with ids in list defaultCallRouteSelectors except item with 7f6b90f0-1d4e-4b10-9c46-6cec41c40629
+Then add call route selectors to https://10.16.156.50/configurations using configurators with ids from list defaultCallRouteSelectors found in path /configuration-files/ViennaCATS/CallRouteSelectors_default/callrouteselectorconfiguration/
 
 
 
