@@ -5,14 +5,15 @@ import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.config.ResourceConfig;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.web.automation.data.CallRouteSelectorsEntry;
+import com.frequentis.xvp.voice.opvoice.config.JsonCallRouteSelectorDataElement;
+import com.frequentis.xvp.voice.opvoice.config.JsonMissionData;
 import com.google.gson.*;
 import org.apache.commons.io.FileUtils;
 import org.glassfish.jersey.client.JerseyClientBuilder;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URI;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
@@ -30,9 +31,6 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import static com.frequentis.c4i.test.model.MatcherDetails.match;
-import static org.hamcrest.Matchers.equalTo;
-
 
 public class RestSteps extends AutomationSteps {
 
@@ -41,10 +39,9 @@ public class RestSteps extends AutomationSteps {
     private static final String CALL_ROUTE_SELECTORS_SUB_PATH = "/op-voice-service/callRouteSelectors";
     private static final String MISSIONS_SUB_PATH = "/op-voice-service/generic/items/missions.json";
 
-    @Then("using $endpointUri verify that call route selectors order shown in Missions json is as in the below table: $callRouteSelectorsEntry")
-    public void getCallRouteSelectorsOrderInMissionJson( final String endpointUri, final CallRouteSelectorsEntry callRouteSelectorsEntry) throws IOException {
+    @Then("using $endpointUri verify that call route selectors order sent to the Op Voice service as in the below table:$callRouteEntries")
+    public void getCallRouteSelectorsOrderInMissionJson( final String endpointUri, final List<CallRouteSelectorsEntry> callRouteEntries) throws IOException {
         final LocalStep localStep = localStep("Execute GET request - Call Route selectors");
-
         localStep.details(ExecutionDetails.create("Get call route selectors from: " + endpointUri + MISSIONS_SUB_PATH).success());
 
         Response response =
@@ -55,22 +52,30 @@ public class RestSteps extends AutomationSteps {
         localStep.details(ExecutionDetails.create("Executed GET request").expected("200 or 201")
                 .received(Integer.toString(response.getStatus())).success(requestWithSuccess(response)));
 
-        String responseContent = response.readEntity(new GenericType<String>() {
-        });
+        String responseContent = response.readEntity(new GenericType<String>() {});
+        String missionJson = (responseContent.substring(12, responseContent.length()-97)).replace("\\","")+"]";
 
-        final JsonObject jsonObj = new Gson().fromJson(responseContent, JsonObject.class);
-        localStep.details(ExecutionDetails.create("Executed GET request").expected(jsonObj.toString())
-                .success(true));
-
-
-
-
-      /* for (JsonCallRouteSelectorDataElement callRouteSelectorDataElement : callRouteSelectorDataElements){
-           localStep.details(ExecutionDetails.create("call route selector element data")
-                   .received(callRouteSelectorDataElement.getName()).success(true));
-           evaluate(localStep("Verify response for executed GET request - verify call route selectors")
-                   .details(match(callRouteSelectorDataElement.getName(), equalTo(callRouteSelectorsEntry.getFullName()))));
-       }*/
+        final JsonParser jsonParser = new JsonParser();
+        final JsonArray jsonResponse = (JsonArray) jsonParser.parse(missionJson);
+        //is enough to verify call route selectors used for the first mission, as is the same for all missions
+        JsonElement jsonElement = jsonResponse.get(0);
+        Gson jsonSerializer = new Gson();
+        final JsonMissionData data = jsonSerializer.fromJson(jsonElement , JsonMissionData.class );
+        final List<JsonCallRouteSelectorDataElement> jsonCallRouteSelectorDataElements = data.getMissionAssignedCallRouteSelectors();
+        List<String>receivedCallRouteSelectorsNames = new ArrayList<>();
+        List<String>expectedCallRouteSelectorsNames = new ArrayList<>();
+        for(JsonCallRouteSelectorDataElement jsonCallRouteSelectorDataElement: jsonCallRouteSelectorDataElements){
+            String receivedName = jsonCallRouteSelectorDataElement.getName();
+            receivedCallRouteSelectorsNames.add(receivedName);
+        }
+        for(CallRouteSelectorsEntry callRouteSelectorsEntry: callRouteEntries){
+            String expectedName = callRouteSelectorsEntry.getDisplayName();
+            expectedCallRouteSelectorsNames.add(expectedName);
+        }
+        localStep.details(ExecutionDetails.create("Verify call route selectors order sent to Op voice service")
+                .expected(expectedCallRouteSelectorsNames.toString())
+                .received(receivedCallRouteSelectorsNames.toString())
+                .success(expectedCallRouteSelectorsNames.equals(receivedCallRouteSelectorsNames)));
     }
 
     @Given("the call route selectors ids for configurator $endpointUri are saved in list $listName")
@@ -115,7 +120,7 @@ public class RestSteps extends AutomationSteps {
                         .path(callRouteSelectorId)
                         .request(MediaType.APPLICATION_JSON)
                         .delete();
-            localStep.details(ExecutionDetails.create("Executed DELETE request").expected("200 or 201")
+            localStep.details(ExecutionDetails.create("Executed DELETE request - on call route selectors list").expected("200 or 201")
              .received(Integer.toString(deleteResponse.getStatus())).success(requestWithSuccess(deleteResponse)));
            }
         }
@@ -124,7 +129,7 @@ public class RestSteps extends AutomationSteps {
     @Then("add call route selectors to $endpointUri using configurators with ids from list $listName found in path $templatePath")
     public void addDefaultCallRouteSelectors( final String endpointUri, final String listName, final String templatePath ) throws Throwable
     {
-        final LocalStep localStep = localStep( "Execute PUT request with payload" );
+        final LocalStep localStep = localStep( "Execute POST request with payload" );
         String callRouteSelectorIds = getStoryListData(listName, String.class);
         String callRouteSelectorIdsSubString = callRouteSelectorIds.substring(1, callRouteSelectorIds.length()-1);
         List<String> callRouteSelectorListIds = new ArrayList<>(Arrays.asList(callRouteSelectorIdsSubString.split(", ")));
@@ -137,26 +142,9 @@ public class RestSteps extends AutomationSteps {
                             .request(MediaType.APPLICATION_JSON)
                             .post(Entity.json(templateContent));
 
-        localStep.details(ExecutionDetails.create("Executed PUT request with payload! ").expected("200 or 201")
+        localStep.details(ExecutionDetails.create("Executed POST request with payload - on call route selectors area ").expected("200 or 201")
              .received(Integer.toString(response.getStatus())).success(requestWithSuccess(response)));
         }
-    }
-
-    @Then("try to add call route selectors to $endpointUri using default configurators from $templatePath")
-    public void addDefaultCallRouteSelectors1( final String endpointUri, final String templatePath ) throws Throwable
-    {
-        final LocalStep localStep = localStep( "Execute PUT request with payload" );
-
-            final URI configurationURI = new URI(endpointUri);
-            final String templateContent = FileUtils.readFileToString(this.getConfigFile(templatePath+"71fd2483-92bd-4415-bcd2-6f930c8b2e34.json"));
-            Response response =
-                    getConfigurationItemsWebTarget(configurationURI + CALL_ROUTE_SELECTORS_SUB_PATH)
-                            .request(MediaType.APPLICATION_JSON)
-                            .post(Entity.json(templateContent));
-
-            localStep.details(ExecutionDetails.create("Executed PUT request with payload! ").expected("200 or 201")
-                    .received(Integer.toString(response.getStatus())).success(requestWithSuccess(response)));
-
     }
 
 

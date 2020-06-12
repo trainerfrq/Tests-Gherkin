@@ -183,28 +183,28 @@ Meta: @TEST_STEP_ACTION: Configurator: Choose to discard changes
 Then list size for Call Route Selectors is: 20
 
 Scenario: Backend verification - call route selectors order
-Then using <<xvp.configurator.url>> verify that call route selectors order shown in Missions json is as in the below table:
-| key     |
-| entry1  |
-| entry2  |
-| entry3  |
-| entry4  |
-| entry5  |
-| entry6  |
-| entry7  |
-| entry8  |
-| entry9  |
-| entry10 |
-| entry11 |
-| entry12 |
-| entry13 |
-| entry14 |
-| entry15 |
-| entry16 |
-| entry17 |
-| entry18 |
-| entry19 |
-| entry20 |
+Then using <<xvp.configurator.url>> verify that call route selectors order sent to the Op Voice service as in the below table:
+| key     | fullName     | displayName | comment            | sipPrefix | sipPostfix | sipDomain      | sipPort |
+| entry1  | default      | Default     |                    |           |            | example.com    |         |
+| entry2  | entry2_name  | entry2      | entry2_propriété   |           | 2          | skype.at       | 7645    |
+| entry3  | entry3_name  | entry3      | entry3_süßigkeit   | 33        |            | skype.ro       | 9999    |
+| entry4  | entry4_name  | entry4      | entry4_doména      |           | 44         | gmail.at       | 1234    |
+| entry5  | entry5_name  | entry5      | entry5_acasă       | 555       |            | gmail.ro       | 3456    |
+| entry6  | entry6_name  | entry6      | entry6_комментарий |           | 666        | frequentis.frq | 0001    |
+| entry7  | entry7_name  | entry7      | entry7_komentár    | 7         | 7          | examples.com   | 5070    |
+| entry8  | entry8_name  | entry8      | entry8_comment     | 8         | 8          | examples.com   | 8990    |
+| entry9  | entry9_name  | entry9      | entry9_comment     | 99        | 99         | frequentis.frq | 5061    |
+| entry10 | entry10_name | entry10     | entry10_comment    | 1         |            | internal.int   | 5060    |
+| entry11 | entry11_name | entry11     | entry11_comment    |           | 2          | skype.at       | 7645    |
+| entry12 | entry12_name | entry12     | entry12_comment    | 33        |            | skype.ro       | 9999    |
+| entry13 | entry13_name | entry13     | entry13_comment    |           | 44         | gmail.at       | 1234    |
+| entry14 | entry14_name | entry14     | entry14_comment    | 555       |            | gmail.ro       | 3456    |
+| entry15 | entry15_name | entry15     | entry15_comment    |           | 666        | frequentis.frq | 0001    |
+| entry16 | entry16_name | entry16     | entry16_comment    | 7         | 7          | examples.com   | 5070    |
+| entry17 | entry17_name | entry17     | entry17_comment    | 8         | 8          | examples.com   | 8990    |
+| entry18 | entry18_name | entry18     | entry18_comment    | 99        | 99         | frequentis.frq | 5061    |
+| entry19 | entry19_name | entry19     | entry19_comment    | 8         | 8          | examples.com   | 8990    |
+| entry20 | entry20_name | entry20     | entry20_comment    | 99        | 99         | frequentis.frq | 5061    |
 
 Scenario: Clean-up - Delete new created call route configurators and add default call route configurators
 Given the call route selectors ids for configurator <<xvp.configurator.url>> are saved in list newCallRouteSelectors

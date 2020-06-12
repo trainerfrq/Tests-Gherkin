@@ -161,18 +161,18 @@ Then list size for Call Route Selectors is: 10
 Then in Call Route Selectors list verify that items are in the following order: default,entry2_name,entry5_name,entry3_name,entry4_name,entry6_name,entry7_name,entry8_name,entry9_name,entry10_name
 
 Scenario: Backend verification - call route selectors order
-Then using <<xvp.configurator.url>> verify that call route selectors order shown in Missions json is as in the below table:
-| key     |
-| entry1  |
-| entry2  |
-| entry3  |
-| entry4  |
-| entry5  |
-| entry6  |
-| entry7  |
-| entry8  |
-| entry9  |
-| entry10 |
+Then using <<xvp.configurator.url>> verify that call route selectors order sent to the Op Voice service as in the below table:
+| key     | fullName     | displayName | comment            | sipPrefix | sipPostfix | sipDomain      | sipPort |
+| entry1  | default      | Default     |                    |           |            | example.com    |         |
+| entry2  | entry2_name  | entry2      | entry2_propriété   |           | 2          | skype.at       | 7645    |
+| entry5  | entry5_name  | entry5      | entry5_acasă       | 555       |            | gmail.ro       | 3456    |
+| entry3  | entry3_name  | entry3      | entry3_süßigkeit   | 33        |            | skype.ro       | 9999    |
+| entry4  | entry4_name  | entry4      | entry4_doména      |           | 44         | gmail.at       | 1234    |
+| entry6  | entry6_name  | entry6      | entry6_комментарий |           | 666        | frequentis.frq | 0001    |
+| entry7  | entry7_name  | entry7      | entry7_komentár    | 7         | 7          | examples.com   | 5070    |
+| entry8  | entry8_name  | entry8      | entry8_comment     | 8         | 8          | examples.com   | 8990    |
+| entry9  | entry9_name  | entry9      | entry9_comment     | 99        | 99         | frequentis.frq | 5061    |
+| entry10 | entry10_name | entry10     | entry10_comment    | 1         |            | internal.int   | 5060    |
 
 Scenario: Clean-up - Delete new created call route configurators and add default call route configurators
 Given the call route selectors ids for configurator <<xvp.configurator.url>> are saved in list newCallRouteSelectors
