@@ -3,10 +3,11 @@ package scripts.cats.web.common.leftHandSidePanel
 import com.frequentis.c4i.test.agent.selenium.WebDriverManager
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
+
 import scripts.agent.selenium.automation.WebScriptTemplate
-import scripts.cats.web.Util.DragAndDropToPosition
 import scripts.elements.ConfigManagementUtils
 import scripts.elements.general.mainPageComponents.ContentBody
+import scripts.utils.DragAndDropToPosition
 
 class DragAndDropItemInList extends WebScriptTemplate {
 
@@ -26,8 +27,6 @@ class DragAndDropItemInList extends WebScriptTemplate {
         WebElement fromItem = pageObject.getLeftHandSidePanel().draggableItem(fromPosition)
         WebElement toItem = pageObject.getLeftHandSidePanel().dragAndDropBorder(toPosition)
 
-        //Actions act = new Actions(driver)
-        //act.dragAndDrop(fromItem, toItem).build().perform()
         DragAndDropToPosition.dragAndDropElementViaRobot(driver, fromItem, toItem, -50, -50)
     }
 }

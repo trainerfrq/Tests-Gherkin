@@ -5,6 +5,8 @@ import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.config.ResourceConfig;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.web.automation.data.CallRouteSelectorsEntry;
+import com.frequentis.xvp.tools.cats.web.automation.util.ContentWrapper;
+import com.frequentis.xvp.voice.common.gson.GsonFactory;
 import com.frequentis.xvp.voice.opvoice.config.JsonCallRouteSelectorDataElement;
 import com.frequentis.xvp.voice.opvoice.config.JsonMissionData;
 import com.google.gson.*;
@@ -53,15 +55,11 @@ public class RestSteps extends AutomationSteps {
                 .received(Integer.toString(response.getStatus())).success(requestWithSuccess(response)));
 
         String responseContent = response.readEntity(new GenericType<String>() {});
-        String missionJson = (responseContent.substring(12, responseContent.length()-97)).replace("\\","")+"]";
+        final Gson gson = GsonFactory.createInstance();
+        final JsonMissionData[] jsonMissionData = gson.fromJson(reader(responseContent), JsonMissionData[].class);
 
-        final JsonParser jsonParser = new JsonParser();
-        final JsonArray jsonResponse = (JsonArray) jsonParser.parse(missionJson);
         //is enough to verify call route selectors used for the first mission, as is the same for all missions
-        JsonElement jsonElement = jsonResponse.get(0);
-        Gson jsonSerializer = new Gson();
-        final JsonMissionData data = jsonSerializer.fromJson(jsonElement , JsonMissionData.class );
-        final List<JsonCallRouteSelectorDataElement> jsonCallRouteSelectorDataElements = data.getMissionAssignedCallRouteSelectors();
+        final List<JsonCallRouteSelectorDataElement> jsonCallRouteSelectorDataElements = jsonMissionData[0].getMissionAssignedCallRouteSelectors();
         List<String>receivedCallRouteSelectorsNames = new ArrayList<>();
         List<String>expectedCallRouteSelectorsNames = new ArrayList<>();
         for(JsonCallRouteSelectorDataElement jsonCallRouteSelectorDataElement: jsonCallRouteSelectorDataElements){
@@ -215,4 +213,18 @@ public class RestSteps extends AutomationSteps {
         final File file = new File( storiesHome, filePath );
         return file;
     }
+
+    public Reader reader(final String jsonFile){
+        InputStream stream = new ByteArrayInputStream(jsonFile.getBytes());
+        Reader reader = new InputStreamReader(stream);
+
+        final Gson gson = GsonFactory.createInstance();
+        ContentWrapper data = gson.fromJson(reader, ContentWrapper.class);
+
+        stream = new ByteArrayInputStream(data.getContent().getBytes());
+        reader = new InputStreamReader(stream);
+        return reader;
+    }
+
+
 }

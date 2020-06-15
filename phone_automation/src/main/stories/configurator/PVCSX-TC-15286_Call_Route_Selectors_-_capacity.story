@@ -125,7 +125,7 @@ Then editor page Call Route Selectors is visible
 When the values are added in the call route selector editor using entry with <key>
 Then call route selector editor was filled in with the expected values from entry with <key>
 Then Save button is pressed in Call Route Selectors editor
-Then waiting 7 seconds for LoadingScreen to disappear
+Then waiting 5 seconds for LoadingScreen to disappear
 Then verifying pop-up displays message: Successfully saved the call route selector
 Then call route selector contains the expected values from entry with <key>
 Then in Call Route Selectors list verify that last item has name from entry <key>
@@ -151,6 +151,9 @@ Examples:
 | entry19 |
 | entry20 |
 
+Scenario: 9.1 Verify call route Selectors list contains 20 items
+Then list size for Call Route Selectors is: 20
+
 Scenario: 10. Configurator: Repeat steps 4 and 5
 Meta: @TEST_STEP_ACTION: Configurator: Repeat steps 4 and 5
 @TEST_STEP_REACTION: Configurator: 'Name', 'Display name', 'SIP' area displays correctly the values filled in
@@ -160,26 +163,28 @@ Then editor page Call Route Selectors is visible
 When call route selector editor is filled in with the following values:
 | key     | fullName     | displayName | comment           | sipPrefix | sipPostfix | sipDomain | sipPort |
 | entry21 | entry21_name | entry21     | entry21_propriété |           | 21         | skype.at  | 7645    |
-Then Save button is pressed in Phone Book editor
-Then waiting 10 seconds for LoadingScreen to disappear
+Then Save button is pressed in Call Route Selectors editor
+Then waiting 5 seconds for LoadingScreen to disappear
 
 Scenario: 11. Configurator: Click on 'Save' button
 Meta: @TEST_STEP_ACTION: Configurator: Click on 'Save' button
 @TEST_STEP_REACTION: Configurator: A pop-up message is visible in the page and displays message "Could not saved call route selector. Maximum number of defined call route selectors (20) reached'
 @TEST_STEP_REF: [CATS-REF: WxcC]
-Then verifying pop-up displays message: Could not saved call route selector. Maximum number of defined call route selectors (20) reached
+Then verifying pop-up displays message: Could not save the call route selector: Maximum number of defined call route selectors (20) reached
 Then list size for Call Route Selectors is: 20
 
 Scenario: 12. Configurator: Select a 'Call Route Selectors' item
 Meta: @TEST_STEP_ACTION: Configurator: Select a 'Call Route Selectors' item
 @TEST_STEP_REACTION: Configurator: A pop-up window shows saying "You have unsaved changes and are about to leave this page. if you leave, your changes will be discarded". Window has 2 option buttons: "Discard changes" and "Stay on this page"
 @TEST_STEP_REF: [CATS-REF: 52k8]
-When selecting Call Route Selectors sub-menu entry: entry10
+When selecting Call Route Selectors sub-menu entry: entry10_name
+Then an alert box dialog pops-up with message: You have unsaved changes and are about to leave this page. if you leave, your changes will be discarded
 
 Scenario: 13. Configurator: Choose to discard changes
 Meta: @TEST_STEP_ACTION: Configurator: Choose to discard changes
 @TEST_STEP_REACTION: Configurator: Call Route Selectors page is visible and has 20 new items
 @TEST_STEP_REF: [CATS-REF: tY97]
+When clicking on Discard changes button of Discard alert box dialog
 Then list size for Call Route Selectors is: 20
 
 Scenario: Backend verification - call route selectors order
@@ -210,3 +215,6 @@ Scenario: Clean-up - Delete new created call route configurators and add default
 Given the call route selectors ids for configurator <<xvp.configurator.url>> are saved in list newCallRouteSelectors
 Then using <<xvp.configurator.url>> delete call route selectors with ids in list newCallRouteSelectors except item with <<callRouteSelectorId>>
 Then add call route selectors to <<xvp.configurator.url>> using configurators with ids from list defaultCallRouteSelectors found in path /configuration-files/<<systemName>>/CallRouteSelectors_default/callrouteselectorconfiguration/
+
+Scenario: Clean-up - Select Global settings - Telephone menu
+When selecting Global settings - Telephone item in main menu
