@@ -2,14 +2,12 @@ package scripts.cats.web.common.leftHandSidePanel
 
 import com.frequentis.c4i.test.agent.selenium.WebDriverManager
 import com.frequentis.c4i.test.model.ExecutionDetails
-import org.openqa.selenium.By
-import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
-import scripts.cats.web.Util.ElementVisibility
 import scripts.elements.ConfigManagementUtils
 import scripts.agent.selenium.automation.WebScriptTemplate
 import scripts.elements.general.mainPageComponents.ContentBody
+import scripts.utils.ElementVisibility
 
 class ScrollElementListIntoView extends WebScriptTemplate {
     public static final String IPARAM_SUB_MENU_NAME = "sub_menu_name"
