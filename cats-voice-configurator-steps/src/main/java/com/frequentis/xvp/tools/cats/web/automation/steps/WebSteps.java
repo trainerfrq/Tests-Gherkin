@@ -18,6 +18,7 @@ import scripts.cats.web.MissionsAndRoles.AddUpdateRole;
 import scripts.cats.web.MissionsAndRoles.VerifyRoleFields;
 import scripts.cats.web.OperatorPositions.VerifyPhoneBookEntryWasCreated;
 import scripts.cats.web.common.leftHandSidePanel.*;
+import scripts.cats.web.common.leftHandSidePanel.PressNewButton;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;

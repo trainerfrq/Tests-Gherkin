@@ -52,7 +52,7 @@ public class ParallelSteps extends AutomationSteps
         evaluate(remoteStep);
     }
 
-    @When("operators initiate calls by pressing DA keys: $daKeysTable")
+    @When(value = "operators initiate calls by pressing DA keys: $daKeysTable", priority = 50000)
     @Aliases(values = { "operators cancel calls by pressing DA keys: $daKeysTable",
             "operators terminate calls by pressing DA keys: $daKeysTable",
             "operators answer calls by pressing DA keys: $daKeysTable"})
@@ -70,7 +70,7 @@ public class ParallelSteps extends AutomationSteps
         evaluate(remoteStep);
     }
 
-    @Then("call queue items are in the following state: $queuesTable")
+    @Then(value = "call queue items are in the following state: $queuesTable", priority = 50000)
     public void verifyCallQueueItemStateInParallel(final ExamplesTable queuesTable )
     {
         RemoteStep remoteStep = remoteStep( "User verifies call queue item status" );
@@ -90,7 +90,7 @@ public class ParallelSteps extends AutomationSteps
         evaluate(remoteStep);
     }
 
-    @Then("the number of calls in the call queue is: $lengthTable")
+    @Then(value = "the number of calls in the call queue is: $lengthTable", priority = 50000)
     public void verifyCallQueueLengthInParallel( final ExamplesTable lengthTable )
     {
         RemoteStep remoteStep = remoteStep( "User verifies call queue length" );

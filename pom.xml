@@ -5,7 +5,7 @@
    <groupId>com.frequentis.xvp.voice.phone</groupId>
 
    <artifactId>phone-test-automation</artifactId>
-   <version>1.1.1-2.2.2</version>
+   <version>2.2.5</version>
 
    <packaging>pom</packaging>
    <url>http://www.frequentis.com</url>
@@ -29,7 +29,7 @@
       <audio-simulator-service.version>0.56.0</audio-simulator-service.version>
       <audio-service-interface.version>0.30.0</audio-service-interface.version>
       <voice.hmi.service.version>1.1.2-2.6.7</voice.hmi.service.version>
-      <automated.test.interface.version>1.0.0-SNAPSHOT</automated.test.interface.version>
+      <automated.test.interface.version>1.0.0-PVCSX-2763-SNAPSHOT</automated.test.interface.version>
 
       <!-- FW DEPENDENCY VERSIONS -->
       <mission-configurator-plugin.version>1.2.1</mission-configurator-plugin.version>
@@ -190,35 +190,6 @@
             </plugin>
         </plugins>
     </build>
-
-   <pluginRepositories>
-      <pluginRepository>
-         <releases>
-            <enabled>true</enabled>
-            <updatePolicy>always</updatePolicy>
-         </releases>
-         <snapshots>
-            <enabled>true</enabled>
-         </snapshots>
-         <id>artifactory</id>
-         <name>Artifactory maven repository</name>
-         <url>http://artifactory.frequentis.frq:8081/artifactory/repo</url>
-      </pluginRepository>
-   </pluginRepositories>
-   <repositories>
-      <repository>
-         <releases>
-            <enabled>true</enabled>
-            <updatePolicy>always</updatePolicy>
-         </releases>
-         <snapshots>
-            <enabled>true</enabled>
-         </snapshots>
-         <id>artifactory</id>
-         <name>Artifactory maven repository</name>
-         <url>http://artifactory.frequentis.frq:8081/artifactory/repo</url>
-      </repository>
-   </repositories>
 
    <modules>
       <module>phone_automation</module>
