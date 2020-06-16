@@ -1,0 +1,71 @@
+{
+  "id" : "8f2bb359-f7c4-4b73-9d3c-dc59487923b2",
+  "name" : "ZInit_R03",
+  "displayName" : "ZInit_R03",
+  "location" : "",
+  "organization" : "",
+  "comment" : "",
+  "notes" : "",
+  "phoneSettings" : {
+    "sipAddress" : "sip:init_r03@cjggcats.xvp.frequentis.frq",
+    "roleAliases" : [ ],
+    "telephoneGroups" : [ ],
+    "defaultSourceForOutgoingCalls" : {
+      "id" : "8f2bb359-f7c4-4b73-9d3c-dc59487923b2",
+      "type" : "ROLE"
+    },
+    "defaultSipPriority" : "normal",
+    "callLimits" : {
+      "maxIncomingIACallsCount" : 3,
+      "maxCallsOnHold" : 5,
+      "maxIncomingPendingCallsCount" : 16,
+      "maxOutgoingPositionMonitoringCalls" : 0,
+      "maxIncomingPositionMonitoringCalls" : 0
+    },
+    "soundSettings" : {
+      "defaultChimeType" : "chime_01",
+      "defaultKeyClick" : "input_01"
+    },
+    "voiceMonitoringSettings" : {
+      "agIaCallMonitoringEnabled" : false,
+      "ggIaCallMonitoringEnabled" : false,
+      "incomingPositionMonitoringCallsIndicationEnabled" : true
+    }
+  },
+  "positionSettings" : {
+    "opVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "coVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "maxAgGgBalanceAttenuation" : 20,
+    "notificationsVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "chimeVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "opSidetoneVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "coSidetoneVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "keyClickVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "brightnessControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    }
+  },
+  "layoutId" : "cca2f2db-5eaf-420d-b37a-fdaed773de5b"
+}

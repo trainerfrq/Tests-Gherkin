@@ -10,26 +10,26 @@ import scripts.elements.general.mainPageComponents.ContentBody
 
 class DeleteItem extends WebScriptTemplate {
     public static final String IPARAM_SUB_MENU_NAME = "sub_menu_name"
-    public static final String IPARAM_ENTRY_NAME = "entry_name"
+    public static final String IPARAM_ITEM_NAME = "item_name"
 
     @Override
     protected void script() {
         String subMenuName = assertInput(IPARAM_SUB_MENU_NAME) as String
-        String entryName = assertInput(IPARAM_ENTRY_NAME) as String
+        String itemName = assertInput(IPARAM_ITEM_NAME) as String
 
         WebDriver driver = WebDriverManager.getInstance().getWebDriver()
         ContentBody pageObject = ConfigManagementUtils.getSubMenuPageObject(driver, subMenuName)
 
-        WebElement searchedItem = pageObject.getLeftHandSidePanel().findItem(entryName)
+        WebElement searchedItem = pageObject.getLeftHandSidePanel().findItem(itemName)
 
-        evaluate(ExecutionDetails.create("Check entry " + entryName + " is in list")
-                .expected(entryName + " was found")
+        evaluate(ExecutionDetails.create("Check item " + itemName + " is in list")
+                .expected(itemName + " was found")
                 .success(searchedItem != null))
 
         searchedItem.click()
 
-        evaluate(ExecutionDetails.create("Select entry " + entryName)
-                .expected(entryName + " was clicked")
+        evaluate(ExecutionDetails.create("Select item " + itemName)
+                .expected(itemName + " was clicked")
                 .success(true))
 
         evaluate(ExecutionDetails.create("Check delete button is displayed")

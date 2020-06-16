@@ -16,9 +16,11 @@
  ************************************************************************/
 package com.frequentis.xvp.tools.cats.web.automation.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameter;
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameterBase;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Role extends CatsCustomParameterBase {
 
     @CatsCustomParameter(parameterName = "name")
@@ -39,6 +41,8 @@ public class Role extends CatsCustomParameterBase {
     private String callRouteSelector;
     @CatsCustomParameter(parameterName = "destination")
     private String destination;
+    @CatsCustomParameter(parameterName = "resultingSipUri")
+    private String resultingSipUri;
     @CatsCustomParameter(parameterName = "defaultSourceOutgoingCalls")
     private String defaultSourceOutgoingCalls;
     @CatsCustomParameter(parameterName = "defaultSipPriority")
@@ -88,9 +92,7 @@ public class Role extends CatsCustomParameterBase {
         return notes;
     }
 
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
+    public void setNotes(String notes) { this.notes = notes; }
 
     public String getLayout() {
         return layout;
@@ -100,9 +102,7 @@ public class Role extends CatsCustomParameterBase {
         this.layout = layout;
     }
 
-    public String getCallRouteSelector() {
-        return callRouteSelector;
-    }
+    public String getCallRouteSelector() { return callRouteSelector; }
 
     public void setCallRouteSelector(String callRouteSelector) {
         this.callRouteSelector = callRouteSelector;
@@ -115,6 +115,8 @@ public class Role extends CatsCustomParameterBase {
     public void setDestination(String destination) {
         this.destination = destination;
     }
+
+    public String getResultingSipUri() { return resultingSipUri; }
 
     public String getDefaultSourceOutgoingCalls() {
         return defaultSourceOutgoingCalls;

@@ -1,0 +1,71 @@
+{
+  "id" : "166483e6-6676-4235-88c1-b251cd5e6c05",
+  "name" : "role1",
+  "displayName" : "role1",
+  "location" : "",
+  "organization" : "",
+  "comment" : "",
+  "notes" : "",
+  "phoneSettings" : {
+    "sipAddress" : "sip:role1@example.com",
+    "roleAliases" : [ ],
+    "telephoneGroups" : [ ],
+    "defaultSourceForOutgoingCalls" : {
+      "id" : "166483e6-6676-4235-88c1-b251cd5e6c05",
+      "type" : "ROLE"
+    },
+    "defaultSipPriority" : "normal",
+    "callLimits" : {
+      "maxIncomingIACallsCount" : 3,
+      "maxCallsOnHold" : 5,
+      "maxIncomingPendingCallsCount" : 16,
+      "maxOutgoingPositionMonitoringCalls" : 0,
+      "maxIncomingPositionMonitoringCalls" : 0
+    },
+    "soundSettings" : {
+      "defaultChimeType" : "chime_01",
+      "defaultKeyClick" : "input_01"
+    },
+    "voiceMonitoringSettings" : {
+      "agIaCallMonitoringEnabled" : false,
+      "ggIaCallMonitoringEnabled" : false,
+      "incomingPositionMonitoringCallsIndicationEnabled" : false
+    }
+  },
+  "positionSettings" : {
+    "opVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "coVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "maxAgGgBalanceAttenuation" : 20,
+    "notificationsVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "chimeVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "opSidetoneVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "coSidetoneVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "keyClickVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "brightnessControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    }
+  },
+  "layoutId" : "cca2f2db-5eaf-420d-b37a-fdaed773de5b"
+}

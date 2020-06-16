@@ -75,7 +75,7 @@ When writing in Phone Book search box: Ana
 Then phonebook entry Ana is displayed in results list after search
 
 Scenario: Delete new phonebook entry
-When deleting Phone Book sub-menu entry: Ana
+When deleting Phone Book sub-menu item: Ana
 Then an alert box dialog pops-up with message: Are you sure you want to delete the phone book entry Ana?
 
 Scenario: Click on alert box button

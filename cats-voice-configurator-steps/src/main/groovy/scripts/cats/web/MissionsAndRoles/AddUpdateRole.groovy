@@ -7,17 +7,17 @@ import scripts.agent.selenium.automation.WebScriptTemplate
 import scripts.elements.configurators.missionsAndRoles.Roles.RolesPage
 
 class AddUpdateRole extends WebScriptTemplate {
-    public static final String IPARAM_NAME = "name"
-    public static final String IPARAM_DISPLAY_NAME = "display_name"
-    public static final String IPARAM_LOCATION = "location"
-    public static final String IPARAM_ORGANIZATION = "organization"
-    public static final String IPARAM_COMMENT = "comment"
-    public static final String IPARAM_NOTES = "notes"
-    public static final String IPARAM_LAYOUT = "layout"
-    public static final String IPARAM_CALL_ROUTE_SELECTOR = "call_route_selector"
-    public static final String IPARAM_DESTINATION = "destination"
-    public static final String IPARAM_DEFAULT_SOURCE_OUTGOING_CALLS = "default_source_outgoing_calls"
-    public static final String IPARAM_DEFAULT_SIP_PRIORITY = "default_sip_priority"
+    public static final String IPARAM_NAME = "Name"
+    public static final String IPARAM_DISPLAY_NAME = "Display name"
+    public static final String IPARAM_LOCATION = "Location"
+    public static final String IPARAM_ORGANIZATION = "Organization"
+    public static final String IPARAM_COMMENT = "Comment"
+    public static final String IPARAM_NOTES = "Notes"
+    public static final String IPARAM_LAYOUT = "Layout"
+    public static final String IPARAM_CALL_ROUTE_SELECTOR = "Call Route Selector"
+    public static final String IPARAM_DESTINATION = "Destination"
+    public static final String IPARAM_DEFAULT_SOURCE_OUTGOING_CALLS = "Default Source for outgoing calls"
+    public static final String IPARAM_DEFAULT_SIP_PRIORITY = "Default SIP Priority"
 
     @Override
     protected void script() {
@@ -38,67 +38,67 @@ class AddUpdateRole extends WebScriptTemplate {
         RolesPage rolesPage = new RolesPage(driver)
 
         if (name != null) {
-            rolesPage.rolesEditor.writeName(name)
+            rolesPage.writeInField(IPARAM_NAME, name)
             evaluate(ExecutionDetails.create("Full name " + name + " was entered")
                     .success(true))
         }
 
         if (displayName != null) {
-            rolesPage.rolesEditor.writeDisplayName(displayName)
+            rolesPage.writeInField(IPARAM_DISPLAY_NAME, displayName)
             evaluate(ExecutionDetails.create("Display name " + displayName + " was entered")
                     .success(true))
         }
 
         if (location != null) {
-            rolesPage.rolesEditor.writeLocation(location)
+            rolesPage.writeInField(IPARAM_LOCATION, location)
             evaluate(ExecutionDetails.create("Location " + location + " was entered")
                     .success(true))
         }
 
         if (organization != null) {
-            rolesPage.rolesEditor.writeOrganization(organization)
+            rolesPage.writeInField(IPARAM_ORGANIZATION, organization)
             evaluate(ExecutionDetails.create("Organization " + organization + " was entered")
                     .success(true))
         }
 
         if (comment != null) {
-            rolesPage.rolesEditor.writeComment(comment)
+            rolesPage.writeInField(IPARAM_COMMENT, comment)
             evaluate(ExecutionDetails.create("Comment " + comment + " was entered")
                     .success(true))
         }
 
         if (notes != null) {
-            rolesPage.rolesEditor.writeNotes(notes)
+            rolesPage.writeInField(IPARAM_NOTES, notes)
             evaluate(ExecutionDetails.create("Notes " + notes + " were entered")
                     .success(true))
         }
 
         if (layout != null) {
-            rolesPage.rolesEditor.clickOnLayoutDropDownItem(layout)
+            rolesPage.selectFieldDropDownOption(IPARAM_LAYOUT, layout)
             evaluate(ExecutionDetails.create("Layout " + layout + " was selected")
                     .success(true))
         }
 
         if (callRouteSelector != null) {
-            rolesPage.rolesEditor.clickOnCallRouteSelectorItem(callRouteSelector)
+            rolesPage.selectFieldDropDownOption(IPARAM_CALL_ROUTE_SELECTOR, callRouteSelector)
             evaluate(ExecutionDetails.create("Call Route Selector " + callRouteSelector + " was selected")
                     .success(true))
         }
 
         if (destination != null) {
-            rolesPage.rolesEditor.writeDestination(destination)
+            rolesPage.writeInField(IPARAM_DESTINATION, destination)
             evaluate(ExecutionDetails.create("Destination " + destination + " was entered")
                     .success(true))
         }
 
         if (defaultSourceOutgoingCalls != null) {
-            rolesPage.rolesEditor.clickOnDefaultSourceForOutgoingCallsItem(defaultSourceOutgoingCalls)
+            rolesPage.selectFieldDropDownOption(IPARAM_DEFAULT_SOURCE_OUTGOING_CALLS, defaultSourceOutgoingCalls)
             evaluate(ExecutionDetails.create("Default Source For Outgoing Calls " + defaultSourceOutgoingCalls + " was selected")
                     .success(true))
         }
 
         if (defaultSipPriority != null) {
-            rolesPage.rolesEditor.clickOnDefaultSipPriorityItem(defaultSipPriority)
+            rolesPage.selectFieldDropDownOption(IPARAM_DEFAULT_SIP_PRIORITY, defaultSipPriority)
             evaluate(ExecutionDetails.create("Default SIP Priority " + defaultSipPriority + " was selected")
                     .success(true))
         }
