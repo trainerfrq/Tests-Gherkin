@@ -35,7 +35,7 @@ Given the following call route selectors entries:
 | entry3  | entry3_name  | entry3      | entry3_süßigkeit   | 33        |            | skype.ro       | 9999    |
 | entry4  | entry4_name  | entry4      | entry4_doména      |           | 44         | gmail.at       | 1234    |
 | entry5  | entry5_name  | entry5      | entry5_acasă       | 555       |            | gmail.ro       | 3456    |
-| entry6  | entry6_name  | entry6      | entry6_комментарий |           | 666        | frequentis.frq | 0001    |
+| entry6  | entry6_name  | entry6      | entry6_комментарий |           | 666        | frequentis.frq | 1       |
 | entry7  | entry7_name  | entry7      | entry7_komentár    | 7         | 7          | examples.com   | 5070    |
 | entry8  | entry8_name  | entry8      | entry8_comment     | 8         | 8          | examples.com   | 8990    |
 | entry9  | entry9_name  | entry9      | entry9_comment     | 99        | 99         | frequentis.frq | 5061    |
@@ -44,7 +44,7 @@ Given the following call route selectors entries:
 | entry12 | entry12_name | entry12     | entry12_comment    | 33        |            | skype.ro       | 9999    |
 | entry13 | entry13_name | entry13     | entry13_comment    |           | 44         | gmail.at       | 1234    |
 | entry14 | entry14_name | entry14     | entry14_comment    | 555       |            | gmail.ro       | 3456    |
-| entry15 | entry15_name | entry15     | entry15_comment    |           | 666        | frequentis.frq | 0001    |
+| entry15 | entry15_name | entry15     | entry15_comment    |           | 666        | frequentis.frq | 1       |
 | entry16 | entry16_name | entry16     | entry16_comment    | 7         | 7          | examples.com   | 5070    |
 | entry17 | entry17_name | entry17     | entry17_comment    | 8         | 8          | examples.com   | 8990    |
 | entry18 | entry18_name | entry18     | entry18_comment    | 99        | 99         | frequentis.frq | 5061    |
@@ -98,7 +98,7 @@ Meta: @TEST_STEP_ACTION: Configurator: Click on 'Save' button
 @TEST_STEP_REACTION: Configurator: Call Route Selectors page is visible and has 1 new item.
 @TEST_STEP_REF: [CATS-REF: sqwI]
 Then Save button is pressed in Call Route Selectors editor
-Then waiting 10 seconds for LoadingScreen to disappear
+Then waiting 5 seconds for LoadingScreen to disappear
 
 Scenario: 7. A pop-up message is visible in the page and displays message "Successfully saved call route selector'
 Meta: @TEST_STEP_ACTION: -
@@ -171,7 +171,7 @@ Meta: @TEST_STEP_ACTION: Configurator: Click on 'Save' button
 @TEST_STEP_REACTION: Configurator: A pop-up message is visible in the page and displays message "Could not saved call route selector. Maximum number of defined call route selectors (20) reached'
 @TEST_STEP_REF: [CATS-REF: WxcC]
 Then verifying pop-up displays message: Could not save the call route selector: Maximum number of defined call route selectors (20) reached
-Then list size for Call Route Selectors is: 20
+Then list size for Call Route Selectors is: 21
 
 Scenario: 12. Configurator: Select a 'Call Route Selectors' item
 Meta: @TEST_STEP_ACTION: Configurator: Select a 'Call Route Selectors' item

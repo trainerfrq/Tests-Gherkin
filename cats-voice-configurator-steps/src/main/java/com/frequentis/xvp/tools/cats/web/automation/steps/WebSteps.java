@@ -311,9 +311,9 @@ public class WebSteps extends AutomationSteps {
         if (webAppConfig != null) {
             Profile profile = getProfile(webAppConfig.getProfileName());
             evaluate(remoteStep("Delete phonebook entry " + entryName)
-                    .scriptOn(DeleteItem.class, profile)
-                    .input(DeleteItem.IPARAM_SUB_MENU_NAME, subMenuName)
-                    .input(DeleteItem.IPARAM_ENTRY_NAME, entryName));
+                    .scriptOn(SelectItem.class, profile)
+                    .input(SelectItem.IPARAM_SUB_MENU_NAME, subMenuName)
+                    .input(SelectItem.IPARAM_ENTRY_NAME, entryName));
         }
     }
 
