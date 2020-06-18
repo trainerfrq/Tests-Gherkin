@@ -181,5 +181,5 @@ Given the call route selectors ids for configurator <<xvp.configurator.url>> are
 Then using <<xvp.configurator.url>> delete call route selectors with ids in list newCallRouteSelectors except item with <<callRouteSelectorId>>
 Then add call route selectors to <<xvp.configurator.url>> using configurators with ids from list defaultCallRouteSelectors found in path /configuration-files/<<systemName>>/CallRouteSelectors_default/callrouteselectorconfiguration/
 
-Scenario: Clean-up - Select Global settings - Telephone menu
-When selecting Global settings - Telephone item in main menu
+Scenario: Clean-up - Refresh Configurator
+Then refresh Configurator
