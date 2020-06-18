@@ -10,5 +10,6 @@ When stopping profiles:
 Then waiting for 5 seconds
 
 Scenario: Stop case officer
-When SSH host coHost executes ps aux | grep -v grep | grep caseofficer | awk '{print $2}'|xargs -r kill -9
+When SSH host coHost executes docker cp co1:/var/log/frequentis/CATS /var/log/frequentis
+When SSH host coHost executes docker rm -f co1
 Then waiting for 5 seconds

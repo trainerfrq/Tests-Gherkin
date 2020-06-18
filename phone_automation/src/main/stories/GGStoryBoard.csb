@@ -3174,6 +3174,12 @@
                     <cats:reports/>
                     <cats:stories>
                         <cats:story enabled="true">
+                            <cats:storyPath>deploy/CreateCO.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
                             <cats:storyPath>deploy/StartProfilesForWebTests.story</cats:storyPath>
                             <cats:storyParameters/>
                             <cats:storyDataList/>
