@@ -19,7 +19,7 @@ public class CallRouteSelectorsSteps extends AutomationSteps {
     @Given("the following call route selectors entries: $callRouteSelectorsEntries")
     public void namedCallRouteSelectors( final List<CallRouteSelectorsEntry> callRouteSelectorsEntries )
     {
-        final LocalStep localStep = localStep( "Define the phone book entries" );
+        final LocalStep localStep = localStep( "Define the call route entries" );
         for ( final CallRouteSelectorsEntry callRouteSelectorsEntry : callRouteSelectorsEntries )
         {
             final String key = callRouteSelectorsEntry.getKey();

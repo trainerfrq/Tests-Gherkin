@@ -17,7 +17,7 @@ import java.util.List;
 @RunWith(CatsJunitRunner.class)
 @CatsRunConfiguration(
         stories = {
-                "configurator/TestRest.story"
+                "configurator/Rest.story"
         },
         catsHomeLocation = ".",
         name = "LocalFunctionalTests")

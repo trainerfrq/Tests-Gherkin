@@ -6,6 +6,7 @@ import com.frequentis.c4i.test.config.ResourceConfig;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.web.automation.data.CallRouteSelectorsEntry;
 import com.frequentis.xvp.tools.cats.web.automation.util.ContentWrapper;
+import com.frequentis.xvp.tools.cats.web.automation.util.JerseyClientBuilderUtil;
 import com.frequentis.xvp.voice.common.gson.GsonFactory;
 import com.frequentis.xvp.voice.opvoice.config.JsonCallRouteSelectorDataElement;
 import com.frequentis.xvp.voice.opvoice.config.JsonMissionData;
@@ -17,16 +18,9 @@ import org.jbehave.core.annotations.Then;
 
 import java.io.*;
 import java.net.URI;
-import java.security.SecureRandom;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
@@ -39,6 +33,7 @@ public class RestSteps extends AutomationSteps {
     private static final List<Integer> SUCCESS_RESPONSES = Arrays.asList( 200, 201 );
 
     private static final String CALL_ROUTE_SELECTORS_SUB_PATH = "/op-voice-service/callRouteSelectors";
+    private static final String CALL_ROUTE_SELECTORS_ORDER_SUB_PATH = "/op-voice-service/callRouteSelectors/order";
     private static final String MISSIONS_SUB_PATH = "/op-voice-service/generic/items/missions.json";
 
     @Then("using $endpointUri verify that call route selectors order sent to the Op Voice service as in the below table:$callRouteEntries")
@@ -52,7 +47,7 @@ public class RestSteps extends AutomationSteps {
                         .get();
 
         localStep.details(ExecutionDetails.create("Executed GET request").expected("200 or 201")
-                .received(Integer.toString(response.getStatus())).success(requestWithSuccess(response)));
+                .received(Integer.toString(response.getStatus())).success(responseWasSuccessful(response)));
 
         String responseContent = response.readEntity(new GenericType<String>() {});
         final Gson gson = GsonFactory.createInstance();
@@ -87,7 +82,7 @@ public class RestSteps extends AutomationSteps {
                     .get();
 
         localStep.details(ExecutionDetails.create("Executed GET request").expected("200 or 201")
-                .received(Integer.toString(response.getStatus())).success(requestWithSuccess(response)));
+                .received(Integer.toString(response.getStatus())).success(responseWasSuccessful(response)));
 
         String responseContent = response.readEntity(new GenericType<String>() {});
         final JsonParser jsonParser = new JsonParser();
@@ -99,38 +94,32 @@ public class RestSteps extends AutomationSteps {
             String receivedId = output.getId();
             callRouteSelectorListIds.add(receivedId);
         }
-        setStoryListData(listName, callRouteSelectorListIds.toString());
+        setStoryListData(listName, new ArrayList<>(callRouteSelectorListIds));
+
     }
 
     @Then("using $endpointUri delete call route selectors with ids in list $listName except item with $id")
     public void deleteCallRouteSelector( final String endpointUri, final String listName, final String id) throws Throwable
     {
         final LocalStep localStep = localStep("Execute DELETE request - delete default call route selectors except one");
-        String callRouteSelectorIds = getStoryListData(listName, String.class);
-        String callRouteSelectorIdsSubString = callRouteSelectorIds.substring(1, callRouteSelectorIds.length()-1);
-        List<String> callRouteSelectorListIds = new ArrayList<>(Arrays.asList(callRouteSelectorIdsSubString.split(", ")));
+        List<String> callRouteSelectorListIds = getStoryListData(listName, List.class );
 
-        for (String callRouteSelectorId : callRouteSelectorListIds) {
-           final URI configurationURI = new URI(endpointUri);
-           if(!callRouteSelectorId.equals(id)) {
+        callRouteSelectorListIds.stream().filter(callRouteSelectorId -> !callRouteSelectorId.equals(id)).forEach(callRouteSelectorId -> {
               Response deleteResponse =
-                  getConfigurationItemsWebTarget(configurationURI + CALL_ROUTE_SELECTORS_SUB_PATH)
+                  getConfigurationItemsWebTarget(endpointUri + CALL_ROUTE_SELECTORS_SUB_PATH)
                         .path(callRouteSelectorId)
                         .request(MediaType.APPLICATION_JSON)
                         .delete();
             localStep.details(ExecutionDetails.create("Executed DELETE request - on call route selectors list").expected("200 or 201")
-             .received(Integer.toString(deleteResponse.getStatus())).success(requestWithSuccess(deleteResponse)));
-           }
-        }
+             .received(Integer.toString(deleteResponse.getStatus())).success(responseWasSuccessful(deleteResponse)));
+            });
     }
 
     @Then("add call route selectors to $endpointUri using configurators with ids from list $listName found in path $templatePath")
     public void addDefaultCallRouteSelectors( final String endpointUri, final String listName, final String templatePath ) throws Throwable
     {
         final LocalStep localStep = localStep( "Execute POST request with payload" );
-        String callRouteSelectorIds = getStoryListData(listName, String.class);
-        String callRouteSelectorIdsSubString = callRouteSelectorIds.substring(1, callRouteSelectorIds.length()-1);
-        List<String> callRouteSelectorListIds = new ArrayList<>(Arrays.asList(callRouteSelectorIdsSubString.split(", ")));
+        List<String> callRouteSelectorListIds = getStoryListData(listName, List.class );
 
         for(String callRouteSelectorId : callRouteSelectorListIds) {
             final URI configurationURI = new URI(endpointUri);
@@ -139,72 +128,27 @@ public class RestSteps extends AutomationSteps {
                     getConfigurationItemsWebTarget(configurationURI + CALL_ROUTE_SELECTORS_SUB_PATH)
                             .request(MediaType.APPLICATION_JSON)
                             .post(Entity.json(templateContent));
+            //this get on the Call Route Selectors order is acting as a refresh on the list. If is missing the call route selectors wil be added, but not in the order from list callRouteSelectorListIds
+            Response responseCallRouteSelectorsOrder =
+                    getConfigurationItemsWebTarget(configurationURI + CALL_ROUTE_SELECTORS_ORDER_SUB_PATH)
+                            .request(MediaType.APPLICATION_JSON)
+                            .get();
 
         localStep.details(ExecutionDetails.create("Executed POST request with payload - on call route selectors area ").expected("200 or 201")
-             .received(Integer.toString(response.getStatus())).success(requestWithSuccess(response)));
+             .received(Integer.toString(response.getStatus())).success(responseWasSuccessful(response)));
         }
     }
 
 
-    private boolean requestWithSuccess( final Response response )
+    private boolean responseWasSuccessful(final Response response )
     {
         return SUCCESS_RESPONSES.contains( response.getStatus() );
     }
 
     private WebTarget getConfigurationItemsWebTarget(final String uri )
     {
-        final JerseyClientBuilder clientBuilder = ignoreCerts();
+        final JerseyClientBuilder clientBuilder = JerseyClientBuilderUtil.ignoreCerts();
         return clientBuilder.build().target( uri );
-    }
-
-    private JerseyClientBuilder ignoreCerts() {
-        final TrustManager[] certs = new TrustManager[] { new X509TrustManager()
-        {
-            @Override
-            public X509Certificate[] getAcceptedIssuers()
-            {
-                return null;
-            }
-
-
-            @Override
-            public void checkServerTrusted( final X509Certificate[] chain, final String authType )
-                    throws CertificateException
-            {
-            }
-
-
-            @Override
-            public void checkClientTrusted( final X509Certificate[] chain, final String authType )
-                    throws CertificateException
-            {
-            }
-        } };
-
-        SSLContext ctx = null;
-        try
-        {
-            ctx = SSLContext.getInstance( "TLS" );
-            ctx.init( null, certs, new SecureRandom() );
-        }
-        catch ( final java.security.GeneralSecurityException e )
-        {
-            System.out.println( "" + e );
-        }
-
-        HttpsURLConnection.setDefaultSSLSocketFactory( ctx.getSocketFactory() );
-
-        final JerseyClientBuilder clientBuilder = new JerseyClientBuilder();
-        try
-        {
-            clientBuilder.sslContext( ctx );
-            clientBuilder.hostnameVerifier( ( hostname, session ) -> true );
-        }
-        catch ( final Exception e )
-        {
-            System.out.println( "" + e );
-        }
-        return clientBuilder;
     }
 
     public File getConfigFile(final String filePath )

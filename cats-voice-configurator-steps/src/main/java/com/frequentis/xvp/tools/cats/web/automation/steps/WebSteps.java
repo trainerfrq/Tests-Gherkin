@@ -73,43 +73,6 @@ public class WebSteps extends AutomationSteps {
         }
     }
 
-    @When("add a phonebook entry with: $phonebookEntryDetails")
-    @Alias("update a phonebook entry with: $phonebookEntryDetails")
-    public void createOrUpdatePhoneBook(final List<PhoneBookEntry> phoneBookEntryDetails) {
-        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
-        PhoneBookEntry phoneBookEntry = phoneBookEntryDetails.get(0);
-        if (webAppConfig != null) {
-            Profile profile = getProfile(webAppConfig.getProfileName());
-            evaluate(remoteStep("Adding or updating phonebook")
-                    .scriptOn(AddUpdatePhoneBookEntry.class, profile)
-                    .input(AddUpdatePhoneBookEntry.IPARAM_FULL_NAME, phoneBookEntry.getFullName())
-                    .input(AddUpdatePhoneBookEntry.IPARAM_DISPLAY_NAME, phoneBookEntry.getDisplayName())
-                    .input(AddUpdatePhoneBookEntry.IPARAM_LOCATION, phoneBookEntry.getLocation())
-                    .input(AddUpdatePhoneBookEntry.IPARAM_ORGANIZATION, phoneBookEntry.getOrganization())
-                    .input(AddUpdatePhoneBookEntry.IPARAM_COMMENT, phoneBookEntry.getComment())
-                    .input(AddUpdatePhoneBookEntry.IPARAM_DESTINATION, phoneBookEntry.getDestination())
-                    .input(AddUpdatePhoneBookEntry.IPARAM_DISPLAY_ADDON, phoneBookEntry.getDisplayAddon()));
-        }
-    }
-
-    @Then("verify phonebook entry fields contain: $phonebookEntryDetails")
-    public void verifyPhoneBookEntryFields(final List<PhoneBookEntry> phoneBookEntryDetails) {
-        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
-        PhoneBookEntry phoneBookEntry = phoneBookEntryDetails.get(0);
-        if (webAppConfig != null) {
-            Profile profile = getProfile(webAppConfig.getProfileName());
-            evaluate(remoteStep("Verify phonebook entry fields")
-                    .scriptOn(VerifyPhoneBookEntryFields.class, profile)
-                    .input(VerifyPhoneBookEntryFields.IPARAM_FULL_NAME, phoneBookEntry.getFullName())
-                    .input(VerifyPhoneBookEntryFields.IPARAM_DISPLAY_NAME, phoneBookEntry.getDisplayName())
-                    .input(VerifyPhoneBookEntryFields.IPARAM_LOCATION, phoneBookEntry.getLocation())
-                    .input(VerifyPhoneBookEntryFields.IPARAM_ORGANIZATION, phoneBookEntry.getOrganization())
-                    .input(VerifyPhoneBookEntryFields.IPARAM_COMMENT, phoneBookEntry.getComment())
-                    .input(VerifyPhoneBookEntryFields.IPARAM_DESTINATION, phoneBookEntry.getDestination())
-                    .input(VerifyPhoneBookEntryFields.IPARAM_DISPLAY_ADDON, phoneBookEntry.getDisplayAddon()));
-        }
-    }
-
     @Then("Save button is pressed in $subMenuName editor")
     public void pressSaveButtonInEditorPage(String subMenuName) {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
@@ -129,19 +92,6 @@ public class WebSteps extends AutomationSteps {
             evaluate(remoteStep("Check pop-up displayed message")
                     .scriptOn(VerifyPopUpMessage.class, profile)
                     .input(VerifyPopUpMessage.IPARAM_POPUP_MESSAGE, message));
-        }
-    }
-
-    @Then("json file $fileName contains phone book with Display Name $displayName and Destination $destination")
-    public void checkFileContainsPhonebookData(String fileName, String displayName, String destination) {
-        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
-        if (webAppConfig != null) {
-            Profile profile = getProfile(webAppConfig.getProfileName());
-            evaluate(remoteStep("Check file " + fileName + " contains phonebook " + displayName)
-                    .scriptOn(VerifyPhoneBookEntryWasCreated.class, profile)
-                    .input(VerifyPhoneBookEntryWasCreated.IPARAM_CONFIGURATION_FILE_NAME, fileName)
-                    .input(VerifyPhoneBookEntryWasCreated.IPARAM_DISPLAY_NAME, displayName)
-                    .input(VerifyPhoneBookEntryWasCreated.IPARAM_DESTINATION, destination));
         }
     }
 
@@ -282,17 +232,6 @@ public class WebSteps extends AutomationSteps {
         }
     }
 
-    @Then("phonebook entry $entryName is displayed in results list after search")
-    public void checkEntryIsInResultsList(String entryName) {
-        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
-        if (webAppConfig != null) {
-            Profile profile = getProfile(webAppConfig.getProfileName());
-            evaluate(remoteStep("Checking for " + entryName + " in results list")
-                    .scriptOn(CheckEntryIsInResultsListAfterSearch.class, profile)
-                    .input(CheckEntryIsInResultsListAfterSearch.IPARAM_ENTRY_NAME, entryName));
-        }
-    }
-
     @When("deleting $subMenuName sub-menu entry: $entryName")
     public void deletePhonebookEntry(String subMenuName, String entryName) {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
@@ -310,7 +249,7 @@ public class WebSteps extends AutomationSteps {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
         if (webAppConfig != null) {
             Profile profile = getProfile(webAppConfig.getProfileName());
-            evaluate(remoteStep("Delete phonebook entry " + entryName)
+            evaluate(remoteStep("Select entry " + entryName)
                     .scriptOn(SelectItem.class, profile)
                     .input(SelectItem.IPARAM_SUB_MENU_NAME, subMenuName)
                     .input(SelectItem.IPARAM_ENTRY_NAME, entryName));
@@ -350,6 +289,16 @@ public class WebSteps extends AutomationSteps {
                     .input(DragAndDropItemInList.IPARAM_SUB_MENU_NAME, subMenuName)
                     .input(DragAndDropItemInList.IPARAM_FROM_POSITION, from)
                     .input(DragAndDropItemInList.IPARAM_TO_POSITION, to));
+        }
+    }
+
+    @Then("refresh Configurator")
+    public void refreshConfigurator(){
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Refresh Configurator ")
+                    .scriptOn(RefreshPage.class, profile));
         }
     }
 }

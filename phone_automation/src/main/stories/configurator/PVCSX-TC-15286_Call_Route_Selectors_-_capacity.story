@@ -178,7 +178,7 @@ Meta: @TEST_STEP_ACTION: Configurator: Select a 'Call Route Selectors' item
 @TEST_STEP_REACTION: Configurator: A pop-up window shows saying "You have unsaved changes and are about to leave this page. if you leave, your changes will be discarded". Window has 2 option buttons: "Discard changes" and "Stay on this page"
 @TEST_STEP_REF: [CATS-REF: 52k8]
 When selecting Call Route Selectors sub-menu entry: entry10_name
-Then an alert box dialog pops-up with message: You have unsaved changes and are about to leave this page. if you leave, your changes will be discarded
+Then an alert box dialog pops-up with message: <<discardMessage>>
 
 Scenario: 13. Configurator: Choose to discard changes
 Meta: @TEST_STEP_ACTION: Configurator: Choose to discard changes

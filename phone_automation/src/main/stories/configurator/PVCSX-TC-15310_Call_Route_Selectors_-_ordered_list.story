@@ -35,7 +35,7 @@ Given the following call route selectors entries:
 | entry3  | entry3_name  | entry3      | entry3_süßigkeit   | 33        |            | skype.ro       | 9999    |
 | entry4  | entry4_name  | entry4      | entry4_doména      |           | 44         | gmail.at       | 1234    |
 | entry5  | entry5_name  | entry5      | entry5_acasă       | 555       |            | gmail.ro       | 3456    |
-| entry6  | entry6_name  | entry6      | entry6_комментарий |           | 666        | frequentis.frq | 0001    |
+| entry6  | entry6_name  | entry6      | entry6_комментарий |           | 666        | frequentis.frq | 1       |
 | entry7  | entry7_name  | entry7      | entry7_komentár    | 7         | 7          | examples.com   | 5070    |
 | entry8  | entry8_name  | entry8      | entry8_comment     | 8         | 8          | examples.com   | 8990    |
 | entry9  | entry9_name  | entry9      | entry9_comment     | 99        | 99         | frequentis.frq | 5061    |
@@ -71,17 +71,18 @@ When New button is pressed in Call Route Selectors sub-menu
 Then editor page Call Route Selectors is visible
 
 Scenario: 5. System Technician: Fills in the following fields: 'Name', 'Display name', 'SIP' area.
+
 Meta: @TEST_STEP_ACTION: Configurator: Fill in the following fields: 'Name', 'Display name', 'SIP' area.
 @TEST_STEP_REACTION: Configurator: 'Name', 'Display name', 'SIP' area display correctly the values filled in. In the Example area, the SIP is displayed according to the filled in field: - Prefix field value is inserted in front of "TestUser"text, Postfix field value is insterted after "TestUser"text, Domain field value is inserted after "TestUser"text and Postfix value, with a @ in front, Port value field value is inserted after "TestUser"text, Postfix value and Domain value with : in front.
 @TEST_STEP_REF: [CATS-REF: gp7a]
 When call route selector editor is filled in with the following values:
-| key     | fullName     | displayName | comment            | sipPrefix | sipPostfix | sipDomain      | sipPort |
-| entry2  | entry2_name  | entry2      | entry2_propriété   |           | 2          | skype.at       | 7645    |
+| key    | fullName    | displayName | comment          | sipPrefix | sipPostfix | sipDomain | sipPort |
+| entry2 | entry2_name | entry2      | entry2_propriété |           | 2          | skype.at  | 7645    |
 
 Scenario: 5.1 Verify the values have been filled in correctly
 Then call route selector editor was filled in with the following expected values:
-| key     | fullName     | displayName | comment            | sipPrefix | sipPostfix | sipDomain      | sipPort |
-| entry2  | entry2_name  | entry2      | entry2_propriété   |           | 2          | skype.at       | 7645    |
+| key    | fullName    | displayName | comment          | sipPrefix | sipPostfix | sipDomain | sipPort |
+| entry2 | entry2_name | entry2      | entry2_propriété |           | 2          | skype.at  | 7645    |
 
 Scenario: 6. System Technician: Clicks on Save button
 Meta: @TEST_STEP_ACTION: Configurator: Click on 'Save' button
@@ -98,12 +99,13 @@ Meta: @TEST_STEP_ACTION: -
 Then list size for Call Route Selectors is: 2
 
 Scenario: 8. System Technician: Verifies that Call Route Selectors newest item is by default selected and displayed the correct values.
+
 Meta: @TEST_STEP_ACTION: Configurator: Verify that Call Route Selectors newest item is by default selected and displayed the correct values.
 @TEST_STEP_REACTION: Configurator: 'Name', 'Display name', 'SIP' area display correctly the values filled in at step 5. In the Example area, the SIP is displayed according to the filled in field: - Prefix field value is inserted in front of "TestUser"text, Postfix field value is insterted after "TestUser"text, Domain field value is inserted after "TestUser"text and Postfix value, with a @ in front, Port value field value is inserted after "TestUser"text, Postfix value and Domain value with : in front.
 @TEST_STEP_REF: [CATS-REF: QsHw]
 Then call route selector contains the following expected values:
-| key     | fullName     | displayName | comment            | sipPrefix | sipPostfix | sipDomain      | sipPort |
-| entry2  | entry2_name  | entry2      | entry2_propriété   |           | 2          | skype.at       | 7645    |
+| key    | fullName    | displayName | comment          | sipPrefix | sipPostfix | sipDomain | sipPort |
+| entry2 | entry2_name | entry2      | entry2_propriété |           | 2          | skype.at  | 7645    |
 Then in Call Route Selectors list verify that last item is entry2_name
 
 Scenario: 9. Add 9 call route entries
@@ -115,7 +117,7 @@ Then editor page Call Route Selectors is visible
 When the values are added in the call route selector editor using entry with <key>
 Then call route selector editor was filled in with the expected values from entry with <key>
 Then Save button is pressed in Call Route Selectors editor
-Then waiting 7 seconds for LoadingScreen to disappear
+Then waiting 5 seconds for LoadingScreen to disappear
 Then verifying pop-up displays message: Successfully saved the call route selector
 Then call route selector contains the expected values from entry with <key>
 Then in Call Route Selectors list verify that last item has name from entry <key>
