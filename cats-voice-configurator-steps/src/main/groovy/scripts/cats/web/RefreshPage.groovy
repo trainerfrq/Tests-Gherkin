@@ -15,7 +15,6 @@ class RefreshPage extends WebScriptTemplate {
         driver.navigate().refresh();
 
         ConfigManagementPage configManagementObject = new ConfigManagementPage(driver)
-
         MainRightHandSidePanel mainRightHandSidePanel = configManagementObject.mainRightHandSidePanel
 
         evaluate(ExecutionDetails.create("Main right hand panel is displayed")
@@ -26,7 +25,5 @@ class RefreshPage extends WebScriptTemplate {
         evaluate(ExecutionDetails.create("Main right hand panel is empty")
                 .received(pluginTitleText)
                 .success(pluginTitleText.equals("")))
-
     }
-
 }
