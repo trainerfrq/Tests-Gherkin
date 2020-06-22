@@ -83,6 +83,6 @@ When clicking on Yes button of Delete alert box dialog
 Then waiting 5 seconds for LoadingScreen to disappear
 Then verifying pop-up displays message: The file was successfully deleted.
 
-Scenario: Clean-up - Close Global setting - Telephone menu
-When selecting Global settings - Telephone item in main menu
+Scenario: Clean-up - Refresh Configurator
+Then refresh Configurator
 

@@ -23,6 +23,8 @@ import com.frequentis.c4i.test.model.parameter.CatsCustomParameterBase;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Role extends CatsCustomParameterBase {
 
+    private String id;
+    private PhoneSettings phoneSettings;
     @CatsCustomParameter(parameterName = "name")
     private String name;
     @CatsCustomParameter(parameterName = "displayName")
@@ -47,6 +49,22 @@ public class Role extends CatsCustomParameterBase {
     private String defaultSourceOutgoingCalls;
     @CatsCustomParameter(parameterName = "defaultSipPriority")
     private String defaultSipPriority;
+
+    public PhoneSettings getPhoneSettings() {
+        return phoneSettings;
+    }
+
+    public void setPhoneSettings(PhoneSettings phoneSettings) {
+        this.phoneSettings = phoneSettings;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -134,10 +152,10 @@ public class Role extends CatsCustomParameterBase {
         this.defaultSipPriority = defaultSipPriority;
     }
 
-    @Override
     public String toString() {
         return "Role{" +
-                "name='" + name + '\'' +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
                 ", displayName='" + displayName + '\'' +
                 ", location='" + location + '\'' +
                 ", organization='" + organization + '\'' +
@@ -146,8 +164,9 @@ public class Role extends CatsCustomParameterBase {
                 ", layout='" + layout + '\'' +
                 ", callRouteSelector='" + callRouteSelector + '\'' +
                 ", destination='" + destination + '\'' +
+                ", resultingSipUri='" + resultingSipUri + '\'' +
                 ", defaultSourceOutgoingCalls='" + defaultSourceOutgoingCalls + '\'' +
                 ", defaultSipPriority='" + defaultSipPriority + '\'' +
-                "} " + super.toString();
+                "} ";
     }
 }

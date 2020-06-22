@@ -109,7 +109,9 @@ Meta:
 @TEST_STEP_REACTION: Configurator: A page with Roles in JSON format is visible and RoleTest1 is displayed containing inserted information
 @TEST_STEP_REF: [CATS-REF: ULaF]
 When issuing http GET request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/roles :=> response
-Then verifying roles requested response ${response} contains roles <<ROLES_LIST>> and role RoleTest1
+Then verifying roles requested response ${response} contains roles from table:
+| key     | name      |
+| entry1  | RoleTest1 |
 
 Scenario: 10. GET all phone book entries and check for added role
 Meta:
@@ -117,7 +119,9 @@ Meta:
 @TEST_STEP_REACTION: Configurator: A page with Phone Book entries in JSON format is visible and RoleTest1 is displayed containing inserted information
 @TEST_STEP_REF: [CATS-REF: jZ0R]
 When issuing http GET request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/phoneBook?searchPattern=&startIndex=0&itemCount=2147483647&externalEntries=true :=> phoneBookResponse
-Then verifying phoneBook requested response ${phoneBookResponse} contains roles <<ROLES_LIST>> and role RoleTest1
+Then verifying phoneBook requested response ${phoneBookResponse} contains roles from table:
+| key     | name      |
+| entry1  | RoleTest1 |
 
 Scenario: Delete new added role
 When deleting Roles sub-menu item: RoleTest1
@@ -131,7 +135,5 @@ Then verifying pop-up displays message: The file was successfully deleted.
 Scenario: Close Missions and Roles menu
 When selecting Missions and Roles item in main menu
 
-Scenario: A scenario that is only executed in case of an execution failure
-Meta: @RunOnFailure
-GivenStories: configurator/Roles/@RolesCleanup.story
-Then waiting until the cleanup is done
+Scenario: Clean-up - Refresh Configurator
+Then refresh Configurator

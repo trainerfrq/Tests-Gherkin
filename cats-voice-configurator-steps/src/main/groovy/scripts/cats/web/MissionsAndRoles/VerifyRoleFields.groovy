@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver
 import scripts.agent.selenium.automation.WebScriptTemplate
 import scripts.elements.configurators.missionsAndRoles.Roles.RolesPage
 
-
 class VerifyRoleFields extends WebScriptTemplate{
     public static final String IPARAM_NAME = "Name"
     public static final String IPARAM_DISPLAY_NAME = "Display name"

@@ -1,0 +1,12 @@
+{
+  "id" : "8daec205-b584-47f9-9d4a-d7676ed6df2d",
+  "name" : "admin",
+  "displayName" : "Admin",
+  "comment" : "",
+  "replacePlaceholder" : {
+    "prefix" : "222",
+    "postfix" : "",
+    "domain" : "example.com",
+    "schema" : "sip"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "id" : "d6b55de9-5dcd-4717-bf9c-bdaf1e4bee63",
+  "name" : "APP",
+  "displayName" : "APP",
+  "location" : "",
+  "organization" : "",
+  "comment" : "",
+  "notes" : "",
+  "phoneSettings" : {
+    "sipAddress" : "sip:507723@example.com",
+    "roleAliases" : [ "8999857e-bfae-499e-b1e6-0894c59987f1" ],
+    "telephoneGroups" : [ ],
+    "defaultSourceForOutgoingCalls" : {
+      "id" : "d6b55de9-5dcd-4717-bf9c-bdaf1e4bee63",
+      "type" : "ROLE"
+    },
+    "defaultSipPriority" : "normal",
+    "callLimits" : {
+      "maxIncomingIACallsCount" : 1,
+      "maxCallsOnHold" : 5,
+      "maxIncomingPendingCallsCount" : 2,
+      "maxOutgoingPositionMonitoringCalls" : 0,
+      "maxIncomingPositionMonitoringCalls" : 2
+    },
+    "soundSettings" : {
+      "defaultChimeType" : "chime_01",
+      "defaultKeyClick" : "input_01"
+    },
+    "voiceMonitoringSettings" : {
+      "agIaCallMonitoringEnabled" : false,
+      "ggIaCallMonitoringEnabled" : false,
+      "incomingPositionMonitoringCallsIndicationEnabled" : true
+    }
+  },
+  "intrusionSettings" : {
+    "intrusionAllowed" : false,
+    "activeCallTerminationBehavior" : "autoAccept",
+    "warningPeriodInSeconds" : 10
+  },
+  "positionSettings" : {
+    "opVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "coVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "maxAgGgBalanceAttenuation" : 20,
+    "notificationsVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "chimeVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "opSidetoneVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "coSidetoneVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "keyClickVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "brightnessControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    }
+  },
+  "layoutId" : "17d55205-606b-4d02-a4fb-f621bc23a521"
+}

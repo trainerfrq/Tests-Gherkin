@@ -1,0 +1,9 @@
+{
+  "id" : "abcb04af-33f3-4ecc-9cdc-f081d231aa7e",
+  "name" : "WEST-EXEC",
+  "comment" : "Mission position 2",
+  "location" : "",
+  "organization" : "",
+  "notes" : "",
+  "roles" : [ "2f3132b1-5f3e-437b-8774-cecf20880eaa", "b9e16e2b-70ec-4ee1-bfe4-2f35619e1cab", "f4997c28-9419-496f-8885-e1bc0120825e", "2c85bc28-2016-426e-8b74-7c6690275f09" ]
+}
