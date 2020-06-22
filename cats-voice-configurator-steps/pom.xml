@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.frequentis.xvp.voice.phone</groupId>
         <artifactId>phone-test-automation</artifactId>      
-        <version>2.2.5</version>
+        <version>2.2.6</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -45,6 +45,36 @@
         <dependency>
             <groupId>com.frequentis.c4i.test</groupId>
             <artifactId>cats-bdd</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.frequentis.xvp.framework.testing</groupId>
+            <artifactId>xvp-cats-rest-configuration</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.frequentis.xvp.framework.testing</groupId>
+                    <artifactId>xvp-cats-test-system</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.frequentis.xvp.voice</groupId>
+            <artifactId>op-voice-config-interface</artifactId>
+            <version>${voice.config.interface.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.frequentis.xvp.voice</groupId>
+            <artifactId>hmi-configurator-interface</artifactId>
+            <version>${hmi.config.interface.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.frequentis.xvp.voice</groupId>
+            <artifactId>voice-common-test-utilities</artifactId>
+            <version>${voice.common.test.utilities.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.frequentis.xvp.voice</groupId>
+            <artifactId>voice-common-utilities</artifactId>
+            <version>${voice.common.utilities.version}</version>
         </dependency>
     </dependencies>
 
