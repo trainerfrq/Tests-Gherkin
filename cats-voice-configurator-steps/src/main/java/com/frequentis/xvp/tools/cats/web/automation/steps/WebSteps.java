@@ -281,9 +281,9 @@ public class WebSteps extends AutomationSteps {
         if (webAppConfig != null) {
             Profile profile = getProfile(webAppConfig.getProfileName());
             evaluate(remoteStep("Selecting " + itemName + " from " + subMenuName + " items")
-                    .scriptOn(SelectItemFromItemsList.class, profile)
-                    .input(SelectItemFromItemsList.IPARAM_SUB_MENU_NAME, subMenuName)
-                    .input(SelectItemFromItemsList.IPARAM_ITEM_NAME, itemName));
+                    .scriptOn(SelectItemByName.class, profile)
+                    .input(SelectItemByName.IPARAM_SUB_MENU_NAME, subMenuName)
+                    .input(SelectItemByName.IPARAM_ITEM_NAME, itemName));
         }
     }
 
@@ -339,9 +339,9 @@ public class WebSteps extends AutomationSteps {
         if (webAppConfig != null) {
             Profile profile = getProfile(webAppConfig.getProfileName());
             evaluate(remoteStep("Delete " + subMenuName + " sub menu item: " + itemName)
-                    .scriptOn(CleanupDeleteAddedItem.class, profile)
-                    .input(CleanupDeleteAddedItem.IPARAM_SUB_MENU_NAME, subMenuName)
-                    .input(CleanupDeleteAddedItem.IPARAM_ITEM_NAME, itemName));
+                    .scriptOn(CleanupItem.class, profile)
+                    .input(CleanupItem.IPARAM_SUB_MENU_NAME, subMenuName)
+                    .input(CleanupItem.IPARAM_ITEM_NAME, itemName));
         }
     }
 

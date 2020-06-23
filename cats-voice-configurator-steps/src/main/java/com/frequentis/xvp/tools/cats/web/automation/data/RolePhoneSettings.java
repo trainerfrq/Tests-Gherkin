@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PhoneSettings {
+public class RolePhoneSettings {
 
     private String sipAddress;
     private List<String> roleAliases = null;

@@ -16,7 +16,7 @@ Layout layoutTest available (Voice-HMI Layout menu - HMI Layouts)
 Scenario: Preparation step - save missions ids
 Given the missions ids for configurator <<xvp.configurator.url>> are saved in list defaultMissions
 
-Scenario: Preparation step - delete roles
+Scenario: Preparation step - save roles ids and delete roles
 Given the roles ids for configurator <<xvp.configurator.url>> are saved in list defaultRoles
 Then using <<xvp.configurator.url>> delete roles with ids from list defaultRoles
 
@@ -173,7 +173,7 @@ Meta:
 Then Save button is pressed in Roles editor
 Then waiting 1 seconds for LoadingScreen to disappear
 Then pop-up message is visible
-Then verifying pop-up displays message: <<MAX_NUMBER_OF_ROLES_WARNING_MESSAGE>>
+Then verifying pop-up displays message: Could not save the role: Maximum number of defined roles (50) reached
 
 Scenario: 11.1 System Technician: Press save button
 Meta:

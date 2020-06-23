@@ -24,7 +24,7 @@ import com.frequentis.c4i.test.model.parameter.CatsCustomParameterBase;
 public class Role extends CatsCustomParameterBase {
 
     private String id;
-    private PhoneSettings phoneSettings;
+    private RolePhoneSettings rolePhoneSettings;
     @CatsCustomParameter(parameterName = "name")
     private String name;
     @CatsCustomParameter(parameterName = "displayName")
@@ -50,12 +50,12 @@ public class Role extends CatsCustomParameterBase {
     @CatsCustomParameter(parameterName = "defaultSipPriority")
     private String defaultSipPriority;
 
-    public PhoneSettings getPhoneSettings() {
-        return phoneSettings;
+    public RolePhoneSettings getRolePhoneSettings() {
+        return rolePhoneSettings;
     }
 
-    public void setPhoneSettings(PhoneSettings phoneSettings) {
-        this.phoneSettings = phoneSettings;
+    public void setRolePhoneSettings(RolePhoneSettings rolePhoneSettings) {
+        this.rolePhoneSettings = rolePhoneSettings;
     }
 
     public String getId() {

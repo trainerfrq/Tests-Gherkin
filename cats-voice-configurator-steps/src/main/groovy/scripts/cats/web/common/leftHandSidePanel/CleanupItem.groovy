@@ -10,7 +10,7 @@ import scripts.elements.ConfigManagementUtils
 import scripts.elements.general.mainPageComponents.ContentBody
 
 
-class CleanupDeleteAddedItem extends WebScriptTemplate {
+class CleanupItem extends WebScriptTemplate {
     public static final String IPARAM_SUB_MENU_NAME = "sub_menu_name"
     public static final String IPARAM_ITEM_NAME = "item_name"
 

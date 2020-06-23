@@ -80,35 +80,35 @@ Meta:
 @TEST_STEP_REACTION: Configurator: Warning -The field is required- is displayed for Name input field
 @TEST_STEP_REF: [CATS-REF: hZv5]
 Then Save button is pressed in Roles editor
-Then warning message The field is required! is displayed for field Name from Roles editor
+Then warning message REQUIRED_FIELD_MESSAGE is displayed for field Name from Roles editor
 
 Scenario: 5.1 Click on Save button
 Meta:
 @TEST_STEP_ACTION: -
 @TEST_STEP_REACTION: Configurator: Warning -The field is required- is displayed for Display name input field
 @TEST_STEP_REF: [CATS-REF: jCdC]
-Then warning message The field is required! is displayed for field Display name from Roles editor
+Then warning message REQUIRED_FIELD_MESSAGE is displayed for field Display name from Roles editor
 
 Scenario: 5.2 Click on Save button
 Meta:
 @TEST_STEP_ACTION: -
 @TEST_STEP_REACTION: Configurator: Warning -The field is required- is displayed for Layout drop down
 @TEST_STEP_REF: [CATS-REF: f7n4]
-Then warning message The field is required! is displayed for field Layout from Roles editor
+Then warning message REQUIRED_FIELD_MESSAGE is displayed for field Layout from Roles editor
 
 Scenario: 5.3 Click on Save button
 Meta:
 @TEST_STEP_ACTION: -
 @TEST_STEP_REACTION: Configurator: Warning -The field is required- is displayed for Destination input field
 @TEST_STEP_REF: [CATS-REF: 5WNK]
-Then warning message The field is required! is displayed for field Destination from Roles editor
+Then warning message REQUIRED_FIELD_MESSAGE is displayed for field Destination from Roles editor
 
 Scenario: 5.4 Click on Save button
 Meta:
 @TEST_STEP_ACTION: -
 @TEST_STEP_REACTION: Configurator: Warning -The field is required- is displayed for Default Source for outgoing calls drop-down
 @TEST_STEP_REF: [CATS-REF: vaxD]
-Then warning message The field is required! is displayed for field Default Source for outgoing calls from Roles editor
+Then warning message REQUIRED_FIELD_MESSAGE is displayed for field Default Source for outgoing calls from Roles editor
 
 Scenario: 6. Add new Role
 Meta:

@@ -39,16 +39,19 @@ public class RestSteps extends AutomationSteps {
 
     private static final String CALL_ROUTE_SELECTORS_SUB_PATH = "/op-voice-service/callRouteSelectors";
     private static final String CALL_ROUTE_SELECTORS_ORDER_SUB_PATH = "/op-voice-service/callRouteSelectors/order";
-    private static final String MISSIONS_SUB_PATH = "/op-voice-service/generic/items/missions.json";
+    private static final String MISSIONS_SUB_PATH = "/op-voice-service/missions";
+    private static final String MISSIONS_DIAGNOSTIC_SUB_PATH = "/op-voice-service/generic/items/missions.json";
+    private static final String MISSIONS_CONFIGURATION_SUB_PATH = "/op-voice-service/generic/items/missionconfiguration%2F";
     private static final String ROLES_SUB_PATH = "/op-voice-service/roles";
+    private static final String ROLES_CONFIGURATION_SUB_PATH = "/op-voice-service/generic/items/roleconfiguration%2F";
 
     @Then("using $endpointUri verify that call route selectors order sent to the Op Voice service as in the below table:$callRouteEntries")
     public void getCallRouteSelectorsOrderInMissionJson(final String endpointUri, final List<CallRouteSelectorsEntry> callRouteEntries) throws IOException {
         final LocalStep localStep = localStep("Execute GET request - Call Route selectors");
-        localStep.details(ExecutionDetails.create("Get call route selectors from: " + endpointUri + MISSIONS_SUB_PATH).success());
+        localStep.details(ExecutionDetails.create("Get call route selectors from: " + endpointUri + MISSIONS_DIAGNOSTIC_SUB_PATH).success());
 
         Response response =
-                getConfigurationItemsWebTarget(endpointUri + MISSIONS_SUB_PATH)
+                getConfigurationItemsWebTarget(endpointUri + MISSIONS_DIAGNOSTIC_SUB_PATH)
                         .request(MediaType.APPLICATION_JSON)
                         .get();
 
@@ -144,7 +147,7 @@ public class RestSteps extends AutomationSteps {
         }
     }
 
-    @Given("the roles ids for configurator $endpointUri are saved in list $idsWithAliases")
+    @Given("the roles ids for configurator $endpointUri are saved in list $listName")
     public void saveDefaultRolesIds(final String endpointUri, final String listName) throws IOException {
         final LocalStep localStep = localStep("Execute GET request - save default roles' ids");
 
@@ -185,7 +188,7 @@ public class RestSteps extends AutomationSteps {
 
             String templateContent = FileUtils.readFileToString(this.getConfigFile(templatePath + rolesListIds.get(i) + ".json"));
             Response response =
-                    getConfigurationItemsWebTarget(configurationURI + "/op-voice-service/generic/items/roleconfiguration%2F" + rolesListIds.get(i) + ".json")
+                    getConfigurationItemsWebTarget(configurationURI + ROLES_CONFIGURATION_SUB_PATH + rolesListIds.get(i) + ".json")
                             .request(MediaType.APPLICATION_JSON)
                             .put(Entity.json(templateContent));
 
@@ -206,12 +209,12 @@ public class RestSteps extends AutomationSteps {
         }
     }
 
-    @Given("the missions ids for configurator $endpointUri are saved in list $missionsList")
+    @Given("the missions ids for configurator $endpointUri are saved in list $listName")
     public void saveDefaultMissionsIds(final String endpointUri, final String listName) throws IOException {
         final LocalStep localStep = localStep("Execute GET request - save default missions' ids");
 
         Response response =
-                getConfigurationItemsWebTarget(endpointUri + "/op-voice-service/missions")
+                getConfigurationItemsWebTarget(endpointUri + MISSIONS_SUB_PATH)
                         .request(MediaType.APPLICATION_JSON)
                         .get();
 
@@ -271,7 +274,7 @@ public class RestSteps extends AutomationSteps {
             final URI configurationURI = new URI(endpointUri);
 
             Response response =
-                    getConfigurationItemsWebTarget(configurationURI + "/op-voice-service/generic/items/roleconfiguration%2F" + newUUid + ".json")
+                    getConfigurationItemsWebTarget(configurationURI + ROLES_CONFIGURATION_SUB_PATH + newUUid + ".json")
                             .request(MediaType.APPLICATION_JSON)
                             .put(Entity.json(roleToBeSend));
 
@@ -292,7 +295,7 @@ public class RestSteps extends AutomationSteps {
 
             final String templateContent = FileUtils.readFileToString(this.getConfigFile(templatePath + missionId + ".json"));
             Response response =
-                    getConfigurationItemsWebTarget(configurationURI + "/op-voice-service/generic/items/missionconfiguration%2F" + missionId + ".json")
+                    getConfigurationItemsWebTarget(configurationURI + MISSIONS_CONFIGURATION_SUB_PATH + missionId + ".json")
                             .request(MediaType.APPLICATION_JSON)
                             .put(Entity.json(templateContent));
 
