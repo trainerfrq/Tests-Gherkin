@@ -1,11 +1,11 @@
 Meta:
-@TEST_CASE_VERSION: V18
+@TEST_CASE_VERSION: V23
 @TEST_CASE_NAME: Role - Configuration Maximum number of roles (50)
-@TEST_CASE_DESCRIPTION: 
+@TEST_CASE_DESCRIPTION:
 As a system technician surfing on Configuration Management page
 I want to add 50 roles
 So I can verify that 50 roles were added successfully
-@TEST_CASE_PRECONDITION: 
+@TEST_CASE_PRECONDITION:
 Layout layoutTest available (Voice-HMI Layout menu - HMI Layouts)
 @TEST_CASE_PASS_FAIL_CRITERIA: This test is passed, when it is possible to configure 50 roles, each role having assign a HMI Layout.
 @TEST_CASE_DEVICES_IN_USE: Configurator
@@ -25,45 +25,46 @@ Given booked profiles:
 | profile | group                  | host       |
 | web     | firefox_<<systemName>> | <<CO3_IP>> |
 
-Scenario: 1. System Technician: Open a Configuration Management page.
-Meta:
-@TEST_STEP_ACTION: System Technician: Open a Configuration Management page.
-@TEST_STEP_REACTION: Configurator: Configuration Management page is visible
-@TEST_STEP_REF: [CATS-REF: gcCf]
 Given defined XVP Configurator:
 | key    | profile                    | url                      |
 | config | web firefox_<<systemName>> | <<xvp.configurator.url>> |
+
+Scenario: 1. Configurator: The main page of Configuration Management is open
+Meta:
+@TEST_STEP_ACTION: Configurator: The main page of Configuration Management is open
+@TEST_STEP_REACTION: Configurator: Configuration Management page is visible
+@TEST_STEP_REF: [CATS-REF: gcCf]
 Then configurator management page is visible
 
-Scenario: 2. System Technician: Click on Missions and Roles menu
+Scenario: 2. Configurator: Select 'Missions and Roles' menu
 Meta:
-@TEST_STEP_ACTION: System Technician: Click on Missions and Roles menu
-@TEST_STEP_REACTION: Configurator: Sub menus: Roles, Roles-Radio configuration, Missions, Template: Frequency Permissions, Template: Radio Settings are visible
+@TEST_STEP_ACTION: Configurator: Select 'Missions and Roles' menu
+@TEST_STEP_REACTION: Configurator: The following sub-menus are visible - Roles, Roles-Radio configuration, Missions, Template: Frequency Permissions, Template: Radio Settings
 @TEST_STEP_REF: [CATS-REF: Tklr]
 When selecting Missions and Roles item in main menu
 Then Missions and Roles menu item contains following sub-menu items: <<MISSIONS_AND_ROLES_SUB_MENUS>>
 
-Scenario: 3. System Technician: Click on Roles sub-menu
+Scenario: 3. Configurator: Select 'Roles' sub-menu
 Meta:
-@TEST_STEP_ACTION: System Technician: Click on Roles sub-menu
+@TEST_STEP_ACTION: Configurator: Select 'Roles' sub-menu
 @TEST_STEP_REACTION: Configurator: Roles page is visible
 @TEST_STEP_REF: [CATS-REF: On1F]
 When selecting Roles sub-menu item
 Then waiting 2 seconds for LoadingScreen to disappear
 Then sub-menu title is displaying: Roles
 
-Scenario: 4. System Technician: Click on New button
+Scenario: 4. Configurator: Click on 'New' button
 Meta:
-@TEST_STEP_ACTION: System Technician: Click on New button
+@TEST_STEP_ACTION: Configurator: Click on 'New' button
 @TEST_STEP_REACTION: Configurator: Role Editor page is visible
 @TEST_STEP_REF: [CATS-REF: tONs]
 When New button is pressed in Roles sub-menu
 Then editor page Roles is visible
 
-Scenario: 5. System Technician: Enter RoleTest1 details
+Scenario: 5. Configurator: Enter - 'RoleTest1' in 'Name' input field, 'RoleTest1' in 'Display name', 'sip:RoleTest1@example.com' in 'Destination'. Select - 'layoutTest' from 'Layout', 'Please select one!' from 'Call Route Selector', 'RoleTest1' from 'Default Source for outgoing calls'
 Meta:
-@TEST_STEP_ACTION: System Technician: Enter RoleTest1 details
-@TEST_STEP_REACTION: Configurator: RoleTest1 details are displayed
+@TEST_STEP_ACTION: Configurator: Enter - 'RoleTest1' in 'Name' input field, 'RoleTest1' in 'Display name', 'sip:RoleTest1%40example.com' in 'Destination'; Select - 'layoutTest' from 'Layout', 'Please select one!' from 'Call Route Selector', 'RoleTest1' from 'Default Source for outgoing calls'
+@TEST_STEP_REACTION: Configurator: 'Name', 'Display name', 'Destination', 'Layout', 'Call Route Selector', 'Default Source of outgoing calls' are displaying correctly the values selected or filled in. 'Resulting SIP URI' value is displayed according to the selected 'Call Route Selector' and 'Destination' input field.
 @TEST_STEP_REF: [CATS-REF: eSGP]
 When add a new role with:
 | key   | name      | displayName | layout     | callRouteSelector | destination           | defaultSourceOutgoingCalls |
@@ -73,9 +74,9 @@ Then verify role fields contain:
 | key   | name      | displayName | layout     | callRouteSelector | destination           | resultingSipUri           |defaultSourceOutgoingCalls |
 | entry | RoleTest1 | RoleTest1   | twr-layout | none              | RoleTest1@example.com | sip:RoleTest1@example.com | RoleTest1                 |
 
-Scenario: 6. System Technician: Press save button
+Scenario: 6. Configurator: Click on 'Save' button
 Meta:
-@TEST_STEP_ACTION: System Technician: Press save button
+@TEST_STEP_ACTION: Configurator: Click on 'Save' button
 @TEST_STEP_REACTION: Configurator: A pop-up message displays: Successfully saved the role
 @TEST_STEP_REF: [CATS-REF: ifpI]
 Then Save button is pressed in Roles editor
@@ -83,34 +84,26 @@ Then waiting 5 seconds for LoadingScreen to disappear
 Then pop-up message is visible
 Then verifying pop-up displays message: Successfully saved the role
 
-Scenario: 6.1 System Technician: Press save button
+Scenario: 7 Role RoleTest1 is displayed in Roles list
 Meta:
 @TEST_STEP_ACTION: -
 @TEST_STEP_REACTION: Configurator: Role RoleTest1 is displayed in Roles list
 @TEST_STEP_REF: [CATS-REF: ZxDu]
 Then role RoleTest1 is displayed in Roles list
 
-Scenario: 7. System Technician: Click on RoleTest1 from Roles list
+Scenario: 8. Configurator: Verify that RoleTest1 is by default selected and inserted values are displayed in Role editor
 Meta:
-@TEST_STEP_ACTION: System Technician: Click on RoleTest1 from Roles list
-@TEST_STEP_REACTION: Configurator: Role editor page is visible
-@TEST_STEP_REF: [CATS-REF: xd5i]
-When select item RoleTest1 from Roles sub-menu items list
-Then editor page Roles is visible
-
-Scenario: 8. System Technician: Verify fields content of new added Role
-Meta:
-@TEST_STEP_ACTION: System Technician: Verify fields content of new added Role
-@TEST_STEP_REACTION: Configurator: New added Role fields display inserted values
-@TEST_STEP_REF: [CATS-REF: 3y3L]
+@TEST_STEP_ACTION: Configurator: Verify that RoleTest1 is by default selected and inserted values are displayed in Role editor
+@TEST_STEP_REACTION: Configurator: 'Name', 'Display name', 'Destination', 'Layout', 'Call Route Selector', 'Default Source of outgoing calls' are displaying correctly the values selected or filled in at step 5.
+@TEST_STEP_REF: [CATS-REF: bkDm]
 Then verify role fields contain:
 | key   | name      | displayName | layout     | callRouteSelector | destination           | resultingSipUri           | defaultSourceOutgoingCalls |
 | entry | RoleTest1 | RoleTest1   | twr-layout | none              | RoleTest1@example.com | sip:RoleTest1@example.com | RoleTest1                  |
 
-Scenario: 9. System Technician: Repeat steps 4-8 another 49 times (in iteration 2 it is used RoleTest2 instead of RoleTest1, in iteration 3 it is used RoleTest3 and so on)
+Scenario: 9. Configurator: Repeat steps 4-8 another 49 times (in iteration 2 it is used RoleTest2 instead of RoleTest1, in iteration 3 it is used RoleTest3 and so on)
 Meta:
-@TEST_STEP_ACTION: System Technician: Repeat steps 4-8 another 49 times (in iteration 2 it is used RoleTest2 instead of RoleTest1, in iteration 3 it is used RoleTest3 and so on)
-@TEST_STEP_REACTION: Configurator: The expected results of steps 4-8 are the same (with the difference that in iteration 2, RoleTest1 is replaced with RoleTest2 and so on)
+@TEST_STEP_ACTION: Configurator: Repeat steps 4-8 another 49 times (in iteration 2 it is used RoleTest2 instead of RoleTest1, in iteration 3 it is used RoleTest3 and so on)
+@TEST_STEP_REACTION: Configurator: Roles page is visible and has 50 items
 @TEST_STEP_REF: [CATS-REF: ow6S]
 When New button is pressed in Roles sub-menu
 Then editor page Roles is visible
@@ -148,12 +141,12 @@ Examples:
 | RoleTest10 | RoleTest10  | twr-layout | none               | RoleTest10@example.com | sip:RoleTest10@example.com | RoleTest10                 |
 
 Scenario: 9.1 Add new Roles until maximum is reached
-When adding 40 test roles to endpoint <<xvp.configurator.url>> using roles list defaultRoles and template from path /configuration-files/<<systemName>>/Roles_default/roleconfiguration/
+When adding 40 test roles to endpoint <<xvp.configurator.url>> for system <<systemName>>
 
-Scenario: 10. System Technician: Repeat steps 4-8 once again, using RoleTest51 instead of RoleTest1
+Scenario: 10. Configurator: Repeat steps 4 and 5, using RoleTest51 instead of RoleTest1
 Meta:
-@TEST_STEP_ACTION: System Technician: Repeat steps 4-8 once again, using RoleTest51 instead of RoleTest1
-@TEST_STEP_REACTION: Configurator: The expected results of steps 4-8 are the same, containing RoleTest51 instead of RoleTest1
+@TEST_STEP_ACTION: Configurator: Repeat steps 4 and 5, using RoleTest51 instead of RoleTest1
+@TEST_STEP_REACTION: Configurator: The expected results of steps 4 and 5 are the same, containing RoleTest51 instead of RoleTest1
 @TEST_STEP_REF: [CATS-REF: JxGb]
 When New button is pressed in Roles sub-menu
 Then editor page Roles is visible
@@ -165,9 +158,9 @@ Then verify role fields contain:
 | key   | name       | displayName  | layout     | callRouteSelector | destination            | resultingSipUri            |defaultSourceOutgoingCalls |
 | entry | RoleTest51 | RoleTest51   | twr-layout | none              | RoleTest51@example.com | sip:RoleTest51@example.com | RoleTest51                |
 
-Scenario: 11. System Technician: Press save button
+Scenario: 11. Configurator: Click on 'Save' button
 Meta:
-@TEST_STEP_ACTION: System Technician: Press save button
+@TEST_STEP_ACTION: Configurator: Click on 'Save' button
 @TEST_STEP_REACTION: Configurator: A pop-up message displays: Could not save the role: Maximum number of defined roles (50) reached
 @TEST_STEP_REF: [CATS-REF: oyWI]
 Then Save button is pressed in Roles editor
@@ -175,35 +168,27 @@ Then waiting 1 seconds for LoadingScreen to disappear
 Then pop-up message is visible
 Then verifying pop-up displays message: Could not save the role: Maximum number of defined roles (50) reached
 
-Scenario: 11.1 System Technician: Press save button
+Scenario: 12. Role RoleTest51 is not displayed in Roles list
 Meta:
 @TEST_STEP_ACTION: -
 @TEST_STEP_REACTION: Configurator: Role RoleTest51 is not displayed in Roles list
 @TEST_STEP_REF: [CATS-REF: zcGM]
 Then role RoleTest51 is not displayed in Roles list
 
-Scenario: 12. System Technician: Close pop-up message
+Scenario: 13. Configurator: Close pop-up message
 Meta:
-@TEST_STEP_ACTION: System Technician: Close pop-up message
+@TEST_STEP_ACTION: Configurator: Close pop-up message
 @TEST_STEP_REACTION: Configurator: Pop-up message is closed
 @TEST_STEP_REF: [CATS-REF: segi]
 When clicking on close button of pop-up message
 Then waiting for 1 second
 Then pop-up message is not visible
 
-Scenario: 13. System Technician: Access address <Configuration Management page IP>/op-voice-service/roles
-Meta:
-@TEST_STEP_ACTION: System Technician: Access address <Configuration Management page IP>/op-voice-service/roles
-@TEST_STEP_REACTION: Configurator: Roles RoleTest1 to RoleTest50 are displayed containing inserted information
-@TEST_STEP_REF: [CATS-REF: V2Tm]
+Scenario: Backend verification - check in roles, that new roles were created successfully
 When issuing http GET request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/roles :=> response
 Then verifying roles requested response ${response} contains new added maximum number of roles
 
-Scenario: 14. Access address <Configuration Management page IP>/op-voice-service/phoneBook?searchPattern=&startIndex=0&itemCount=2147483647&externalEntries=true
-Meta:
-@TEST_STEP_ACTION: System Technician: Access address <Configuration Management page IP>/op-voice-service/phoneBook?searchPattern=&startIndex=0&itemCount=2147483647&externalEntries=true
-@TEST_STEP_REACTION: Configurator: A page with Phone Book entries in JSON (collapsed) format is visible and Roles RoleTest1 to RoleTest50 are displayed containing inserted information
-@TEST_STEP_REF: [CATS-REF: pfUq]
+Scenario: Backend verification - check in phonebook, that new roles were created successfully
 When issuing http GET request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/phoneBook?searchPattern=&startIndex=0&itemCount=2147483647&externalEntries=true :=> phoneBookResponse
 Then verifying phoneBook requested response ${phoneBookResponse} contains new added maximum number of roles
 

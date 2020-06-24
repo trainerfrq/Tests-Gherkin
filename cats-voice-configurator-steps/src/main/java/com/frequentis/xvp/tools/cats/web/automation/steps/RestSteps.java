@@ -258,12 +258,12 @@ public class RestSteps extends AutomationSteps {
         }
     }
 
-    @When("adding $number test roles to endpoint $endpoint using roles list $listName and template from path $templatePath")
-    public void addNumberOfRolesWithRest(final Integer numberOfRoles, String endpointUri, final String listName, final String templatePath) throws Throwable {
-        ArrayList<String> rolesListIds = getStoryListData(listName, ArrayList.class);
+    @When("adding $number test roles to endpoint $endpoint for system $systemName")
+    public void addNumberOfRolesWithRest(final Integer numberOfRoles, String endpointUri, final String systemName) throws Throwable {
+        ArrayList<String> rolesListIds = getStoryListData("defaultRoles", ArrayList.class);
 
         final String savedRoleId = rolesListIds.get(0);
-        final String templateContent = FileUtils.readFileToString(this.getConfigFile(templatePath + savedRoleId + ".json"));
+        final String templateContent = FileUtils.readFileToString(this.getConfigFile("/configuration-files/" + systemName + "/Roles_default/roleconfiguration/" + savedRoleId + ".json"));
 
 
         for (int i = 11; i <= numberOfRoles + 10; i++) {
