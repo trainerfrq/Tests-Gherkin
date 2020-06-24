@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V4
+@TEST_CASE_VERSION: V5
 @TEST_CASE_NAME: Role - General Information
 @TEST_CASE_DESCRIPTION: 
 As a system technician surfing on Configuration Management page
@@ -19,45 +19,46 @@ Given booked profiles:
 | profile | group                  | host       |
 | web     | firefox_<<systemName>> | <<CO3_IP>> |
 
-Scenario: 1. System Technician: Open a Configuration Management page.
-Meta:
-@TEST_STEP_ACTION: System Technician: Open a Configuration Management page.
-@TEST_STEP_REACTION: Configurator: Configuration Management page is visible
-@TEST_STEP_REF: [CATS-REF: kwB8]
 Given defined XVP Configurator:
 | key    | profile                    | url                      |
 | config | web firefox_<<systemName>> | <<xvp.configurator.url>> |
+
+Scenario: 1. Configurator: The main page of Configuration Management is open
+Meta:
+@TEST_STEP_ACTION: Configurator: The main page of Configuration Management is open
+@TEST_STEP_REACTION: Configurator: Configuration Management page is visible
+@TEST_STEP_REF: [CATS-REF: kwB8]
 Then configurator management page is visible
 
-Scenario: 2. System Technician: Click on Missions and Roles menu
+Scenario: 2. Configurator: Select 'Missions and Roles' menu
 Meta:
-@TEST_STEP_ACTION: System Technician: Click on Missions and Roles menu
-@TEST_STEP_REACTION: Configurator: Sub menus: Roles, Roles-Radio configuration, Missions, Template: Frequency Permissions, Template: Radio Settings are visible
+@TEST_STEP_ACTION: Configurator: Select 'Missions and Roles' menu
+@TEST_STEP_REACTION: Configurator: The following sub-menus are visible - Roles, Roles-Radio configuration, Missions, Template: Frequency Permissions, Template: Radio Settings
 @TEST_STEP_REF: [CATS-REF: Nays]
 When selecting Missions and Roles item in main menu
 Then Missions and Roles menu item contains following sub-menu items: <<MISSIONS_AND_ROLES_SUB_MENUS>>
 
-Scenario: 3. System Technician: Click on Roles sub-menu
+Scenario: 3. Configurator: Select 'Roles' sub-menu
 Meta:
-@TEST_STEP_ACTION: System Technician: Click on Roles sub-menu
+@TEST_STEP_ACTION: Configurator: Select 'Roles' sub-menu
 @TEST_STEP_REACTION: Configurator: Roles page is visible
 @TEST_STEP_REF: [CATS-REF: r3LE]
 When selecting Roles sub-menu item
 Then waiting 2 seconds for LoadingScreen to disappear
 Then sub-menu title is displaying: Roles
 
-Scenario: 4. System Technician: Click on New button
+Scenario: 4. Configurator: Click on 'New' button
 Meta:
-@TEST_STEP_ACTION: System Technician: Click on New button
+@TEST_STEP_ACTION: Configurator: Click on 'New' button
 @TEST_STEP_REACTION: Configurator: Role Editor page is visible
 @TEST_STEP_REF: [CATS-REF: 04CL]
 When New button is pressed in Roles sub-menu
 Then editor page Roles is visible
 
-Scenario: 5. Add new Role
+Scenario: 5. Configurator: Enter - 'RoleTest1' in 'Name' input field, 'RoleTest1' in 'Display name', 'Vienna' in 'Location', 'FRQ' in 'Organization', 'A new Role' in 'Comment', 'RoleTest1' in 'Destination'; Select - 'layoutTest' from 'Layout', 'default' from 'Call Route Selector', 'RoleTest1' from 'Default Source for outgoing calls'
 Meta:
-@TEST_STEP_ACTION: System Technician: Enter new Role details
-@TEST_STEP_REACTION: Configurator: New Role details are displayed
+@TEST_STEP_ACTION: Configurator: Enter - 'RoleTest1' in 'Name' input field, 'RoleTest1' in 'Display name', 'Vienna' in 'Location', 'FRQ' in 'Organization', 'A new Role' in 'Comment', 'RoleTest1' in 'Destination'; Select - 'layoutTest' from 'Layout', 'default' from 'Call Route Selector', 'RoleTest1' from 'Default Source for outgoing calls'
+@TEST_STEP_REACTION: Configurator: 'Name', 'Display name', 'Location', 'Organization', 'Comment', 'Destination', 'Layout', 'Call Route Selector', 'Default Source of outgoing calls' are displaying correctly the values selected or filled in. 'Resulting SIP URI' value is displayed according to the selected 'Call Route Selector' and 'Destination' input field.
 @TEST_STEP_REF: [CATS-REF: bxcf]
 When add a new role with:
 | key   | name      | displayName | location | organization | comment    | layout     | callRouteSelector | destination | defaultSourceOutgoingCalls |
@@ -67,9 +68,9 @@ Then verify role fields contain:
 | key   | name      | displayName | location | organization | comment    | layout     | callRouteSelector | destination | resultingSipUri           | defaultSourceOutgoingCalls |
 | entry | RoleTest1 | RoleTest1   | Vienna   | FRQ          | A new Role | twr-layout | default           | RoleTest1   | sip:RoleTest1@example.com | RoleTest1                  |
 
-Scenario: 6. System Technician: Press save button
+Scenario: 6. Configurator: Click on 'Save' button
 Meta:
-@TEST_STEP_ACTION: System Technician: Press save button
+@TEST_STEP_ACTION: Configurator: Click on 'Save' button
 @TEST_STEP_REACTION: Configurator: A pop-up message displays: Successfully saved the role
 @TEST_STEP_REF: [CATS-REF: Rbdn]
 Then Save button is pressed in Roles editor
@@ -79,45 +80,29 @@ Scenario: 6.1 Verifying pop-up message
 Then pop-up message is visible
 Then verifying pop-up displays message: Successfully saved the role
 
-Scenario: 6.2 Verifying new Role is displayed in Roles list
+Scenario: 7. Role RoleTest1 is displayed in Roles list
 Meta:
 @TEST_STEP_ACTION: -
 @TEST_STEP_REACTION: Configurator: Role RoleTest1 is displayed in Roles list
 @TEST_STEP_REF: [CATS-REF: B7He]
 Then role RoleTest1 is displayed in Roles list
 
-Scenario: 7. System Technician: Click on RoleTest1 from Roles list
+Scenario: 8. Configurator: Verify that RoleTest1 is by default selected and inserted values are displayed in Role editor
 Meta:
-@TEST_STEP_ACTION: System Technician: Click on RoleTest1 from Roles list
-@TEST_STEP_REACTION: Configurator: Role editor page is visible
+@TEST_STEP_ACTION: Configurator: Verify that RoleTest1 is by default selected and inserted values are displayed in Role editor
+@TEST_STEP_REACTION: Configurator: 'Name', 'Display name', 'Location', 'Organization', 'Comment', 'Destination', 'Layout', 'Call Route Selector', 'Default Source of outgoing calls' are displaying correctly the values selected or filled in at step 5.
 @TEST_STEP_REF: [CATS-REF: Ztzm]
-When select item RoleTest1 from Roles sub-menu items list
-Then editor page Roles is visible
-
-Scenario: 8. Verifying added Role data
-Meta:
-@TEST_STEP_ACTION: System Technician: Verify added Role fields
-@TEST_STEP_REACTION: Configurator: Added Role fields display inserted values
-@TEST_STEP_REF: [CATS-REF: 0RvB]
 Then verify role fields contain:
 | key   | name      | displayName | location | organization | comment    | layout     | callRouteSelector | destination | resultingSipUri           | defaultSourceOutgoingCalls |
 | entry | RoleTest1 | RoleTest1   | Vienna   | FRQ          | A new Role | twr-layout | default           | RoleTest1   | sip:RoleTest1@example.com | RoleTest1                  |
 
-Scenario: 9 GET all roles from server and check for added role
-Meta:
-@TEST_STEP_ACTION: System Technician: Access address <Configuration Management page IP>/configurations/op-voice-service/roles and check for RoleTest1
-@TEST_STEP_REACTION: Configurator: A page with Roles in JSON format is visible and RoleTest1 is displayed containing inserted information
-@TEST_STEP_REF: [CATS-REF: ULaF]
+Scenario: Backend verification - check in roles, that new role was created successfully
 When issuing http GET request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/roles :=> response
 Then verifying roles requested response ${response} contains roles from table:
 | key     | name      |
 | entry1  | RoleTest1 |
 
-Scenario: 10. GET all phone book entries and check for added role
-Meta:
-@TEST_STEP_ACTION: System Technician: Access address <Configuration Management page IP>/configurations/op-voice-service/phoneBook?searchPattern=&startIndex=0&itemCount=2147483647&externalEntries=true and check for RoleTest1
-@TEST_STEP_REACTION: Configurator: A page with Phone Book entries in JSON format is visible and RoleTest1 is displayed containing inserted information
-@TEST_STEP_REF: [CATS-REF: jZ0R]
+Scenario: Backend verification - check in phonebook, that new role was created successfully
 When issuing http GET request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/phoneBook?searchPattern=&startIndex=0&itemCount=2147483647&externalEntries=true :=> phoneBookResponse
 Then verifying phoneBook requested response ${phoneBookResponse} contains roles from table:
 | key     | name      |
