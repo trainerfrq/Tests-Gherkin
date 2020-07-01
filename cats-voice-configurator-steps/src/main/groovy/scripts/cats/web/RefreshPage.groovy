@@ -5,7 +5,7 @@ import com.frequentis.c4i.test.model.ExecutionDetails
 import org.openqa.selenium.WebDriver
 import scripts.agent.selenium.automation.WebScriptTemplate
 import scripts.elements.general.ConfigManagementPage
-import scripts.elements.general.mainPageComponents.MainRightHandSidePanel
+import scripts.elements.general.mainPageComponents.ConfigManagementContent
 
 class RefreshPage extends WebScriptTemplate {
 
@@ -15,14 +15,14 @@ class RefreshPage extends WebScriptTemplate {
         driver.navigate().refresh();
 
         ConfigManagementPage configManagementObject = new ConfigManagementPage(driver)
-        MainRightHandSidePanel mainRightHandSidePanel = configManagementObject.mainRightHandSidePanel
+        ConfigManagementContent configManagementContent = configManagementObject.configManagementContent
 
-        evaluate(ExecutionDetails.create("Main right hand panel is displayed")
-                .success(mainRightHandSidePanel.rightHandMenuDisplayed))
+        evaluate(ExecutionDetails.create("Configurator Management content area is displayed")
+                .success(configManagementContent.isContentDisplayed()))
 
-        String pluginTitleText = mainRightHandSidePanel.rightHandMenuPluginTitleText
+        String pluginTitleText = configManagementContent.getContentTitle()
 
-        evaluate(ExecutionDetails.create("Main right hand panel is empty")
+        evaluate(ExecutionDetails.create("Configurator Management content area is empty")
                 .received(pluginTitleText)
                 .success(pluginTitleText.equals("")))
     }

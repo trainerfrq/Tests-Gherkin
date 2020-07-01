@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V5
+@TEST_CASE_VERSION: V7
 @TEST_CASE_NAME: Role - Validation Errors
 @TEST_CASE_DESCRIPTION: 
 As a system technician surfing on Configuration Management page
@@ -42,78 +42,54 @@ Then Save button is pressed in Roles editor
 Then waiting 5 seconds for LoadingScreen to disappear
 When selecting Missions and Roles item in main menu
 
-Scenario: 1. System Technician: Open a Configuration Management page.
+Scenario: 1. Configurator: The main page of Configuration Management is open
 Meta:
-@TEST_STEP_ACTION: System Technician: Open a Configuration Management page.
+@TEST_STEP_ACTION: Configurator: The main page of Configuration Management is open
 @TEST_STEP_REACTION: Configurator: Configuration Management page is visible
 @TEST_STEP_REF: [CATS-REF: DykO]
 Then configurator management page is visible
 
-Scenario: 2. System Technician: Click on Missions and Roles menu
+Scenario: 2. Configurator: Select 'Missions and Roles' menu
 Meta:
-@TEST_STEP_ACTION: System Technician: Click on Missions and Roles menu
-@TEST_STEP_REACTION: Configurator: Sub menus: Roles, Roles-Radio configuration, Missions, Template: Frequency Permissions, Template: Radio Settings are visible
+@TEST_STEP_ACTION: Configurator: Select 'Missions and Roles' menu
+@TEST_STEP_REACTION: Configurator: The following sub-menus are visible - Roles, Roles-Radio configuration, Missions, Template: Frequency Permissions, Template: Radio Settings
 @TEST_STEP_REF: [CATS-REF: q83V]
 When selecting Missions and Roles item in main menu
 Then Missions and Roles menu item contains following sub-menu items: <<MISSIONS_AND_ROLES_SUB_MENUS>>
 
-Scenario: 3. System Technician: Click on Roles sub-menu
+Scenario: 3. Configurator: Select 'Roles' sub-menu
 Meta:
-@TEST_STEP_ACTION: System Technician: Click on Roles sub-menu
+@TEST_STEP_ACTION: Configurator: Select 'Roles' sub-menu
 @TEST_STEP_REACTION: Configurator: Roles page is visible
 @TEST_STEP_REF: [CATS-REF: oy7M]
 When selecting Roles sub-menu item
 Then waiting 2 seconds for LoadingScreen to disappear
 Then sub-menu title is displaying: Roles
 
-Scenario: 4. System Technician: Click on New button
+Scenario: 4. Configurator: Click on 'New' button
 Meta:
-@TEST_STEP_ACTION: System Technician: Click on New button
+@TEST_STEP_ACTION: Configurator: Click on 'New' button
 @TEST_STEP_REACTION: Configurator: Role Editor page is visible
 @TEST_STEP_REF: [CATS-REF: BhBP]
 When New button is pressed in Roles sub-menu
 Then editor page Roles is visible
 
-Scenario: 5. Click on Save button
+Scenario: 5. Configurator: Click on 'Save' button
 Meta:
-@TEST_STEP_ACTION: System Technician: Click on Save button
-@TEST_STEP_REACTION: Configurator: Warning -The field is required- is displayed for Name input field
+@TEST_STEP_ACTION: Configurator: Click on 'Save' button
+@TEST_STEP_REACTION: Configurator: Warning 'The field is required' is displayed for input fields: 'Name', 'Display name', 'Destination' and drop downs: 'Layout', 'Default Source for outgoing calls'
 @TEST_STEP_REF: [CATS-REF: hZv5]
 Then Save button is pressed in Roles editor
-Then warning message REQUIRED_FIELD_MESSAGE is displayed for field Name from Roles editor
+Then warning message <<REQUIRED_FIELD_MESSAGE>> is displayed for field Name from Roles editor
+Then warning message <<REQUIRED_FIELD_MESSAGE>> is displayed for field Display name from Roles editor
+Then warning message <<REQUIRED_FIELD_MESSAGE>> is displayed for field Layout from Roles editor
+Then warning message <<REQUIRED_FIELD_MESSAGE>> is displayed for field Destination from Roles editor
+Then warning message <<REQUIRED_FIELD_MESSAGE>> is displayed for field Default Source for outgoing calls from Roles editor
 
-Scenario: 5.1 Click on Save button
+Scenario: 6. Configurator: Enter - 'RoleTest1' in 'Name' input field, 'RoleTest1' in 'Display name', 'RoleTest1' in 'Destination'; Select - 'layoutTest' from 'Layout', 'default' from 'Call Route Selector', 'RoleTest1' from 'Default Source for outgoing calls'
 Meta:
-@TEST_STEP_ACTION: -
-@TEST_STEP_REACTION: Configurator: Warning -The field is required- is displayed for Display name input field
-@TEST_STEP_REF: [CATS-REF: jCdC]
-Then warning message REQUIRED_FIELD_MESSAGE is displayed for field Display name from Roles editor
-
-Scenario: 5.2 Click on Save button
-Meta:
-@TEST_STEP_ACTION: -
-@TEST_STEP_REACTION: Configurator: Warning -The field is required- is displayed for Layout drop down
-@TEST_STEP_REF: [CATS-REF: f7n4]
-Then warning message REQUIRED_FIELD_MESSAGE is displayed for field Layout from Roles editor
-
-Scenario: 5.3 Click on Save button
-Meta:
-@TEST_STEP_ACTION: -
-@TEST_STEP_REACTION: Configurator: Warning -The field is required- is displayed for Destination input field
-@TEST_STEP_REF: [CATS-REF: 5WNK]
-Then warning message REQUIRED_FIELD_MESSAGE is displayed for field Destination from Roles editor
-
-Scenario: 5.4 Click on Save button
-Meta:
-@TEST_STEP_ACTION: -
-@TEST_STEP_REACTION: Configurator: Warning -The field is required- is displayed for Default Source for outgoing calls drop-down
-@TEST_STEP_REF: [CATS-REF: vaxD]
-Then warning message REQUIRED_FIELD_MESSAGE is displayed for field Default Source for outgoing calls from Roles editor
-
-Scenario: 6. Add new Role
-Meta:
-@TEST_STEP_ACTION: System Technician: Enter new Role details
-@TEST_STEP_REACTION: CConfigurator: New Role details are displayed
+@TEST_STEP_ACTION: Configurator: Enter - 'RoleTest1' in 'Name' input field, 'RoleTest1' in 'Display name', 'RoleTest1' in 'Destination'; Select - 'layoutTest' from 'Layout', 'default' from 'Call Route Selector', 'RoleTest1' from 'Default Source for outgoing calls'
+@TEST_STEP_REACTION: Configurator: 'Name', 'Display name', 'Destination', 'Layout', 'Call Route Selector', 'Default Source of outgoing calls' are displaying correctly the values selected or filled in. 'Resulting SIP URI' value is displayed according to the selected 'Call Route Selector' and 'Destination' input field.
 @TEST_STEP_REF: [CATS-REF: jVAl]
 When add a new role with:
 | key   | name      | displayName | layout     | callRouteSelector | destination | defaultSourceOutgoingCalls |
@@ -123,38 +99,38 @@ Then verify role fields contain:
 | key   | name      | displayName | layout     | callRouteSelector | destination | resultingSipUri           | defaultSourceOutgoingCalls |
 | entry | RoleTest1 | RoleTest1   | twr-layout | default           | RoleTest1   | sip:RoleTest1@example.com | RoleTest1                  |
 
-Scenario: 7. System Technician: Press save button
+Scenario: 7. Configurator: Click on 'Save' button
 Meta:
-@TEST_STEP_ACTION: System Technician: Press save button
+@TEST_STEP_ACTION: Configurator: Click on 'Save' button
 @TEST_STEP_REACTION: Configurator: A pop-up message displays: Could not save the role: Role name must be unique
 @TEST_STEP_REF: [CATS-REF: 0Zpx]
 Then Save button is pressed in Roles editor
 Then pop-up message is visible
 Then verifying pop-up displays message: Could not save the role: Role name must be unique
 
-Scenario: 7.1 System Technician: Press save button
+Scenario: 8. Role RoleTest1 is not displayed twice in Roles list
 Meta:
 @TEST_STEP_ACTION: -
-@TEST_STEP_REACTION: Configurator: Role RoleTest1 is not displayed twice in Roles list
+@TEST_STEP_REACTION: ConfiguratorBrowser: Role RoleTest1 is not displayed twice in Roles list
 @TEST_STEP_REF: [CATS-REF: 99E2]
 Then list size for Roles is: 26
 
-Scenario: 8. System Technician: Close pop-up message
+Scenario: 9. Configurator: Close pop-up message
 Meta:
-@TEST_STEP_ACTION: System Technician: Close pop-up message
+@TEST_STEP_ACTION: Configurator: Close pop-up message
 @TEST_STEP_REACTION: Configurator: Pop-up message is closed
 @TEST_STEP_REF: [CATS-REF: HCUc]
 When clicking on close button of pop-up message
 Then waiting for 1 second
 Then pop-up message is not visible
 
-Scenario: 8.1 Clear Name input field
+Scenario: 9.1 Clear Name input field
 Then clear content of Name input field from Roles sub menu
 
-Scenario: 9. System Technician: Enter RoleTest2 in Name input field
+Scenario: 10. Configurator: Enter RoleTest2 in Name input field
 Meta:
-@TEST_STEP_ACTION: System Technician: Enter RoleTest2 in Name input field
-@TEST_STEP_REACTION: Configurator: RoleTest2 is displayed in Name input field and Default Source for outgoing calls
+@TEST_STEP_ACTION: Configurator: Enter RoleTest2 in Name input field
+@TEST_STEP_REACTION: Configurator: RoleTest2 is displayed in Name and Default Source for outgoing calls
 @TEST_STEP_REF: [CATS-REF: kh62]
 When update a role with:
 | key   | name      |
@@ -164,58 +140,42 @@ Then verify role fields contain:
 | key   | name      | defaultSourceOutgoingCalls |
 | entry | RoleTest2 | RoleTest2                  |
 
-Scenario: 10. System Technician: Press save button
+Scenario: 11. Configurator: Click on 'Save' button
 Meta:
-@TEST_STEP_ACTION: System Technician: Press save button
+@TEST_STEP_ACTION: Configurator: Click on 'Save' button
 @TEST_STEP_REACTION: Configurator: A pop-up message displays: Successfully saved the role
 @TEST_STEP_REF: [CATS-REF: Lwna]
 Then Save button is pressed in Roles editor
 Then waiting 5 seconds for LoadingScreen to disappear
 
-Scenario: 10.1 Verifying pop-up message
+Scenario: 11.1 Verifying pop-up message
 Then pop-up message is visible
 Then verifying pop-up displays message: Successfully saved the role
 
-Scenario: 10.2 System Technician: Press save button
+Scenario: 12. Role RoleTest2 is displayed in Roles list
 Meta:
 @TEST_STEP_ACTION: -
 @TEST_STEP_REACTION: Configurator: Role RoleTest2 is displayed in Roles list
 @TEST_STEP_REF: [CATS-REF: g4KY]
 Then role RoleTest2 is displayed in Roles list
 
-Scenario: 11. System Technician: Click on RoleTest2 from Roles list
+Scenario: 13. Configurator: Verify that RoleTest2 is by default selected and inserted values are displayed in Role editor
 Meta:
-@TEST_STEP_ACTION: System Technician: Click on RoleTest2 from Roles list
-@TEST_STEP_REACTION: Configurator: Role editor page is visible
+@TEST_STEP_ACTION: Configurator: Verify that RoleTest2 is by default selected and inserted values are displayed in Role editor
+@TEST_STEP_REACTION: Configurator: 'Name', 'Display name', 'Destination', 'Layout', 'Call Route Selector', 'Default Source of outgoing calls' are displaying correctly the values selected or filled in at step 5 with modifications from step 10.
 @TEST_STEP_REF: [CATS-REF: R8fm]
-When select item RoleTest2 from Roles sub-menu items list
-Then editor page Roles is visible
-
-Scenario: 12. Verifying added Role data
-Meta:
-@TEST_STEP_ACTION: System Technician: Verify added Role fields
-@TEST_STEP_REACTION: Configurator: Added Role fields display inserted values
-@TEST_STEP_REF: [CATS-REF: n00J]
 Then verify role fields contain:
 | key   | name      | displayName | layout     | callRouteSelector | destination | resultingSipUri           | defaultSourceOutgoingCalls |
 | entry | RoleTest2 | RoleTest1   | twr-layout | default           | RoleTest1   | sip:RoleTest1@example.com | RoleTest2                  |
 
-Scenario: 13. GET all roles from server and check for added role
-Meta:
-@TEST_STEP_ACTION: System Technician: Access address <Configuration Management page IP>/configurations/op-voice-service/roles and check for RoleTest1 and RoleTest2
-@TEST_STEP_REACTION: Configurator: A page with Roles in JSON format is visible. RoleTest1 and RoleTest2 are displayed containing inserted information
-@TEST_STEP_REF: [CATS-REF: LtZK]
+Scenario: Backend verification - check in roles that new roles were created successfully
 When issuing http GET request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/roles :=> response
 Then verifying roles requested response ${response} contains roles from table:
 | key     | name      |
 | entry1  | RoleTest1 |
 | entry1  | RoleTest2 |
 
-Scenario: 14. GET all phone book entries and check for added role
-Meta:
-@TEST_STEP_ACTION: System Technician: Access address <Configuration Management page IP>/configurations/op-voice-service/phoneBook?searchPattern=&startIndex=0&itemCount=2147483647&externalEntries=true and check for RoleTest1 and RoleTest2
-@TEST_STEP_REACTION: Configurator: A page with Phone Book entries in JSON (collapsed) format is visible. RoleTest1 and RoleTest2 are displayed containing inserted information
-@TEST_STEP_REF: [CATS-REF: gjxI]
+Scenario: Backend verification - check in phonebook that new roles were created successfully
 When issuing http GET request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/phoneBook?searchPattern=&startIndex=0&itemCount=2147483647&externalEntries=true :=> phoneBookResponse
 Then verifying phoneBook requested response ${phoneBookResponse} contains roles from table:
 | key     | name      |

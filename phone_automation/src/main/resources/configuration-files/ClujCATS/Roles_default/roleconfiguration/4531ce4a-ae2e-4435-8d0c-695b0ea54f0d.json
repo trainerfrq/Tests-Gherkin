@@ -1,1 +1,76 @@
-{"comment": "", "layoutId": "cca2f2db-5eaf-420d-b37a-fdaed773de5b", "displayName": "operator1", "name": "operator1", "phoneSettings": {"roleAliases": [], "defaultSourceForOutgoingCalls": {"type": "ROLE", "id": "4531ce4a-ae2e-4435-8d0c-695b0ea54f0d"}, "voiceMonitoringSettings": {"ggIaCallMonitoringEnabled": false, "agIaCallMonitoringEnabled": false}, "defaultSipPriority": "normal", "sipAddress": "sip:operator1@example.com", "soundSettings": {"defaultKeyClick": "input_01", "defaultChimeType": "chime_01"}, "callLimits": {"maxIncomingIACallsCount": 3, "maxCallsOnHold": 5, "maxIncomingPendingCallsCount": 16}}, "notes": "", "location": "", "organization": "", "positionSettings": {"opSidetoneVolumeControlRange": {"maxValue": 100, "minValue": 0}, "coVolumeControlRange": {"maxValue": 100, "minValue": 0}, "opVolumeControlRange": {"maxValue": 100, "minValue": 0}, "brightnessControlRange": {"maxValue": 100, "minValue": 0}, "keyClickVolumeControlRange": {"maxValue": 100, "minValue": 0}, "coSidetoneVolumeControlRange": {"maxValue": 100, "minValue": 0}, "chimeVolumeControlRange": {"maxValue": 100, "minValue": 0}, "maxAgGgBalanceAttenuation": 20, "notificationsVolumeControlRange": {"maxValue": 100, "minValue": 0}}, "id": "4531ce4a-ae2e-4435-8d0c-695b0ea54f0d"}
+{
+  "id" : "4531ce4a-ae2e-4435-8d0c-695b0ea54f0d",
+  "name" : "operator1",
+  "displayName" : "operator1",
+  "location" : "",
+  "organization" : "",
+  "comment" : "",
+  "notes" : "",
+  "phoneSettings" : {
+    "sipAddress" : "sip:operator1@example.com",
+    "roleAliases" : [ ],
+    "telephoneGroups" : [ ],
+    "defaultSourceForOutgoingCalls" : {
+      "id" : "4531ce4a-ae2e-4435-8d0c-695b0ea54f0d",
+      "type" : "ROLE"
+    },
+    "defaultSipPriority" : "normal",
+    "callLimits" : {
+      "maxIncomingIACallsCount" : 3,
+      "maxCallsOnHold" : 5,
+      "maxIncomingPendingCallsCount" : 16,
+      "maxOutgoingPositionMonitoringCalls" : 0,
+      "maxIncomingPositionMonitoringCalls" : 0
+    },
+    "soundSettings" : {
+      "defaultChimeType" : "chime_01",
+      "defaultKeyClick" : "input_01"
+    },
+    "voiceMonitoringSettings" : {
+      "agIaCallMonitoringEnabled" : false,
+      "ggIaCallMonitoringEnabled" : false,
+      "incomingPositionMonitoringCallsIndicationEnabled" : false
+    }
+  },
+  "intrusionSettings" : {
+    "intrusionAllowed" : false,
+    "activeCallTerminationBehavior" : "autoAccept",
+    "warningPeriodInSeconds" : 10
+  },
+  "positionSettings" : {
+    "opVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "coVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "maxAgGgBalanceAttenuation" : 20,
+    "notificationsVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "chimeVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "opSidetoneVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "coSidetoneVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "keyClickVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "brightnessControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    }
+  },
+  "layoutId" : "2315d86b-0f25-4289-ac29-1bfc7d35ea7a"
+}

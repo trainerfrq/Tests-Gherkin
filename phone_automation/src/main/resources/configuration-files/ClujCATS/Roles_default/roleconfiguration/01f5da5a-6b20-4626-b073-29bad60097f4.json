@@ -36,6 +36,11 @@
     "idleOnPositionUnattendedEnabled" : true,
     "unattendedWarningTimeSpanInSeconds" : 10
   },
+  "intrusionSettings" : {
+    "intrusionAllowed" : false,
+    "activeCallTerminationBehavior" : "autoAccept",
+    "warningPeriodInSeconds" : 10
+  },
   "positionSettings" : {
     "opVolumeControlRange" : {
       "minValue" : 0,
@@ -71,5 +76,5 @@
       "maxValue" : 100
     }
   },
-  "layoutId" : "cca2f2db-5eaf-420d-b37a-fdaed773de5b"
+  "layoutId" : "2315d86b-0f25-4289-ac29-1bfc7d35ea7a"
 }

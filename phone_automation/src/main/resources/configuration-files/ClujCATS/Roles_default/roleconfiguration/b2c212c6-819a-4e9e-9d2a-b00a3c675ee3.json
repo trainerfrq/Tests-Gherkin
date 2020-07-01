@@ -32,6 +32,11 @@
       "incomingPositionMonitoringCallsIndicationEnabled" : true
     }
   },
+  "intrusionSettings" : {
+    "intrusionAllowed" : false,
+    "activeCallTerminationBehavior" : "autoAccept",
+    "warningPeriodInSeconds" : 10
+  },
   "positionSettings" : {
     "opVolumeControlRange" : {
       "minValue" : 0,
@@ -67,5 +72,5 @@
       "maxValue" : 100
     }
   },
-  "layoutId" : "dfbbe6de-511a-4e4a-9623-36d10c5f0b5f"
+  "layoutId" : "0ca8459f-a836-4117-aa33-070cb3b9abcf"
 }

@@ -179,25 +179,21 @@ public class RestSteps extends AutomationSteps {
 
     @Then("add roles to $endpointUri using configurators with ids from lists $listName found in path $templatePath")
     public void addDefaultRoles(final String endpointUri, final String listName, final String templatePath) throws Throwable {
+        URI configurationURI = new URI(endpointUri);
+        String templateContent;
+        Response response;
         final LocalStep localStep = localStep("Execute PUT/POST request with payload");
 
         ArrayList<String> rolesListIds = getStoryListData(listName, ArrayList.class);
 
         for (int i = 0; i < rolesListIds.size(); i++) {
-            URI configurationURI = new URI(endpointUri);
-
-            String templateContent = FileUtils.readFileToString(this.getConfigFile(templatePath + rolesListIds.get(i) + ".json"));
-            Response response =
-                    getConfigurationItemsWebTarget(configurationURI + ROLES_CONFIGURATION_SUB_PATH + rolesListIds.get(i) + ".json")
-                            .request(MediaType.APPLICATION_JSON)
-                            .put(Entity.json(templateContent));
-
-            localStep.details(ExecutionDetails.create("Executed PUT request with payload - on Roles area, using role id: " + rolesListIds.get(i)).expected("200 or 201")
-                    .received(Integer.toString(response.getStatus())).success(responseWasSuccessful(response)));
             if (i == rolesListIds.size() - 1) {
                 configurationURI = new URI(endpointUri);
 
+
                 templateContent = FileUtils.readFileToString(this.getConfigFile(templatePath + rolesListIds.get(i) + ".json"));
+                localStep.details(ExecutionDetails.create("See path: " + templatePath + rolesListIds.get(i) + ".json").expected("200 or 201")
+                        .received(templateContent).success(true));
                 response =
                         getConfigurationItemsWebTarget(configurationURI + ROLES_SUB_PATH)
                                 .request(MediaType.APPLICATION_JSON)
@@ -205,7 +201,18 @@ public class RestSteps extends AutomationSteps {
 
                 localStep.details(ExecutionDetails.create("Executed POST request with payload - on Roles area, using role id: " + rolesListIds.get(i)).expected("200 or 201")
                         .received(Integer.toString(response.getStatus())).success(responseWasSuccessful(response)));
+                continue;
             }
+            configurationURI = new URI(endpointUri);
+
+            templateContent = FileUtils.readFileToString(this.getConfigFile(templatePath + rolesListIds.get(i) + ".json"));
+            response =
+                    getConfigurationItemsWebTarget(configurationURI + ROLES_CONFIGURATION_SUB_PATH + rolesListIds.get(i) + ".json")
+                            .request(MediaType.APPLICATION_JSON)
+                            .put(Entity.json(templateContent));
+
+            localStep.details(ExecutionDetails.create("Executed PUT request with payload - on Roles area, using role id: " + rolesListIds.get(i)).expected("200 or 201")
+                    .received(Integer.toString(response.getStatus())).success(responseWasSuccessful(response)));
         }
     }
 

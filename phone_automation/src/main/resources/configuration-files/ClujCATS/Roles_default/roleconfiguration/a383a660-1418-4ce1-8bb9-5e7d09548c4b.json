@@ -1,1 +1,80 @@
-{"comment": "", "layoutId": "f39c4f05-4267-4d07-8a34-acbb84f9972a", "displayName": "LOWER-WEST-EXEC", "name": "LOWER-WEST-EXEC", "phoneSettings": {"roleAliases": ["c8804c00-8fc7-4ce7-b70d-b43a2f9e343c", "a27f694c-e13d-46f0-be73-d7b737ce1bfe", "a5a5f0f7-4a16-4835-b122-de67a1d5b021", "e00f3197-5d35-4518-bdd7-7bd7e08bf631"], "defaultSourceForOutgoingCalls": {"type": "ROLE", "id": "a383a660-1418-4ce1-8bb9-5e7d09548c4b"}, "voiceMonitoringSettings": {"ggIaCallMonitoringEnabled": false, "agIaCallMonitoringEnabled": false, "incomingPositionMonitoringCallsIndicationEnabled": false}, "defaultSipPriority": "normal", "sipAddress": "sip:LowerWestExec@example.com", "soundSettings": {"defaultKeyClick": "input_01", "defaultChimeType": "chime_01"}, "callLimits": {"maxOutgoingPositionMonitoringCalls": 0, "maxIncomingPositionMonitoringCalls": 0, "maxIncomingIACallsCount": 1, "maxCallsOnHold": 1, "maxIncomingPendingCallsCount": 8}}, "notes": "", "location": "", "organization": "", "positionSettings": {"opSidetoneVolumeControlRange": {"maxValue": 1, "minValue": 0}, "coVolumeControlRange": {"maxValue": 100, "minValue": 0}, "opVolumeControlRange": {"maxValue": 100, "minValue": 0}, "brightnessControlRange": {"maxValue": 100, "minValue": 0}, "keyClickVolumeControlRange": {"maxValue": 1, "minValue": 0}, "coSidetoneVolumeControlRange": {"maxValue": 1, "minValue": 0}, "chimeVolumeControlRange": {"maxValue": 1, "minValue": 0}, "maxAgGgBalanceAttenuation": 1, "notificationsVolumeControlRange": {"maxValue": 1, "minValue": 0}}, "id": "a383a660-1418-4ce1-8bb9-5e7d09548c4b", "unattendedSettings": {"idleOnPositionUnattendedEnabled": false, "unattendedWarningTimeSpanInSeconds": 10}}
+{
+  "id" : "a383a660-1418-4ce1-8bb9-5e7d09548c4b",
+  "name" : "LOWER-WEST-EXEC",
+  "displayName" : "LOWER-WEST-EXEC",
+  "location" : "",
+  "organization" : "",
+  "comment" : "",
+  "notes" : "",
+  "phoneSettings" : {
+    "sipAddress" : "sip:LowerWestExec@example.com",
+    "roleAliases" : [ "c8804c00-8fc7-4ce7-b70d-b43a2f9e343c", "a27f694c-e13d-46f0-be73-d7b737ce1bfe", "a5a5f0f7-4a16-4835-b122-de67a1d5b021", "e00f3197-5d35-4518-bdd7-7bd7e08bf631" ],
+    "telephoneGroups" : [ ],
+    "defaultSourceForOutgoingCalls" : {
+      "id" : "a383a660-1418-4ce1-8bb9-5e7d09548c4b",
+      "type" : "ROLE"
+    },
+    "defaultSipPriority" : "normal",
+    "callLimits" : {
+      "maxIncomingIACallsCount" : 1,
+      "maxCallsOnHold" : 1,
+      "maxIncomingPendingCallsCount" : 8,
+      "maxOutgoingPositionMonitoringCalls" : 0,
+      "maxIncomingPositionMonitoringCalls" : 0
+    },
+    "soundSettings" : {
+      "defaultChimeType" : "chime_01",
+      "defaultKeyClick" : "input_01"
+    },
+    "voiceMonitoringSettings" : {
+      "agIaCallMonitoringEnabled" : false,
+      "ggIaCallMonitoringEnabled" : false,
+      "incomingPositionMonitoringCallsIndicationEnabled" : false
+    }
+  },
+  "unattendedSettings" : {
+    "idleOnPositionUnattendedEnabled" : false,
+    "unattendedWarningTimeSpanInSeconds" : 10
+  },
+  "intrusionSettings" : {
+    "intrusionAllowed" : false,
+    "activeCallTerminationBehavior" : "autoAccept",
+    "warningPeriodInSeconds" : 10
+  },
+  "positionSettings" : {
+    "opVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "coVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "maxAgGgBalanceAttenuation" : 1,
+    "notificationsVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 1
+    },
+    "chimeVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 1
+    },
+    "opSidetoneVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 1
+    },
+    "coSidetoneVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 1
+    },
+    "keyClickVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 1
+    },
+    "brightnessControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    }
+  },
+  "layoutId" : "a0d63368-835f-4b6b-8140-2dff7a056e97"
+}

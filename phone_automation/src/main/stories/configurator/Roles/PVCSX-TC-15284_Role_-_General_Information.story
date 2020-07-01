@@ -1,11 +1,11 @@
 Meta:
-@TEST_CASE_VERSION: V5
+@TEST_CASE_VERSION: V7
 @TEST_CASE_NAME: Role - General Information
-@TEST_CASE_DESCRIPTION: 
+@TEST_CASE_DESCRIPTION:
 As a system technician surfing on Configuration Management page
 I want to create a new Role, configuring general information
 So I can verify that the Role was created successfully with general information configured
-@TEST_CASE_PRECONDITION: 
+@TEST_CASE_PRECONDITION:
 Layout layoutTest available (Voice-HMI Layout menu -&gt; HMI Layouts)
 Call Route Selector default available (Global settings - Telephone menu -&gt; Call Route Selectors) with:	Name: default	Display name: Default	Domain: example.com
 @TEST_CASE_PASS_FAIL_CRITERIA: This test is passed, when it is possible to create a new Role, configuring following general information fields:	Name	Display Name	Location	Organization	Comment
@@ -96,13 +96,13 @@ Then verify role fields contain:
 | key   | name      | displayName | location | organization | comment    | layout     | callRouteSelector | destination | resultingSipUri           | defaultSourceOutgoingCalls |
 | entry | RoleTest1 | RoleTest1   | Vienna   | FRQ          | A new Role | twr-layout | default           | RoleTest1   | sip:RoleTest1@example.com | RoleTest1                  |
 
-Scenario: Backend verification - check in roles, that new role was created successfully
+Scenario: Backend verification - check in roles that new role was created successfully
 When issuing http GET request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/roles :=> response
 Then verifying roles requested response ${response} contains roles from table:
 | key     | name      |
 | entry1  | RoleTest1 |
 
-Scenario: Backend verification - check in phonebook, that new role was created successfully
+Scenario: Backend verification - check in phonebook that new role was created successfully
 When issuing http GET request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/phoneBook?searchPattern=&startIndex=0&itemCount=2147483647&externalEntries=true :=> phoneBookResponse
 Then verifying phoneBook requested response ${phoneBookResponse} contains roles from table:
 | key     | name      |

@@ -1,8 +1,8 @@
 Meta:
-@TEST_CASE_VERSION: V23
+@TEST_CASE_VERSION: V24
 @TEST_CASE_NAME: Role - Configuration Maximum number of roles (50)
 @TEST_CASE_DESCRIPTION:
-As a system technician surfing on Configuration Management page
+As a system technician using a Configuration Management page
 I want to add 50 roles
 So I can verify that 50 roles were added successfully
 @TEST_CASE_PRECONDITION:
@@ -80,7 +80,7 @@ Meta:
 @TEST_STEP_REACTION: Configurator: A pop-up message displays: Successfully saved the role
 @TEST_STEP_REF: [CATS-REF: ifpI]
 Then Save button is pressed in Roles editor
-Then waiting 5 seconds for LoadingScreen to disappear
+Then waiting 6 seconds for LoadingScreen to disappear
 Then pop-up message is visible
 Then verifying pop-up displays message: Successfully saved the role
 
@@ -143,6 +143,15 @@ Examples:
 Scenario: 9.1 Add new Roles until maximum is reached
 When adding 40 test roles to endpoint <<xvp.configurator.url>> for system <<systemName>>
 
+Scenario: 9.2 Refresh page in order to get displayed the new added roles
+Then refresh Configurator
+
+Scenario: 9.3 Open Roles sub-menu
+When selecting Missions and Roles item in main menu
+When selecting Roles sub-menu item
+Then waiting 2 seconds for LoadingScreen to disappear
+Then sub-menu title is displaying: Roles
+
 Scenario: 10. Configurator: Repeat steps 4 and 5, using RoleTest51 instead of RoleTest1
 Meta:
 @TEST_STEP_ACTION: Configurator: Repeat steps 4 and 5, using RoleTest51 instead of RoleTest1
@@ -184,18 +193,31 @@ When clicking on close button of pop-up message
 Then waiting for 1 second
 Then pop-up message is not visible
 
-Scenario: Backend verification - check in roles, that new roles were created successfully
+Scenario: 14. Select role RoleTest1
+Meta:
+@TEST_STEP_ACTION: Configurator: Configurator: Select role RoleTest1
+@TEST_STEP_REACTION: Configurator: Configurator: A pop-up window shows saying "You have unsaved changes and are about to leave this page. if you leave, your changes will be discarded". Window has 2 option buttons: "Discard changes" and "Stay on this page"
+@TEST_STEP_REF: [CATS-REF: mX1l]
+When select item RoleTest1 from Roles sub-menu items list
+Then an alert box dialog pops-up with message: <<discardMessage>>
+
+Scenario: 15. Select role RoleTest1
+Meta:
+@TEST_STEP_ACTION: Configurator: Configurator: Choose to discard changes
+@TEST_STEP_REACTION: Configurator: Roles page is visible and has 50 new items
+@TEST_STEP_REF: [CATS-REF: KKO1]
+When clicking on Discard changes button of Discard alert box dialog
+
+Scenario: 15.1 Refresh page in order
+Then list size for Roles is: 50
+
+Scenario: Backend verification - check in roles that new roles were created successfully
 When issuing http GET request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/roles :=> response
 Then verifying roles requested response ${response} contains new added maximum number of roles
 
-Scenario: Backend verification - check in phonebook, that new roles were created successfully
+Scenario: Backend verification - check in phonebook that new roles were created successfully
 When issuing http GET request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/phoneBook?searchPattern=&startIndex=0&itemCount=2147483647&externalEntries=true :=> phoneBookResponse
 Then verifying phoneBook requested response ${phoneBookResponse} contains new added maximum number of roles
-
-Scenario: Discard unsaved changes
-When select item RoleTest1 from Roles sub-menu items list
-Then an alert box dialog pops-up with message: <<discardMessage>>
-When clicking on Discard changes button of Discard alert box dialog
 
 Scenario: Delete new added roles
 When deleting Roles sub-menu item: <name>
