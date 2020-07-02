@@ -23,11 +23,11 @@ class VerifyFieldWarningMessage extends WebScriptTemplate {
 
         evaluate(ExecutionDetails.create("Check " + fieldName + " field  warning message is displayed")
                 .expected("Warning message is displayed")
-                .success(pageObject.isFieldWarningMessageDisplayed(fieldName)))
+                .success(pageObject.getEditor().isFieldErrorMessageDisplayed(fieldName)))
 
         evaluate(ExecutionDetails.create("Verify " + fieldName + " field  warning message content")
                 .expected(warningMessage)
-                .received(pageObject.getFieldWarningMessage(fieldName))
-                .success(pageObject.getFieldWarningMessage(fieldName).contains(warningMessage)))
+                .received(pageObject.getEditor().getFieldErrorMessage(fieldName))
+                .success(pageObject.getEditor().getFieldErrorMessage(fieldName).contains(warningMessage)))
     }
 }

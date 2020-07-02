@@ -42,85 +42,85 @@ class VerifyRoleFields extends WebScriptTemplate{
         if (name != null) {
             evaluate(ExecutionDetails.create("Verifying role name")
                     .expected(name)
-                    .received(rolesPage.getFieldContent(IPARAM_NAME))
-                    .success(rolesPage.getFieldContent(IPARAM_NAME).equals(name)))
+                    .received(rolesPage.getEditor().getFieldContent(IPARAM_NAME))
+                    .success(rolesPage.getEditor().getFieldContent(IPARAM_NAME).equals(name)))
         }
 
         if (displayName != null) {
             evaluate(ExecutionDetails.create("Verifying role display name")
                     .expected(displayName)
-                    .received(rolesPage.getFieldContent(IPARAM_DISPLAY_NAME))
-                    .success(rolesPage.getFieldContent(IPARAM_DISPLAY_NAME).equals(displayName)))
+                    .received(rolesPage.getEditor().getFieldContent(IPARAM_DISPLAY_NAME))
+                    .success(rolesPage.getEditor().getFieldContent(IPARAM_DISPLAY_NAME).equals(displayName)))
         }
 
         if (location != null) {
             evaluate(ExecutionDetails.create("Verifying role location")
                     .expected(location)
-                    .received(rolesPage.getFieldContent(IPARAM_LOCATION))
-                    .success(rolesPage.getFieldContent(IPARAM_LOCATION).equals(location)))
+                    .received(rolesPage.getEditor().getFieldContent(IPARAM_LOCATION))
+                    .success(rolesPage.getEditor().getFieldContent(IPARAM_LOCATION).equals(location)))
         }
 
         if (organization != null) {
             evaluate(ExecutionDetails.create("Verifying role organization")
                     .expected(organization)
-                    .received(rolesPage.getFieldContent(IPARAM_ORGANIZATION))
-                    .success(rolesPage.getFieldContent(IPARAM_ORGANIZATION).equals(organization)))
+                    .received(rolesPage.getEditor().getFieldContent(IPARAM_ORGANIZATION))
+                    .success(rolesPage.getEditor().getFieldContent(IPARAM_ORGANIZATION).equals(organization)))
         }
 
         if (comment != null) {
             evaluate(ExecutionDetails.create("Verifying role comment")
                     .expected(comment)
-                    .received(rolesPage.getFieldContent(IPARAM_COMMENT))
-                    .success(rolesPage.getFieldContent(IPARAM_COMMENT).equals(comment)))
+                    .received(rolesPage.getEditor().getFieldContent(IPARAM_COMMENT))
+                    .success(rolesPage.getEditor().getFieldContent(IPARAM_COMMENT).equals(comment)))
         }
 
         if (notes != null) {
             evaluate(ExecutionDetails.create("Verifying role notes")
                     .expected(notes)
-                    .received(rolesPage.getFieldContent(IPARAM_NOTES))
-                    .success(rolesPage.getFieldContent(IPARAM_NOTES).equals(notes)))
+                    .received(rolesPage.getEditor().getFieldContent(IPARAM_NOTES))
+                    .success(rolesPage.getEditor().getFieldContent(IPARAM_NOTES).equals(notes)))
         }
 
         if (layout != null) {
             evaluate(ExecutionDetails.create("Verifying role layout")
                     .expected(layout)
-                    .received(rolesPage.getFieldContent(IPARAM_LAYOUT))
-                    .success(rolesPage.getFieldContent(IPARAM_LAYOUT).equals(layout)))
+                    .received(rolesPage.getEditor().getFieldContent(IPARAM_LAYOUT))
+                    .success(rolesPage.getEditor().getFieldContent(IPARAM_LAYOUT).equals(layout)))
         }
 
         if (callRouteSelector != null) {
             evaluate(ExecutionDetails.create("Verifying role call route selector")
                     .expected(callRouteSelector)
-                    .received(rolesPage.getFieldContent(IPARAM_CALL_ROUTE_SELECTOR))
-                    .success(rolesPage.getFieldContent(IPARAM_CALL_ROUTE_SELECTOR).equals(callRouteSelector)))
+                    .received(rolesPage.getEditor().getFieldContent(IPARAM_CALL_ROUTE_SELECTOR))
+                    .success(rolesPage.getEditor().getFieldContent(IPARAM_CALL_ROUTE_SELECTOR).equals(callRouteSelector)))
         }
 
         if (destination != null) {
             evaluate(ExecutionDetails.create("Verifying role destination")
                     .expected(destination)
-                    .received(rolesPage.getFieldContent(IPARAM_DESTINATION))
-                    .success(rolesPage.getFieldContent(IPARAM_DESTINATION).equals(destination)))
+                    .received(rolesPage.getEditor().getFieldContent(IPARAM_DESTINATION))
+                    .success(rolesPage.getEditor().getFieldContent(IPARAM_DESTINATION).equals(destination)))
         }
 
         if (resultingSipUri != null) {
             evaluate(ExecutionDetails.create("Verifying Resulting SIP URI")
                     .expected(resultingSipUri)
-                    .received(rolesPage.getFieldContent(IPARAM_RESULTING_SIP_URI))
-                    .success(rolesPage.getFieldContent(IPARAM_RESULTING_SIP_URI).equals(resultingSipUri)))
+                    .received(rolesPage.getEditor().getFieldContent(IPARAM_RESULTING_SIP_URI))
+                    .success(rolesPage.getEditor().getFieldContent(IPARAM_RESULTING_SIP_URI).equals(resultingSipUri)))
         }
 
         if (defaultSourceOutgoingCalls != null) {
             evaluate(ExecutionDetails.create("Verifying role default source for outgoing calls")
                     .expected(defaultSourceOutgoingCalls)
-                    .received(rolesPage.getFieldContent(IPARAM_DEFAULT_SOURCE_OUTGOING_CALLS))
-                    .success(rolesPage.getFieldContent(IPARAM_DEFAULT_SOURCE_OUTGOING_CALLS).equals(defaultSourceOutgoingCalls)))
+                    .received(rolesPage.getEditor().getFieldContent(IPARAM_DEFAULT_SOURCE_OUTGOING_CALLS))
+                    .success(rolesPage.getEditor().getFieldContent(IPARAM_DEFAULT_SOURCE_OUTGOING_CALLS).equals(defaultSourceOutgoingCalls)))
         }
 
         if (defaultSipPriority != null) {
             evaluate(ExecutionDetails.create("Verifying role default sip priority")
                     .expected(defaultSipPriority)
-                    .received(rolesPage.getFieldContent(IPARAM_DEFAULT_SIP_PRIORITY))
-                    .success(rolesPage.getFieldContent(IPARAM_DEFAULT_SIP_PRIORITY).equals(defaultSipPriority)))
+                    .received(rolesPage.getEditor().getFieldContent(IPARAM_DEFAULT_SIP_PRIORITY))
+                    .success(rolesPage.getEditor().getFieldContent(IPARAM_DEFAULT_SIP_PRIORITY).equals(defaultSipPriority)))
         }
     }
 }

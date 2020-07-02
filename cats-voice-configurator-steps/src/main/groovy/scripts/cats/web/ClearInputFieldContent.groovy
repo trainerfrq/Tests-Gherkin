@@ -23,6 +23,6 @@ class ClearInputFieldContent extends WebScriptTemplate {
                 .expected("Input field was cleaned")
                 .success(true))
 
-        pageObject.clearInputField(fieldName)
+        pageObject.getEditor().clearInputField(fieldName)
     }
 }

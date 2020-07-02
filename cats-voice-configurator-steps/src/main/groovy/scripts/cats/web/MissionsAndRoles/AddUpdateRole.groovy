@@ -38,67 +38,67 @@ class AddUpdateRole extends WebScriptTemplate {
         RolesPage rolesPage = new RolesPage(driver)
 
         if (name != null) {
-            rolesPage.writeInField(IPARAM_NAME, name)
+            rolesPage.getEditor().writeInField(IPARAM_NAME, name)
             evaluate(ExecutionDetails.create("Full name " + name + " was entered")
                     .success(true))
         }
 
         if (displayName != null) {
-            rolesPage.writeInField(IPARAM_DISPLAY_NAME, displayName)
+            rolesPage.getEditor().writeInField(IPARAM_DISPLAY_NAME, displayName)
             evaluate(ExecutionDetails.create("Display name " + displayName + " was entered")
                     .success(true))
         }
 
         if (location != null) {
-            rolesPage.writeInField(IPARAM_LOCATION, location)
+            rolesPage.getEditor().writeInField(IPARAM_LOCATION, location)
             evaluate(ExecutionDetails.create("Location " + location + " was entered")
                     .success(true))
         }
 
         if (organization != null) {
-            rolesPage.writeInField(IPARAM_ORGANIZATION, organization)
+            rolesPage.getEditor().writeInField(IPARAM_ORGANIZATION, organization)
             evaluate(ExecutionDetails.create("Organization " + organization + " was entered")
                     .success(true))
         }
 
         if (comment != null) {
-            rolesPage.writeInField(IPARAM_COMMENT, comment)
+            rolesPage.getEditor().writeInField(IPARAM_COMMENT, comment)
             evaluate(ExecutionDetails.create("Comment " + comment + " was entered")
                     .success(true))
         }
 
         if (notes != null) {
-            rolesPage.writeInField(IPARAM_NOTES, notes)
+            rolesPage.getEditor().writeInField(IPARAM_NOTES, notes)
             evaluate(ExecutionDetails.create("Notes " + notes + " were entered")
                     .success(true))
         }
 
         if (layout != null) {
-            rolesPage.selectFieldDropDownOption(IPARAM_LAYOUT, layout)
+            rolesPage.getEditor().selectFieldDropDownOption(IPARAM_LAYOUT, layout)
             evaluate(ExecutionDetails.create("Layout " + layout + " was selected")
                     .success(true))
         }
 
         if (callRouteSelector != null) {
-            rolesPage.selectFieldDropDownOption(IPARAM_CALL_ROUTE_SELECTOR, callRouteSelector)
+            rolesPage.getEditor().selectFieldDropDownOption(IPARAM_CALL_ROUTE_SELECTOR, callRouteSelector)
             evaluate(ExecutionDetails.create("Call Route Selector " + callRouteSelector + " was selected")
                     .success(true))
         }
 
         if (destination != null) {
-            rolesPage.writeInField(IPARAM_DESTINATION, destination)
+            rolesPage.getEditor().writeInField(IPARAM_DESTINATION, destination)
             evaluate(ExecutionDetails.create("Destination " + destination + " was entered")
                     .success(true))
         }
 
         if (defaultSourceOutgoingCalls != null) {
-            rolesPage.selectFieldDropDownOption(IPARAM_DEFAULT_SOURCE_OUTGOING_CALLS, defaultSourceOutgoingCalls)
+            rolesPage.getEditor().selectFieldDropDownOption(IPARAM_DEFAULT_SOURCE_OUTGOING_CALLS, defaultSourceOutgoingCalls)
             evaluate(ExecutionDetails.create("Default Source For Outgoing Calls " + defaultSourceOutgoingCalls + " was selected")
                     .success(true))
         }
 
         if (defaultSipPriority != null) {
-            rolesPage.selectFieldDropDownOption(IPARAM_DEFAULT_SIP_PRIORITY, defaultSipPriority)
+            rolesPage.getEditor().selectFieldDropDownOption(IPARAM_DEFAULT_SIP_PRIORITY, defaultSipPriority)
             evaluate(ExecutionDetails.create("Default SIP Priority " + defaultSipPriority + " was selected")
                     .success(true))
         }
