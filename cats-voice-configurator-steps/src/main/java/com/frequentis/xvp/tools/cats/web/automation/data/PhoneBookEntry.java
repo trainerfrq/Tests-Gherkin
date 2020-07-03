@@ -16,9 +16,11 @@
  ************************************************************************/
 package com.frequentis.xvp.tools.cats.web.automation.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameter;
 import com.frequentis.c4i.test.model.parameter.CatsCustomParameterBase;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PhoneBookEntry extends CatsCustomParameterBase{
 
     @CatsCustomParameter(parameterName = "fullName")

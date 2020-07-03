@@ -9,4 +9,6 @@
     <bean class="com.frequentis.xvp.tools.cats.web.automation.steps.CallRouteSelectorsSteps"/>
     <bean class="com.frequentis.xvp.tools.cats.web.automation.steps.PhoneBookSteps"/>
     <bean class="com.frequentis.xvp.tools.cats.web.automation.steps.RestSteps"/>
+    <bean class="com.frequentis.xvp.tools.cats.web.automation.steps.RolesWebSteps"/>
+    <bean class="com.frequentis.xvp.tools.cats.web.automation.steps.RolesBackendSteps"/>
 </beans>

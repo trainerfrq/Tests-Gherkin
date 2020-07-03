@@ -1,0 +1,80 @@
+{
+  "id" : "01f5da5a-6b20-4626-b073-29bad60097f4",
+  "name" : "LOWER-EAST-EXEC",
+  "displayName" : "LOWER-EAST-EXEC",
+  "location" : "",
+  "organization" : "",
+  "comment" : "",
+  "notes" : "",
+  "phoneSettings" : {
+    "sipAddress" : "sip:LowerEastExec@example.com",
+    "roleAliases" : [ "ef4e345d-9510-45dd-9cda-1fd52f5c7f66", "4531ce4a-ae2e-4435-8d0c-695b0ea54f0d", "166483e6-6676-4235-88c1-b251cd5e6c05", "71fb0180-d8f1-47c5-8a79-b2abcaa6a7ba", "ed42a7fe-2dc4-4ad4-ac1f-13451aedc99a", "e00f3197-5d35-4518-bdd7-7bd7e08bf631", "7e111eae-3e82-4acf-b294-34b6a5863429" ],
+    "telephoneGroups" : [ ],
+    "defaultSourceForOutgoingCalls" : {
+      "id" : "01f5da5a-6b20-4626-b073-29bad60097f4",
+      "type" : "ROLE"
+    },
+    "defaultSipPriority" : "normal",
+    "callLimits" : {
+      "maxIncomingIACallsCount" : 3,
+      "maxCallsOnHold" : 5,
+      "maxIncomingPendingCallsCount" : 16,
+      "maxOutgoingPositionMonitoringCalls" : 1,
+      "maxIncomingPositionMonitoringCalls" : 1
+    },
+    "soundSettings" : {
+      "defaultChimeType" : "chime_01",
+      "defaultKeyClick" : "input_01"
+    },
+    "voiceMonitoringSettings" : {
+      "agIaCallMonitoringEnabled" : false,
+      "ggIaCallMonitoringEnabled" : true,
+      "incomingPositionMonitoringCallsIndicationEnabled" : true
+    }
+  },
+  "unattendedSettings" : {
+    "idleOnPositionUnattendedEnabled" : true,
+    "unattendedWarningTimeSpanInSeconds" : 10
+  },
+  "intrusionSettings" : {
+    "intrusionAllowed" : false,
+    "activeCallTerminationBehavior" : "autoAccept",
+    "warningPeriodInSeconds" : 10
+  },
+  "positionSettings" : {
+    "opVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "coVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 9
+    },
+    "maxAgGgBalanceAttenuation" : 1,
+    "notificationsVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 1
+    },
+    "chimeVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 1
+    },
+    "opSidetoneVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 1
+    },
+    "coSidetoneVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 1
+    },
+    "keyClickVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 1
+    },
+    "brightnessControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    }
+  },
+  "layoutId" : "2315d86b-0f25-4289-ac29-1bfc7d35ea7a"
+}

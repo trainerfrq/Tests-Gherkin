@@ -1,0 +1,80 @@
+{
+  "id" : "bb0bdbc8-7351-4682-b809-ceb29ef37e4d",
+  "name" : "UPPER-EAST-EXEC",
+  "displayName" : "UPPER-EAST-EXEC",
+  "location" : "",
+  "organization" : "",
+  "comment" : "",
+  "notes" : "",
+  "phoneSettings" : {
+    "sipAddress" : "sip:UpperEastExec@example.com",
+    "roleAliases" : [ "166483e6-6676-4235-88c1-b251cd5e6c05", "71fb0180-d8f1-47c5-8a79-b2abcaa6a7ba", "ed42a7fe-2dc4-4ad4-ac1f-13451aedc99a" ],
+    "telephoneGroups" : [ ],
+    "defaultSourceForOutgoingCalls" : {
+      "id" : "bb0bdbc8-7351-4682-b809-ceb29ef37e4d",
+      "type" : "ROLE"
+    },
+    "defaultSipPriority" : "non-urgent",
+    "callLimits" : {
+      "maxIncomingIACallsCount" : 3,
+      "maxCallsOnHold" : 5,
+      "maxIncomingPendingCallsCount" : 16,
+      "maxOutgoingPositionMonitoringCalls" : 2,
+      "maxIncomingPositionMonitoringCalls" : 2
+    },
+    "soundSettings" : {
+      "defaultChimeType" : "chime_01",
+      "defaultKeyClick" : "input_01"
+    },
+    "voiceMonitoringSettings" : {
+      "agIaCallMonitoringEnabled" : true,
+      "ggIaCallMonitoringEnabled" : true,
+      "incomingPositionMonitoringCallsIndicationEnabled" : false
+    }
+  },
+  "unattendedSettings" : {
+    "idleOnPositionUnattendedEnabled" : true,
+    "unattendedWarningTimeSpanInSeconds" : 10
+  },
+  "intrusionSettings" : {
+    "intrusionAllowed" : false,
+    "activeCallTerminationBehavior" : "autoAccept",
+    "warningPeriodInSeconds" : 10
+  },
+  "positionSettings" : {
+    "opVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    },
+    "coVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 9
+    },
+    "maxAgGgBalanceAttenuation" : 1,
+    "notificationsVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 1
+    },
+    "chimeVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 1
+    },
+    "opSidetoneVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 1
+    },
+    "coSidetoneVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 1
+    },
+    "keyClickVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 1
+    },
+    "brightnessControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    }
+  },
+  "layoutId" : "a2ae97a1-337d-46a1-ba7c-9aac2b936ad7"
+}

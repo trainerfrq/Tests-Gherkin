@@ -20,9 +20,9 @@ class PressSaveButton extends WebScriptTemplate {
 
         evaluate(ExecutionDetails.create("Check for " + subMenuItem + " Save button ")
                 .expected("Save button was found")
-                .success(pageObject.isSaveButtonDisplayed()))
+                .success(pageObject.getEditor().isSaveButtonDisplayed()))
 
-        pageObject.clickSaveButton()
+        pageObject.getEditor().clickSaveButton()
 
         evaluate(ExecutionDetails.create("Save button was clicked")
                 .success(true))

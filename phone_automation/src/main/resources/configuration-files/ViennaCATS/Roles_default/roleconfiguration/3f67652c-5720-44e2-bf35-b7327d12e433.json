@@ -1,0 +1,76 @@
+{
+  "id" : "3f67652c-5720-44e2-bf35-b7327d12e433",
+  "name" : "UPPER-EAST-EXEC",
+  "displayName" : "UPPER-EAST-EXEC",
+  "location" : "",
+  "organization" : "",
+  "comment" : "",
+  "notes" : "",
+  "phoneSettings" : {
+    "sipAddress" : "sip:UpperEastExec@example.com",
+    "roleAliases" : [ "0f3f1d27-1aae-4170-a369-5d5fbaec2006", "2b3d211a-ad48-4757-a65b-f7cc3e034cd2", "d4a6466b-30d6-4bcc-b641-243a17a72565" ],
+    "telephoneGroups" : [ ],
+    "defaultSourceForOutgoingCalls" : {
+      "id" : "3f67652c-5720-44e2-bf35-b7327d12e433",
+      "type" : "ROLE"
+    },
+    "defaultSipPriority" : "normal",
+    "callLimits" : {
+      "maxIncomingIACallsCount" : 3,
+      "maxCallsOnHold" : 5,
+      "maxIncomingPendingCallsCount" : 16,
+      "maxOutgoingPositionMonitoringCalls" : 2,
+      "maxIncomingPositionMonitoringCalls" : 2
+    },
+    "soundSettings" : {
+      "defaultChimeType" : "chime_01",
+      "defaultKeyClick" : "input_01"
+    },
+    "voiceMonitoringSettings" : {
+      "agIaCallMonitoringEnabled" : true,
+      "ggIaCallMonitoringEnabled" : true,
+      "incomingPositionMonitoringCallsIndicationEnabled" : false
+    }
+  },
+  "intrusionSettings" : {
+    "intrusionAllowed" : false,
+    "activeCallTerminationBehavior" : "autoAccept",
+    "warningPeriodInSeconds" : 10
+  },
+  "positionSettings" : {
+    "opVolumeControlRange" : {
+      "minValue" : 10,
+      "maxValue" : 100
+    },
+    "coVolumeControlRange" : {
+      "minValue" : 10,
+      "maxValue" : 100
+    },
+    "maxAgGgBalanceAttenuation" : 20,
+    "notificationsVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 3
+    },
+    "chimeVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 3
+    },
+    "opSidetoneVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 3
+    },
+    "coSidetoneVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 3
+    },
+    "keyClickVolumeControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 3
+    },
+    "brightnessControlRange" : {
+      "minValue" : 0,
+      "maxValue" : 100
+    }
+  },
+  "layoutId" : "63f538c3-6700-4ac2-9dcd-01fe6673bd9b"
+}

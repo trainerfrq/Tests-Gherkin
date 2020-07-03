@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver
 import scripts.agent.selenium.automation.WebScriptTemplate
 import scripts.elements.general.ConfigManagementPage
 
-class VerifyPopUpMessage extends WebScriptTemplate {
+class VerifyPopUpMessageContent extends WebScriptTemplate {
     public static final String IPARAM_POPUP_MESSAGE = "pop-up_message"
 
     @Override
@@ -15,10 +15,6 @@ class VerifyPopUpMessage extends WebScriptTemplate {
 
         WebDriver driver = WebDriverManager.getInstance().getWebDriver()
         ConfigManagementPage configManagementObject = new ConfigManagementPage(driver)
-
-        evaluate(ExecutionDetails.create("Check for pop-up message")
-                .expected("Pop-up message was found")
-                .success(configManagementObject.popUpMessageBox.isPopUpMessageDisplayed()))
 
         evaluate(ExecutionDetails.create("Check pop-up contains message")
                 .expected(popUpMessage)

@@ -5,14 +5,10 @@ import com.frequentis.c4i.test.bdd.fluent.step.Profile;
 import com.frequentis.c4i.test.bdd.fluent.step.local.LocalStep;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.web.automation.data.CallRouteSelectorsEntry;
-import com.frequentis.xvp.tools.cats.web.automation.data.PhoneBookEntry;
 import com.frequentis.xvp.tools.cats.web.automation.data.ProfileToWebConfigurationReference;
 import org.jbehave.core.annotations.*;
 import scripts.cats.web.*;
-import scripts.cats.web.GlobalSettingsTelephone.*;
-import scripts.cats.web.OperatorPositions.VerifyPhoneBookEntryWasCreated;
 import scripts.cats.web.common.leftHandSidePanel.*;
-import scripts.cats.web.common.leftHandSidePanel.PressNewButton;
 
 import java.util.List;
 
@@ -90,8 +86,8 @@ public class WebSteps extends AutomationSteps {
         if (webAppConfig != null) {
             Profile profile = getProfile(webAppConfig.getProfileName());
             evaluate(remoteStep("Check pop-up displayed message")
-                    .scriptOn(VerifyPopUpMessage.class, profile)
-                    .input(VerifyPopUpMessage.IPARAM_POPUP_MESSAGE, message));
+                    .scriptOn(VerifyPopUpMessageContent.class, profile)
+                    .input(VerifyPopUpMessageContent.IPARAM_POPUP_MESSAGE, message));
         }
     }
 
@@ -201,7 +197,7 @@ public class WebSteps extends AutomationSteps {
         CallRouteSelectorsEntry callRouteEntry = getStoryListData(entry, CallRouteSelectorsEntry.class);
         if (webAppConfig != null) {
             Profile profile = getProfile(webAppConfig.getProfileName());
-            evaluate(remoteStep("verify last item in list is "+callRouteEntry.getFullName())
+            evaluate(remoteStep("verify last item in list is " + callRouteEntry.getFullName())
                     .scriptOn(VerifyLastItemInList.class, profile)
                     .input(VerifyLastItemInList.IPARAM_SUB_MENU_NAME, subMenuName)
                     .input(VerifyLastItemInList.IPARAM_ENTRY_NAME, callRouteEntry.getFullName()));
@@ -213,7 +209,7 @@ public class WebSteps extends AutomationSteps {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
         if (webAppConfig != null) {
             Profile profile = getProfile(webAppConfig.getProfileName());
-            evaluate(remoteStep("verify last item in list is "+name)
+            evaluate(remoteStep("verify last item in list is " + name)
                     .scriptOn(VerifyLastItemInList.class, profile)
                     .input(VerifyLastItemInList.IPARAM_SUB_MENU_NAME, subMenuName)
                     .input(VerifyLastItemInList.IPARAM_ENTRY_NAME, name));
@@ -225,22 +221,22 @@ public class WebSteps extends AutomationSteps {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
         if (webAppConfig != null) {
             Profile profile = getProfile(webAppConfig.getProfileName());
-            evaluate(remoteStep("verify items "+entriesList+" are in the correct order")
+            evaluate(remoteStep("verify items " + entriesList + " are in the correct order")
                     .scriptOn(VerifyListItemsOrder.class, profile)
                     .input(VerifyListItemsOrder.IPARAM_SUB_MENU_NAME, subMenuName)
                     .input(VerifyListItemsOrder.IPARAM_ENTRIES_LIST, entriesList));
         }
     }
 
-    @When("deleting $subMenuName sub-menu entry: $entryName")
-    public void deletePhonebookEntry(String subMenuName, String entryName) {
+    @When("deleting $subMenuName sub-menu item: $itemName")
+    public void deleteSubMenuItem(String subMenuName, String itemName) {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
         if (webAppConfig != null) {
             Profile profile = getProfile(webAppConfig.getProfileName());
-            evaluate(remoteStep("Delete phonebook entry " + entryName)
+            evaluate(remoteStep("Delete " + subMenuName + " sub menu item: " + itemName)
                     .scriptOn(DeleteItem.class, profile)
                     .input(DeleteItem.IPARAM_SUB_MENU_NAME, subMenuName)
-                    .input(DeleteItem.IPARAM_ENTRY_NAME, entryName));
+                    .input(DeleteItem.IPARAM_ITEM_NAME, itemName));
         }
     }
 
@@ -279,6 +275,113 @@ public class WebSteps extends AutomationSteps {
         }
     }
 
+    @When("select item $itemName from $subMenuName sub-menu items list")
+    public void selectItemFromSubMenuItemsList(String itemName, String subMenuName) {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Selecting " + itemName + " from " + subMenuName + " items")
+                    .scriptOn(SelectItemByName.class, profile)
+                    .input(SelectItemByName.IPARAM_SUB_MENU_NAME, subMenuName)
+                    .input(SelectItemByName.IPARAM_ITEM_NAME, itemName));
+        }
+    }
+
+    @When("clicking on close button of pop-up message")
+    public void clickPopUpCloseButton() {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Pressing pop-up close button ")
+                    .scriptOn(ClosePopUpMessage.class, profile));
+        }
+    }
+
+    @Then("pop-up message is $visibility")
+    public void checkPopUpMessageIsVisible(String visibility) {
+        boolean isVisible = true;
+        if (visibility.contains("not")) {
+            isVisible = false;
+        }
+
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Checking if pop-up message is visible")
+                    .scriptOn(VerifyPopUpMessageIsVisible.class, profile)
+                    .input(VerifyPopUpMessageIsVisible.IPARAM_VISIBILITY, isVisible));
+        }
+    }
+
+    @Then("discard changes if discard alert box is visible")
+    public void discardChangesIfAlertBoxIsVisible() {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Discard unsaved changes if Alert Box is visible")
+                    .scriptOn(CleanupDiscardAlertBox.class, profile));
+        }
+    }
+
+    @When("clicking on close button of pop-up message if message is visible")
+    public void clickCloseButtonPopUpMessageIfVisible() {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Discard unsaved changes if Alert Box is visible")
+                    .scriptOn(CleanupPopUpMessage.class, profile));
+        }
+    }
+
+    @When("deleting item $itemName from $subMenuName sub-menu if visible")
+    public void deleteSubMenuItemIfVisible(String itemName, String subMenuName) {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Delete " + subMenuName + " sub menu item: " + itemName)
+                    .scriptOn(CleanupItem.class, profile)
+                    .input(CleanupItem.IPARAM_SUB_MENU_NAME, subMenuName)
+                    .input(CleanupItem.IPARAM_ITEM_NAME, itemName));
+        }
+    }
+
+    @Then("click on $mainMenu menu if $subMenu sub-menu is not visible")
+    public void clickOnMenuItemIfSubMenuNotVisible(String mainMenuName, String subMenuName) {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Click on " + mainMenuName + " if sub menu " + subMenuName + " is not visible")
+                    .scriptOn(ClickOnMainMenuIfSubMenuIsNotVisible.class, profile)
+                    .input(ClickOnMainMenuIfSubMenuIsNotVisible.IPARAM_MAIN_MENU_NAME, mainMenuName)
+                    .input(ClickOnMainMenuIfSubMenuIsNotVisible.IPARAM_SUB_MENU_NAME, subMenuName));
+        }
+    }
+
+    @Then("warning message $warningMessage is displayed for field $fieldName from $subMenu editor")
+    public void checkWarningMessageForASpecificField(String warningMessage, String fieldName, String subMenuName) {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Check warning message " + warningMessage + " is displayed for " + fieldName + " field")
+                    .scriptOn(VerifyFieldWarningMessage.class, profile)
+                    .input(VerifyFieldWarningMessage.IPARAM_SUB_MENU_NAME, subMenuName)
+                    .input(VerifyFieldWarningMessage.IPARAM_FIELD_NAME, fieldName)
+                    .input(VerifyFieldWarningMessage.IPARAM_WARNING_MESSAGE, warningMessage));
+        }
+    }
+
+    @Then("clear content of $inputFieldName input field from $subMenuName sub menu")
+    public void clearInputFieldContent(String inputFieldName, String subMenuName) {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Clear content of the input field " + inputFieldName)
+                    .scriptOn(ClearInputFieldContent.class, profile)
+                    .input(ClearInputFieldContent.IPARAM_SUB_MENU_NAME, subMenuName)
+                    .input(ClearInputFieldContent.IPARAM_FIELD_NAME, inputFieldName));
+        }
+    }
+
     @When("in $subMenuName move item from position $from to position $to")
     public void deletePhonebookEntry(String subMenuName, Integer from, Integer to) {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
@@ -293,7 +396,7 @@ public class WebSteps extends AutomationSteps {
     }
 
     @Then("refresh Configurator")
-    public void refreshConfigurator(){
+    public void refreshConfigurator() {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
         if (webAppConfig != null) {
             Profile profile = getProfile(webAppConfig.getProfileName());
