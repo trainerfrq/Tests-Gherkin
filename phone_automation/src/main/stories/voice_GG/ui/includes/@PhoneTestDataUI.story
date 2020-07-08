@@ -28,6 +28,7 @@ Given the DA keys:
 | HMI OP1 | LegacyPhone                | <<Active1_LegacyPhone>>              |
 | HMI OP1 | GND(as TWR)                | <<ACTIVE1_GND>>                      |
 | HMI OP1 | OP2(as GND)                | <<PhyOpPos1(GND)_CWP2>>              |
+| HMI OP1 | OP3(as GND)                | <<PhyOpPos1(GND)_CWP3>>              |
 | HMI OP1 | <<ROLE_1_NAME>>            | <<ACTIVE2_MISSION1>>                 |
 | HMI OP2 | OP1                        | <<PhyOpPos2_CWP1>>                   |
 | HMI OP2 | OP2                        |                                      |

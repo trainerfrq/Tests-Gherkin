@@ -4,7 +4,6 @@ import com.frequentis.c4i.test.model.ExecutionDetails
 import com.frequentis.c4i.test.util.timer.WaitTimer
 import com.frequentis.voice.hmi.component.layout.list.item.callQueue.CallQueueListItem
 import com.frequentis.voice.hmi.component.layout.list.scrollpane.CallQueueListView
-import javafx.collections.ObservableList
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 class VerifyCallQueueLength extends FxScriptTemplate {
@@ -20,11 +19,12 @@ class VerifyCallQueueLength extends FxScriptTemplate {
         CallQueueListView monitoringCallQueueList = robot.lookup("#monitoringList").queryFirst();
         CallQueueListView priorityCallQueueList = robot.lookup( "#priorityList").queryFirst();
 
-        ObservableList<CallQueueListItem> activeItems =  activeCallQueueList.getContainerCallQueueListItemsReadOnly();
-        ObservableList<CallQueueListItem> holdItems =  holdCallQueueList.getContainerCallQueueListItemsReadOnly();
-        ObservableList<CallQueueListItem> waitItems =  waitingCallQueueList.getContainerCallQueueListItemsReadOnly();
-        ObservableList<CallQueueListItem> monitoringItems =  monitoringCallQueueList.getContainerCallQueueListItemsReadOnly();
-        ObservableList<CallQueueListItem> priorityItems =  priorityCallQueueList.getContainerCallQueueListItemsReadOnly();
+//        ObservableList<CallQueueListItem> activeItems =  activeCallQueueList.getAllCallQueueListItemsReadOnly();
+        List<CallQueueListItem> activeItems =  activeCallQueueList.getContainerCallQueueListItemsReadOnly();
+        List<CallQueueListItem> holdItems =  holdCallQueueList.getContainerCallQueueListItemsReadOnly();
+        List<CallQueueListItem> waitItems =  waitingCallQueueList.getContainerCallQueueListItemsReadOnly();
+        List<CallQueueListItem> monitoringItems =  monitoringCallQueueList.getContainerCallQueueListItemsReadOnly();
+        List<CallQueueListItem> priorityItems =  priorityCallQueueList.getContainerCallQueueListItemsReadOnly();
 
         int callQueueItems = activeItems.size()+holdItems.size()+waitItems.size()+monitoringItems.size() + priorityItems.size()
 

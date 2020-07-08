@@ -23,6 +23,10 @@
             <artifactId>voice-hmi-dsl</artifactId>
             <version>${voice.automation.common.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.frequentis.c4i.test</groupId>
+            <artifactId>cats-javafx-plugin</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

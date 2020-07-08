@@ -441,6 +441,22 @@ public class CallUISteps extends AutomationSteps {
             .input( VerifyCallQueueItemPriority.IPARAM_CALL_QUEUE_ITEM_PRIORITY, priority ) );
    }
 
+    @Then("$profileName verifies that Timeout bar is $visibility on DA Key $target")
+    public void verifyTimeoutBarIsVisibleOnDaKey(final String profileName, final String visibility, final String target)
+    {
+        boolean isVisible = true;
+        if (visibility.contains("not")) {
+            isVisible = false;
+        }
+        DAKey daKey = retrieveDaKey(profileName, target);
+
+        evaluate(remoteStep("Verify Timeout bar visibility for DA Key " + target )
+                .scriptOn(profileScriptResolver().map(VerifyDAKeyTimeoutBar.class, BookableProfileName.javafx),
+                        assertProfile(profileName))
+                .input(VerifyDAKeyTimeoutBar.IPARAM_DA_KEY_ID, daKey.getId())
+                .input(VerifyDAKeyTimeoutBar.IPARAM_IS_VISIBLE, isVisible));
+    }
+
     private DAKey retrieveDaKey(final String source, final String target) {
         final DAKey daKey = getStoryListData(source + "-" + target, DAKey.class);
         evaluate(localStep("Check DA key").details(ExecutionDetails.create("Verify DA key is defined")
