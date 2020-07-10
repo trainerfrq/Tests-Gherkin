@@ -17,7 +17,7 @@ class VerifyCallQueueCollapsedAreaSectionLength extends FxScriptTemplate {
         String callQueueListName = assertInput(IPARAM_LIST_NAME) as String
 
         CallQueueListView callQueueList = robot.lookup("#"+callQueueListName+"List").queryFirst();
-        ObservableList<CallQueueListItem> items =  callQueueList.getCollapsedCallQueueListItemsReadOnly()
+        List<CallQueueListItem> items =  callQueueList.getCollapsedCallQueueListItemsReadOnly()
 
         int callQueueItems = items.size()
 

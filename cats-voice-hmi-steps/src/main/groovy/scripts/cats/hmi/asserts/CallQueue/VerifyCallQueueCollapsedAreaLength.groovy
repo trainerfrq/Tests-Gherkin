@@ -19,10 +19,10 @@ class VerifyCallQueueCollapsedAreaLength extends FxScriptTemplate {
         CallQueueListView waitingCallQueueList = robot.lookup("#waitingList").queryFirst();
         CallQueueListView priorityCallQueueList = robot.lookup( "#priorityList").queryFirst();
 
-        ObservableList<CallQueueListItem> activeItems =  activeCallQueueList.getCollapsedCallQueueListItemsReadOnly()
-        ObservableList<CallQueueListItem> holdItems =  holdCallQueueList.getCollapsedCallQueueListItemsReadOnly()
-        ObservableList<CallQueueListItem> waitItems =  waitingCallQueueList.getCollapsedCallQueueListItemsReadOnly()
-        ObservableList<CallQueueListItem> priorityItems =  priorityCallQueueList.getCollapsedCallQueueListItemsReadOnly()
+        List<CallQueueListItem> activeItems =  activeCallQueueList.getCollapsedCallQueueListItemsReadOnly()
+        List<CallQueueListItem> holdItems =  holdCallQueueList.getCollapsedCallQueueListItemsReadOnly()
+        List<CallQueueListItem> waitItems =  waitingCallQueueList.getCollapsedCallQueueListItemsReadOnly()
+        List<CallQueueListItem> priorityItems =  priorityCallQueueList.getCollapsedCallQueueListItemsReadOnly()
 
         int callQueueItems = activeItems.size()+holdItems.size()+waitItems.size()+ priorityItems.size()
 
