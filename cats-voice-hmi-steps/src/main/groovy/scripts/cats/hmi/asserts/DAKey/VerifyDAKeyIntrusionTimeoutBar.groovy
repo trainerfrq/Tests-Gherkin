@@ -4,7 +4,7 @@ import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class VerifyDAKeyTimeoutBar extends FxScriptTemplate {
+class VerifyDAKeyIntrusionTimeoutBar extends FxScriptTemplate {
     public static final String IPARAM_DA_KEY_ID = "da_key_id"
     public static final String IPARAM_IS_VISIBLE = "is_visible"
 
@@ -21,7 +21,7 @@ class VerifyDAKeyTimeoutBar extends FxScriptTemplate {
                     .success(daWidget.isVisible()))
         } else {
             evaluate(ExecutionDetails.create("Verify DA Key " + daKeyId + " Timeout bar")
-                    .expected(daWidget.getClass().toString() + "Timeout bar "+daWidget.isVisible().toString() + " is visible: " + isVisible)
+                    .expected("Timeout bar is visible: " + isVisible)
                     .success(!(daWidget.isVisible())))
         }
     }

@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V8
+@TEST_CASE_VERSION: V9
 @TEST_CASE_NAME: Call Intrusion - KPI
 @TEST_CASE_DESCRIPTION:
 As an operator having an active call
@@ -43,10 +43,10 @@ Then HMI OP1 changes current mission to mission <<MISSION_GND_NAME>>
 Then HMI OP1 activates mission
 Then waiting for 5 seconds
 
-Scenario: 1. System Technician: Open Zabbix
+Scenario: 1. Zabbix: Open main page
 Meta:
-@TEST_STEP_ACTION: System Technician: Open Zabbix
-@TEST_STEP_REACTION: System Technician: Zabbix is open
+@TEST_STEP_ACTION: Zabbix: Open main page
+@TEST_STEP_REACTION: Zabbix: Main page is open
 @TEST_STEP_REF: [CATS-REF: ZnlG]
 Given Zabbix client group ZABBIX:
 | key  | user            | apiUrl         | password            |
@@ -69,10 +69,10 @@ Meta:
 @TEST_STEP_REF: [CATS-REF: mu1T]
 Then get items of active instance amongst ${opVoice_1_1_items} and ${opVoice_1_2_items} :=> active_opVoice_items
 
-Scenario: 3. System Technician: Save the value of "Number of applied intrusions for incoming priority calls"
+Scenario: 3. Zabbix: Save the value of "Number of applied intrusions for incoming priority calls"
 Meta:
-@TEST_STEP_ACTION: System Technician: Save the value of "Number of applied intrusions for incoming priority calls"
-@TEST_STEP_REACTION: System Techician: "Number of applied intrusions for incoming priority calls" value is saved
+@TEST_STEP_ACTION: Zabbix: Inspect current value of "Number of applied intrusions for incoming priority calls"
+@TEST_STEP_REACTION: Zabbix: "Number of applied intrusions for incoming priority calls" value is saved
 @TEST_STEP_REF: [CATS-REF: m2lb]
 Then get opVoice Phone KPIs values from zabbix host ${active_opVoice_items} :=> items_values
 
@@ -111,12 +111,12 @@ Scenario: 5.2 Verify call queue section
 Then HMI OP1 has the call queue item OP3-OP1 in the priority list with name label <<OP3_NAME>>
 Then HMI OP3 has the call queue item OP1-OP3 in the active list with name label <<OP1_NAME>>
 
-Scenario: 6. Verify Timeout bar is displayed on call queue item
+Scenario: 6. Verify intrusion Timeout bar is displayed on call queue item
 Meta:
 @TEST_STEP_ACTION: -
 @TEST_STEP_REACTION: OP1: Timeout bar displayed on call queue item from OP3
 @TEST_STEP_REF: [CATS-REF: pxfC]
-Then HMI OP1 verifies that Timeout bar is visible on call queue item OP3-OP1
+Then HMI OP1 verifies that intrusion Timeout bar is visible on call queue item OP3-OP1
 
 Scenario: 7. OP1: Wait until Warning Period expires
 Meta:
@@ -124,8 +124,8 @@ Meta:
 @TEST_STEP_REACTION: OP1: First active call in queue - DA call with OP2
 @TEST_STEP_REF: [CATS-REF: zitC]
 When waiting for 10 seconds
-Then HMI OP1 verifies that Timeout bar is not visible on call queue item OP3-OP1
 Then HMI OP1 has in the call queue a number of 2 calls
+Then HMI OP1 click on call queue Elements of active list
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 
 Scenario: 8. Verify OP1 call queue list
@@ -133,10 +133,10 @@ Meta:
 @TEST_STEP_ACTION: -
 @TEST_STEP_REACTION: OP1: Second active call in queue - priority call with OP3
 @TEST_STEP_REF: [CATS-REF: nbtk]
-Then HMI OP1 click on call queue Elements of active list
+Then HMI OP1 verifies that intrusion Timeout bar is not visible on call queue item OP3-OP1
 Then HMI OP1 has the call queue item OP3-OP1 in state connected
 Then HMI OP1 has in the call queue the item OP3-OP1 with priority
-Then HMI OP1 has collapse call queue item OP3-OP1 in the active list with name label <<OP3_NAME>>
+Then HMI OP1 has the call queue item OP3-OP1 in the active list with name label <<OP3_NAME>>
 
 Scenario: 9. Verify OP2 call queue list
 Meta:
@@ -168,10 +168,10 @@ When Zabbix ZABBIX.test requests items:
 Scenario: 11.2 Get KPI values
 Then get opVoice Phone KPIs values from zabbix host ${active_opVoice_items_update1} :=> items_values_update
 
-Scenario: 12. System Technician: Verify "Number of applied intrusions for incoming priority calls" KPI's value
+Scenario: 12. Zabbix: Verify "Number of applied intrusions for incoming priority calls" KPI's value
 Meta:
-@TEST_STEP_ACTION: System Technician: Verify "Number of applied intrusions for incoming priority calls" KPI's value
-@TEST_STEP_REACTION: System Technician: "Number of applied intrusions for incoming priority calls" value is greater than previous value
+@TEST_STEP_ACTION: Zabbix: Verify "Number of applied intrusions for incoming priority calls" KPI's value
+@TEST_STEP_REACTION: Zabbix: "Number of applied intrusions for incoming priority calls" new value is greater than previously saved value by 1
 @TEST_STEP_REF: [CATS-REF: zTQq]
 Then verify that ${items_values_update}["Number of applied intrusions for incoming priority calls"] is greater than ${items_values}["Number of applied intrusions for incoming priority calls"]
 

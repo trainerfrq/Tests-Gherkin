@@ -620,7 +620,7 @@ public class CallQueueUISteps extends AutomationSteps
                 .input(CleanUpCallQueueByPosition.IPARAM_LIST_NAME, callQueueItemList));
     }
 
-   @Then("$profileName verifies that Timeout bar is $visibility on call queue item $namedCallQueueItem")
+   @Then("$profileName verifies that intrusion Timeout bar is $visibility on call queue item $namedCallQueueItem")
    public void checkTimeoutBarIsVisibleOnCallQueueItem(final String profileName, final String visibility, final String namedCallQueueItem)
    {
       boolean isVisible = true;
@@ -630,10 +630,10 @@ public class CallQueueUISteps extends AutomationSteps
       CallQueueItem callQueueItem = getStoryListData(namedCallQueueItem, CallQueueItem.class);
 
       evaluate(remoteStep("Verify Timeout bar visibility for call queue item " + callQueueItem )
-              .scriptOn(profileScriptResolver().map(VerifyCallQueueTimeoutBar.class, BookableProfileName.javafx),
+              .scriptOn(profileScriptResolver().map(VerifyCallQueueIntrusionTimeoutBar.class, BookableProfileName.javafx),
                       assertProfile(profileName))
-              .input(VerifyCallQueueTimeoutBar.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId())
-              .input(VerifyCallQueueTimeoutBar.IPARAM_IS_VISIBLE, isVisible));
+              .input(VerifyCallQueueIntrusionTimeoutBar.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId())
+              .input(VerifyCallQueueIntrusionTimeoutBar.IPARAM_IS_VISIBLE, isVisible));
    }
 
    private String reformatSipUris( final String sipUri )

@@ -4,7 +4,7 @@ import com.frequentis.c4i.test.model.ExecutionDetails
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
 
-class VerifyCallQueueTimeoutBar extends FxScriptTemplate {
+class VerifyCallQueueIntrusionTimeoutBar extends FxScriptTemplate {
     public static final String IPARAM_CALL_QUEUE_ITEM_ID = "call_queue_item_id"
     public static final String IPARAM_IS_VISIBLE = "is_visible"
 

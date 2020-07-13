@@ -19,12 +19,11 @@ class VerifyCallQueueLength extends FxScriptTemplate {
         CallQueueListView monitoringCallQueueList = robot.lookup("#monitoringList").queryFirst();
         CallQueueListView priorityCallQueueList = robot.lookup( "#priorityList").queryFirst();
 
-//        ObservableList<CallQueueListItem> activeItems =  activeCallQueueList.getAllCallQueueListItemsReadOnly();
-        List<CallQueueListItem> activeItems =  activeCallQueueList.getContainerCallQueueListItemsReadOnly();
-        List<CallQueueListItem> holdItems =  holdCallQueueList.getContainerCallQueueListItemsReadOnly();
-        List<CallQueueListItem> waitItems =  waitingCallQueueList.getContainerCallQueueListItemsReadOnly();
-        List<CallQueueListItem> monitoringItems =  monitoringCallQueueList.getContainerCallQueueListItemsReadOnly();
-        List<CallQueueListItem> priorityItems =  priorityCallQueueList.getContainerCallQueueListItemsReadOnly();
+        List<CallQueueListItem> activeItems =  activeCallQueueList.getAllCallQueueListItemsReadOnly();
+        List<CallQueueListItem> holdItems =  holdCallQueueList.getAllCallQueueListItemsReadOnly();
+        List<CallQueueListItem> waitItems =  waitingCallQueueList.getAllCallQueueListItemsReadOnly();
+        List<CallQueueListItem> monitoringItems =  monitoringCallQueueList.getAllCallQueueListItemsReadOnly();
+        List<CallQueueListItem> priorityItems =  priorityCallQueueList.getAllCallQueueListItemsReadOnly();
 
         int callQueueItems = activeItems.size()+holdItems.size()+waitItems.size()+monitoringItems.size() + priorityItems.size()
 
@@ -32,11 +31,11 @@ class VerifyCallQueueLength extends FxScriptTemplate {
         int numberOfVerificationRetries = 9 //it will verify the call queue state for maximum 2.3 seconds
         while (callQueueLength != callQueueItems){
             WaitTimer.pause(250);
-            activeItems =  activeCallQueueList.getContainerCallQueueListItemsReadOnly();
-            holdItems =  holdCallQueueList.getContainerCallQueueListItemsReadOnly();
-            waitItems =  waitingCallQueueList.getContainerCallQueueListItemsReadOnly();
-            monitoringItems =  monitoringCallQueueList.getContainerCallQueueListItemsReadOnly();
-            priorityItems =  priorityCallQueueList.getContainerCallQueueListItemsReadOnly();
+            activeItems =  activeCallQueueList.getAllCallQueueListItemsReadOnly();
+            holdItems =  holdCallQueueList.getAllCallQueueListItemsReadOnly();
+            waitItems =  waitingCallQueueList.getAllCallQueueListItemsReadOnly();
+            monitoringItems =  monitoringCallQueueList.getAllCallQueueListItemsReadOnly();
+            priorityItems =  priorityCallQueueList.getAllCallQueueListItemsReadOnly();
 
             callQueueItems = activeItems.size()+holdItems.size()+waitItems.size()+monitoringItems.size() + priorityItems.size()
             i++
