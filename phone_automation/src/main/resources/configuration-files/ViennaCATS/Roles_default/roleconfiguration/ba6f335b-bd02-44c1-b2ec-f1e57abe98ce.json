@@ -1,41 +1,36 @@
 {
-  "id" : "aa6a1d6e-afc4-412b-a442-20754e62c212",
-  "name" : "ZInit_R04",
-  "displayName" : "ZInit_R04",
+  "id" : "ba6f335b-bd02-44c1-b2ec-f1e57abe98ce",
+  "name" : "LOWER-WEST-TOWER-EXEC",
+  "displayName" : "LOWER-WEST-TOWER",
   "location" : "",
   "organization" : "",
   "comment" : "",
   "notes" : "",
   "phoneSettings" : {
-    "sipAddress" : "init_r04",
+    "sipAddress" : "sip:LowerWestTowerExec@example.com",
     "roleAliases" : [ ],
     "telephoneGroups" : [ ],
     "defaultSourceForOutgoingCalls" : {
-      "id" : "aa6a1d6e-afc4-412b-a442-20754e62c212",
+      "id" : "ba6f335b-bd02-44c1-b2ec-f1e57abe98ce",
       "type" : "ROLE"
     },
-    "defaultSipPriority" : "normal",
+    "defaultSipPriority" : "emergency",
     "callLimits" : {
       "maxIncomingIACallsCount" : 3,
       "maxCallsOnHold" : 5,
       "maxIncomingPendingCallsCount" : 16,
-      "maxOutgoingPositionMonitoringCalls" : 0,
-      "maxIncomingPositionMonitoringCalls" : 0
+      "maxOutgoingPositionMonitoringCalls" : 5,
+      "maxIncomingPositionMonitoringCalls" : 5
     },
     "soundSettings" : {
       "defaultChimeType" : "chime_01",
       "defaultKeyClick" : "input_01"
     },
-    "routeSelectorId" : "7f6b90f0-1d4e-4b10-9c46-6cec41c40629",
     "voiceMonitoringSettings" : {
       "agIaCallMonitoringEnabled" : false,
       "ggIaCallMonitoringEnabled" : false,
       "incomingPositionMonitoringCallsIndicationEnabled" : true
     }
-  },
-  "unattendedSettings" : {
-    "idleOnPositionUnattendedEnabled" : true,
-    "unattendedWarningTimeSpanInSeconds" : 10
   },
   "intrusionSettings" : {
     "intrusionAllowed" : false,
@@ -58,24 +53,24 @@
     },
     "chimeVolumeControlRange" : {
       "minValue" : 0,
-      "maxValue" : 100
+      "maxValue" : 7
     },
     "opSidetoneVolumeControlRange" : {
-      "minValue" : 26,
-      "maxValue" : 62
+      "minValue" : 0,
+      "maxValue" : 6
     },
     "coSidetoneVolumeControlRange" : {
-      "minValue" : 26,
-      "maxValue" : 62
+      "minValue" : 0,
+      "maxValue" : 5
     },
     "keyClickVolumeControlRange" : {
       "minValue" : 0,
-      "maxValue" : 100
+      "maxValue" : 7
     },
     "brightnessControlRange" : {
-      "minValue" : 20,
+      "minValue" : 0,
       "maxValue" : 100
     }
   },
-  "layoutId" : "e65362f8-6d40-45e4-a37e-b6b0bec7943a"
+  "layoutId" : "bd1d7c4d-b62f-402b-aa64-a4beb29c7e6c"
 }

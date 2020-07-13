@@ -1,41 +1,36 @@
 {
-  "id" : "aa6a1d6e-afc4-412b-a442-20754e62c212",
-  "name" : "ZInit_R04",
-  "displayName" : "ZInit_R04",
+  "id" : "3894c93b-7e3d-4722-b7f2-5d2b0eb0b362",
+  "name" : "UPPER-EAST-EXEC",
+  "displayName" : "UPPER-EAST-EXEC",
   "location" : "",
   "organization" : "",
   "comment" : "",
   "notes" : "",
   "phoneSettings" : {
-    "sipAddress" : "init_r04",
-    "roleAliases" : [ ],
+    "sipAddress" : "sip:UpperEastExec@example.com",
+    "roleAliases" : [ "b801444b-b084-4c70-84ad-4790fc7613b4", "bbbb8e46-72b3-4171-9229-5c8e32e655d1", "1e164ee0-94a0-498e-8e83-cc7fa94b09c2" ],
     "telephoneGroups" : [ ],
     "defaultSourceForOutgoingCalls" : {
-      "id" : "aa6a1d6e-afc4-412b-a442-20754e62c212",
+      "id" : "3894c93b-7e3d-4722-b7f2-5d2b0eb0b362",
       "type" : "ROLE"
     },
-    "defaultSipPriority" : "normal",
+    "defaultSipPriority" : "non-urgent",
     "callLimits" : {
       "maxIncomingIACallsCount" : 3,
       "maxCallsOnHold" : 5,
       "maxIncomingPendingCallsCount" : 16,
-      "maxOutgoingPositionMonitoringCalls" : 0,
-      "maxIncomingPositionMonitoringCalls" : 0
+      "maxOutgoingPositionMonitoringCalls" : 2,
+      "maxIncomingPositionMonitoringCalls" : 2
     },
     "soundSettings" : {
       "defaultChimeType" : "chime_01",
       "defaultKeyClick" : "input_01"
     },
-    "routeSelectorId" : "7f6b90f0-1d4e-4b10-9c46-6cec41c40629",
     "voiceMonitoringSettings" : {
-      "agIaCallMonitoringEnabled" : false,
-      "ggIaCallMonitoringEnabled" : false,
-      "incomingPositionMonitoringCallsIndicationEnabled" : true
+      "agIaCallMonitoringEnabled" : true,
+      "ggIaCallMonitoringEnabled" : true,
+      "incomingPositionMonitoringCallsIndicationEnabled" : false
     }
-  },
-  "unattendedSettings" : {
-    "idleOnPositionUnattendedEnabled" : true,
-    "unattendedWarningTimeSpanInSeconds" : 10
   },
   "intrusionSettings" : {
     "intrusionAllowed" : false,
@@ -54,28 +49,28 @@
     "maxAgGgBalanceAttenuation" : 20,
     "notificationsVolumeControlRange" : {
       "minValue" : 0,
-      "maxValue" : 100
+      "maxValue" : 6
     },
     "chimeVolumeControlRange" : {
       "minValue" : 0,
-      "maxValue" : 100
+      "maxValue" : 6
     },
     "opSidetoneVolumeControlRange" : {
-      "minValue" : 26,
-      "maxValue" : 62
+      "minValue" : 0,
+      "maxValue" : 6
     },
     "coSidetoneVolumeControlRange" : {
-      "minValue" : 26,
-      "maxValue" : 62
+      "minValue" : 0,
+      "maxValue" : 6
     },
     "keyClickVolumeControlRange" : {
       "minValue" : 0,
-      "maxValue" : 100
+      "maxValue" : 7
     },
     "brightnessControlRange" : {
-      "minValue" : 20,
+      "minValue" : 0,
       "maxValue" : 100
     }
   },
-  "layoutId" : "e65362f8-6d40-45e4-a37e-b6b0bec7943a"
+  "layoutId" : "2b9e04d8-937d-4b22-bcd2-39720ae51a39"
 }
