@@ -1,13 +1,13 @@
 {
   "id" : "27a2dca8-0ac9-47d5-82f1-3aa53cd454f9",
-  "name" : "ZInit_R01",
-  "displayName" : "ZInit_R01",
+  "name" : "ZInit_R02",
+  "displayName" : "ZInit_R02",
   "location" : "",
   "organization" : "",
   "comment" : "",
   "notes" : "",
   "phoneSettings" : {
-    "sipAddress" : "sip:init_r01@ggcats.xvp.frequentis.frq",
+    "sipAddress" : "init_r02",
     "roleAliases" : [ ],
     "telephoneGroups" : [ ],
     "defaultSourceForOutgoingCalls" : {
@@ -26,11 +26,16 @@
       "defaultChimeType" : "chime_01",
       "defaultKeyClick" : "input_01"
     },
+    "routeSelectorId" : "7f6b90f0-1d4e-4b10-9c46-6cec41c40629",
     "voiceMonitoringSettings" : {
       "agIaCallMonitoringEnabled" : false,
       "ggIaCallMonitoringEnabled" : false,
       "incomingPositionMonitoringCallsIndicationEnabled" : true
     }
+  },
+  "unattendedSettings" : {
+    "idleOnPositionUnattendedEnabled" : true,
+    "unattendedWarningTimeSpanInSeconds" : 10
   },
   "intrusionSettings" : {
     "intrusionAllowed" : false,
@@ -68,9 +73,9 @@
       "maxValue" : 100
     },
     "brightnessControlRange" : {
-      "minValue" : 0,
+      "minValue" : 20,
       "maxValue" : 100
     }
   },
-  "layoutId" : "c77dc6b7-4459-42a3-8162-d602a2919b40"
+  "layoutId" : "e65362f8-6d40-45e4-a37e-b6b0bec7943a"
 }
