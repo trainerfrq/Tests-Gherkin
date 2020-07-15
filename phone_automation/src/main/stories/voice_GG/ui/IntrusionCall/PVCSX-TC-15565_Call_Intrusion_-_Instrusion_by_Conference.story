@@ -101,7 +101,8 @@ Meta:
 @TEST_STEP_REACTION: OP1: First active call in queue - DA call with OP2
 @TEST_STEP_REF: [CATS-REF: IDzo]
 When waiting for 10 seconds
-Then HMI OP1 has in the call queue a number of 2 calls
+Then HMI OP1 has in the call queue a number of 1 calls
+Then HMI OP1 has in the collapsed area a number of 1 calls
 Then HMI OP1 click on call queue Elements of active list
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 
@@ -120,6 +121,7 @@ Meta:
 @TEST_STEP_ACTION: -
 @TEST_STEP_REACTION: OP1: No message in Notification Bar
 @TEST_STEP_REF: [CATS-REF: ErM2]
+!-- TODO Adjust the scenario after PVCSX-5907 is resolved
 !-- When HMI OP1 opens Notification Display list
 !-- Then HMI OP1 verifies that Notification Display list State has 0 items
 

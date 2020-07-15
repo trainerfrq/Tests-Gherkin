@@ -96,7 +96,8 @@ Then HMI OP1 verifies that intrusion Timeout bar is visible on DA Key OP3(as GND
 
 Scenario: OP1: Wait until Warning Period expires
 When waiting for 10 seconds
-Then HMI OP1 has in the call queue a number of 2 calls
+Then HMI OP1 has in the call queue a number of 1 calls
+Then HMI OP1 has in the collapsed area a number of 1 calls
 Then HMI OP1 click on call queue Elements of active list
 Then HMI OP1 has the call queue item SipContact-OP1 in state connected
 
@@ -110,6 +111,7 @@ Then HMI OP1 has in the call queue the item OP3-OP1 with priority
 Then HMI OP1 has the call queue item OP3-OP1 in the active list with name label <<OP3_NAME>>
 
 Scenario: Verify OP1 Notification Display
+!-- TODO Adjust the scenario after PVCSX-5907 is resolved
 !-- When HMI OP1 opens Notification Display list
 !-- Then HMI OP1 verifies that Notification Display list State has 0 items
 

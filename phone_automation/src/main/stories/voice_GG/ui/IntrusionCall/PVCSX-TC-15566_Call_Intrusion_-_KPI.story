@@ -124,7 +124,8 @@ Meta:
 @TEST_STEP_REACTION: OP1: First active call in queue - DA call with OP2
 @TEST_STEP_REF: [CATS-REF: zitC]
 When waiting for 10 seconds
-Then HMI OP1 has in the call queue a number of 2 calls
+Then HMI OP1 has in the call queue a number of 1 calls
+Then HMI OP1 has in the collapsed area a number of 1 calls
 Then HMI OP1 click on call queue Elements of active list
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 
