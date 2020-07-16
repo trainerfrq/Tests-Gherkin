@@ -19,7 +19,7 @@ Given the call queue items:
 | OP2-OP1-Conf | <<OPVOICE2_CONF_URI>> | <<OP1_URI>>      | CONF     |
 | OP2-OP1-1    | conf                  | conf             | CONF     |
 | OP2-OP3-Conf | <<OPVOICE2_CONF_URI>> | <<OP3_URI>>:5060 | CONF     |
-Scenario: Op2 establishes an outgoing call
+
 Scenario: Op1 establishes an outgoing call
 When HMI OP1 presses DA key OP2
 Then HMI OP1 has the DA key OP2 in state out_ringing
@@ -62,7 +62,7 @@ Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
 Then HMI OP3 has the call queue item OP2-OP3-Conf in the active list with name label CONF
 Scenario: Op2 verifies conference participants list
 		  @REQUIREMENTS:GID-3229804
-When HMI OP2 opens the conference participants list
+When HMI OP2 opens the conference participants list using call queue item OP1-OP2-CONF
 Then HMI OP2 verifies that conference participants list contains 3 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP1_NAME>>
@@ -74,7 +74,7 @@ Then HMI OP2 verifies that remove conference participant button is disabled
 Then HMI OP2 verifies that leave conference button is enabled
 
 Scenario: Op1 verifies conference participants list
-When HMI OP1 opens the conference participants list
+When HMI OP1 opens the conference participants list using call queue item OP2-OP1-Conf
 Then HMI OP1 verifies that conference participants list contains 3 participants
 Then HMI OP1 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP1 verifies in the list that conference participant on position 1 has name <<OP2_NAME>>
@@ -113,7 +113,7 @@ Then HMI OP2 verifies that remove conference participant button is disabled
 Then HMI OP2 verifies that leave conference button is enabled
 
 Scenario: Op1 verifies conference participants list
-When HMI OP1 opens the conference participants list
+When HMI OP1 opens the conference participants list using call queue item OP1-OP2-CONF
 Then HMI OP1 verifies that conference participants list contains 3 participants
 Then HMI OP1 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP1 verifies in the list that conference participant on position 1 has name <<OP2_NAME>>
@@ -159,7 +159,7 @@ Scenario: Op2 closes conference participants list
 Then HMI OP2 closes Conference list popup window
 
 Scenario: Op1 verifies conference participants list
-When HMI OP1 opens the conference participants list
+When HMI OP1 opens the conference participants list using call queue item OP1-OP2-CONF
 Then HMI OP1 verifies that conference participants list contains 2 participants
 Then HMI OP1 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP1 verifies in the list that conference participant on position 1 has name <<OP2_NAME>>

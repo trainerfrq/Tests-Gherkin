@@ -71,7 +71,7 @@ When SipContact answers incoming calls
 
 Scenario: Op2 verifies conference participants list
 		  @REQUIREMENTS:GID-3229804
-When HMI OP2 opens the conference participants list
+When HMI OP2 opens the conference participants list using call queue item OP3-OP2-CONF
 Then HMI OP2 verifies that conference participants list contains 4 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP2_NAME>>

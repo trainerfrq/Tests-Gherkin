@@ -112,7 +112,7 @@ Scenario: 9. OP1 removes one participant and ends the conference
 Meta: @TEST_STEP_ACTION: OP1 removes one participant and ends the conference
 @TEST_STEP_REACTION: Conference is ended
 @TEST_STEP_REF: [CATS-REF: uwU3]
-When HMI OP1 opens the conference participants list
+When HMI OP1 opens the conference participants list using call queue item OP1-OP2-CONF
 When HMI OP1 selects conference participant: 2
 Then HMI OP1 verifies that remove conference participant button is enabled
 Then HMI OP1 removes conference participant

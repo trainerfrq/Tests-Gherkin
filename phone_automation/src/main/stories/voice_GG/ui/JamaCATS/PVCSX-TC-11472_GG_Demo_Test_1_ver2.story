@@ -117,7 +117,7 @@ Meta:
 Then HMI OP3 accepts the call queue item OP1-OP3-Conf
 
 Scenario: Op1 verifies conference participants list
-When HMI OP1 opens the conference participants list
+When HMI OP1 opens the conference participants list using call queue item OP2-OP1-Conf
 Then HMI OP1 verifies that conference participants list contains 3 participants
 Then HMI OP1 verifies in the list that conference participant on position 3 has status connected
 Then HMI OP1 verifies in the list that conference participant on position 3 has name <<OP3_NAME>>

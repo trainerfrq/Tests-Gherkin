@@ -84,7 +84,7 @@ When HMI OP3 initiates a call from the phonebook
 When SipContact answers incoming calls
 
 Scenario: OP3 verifies conference participants list
-When HMI OP3 opens the conference participants list
+When HMI OP3 opens the conference participants list using call queue item OP2-OP3-CONF
 Then HMI OP3 verifies that conference participants list contains 3 participants
 Then HMI OP3 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP3 verifies in the list that conference participant on position 1 has name <<OP2_NAME>>
@@ -102,7 +102,7 @@ And waiting for 1 second
 Then HMI OP2 has the DA key OP3 in state terminated
 Then HMI OP2 has in the call queue a number of 0 calls
 
-Scenario: OP2 adds another participant to the conference
+Scenario: OP3 adds another participant to the conference
 When HMI OP3 presses DA key OP1
 And waiting for 1 second
 
@@ -171,7 +171,7 @@ Then HMI OP2 terminates the call queue item OP1-OP2
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: OP1 leaves the conference
-When HMI OP1 opens the conference participants list
+When HMI OP1 opens the conference participants list using call queue item OP3-OP1-Conf
 Then HMI OP1 leaves conference
 And waiting for 1 second
 Then HMI OP1 has in the call queue a number of 0 calls

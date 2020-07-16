@@ -110,7 +110,7 @@ When SSH host dockerHost2 executes docker start phone-routing-service-2
 Then waiting for <<phoneRoutingFailoverTime>> seconds
 
 Scenario: 5.3 OP2 removes one participant from conference participants list
-When HMI OP2 opens the conference participants list
+When HMI OP2 opens the conference participants list using call queue item OP1-OP2-CONF
 When HMI OP2 selects conference participant: 0
 Then HMI OP2 verifies that remove conference participant button is enabled
 Then HMI OP2 removes conference participant
@@ -156,7 +156,7 @@ Scenario: 9. OP2 and OP3 leave the conference
 Meta: @TEST_STEP_ACTION: OP2 and OP3 leave the conference (as audio is no longer available on the conference)
 @TEST_STEP_REACTION: Conference is terminated for both participants
 @TEST_STEP_REF: [CATS-REF: Ar8U]
-When HMI OP2 opens the conference participants list
+When HMI OP2 opens the conference participants list using call queue item OP1-OP2-CONF
 Then HMI OP2 leaves conference
 
 Scenario: 9.1 Call is terminated initiator, but not for the participant
@@ -188,7 +188,7 @@ Then HMI OP1 has the call queue item OP2-OP1-Conf in state inc_initiated
 Then HMI OP1 accepts the call queue item OP2-OP1-Conf
 
 Scenario: 11.2 OP2 verifies conference participants list
-When HMI OP2 opens the conference participants list
+When HMI OP2 opens the conference participants list using call queue item OP3-OP2-CONF
 Then HMI OP2 verifies that conference participants list contains 3 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP3_NAME>>
@@ -218,7 +218,7 @@ Scenario: 14. OP2 leaves the conference
 Meta: @TEST_STEP_ACTION: OP2 leaves the conference (as audio is no longer available on the conference)
 @TEST_STEP_REACTION: Conference is terminated for OP2, but is not terminated for OP1 and OP3
 @TEST_STEP_REF: [CATS-REF: aluG]
-When HMI OP2 opens the conference participants list
+When HMI OP2 opens the conference participants list using call queue item OP3-OP2-CONF
 Then HMI OP2 leaves conference
 
 Scenario: 14.1 Conference is terminated for the initiator
@@ -249,7 +249,7 @@ Then HMI OP1 has the call queue item OP2-OP1-Conf in state inc_initiated
 Then HMI OP1 accepts the call queue item OP2-OP1-Conf
 
 Scenario: 16.2 OP2 verifies conference participants list
-When HMI OP2 opens the conference participants list
+When HMI OP2 opens the conference participants list using call queue item OP3-OP2-CONF
 Then HMI OP2 verifies that conference participants list contains 3 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP3_NAME>>
@@ -267,7 +267,7 @@ Scenario: 18. OP2 removes one participant and ends the conference
 Meta: @TEST_STEP_ACTION: OP2 removes one participant and ends the conference
 @TEST_STEP_REACTION: Conference is ended
 @TEST_STEP_REF: [CATS-REF: eweQ]
-When HMI OP2 opens the conference participants list
+When HMI OP2 opens the conference participants list using call queue item OP3-OP2-CONF
 When HMI OP2 selects conference participant: 2
 Then HMI OP2 verifies that remove conference participant button is enabled
 Then HMI OP2 removes conference participant
