@@ -22,20 +22,8 @@ import com.frequentis.c4i.test.bdd.fluent.step.remote.RemoteStepResult;
 import com.frequentis.c4i.test.model.ExecutionDetails;
 import com.frequentis.xvp.tools.cats.websocket.dto.BookableProfileName;
 import com.frequentis.xvp.voice.test.automation.phone.data.CallQueueItem;
-import org.jbehave.core.annotations.Aliases;
-import org.jbehave.core.annotations.Alias;
-import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
-import org.jbehave.core.annotations.Named;
-import scripts.cats.hmi.actions.CallQueue.CleanUpCallQueue;
-import scripts.cats.hmi.actions.CallQueue.CleanUpCallQueueByPosition;
-import scripts.cats.hmi.actions.CallQueue.CleanUpCallQueueCollapsed;
-import scripts.cats.hmi.actions.CallQueue.ClickCallQueueElementsList;
-import scripts.cats.hmi.actions.CallQueue.ClickCallQueueItem;
-import scripts.cats.hmi.actions.CallQueue.ClickCallQueueItemByPosition;
-import scripts.cats.hmi.actions.CallQueue.ClickOnCallQueueInfoContainer;
-import scripts.cats.hmi.actions.CallQueue.DragAndClickOnMenuButtonFirstCallQueueItem;
+import org.jbehave.core.annotations.*;
+import scripts.cats.hmi.actions.CallQueue.*;
 import scripts.cats.hmi.asserts.CallQueue.*;
 import scripts.cats.hmi.asserts.Monitoring.VerifyMonitoringCallQueueItem;
 
@@ -522,6 +510,26 @@ public class CallQueueUISteps extends AutomationSteps
               .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_LIST_NAME, ACTIVE_LIST_NAME ) );
    }
 
+@When("$profileName opens the conference participants list using call queue item $callQueueItem")
+   public void opensListConference( final String profileName, final String namedCallQueueItem )
+   {
+      if(namedCallQueueItem.contains("CONF")) {
+         evaluate(remoteStep("Opens conference participants list using call queue context menu")
+                 .scriptOn(profileScriptResolver().map(DragAndClickOnMenuButtonCallQueueItem.class,
+                         BookableProfileName.javafx), assertProfile(profileName))
+                 .input(DragAndClickOnMenuButtonCallQueueItem.IPARAM_MENU_BUTTON_ID, CONFERENCE_LIST_CALL_MENU_BUTTON_ID)
+                 .input(DragAndClickOnMenuButtonCallQueueItem.IPARAM_CALL_QUEUE_ITEM_ID, CONFERENCE_CALL_QUEUE_ITEM));
+      }
+      else{
+         CallQueueItem callQueueItem = getStoryListData(namedCallQueueItem, CallQueueItem.class);
+
+         evaluate(remoteStep("Opens conference participants list using call queue context menu")
+                 .scriptOn(profileScriptResolver().map(DragAndClickOnMenuButtonCallQueueItem.class,
+                         BookableProfileName.javafx), assertProfile(profileName))
+                 .input(DragAndClickOnMenuButtonCallQueueItem.IPARAM_MENU_BUTTON_ID, CONFERENCE_LIST_CALL_MENU_BUTTON_ID)
+                 .input(DragAndClickOnMenuButtonCallQueueItem.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId()));
+      }
+   }
    @Then("$profileName verifies that hold button $exists")
    public void verifyHoldButtonExistence( final String profileName, final String exists )
    {

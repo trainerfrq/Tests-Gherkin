@@ -11,6 +11,13 @@ Given booked profiles:
 | javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
 | voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
+Scenario: Define call source and API URI
+When define values in story data:
+| name    | value            |
+| HMI OP1 | <<HMI1_API.URI>> |
+| HMI OP2 | <<HMI2_API.URI>> |
+| HMI OP3 | <<HMI3_API.URI>> |
+
 Scenario: Define call queue items
 Given the call queue items:
 | key          | source                | target      | callType |
@@ -56,8 +63,10 @@ Scenario: Close popup window
 Then HMI OP1 closes notification popup
 
 Scenario: Op2 call state verification
-Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
-Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label CONF
+Then HMI OP2 verify (via POST request) that call queue has status ESTABLISHED
+Then HMI OP2 verify (via POST request) that call queue shows CONF
+!-- Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
+!-- Then HMI OP2 has the call queue item OP1-OP2-Conf in the active list with name label CONF
 
 Scenario: Op1 adds a conference participant from phonebook
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
@@ -80,11 +89,12 @@ Then HMI OP2 click on call queue Elements of active list
 Then HMI OP2 has in the collapsed area a number of 1 calls
 Then HMI OP2 has the call queue item OP3-OP2 in state connected
 Then HMI OP2 has the IA key IA - OP3 in state connected
-Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
+Then HMI OP2 verifies (via POST request) that there are 2 calls in the call queue with status: ESTABLISHED_RX, ESTABLISHED
+!-- Then HMI OP2 has the call queue item OP1-OP2-Conf in state connected
 
 Scenario: Op1 verifies conference participants list
 		  @REQUIREMENTS:GID-3229804
-When HMI OP1 opens the conference participants list
+When HMI OP1 opens the conference participants list using call queue item OP2-OP1-CONF
 Then HMI OP1 verifies that conference participants list contains 3 participants
 Then HMI OP1 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP1 verifies in the list that conference participant on position 1 has name <<OP2_NAME>>

@@ -11,6 +11,13 @@ Given booked profiles:
 | javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
 | voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
+Scenario: Define call source and API URI
+When define values in story data:
+| name    | value            |
+| HMI OP1 | <<HMI1_API.URI>> |
+| HMI OP2 | <<HMI2_API.URI>> |
+| HMI OP3 | <<HMI3_API.URI>> |
+
 Scenario: Define call queue items
 Given the call queue items:
 | key          | source                | target      | callType |
@@ -59,7 +66,8 @@ Scenario: Close popup window
 Then HMI OP2 closes notification popup
 
 Scenario: Op3 call state verification
-Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
+Then HMI OP3 verify (via POST request) that call queue has status ESTABLISHED
+!-- Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
 
 Scenario: Op2 wants to add Op1 as conference participant
 When HMI OP2 presses DA key OP1
@@ -71,7 +79,7 @@ When SipContact answers incoming calls
 
 Scenario: Op2 verifies conference participants list
 		  @REQUIREMENTS:GID-3229804
-When HMI OP2 opens the conference participants list
+When HMI OP2 opens the conference participants list using call queue item OP3-OP2-CONF
 Then HMI OP2 verifies that conference participants list contains 4 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP2_NAME>>

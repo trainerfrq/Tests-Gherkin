@@ -1,0 +1,15 @@
+{
+  "messageType": "com.frequentis.ps.media.session.command.acknowledge",
+  "header": {
+    "commandId": "CMD_ID_ca4384a8-b41e-4707-b87a-81a779fcb0a8",
+    "correlationId": "COR_ID_8acd9fc1-6939-46ba-90c5-4adb108c1a67"
+  },
+  "payload": {
+    "commandId": "CMD_ID_ca4384a8-b41e-4707-b87a-81a779fcb0a8",
+    "correlationId": "COR_ID_8acd9fc1-6939-46ba-90c5-4adb108c1a67",
+    "mediaCookie": "M_COOKIE_acec121e-3e3b-4e8b-ab9d-28d749ba7015",
+    "callId": "CALL_ID",
+    "headers": [],
+    "contents": []
+  }
+}

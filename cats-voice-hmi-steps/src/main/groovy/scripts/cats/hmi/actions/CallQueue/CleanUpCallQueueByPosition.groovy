@@ -3,7 +3,6 @@ package scripts.cats.hmi.actions.CallQueue
 import com.frequentis.c4i.test.model.ExecutionDetails
 import com.frequentis.voice.hmi.component.layout.list.item.callQueue.CallQueueListItem
 import com.frequentis.voice.hmi.component.layout.list.scrollpane.CallQueueListView
-import javafx.collections.ObservableList
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 class CleanUpCallQueueByPosition extends FxScriptTemplate {
@@ -23,7 +22,7 @@ class CleanUpCallQueueByPosition extends FxScriptTemplate {
                 .success(true))
         }
         else if (callQueueList != null){
-            ObservableList<CallQueueListItem> itemList =  callQueueList.getContainerCallQueueListItemsReadOnly();
+            List<CallQueueListItem> itemList =  callQueueList.getContainerCallQueueListItemsReadOnly();
             int i = itemList.size()
             evaluate(ExecutionDetails.create("call queue list size ")
                     .received("call queue list size " +i)

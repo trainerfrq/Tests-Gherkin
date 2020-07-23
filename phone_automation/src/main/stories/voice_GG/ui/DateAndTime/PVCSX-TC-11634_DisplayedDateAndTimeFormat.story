@@ -137,14 +137,7 @@ Meta:
 @TEST_STEP_REF: [CATS-REF: JS3x]
 Then HMI OP1 verifies that time values from NOTIFICATION DISPLAY and from DISPLAY STATUS 2 are synchronized
 
-Scenario: 12. Op1 checks Notification Display bar's date and Status Display's date are the same
-Meta:
-@TEST_STEP_ACTION: Op1 checks Notification Display bar's date and Status Display's date are the same
-@TEST_STEP_REACTION: Displayed date in Notification Display bar is the same with the one in Status Display
-@TEST_STEP_REF: [CATS-REF: ccpI]
-Then HMI OP1 verifies that date values from NOTIFICATION DISPLAY and from DISPLAY STATUS 2 are synchronized
-
-Scenario: 13. Op1 changes its mission to MISSION_4_NAME
+Scenario: 12. Op1 changes its mission to MISSION_4_NAME
 Meta:
 @TEST_STEP_ACTION: Op1 changes its mission to MISSION_4_NAME
 @TEST_STEP_REACTION: The name of the current mission in the Status Display is: MISSION_4_NAME
@@ -155,28 +148,28 @@ Then HMI OP1 activates mission
 Then waiting for 5 seconds
 Then HMI OP1 has in the DISPLAY STATUS 4 section mission the assigned mission <<MISSION_4_NAME>>
 
-Scenario: 14. Op1 checks the date format in Notification Display bar
+Scenario: 13. Op1 checks the date format in Notification Display bar
 Meta:
 @TEST_STEP_ACTION: Op1 checks the date format in Notification Display bar
 @TEST_STEP_REACTION: Date format in Notification Display bar is yyyy.MM.dd
 @TEST_STEP_REF: [CATS-REF: 0WuV]
 Then HMI OP1 has NOTIFICATION DISPLAY with the expected date format yyyy.MM.dd
 
-Scenario: 15. Op1 checks Notification Display bar date is the same with the system's one
+Scenario: 14. Op1 checks Notification Display bar date is the same with the system's one
 Meta:
 @TEST_STEP_ACTION: Op1 checks Notification Display bar date is the same with the system's one
 @TEST_STEP_REACTION: System's date is the same with Notification Display bar's one
 @TEST_STEP_REF: [CATS-REF: 4tde]
 Then HMI OP1 verifies that the system date and the one displayed on NOTIFICATION DISPLAY with format yyyy.MM.dd are the same
 
-Scenario: 16. Op1 checks Status Display time format
+Scenario: 15. Op1 checks Status Display time format
 Meta:
 @TEST_STEP_ACTION: Op1 checks Status Display time format
 @TEST_STEP_REACTION: Time format in the Status Display is HH:mm
 @TEST_STEP_REF: [CATS-REF: NkG8]
 Then HMI OP1 has DISPLAY STATUS 4 with the expected time format HH:mm
 
-Scenario: 17. Op1 checks Status Display time is the same with the system's one
+Scenario: 16. Op1 checks Status Display time is the same with the system's one
 Meta:
 @TEST_STEP_ACTION: Op1 checks Status Display time is the same with the system's one
 @TEST_STEP_REACTION: System's time is the same with Status Display's one

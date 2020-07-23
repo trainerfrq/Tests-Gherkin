@@ -92,6 +92,7 @@ Then HMI OP3 has in the call queue a number of 1 calls
 
 Scenario: Op1 clears the phone call
 Then HMI OP1 terminates the call queue item OP3-OP1
+Scenario: Verify call state for all operators
 Then HMI OP1 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
 

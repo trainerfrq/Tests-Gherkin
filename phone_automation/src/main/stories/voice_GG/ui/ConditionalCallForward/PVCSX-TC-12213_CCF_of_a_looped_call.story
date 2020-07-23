@@ -3,7 +3,7 @@ Meta:
 @TEST_CASE_NAME: CCF of a looped call
 @TEST_CASE_DESCRIPTION: As an operator having set 2 Conditional Call Forward rules that forward a matching call from one to the other for 5 times
 I want to establish a call that activates a rule
-So I can verify that call is forwarded between the rules for 5 times
+So I can verify that call isn't forwarded to a target twice
 @TEST_CASE_PRECONDITION: Settings:
 Two missions APP and SUP-TWR have a single role assigned called APP, respectively SUP-TWR with:
 | Parameter                     | APP            | SUP-TWR    |
@@ -22,7 +22,7 @@ Two Conditional Call Forward rules with the following parameters:
 | No. of iterations            | 5                     | 0                   |
 
 OP1 has APP role assigned and OP3 has SUP TWR role assigned
-@TEST_CASE_PASS_FAIL_CRITERIA: This test is passed, when after the number of iterations within a call forward rule have been reached, the system does not proceed with the call forward rule any more.
+@TEST_CASE_PASS_FAIL_CRITERIA: This test is passed, when call forwarding to a target is applied only once while iterating through the Conditional Call Forward Rules.
 @TEST_CASE_DEVICES_IN_USE: OP1, OP2, OP3
 @TEST_CASE_ID: PVCSX-TC-12213
 @TEST_CASE_GLOBAL_ID: GID-5188041

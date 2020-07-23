@@ -3,7 +3,6 @@ package scripts.cats.hmi.actions.CallQueue
 import com.frequentis.c4i.test.model.ExecutionDetails
 import com.frequentis.voice.hmi.component.layout.list.item.callQueue.CallQueueListItem
 import com.frequentis.voice.hmi.component.layout.list.scrollpane.CallQueueListView
-import javafx.collections.ObservableList
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 class ClickCallQueueItemByPosition extends FxScriptTemplate {
@@ -16,7 +15,7 @@ class ClickCallQueueItemByPosition extends FxScriptTemplate {
         String itemType = assertInput(IPARAM_QUEUE_ITEM_TYPE) as String;
 
         CallQueueListView callQueueList = robot.lookup("#"+itemType+"List").queryFirst();
-        ObservableList<CallQueueListItem> items =  callQueueList.getContainerCallQueueListItemsReadOnly();
+        List<CallQueueListItem> items =  callQueueList.getContainerCallQueueListItemsReadOnly();
 
         evaluate(ExecutionDetails.create("Cal queue list is not empty")
                 .expected("Call queue list not empty")
