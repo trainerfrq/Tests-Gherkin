@@ -126,7 +126,7 @@ Meta:
 @TEST_STEP_REACTION: Conference list contains OP1, OP2 and Phonebook_entry with status connected
 @TEST_STEP_REF: [CATS-REF: HCUa]
 When HMI OP3 answers (via POST request) CONF call by clicking on the queue
-Then wait for 1 second
+Then waiting for 1 seconds
 !-- Then HMI OP3 accepts the call queue item OP2-OP3-Conf
 
 Scenario: 5.1 Vefifying OP3 calls queue section

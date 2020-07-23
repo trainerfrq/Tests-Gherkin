@@ -101,7 +101,7 @@ Then HMI OP2 verifies that leave conference button is enabled
 
 Scenario: Op3 client answers the call
 When HMI OP3 answers (via POST request) CONF call by clicking on the queue
-Then wait for 1 second
+Then wait for 1 seconds
 !-- Then HMI OP3 accepts the call queue item OP2-OP3-Conf
 
 Scenario: Op3 call state verification
