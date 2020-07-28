@@ -330,7 +330,7 @@ public class ATISteps extends ATIUtil
         }
     }
 
- @Then("$hmiOperator verifies (via POST request) that there are $nrOfCalls calls in the call queue with status: $statues")
+ @Then("$hmiOperator verifies (via POST request) that there are $nrOfCalls calls in the call queue with status: $statuses")
     public void apiCallQueueStatuses( final String hmiOperator, final Integer nrOfCalls, final List<String> statuses )
             throws Throwable
     {
