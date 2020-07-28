@@ -48,7 +48,7 @@ Scenario: Verify call is connected for both operators
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
-Scenario: Op1 puts call on hold
+Scenario: OP2 puts call on hold
 When HMI OP2 puts on hold the active call
 Then HMI OP1 has the call queue item OP2-OP1 in state held
 Then HMI OP2 has the call queue item OP1-OP2 in state hold

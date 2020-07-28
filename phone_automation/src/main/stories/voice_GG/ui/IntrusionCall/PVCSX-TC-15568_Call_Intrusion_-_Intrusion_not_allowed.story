@@ -1,8 +1,9 @@
 Meta:
 @TEST_CASE_VERSION: V2
 @TEST_CASE_NAME: Call Intrusion - Intrusion not allowed
-@TEST_CASE_DESCRIPTION: 
-As an operator having an active G/G call and Call Intrusion set to "Disabled"
+@TEST_CASE_DESCRIPTION:
+As an operator using a mission that has a Role with Call Intrusion set to "Disabled"
+AND an active G/G call is set
 I want to receive an incoming Priority call
 So I can verify that incoming Priority Call is not conferenced to the existing call
 @TEST_CASE_PRECONDITION: 

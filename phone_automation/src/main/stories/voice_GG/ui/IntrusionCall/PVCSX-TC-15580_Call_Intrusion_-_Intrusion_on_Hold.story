@@ -105,4 +105,3 @@ Then waiting for 5 seconds
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
 GivenStories: voice_GG/ui/includes/@CleanupStory.story
-

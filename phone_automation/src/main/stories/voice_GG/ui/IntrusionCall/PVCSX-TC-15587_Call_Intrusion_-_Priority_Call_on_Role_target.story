@@ -66,9 +66,7 @@ When HMI OP3 selects phonebook entry number: 0
 Then HMI OP3 verifies that phone book text box displays text ALL
 When HMI OP3 toggles call priority
 Then HMI OP3 verifies that phone book priority toggle is active
-And waiting for 1 second
 When HMI OP3 initiates a call from the phonebook
-And waiting for 1 second
 
 Scenario: Verify OP3 call queue section
 Then HMI OP3 has the call queue item ALL-ROLE3 in state out_ringing

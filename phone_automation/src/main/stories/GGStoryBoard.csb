@@ -2681,6 +2681,24 @@
                             <cats:storyDataList/>
                             <cats:storyStatistics/>
                         </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/IntrusionCall/PVCSX-TC-15610_Call_Intrusion_-_Intrusion_s_KPIs_not_incremented_by_Priority_call.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/IntrusionCall/PVCSX-TC-15648_Call_Intrusion_-_Mission_change_while_impending_Intrusion_Call.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
+                        <cats:story enabled="true">
+                            <cats:storyPath>voice_GG/ui/IntrusionCall/PVCSX-TC-15649_Call_Intrusion_-_Impeding_Intrusion_Call_and_Priority_Call.story</cats:storyPath>
+                            <cats:storyParameters/>
+                            <cats:storyDataList/>
+                            <cats:storyStatistics/>
+                        </cats:story>
                     </cats:stories>
                     <cats:timeout>1800</cats:timeout>
                 </cats:storyList>

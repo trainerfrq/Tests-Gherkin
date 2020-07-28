@@ -48,6 +48,10 @@ Scenario: Verify call is connected for both operators
 Then HMI OP1 has the call queue item OP2-OP1 in state connected
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
 
+Scenario: Verify call priority
+Then HMI OP1 has in the call queue the item OP2-OP1 with priority
+Then HMI OP2 has in the call queue the item OP1-OP2 with priority
+
 Scenario: OP3: Establish a priority call to OP1
 When HMI OP3 initiates a priority call on DA key OP1
 Then HMI OP3 has the DA key OP1 in state out_ringing

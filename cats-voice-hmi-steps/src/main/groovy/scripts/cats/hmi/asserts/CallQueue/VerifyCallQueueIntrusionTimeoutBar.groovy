@@ -15,14 +15,21 @@ class VerifyCallQueueIntrusionTimeoutBar extends FxScriptTemplate {
 
         Node callQueueItem = robot.lookup("#" + callQueueItemId + " #callIntrusion").queryFirst()
 
-        if (isVisible) {
-            evaluate(ExecutionDetails.create("Verify call queue item " + callQueueItemId + " Timeout bar")
-                    .expected("Timeout bar is visible: " + isVisible)
-                    .success(callQueueItem.isVisible()))
-        } else {
-            evaluate(ExecutionDetails.create("Verify call queue item " + callQueueItemId + " Timeout bar")
-                    .expected("Timeout bar is visible: " + isVisible)
-                    .success(!(callQueueItem.isVisible())))
+        if (callQueueItem != null) {
+            if (isVisible) {
+                evaluate(ExecutionDetails.create("Verify call queue item " + callQueueItemId + " Timeout bar")
+                        .expected("Timeout bar is visible: " + isVisible)
+                        .success(callQueueItem.isVisible()))
+            } else {
+                evaluate(ExecutionDetails.create("Verify call queue item " + callQueueItemId + " Timeout bar")
+                        .expected("Timeout bar is visible: " + isVisible)
+                        .success(!(callQueueItem.isVisible())))
+            }
+
+        } else{
+            evaluate(ExecutionDetails.create("Call queue item " + callQueueItemId + " Timeout bar wasn't found")
+                    .success(false))
         }
+
     }
 }

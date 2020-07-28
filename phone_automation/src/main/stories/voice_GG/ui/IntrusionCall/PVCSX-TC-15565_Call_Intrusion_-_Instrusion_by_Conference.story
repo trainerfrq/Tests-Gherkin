@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V7
+@TEST_CASE_VERSION: V11
 @TEST_CASE_NAME: Call Intrusion - Instrusion by Conference
 @TEST_CASE_DESCRIPTION:
 As an operator having an active G/G call and Call Intrusion set to "Enabled"
@@ -177,6 +177,57 @@ Meta:
 @TEST_STEP_ACTION: -
 @TEST_STEP_REACTION: OP3: No calls in queue
 @TEST_STEP_REF: [CATS-REF: 8M4V]
+Then HMI OP1 has in the call queue a number of 0 calls
+
+Scenario: 15. OP3: Establish priority call to OP1
+Meta:
+@TEST_STEP_ACTION: OP3: Establish priority call to OP1
+@TEST_STEP_REACTION: OP3: Outgoing Priority call to OP1 indicated
+@TEST_STEP_REF: [CATS-REF: pL1A]
+When HMI OP3 initiates a priority call on DA key OP1
+Then HMI OP3 has the DA key OP1 in state out_ringing
+Then HMI OP3 has the call queue item OP1-OP3 in the active list with name label <<OP1_NAME>>
+
+Scenario: 16. OP1: Receive the priority call
+Meta:
+@TEST_STEP_ACTION: -
+@TEST_STEP_REACTION: OP1: Priority call from OP3
+@TEST_STEP_REF: [CATS-REF: p1OV]
+Then HMI OP1 has the DA key OP3(as GND) in state inc_initiated
+Then HMI OP1 has in the call queue the item OP3-OP1 with priority
+Then HMI OP1 has the call queue item OP3-OP1 in the priority list with name label <<OP3_NAME>>
+
+Scenario: 17. OP1: No call Intrusion Indication
+Meta:
+@TEST_STEP_ACTION: -
+@TEST_STEP_REACTION: OP1: No call Intrusion Indication
+@TEST_STEP_REF: [CATS-REF: v0ca]
+When HMI OP1 opens Notification Display list
+Then HMI OP1 verifies that Notification Display list State has 0 items
+
+Scenario: Close popup window
+Then HMI OP1 closes notification popup
+
+Scenario: 18. OP1: No Timeout bar displayed on call queue item from OP3
+Meta:
+@TEST_STEP_ACTION: -
+@TEST_STEP_REACTION: OP1: No Timeout bar displayed on call queue item from OP3
+@TEST_STEP_REF: [CATS-REF: kk1T]
+Then HMI OP1 verifies that intrusion Timeout bar is not visible on call queue item OP3-OP1
+
+Scenario: 19. OP3: Terminate call with OP1
+Meta:
+@TEST_STEP_ACTION: OP3: Terminate call with OP1
+@TEST_STEP_REACTION: OP3: No calls in queue
+@TEST_STEP_REF: [CATS-REF: L3rB]
+When HMI OP3 presses DA key OP1
+Then HMI OP3 has in the call queue a number of 0 calls
+
+Scenario: 20. Verify call is terminated also for OP1
+Meta:
+@TEST_STEP_ACTION: -
+@TEST_STEP_REACTION: OP1: No calls in queue
+@TEST_STEP_REF: [CATS-REF: y1qZ]
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Cleanup - OP1 changes its mission back
