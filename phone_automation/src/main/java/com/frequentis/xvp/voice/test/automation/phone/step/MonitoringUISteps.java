@@ -25,6 +25,7 @@ import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.Monitoring.ClickOnMonitoringPopupButton;
 import scripts.cats.hmi.actions.Monitoring.SelectMonitoringTableEntry;
 import scripts.cats.hmi.actions.Monitoring.TerminateRemainingMonitoringCalls;
+import scripts.cats.hmi.asserts.Mission.VerifyRolesInMissionList;
 import scripts.cats.hmi.asserts.Monitoring.VerifyMonitoringPopupButtonState;
 import scripts.cats.hmi.asserts.Monitoring.VerifyMonitoringTableEntryValue;
 import scripts.cats.hmi.asserts.Monitoring.VerifyMonitoringTableSize;
@@ -93,6 +94,15 @@ public class MonitoringUISteps extends AutomationSteps
                         BookableProfileName.javafx ), assertProfile( profileName ) )
                 .input( TerminateRemainingMonitoringCalls.IPARAM_MENU_BUTTON_ID, "terminate_monitoring_calls_menu_button" )
                 .input( TerminateRemainingMonitoringCalls.IPARAM_FUNCTION_KEY_ID, functionKey.getId() ));
+    }
+
+    @Then("$profileName has the following monitored roles $roleNames in the monitoring list")
+    public void verifyNamesOfAvailableRoles( final String profileName, final String roleNames )
+    {
+        evaluate( remoteStep( "Verify that the monitoring list has the correct list of roles" )
+                .scriptOn( profileScriptResolver().map( VerifyRolesInMissionList.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input( VerifyRolesInMissionList.IPARAM_ROLE_LIST_NAMES, roleNames ) );
     }
 
     private FunctionKey retrieveFunctionKey(final String key) {
