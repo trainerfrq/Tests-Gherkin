@@ -77,7 +77,7 @@ public class MonitoringUISteps extends AutomationSteps
     }
 
     @When("$profileName selects entry with name $entryName in the monitoring list")
-    public void selectEntryByName(final String profileName, final Integer entryName) {
+    public void selectEntryByName(final String profileName, final String entryName) {
            evaluate(remoteStep("Selects entry")
                 .scriptOn(
                         profileScriptResolver().map(SelectMonitoringTableEntryByName.class, BookableProfileName.javafx),
