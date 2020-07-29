@@ -29,6 +29,7 @@ import scripts.cats.hmi.asserts.Mission.VerifyRolesInMissionList;
 import scripts.cats.hmi.asserts.Monitoring.VerifyMonitoringPopupButtonState;
 import scripts.cats.hmi.asserts.Monitoring.VerifyMonitoringTableEntryValue;
 import scripts.cats.hmi.asserts.Monitoring.VerifyMonitoringTableSize;
+import scripts.cats.hmi.asserts.Monitoring.VerifyRolesInMonitoringList;
 
 public class MonitoringUISteps extends AutomationSteps
 {
@@ -100,9 +101,9 @@ public class MonitoringUISteps extends AutomationSteps
     public void verifyNamesOfAvailableRoles( final String profileName, final String roleNames )
     {
         evaluate( remoteStep( "Verify that the monitoring list has the correct list of roles" )
-                .scriptOn( profileScriptResolver().map( VerifyRolesInMissionList.class, BookableProfileName.javafx ),
+                .scriptOn( profileScriptResolver().map( VerifyRolesInMonitoringList.class, BookableProfileName.javafx ),
                         assertProfile( profileName ) )
-                .input( VerifyRolesInMissionList.IPARAM_ROLE_LIST_NAMES, roleNames ) );
+                .input( VerifyRolesInMonitoringList.IPARAM_ROLE_LIST_NAMES, roleNames ) );
     }
 
     private FunctionKey retrieveFunctionKey(final String key) {
