@@ -29,7 +29,8 @@ class SelectMonitoringTableEntryByName extends FxScriptTemplate {
                 MonitoringItemData item = (MonitoringItemData) monitoringTable.getItems().get(i)
                 String roleName = item.getDisplayName()
                 if (roleName.equals(entryName)){
-                    robot.clickOn(robot.point(entryName))
+                    final TableRow entry = robot.lookup( "#monitoringTable #monitoringEntry_"+i+" " ).queryFirst()
+                    robot.clickOn(robot.point(entry))
                     break
                 }
             }
