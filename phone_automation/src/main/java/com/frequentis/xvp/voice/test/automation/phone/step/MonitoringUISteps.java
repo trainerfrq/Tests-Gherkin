@@ -24,6 +24,7 @@ import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.Monitoring.ClickOnMonitoringPopupButton;
 import scripts.cats.hmi.actions.Monitoring.SelectMonitoringTableEntry;
+import scripts.cats.hmi.actions.Monitoring.SelectMonitoringTableEntryByName;
 import scripts.cats.hmi.actions.Monitoring.TerminateRemainingMonitoringCalls;
 import scripts.cats.hmi.asserts.Mission.VerifyRolesInMissionList;
 import scripts.cats.hmi.asserts.Monitoring.VerifyMonitoringPopupButtonState;
@@ -73,6 +74,15 @@ public class MonitoringUISteps extends AutomationSteps
                         profileScriptResolver().map(SelectMonitoringTableEntry.class, BookableProfileName.javafx),
                         assertProfile(profileName))
                 .input(SelectMonitoringTableEntry.IPARAM_ENTRY_NUMBER, Integer.toString(realPosition)));
+    }
+
+    @When("$profileName selects entry with name $entryName in the monitoring list")
+    public void selectEntryByName(final String profileName, final Integer entryName) {
+           evaluate(remoteStep("Selects entry")
+                .scriptOn(
+                        profileScriptResolver().map(SelectMonitoringTableEntryByName.class, BookableProfileName.javafx),
+                        assertProfile(profileName))
+                .input(SelectMonitoringTableEntryByName.IPARAM_ENTRY_NAME, entryName));
     }
 
     @Then("$profileName clicks on $buttonName button")
