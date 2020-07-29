@@ -1,11 +1,8 @@
 package scripts.cats.hmi.asserts.Monitoring
 
 import com.frequentis.c4i.test.model.ExecutionDetails
-import javafx.scene.Node
-import javafx.scene.control.Label
-import javafx.scene.control.TableRow
+import com.frequentis.voice.hmi.component.layout.table.item.monitoring.MonitoringItemData
 import javafx.scene.control.TableView
-import javafx.scene.layout.Pane
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import scripts.agent.testfx.automation.FxScriptTemplate
@@ -25,12 +22,11 @@ class VerifyRolesInMonitoringList extends FxScriptTemplate {
         List<String> receivedRoleNames = new ArrayList<>();
 
         final TableView monitoringTable = robot.lookup( "#monitoringTable" ).queryFirst()
-        final ObservableList monitoringItems = monitoringTable.getItems()
+        final ObservableList monitoringList = monitoringTable.getItems()
 
-        for(int i=0; i<monitoringItems.size(); i++){
-            final Node monitoringEntry = robot.lookup( "#monitoringTable #monitoringEntry_"+i +" " ).queryFirst()
-            TableRow row = (TableRow)monitoringEntry
-            String roleName = row.getChildrenUnmodifiable().get(1).toString()
+        for(int i=0; i<monitoringList.size(); i++){
+            MonitoringItemData item = (MonitoringItemData) monitoringTable.getItems().get(i)
+            String roleName = item.getDisplayName()
             receivedRoleNames.add(roleName)
         }
         receivedRoleNames.sort()
