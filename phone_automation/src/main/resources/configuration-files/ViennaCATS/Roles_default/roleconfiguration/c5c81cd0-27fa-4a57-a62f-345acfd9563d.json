@@ -33,8 +33,8 @@
     }
   },
   "intrusionSettings" : {
-    "intrusionAllowed" : false,
-    "activeCallTerminationBehavior" : "autoAccept",
+    "intrusionAllowed" : true,
+    "activeCallTerminationBehavior" : "manualAccept",
     "warningPeriodInSeconds" : 10
   },
   "positionSettings" : {
