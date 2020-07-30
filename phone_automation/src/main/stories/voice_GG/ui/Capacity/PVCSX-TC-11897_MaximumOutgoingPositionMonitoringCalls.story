@@ -20,7 +20,7 @@ Scenario: Create endpoint configuration
 Given the SIP header configuration named SipConfig:
 | context | header-name   | header-value                                                              |
 | *       | Subject       | monitoring                                                                |
-| *       | Allow         | INVITE, ACK, BYE, CANCEL, INFO, UPDATE, REFER, NOTIFY, SUBSCRIBE, OPTIONS |
+| INVITE  | Allow         | INVITE, ACK, BYE, CANCEL, INFO, UPDATE, REFER, NOTIFY, SUBSCRIBE, OPTIONS |
 | *       | Max-Forwards  | 70                                                                        |
 | *       | WG67-Version  | phone.01                                                                  |
 | *       | WG67-Version  | phone.02                                                                  |
@@ -85,11 +85,12 @@ Then HMI OP1 verifies that popup monitoring is visible
 
 Scenario: 3.1 Op1 verifies monitoring list entries
 Then HMI OP1 verifies that monitoring list contains 5 entries
-Then HMI OP1 verifies in the monitoring list that for entry 1 the second column has value Test_Alejandra
-Then HMI OP1 verifies in the monitoring list that for entry 2 the second column has value Test_Hurst
-Then HMI OP1 verifies in the monitoring list that for entry 3 the second column has value Test_Kristi
-Then HMI OP1 verifies in the monitoring list that for entry 4 the second column has value Test_Ivy
-Then HMI OP1 verifies in the monitoring list that for entry 5 the second column has value Test_Mayo
+Then HMI OP1 has the following monitored roles <<MONITORED_ROLE_LIST>> in the monitoring list
+!-- Then HMI OP1 verifies in the monitoring list that for entry 1 the second column has value Test_Alejandra
+!-- Then HMI OP1 verifies in the monitoring list that for entry 2 the second column has value Test_Hurst
+!-- Then HMI OP1 verifies in the monitoring list that for entry 3 the second column has value Test_Kristi
+!-- Then HMI OP1 verifies in the monitoring list that for entry 4 the second column has value Test_Ivy
+!-- Then HMI OP1 verifies in the monitoring list that for entry 5 the second column has value Test_Mayo
 
 Scenario: 3.2 Op1 closes monitoring popup
 Then HMI OP1 closes monitoring popup
@@ -140,11 +141,12 @@ Then HMI OP1 has the DA key OP3(as Mission4) with visible state monitoringActive
 Scenario: 6.1 Op1 verifies monitoring list entries
 When HMI OP1 with layout <<LAYOUT_MISSION4>> opens monitoring list using function key MONITORING menu
 Then HMI OP1 verifies that monitoring list contains 5 entries
-Then HMI OP1 verifies in the monitoring list that for entry 1 the second column has value Test_Hurst
-Then HMI OP1 verifies in the monitoring list that for entry 2 the second column has value Test_Kristi
-Then HMI OP1 verifies in the monitoring list that for entry 3 the second column has value <<OP3_NAME>>
-Then HMI OP1 verifies in the monitoring list that for entry 4 the second column has value Test_Ivy
-Then HMI OP1 verifies in the monitoring list that for entry 5 the second column has value Test_Mayo
+Then HMI OP1 has the following monitored roles Test_Hurst, Test_Kristi, <<OP3_NAME>>, Test_Ivy, Test_Mayo in the monitoring list
+!-- Then HMI OP1 verifies in the monitoring list that for entry 1 the second column has value Test_Hurst
+!-- Then HMI OP1 verifies in the monitoring list that for entry 2 the second column has value Test_Kristi
+!-- Then HMI OP1 verifies in the monitoring list that for entry 3 the second column has value <<OP3_NAME>>
+!-- Then HMI OP1 verifies in the monitoring list that for entry 4 the second column has value Test_Ivy
+!-- Then HMI OP1 verifies in the monitoring list that for entry 5 the second column has value Test_Mayo
 
 Scenario: 7. Op1 terminates the position monitoring call to Op3
 Meta: @TEST_STEP_ACTION: Op1 terminates the position monitoring call to Op3

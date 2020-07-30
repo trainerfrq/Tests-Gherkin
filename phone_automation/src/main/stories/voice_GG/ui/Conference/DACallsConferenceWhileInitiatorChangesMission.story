@@ -11,6 +11,13 @@ Given booked profiles:
 | javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
 | voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
+Scenario: Define call source and API URI
+When define values in story data:
+| name    | value            |
+| HMI OP1 | <<HMI1_API.URI>> |
+| HMI OP2 | <<HMI2_API.URI>> |
+| HMI OP3 | <<HMI3_API.URI>> |
+
 Scenario: Define call queue items
 Given the call queue items:
 | key          | source                | target           | callType |
@@ -54,16 +61,20 @@ Scenario: Close popup window
 Then HMI OP2 closes notification popup
 
 Scenario: Op1 call state verification
-Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
-Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
+Then HMI OP1 verify (via POST request) that call queue has status ESTABLISHED
+Then HMI OP1 verify (via POST request) that call queue shows CONF
+!-- Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
+!-- Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
 
 Scenario: Op2 adds another participant to the conference
 When HMI OP2 presses DA key OP3
 And waiting for 1 second
 
 Scenario: Op3 client receives the incoming call and answers the call
-Then HMI OP3 has the call queue item OP2-OP3-Conf in state inc_initiated
-Then HMI OP3 accepts the call queue item OP2-OP3-Conf
+Then HMI OP3 verify (via POST request) that call queue has status RINGING
+When HMI OP3 answers (via POST request) CONF call by clicking on the queue
+!-- Then HMI OP3 has the call queue item OP2-OP3-Conf in state inc_initiated
+!-- Then HMI OP3 accepts the call queue item OP2-OP3-Conf
 
 Scenario: Op2 verifies conference participants list
 		  @REQUIREMENTS:GID-3229804
@@ -79,8 +90,10 @@ Then HMI OP2 verifies that remove conference participant button is disabled
 Then HMI OP2 verifies that leave conference button is enabled
 
 Scenario: Op3 call state verification
-Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
-Then HMI OP3 has the call queue item OP2-OP3-Conf in the active list with name label CONF
+Then HMI OP3 verify (via POST request) that call queue has status ESTABLISHED
+Then HMI OP3 verify (via POST request) that call queue shows CONF
+!-- Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
+!-- Then HMI OP3 has the call queue item OP2-OP3-Conf in the active list with name label CONF
 
 Scenario: On Op2 position DA buttons of the participants are correctly signalized
 !-- Then HMI OP2 verifies that the DA key OP1 has the info label Conference
@@ -104,9 +117,11 @@ Then HMI OP2 closes notification popup
 
 Scenario: Verify the call state for all operators
 		  @REQUIREMENTS: GID-3005111
-Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
+Then HMI OP1 verify (via POST request) that call queue has status ESTABLISHED
+!-- Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
 Then HMI OP2 has the call queue item OP2-Conf in state connected
-Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
+Then HMI OP3 verify (via POST request) that call queue has status ESTABLISHED
+!-- Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
 
 Scenario: Op2 verifies conference state on the call queue
 Then HMI OP2 has the call queue item OP2-Conf in state connected
@@ -184,9 +199,10 @@ Then HMI OP2 verifies in the list that conference participant on position 3 has 
 Then HMI OP2 verifies in the list that conference participant on position 3 has name Madoline
 
 Scenario: Op1 leaves the conference
-Then HMI OP1 terminates the call queue item OP2-OP1-Conf
+When HMI OP1 terminates (via POST request) CONF call visible on call queue
+!-- Then HMI OP1 terminates the call queue item OP2-OP1-Conf
 Then HMI OP1 has in the call queue a number of 0 calls
-Then wait for 2 seconds
+Then waiting for 2 seconds
 
 Scenario: Op2 verifies conference participants list
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected

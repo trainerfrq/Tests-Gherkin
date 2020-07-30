@@ -23,6 +23,13 @@ Given booked profiles:
 | javafx  | hmi            | <<CLIENT2_IP>> | HMI OP2    |
 | javafx  | hmi            | <<CLIENT3_IP>> | HMI OP3    |
 
+Scenario: Define call source and API URI
+When define values in story data:
+| name    | value            |
+| HMI OP1 | <<HMI1_API.URI>> |
+| HMI OP2 | <<HMI2_API.URI>> |
+| HMI OP3 | <<HMI3_API.URI>> |
+
 Scenario: Define call queue items
 Given the call queue items:
 | key          | source                | target                      | callType |
@@ -72,9 +79,11 @@ Then HMI OP2 has the call queue item OP1-OP2-CONF in the active list with name l
 Then HMI OP2 has the call queue item OP1-OP2-CONF in the active list with info label 2 participants
 
 Scenario: 3.2 Verifying OP1 calls queue section
-Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
-Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
-Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with info label 2 participants
+Then HMI OP1 verify (via POST request) that call queue has status ESTABLISHED
+Then HMI OP1 verify (via POST request) that call queue shows CONF
+!-- Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
+!-- Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
+!-- Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with info label 2 participants
 
 Scenario: 4. OP2 adds "phonebook_entry" to conference
 Meta:
@@ -98,8 +107,9 @@ When HMI OP2 initiates a call from the phonebook
 And waiting for 1 second
 
 Scenario: 4.4 OP3 verifies calls queue section
-Then HMI OP3 has the call queue item OP2-OP3-Conf in state inc_initiated
-Then HMI OP3 has the call queue item OP2-OP3-Conf in the waiting list with name label CONF
+Then HMI OP3 verify (via POST request) that call queue has status RINGING
+!-- Then HMI OP3 has the call queue item OP2-OP3-Conf in state inc_initiated
+!-- Then HMI OP3 has the call queue item OP2-OP3-Conf in the waiting list with name label CONF
 
 Scenario: 4.5 OP2 verifies conference participants list
 When HMI OP2 opens the conference participants list using call queue item OP1-OP2-CONF
@@ -115,12 +125,16 @@ Meta:
 @TEST_STEP_ACTION: OP3 accepts the call 
 @TEST_STEP_REACTION: Conference list contains OP1, OP2 and Phonebook_entry with status connected
 @TEST_STEP_REF: [CATS-REF: HCUa]
-Then HMI OP3 accepts the call queue item OP2-OP3-Conf
+When HMI OP3 answers (via POST request) CONF call by clicking on the queue
+Then waiting for 1 seconds
+!-- Then HMI OP3 accepts the call queue item OP2-OP3-Conf
 
 Scenario: 5.1 Vefifying OP3 calls queue section
-Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
-Then HMI OP3 has the call queue item OP2-OP3-Conf in the active list with name label CONF
-Then HMI OP3 has the call queue item OP2-OP3-Conf in the active list with info label 3 participants
+Then HMI OP3 verify (via POST request) that call queue has status ESTABLISHED
+Then HMI OP3 verify (via POST request) that call queue shows CONF
+!-- Then HMI OP3 has the call queue item OP2-OP3-Conf in state connected
+!-- Then HMI OP3 has the call queue item OP2-OP3-Conf in the active list with name label CONF
+!-- Then HMI OP3 has the call queue item OP2-OP3-Conf in the active list with info label 3 participants
 
 Scenario: 5.2 OP2 verifies conference participants list
 When HMI OP2 opens the conference participants list using call queue item OP1-OP2-CONF
@@ -140,7 +154,7 @@ Meta:
 @TEST_STEP_ACTION: OP1 leaves the conference
 @TEST_STEP_REACTION: OP1 has no calls in queue. Conference list contains OP2 and Phonebook_entry with status connected
 @TEST_STEP_REF: [CATS-REF: KUFJ]
-When HMI OP1 opens the conference participants list using call queue item OP2-OP1-Conf
+When HMI OP1 opens the conference participants list
 Then HMI OP1 leaves conference
 And waiting for 1 second
 Then HMI OP1 has in the call queue a number of 0 calls

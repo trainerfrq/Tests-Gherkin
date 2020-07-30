@@ -24,10 +24,13 @@ import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import scripts.cats.hmi.actions.Monitoring.ClickOnMonitoringPopupButton;
 import scripts.cats.hmi.actions.Monitoring.SelectMonitoringTableEntry;
+import scripts.cats.hmi.actions.Monitoring.SelectMonitoringTableEntryByName;
 import scripts.cats.hmi.actions.Monitoring.TerminateRemainingMonitoringCalls;
+import scripts.cats.hmi.asserts.Mission.VerifyRolesInMissionList;
 import scripts.cats.hmi.asserts.Monitoring.VerifyMonitoringPopupButtonState;
 import scripts.cats.hmi.asserts.Monitoring.VerifyMonitoringTableEntryValue;
 import scripts.cats.hmi.asserts.Monitoring.VerifyMonitoringTableSize;
+import scripts.cats.hmi.asserts.Monitoring.VerifyRolesInMonitoringList;
 
 public class MonitoringUISteps extends AutomationSteps
 {
@@ -73,6 +76,15 @@ public class MonitoringUISteps extends AutomationSteps
                 .input(SelectMonitoringTableEntry.IPARAM_ENTRY_NUMBER, Integer.toString(realPosition)));
     }
 
+    @When("$profileName selects entry with name $entryName in the monitoring list")
+    public void selectEntryByName(final String profileName, final String entryName) {
+           evaluate(remoteStep("Selects entry")
+                .scriptOn(
+                        profileScriptResolver().map(SelectMonitoringTableEntryByName.class, BookableProfileName.javafx),
+                        assertProfile(profileName))
+                .input(SelectMonitoringTableEntryByName.IPARAM_ENTRY_NAME, entryName));
+    }
+
     @Then("$profileName clicks on $buttonName button")
     public void closePopup( final String profileName, final String buttonName )
     {
@@ -93,6 +105,15 @@ public class MonitoringUISteps extends AutomationSteps
                         BookableProfileName.javafx ), assertProfile( profileName ) )
                 .input( TerminateRemainingMonitoringCalls.IPARAM_MENU_BUTTON_ID, "terminate_monitoring_calls_menu_button" )
                 .input( TerminateRemainingMonitoringCalls.IPARAM_FUNCTION_KEY_ID, functionKey.getId() ));
+    }
+
+    @Then("$profileName has the following monitored roles $roleNames in the monitoring list")
+    public void verifyNamesOfAvailableRoles( final String profileName, final String roleNames )
+    {
+        evaluate( remoteStep( "Verify that the monitoring list has the correct list of roles" )
+                .scriptOn( profileScriptResolver().map( VerifyRolesInMonitoringList.class, BookableProfileName.javafx ),
+                        assertProfile( profileName ) )
+                .input( VerifyRolesInMonitoringList.IPARAM_ROLE_LIST_NAMES, roleNames ) );
     }
 
     private FunctionKey retrieveFunctionKey(final String key) {

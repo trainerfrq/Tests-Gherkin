@@ -11,6 +11,13 @@ Given booked profiles:
 | javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
 | voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
+Scenario: Define call source and API URI
+When define values in story data:
+| name    | value            |
+| HMI OP1 | <<HMI1_API.URI>> |
+| HMI OP2 | <<HMI2_API.URI>> |
+| HMI OP3 | <<HMI3_API.URI>> |
+
 Scenario: Define call queue items
 Given the call queue items:
 | key          | source                | target      | callType |
@@ -54,8 +61,10 @@ Scenario: Close popup window
 Then HMI OP2 closes notification popup
 
 Scenario: Op1 call state verification
-Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
-Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
+Then HMI OP1 verify (via POST request) that call queue has status ESTABLISHED
+Then HMI OP1 verify (via POST request) that call queue shows CONF
+!-- Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
+!-- Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
 
 Scenario: Op2 adds a conference participant from phonebook
 When HMI OP2 with layout <<LAYOUT_MISSION2>> presses function key PHONEBOOK
@@ -124,11 +133,14 @@ Then HMI OP3 has in the call queue a number of 1 calls
 Scenario: Verify conference is not terminated for all participants
 		  @REQUIREMENTS:GID-2529028
 Then HMI OP1 has in the call queue a number of 1 calls
-Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
-Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
+Then HMI OP1 verify (via POST request) that call queue has status ESTABLISHED
+Then HMI OP1 verify (via POST request) that call queue shows CONF
+!-- Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
+!-- Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
 
 Scenario: Op1 leaves the conference
-Then HMI OP1 terminates the call queue item OP2-OP1-Conf
+!-- Then HMI OP1 terminates the call queue item OP2-OP1-Conf
+When HMI OP1 terminates (via POST request) CONF call visible on call queue
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Op2 and Op3 clear IA call

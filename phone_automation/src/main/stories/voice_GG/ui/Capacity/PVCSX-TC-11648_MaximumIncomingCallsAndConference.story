@@ -16,6 +16,13 @@ Given booked profiles:
 | javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
 | voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
 
+Scenario: Define call source and API URI
+When define values in story data:
+| name    | value            |
+| HMI OP1 | <<HMI1_API.URI>> |
+| HMI OP2 | <<HMI2_API.URI>> |
+| HMI OP3 | <<HMI3_API.URI>> |
+
 Scenario: Create sip phone
 Given SipContacts group SipContact:
 | key      | profile | user-entity | sip-uri   |
@@ -78,13 +85,16 @@ Meta: @TEST_STEP_ACTION: Op1 invites Op3 to the conference.
 When HMI OP1 presses DA key OP3
 
 Scenario: 3.1 Op3 client receives the incoming call and answers the call
-Then HMI OP3 has the call queue item OP1-OP3-Conf in state inc_initiated
+Then HMI OP3 verify (via POST request) that call queue has status RINGING
+!-- Then HMI OP3 has the call queue item OP1-OP3-Conf in state inc_initiated
 
 Scenario: 4. Op3 answers conference call
 Meta: @TEST_STEP_ACTION: Op3 answers conference call
 @TEST_STEP_REACTION: Op1 has a n active conference with 3 participants
 @TEST_STEP_REF: [CATS-REF: tpWe]
-Then HMI OP3 accepts the call queue item OP1-OP3-Conf
+When HMI OP3 answers (via POST request) CONF call by clicking on the queue
+Then wait for 1 seconds
+!-- Then HMI OP3 accepts the call queue item OP1-OP3-Conf
 
 Scenario: 4.1 Op1 verifies conference state
 Then HMI OP1 has the call queue item OP2-OP1-CONF in state connected

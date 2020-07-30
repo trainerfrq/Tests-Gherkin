@@ -7,7 +7,7 @@ import javafx.scene.control.TableView
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 class SelectMonitoringTableEntry extends FxScriptTemplate {
-    public static final String IPARAM_ENTRY_NUMBER = "phonebook_entry_number"
+    public static final String IPARAM_ENTRY_NUMBER = "entry_number"
 
     @Override
     void script() {

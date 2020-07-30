@@ -54,6 +54,33 @@ public class ATISteps extends ATIUtil
                 .details( match(output.getData(), is(nullValue())) ));
     }
 
+    @When("$hmiOperator answers (via POST request) $type call by clicking on the queue")
+    @Aliases(values = {"$hmiOperator terminates (via POST request) $type call visible on call queue",
+            "$hmiOperator cancels (via POST request) $type call visible on call queue"})
+    public void apiCallQueueCall( final String hmiOperator, final String type)
+            throws Throwable
+    {
+        final LocalStep localStep = localStep( "Execute POST request - accept/terminate call on call queue" );
+
+        String  endpointUri = getStoryListData(hmiOperator, String.class);
+
+        final JsonMessage jsonMessageRequest =
+                JsonMessage.builder()
+                        .withCorrelationId(UUID.randomUUID())
+                        .withPayload( new GgCommand( type, GgCommandType.CLICK_CALL_QUEUE )).build();
+
+        final String responseContent = getResponseWithStatus(endpointUri, jsonMessageRequest, STATUS_OK);
+
+        final Gson gson = GsonUtils.getGson();
+        final JsonMessage jsonMessage = gson.fromJson( responseContent, JsonMessage.class );
+        final GgCommandResponse output = jsonMessage.body().getPayloadAs( GgCommandResponse.class );
+
+        evaluate( localStep( "Verify response for executed POST request - accept/terminate call on call queue" )
+                .details( match( output.getCommandType(), equalTo(GgCommandType.CLICK_CALL_QUEUE)) )
+                .details( match( output.getResult(), equalTo(GgResult.OK)))
+                .details( match(output.getData(), is(nullValue())) ));
+    }
+
     @When("HMI operators initiate calls to the following targets: $tableEntries")
     @Aliases(values = { "HMI operators cancel the following calls: $tableEntries",
             "HMI operators terminate the following calls: $tableEntries",
@@ -300,6 +327,64 @@ public class ATISteps extends ATIUtil
                         .details(match(output.getResult(), equalTo(GgResult.OK)))
                         .details(match(output.getId(), equalTo("callQueue")))
                         .details(match(receivedGGCallStatus(element, status, 2000), equalTo(status))));
+        }
+    }
+
+ @Then("$hmiOperator verifies (via POST request) that there are $nrOfCalls calls in the call queue with status: $statuses")
+    public void apiCallQueueStatuses( final String hmiOperator, final Integer nrOfCalls, final List<String> statuses )
+            throws Throwable
+    {
+        final LocalStep localStep = localStep( "Execute POST request - verify call queue status" );
+
+        String  endpointUri = getStoryListData(hmiOperator, String.class);
+
+        final JsonMessage jsonMessageRequest =
+                JsonMessage.builder()
+                        .withCorrelationId(UUID.randomUUID())
+                        .withPayload( new GgCommand( "callQueue", GgCommandType.GET_CALL_STATUS )).build();
+
+        final String responseContent = getResponseWithStatus(endpointUri, jsonMessageRequest, STATUS_OK);
+
+        final Gson gson = GsonUtils.getGson();
+        final JsonMessage jsonMessage = gson.fromJson( responseContent, JsonMessage.class );
+        final GgCommandResponse output = jsonMessage.body().getPayloadAs( GgCommandResponse.class );
+        List<GgCallStatusElement> elements = output.getData();
+
+        for(int i=0; i<nrOfCalls; i++){
+            evaluate(localStep("Verify response for executed POST request - verify call queue status")
+                    .details(match(output.getCommandType(), equalTo(GgCommandType.GET_CALL_STATUS)))
+                    .details(match(output.getResult(), equalTo(GgResult.OK)))
+                    .details(match(output.getId(), equalTo("callQueue")))
+                    .details(match(receivedGGCallStatus(elements.get(i), statuses.get(i), 2000), equalTo(statuses.get(i)))));
+        }
+    }
+
+@Then("$hmiOperator verify (via POST request) that call queue shows $type")
+    public void apiCallQueueCallType( final String hmiOperator, final String type )
+            throws Throwable
+    {
+        final LocalStep localStep = localStep( "Execute POST request - verify call type" );
+
+        String  endpointUri = getStoryListData(hmiOperator, String.class);
+
+        final JsonMessage jsonMessageRequest =
+                JsonMessage.builder()
+                        .withCorrelationId(UUID.randomUUID())
+                        .withPayload( new GgCommand( "callQueue", GgCommandType.GET_CALL_STATUS )).build();
+
+        final String responseContent = getResponseWithStatus(endpointUri, jsonMessageRequest, STATUS_OK);
+
+        final Gson gson = GsonUtils.getGson();
+        final JsonMessage jsonMessage = gson.fromJson( responseContent, JsonMessage.class );
+        final GgCommandResponse output = jsonMessage.body().getPayloadAs( GgCommandResponse.class );
+        List<GgCallStatusElement> elements = output.getData();
+
+        for(GgCallStatusElement element : elements){
+            evaluate(localStep("Verify response for executed POST request - verify call queue status")
+                    .details(match(output.getCommandType(), equalTo(GgCommandType.GET_CALL_STATUS)))
+                    .details(match(output.getResult(), equalTo(GgResult.OK)))
+                    .details(match(output.getId(), equalTo("callQueue")))
+                    .details(match(element.getId(), equalTo(type))));
         }
     }
 
