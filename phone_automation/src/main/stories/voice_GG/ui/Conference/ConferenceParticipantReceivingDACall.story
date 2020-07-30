@@ -65,7 +65,7 @@ Then HMI OP3 has the call queue item OP2-OP3-Conf in state inc_initiated
 Then HMI OP3 accepts the call queue item OP2-OP3-Conf
 
 Scenario: Op2 verifies conference participants list
-When HMI OP2 opens the conference participants list
+When HMI OP2 opens the conference participants list using call queue item OP1-OP2-CONF
 Then HMI OP2 verifies that conference participants list contains 3 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP1_NAME>>

@@ -67,7 +67,7 @@ Then HMI OP3 accepts the call queue item OP2-OP3-Conf
 
 Scenario: Op2 verifies conference participants list
 		  @REQUIREMENTS:GID-3229804
-When HMI OP2 opens the conference participants list
+When HMI OP2 opens the conference participants list using call queue item OP1-OP2-CONF
 Then HMI OP2 verifies that conference participants list contains 3 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP1_NAME>>
@@ -114,7 +114,7 @@ Then HMI OP2 has the call queue item OP2-Conf in the active list with name label
 Then HMI OP2 has the call queue item OP2-Conf in the active list with info label 3 participants
 
 Scenario: Op2 verifies conference participants list
-When HMI OP2 opens the conference participants list
+When HMI OP2 opens the conference participants list using call queue item OP1-OP2-CONF
 Then HMI OP2 verifies that conference participants list contains 3 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP1_NAME>>
@@ -144,7 +144,7 @@ When HMI OP2 initiates a call from the phonebook
 When SipContact answers incoming calls
 
 Scenario: Op2 verifies conference participants list
-When HMI OP2 opens the conference participants list
+When HMI OP2 opens the conference participants list using call queue item OP1-OP2-CONF
 Then HMI OP2 verifies that conference participants list contains 3 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP1_NAME>>
@@ -174,7 +174,7 @@ Scenario: On Op2 position DA buttons of the participants are correctly signalize
 !-- Then HMI OP2 verifies that the DA key OP3 has the info label Conference
 
 Scenario: Op2 verifies conference participants list
-When HMI OP2 opens the conference participants list
+When HMI OP2 opens the conference participants list using call queue item OP1-OP2-CONF
 Then HMI OP2 verifies that conference participants list contains 3 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP1_NAME>>

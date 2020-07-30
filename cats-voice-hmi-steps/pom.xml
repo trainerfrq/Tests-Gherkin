@@ -4,7 +4,7 @@
     <parent>
         <artifactId>phone-test-automation</artifactId>
         <groupId>com.frequentis.xvp.voice.phone</groupId>
-       <version>2.2.8</version>
+       <version>2.2.9-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -22,6 +22,10 @@
             <groupId>com.frequentis.xvp.voice.automation</groupId>
             <artifactId>voice-hmi-dsl</artifactId>
             <version>${voice.automation.common.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.frequentis.c4i.test</groupId>
+            <artifactId>cats-javafx-plugin</artifactId>
         </dependency>
     </dependencies>
 

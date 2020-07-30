@@ -66,7 +66,7 @@ When HMI OP2 initiates a call from the phonebook
 When SipContact answers incoming calls
 
 Scenario: Op2 verifies conference participants list
-When HMI OP2 opens the conference participants list
+When HMI OP2 opens the conference participants list using call queue item OP1-OP2-CONF
 Then HMI OP2 verifies that conference participants list contains 3 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP1_NAME>>
@@ -106,7 +106,7 @@ Scenario: Close popup window
 Then HMI OP2 closes notification popup
 
 Scenario: Op2 verifies conference participants list
-When HMI OP2 opens the conference participants list
+When HMI OP2 opens the conference participants list using call queue item OP1-OP2-CONF
 Then HMI OP2 verifies that conference participants list contains 3 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP1_NAME>>
@@ -126,7 +126,7 @@ Scenario: Verify conference is not terminated for all participants
 Then HMI OP1 has in the call queue a number of 1 calls
 
 Scenario: Op1 verifies conference participants list
-When HMI OP1 opens the conference participants list
+When HMI OP1 opens the conference participants list using call queue item OP2-OP1-Conf
 Then HMI OP1 verifies that conference participants list contains 2 participants
 Then HMI OP1 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP1 verifies in the list that conference participant on position 1 has name <<OP1_NAME>>

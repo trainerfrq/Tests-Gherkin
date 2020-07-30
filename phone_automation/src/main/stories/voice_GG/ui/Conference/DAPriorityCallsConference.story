@@ -51,7 +51,7 @@ Then HMI OP1 has the call queue item OP2-OP1-Conf in state connected
 Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
 
 Scenario: Op2 verifies conference participants list
-When HMI OP2 opens the conference participants list
+When HMI OP2 opens the conference participants list using call queue item OP1-OP2-CONF
 Then HMI OP2 verifies that conference participants list contains 2 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP1_NAME>>
@@ -82,7 +82,7 @@ Then HMI OP2 closes notification popup
 
 Scenario: Op2 verifies conference participants list
 		  @REQUIREMENTS:GID-3229804
-When HMI OP2 opens the conference participants list
+When HMI OP2 opens the conference participants list using call queue item OP1-OP2-CONF
 Then HMI OP2 verifies that conference participants list contains 3 participants
 Then HMI OP2 verifies in the list that conference participant on position 3 has status ringing
 Then HMI OP2 verifies in the list that conference participant on position 3 has name <<OP3_NAME>>
@@ -105,7 +105,7 @@ Scenario: On Op2 position DA buttons of the participants are correctly signalize
 !-- Then HMI OP2 verifies that the DA key OP3 has the info label Conference
 
 Scenario: Op1 leaves the conference
-When HMI OP1 opens the conference participants list
+When HMI OP1 opens the conference participants list using call queue item OP2-OP1-Conf
 When HMI OP1 selects conference participant: 0
 Then HMI OP1 verifies that remove conference participant button is disabled
 Then HMI OP1 verifies that edit conference button is disabled
@@ -127,7 +127,7 @@ Then HMI OP2 verifies in the list that conference participant on position 2 has 
 Then HMI OP2 verifies in the list that conference participant on position 2 has name <<OP3_NAME>>
 
 Scenario: Op3 leaves the conference
-When HMI OP3 opens the conference participants list
+When HMI OP3 opens the conference participants list using call queue item OP2-OP3-Conf
 When HMI OP3 selects conference participant: 0
 Then HMI OP3 verifies that remove conference participant button is disabled
 Then HMI OP3 verifies that edit conference button is disabled

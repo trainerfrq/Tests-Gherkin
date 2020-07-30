@@ -4,7 +4,6 @@ import com.frequentis.c4i.test.model.ExecutionDetails
 import com.frequentis.c4i.test.util.timer.WaitTimer
 import com.frequentis.voice.hmi.component.layout.list.item.callQueue.CallQueueListItem
 import com.frequentis.voice.hmi.component.layout.list.scrollpane.CallQueueListView
-import javafx.collections.ObservableList
 import scripts.agent.testfx.automation.FxScriptTemplate
 
 class VerifyCallQueueLength extends FxScriptTemplate {

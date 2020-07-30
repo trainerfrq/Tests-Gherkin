@@ -2,8 +2,6 @@ package scripts.cats.hmi.asserts.Mission
 
 import com.frequentis.c4i.test.model.ExecutionDetails
 import com.frequentis.voice.hmi.component.layout.list.item.mission.MissionItemData
-import javafx.scene.Node
-import javafx.scene.control.Label
 import javafx.scene.control.ListView
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -20,6 +18,7 @@ class VerifyMissionListNames extends FxScriptTemplate {
         String missionListNames = assertInput(IPARAM_MISSION_LIST_NAMES) as String
 
         List<String> expectedMissionsList = Arrays.asList(missionListNames.split("\\s*,\\s*"));
+        expectedMissionsList.sort()
 
         final ListView list = robot.lookup("#missionPopup #missionList").queryFirst()
         evaluate(ExecutionDetails.create("Verify mission list exists")
@@ -35,6 +34,7 @@ class VerifyMissionListNames extends FxScriptTemplate {
             missionsList.add(missionName)
         }
 
+        missionsList.sort()
         evaluate(ExecutionDetails.create("Verify mission lists")
                 .expected(expectedMissionsList.toString())
                 .received(missionsList.toString())

@@ -102,7 +102,7 @@ Then HMI OP3 has the call queue item OP2-OP3-Conf in state inc_initiated
 Then HMI OP3 has the call queue item OP2-OP3-Conf in the waiting list with name label CONF
 
 Scenario: 4.5 OP2 verifies conference participants list
-When HMI OP2 opens the conference participants list
+When HMI OP2 opens the conference participants list using call queue item OP1-OP2-CONF
 Then HMI OP2 verifies that conference participants list contains 3 participants
 Then HMI OP2 verifies in the list that conference participant on position 3 has name Test_Berta
 Then HMI OP2 verifies in the list that conference participant on position 3 has status ringing
@@ -123,7 +123,7 @@ Then HMI OP3 has the call queue item OP2-OP3-Conf in the active list with name l
 Then HMI OP3 has the call queue item OP2-OP3-Conf in the active list with info label 3 participants
 
 Scenario: 5.2 OP2 verifies conference participants list
-When HMI OP2 opens the conference participants list
+When HMI OP2 opens the conference participants list using call queue item OP1-OP2-CONF
 Then HMI OP2 verifies that conference participants list contains 3 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP1_NAME>>
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
@@ -140,13 +140,13 @@ Meta:
 @TEST_STEP_ACTION: OP1 leaves the conference
 @TEST_STEP_REACTION: OP1 has no calls in queue. Conference list contains OP2 and Phonebook_entry with status connected
 @TEST_STEP_REF: [CATS-REF: KUFJ]
-When HMI OP1 opens the conference participants list
+When HMI OP1 opens the conference participants list using call queue item OP2-OP1-Conf
 Then HMI OP1 leaves conference
 And waiting for 1 second
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: 6.1 OP2 verifies conference participants list
-When HMI OP2 opens the conference participants list
+When HMI OP2 opens the conference participants list using call queue item OP1-OP2-CONF
 Then HMI OP2 verifies that conference participants list contains 2 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP2_NAME>>
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected

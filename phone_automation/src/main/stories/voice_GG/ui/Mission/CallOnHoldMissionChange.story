@@ -20,26 +20,11 @@ Given the call queue items:
 | OP2-OP3        | <<OP2_URI>>    | <<OP3_URI>>            | DA/IDA   |
 | SipContact-OP2 | <<SIP_PHONE2>> | <<OPVOICE2_PHONE_URI>> | DA/IDA   |
 
-Scenario: Create endpoint configuration
-Given the SIP header configuration named SipConfigDACall:
-| context | header-name   | header-value                                                              |
-| *       | Subject       | DA/IDA call                                                               |
-| *       | Allow         | INVITE, ACK, BYE, CANCEL, INFO, UPDATE, REFER, NOTIFY, SUBSCRIBE, OPTIONS |
-| *       | Max-Forwards  | 70                                                                        |
-| *       | WG67-Version  | phone.01                                                                  |
-| *       | WG67-Version  | phone.02                                                                  |
-| *       | WG67-CallType | phone.02;da/ida call                                                      |
-| INVITE  | Priority      | non-urgent                                                                |
-
-Given named MEP configuration:
-| key      | auto-answer | capabilities | named-sip-config |
-| DACall-1 | TRUE        | PCMA         | SipConfigDACall  |
-
 Scenario: Create sip phone
 Given SipContacts group SipContact:
 | key        | profile | user-entity | sip-uri        |
 | SipContact | VOIP    | 12345       | <<SIP_PHONE2>> |
-And phones for SipContact are created applying configuration DACall-1
+And phones for SipContact are created
 
 Scenario: Sip phone calls operator
 When SipContact calls SIP URI <<OPVOICE2_PHONE_URI>>
