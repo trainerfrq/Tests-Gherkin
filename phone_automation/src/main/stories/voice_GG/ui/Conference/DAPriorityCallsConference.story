@@ -119,7 +119,7 @@ Scenario: On Op2 position DA buttons of the participants are correctly signalize
 !-- Then HMI OP2 verifies that the DA key OP3 has the info label Conference
 
 Scenario: Op1 leaves the conference
-When HMI OP1 opens the conference participants list using call queue item OP2-OP1-Conf
+When HMI OP1 opens the conference participants list
 When HMI OP1 selects conference participant: 0
 Then HMI OP1 verifies that remove conference participant button is disabled
 Then HMI OP1 verifies that edit conference button is disabled

@@ -119,7 +119,7 @@ When SSH host dockerHost2 executes docker start phone-routing-service-2
 Then waiting for <<phoneRoutingFailoverTime>> seconds
 
 Scenario: 5.3 OP2 removes one participant from conference participants list
-When HMI OP2 opens the conference participants list using call queue item OP1-OP2-CONF
+When HMI OP2 opens the conference participants list
 When HMI OP2 selects conference participant: 0
 Then HMI OP2 verifies that remove conference participant button is enabled
 Then HMI OP2 removes conference participant
@@ -165,7 +165,7 @@ Scenario: 9. OP2 and OP3 leave the conference
 Meta: @TEST_STEP_ACTION: OP2 and OP3 leave the conference (as audio is no longer available on the conference)
 @TEST_STEP_REACTION: Conference is terminated for both participants
 @TEST_STEP_REF: [CATS-REF: Ar8U]
-When HMI OP2 opens the conference participants list using call queue item OP1-OP2-CONF
+When HMI OP2 opens the conference participants list
 Then HMI OP2 leaves conference
 
 Scenario: 9.1 Call is terminated initiator, but not for the participant
@@ -193,11 +193,14 @@ Meta: @TEST_STEP_ACTION: OP2 adds OP1 to the conference
 When HMI OP2 presses DA key OP1
 
 Scenario: 11.1 OP1 client receives the incoming call and answers the call
-Then HMI OP1 has the call queue item OP2-OP1-Conf in state inc_initiated
-Then HMI OP1 accepts the call queue item OP2-OP1-Conf
+Then HMI OP1 verify (via POST request) that call queue has status RINGING
+When HMI OP1 answers (via POST request) CONF call by clicking on the queue
+!-- Then HMI OP1 has the call queue item OP2-OP1-Conf in state inc_initiated
+!-- Then HMI OP1 accepts the call queue item OP2-OP1-Conf
+Then wait for 1 second
 
 Scenario: 11.2 OP2 verifies conference participants list
-When HMI OP2 opens the conference participants list using call queue item OP3-OP2-CONF
+When HMI OP2 opens the conference participants list
 Then HMI OP2 verifies that conference participants list contains 3 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP3_NAME>>
@@ -254,13 +257,13 @@ Meta: @TEST_STEP_ACTION: OP2 adds OP1 to the conference
 When HMI OP2 presses DA key OP1
 
 Scenario: 16.1 OP1 client receives the incoming call and answers the call
-Then HMI OP1 verify (via POST request) that call queue has status RINGING
+Then HMI OP1 verifies (via POST request) that there are 2 calls in the call queue with status: RINGING, ESTABLISHED
 When HMI OP1 answers (via POST request) CONF call by clicking on the queue
 !-- Then HMI OP1 has the call queue item OP2-OP1-Conf in state inc_initiated
 !-- Then HMI OP1 accepts the call queue item OP2-OP1-Conf
 
 Scenario: 16.2 OP2 verifies conference participants list
-When HMI OP2 opens the conference participants list using call queue item OP3-OP2-CONF
+When HMI OP2 opens the conference participants list
 Then HMI OP2 verifies that conference participants list contains 3 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP3_NAME>>

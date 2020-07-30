@@ -5,13 +5,14 @@ Meta: @TEST_CASE_VERSION: V5
 System is configured to allow maximum audio resources (16). Op2 active mission has a role configured with maximum allowed number of incoming position monitoring calls, incoming IA calls and incoming DA calls.
 @TEST_CASE_PASS_FAIL_CRITERIA: The test is passed when audio resources limitation is take into account and calls are visible on the operator position, but not 16 calls at once, because one IA call allocates 2 audio resources.
 @TEST_CASE_DEVICES_IN_USE: Op2, CATS tool is used to simulate 16 external calls
-@TEST_CASE_ID: PVCSX-TC-11958
-@TEST_CASE_GLOBAL_ID: GID-5165662
+																																																																																																																		   @TEST_CASE_ID: PVCSX-TC-11958
+																																																																																																																		   @TEST_CASE_GLOBAL_ID: GID-5165662
 @TEST_CASE_API_ID: 17778245
 
 Scenario: Booking profiles
 Given booked profiles:
 | profile             | group          | host           | identifier |
+| javafx              | hmi            | <<CLIENT1_IP>> | HMI OP1    |
 | javafx              | hmi            | <<CLIENT2_IP>> | HMI OP2    |
 | javafx              | hmi            | <<CLIENT3_IP>> | HMI OP3    |
 | voip/<<systemName>> | <<systemName>> | <<CO3_IP>>     | VOIP       |
@@ -20,7 +21,7 @@ Scenario: Create endpoint configuration
 Given the SIP header configuration named SipConfigIACall:
 | context | header-name   | header-value                                                              |
 | *       | Subject       | IA call                                                                   |
-| *       | Allow         | INVITE, ACK, BYE, CANCEL, INFO, UPDATE, REFER, NOTIFY, SUBSCRIBE, OPTIONS |
+| INVITE  | Allow         | INVITE, ACK, BYE, CANCEL, INFO, UPDATE, REFER, NOTIFY, SUBSCRIBE, OPTIONS |
 | *       | Max-Forwards  | 70                                                                        |
 | *       | WG67-Version  | phone.01                                                                  |
 | *       | WG67-Version  | phone.add03.02                                                            |
@@ -43,7 +44,7 @@ Scenario: Create endpoint configuration
 Given the SIP header configuration named SipConfigMonitoring:
 | context | header-name   | header-value                                                              |
 | *       | Subject       | monitoring                                                                |
-| *       | Allow         | INVITE, ACK, BYE, CANCEL, INFO, UPDATE, REFER, NOTIFY, SUBSCRIBE, OPTIONS |
+| INVITE  | Allow         | INVITE, ACK, BYE, CANCEL, INFO, UPDATE, REFER, NOTIFY, SUBSCRIBE, OPTIONS |
 | *       | Max-Forwards  | 70                                                                        |
 | *       | WG67-Version  | phone.01                                                                  |
 | *       | WG67-Version  | phone.02                                                                  |
@@ -68,7 +69,7 @@ Scenario: Create endpoint configuration
 Given the SIP header configuration named SipConfigDACall:
 | context | header-name   | header-value                                                              |
 | *       | Subject       | DA/IDA call                                                               |
-| *       | Allow         | INVITE, ACK, BYE, CANCEL, INFO, UPDATE, REFER, NOTIFY, SUBSCRIBE, OPTIONS |
+| INVITE  | Allow         | INVITE, ACK, BYE, CANCEL, INFO, UPDATE, REFER, NOTIFY, SUBSCRIBE, OPTIONS |
 | *       | Max-Forwards  | 70                                                                        |
 | *       | WG67-Version  | phone.01                                                                  |
 | *       | WG67-Version  | phone.02                                                                  |

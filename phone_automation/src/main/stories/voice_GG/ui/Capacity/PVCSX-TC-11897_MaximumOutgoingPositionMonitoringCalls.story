@@ -20,7 +20,7 @@ Scenario: Create endpoint configuration
 Given the SIP header configuration named SipConfig:
 | context | header-name   | header-value                                                              |
 | *       | Subject       | monitoring                                                                |
-| *       | Allow         | INVITE, ACK, BYE, CANCEL, INFO, UPDATE, REFER, NOTIFY, SUBSCRIBE, OPTIONS |
+| INVITE  | Allow         | INVITE, ACK, BYE, CANCEL, INFO, UPDATE, REFER, NOTIFY, SUBSCRIBE, OPTIONS |
 | *       | Max-Forwards  | 70                                                                        |
 | *       | WG67-Version  | phone.01                                                                  |
 | *       | WG67-Version  | phone.02                                                                  |
