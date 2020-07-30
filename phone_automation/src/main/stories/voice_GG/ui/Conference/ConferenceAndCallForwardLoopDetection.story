@@ -79,29 +79,44 @@ Scenario: Op2 wants to add Op1 as conference participant
 When HMI OP2 presses DA key OP1
 
 Scenario: Call will be forwarded to Op3
-Then HMI OP3 verifies (via POST request) that there are 2 calls in the call queue with status: RINGING, ESTABLISHED
-!-- Then HMI OP3 has the call queue item OP2-OP3-Conf in the waiting list with name label CONF
-
-Scenario: Verify that conference is still on going for Op3
-!-- Then HMI OP3 has the call queue item OP2-OP3-Conf in the active list with name label CONF
+When HMI OP3 opens the conference participants list
+Then HMI OP3 verifies that conference participants list contains 3 participants
+Then HMI OP3 verifies in the list that conference participant on position 1 has status connected
+Then HMI OP3 verifies in the list that conference participant on position 1 has name <<OP2_NAME>>
+Then HMI OP3 verifies in the list that conference participant on position 2 has status connected
+Then HMI OP3 verifies in the list that conference participant on position 2 has name <<OP3_NAME>>
+Then HMI OP3 verifies in the list that conference participant on position 3 has status ringing
+Then HMI OP3 verifies in the list that conference participant on position 3 has name <<OP1_NAME>>
 
 Scenario: Verify that Op1 hasn't any calls in the call queue
 Then HMI OP1 has in the call queue a number of 0 calls
-
-Scenario: Op3 answers the call
-When HMI OP3 answers (via POST request) CONF call by clicking on the queue
-!-- Then HMI OP3 accepts the call queue item OP2-OP3-Conf
 
 Scenario: Op2 verifies conference participants list
 		  @REQUIREMENTS:GID-3657854
 When HMI OP2 opens the conference participants list using call queue item OP3-OP2-CONF
 Then HMI OP2 verifies that conference participants list contains 3 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
-Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP2_NAME>>
-Then HMI OP2 verifies in the list that conference participant on position 2 has status ringing
-Then HMI OP2 verifies in the list that conference participant on position 2 has name <<OP1_NAME>>
-Then HMI OP2 verifies in the list that conference participant on position 3 has status connected
-Then HMI OP2 verifies in the list that conference participant on position 3 has name <<OP3_NAME>>
+Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP3_NAME>>
+Then HMI OP2 verifies in the list that conference participant on position 2 has status connected
+Then HMI OP2 verifies in the list that conference participant on position 2 has name <<OP2_NAME>>
+Then HMI OP2 verifies in the list that conference participant on position 3 has status failed
+Then HMI OP2 verifies in the list that conference participant on position 3 has name <<OP1_NAME>>
+Scenario: Wait 35 seconds, so ringing call is auto-terminated
+Then waiting for 35 seconds
+
+Scenario: Op2 verifies conference participants list
+Then HMI OP2 verifies that conference participants list contains 2 participants
+Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
+Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP3_NAME>>
+Then HMI OP2 verifies in the list that conference participant on position 2 has status connected
+Then HMI OP2 verifies in the list that conference participant on position 2 has name <<OP2_NAME>>
+
+Scenario: Op3 verifies conference participants list
+Then HMI OP3 verifies that conference participants list contains 2 participants
+Then HMI OP3 verifies in the list that conference participant on position 1 has status connected
+Then HMI OP3 verifies in the list that conference participant on position 1 has name <<OP2_NAME>>
+Then HMI OP3 verifies in the list that conference participant on position 2 has status connected
+Then HMI OP3 verifies in the list that conference participant on position 2 has name <<OP3_NAME>>
 
 Scenario: Op2 leaves the conference
 Then HMI OP2 leaves conference

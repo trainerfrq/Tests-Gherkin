@@ -110,8 +110,9 @@ When HMI OP1 with layout <<LAYOUT_MISSION1>> selects grid tab 2
 When HMI OP1 presses IA key IA - OP2
 
 Scenario: 6.1 Verify call direction
-Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction duplex
-Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction duplex
+!-- functionality explained in https://jira.frequentis.frq/browse/PVCSX-2207
+Then HMI OP1 has the IA call queue item OP2-OP1 with audio direction rx_monitored
+Then HMI OP2 has the IA call queue item OP1-OP2 with audio direction tx_monitored
 
 Scenario: 6.2 Op1 verifies the number of calls in the queue
 Then HMI OP1 has in the active list a number of 1 calls

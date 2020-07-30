@@ -82,10 +82,10 @@ Scenario: Op2 verifies conference participants list
 When HMI OP2 opens the conference participants list using call queue item OP3-OP2-CONF
 Then HMI OP2 verifies that conference participants list contains 4 participants
 Then HMI OP2 verifies in the list that conference participant on position 1 has status connected
-Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP2_NAME>>
+Then HMI OP2 verifies in the list that conference participant on position 1 has name <<OP3_NAME>>
 Then HMI OP2 verifies in the list that conference participant on position 2 has status connected
-Then HMI OP2 verifies in the list that conference participant on position 2 has name <<OP3_NAME>>
-Then HMI OP2 verifies in the list that conference participant on position 3 has status ringing
+Then HMI OP2 verifies in the list that conference participant on position 2 has name <<OP2_NAME>>
+Then HMI OP2 verifies in the list that conference participant on position 3 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 3 has name <<OP1_NAME>>
 Then HMI OP2 verifies in the list that conference participant on position 4 has status connected
 Then HMI OP2 verifies in the list that conference participant on position 4 has name Madoline
@@ -94,15 +94,20 @@ Scenario: Op2 removes ringing conference participant
 When HMI OP2 selects conference participant: 2
 Then HMI OP2 verifies that remove conference participant button is enabled
 Then HMI OP2 removes conference participant
-Then HMI OP2 verifies that conference participants list contains 3 participants
+Then HMI OP2 verifies in the list that conference participant on position 3 has status clearing
+
+Scenario: Op2 verifies the participants list
+Then HMI OP2 verifies that conference participants list contains 4 participants
 
 Scenario: Op2 removes the rest of the conference participants
-When HMI OP2 selects conference participant: 1
+When HMI OP2 selects conference participant: 0
 Then HMI OP2 verifies that remove conference participant button is enabled
 Then HMI OP2 removes conference participant
-Then HMI OP2 verifies that conference participants list contains 1 participants
-When HMI OP2 selects conference participant: 0
-Then HMI OP2 removes conference participant
+
+Scenario: Op2 waits 2 seconds until clearing from conference list is done
+Then waiting for 2 seconds
+Then HMI OP2 verifies that conference participants list contains 3 participants
+Then HMI OP2 leaves conference
 
 Scenario: Verify that calls are ended for all conference participants
 Then HMI OP2 has in the call queue a number of 0 calls

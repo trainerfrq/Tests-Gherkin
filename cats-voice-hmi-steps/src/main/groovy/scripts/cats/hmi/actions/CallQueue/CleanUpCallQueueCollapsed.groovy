@@ -3,7 +3,6 @@ package scripts.cats.hmi.actions.CallQueue
 import com.frequentis.c4i.test.model.ExecutionDetails
 import com.frequentis.voice.hmi.component.layout.list.item.callQueue.CallQueueListItem
 import com.frequentis.voice.hmi.component.layout.list.scrollpane.CallQueueListView
-import javafx.collections.ObservableList
 import javafx.scene.Node
 import scripts.agent.testfx.automation.FxScriptTemplate
 
@@ -25,7 +24,7 @@ class CleanUpCallQueueCollapsed extends FxScriptTemplate {
                 .success(true))
         }
         else if (callQueueContainer != null){
-            ObservableList<CallQueueListItem> callQueueCollapsedList = callQueueCollapsed.getCollapsedCallQueueListItemsReadOnly()
+            List<CallQueueListItem> callQueueCollapsedList = callQueueCollapsed.getCollapsedCallQueueListItemsReadOnly()
             int i = callQueueCollapsedList.size()
             robot.clickOn(robot.point(callQueueContainer))
             evaluate(ExecutionDetails.create("call queue list size ")

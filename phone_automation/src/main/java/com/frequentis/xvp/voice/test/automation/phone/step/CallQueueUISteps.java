@@ -210,6 +210,31 @@ public class CallQueueUISteps extends AutomationSteps
       }
    }
 
+   @Then("$profileName has collapse call queue item $callQueueItem in the $callQueueList list with name label $label")
+   public void verifyCollapseCallQueueItemLabelActiveList( @Named("profileName") final String profileName, @Named("callQueueItem") final String namedCallQueueItem,
+                                                   @Named("callQueueList") final String callQueueList, @Named("label") final String label )
+   {
+      if(namedCallQueueItem.contains("CONF")){
+         evaluate( remoteStep( "Verify call queue item status" )
+                 .scriptOn( profileScriptResolver().map( VerifyCollapseCallQueueItemLabel.class, BookableProfileName.javafx ),
+                         assertProfile( profileName ) )
+                 .input( VerifyCollapseCallQueueItemLabel.IPARAM_CALL_QUEUE_ITEM_ID, CONFERENCE_CALL_QUEUE_ITEM )
+                 .input(VerifyCollapseCallQueueItemLabel.IPARAM_DISPLAY_NAME, label)
+                 .input(VerifyCollapseCallQueueItemLabel.IPARAM_LIST_NAME, CALL_QUEUE_LIST_MAP.get(callQueueList)));
+      }
+      else {
+         waitForSeconds(1);
+         CallQueueItem callQueueItem = getStoryListData(namedCallQueueItem, CallQueueItem.class);
+
+         evaluate(remoteStep("Verify call queue item status")
+                 .scriptOn(profileScriptResolver().map(VerifyCollapseCallQueueItemLabel.class, BookableProfileName.javafx),
+                         assertProfile(profileName))
+                 .input(VerifyCollapseCallQueueItemLabel.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId())
+                 .input(VerifyCollapseCallQueueItemLabel.IPARAM_DISPLAY_NAME, label)
+                 .input(VerifyCollapseCallQueueItemLabel.IPARAM_LIST_NAME, CALL_QUEUE_LIST_MAP.get(callQueueList)));
+      }
+   }
+
    @Then("$profileName verifies that the call queue item $callQueueItem from the $callQueueList list has call type $givenCallType")
    public void verifyCallQueueItemCallType( final String profileName, final String namedCallQueueItem,
          final String callQueueList, final String givenCallType )
@@ -500,14 +525,25 @@ public class CallQueueUISteps extends AutomationSteps
               .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_LIST_NAME, ACTIVE_LIST_NAME ) );
    }
 
-   @When("$profileName opens the conference participants list")
-   public void opensListConference( final String profileName )
+   @When("$profileName opens the conference participants list using call queue item $callQueueItem")
+   public void opensListConference( final String profileName, final String namedCallQueueItem )
    {
-      evaluate( remoteStep( "Opens conference participants list using call queue context menu" )
-              .scriptOn( profileScriptResolver().map( DragAndClickOnMenuButtonFirstCallQueueItem.class,
-                      BookableProfileName.javafx ), assertProfile( profileName ) )
-              .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_MENU_BUTTON_ID, CONFERENCE_LIST_CALL_MENU_BUTTON_ID )
-              .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_LIST_NAME, ACTIVE_LIST_NAME ) );
+      if(namedCallQueueItem.contains("CONF")) {
+         evaluate(remoteStep("Opens conference participants list using call queue context menu")
+                 .scriptOn(profileScriptResolver().map(DragAndClickOnMenuButtonCallQueueItem.class,
+                         BookableProfileName.javafx), assertProfile(profileName))
+                 .input(DragAndClickOnMenuButtonCallQueueItem.IPARAM_MENU_BUTTON_ID, CONFERENCE_LIST_CALL_MENU_BUTTON_ID)
+                 .input(DragAndClickOnMenuButtonCallQueueItem.IPARAM_CALL_QUEUE_ITEM_ID, CONFERENCE_CALL_QUEUE_ITEM));
+      }
+      else{
+         CallQueueItem callQueueItem = getStoryListData(namedCallQueueItem, CallQueueItem.class);
+
+         evaluate(remoteStep("Opens conference participants list using call queue context menu")
+                 .scriptOn(profileScriptResolver().map(DragAndClickOnMenuButtonCallQueueItem.class,
+                         BookableProfileName.javafx), assertProfile(profileName))
+                 .input(DragAndClickOnMenuButtonCallQueueItem.IPARAM_MENU_BUTTON_ID, CONFERENCE_LIST_CALL_MENU_BUTTON_ID)
+                 .input(DragAndClickOnMenuButtonCallQueueItem.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId()));
+      }
    }
 
 @When("$profileName opens the conference participants list using call queue item $callQueueItem")
@@ -602,6 +638,22 @@ public class CallQueueUISteps extends AutomationSteps
                         assertProfile( profileName ) )
                 .input(CleanUpCallQueueByPosition.IPARAM_LIST_NAME, callQueueItemList));
     }
+
+   @Then("$profileName verifies that intrusion Timeout bar is $visibility on call queue item $namedCallQueueItem")
+   public void checkTimeoutBarIsVisibleOnCallQueueItem(final String profileName, final String visibility, final String namedCallQueueItem)
+   {
+      boolean isVisible = true;
+      if (visibility.contains("not")) {
+         isVisible = false;
+      }
+      CallQueueItem callQueueItem = getStoryListData(namedCallQueueItem, CallQueueItem.class);
+
+      evaluate(remoteStep("Verify Timeout bar visibility for call queue item " + callQueueItem )
+              .scriptOn(profileScriptResolver().map(VerifyCallQueueIntrusionTimeoutBar.class, BookableProfileName.javafx),
+                      assertProfile(profileName))
+              .input(VerifyCallQueueIntrusionTimeoutBar.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId())
+              .input(VerifyCallQueueIntrusionTimeoutBar.IPARAM_IS_VISIBLE, isVisible));
+   }
 
    private String reformatSipUris( final String sipUri )
    {
