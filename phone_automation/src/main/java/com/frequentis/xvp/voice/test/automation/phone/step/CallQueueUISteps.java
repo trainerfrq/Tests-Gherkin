@@ -525,6 +525,16 @@ public class CallQueueUISteps extends AutomationSteps
               .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_LIST_NAME, ACTIVE_LIST_NAME ) );
    }
 
+   @When("$profileName opens the conference participants list")
+   public void opensListConference( final String profileName )
+   {
+      evaluate( remoteStep( "Opens conference participants list using call queue context menu" )
+              .scriptOn( profileScriptResolver().map( DragAndClickOnMenuButtonFirstCallQueueItem.class,
+                      BookableProfileName.javafx ), assertProfile( profileName ) )
+              .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_MENU_BUTTON_ID, CONFERENCE_LIST_CALL_MENU_BUTTON_ID )
+              .input( DragAndClickOnMenuButtonFirstCallQueueItem.IPARAM_LIST_NAME, ACTIVE_LIST_NAME ) );
+   }
+
    @When("$profileName opens the conference participants list using call queue item $callQueueItem")
    public void opensListConference( final String profileName, final String namedCallQueueItem )
    {
@@ -546,26 +556,6 @@ public class CallQueueUISteps extends AutomationSteps
       }
    }
 
-@When("$profileName opens the conference participants list using call queue item $callQueueItem")
-   public void opensListConference( final String profileName, final String namedCallQueueItem )
-   {
-      if(namedCallQueueItem.contains("CONF")) {
-         evaluate(remoteStep("Opens conference participants list using call queue context menu")
-                 .scriptOn(profileScriptResolver().map(DragAndClickOnMenuButtonCallQueueItem.class,
-                         BookableProfileName.javafx), assertProfile(profileName))
-                 .input(DragAndClickOnMenuButtonCallQueueItem.IPARAM_MENU_BUTTON_ID, CONFERENCE_LIST_CALL_MENU_BUTTON_ID)
-                 .input(DragAndClickOnMenuButtonCallQueueItem.IPARAM_CALL_QUEUE_ITEM_ID, CONFERENCE_CALL_QUEUE_ITEM));
-      }
-      else{
-         CallQueueItem callQueueItem = getStoryListData(namedCallQueueItem, CallQueueItem.class);
-
-         evaluate(remoteStep("Opens conference participants list using call queue context menu")
-                 .scriptOn(profileScriptResolver().map(DragAndClickOnMenuButtonCallQueueItem.class,
-                         BookableProfileName.javafx), assertProfile(profileName))
-                 .input(DragAndClickOnMenuButtonCallQueueItem.IPARAM_MENU_BUTTON_ID, CONFERENCE_LIST_CALL_MENU_BUTTON_ID)
-                 .input(DragAndClickOnMenuButtonCallQueueItem.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId()));
-      }
-   }
    @Then("$profileName verifies that hold button $exists")
    public void verifyHoldButtonExistence( final String profileName, final String exists )
    {
