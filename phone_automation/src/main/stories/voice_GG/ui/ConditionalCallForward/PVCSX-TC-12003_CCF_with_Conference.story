@@ -154,7 +154,7 @@ Meta:
 @TEST_STEP_ACTION: OP1 leaves the conference
 @TEST_STEP_REACTION: OP1 has no calls in queue. Conference list contains OP2 and Phonebook_entry with status connected
 @TEST_STEP_REF: [CATS-REF: KUFJ]
-When HMI OP1 opens the conference participants list
+When HMI OP1 opens the conference participants list using call queue item OP2-OP1-Conf
 Then HMI OP1 leaves conference
 And waiting for 1 second
 Then HMI OP1 has in the call queue a number of 0 calls

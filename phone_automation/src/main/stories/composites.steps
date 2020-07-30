@@ -49,6 +49,7 @@ Then get Connection status to the mission service value from <host> :=> connecti
 Then get Number of the association status changes to the mission service value from <host> :=> connectionStatusChangesMissionService
 Then get The Phone jSipLib initialization status value from <host> :=> jSipLibInitializationStatus
 Then get Number of the initialisation status changes value from <host> :=> jSipLibInitializationStatusChanges
+Then get Number of applied intrusions for incoming priority calls value from <host> :=> numberOfAppliedIntrusions
 Given {
     "Association status of phone to audio app":${audioAppAssociationStatus},
     "Number of the association status changes to the audio app":${audioAppAssociationStatusChanges},
@@ -57,7 +58,14 @@ Given {
     "Connection status to the mission service":${connectionStatusMissionService},
     "Number of the association status changes to the mission service":${connectionStatusChangesMissionService},
     "The Phone jSipLib initialization status":${jSipLibInitializationStatus},
-    "Number of the initialisation status changes":${jSipLibInitializationStatusChanges}
+    "Number of the initialisation status changes":${jSipLibInitializationStatusChanges},
+    "Number of applied intrusions for incoming priority calls":${numberOfAppliedIntrusions},
+} is stored as :=> RESULT
+
+Composite: Then get opVoice Phone KPIs values from zabbix host $host
+Then get Number of applied intrusions for incoming priority calls value from <host> :=> numberOfAppliedIntrusions
+Given {
+    "Number of applied intrusions for incoming priority calls":${numberOfAppliedIntrusions}
 } is stored as :=> RESULT
 
 Composite: Then get opVoice IA Calls KPIs values from zabbix host $host

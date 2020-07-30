@@ -30,6 +30,7 @@ Given the DA keys:
 | HMI OP1 | OP2(as GND)                | <<PhyOpPos1(GND)_CWP2>>              |
 | HMI OP1 | OP3(as GND)                | <<PhyOpPos1(GND)_CWP3>>              |
 | HMI OP1 | <<ROLE_1_NAME>>            | <<ACTIVE2_MISSION1>>                 |
+| HMI OP1 | IA - OP2(as GND)           | <<IA_PhysOpPos1(GND)_CWP2>>          |
 | HMI OP2 | OP1                        | <<PhyOpPos2_CWP1>>                   |
 | HMI OP2 | OP2                        |                                      |
 | HMI OP2 | OP3                        | <<PhyOpPos2_CWP3>>                   |

@@ -111,7 +111,7 @@ Then HMI OP1 verify (via POST request) that call queue shows CONF
 !-- Then HMI OP1 has the call queue item OP2-OP1-Conf in the active list with name label CONF
 
 Scenario: Op1 verifies conference participants list
-When HMI OP1 opens the conference participants list
+When HMI OP1 opens the conference participants list using call queue item OP2-OP1-Conf
 Then HMI OP1 verifies that conference participants list contains 2 participants
 Then HMI OP1 verifies in the list that conference participant on position 1 has status connected
 Then HMI OP1 verifies in the list that conference participant on position 1 has name <<OP1_NAME>>

@@ -99,7 +99,7 @@ Then HMI OP1 has the call queue item OP3-OP2 in state out_ringing
 Scenario: Position with mission MISSION_2_NAME receives call
 		  @REQUIREMENTS: GID-2890901
 Then HMI OP2 has the call queue item OP2-OP3 in state inc_initiated
-Then HMI OP2 has the call queue item OP2-OP3 in the priority list with name label <<ROLE_3_NAME>>
+Then HMI OP2 has the call queue item OP2-OP3 in the waiting list with name label <<ROLE_3_NAME>>
 
 Scenario: End call
 When HMI OP1 presses DA key OP3 - <<ROLE_2_NAME>>

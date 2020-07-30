@@ -19,7 +19,7 @@ Then waiting for 3 seconds
 
 Scenario: Redeploy op-voice-service
 Then SSH host deploymentServer executes /usr/bin/xvp services remove op-voice-service -g
-Then SSH host deploymentServer executes /usr/bin/xvp services deploy --all -g
+Then SSH host deploymentServer executes /usr/bin/xvp services deploy --force op-voice-service -g
 And waiting for 120 seconds
 
 Scenario: Verify Op Voice Services are running
