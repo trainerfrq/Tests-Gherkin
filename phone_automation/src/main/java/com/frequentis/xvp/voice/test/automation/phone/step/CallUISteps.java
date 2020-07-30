@@ -31,7 +31,6 @@ import scripts.cats.hmi.actions.PhoneBook.CallFromPhoneBook;
 import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookCallButton;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemPriority;
 import scripts.cats.hmi.asserts.DAKey.*;
-import scripts.cats.hmi.asserts.DAKey.VerifyDAKeyIntrusionTimeoutBar;
 import scripts.cats.hmi.asserts.TimeoutBar.VerifyTimeoutBarVisible;
 import scripts.cats.hmi.asserts.TimeoutBar.VerifyTimeoutBarVisibleForSpecificTime;
 import scripts.cats.hmi.asserts.VerifyFunctionKeyLabel;
