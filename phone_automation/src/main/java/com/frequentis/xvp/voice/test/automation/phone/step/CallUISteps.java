@@ -31,6 +31,7 @@ import scripts.cats.hmi.actions.PhoneBook.CallFromPhoneBook;
 import scripts.cats.hmi.actions.PhoneBook.ClickOnPhoneBookCallButton;
 import scripts.cats.hmi.asserts.CallQueue.VerifyCallQueueItemPriority;
 import scripts.cats.hmi.asserts.DAKey.*;
+import scripts.cats.hmi.asserts.DAKey.VerifyDAKeyIntrusionTimeoutBar;
 import scripts.cats.hmi.asserts.TimeoutBar.VerifyTimeoutBarVisible;
 import scripts.cats.hmi.asserts.TimeoutBar.VerifyTimeoutBarVisibleForSpecificTime;
 import scripts.cats.hmi.asserts.VerifyFunctionKeyLabel;
@@ -440,6 +441,23 @@ public class CallUISteps extends AutomationSteps {
             .input( VerifyCallQueueItemPriority.IPARAM_CALL_QUEUE_ITEM_ID, callQueueItem.getId() )
             .input( VerifyCallQueueItemPriority.IPARAM_CALL_QUEUE_ITEM_PRIORITY, priority ) );
    }
+
+    @Then("$profileName verifies that intrusion Timeout bar is $visibility on DA Key $target")
+    @Alias("$profileName verifies that intrusion Timeout bar is $visibility on IA Key $target")
+    public void verifyTimeoutBarIsVisibleOnDaKey(final String profileName, final String visibility, final String target)
+    {
+        boolean isVisible = true;
+        if (visibility.contains("not")) {
+            isVisible = false;
+        }
+        DAKey daKey = retrieveDaKey(profileName, target);
+
+        evaluate(remoteStep("Verify Timeout bar visibility for DA Key " + target )
+                .scriptOn(profileScriptResolver().map(VerifyDAKeyIntrusionTimeoutBar.class, BookableProfileName.javafx),
+                        assertProfile(profileName))
+                .input(VerifyDAKeyIntrusionTimeoutBar.IPARAM_DA_KEY_ID, daKey.getId())
+                .input(VerifyDAKeyIntrusionTimeoutBar.IPARAM_IS_VISIBLE, isVisible));
+    }
 
     private DAKey retrieveDaKey(final String source, final String target) {
         final DAKey daKey = getStoryListData(source + "-" + target, DAKey.class);
