@@ -1,0 +1,11 @@
+{
+    "id" : "db80fd5a-d205-4e87-95ad-dd1b446dd7a9",
+    "name" : "TestGroupCall",
+    "displayName" : "TestGroupCall",
+    "location" : "",
+    "organization" : "",
+    "comment" : "this is a test group call for Configuration Management UI tests",
+    "sipAddress" : "TestGroupCall",
+    "routeSelectorId" : "1fe8ae98-4221-4d2f-9020-adfed8a210bf",
+    "assignedRoles" : [ ]
+}

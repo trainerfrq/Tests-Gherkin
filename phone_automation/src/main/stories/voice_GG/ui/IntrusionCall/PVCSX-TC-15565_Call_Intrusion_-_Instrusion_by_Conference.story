@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V11
+@TEST_CASE_VERSION: V12
 @TEST_CASE_NAME: Call Intrusion - Instrusion by Conference
 @TEST_CASE_DESCRIPTION:
 As an operator having an active G/G call and Call Intrusion set to "Enabled"
@@ -64,7 +64,7 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Scenario: 2. OP3: Establish a priority call to OP1
 Meta:
 @TEST_STEP_ACTION: OP3: Establish a priority call to OP1
-@TEST_STEP_REACTION: OP3: Outgoing priority call to OP1 indicated
+@TEST_STEP_REACTION: OP3: Outgoing priority call to OP1 indicated in call queue
 @TEST_STEP_REF: [CATS-REF: 6uEB]
 When HMI OP3 initiates a priority call on DA key OP1
 Then HMI OP3 has the DA key OP1 in state out_ringing
