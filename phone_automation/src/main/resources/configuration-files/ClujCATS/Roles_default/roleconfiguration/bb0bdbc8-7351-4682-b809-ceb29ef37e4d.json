@@ -71,10 +71,11 @@
       "minValue" : 0,
       "maxValue" : 1
     },
+    "manualLspSelectionAllowed" : false,
     "brightnessControlRange" : {
       "minValue" : 0,
       "maxValue" : 100
     }
   },
-  "layoutId" : "a2ae97a1-337d-46a1-ba7c-9aac2b936ad7"
+  "layoutId" : "273d7b68-3b14-4649-97a6-8b3525160846"
 }
