@@ -24,12 +24,12 @@ class SelectCallRouteSelector extends FxScriptTemplate {
 
         if (phoneBookPopup.isVisible()) {
             final Node callRouteSelectorComboBox = robot.lookup("#callRouteComboBox").queryFirst()
-
+            evaluate(ExecutionDetails.create("Call route combo box is visible")
+                    .expected("Call route combo box is visible")
+                    .success(callRouteSelectorComboBox.isVisible()))
             robot.clickOn(robot.point(callRouteSelectorComboBox ))
 
-
             final Node specificCallRouteSelector = robot.lookup("#callRouteComboBox #"+callRouteSelectorId).queryFirst()
-
             robot.clickOn(robot.point(specificCallRouteSelector ))
 
 
