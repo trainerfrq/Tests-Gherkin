@@ -17,14 +17,9 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Supplier;
 
-import static java.lang.Math.max;
-import static java.lang.Math.min;
-import static java.time.Instant.now;
 
 public class ATIUtil extends AutomationSteps {
 
