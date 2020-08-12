@@ -81,7 +81,7 @@ Meta:
 @TEST_STEP_REACTION: Configurator: A pop-up message displays "Successfully saved the group call entry"
 @TEST_STEP_REF: [CATS-REF: A5eE]
 Then Save button is pressed in Group Calls editor
-Then waiting 6 seconds for LoadingScreen to disappear
+Then waiting 7 seconds for LoadingScreen to disappear
 Then pop-up message is visible
 Then verifying pop-up displays message: Successfully saved the group call entry
 
@@ -135,7 +135,7 @@ Then verify group call fields contain:
 | entry | <name> | <displayName> | <callRouteSelector> | <destination> | <resultingSipUri> |
 
 Then Save button is pressed in Group Calls editor
-Then waiting 5 seconds for LoadingScreen to disappear
+Then waiting 7 seconds for LoadingScreen to disappear
 Then pop-up message is visible
 Then verifying pop-up displays message: Successfully saved the group call entry
 Then group call <name> is displayed in Group Calls list
@@ -220,7 +220,7 @@ When deleting Group Calls sub-menu item: <name>
 Then an alert box dialog pops-up with message: Are you sure you want to delete the call group <name>?
 
 When clicking on Yes button of Delete alert box dialog
-Then waiting 5 seconds for LoadingScreen to disappear
+Then waiting 7 seconds for LoadingScreen to disappear
 Then pop-up message is visible
 Then verifying pop-up displays message: The file was successfully deleted.
 

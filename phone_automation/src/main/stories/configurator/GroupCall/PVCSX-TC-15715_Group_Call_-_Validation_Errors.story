@@ -37,7 +37,7 @@ Then verify group call fields contain:
 | entry | GroupCallTest1 | GroupCallTest1 | none              | GroupCallTest1@example.com | sip:GroupCallTest1@example.com |
 
 Then Save button is pressed in Group Calls editor
-Then waiting 5 seconds for LoadingScreen to disappear
+Then waiting 7 seconds for LoadingScreen to disappear
 When selecting Global settings - Telephone item in main menu
 
 Scenario: 1. Configurator: The main page of Configuration Management is open
@@ -142,7 +142,7 @@ Meta:
 @TEST_STEP_REACTION: Configurator: A pop-up message displays "Successfully saved the group call entry"
 @TEST_STEP_REF: [CATS-REF: mA46]
 Then Save button is pressed in Group Calls editor
-Then waiting 5 seconds for LoadingScreen to disappear
+Then waiting 7 seconds for LoadingScreen to disappear
 
 Scenario: 11.1 Verifying pop-up message
 Then pop-up message is visible
@@ -176,7 +176,7 @@ When deleting Group Calls sub-menu item: <name>
 Then an alert box dialog pops-up with message: Are you sure you want to delete the call group <name>?
 
 When clicking on Yes button of Delete alert box dialog
-Then waiting 5 seconds for LoadingScreen to disappear
+Then waiting 7 seconds for LoadingScreen to disappear
 Then pop-up message is visible
 Then verifying pop-up displays message: The file was successfully deleted.
 
