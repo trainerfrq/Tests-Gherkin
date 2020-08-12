@@ -141,7 +141,7 @@ Then HMI OP2 verifies in the list that conference participant on position 2 has 
 Then HMI OP2 verifies in the list that conference participant on position 2 has name <<OP3_NAME>>
 
 Scenario: Op3 leaves the conference
-When HMI OP3 opens the conference participants list using call queue item OP2-OP3-Conf
+When HMI OP3 opens the conference participants list
 When HMI OP3 selects conference participant: 0
 Then HMI OP3 verifies that remove conference participant button is disabled
 Then HMI OP3 verifies that edit conference button is disabled

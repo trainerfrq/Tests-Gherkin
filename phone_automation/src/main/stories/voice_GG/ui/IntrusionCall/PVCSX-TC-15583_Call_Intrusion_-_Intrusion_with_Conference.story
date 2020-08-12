@@ -71,8 +71,10 @@ Scenario: Close popup window
 Then HMI OP3 closes notification popup
 
 Scenario: OP2 call state verification
-Then HMI OP2 has the call queue item OP3-OP2-Conf in state connected
-Then HMI OP2 has the call queue item OP3-OP2-Conf in the active list with name label CONF
+Then HMI OP2 verify (via POST request) that call queue has status ESTABLISHED
+Then HMI OP2 verify (via POST request) that call queue shows CONF
+!-- Then HMI OP2 has the call queue item OP3-OP2-Conf in state connected
+!-- Then HMI OP2 has the call queue item OP3-OP2-Conf in the active list with name label CONF
 
 Scenario: OP3 adds a conference participant from phonebook
 When HMI OP3 with layout <<LAYOUT_MISSION3>> presses function key PHONEBOOK
@@ -97,7 +99,8 @@ Scenario: OP3 closes conference participants list
 Then HMI OP3 closes Conference list popup window
 
 Scenario: OP2 leaves the conference
-Then HMI OP2 terminates the call queue item OP3-OP2-Conf
+When HMI OP2 terminates (via POST request) CONF call visible on call queue
+!-- Then HMI OP2 terminates the call queue item OP3-OP2-Conf
 And waiting for 1 second
 Then HMI OP2 has the DA key OP3 in state terminated
 Then HMI OP2 has in the call queue a number of 0 calls
@@ -108,7 +111,8 @@ And waiting for 1 second
 
 Scenario: OP1 client receives the incoming call
 Then HMI OP1 has in the call queue a number of 1 calls
-Then HMI OP1 has the call queue item OP3-OP1-Conf in state inc_initiated
+Then HMI OP1 verify (via POST request) that call queue has status RINGING
+!-- Then HMI OP1 has the call queue item OP3-OP1-Conf in state inc_initiated
 
 Scenario: OP2: Establish a priority call to OP1
 When HMI OP2 initiates a priority call on DA key OP1
@@ -140,7 +144,8 @@ Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: OP1 answers the conference call
 Then HMI OP1 has in the call queue a number of 1 calls
-Then HMI OP1 accepts the call queue item OP3-OP1-Conf
+When HMI OP1 answers (via POST request) CONF call by clicking on the queue
+!-- Then HMI OP1 accepts the call queue item OP3-OP1-Conf
 
 Scenario: OP2: Establish a priority call to OP1
 When HMI OP2 initiates a priority call on DA key OP1
@@ -171,7 +176,7 @@ Then HMI OP2 terminates the call queue item OP1-OP2
 Then HMI OP2 has in the call queue a number of 0 calls
 
 Scenario: OP1 leaves the conference
-When HMI OP1 opens the conference participants list using call queue item OP3-OP1-Conf
+When HMI OP1 opens the conference participants list
 Then HMI OP1 leaves conference
 And waiting for 1 second
 Then HMI OP1 has in the call queue a number of 0 calls
