@@ -17,9 +17,8 @@ Configuration Management accessible from the machine where test is run
 Scenario: Preparation step - save roles ids
 Given the roles ids for configurator <<xvp.configurator.url>> are saved in list defaultRoles
 
-Scenario: Preparation step - save Group Calls ids and delete Group Calls
-Given the group calls ids for configurator <<xvp.configurator.url>> are saved in list defaultGroupCalls
-Then using <<xvp.configurator.url>> delete group calls with ids from list defaultGroupCalls
+Scenario: Preparation step - delete Group Calls
+Then replace existing group calls from <<xvp.configurator.url>> using an empty group calls file found in path /configuration-files/<<systemName>>/GroupCalls/Empty_GroupCalls/
 
 Scenario: Book profile
 Given booked profiles:
@@ -108,6 +107,22 @@ Meta:
 @TEST_STEP_ACTION: Configurator: Repeat steps 4 to 8 for (Capacity_NumberOfGroupCallsPerSystem-1) times
 @TEST_STEP_REACTION: Configurator: Group Calls page is visible and has Capacity_NumberOfGroupCallsPerSystem new items
 @TEST_STEP_REF: [CATS-REF: NdZQ]
+Scenario: 9.1 Deleting existing group calls
+Then replace existing group calls from <<xvp.configurator.url>> using an empty group calls file found in path /configuration-files/<<systemName>>/GroupCalls/Empty_GroupCalls/
+
+Scenario: 9.2 Adding 90 group calls using REST
+Then add 90 group calls to <<xvp.configurator.url>> using configured file found in path /configuration-files/<<systemName>>/GroupCalls/Preconfigured_GroupCalls/
+
+Scenario: 9.3 Refresh page to get displayed the new added group calls
+Then refresh Configurator
+
+Scenario: 9.4 Open Group Calls sub-menu
+When selecting Global settings - Telephone item in main menu
+When selecting Group Calls sub-menu item
+Then waiting 2 seconds for LoadingScreen to disappear
+Then sub-menu title is displaying: Group Calls
+
+Scenario: 9.5 Adding group calls until maximum is reached
 When New button is pressed in Group Calls sub-menu
 Then editor page Group Calls is visible
 
@@ -133,31 +148,17 @@ Then verify group call fields contain:
 | entry | <name> | <displayName> | <callRouteSelector> | <destination> | <resultingSipUri> |
 
 Examples:
-| name            | displayName     | callRouteSelector | destination                 | resultingSipUri                 |
-| GroupCallTest2  | GroupCallTest2  | none              | GroupCallTest2@example.com  | sip:GroupCallTest2@example.com  |
-| GroupCallTest3  | GroupCallTest3  | none              | GroupCallTest3@example.com  | sip:GroupCallTest3@example.com  |
-| GroupCallTest4  | GroupCallTest4  | none              | GroupCallTest4@example.com  | sip:GroupCallTest4@example.com  |
-| GroupCallTest5  | GroupCallTest5  | none              | GroupCallTest5@example.com  | sip:GroupCallTest5@example.com  |
-| GroupCallTest6  | GroupCallTest6  | none              | GroupCallTest6@example.com  | sip:GroupCallTest6@example.com  |
-| GroupCallTest7  | GroupCallTest7  | none              | GroupCallTest7@example.com  | sip:GroupCallTest7@example.com  |
-| GroupCallTest8  | GroupCallTest8  | none              | GroupCallTest8@example.com  | sip:GroupCallTest8@example.com  |
-| GroupCallTest9  | GroupCallTest9  | none              | GroupCallTest9@example.com  | sip:GroupCallTest9@example.com  |
-| GroupCallTest10 | GroupCallTest10 | none              | GroupCallTest10@example.com | sip:GroupCallTest10@example.com |
-
-Scenario: 9.1 Verify Group calls list contains 10 items
-Then list size for Group Calls is: 10
-
-Scenario: 9.2 Add Group calls until maximum is reached
-When adding 90 test group calls to endpoint <<xvp.configurator.url>> for system <<systemName>>
-
-Scenario: 9.3 Refresh page in order to get displayed the new added roles
-Then refresh Configurator
-
-Scenario: 9.4 Open Group Calls sub-menu
-When selecting Global settings - Telephone item in main menu
-When selecting Group Calls sub-menu item
-Then waiting 2 seconds for LoadingScreen to disappear
-Then sub-menu title is displaying: Group Calls
+| name             | displayName      | callRouteSelector | destination                  | resultingSipUri                  |
+| GroupCallTest91  | GroupCallTest91  | none              | GroupCallTest91@example.com  | sip:GroupCallTest91@example.com  |
+| GroupCallTest92  | GroupCallTest92  | none              | GroupCallTest92@example.com  | sip:GroupCallTest92@example.com  |
+| GroupCallTest93  | GroupCallTest93  | none              | GroupCallTest93@example.com  | sip:GroupCallTest93@example.com  |
+| GroupCallTest94  | GroupCallTest94  | none              | GroupCallTest94@example.com  | sip:GroupCallTest94@example.com  |
+| GroupCallTest95  | GroupCallTest95  | none              | GroupCallTest95@example.com  | sip:GroupCallTest95@example.com  |
+| GroupCallTest96  | GroupCallTest96  | none              | GroupCallTest96@example.com  | sip:GroupCallTest96@example.com  |
+| GroupCallTest97  | GroupCallTest97  | none              | GroupCallTest97@example.com  | sip:GroupCallTest97@example.com  |
+| GroupCallTest98  | GroupCallTest98  | none              | GroupCallTest98@example.com  | sip:GroupCallTest98@example.com  |
+| GroupCallTest99  | GroupCallTest99  | none              | GroupCallTest99@example.com  | sip:GroupCallTest99@example.com  |
+| GroupCallTest100 | GroupCallTest100 | none              | GroupCallTest100@example.com | sip:GroupCallTest100@example.com |
 
 Scenario: 10. Configurator: Repeat steps 4 and 5
 Meta:
@@ -208,7 +209,7 @@ Meta:
 @TEST_STEP_REACTION: Configurator: Group Calls page is visible and has Capacity_NumberOfGroupCallsPerSystem new items
 @TEST_STEP_REF: [CATS-REF: yejB]
 When clicking on Discard changes button of Discard alert box dialog
-Then list size for Group Calls is: 100
+Then list size for Group Calls is: 101
 
 Scenario: Backend verification - check in Group Calls that new Group Calls were created successfully
 When issuing http GET request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/groupcalls :=> response
@@ -236,16 +237,34 @@ Examples:
 | GroupCallTest9  | GroupCallTest9  | none              | GroupCallTest9@example.com  | sip:GroupCallTest9@example.com  |
 | GroupCallTest10 | GroupCallTest10 | none              | GroupCallTest10@example.com | sip:GroupCallTest10@example.com |
 
-Scenario: Close Missions and Roles menu
+Scenario: Close Global settings - Telephone
 When selecting Global settings - Telephone item in main menu
 
-Scenario: Clean-up - Delete new created call route configurators and add default call route configurators
-Given the group calls ids for configurator <<xvp.configurator.url>> are saved in list newGroupCallsIds
-Then using <<xvp.configurator.url>> delete group calls with ids from list newGroupCallsIds
-Then add group calls to <<xvp.configurator.url>> using configurators with ids from lists defaultGroupCalls found in path /configuration-files/<<systemName>>/GroupCalls_default/
+Scenario: Clean-up - Add default group calls and roles into configurator
+Then add default group calls to <<xvp.configurator.url>> using default group calls file found in path /configuration-files/<<systemName>>/GroupCalls/Default_GroupCalls/
 Then add roles to <<xvp.configurator.url>> using configurators with ids from lists defaultRoles found in path /configuration-files/<<systemName>>/Roles_default/roleconfiguration/
 
 Scenario: Clean-up - Refresh Configurator
 Then refresh Configurator
+Then waiting for 2 seconds
 
+Scenario: Open Group Calls sub-menu
+When selecting Global settings - Telephone item in main menu
+When selecting Group Calls sub-menu item
+Then waiting 2 seconds for LoadingScreen to disappear
+Then sub-menu title is displaying: Group Calls
 
+Scenario: Select group call item
+When select item TestGroupCall from Group Calls sub-menu items list
+
+Scenario: Save in order to send modifications to the other configurators
+Then press Save button when no changes were done
+Then waiting 5 seconds for LoadingScreen to disappear
+Then pop-up message is visible
+Then verifying pop-up displays message: Successfully saved the group call entry
+
+Scenario: Close Global settings - Telephone
+When selecting Global settings - Telephone item in main menu
+
+Scenario: Clean-up - Refresh Configurator
+Then refresh Configurator

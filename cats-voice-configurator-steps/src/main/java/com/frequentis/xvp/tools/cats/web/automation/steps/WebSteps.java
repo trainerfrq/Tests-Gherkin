@@ -80,6 +80,16 @@ public class WebSteps extends AutomationSteps {
         }
     }
 
+    @Then("press Save button when no changes were done")
+    public void pressSaveButtonWithoutDoingChanges() {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Pressing Save button")
+                    .scriptOn(PressSaveButtonWhenNoChangesDone.class, profile));
+        }
+    }
+
     @Then("verifying pop-up displays message: $message")
     public void checkPopUpMessage(String message) {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);

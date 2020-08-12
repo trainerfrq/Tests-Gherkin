@@ -20,9 +20,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import org.apache.commons.io.FileUtils;
 import org.glassfish.jersey.client.JerseyClientBuilder;
-import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
+import org.jbehave.core.annotations.*;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
@@ -31,7 +29,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.*;
 import java.net.URI;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
 
 
 public class RestSteps extends AutomationSteps {
@@ -46,6 +47,7 @@ public class RestSteps extends AutomationSteps {
     private static final String ROLES_SUB_PATH = "/op-voice-service/roles";
     private static final String ROLES_CONFIGURATION_SUB_PATH = "/op-voice-service/generic/items/roleconfiguration%2F";
     private static final String GROUP_CALLS_SUB_PATH = "/op-voice-service/groupcalls";
+    private static final String GROUP_CALLS_CONFIGURATION_SUB_PATH = "/op-voice-service/generic/items/.groupcallaggregator%2FgroupCalls.json";
 
     @Then("using $endpointUri verify that call route selectors order sent to the Op Voice service as in the below table:$callRouteEntries")
     public void getCallRouteSelectorsOrderInMissionJson(final String endpointUri, final List<CallRouteSelectorsEntry> callRouteEntries) throws IOException {
@@ -202,7 +204,8 @@ public class RestSteps extends AutomationSteps {
                                 .post(Entity.json(templateContent));
 
                 localStep.details(ExecutionDetails.create("Executed POST request with payload - on Roles area, using role id: " + rolesListIds.get(i)).expected("200 or 201")
-                        .received("Status: " + response.getStatus() + "\nMessage: " + response.readEntity(new GenericType<String>(){})).success(responseWasSuccessful(response)));
+                        .received("Status: " + response.getStatus() + "\nMessage: " + response.readEntity(new GenericType<String>() {
+                        })).success(responseWasSuccessful(response)));
                 continue;
             }
             configurationURI = new URI(endpointUri);
@@ -383,7 +386,7 @@ public class RestSteps extends AutomationSteps {
 
         ArrayList<String> groupCallsListIds = getStoryListData(listName, ArrayList.class);
 
-        if (!(groupCallsListIds==null)) {
+        if (!(groupCallsListIds == null)) {
             for (String groupCallId : groupCallsListIds) {
                 final URI configurationURI = new URI(endpointUri);
 
@@ -395,8 +398,7 @@ public class RestSteps extends AutomationSteps {
                 localStep.details(ExecutionDetails.create("Executed DELETE request - on Group Call with id: " + groupCallId).expected("200 or 201")
                         .received(Integer.toString(deleteResponse.getStatus())).success(responseWasSuccessful(deleteResponse)));
             }
-        }
-        else{
+        } else {
             localStep.details(ExecutionDetails.create("DELETE request wasn't necessary - no Group Calls found ")
                     .success(true));
         }
@@ -415,45 +417,9 @@ public class RestSteps extends AutomationSteps {
                             .request(MediaType.APPLICATION_JSON)
                             .post(Entity.json(templateContent));
 
-            localStep.details(ExecutionDetails.create("\n"+templateContent+"\nExecuted POST request with payload - on call group calls area ").expected("200 or 201")
+            localStep.details(ExecutionDetails.create("\n" + templateContent + "\nExecuted POST request with payload - on call group calls area ").expected("200 or 201")
                     .received(Integer.toString(response.getStatus())).success(responseWasSuccessful(response)));
         }
-
-//        URI configurationURI = new URI(endpointUri);
-//        String templateContent;
-//        Response response;
-//        final LocalStep localStep = localStep("Execute PUT/POST request with payload");
-//
-//        ArrayList<String> rolesListIds = getStoryListData(listName, ArrayList.class);
-//
-//        for (int i = 0; i < rolesListIds.size(); i++) {
-//            if (i == rolesListIds.size() - 1) {
-//                configurationURI = new URI(endpointUri);
-//
-//
-//                templateContent = FileUtils.readFileToString(this.getConfigFile(templatePath + rolesListIds.get(i) + ".json"));
-//                localStep.details(ExecutionDetails.create("See path: " + templatePath + rolesListIds.get(i) + ".json").expected("200 or 201")
-//                        .received(templateContent).success(true));
-//                response =
-//                        getConfigurationItemsWebTarget(configurationURI + ROLES_SUB_PATH)
-//                                .request(MediaType.APPLICATION_JSON)
-//                                .post(Entity.json(templateContent));
-//
-//                localStep.details(ExecutionDetails.create("Executed POST request with payload - on Roles area, using role id: " + rolesListIds.get(i)).expected("200 or 201")
-//                        .received(Integer.toString(response.getStatus())).success(responseWasSuccessful(response)));
-//                continue;
-//            }
-//            configurationURI = new URI(endpointUri);
-//
-//            templateContent = FileUtils.readFileToString(this.getConfigFile(templatePath + rolesListIds.get(i) + ".json"));
-//            response =
-//                    getConfigurationItemsWebTarget(configurationURI + ROLES_CONFIGURATION_SUB_PATH + rolesListIds.get(i) + ".json")
-//                            .request(MediaType.APPLICATION_JSON)
-//                            .put(Entity.json(templateContent));
-//
-//            localStep.details(ExecutionDetails.create("Executed PUT request with payload - on Roles area, using role id: " + rolesListIds.get(i)).expected("200 or 201")
-//                    .received(Integer.toString(response.getStatus())).success(responseWasSuccessful(response)));
-//        }
     }
 
     @When("adding $number test group calls to endpoint $endpoint for system $systemName")
@@ -461,7 +427,7 @@ public class RestSteps extends AutomationSteps {
         ArrayList<String> groupCallsListIds = getStoryListData("defaultGroupCalls", ArrayList.class);
 
         final String savedGroupCallId = groupCallsListIds.get(0);
-        final String templateContent = FileUtils.readFileToString(this.getConfigFile("/configuration-files/" + systemName + "/GroupCalls_default/" + savedGroupCallId + ".json"));
+        final String templateContent = FileUtils.readFileToString(this.getConfigFile("/configuration-files/" + systemName + "/GroupCalls/" + savedGroupCallId + ".json"));
 
 
         for (int i = 11; i <= numberOfGroupCalls + 10; i++) {
@@ -476,10 +442,28 @@ public class RestSteps extends AutomationSteps {
                             .request(MediaType.APPLICATION_JSON)
                             .post(Entity.json(groupCallToBeSend));
 
-            evaluate(localStep("Sending group call " + i).details(ExecutionDetails.create("\n"+groupCallToBeSend+"\nExecuted POST request with payload - on group calls area ").expected("200 or 201")
+            evaluate(localStep("Sending group call " + i).details(ExecutionDetails.create("\n" + groupCallToBeSend + "\nExecuted POST request with payload - on group calls area ").expected("200 or 201")
                     .received(Integer.toString(response.getStatus())).success(responseWasSuccessful(response))));
         }
+    }
 
+    @Then("add 90 group calls to $endpointUri using configured file found in path $templatePath")
+    @Aliases(values = {"replace existing group calls from $endpointUri using an empty group calls file found in path $templatePath",
+            "add default group calls to $endpointUri using default group calls file found in path $templatePath"})
+    public void add90GroupCalls(final String endpointUri, final String templatePath) throws Throwable {
+        final LocalStep localStep = localStep("Execute PUT request with payload");
+
+        final URI configurationURI = new URI(endpointUri);
+        final String templateContent = FileUtils.readFileToString(this.getConfigFile(templatePath + "groupCalls.json"));
+        Response response =
+                getConfigurationItemsWebTarget(configurationURI + GROUP_CALLS_CONFIGURATION_SUB_PATH)
+                        .request(MediaType.APPLICATION_JSON)
+                        .put(Entity.json(templateContent));
+
+        localStep.details(ExecutionDetails.create("\n" + templateContent + "\nExecuted PUT request with payload - on call group calls area ").expected("200 or 201")
+                .received("Status: " + response.getStatus() + "\nMessage: " + response.readEntity(new GenericType<String>() {
+                }))
+                .success(responseWasSuccessful(response)));
     }
 
 
