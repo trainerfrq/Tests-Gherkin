@@ -22,7 +22,7 @@
       <cats.version>6.5.0</cats.version>
 
       <!-- common dependency version -->
-      <voice.automation.common.version>0.2.7</voice.automation.common.version>
+      <voice.automation.common.version>0.2.8-SNAPSHOT</voice.automation.common.version>
 
       <!-- DEPENDENCY VERSIONS -->
       <voice.service.interface.version>9.7.0</voice.service.interface.version>
