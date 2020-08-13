@@ -13,40 +13,43 @@ Given booked profiles:
 
 Scenario: Define call queue items
 Given the call queue items:
-| key       | source                | target                | callType |
-| OP2-Role1 | <<OP2_URI>>           | sip:role1@example.com | DA/IDA   |
-| Role1-OP2 | sip:role1@example.com | <<OP2_URI>>           | DA/IDA   |
+| key                 | source                          | target                          | callType |
+| OP2-Role1_groupCall | <<OP2_URI>>                     | sip:Role1-GroupCall@example.com | DA/IDA   |
+| Role1_groupCall-OP2 | sip:Role1-GroupCall@example.com | <<OP2_URI>>                     | DA/IDA   |
 
 Scenario: Caller establishes an outgoing call towards Role1 as OP2
-When HMI OP2 presses DA key ROLE1
-Then HMI OP2 has the DA key ROLE1 in state out_ringing
-Then HMI OP2 has the call queue item Role1-OP2 in state out_ringing
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 3
+When HMI OP2 presses DA key ROLE1-GROUPCALL
+Then HMI OP2 has the DA key ROLE1-GROUPCALL in state out_ringing
+Then HMI OP2 has the call queue item Role1_groupCall-OP2 in state out_ringing
 
 Scenario: Operators part of called role receive the incoming call
-Then HMI OP1 has the call queue item OP2-Role1 in state inc_initiated
-Then HMI OP3 has the call queue item OP2-Role1 in state inc_initiated
+Then HMI OP1 has the call queue item OP2-Role1_groupCall in state inc_initiated
+Then HMI OP3 has the call queue item OP2-Role1_groupCall in state inc_initiated
 
 Scenario: Op1 rejects incoming call
-!-- TODO QXVP-13447 : re-enable this test after bug is fixed
 Then HMI OP1 rejects the waiting call queue item from waiting list
 Then HMI OP1 has in the call queue a number of 0 calls
 
 Scenario: Verify call is still ringing for Op3
-Then HMI OP3 has the call queue item OP2-Role1 in state inc_initiated
+Then HMI OP3 has the call queue item OP2-Role1_groupCall in state inc_initiated
 
 Scenario: Op3 accept incoming call
-Then HMI OP3 accepts the call queue item OP2-Role1
-Then HMI OP3 has the call queue item OP2-Role1 in state connected
+Then HMI OP3 accepts the call queue item OP2-Role1_groupCall
+Then HMI OP3 has the call queue item OP2-Role1_groupCall in state connected
 
 Scenario: Caller operator has the call in connected state
-Then HMI OP2 has the call queue item Role1-OP2 in state connected
+Then HMI OP2 has the call queue item Role1_groupCall-OP2 in state connected
 
 Scenario: Caller clears outgoing call
-When HMI OP2 presses DA key ROLE1
+When HMI OP2 presses DA key ROLE1-GROUPCALL
 
 Scenario: Call is terminated on both positions
 Then HMI OP2 has in the call queue a number of 0 calls
 Then HMI OP3 has in the call queue a number of 0 calls
+
+Scenario: Cleanup - select first tab
+When HMI OP2 with layout <<LAYOUT_MISSION2>> selects grid tab 1
 
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure

@@ -38,6 +38,7 @@ Given the DA keys:
 | HMI OP2 | IA - OP2                   | <<IA_PhyOpPos2_CWP2>>                |
 | HMI OP2 | IA - OP3                   | <<IA_PhyOpPos2_CWP3>>                |
 | HMI OP2 | ROLE1                      | <<PhyOpPos2_ROLE1>>                  |
+| HMI OP2 | ROLE1-GROUPCALL            | <<PhyOpPos2_ROLE1-GROUPCALL>>        |
 | HMI OP2 | ROLE1(as ROLE2)            | <<ROLE2_ROLE1>>                      |
 | HMI OP2 | ROLE1-ALIAS                | <<PhyOpPos2_ROLE1ALIAS1>>            |
 | HMI OP2 | ROLE1-ALIAS(as ROLE2)      | <<ROLE2_ROLE1ALIAS1>>                |
