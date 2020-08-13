@@ -112,9 +112,11 @@ Scenario: Verify intrusion Timeout bar
 Then HMI OP3 verifies that intrusion Timeout bar is not visible on call queue item ROLE2-TWR
 
 Scenario: Verify OP3 Notification Display
-!-- TODO Adjust the scenario after PVCSX-5907 is resolved
-!-- When HMI OP3 opens Notification Display list
-!-- Then HMI OP3 verifies that Notification Display list State has 0 items
+When HMI OP3 opens Notification Display list
+Then HMI OP3 verifies that list State contains on position 0 text Call Intrusion In Progress ...
+
+Scenario: Close popup window
+Then HMI OP3 closes notification popup
 
 Scenario: Verify OP1 call queue list
 Then HMI OP1 has in the call queue a number of 1 calls

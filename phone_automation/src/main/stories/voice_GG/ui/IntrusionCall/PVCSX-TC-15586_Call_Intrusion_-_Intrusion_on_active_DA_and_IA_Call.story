@@ -112,9 +112,11 @@ Then HMI OP1 has in the call queue the item OP3-OP1 with priority
 Then HMI OP1 has the call queue item OP3-OP1 in the active list with name label <<OP3_NAME>>
 
 Scenario: Verify OP1 Notification Display
-!-- TODO Adjust the scenario after PVCSX-5907 is resolved
-!-- When HMI OP1 opens Notification Display list
-!-- Then HMI OP1 verifies that Notification Display list State has 0 items
+When HMI OP1 opens Notification Display list
+Then HMI OP1 verifies that list State contains on position 0 text Call Intrusion In Progress ...
+
+Scenario: Close popup window
+Then HMI OP1 closes notification popup
 
 Scenario: Verify OP2 call queue list
 Then HMI OP2 has the call queue item OP1-OP2 in state connected

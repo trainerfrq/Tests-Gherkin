@@ -20,6 +20,7 @@ Given booked profiles:
 | profile | group                  | host       |
 | web     | firefox_<<systemName>> | <<CO3_IP>> |
 
+Scenario: Define XVP Configurator page
 Given defined XVP Configurator:
 | key    | profile                    | url                      |
 | config | web firefox_<<systemName>> | <<xvp.configurator.url>> |

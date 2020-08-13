@@ -179,11 +179,13 @@ Then HMI OP1 has the call queue item OP2-OP1 in the priority list with name labe
 Scenario: 11. OP1: Verify Notification Display
 Meta:
 @TEST_STEP_ACTION: -
-@TEST_STEP_REACTION: OP1: No message in Notification Bar
+@TEST_STEP_REACTION: OP1: "Call Intrusion In Progress ..." message in Notification Bar
 @TEST_STEP_REF: [CATS-REF: xsC6]
-!-- TODO Adjust the scenario after PVCSX-5907 is resolved
-!-- When HMI OP1 opens Notification Display list
-!-- Then HMI OP1 verifies that Notification Display list State has 0 items
+When HMI OP1 opens Notification Display list
+Then HMI OP1 verifies that list State contains on position 0 text Call Intrusion In Progress ...
+
+Scenario: 11.1 Close popup window
+Then HMI OP1 closes notification popup
 
 Scenario: 12. Phonebook_entry: Terminate call with OP1
 Meta:

@@ -119,11 +119,13 @@ Then HMI OP1 has the call queue item OP3-OP1 in the active list with name label 
 Scenario: 7. Verify OP1 Notification Display
 Meta:
 @TEST_STEP_ACTION: -
-@TEST_STEP_REACTION: OP1: No message in Notification Bar
+@TEST_STEP_REACTION: OP1: "Call Intrusion In Progress ..." message in Notification Bar
 @TEST_STEP_REF: [CATS-REF: ErM2]
-!-- TODO Adjust the scenario after PVCSX-5907 is resolved
-!-- When HMI OP1 opens Notification Display list
-!-- Then HMI OP1 verifies that Notification Display list State has 0 items
+When HMI OP1 opens Notification Display list
+Then HMI OP1 verifies that list State contains on position 0 text Call Intrusion In Progress ...
+
+Scenario: 7.1 Close popup window
+Then HMI OP1 closes notification popup
 
 Scenario: 8. Verify OP2 call queue list
 Meta:
