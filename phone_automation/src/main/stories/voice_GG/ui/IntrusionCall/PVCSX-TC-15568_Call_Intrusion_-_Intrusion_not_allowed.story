@@ -1,14 +1,14 @@
 Meta:
-@TEST_CASE_VERSION: V2
+@TEST_CASE_VERSION: V3
 @TEST_CASE_NAME: Call Intrusion - Intrusion not allowed
 @TEST_CASE_DESCRIPTION:
 As an operator using a mission that has a Role with Call Intrusion set to "Disabled"
 AND an active G/G call is set
 I want to receive an incoming Priority call
 So I can verify that incoming Priority Call is not conferenced to the existing call
-@TEST_CASE_PRECONDITION: 
-@TEST_CASE_PASS_FAIL_CRITERIA: 
-@TEST_CASE_DEVICES_IN_USE: 
+@TEST_CASE_PRECONDITION:
+@TEST_CASE_PASS_FAIL_CRITERIA:
+@TEST_CASE_DEVICES_IN_USE:
 @TEST_CASE_ID: PVCSX-TC-15568
 @TEST_CASE_GLOBAL_ID: GID-5571121
 @TEST_CASE_API_ID: 19867403
@@ -89,4 +89,3 @@ Then HMI OP1 has in the call queue a number of 0 calls
 Scenario: A scenario that is only executed in case of an execution failure
 Meta: @RunOnFailure
 GivenStories: voice_GG/ui/includes/@CleanupStory.story
-

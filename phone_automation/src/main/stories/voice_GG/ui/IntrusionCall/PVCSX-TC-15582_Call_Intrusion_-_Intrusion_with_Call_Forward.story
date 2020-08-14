@@ -1,15 +1,15 @@
 Meta:
-@TEST_CASE_VERSION: V1
+@TEST_CASE_VERSION: V2
 @TEST_CASE_NAME: Call Intrusion - Intrusion with Call Forward
-@TEST_CASE_DESCRIPTION: 
+@TEST_CASE_DESCRIPTION:
 As an operator having an active G/G DA call
 AND Call Intrusion set to "Enabled"
 AND another operator forwards his calls to me
 I want to receive an incoming Priority call, which was forwarded by the above mentioned operator
 So I can verify that incoming Priority Call is conferenced to the existing call
-@TEST_CASE_PRECONDITION: 
-@TEST_CASE_PASS_FAIL_CRITERIA: 
-@TEST_CASE_DEVICES_IN_USE: 
+@TEST_CASE_PRECONDITION:
+@TEST_CASE_PASS_FAIL_CRITERIA:
+@TEST_CASE_DEVICES_IN_USE:
 @TEST_CASE_ID: PVCSX-TC-15582
 @TEST_CASE_GLOBAL_ID: GID-5589837
 @TEST_CASE_API_ID: 19935970

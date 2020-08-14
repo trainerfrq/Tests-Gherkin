@@ -1,14 +1,14 @@
 Meta:
-@TEST_CASE_VERSION: V1
+@TEST_CASE_VERSION: V2
 @TEST_CASE_NAME: Call Intrusion - Intrusion with CCF Out of Service
-@TEST_CASE_DESCRIPTION: 
+@TEST_CASE_DESCRIPTION:
 GIVEN an operator that has an active DA Call and Call Intrusion set to "Enabled"
 AND me as another operator having a Conditional Call Forward rule configured to forward calls to the given operator
 I want to initiate an outgoing Priority call that activates the rule
 So I can verify that the Priority call intrudes the active call of the given operator
-@TEST_CASE_PRECONDITION: 
-@TEST_CASE_PASS_FAIL_CRITERIA: 
-@TEST_CASE_DEVICES_IN_USE: 
+@TEST_CASE_PRECONDITION:
+@TEST_CASE_PASS_FAIL_CRITERIA:
+@TEST_CASE_DEVICES_IN_USE:
 @TEST_CASE_ID: PVCSX-TC-15590
 @TEST_CASE_GLOBAL_ID: GID-5601415
 @TEST_CASE_API_ID: 19971909

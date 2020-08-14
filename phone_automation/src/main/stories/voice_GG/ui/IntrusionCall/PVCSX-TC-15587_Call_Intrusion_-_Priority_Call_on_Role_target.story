@@ -1,14 +1,14 @@
 Meta:
-@TEST_CASE_VERSION: V1
+@TEST_CASE_VERSION: V2
 @TEST_CASE_NAME: Call Intrusion - Priority Call on Role target
-@TEST_CASE_DESCRIPTION: 
+@TEST_CASE_DESCRIPTION:
 As an operator
 I want to initiate an outgoing Priority call towards a role
 So I can verify that the Priority call intrudes the active call of one of the logged in operators
 (which are part of the target role) and declined by all the other operators
-@TEST_CASE_PRECONDITION: 
-@TEST_CASE_PASS_FAIL_CRITERIA: 
-@TEST_CASE_DEVICES_IN_USE: 
+@TEST_CASE_PRECONDITION:
+@TEST_CASE_PASS_FAIL_CRITERIA:
+@TEST_CASE_DEVICES_IN_USE:
 @TEST_CASE_ID: PVCSX-TC-15587
 @TEST_CASE_GLOBAL_ID: GID-5600741
 @TEST_CASE_API_ID: 19969651

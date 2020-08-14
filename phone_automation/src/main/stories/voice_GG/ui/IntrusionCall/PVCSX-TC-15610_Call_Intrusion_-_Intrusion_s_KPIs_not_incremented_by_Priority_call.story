@@ -1,13 +1,13 @@
 Meta:
-@TEST_CASE_VERSION: V3
+@TEST_CASE_VERSION: V4
 @TEST_CASE_NAME: Call Intrusion - Intrusion's KPIs not incremented by Priority call
-@TEST_CASE_DESCRIPTION: 
+@TEST_CASE_DESCRIPTION:
 As an operator having an active call
 I want to receive an incoming Priority call
 So I can very that Intrusion's related KPIs are not modified by the Priority call
-@TEST_CASE_PRECONDITION: 
-@TEST_CASE_PASS_FAIL_CRITERIA: 
-@TEST_CASE_DEVICES_IN_USE: 
+@TEST_CASE_PRECONDITION:
+@TEST_CASE_PASS_FAIL_CRITERIA:
+@TEST_CASE_DEVICES_IN_USE:
 @TEST_CASE_ID: PVCSX-TC-15610
 @TEST_CASE_GLOBAL_ID: GID-5612017
 @TEST_CASE_API_ID: 19996314
