@@ -1,13 +1,12 @@
 {
   "entities" : [ {
-    "id" : "db80fd5a-d205-4e87-95ad-dd1b446dd7a9",
-    "name" : "TestGroupCall",
-    "displayName" : "TestGroupCall",
+    "id" : "fcae7b22-f1dd-4534-83c1-d4f01d294542",
+    "name" : "Role1-GroupCall",
+    "displayName" : "Role1-GroupCall",
     "location" : "",
     "organization" : "",
-    "comment" : "this is a test group call for Configuration Management UI tests",
-    "sipAddress" : "TestGroupCall",
-    "routeSelectorId" : "1fe8ae98-4221-4d2f-9020-adfed8a210bf",
-    "assignedRoles" : [ ]
+    "comment" : "",
+    "sipAddress" : "sip:Role1-GroupCall@example.com",
+    "assignedRoles" : [ "fc574d33-9e5d-4a6a-8696-b2eaa1793f83", "3894c93b-7e3d-4722-b7f2-5d2b0eb0b362" ]
   } ]
 }

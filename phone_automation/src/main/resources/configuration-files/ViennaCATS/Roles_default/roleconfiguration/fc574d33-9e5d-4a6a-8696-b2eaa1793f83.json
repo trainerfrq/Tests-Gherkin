@@ -9,7 +9,7 @@
   "phoneSettings" : {
     "sipAddress" : "sip:LowerEastExec@example.com",
     "roleAliases" : [ "57e566a7-f452-423b-9869-4ff97ff00769", "93b0223a-1dbe-4e14-bca8-d933d5dab926", "ae321dfb-4d3a-4bb7-8af0-19e90baeb0dd", "b801444b-b084-4c70-84ad-4790fc7613b4", "bbbb8e46-72b3-4171-9229-5c8e32e655d1", "1e164ee0-94a0-498e-8e83-cc7fa94b09c2", "65973562-6aee-4036-bc83-1f88ccca9816" ],
-    "telephoneGroups" : [ ],
+    "telephoneGroups" : [ "fcae7b22-f1dd-4534-83c1-d4f01d294542" ],
     "defaultSourceForOutgoingCalls" : {
       "id" : "fc574d33-9e5d-4a6a-8696-b2eaa1793f83",
       "type" : "ROLE"

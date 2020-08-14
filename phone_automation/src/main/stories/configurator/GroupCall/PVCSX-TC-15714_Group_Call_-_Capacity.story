@@ -81,7 +81,7 @@ Meta:
 @TEST_STEP_REACTION: Configurator: A pop-up message displays "Successfully saved the group call entry"
 @TEST_STEP_REF: [CATS-REF: A5eE]
 Then Save button is pressed in Group Calls editor
-Then waiting 7 seconds for LoadingScreen to disappear
+Then waiting 6 seconds for LoadingScreen to disappear
 Then pop-up message is visible
 Then verifying pop-up displays message: Successfully saved the group call entry
 
@@ -255,7 +255,7 @@ Then waiting 2 seconds for LoadingScreen to disappear
 Then sub-menu title is displaying: Group Calls
 
 Scenario: Select group call item
-When select item TestGroupCall from Group Calls sub-menu items list
+When select item Role1-GroupCall from Group Calls sub-menu items list
 
 Scenario: Save in order to send modifications to the other configurators
 Then press Save button when no changes were done

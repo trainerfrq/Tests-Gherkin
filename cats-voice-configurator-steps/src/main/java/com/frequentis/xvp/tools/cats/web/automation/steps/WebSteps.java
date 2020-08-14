@@ -414,4 +414,17 @@ public class WebSteps extends AutomationSteps {
                     .scriptOn(RefreshPage.class, profile));
         }
     }
+
+    @Then("delete last $numberOfCharacters characters from input field $inputFieldName of $subMenuName sub menu")
+    public void deleteCharactersFromInputField(Integer numberOfCharacters, String inputFieldName, String subMenuName) {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Clear content of the input field " + inputFieldName)
+                    .scriptOn(DeleteLastCharactersOfInputField.class, profile)
+                    .input(DeleteLastCharactersOfInputField.IPARAM_NUMBER_OF_CHARACTERS, numberOfCharacters)
+                    .input(DeleteLastCharactersOfInputField.IPARAM_FIELD_NAME, inputFieldName)
+                    .input(DeleteLastCharactersOfInputField.IPARAM_SUB_MENU_NAME, subMenuName));
+        }
+    }
 }

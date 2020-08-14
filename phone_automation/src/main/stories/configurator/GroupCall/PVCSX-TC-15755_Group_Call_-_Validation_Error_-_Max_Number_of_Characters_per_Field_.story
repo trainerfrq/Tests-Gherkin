@@ -1,12 +1,12 @@
 Meta:
-@TEST_CASE_VERSION: V2
-@TEST_CASE_NAME: Group Call - Validation Error - Max Number of Characters per Field 
-@TEST_CASE_DESCRIPTION: 
+@TEST_CASE_VERSION: V3
+@TEST_CASE_NAME: Group Call - Validation Error - Max Number of Characters per Field
+@TEST_CASE_DESCRIPTION:
 As a system technician using a Configuration Management page
 I want to add a new Group Call
 AND write &lt;maximum number of characters&gt; characters in 'Name', 'Display name', 'Location', 'Organization', 'Comment' fields
 So I can verify that a warning message pops-up after Save, displaying that max number of character was exceeded
-@TEST_CASE_PRECONDITION: 
+@TEST_CASE_PRECONDITION:
 @TEST_CASE_PASS_FAIL_CRITERIA: This test is passed, if the system displays a pop-up indication error when trying to Save, after &lt;maximum number of characters&gt; characters are written in Name', 'Display name', 'Location', 'Organization', 'Comment' fields
 @TEST_CASE_DEVICES_IN_USE: Configuration Management
 @TEST_CASE_ID: PVCSX-TC-15755
@@ -106,19 +106,15 @@ When clicking on close button of pop-up message
 Then waiting for 1 second
 Then pop-up message is not visible
 
-Scenario: 10. Configurator: Write 1 character in input field from step 5
+Scenario: 10. Configurator: Delete last character in input field from step 5
 Meta:
-@TEST_STEP_ACTION: Configurator: Write 1 character in input field from step 5
-@TEST_STEP_REACTION: Configurator: 1 character is displayed in field from step 5
+@TEST_STEP_ACTION: Configurator: Delete last character in input field from step 5
+@TEST_STEP_REACTION: Configurator: Last character in input field from step 5 is deleted
 @TEST_STEP_REF: [CATS-REF: q7eO]
-Then clear content of Name input field from Group Calls sub menu
-When add a new group call with:
-| key   | name |
-| entry | 1    |
-
+Then delete last 1 characters from input field Name of Group Calls sub menu
 Then verify group call fields contain:
-| key   | name |
-| entry | 1    |
+| key   | name                      |
+| entry | <<100_CHARACTERS_STRING>> |
 
 Scenario: 11. Configurator: Repeat steps 5-10 for 'Display name', 'Location', 'Organization', 'Comment' fields
 Meta:
@@ -143,22 +139,18 @@ Then pop-up message is visible
 Then verifying pop-up displays message: Could not save the groupcall entry: Maximum character length exceeded for field 'displayName'.
 
 Scenario: 11.1.4 Configurator: New group call is not displayed in group calls list
-Then group call 1 is not displayed in Group Calls list
+Then group call <<100_CHARACTERS_STRING>> is not displayed in Group Calls list
 
 Scenario: 11.1.5 Configurator: Close pop-up message
 When clicking on close button of pop-up message
 Then waiting for 1 second
 Then pop-up message is not visible
 
-Scenario: 11.1.6 Configurator: Write 1 character in 'Display name' input field
-Then clear content of Display name input field from Group Calls sub menu
-When add a new group call with:
-| key   | displayName |
-| entry | 1           |
-
+Scenario: 11.1.6 Configurator: Delete last character in 'Display name' input field
+Then delete last 1 characters from input field Display name of Group Calls sub menu
 Then verify group call fields contain:
-| key   | displayName |
-| entry | 1           |
+| key   | displayName               |
+| entry | <<100_CHARACTERS_STRING>> |
 
 Scenario: 11.2.1 Clear 'Location' input field
 Then clear content of Location input field from Group Calls sub menu
@@ -178,22 +170,18 @@ Then pop-up message is visible
 Then verifying pop-up displays message: Could not save the groupcall entry: Maximum character length exceeded for field 'location'.
 
 Scenario: 11.2.4 Configurator: New group call is not displayed in group calls list
-Then group call 1 is not displayed in Group Calls list
+Then group call <<100_CHARACTERS_STRING>> is not displayed in Group Calls list
 
 Scenario: 11.2.5 Configurator: Close pop-up message
 When clicking on close button of pop-up message
 Then waiting for 1 second
 Then pop-up message is not visible
 
-Scenario: 11.2.6 Configurator: Write 1 character in 'Location' input field
-Then clear content of Location input field from Group Calls sub menu
-When add a new group call with:
-| key   | location |
-| entry | 1           |
-
+Scenario: 11.2.6 Configurator: Delete last character in 'Location' input field
+Then delete last 1 characters from input field Location of Group Calls sub menu
 Then verify group call fields contain:
-| key   | location |
-| entry | 1           |
+| key   | location                  |
+| entry | <<100_CHARACTERS_STRING>> |
 
 Scenario: 11.3.1 Clear 'Organization' input field
 Then clear content of Organization input field from Group Calls sub menu
@@ -213,22 +201,18 @@ Then pop-up message is visible
 Then verifying pop-up displays message: Could not save the groupcall entry: Maximum character length exceeded for field 'organization'.
 
 Scenario: 11.3.4 Configurator: New group call is not displayed in group calls list
-Then group call 1 is not displayed in Group Calls list
+Then group call <<100_CHARACTERS_STRING>> is not displayed in Group Calls list
 
 Scenario: 11.3.5 Configurator: Close pop-up message
 When clicking on close button of pop-up message
 Then waiting for 1 second
 Then pop-up message is not visible
 
-Scenario: 11.3.6 Configurator: Write 1 character in 'Organization' input field
-Then clear content of Organization input field from Group Calls sub menu
-When add a new group call with:
-| key   | organization |
-| entry | 1            |
-
+Scenario: 11.3.6 Configurator: Delete last character in 'Organization' input field
+Then delete last 1 characters from input field Organization of Group Calls sub menu
 Then verify group call fields contain:
-| key   | organization |
-| entry | 1            |
+| key   | organization              |
+| entry | <<100_CHARACTERS_STRING>> |
 
 Scenario: 11.4.1 Clear 'Comment' input field
 Then clear content of Comment input field from Group Calls sub menu
@@ -248,26 +232,22 @@ Then pop-up message is visible
 Then verifying pop-up displays message: Could not save the groupcall entry: Maximum character length exceeded for field 'comment'.
 
 Scenario: 11.4.4 Configurator: New group call is not displayed in group calls list
-Then group call 1 is not displayed in Group Calls list
+Then group call <<100_CHARACTERS_STRING>> is not displayed in Group Calls list
 
 Scenario: 11.4.5 Configurator: Close pop-up message
 When clicking on close button of pop-up message
 Then waiting for 1 second
 Then pop-up message is not visible
 
-Scenario: 11.4.6 Configurator: Write 1 character in 'Comment' input field
-Then clear content of Comment input field from Group Calls sub menu
-When add a new group call with:
-| key   | comment |
-| entry | 1       |
-
+Scenario: 11.4.6 Configurator: Delete last character in 'Comment' input field
+Then delete last 1 characters from input field Comment of Group Calls sub menu
 Then verify group call fields contain:
-| key   | comment |
-| entry | 1       |
+| key   | comment                   |
+| entry | <<100_CHARACTERS_STRING>> |
 
-Scenario: 12. Configurator: Write 'GroupCallTest' in 'Name' input field
+Scenario: 12. Configurator: Clear content of 'Name' input field and write 'GroupCallTest' in it
 Meta:
-@TEST_STEP_ACTION: Configurator: Write 'GroupCallTest' in 'Name' input field
+@TEST_STEP_ACTION: Configurator: Clear content of 'Name' input field and write 'GroupCallTest' in it
 @TEST_STEP_REACTION: Configurator: 'GroupCallTest' is displayed in 'Name' input field
 @TEST_STEP_REF: [CATS-REF: LfrK]
 Then clear content of Name input field from Group Calls sub menu
@@ -285,7 +265,7 @@ Meta:
 @TEST_STEP_REACTION: Configurator: A pop-up message displays "Successfully saved the group call entry"
 @TEST_STEP_REF: [CATS-REF: 9ty5]
 Then Save button is pressed in Group Calls editor
-Then waiting 7 seconds for LoadingScreen to disappear
+Then waiting 6 seconds for LoadingScreen to disappear
 
 Scenario: 13.1 Verifying pop-up message
 Then pop-up message is visible
@@ -304,8 +284,8 @@ Meta:
 @TEST_STEP_REACTION: Configurator: Filled in fields are displaying inserted values
 @TEST_STEP_REF: [CATS-REF: y1kV]
 Then verify group call fields contain:
-| key   | name          | displayName | location | organization | comment | callRouteSelector | destination               | resultingSipUri               |
-| entry | GroupCallTest | 1           | 1        | 1            | 1       | none              | GroupCallTest@example.com | sip:GroupCallTest@example.com |
+| key   | name          | displayName               | location                  | organization              | comment                   | callRouteSelector | destination               | resultingSipUri               |
+| entry | GroupCallTest | <<100_CHARACTERS_STRING>> | <<100_CHARACTERS_STRING>> | <<100_CHARACTERS_STRING>> | <<100_CHARACTERS_STRING>> | none              | GroupCallTest@example.com | sip:GroupCallTest@example.com |
 
 Scenario: Delete new added group call
 When deleting Group Calls sub-menu item: <name>
@@ -325,4 +305,3 @@ When selecting Global settings - Telephone item in main menu
 
 Scenario: Clean-up - Refresh Configurator
 Then refresh Configurator
-
