@@ -64,6 +64,9 @@ When selecting Group Calls sub-menu item
 Then waiting 2 seconds for LoadingScreen to disappear
 Then sub-menu title is displaying: Group Calls
 
+Scenario: 3.1 Verify number of group call entries
+Then list size for Group Calls is: 2
+
 Scenario: 4. Configurator: Click on "New" button
 Meta:
 @TEST_STEP_ACTION: Configurator: Click on "New" button
@@ -167,9 +170,9 @@ Then verify group call fields contain:
 Scenario: Backend verification - check in Group Calls that new Group Calls were created successfully
 When issuing http GET request to endpoint <<configurationMngEndpoint>> and path configurations/op-voice-service/groupcalls :=> response
 Then verifying group calls requested response ${response} contains group calls from table:
-| key     | name           |
-| entry1  | GroupCallTest1 |
-| entry1  | GroupCallTest2 |
+| key     | name           | displayName    | callRouteSelector | destination                |
+| entry1  | GroupCallTest1 | GroupCallTest1 | none              | GroupCallTest1@example.com |
+| entry1  | GroupCallTest2 | GroupCallTest1 | none              | GroupCallTest1@example.com |
 
 Scenario: Delete new added group calls
 When deleting Group Calls sub-menu item: <name>
@@ -184,6 +187,9 @@ Examples:
 | name            | displayName      | callRouteSelector  | destination                |
 | GroupCallTest1  | GroupCallTest1   | none               | GroupCallTest1@example.com |
 | GroupCallTest2  | GroupCallTest2   | none               | GroupCallTest2@example.com |
+
+Scenario: Verify number of group call entries
+Then list size for Group Calls is: 1
 
 Scenario: Close Global settings - Telephone menu
 When selecting Global settings - Telephone item in main menu

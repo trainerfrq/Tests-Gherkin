@@ -427,4 +427,17 @@ public class WebSteps extends AutomationSteps {
                     .input(DeleteLastCharactersOfInputField.IPARAM_SUB_MENU_NAME, subMenuName));
         }
     }
+
+    @Then("verify $inputFieldName input field of $subMenuName sub-menu contains $numberOfCharacters characters")
+    public void checkNumberOfCharactersInInputField(String inputFieldName, String subMenuName, Integer numberOfCharacters) {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Checking for number of characters in " + inputFieldName + " input field")
+                    .scriptOn(VerifyNumberOfCharactersInInputField.class, profile)
+                    .input(VerifyNumberOfCharactersInInputField.IPARAM_INPUT_FIELD_NAME, inputFieldName)
+                    .input(VerifyNumberOfCharactersInInputField.IPARAM_SUB_MENU_NAME, subMenuName)
+                    .input(VerifyNumberOfCharactersInInputField.IPARAM_NUMBER_OF_CHARACTERS, numberOfCharacters));
+        }
+    }
 }

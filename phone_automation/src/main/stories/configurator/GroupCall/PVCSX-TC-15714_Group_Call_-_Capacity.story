@@ -1,13 +1,13 @@
 Meta:
-@TEST_CASE_VERSION: V3
+@TEST_CASE_VERSION: V4
 @TEST_CASE_NAME: Group Call - Capacity
-@TEST_CASE_DESCRIPTION: 
+@TEST_CASE_DESCRIPTION:
 As a system technician using Configuration Management
 I want to add the maximum number of Group Calls (see Capacity_NumberOfGroupCallsPerSystem)
 So I can verify that they are added correctly in the Group Calls page and exceeding the maximum number is signalized with an error message for the user
 @TEST_CASE_PRECONDITION: Group Calls page, found in Configuration Management, area Global settings - Telephone, has to be empty.
 @TEST_CASE_PASS_FAIL_CRITERIA: This test is passed when maximum number of Group Calls (see Capacity_NumberOfGroupCallsPerSystem) are correctly added in the Group Calls page and exceeding the maximum number is signalized with an error message for the user
-@TEST_CASE_DEVICES_IN_USE: 
+@TEST_CASE_DEVICES_IN_USE:
 Firefox browser
 Configuration Management accessible from the machine where test is run
 @TEST_CASE_ID: PVCSX-TC-15714
@@ -102,14 +102,11 @@ Then verify group call fields contain:
 | key   | name           | displayName      | callRouteSelector | destination                | resultingSipUri                |
 | entry | GroupCallTest1 | GroupCallTest1   | none              | GroupCallTest1@example.com | sip:GroupCallTest1@example.com |
 
-Scenario: 9. Configurator: Repeat steps 4 to 8 for (Capacity_NumberOfGroupCallsPerSystem-1) times
+Scenario: 9. Configurator: Repeat steps 4 to 8 for 99 times
 Meta:
-@TEST_STEP_ACTION: Configurator: Repeat steps 4 to 8 for (Capacity_NumberOfGroupCallsPerSystem-1) times
-@TEST_STEP_REACTION: Configurator: Group Calls page is visible and has Capacity_NumberOfGroupCallsPerSystem new items
+@TEST_STEP_ACTION: Configurator: Repeat steps 4 to 8 for 99 times
+@TEST_STEP_REACTION: Configurator: Group Calls page is visible and has 100 new items
 @TEST_STEP_REF: [CATS-REF: NdZQ]
-Scenario: 9.1 Deleting existing group calls
-Then replace existing group calls from <<xvp.configurator.url>> using an empty group calls file found in path /configuration-files/<<systemName>>/GroupCalls/Empty_GroupCalls/
-
 Scenario: 9.2 Adding 90 group calls using REST
 Then add 90 group calls to <<xvp.configurator.url>> using configured file found in path /configuration-files/<<systemName>>/GroupCalls/Preconfigured_GroupCalls/
 
@@ -122,7 +119,10 @@ When selecting Group Calls sub-menu item
 Then waiting 2 seconds for LoadingScreen to disappear
 Then sub-menu title is displaying: Group Calls
 
-Scenario: 9.5 Adding group calls until maximum is reached
+Scenario: 9.5 Verify number of group call entries
+Then list size for Group Calls is: 90
+
+Scenario: 9.6 Adding group calls until maximum is reached
 When New button is pressed in Group Calls sub-menu
 Then editor page Group Calls is visible
 
@@ -194,7 +194,6 @@ When clicking on close button of pop-up message
 Then waiting for 1 second
 Then pop-up message is not visible
 
-
 Scenario: 13. Configurator: Select a 'Group Call' item
 Meta:
 @TEST_STEP_ACTION: Configurator: Select a 'Group Call' item
@@ -206,7 +205,7 @@ Then an alert box dialog pops-up with message: <<discardMessage>>
 Scenario: 14. Configurator: Choose to discard changes
 Meta:
 @TEST_STEP_ACTION: Configurator: Choose to discard changes
-@TEST_STEP_REACTION: Configurator: Group Calls page is visible and has Capacity_NumberOfGroupCallsPerSystem new items
+@TEST_STEP_REACTION: Configurator: Group Calls page is visible and has 100 new items
 @TEST_STEP_REF: [CATS-REF: yejB]
 When clicking on Discard changes button of Discard alert box dialog
 Then list size for Group Calls is: 101
@@ -218,7 +217,6 @@ Then verifying group calls requested response ${response} contains new added max
 Scenario: Delete new added Group Calls
 When deleting Group Calls sub-menu item: <name>
 Then an alert box dialog pops-up with message: Are you sure you want to delete the call group <name>?
-
 When clicking on Yes button of Delete alert box dialog
 Then waiting 7 seconds for LoadingScreen to disappear
 Then pop-up message is visible
@@ -236,6 +234,9 @@ Examples:
 | GroupCallTest8  | GroupCallTest8  | none              | GroupCallTest8@example.com  | sip:GroupCallTest8@example.com  |
 | GroupCallTest9  | GroupCallTest9  | none              | GroupCallTest9@example.com  | sip:GroupCallTest9@example.com  |
 | GroupCallTest10 | GroupCallTest10 | none              | GroupCallTest10@example.com | sip:GroupCallTest10@example.com |
+
+Scenario: Verify number of group call entries
+Then list size for Group Calls is: 90
 
 Scenario: Close Global settings - Telephone
 When selecting Global settings - Telephone item in main menu

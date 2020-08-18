@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V3
+@TEST_CASE_VERSION: V4
 @TEST_CASE_NAME: Group Call - Validation Error - Max Number of Characters per Field
 @TEST_CASE_DESCRIPTION:
 As a system technician using a Configuration Management page
@@ -68,6 +68,8 @@ Then verify group call fields contain:
 | key   | name                      |
 | entry | <<101_CHARACTERS_STRING>> |
 
+Then verify Name input field of Group Calls sub-menu contains 101 characters
+
 Scenario: 6. Configurator: Fill in mandatory fields
 Meta:
 @TEST_STEP_ACTION: Configurator: Fill in mandatory fields
@@ -116,6 +118,8 @@ Then verify group call fields contain:
 | key   | name                      |
 | entry | <<100_CHARACTERS_STRING>> |
 
+Then verify Name input field of Group Calls sub-menu contains 100 characters
+
 Scenario: 11. Configurator: Repeat steps 5-10 for 'Display name', 'Location', 'Organization', 'Comment' fields
 Meta:
 @TEST_STEP_ACTION: Configurator: Repeat steps 5-10 for 'Display name', 'Location', 'Organization', 'Comment' fields
@@ -132,6 +136,8 @@ When add a new group call with:
 Then verify group call fields contain:
 | key   | displayName               |
 | entry | <<101_CHARACTERS_STRING>> |
+
+Then verify Display name input field of Group Calls sub-menu contains 101 characters
 
 Scenario: 11.1.3 Configurator: Click on 'Save' button
 Then Save button is pressed in Group Calls editor
@@ -152,6 +158,8 @@ Then verify group call fields contain:
 | key   | displayName               |
 | entry | <<100_CHARACTERS_STRING>> |
 
+Then verify Display name input field of Group Calls sub-menu contains 100 characters
+
 Scenario: 11.2.1 Clear 'Location' input field
 Then clear content of Location input field from Group Calls sub menu
 
@@ -163,6 +171,8 @@ When add a new group call with:
 Then verify group call fields contain:
 | key   | location                  |
 | entry | <<101_CHARACTERS_STRING>> |
+
+Then verify Location input field of Group Calls sub-menu contains 101 characters
 
 Scenario: 11.2.3 Configurator: Click on 'Save' button
 Then Save button is pressed in Group Calls editor
@@ -183,6 +193,8 @@ Then verify group call fields contain:
 | key   | location                  |
 | entry | <<100_CHARACTERS_STRING>> |
 
+Then verify Location input field of Group Calls sub-menu contains 100 characters
+
 Scenario: 11.3.1 Clear 'Organization' input field
 Then clear content of Organization input field from Group Calls sub menu
 
@@ -194,6 +206,8 @@ When add a new group call with:
 Then verify group call fields contain:
 | key   | organization              |
 | entry | <<101_CHARACTERS_STRING>> |
+
+Then verify Organization input field of Group Calls sub-menu contains 101 characters
 
 Scenario: 11.3.3 Configurator: Click on 'Save' button
 Then Save button is pressed in Group Calls editor
@@ -214,17 +228,21 @@ Then verify group call fields contain:
 | key   | organization              |
 | entry | <<100_CHARACTERS_STRING>> |
 
+Then verify Organization input field of Group Calls sub-menu contains 100 characters
+
 Scenario: 11.4.1 Clear 'Comment' input field
 Then clear content of Comment input field from Group Calls sub menu
 
 Scenario: 11.4.2 Configurator: Write 101 characters in 'Comment' input field
 When add a new group call with:
-| key   | comment              |
+| key   | comment                   |
 | entry | <<101_CHARACTERS_STRING>> |
 
 Then verify group call fields contain:
-| key   | comment              |
+| key   | comment                   |
 | entry | <<101_CHARACTERS_STRING>> |
+
+Then verify Comment input field of Group Calls sub-menu contains 101 characters
 
 Scenario: 11.4.3 Configurator: Click on 'Save' button
 Then Save button is pressed in Group Calls editor
@@ -245,21 +263,9 @@ Then verify group call fields contain:
 | key   | comment                   |
 | entry | <<100_CHARACTERS_STRING>> |
 
-Scenario: 12. Configurator: Clear content of 'Name' input field and write 'GroupCallTest' in it
-Meta:
-@TEST_STEP_ACTION: Configurator: Clear content of 'Name' input field and write 'GroupCallTest' in it
-@TEST_STEP_REACTION: Configurator: 'GroupCallTest' is displayed in 'Name' input field
-@TEST_STEP_REF: [CATS-REF: LfrK]
-Then clear content of Name input field from Group Calls sub menu
-When add a new group call with:
-| key   | name          |
-| entry | GroupCallTest |
+Then verify Comment input field of Group Calls sub-menu contains 100 characters
 
-Then verify group call fields contain:
-| key   | name          |
-| entry | GroupCallTest |
-
-Scenario: 13. Configurator: Click on 'Save' button
+Scenario: 12. Configurator: Click on 'Save' button
 Meta:
 @TEST_STEP_ACTION: Configurator: Click on 'Save' button
 @TEST_STEP_REACTION: Configurator: A pop-up message displays "Successfully saved the group call entry"
@@ -267,25 +273,25 @@ Meta:
 Then Save button is pressed in Group Calls editor
 Then waiting 6 seconds for LoadingScreen to disappear
 
-Scenario: 13.1 Verifying pop-up message
+Scenario: 12.1 Verifying pop-up message
 Then pop-up message is visible
 Then verifying pop-up displays message: Successfully saved the group call entry
 
-Scenario: 14. Configurator: 'GroupCallTest' is disaplyed in group calls list
+Scenario: 13. Configurator: New group call is displayed in group calls list
 Meta:
 @TEST_STEP_ACTION: -
-@TEST_STEP_REACTION: Configurator: 'GroupCallTest' is disaplyed in group calls list
+@TEST_STEP_REACTION: Configurator: New group call is displayed in group calls list
 @TEST_STEP_REF: [CATS-REF: 87vJ]
-Then group call GroupCallTest is displayed in Group Calls list
+Then group call <<100_CHARACTERS_STRING>> is displayed in Group Calls list
 
-Scenario: 15. Configurator: Verify that "GroupCallTest" is by default selected and inserted values are displayed in Group Call editor
+Scenario: 14. Configurator: Verify that new group call is by default selected and inserted values are displayed in Group Call editor
 Meta:
-@TEST_STEP_ACTION: Configurator: Verify that "GroupCallTest" is by default selected and inserted values are displayed in Group Call editor
+@TEST_STEP_ACTION: Configurator: Verify that new group call is by default selected and inserted values are displayed in Group Call editor
 @TEST_STEP_REACTION: Configurator: Filled in fields are displaying inserted values
 @TEST_STEP_REF: [CATS-REF: y1kV]
 Then verify group call fields contain:
-| key   | name          | displayName               | location                  | organization              | comment                   | callRouteSelector | destination               | resultingSipUri               |
-| entry | GroupCallTest | <<100_CHARACTERS_STRING>> | <<100_CHARACTERS_STRING>> | <<100_CHARACTERS_STRING>> | <<100_CHARACTERS_STRING>> | none              | GroupCallTest@example.com | sip:GroupCallTest@example.com |
+| key   | name                      | displayName               | location                  | organization              | comment                   | callRouteSelector | destination               | resultingSipUri               |
+| entry | <<100_CHARACTERS_STRING>> | <<100_CHARACTERS_STRING>> | <<100_CHARACTERS_STRING>> | <<100_CHARACTERS_STRING>> | <<100_CHARACTERS_STRING>> | none              | GroupCallTest@example.com | sip:GroupCallTest@example.com |
 
 Scenario: Delete new added group call
 When deleting Group Calls sub-menu item: <name>
@@ -297,8 +303,8 @@ Then pop-up message is visible
 Then verifying pop-up displays message: The file was successfully deleted.
 
 Examples:
-| name          |
-| GroupCallTest |
+| name                      |
+| <<100_CHARACTERS_STRING>> |
 
 Scenario: Close Global settings - Telephone menu
 When selecting Global settings - Telephone item in main menu
