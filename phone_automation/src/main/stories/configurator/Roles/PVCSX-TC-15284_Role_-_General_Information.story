@@ -19,6 +19,7 @@ Given booked profiles:
 | profile | group                  | host       |
 | web     | firefox_<<systemName>> | <<CO3_IP>> |
 
+Scenario: Define XVP Configurator page
 Given defined XVP Configurator:
 | key    | profile                    | url                      |
 | config | web firefox_<<systemName>> | <<xvp.configurator.url>> |
@@ -74,7 +75,7 @@ Meta:
 @TEST_STEP_REACTION: Configurator: A pop-up message displays: Successfully saved the role
 @TEST_STEP_REF: [CATS-REF: Rbdn]
 Then Save button is pressed in Roles editor
-Then waiting 5 seconds for LoadingScreen to disappear
+Then waiting 8 seconds for LoadingScreen to disappear
 
 Scenario: 6.1 Verifying pop-up message
 Then pop-up message is visible
@@ -113,7 +114,7 @@ When deleting Roles sub-menu item: RoleTest1
 Then an alert box dialog pops-up with message: Are you sure you want to delete the role RoleTest1?
 
 When clicking on Yes button of Delete alert box dialog
-Then waiting 5 seconds for LoadingScreen to disappear
+Then waiting 8 seconds for LoadingScreen to disappear
 Then pop-up message is visible
 Then verifying pop-up displays message: The file was successfully deleted.
 

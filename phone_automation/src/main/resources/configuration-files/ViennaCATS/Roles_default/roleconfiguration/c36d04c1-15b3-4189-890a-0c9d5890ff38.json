@@ -33,6 +33,10 @@
       "incomingPositionMonitoringCallsIndicationEnabled" : true
     }
   },
+  "unattendedSettings" : {
+    "idleOnPositionUnattendedEnabled" : true,
+    "unattendedWarningTimeSpanInSeconds" : 10
+  },
   "intrusionSettings" : {
     "intrusionAllowed" : true,
     "activeCallTerminationBehavior" : "autoAccept",
@@ -68,6 +72,7 @@
       "minValue" : 0,
       "maxValue" : 100
     },
+    "manualLspSelectionAllowed" : false,
     "brightnessControlRange" : {
       "minValue" : 0,
       "maxValue" : 100

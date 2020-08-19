@@ -1,5 +1,5 @@
 Meta:
-@TEST_CASE_VERSION: V11
+@TEST_CASE_VERSION: V14
 @TEST_CASE_NAME: Call Intrusion - Instrusion by Conference
 @TEST_CASE_DESCRIPTION:
 As an operator having an active G/G call and Call Intrusion set to "Enabled"
@@ -64,7 +64,7 @@ Then HMI OP2 has the call queue item OP1-OP2 in state connected
 Scenario: 2. OP3: Establish a priority call to OP1
 Meta:
 @TEST_STEP_ACTION: OP3: Establish a priority call to OP1
-@TEST_STEP_REACTION: OP3: Outgoing priority call to OP1 indicated
+@TEST_STEP_REACTION: OP3: Outgoing priority call to OP1 indicated in call queue
 @TEST_STEP_REF: [CATS-REF: 6uEB]
 When HMI OP3 initiates a priority call on DA key OP1
 Then HMI OP3 has the DA key OP1 in state out_ringing
@@ -119,11 +119,13 @@ Then HMI OP1 has the call queue item OP3-OP1 in the active list with name label 
 Scenario: 7. Verify OP1 Notification Display
 Meta:
 @TEST_STEP_ACTION: -
-@TEST_STEP_REACTION: OP1: No message in Notification Bar
+@TEST_STEP_REACTION: OP1: "Call Intrusion In Progress ..." message in Notification Bar
 @TEST_STEP_REF: [CATS-REF: ErM2]
-!-- TODO Adjust the scenario after PVCSX-5907 is resolved
-!-- When HMI OP1 opens Notification Display list
-!-- Then HMI OP1 verifies that Notification Display list State has 0 items
+When HMI OP1 opens Notification Display list
+Then HMI OP1 verifies that list State contains on position 0 text Call Intrusion In Progress ...
+
+Scenario: 7.1 Close popup window
+Then HMI OP1 closes notification popup
 
 Scenario: 8. Verify OP2 call queue list
 Meta:

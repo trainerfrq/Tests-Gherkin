@@ -81,7 +81,7 @@ Meta:
 @TEST_STEP_REACTION: Configurator: A pop-up message displays: Successfully saved the role
 @TEST_STEP_REF: [CATS-REF: ifpI]
 Then Save button is pressed in Roles editor
-Then waiting 6 seconds for LoadingScreen to disappear
+Then waiting 8 seconds for LoadingScreen to disappear
 Then pop-up message is visible
 Then verifying pop-up displays message: Successfully saved the role
 
@@ -117,7 +117,7 @@ Then verify role fields contain:
 | entry | <name> | <displayName> | <layout> | <callRouteSelector> | <destination> | <resultingSipUri> | <defaultSourceOutgoingCalls> |
 
 Then Save button is pressed in Roles editor
-Then waiting 5 seconds for LoadingScreen to disappear
+Then waiting 8 seconds for LoadingScreen to disappear
 Then pop-up message is visible
 Then verifying pop-up displays message: Successfully saved the role
 Then role <name> is displayed in Roles list
@@ -225,7 +225,7 @@ When deleting Roles sub-menu item: <name>
 Then an alert box dialog pops-up with message: Are you sure you want to delete the role <name>?
 
 When clicking on Yes button of Delete alert box dialog
-Then waiting 5 seconds for LoadingScreen to disappear
+Then waiting 8 seconds for LoadingScreen to disappear
 Then pop-up message is visible
 Then verifying pop-up displays message: The file was successfully deleted.
 

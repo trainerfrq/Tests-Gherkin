@@ -80,6 +80,16 @@ public class WebSteps extends AutomationSteps {
         }
     }
 
+    @Then("press Save button when no changes were done")
+    public void pressSaveButtonWithoutDoingChanges() {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Pressing Save button")
+                    .scriptOn(PressSaveButtonWhenNoChangesDone.class, profile));
+        }
+    }
+
     @Then("verifying pop-up displays message: $message")
     public void checkPopUpMessage(String message) {
         ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
@@ -402,6 +412,32 @@ public class WebSteps extends AutomationSteps {
             Profile profile = getProfile(webAppConfig.getProfileName());
             evaluate(remoteStep("Refresh Configurator ")
                     .scriptOn(RefreshPage.class, profile));
+        }
+    }
+
+    @Then("delete last $numberOfCharacters characters from input field $inputFieldName of $subMenuName sub menu")
+    public void deleteCharactersFromInputField(Integer numberOfCharacters, String inputFieldName, String subMenuName) {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Clear content of the input field " + inputFieldName)
+                    .scriptOn(DeleteLastCharactersOfInputField.class, profile)
+                    .input(DeleteLastCharactersOfInputField.IPARAM_NUMBER_OF_CHARACTERS, numberOfCharacters)
+                    .input(DeleteLastCharactersOfInputField.IPARAM_FIELD_NAME, inputFieldName)
+                    .input(DeleteLastCharactersOfInputField.IPARAM_SUB_MENU_NAME, subMenuName));
+        }
+    }
+
+    @Then("verify $inputFieldName input field of $subMenuName sub-menu contains $numberOfCharacters characters")
+    public void checkNumberOfCharactersInInputField(String inputFieldName, String subMenuName, Integer numberOfCharacters) {
+        ProfileToWebConfigurationReference webAppConfig = getStoryData(CONFIGURATION_KEY, ProfileToWebConfigurationReference.class);
+        if (webAppConfig != null) {
+            Profile profile = getProfile(webAppConfig.getProfileName());
+            evaluate(remoteStep("Checking for number of characters in " + inputFieldName + " input field")
+                    .scriptOn(VerifyNumberOfCharactersInInputField.class, profile)
+                    .input(VerifyNumberOfCharactersInInputField.IPARAM_INPUT_FIELD_NAME, inputFieldName)
+                    .input(VerifyNumberOfCharactersInInputField.IPARAM_SUB_MENU_NAME, subMenuName)
+                    .input(VerifyNumberOfCharactersInInputField.IPARAM_NUMBER_OF_CHARACTERS, numberOfCharacters));
         }
     }
 }

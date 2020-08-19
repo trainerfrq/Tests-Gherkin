@@ -11,4 +11,6 @@
     <bean class="com.frequentis.xvp.tools.cats.web.automation.steps.RestSteps"/>
     <bean class="com.frequentis.xvp.tools.cats.web.automation.steps.RolesWebSteps"/>
     <bean class="com.frequentis.xvp.tools.cats.web.automation.steps.RolesBackendSteps"/>
+    <bean class="com.frequentis.xvp.tools.cats.web.automation.steps.GroupCallsWebSteps"/>
+    <bean class="com.frequentis.xvp.tools.cats.web.automation.steps.GroupCallsBackendSteps"/>
 </beans>

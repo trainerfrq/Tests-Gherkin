@@ -1,14 +1,14 @@
 Meta:
-@TEST_CASE_VERSION: V1
+@TEST_CASE_VERSION: V2
 @TEST_CASE_NAME: Call Intrusion - Intrusion with CCF Out of Service
-@TEST_CASE_DESCRIPTION: 
+@TEST_CASE_DESCRIPTION:
 GIVEN an operator that has an active DA Call and Call Intrusion set to "Enabled"
 AND me as another operator having a Conditional Call Forward rule configured to forward calls to the given operator
 I want to initiate an outgoing Priority call that activates the rule
 So I can verify that the Priority call intrudes the active call of the given operator
-@TEST_CASE_PRECONDITION: 
-@TEST_CASE_PASS_FAIL_CRITERIA: 
-@TEST_CASE_DEVICES_IN_USE: 
+@TEST_CASE_PRECONDITION:
+@TEST_CASE_PASS_FAIL_CRITERIA:
+@TEST_CASE_DEVICES_IN_USE:
 @TEST_CASE_ID: PVCSX-TC-15590
 @TEST_CASE_GLOBAL_ID: GID-5601415
 @TEST_CASE_API_ID: 19971909
@@ -90,9 +90,11 @@ Then HMI OP1 has in the call queue the item ROLE3-TWR with priority
 Then HMI OP1 has the call queue item ROLE3-TWR in the active list with name label <<ROLE_3_NAME>>
 
 Scenario: Verify OP1 Notification Display
-!-- TODO Adjust the scenario after PVCSX-5907 is resolved
-!-- When HMI OP1 opens Notification Display list
-!-- Then HMI OP1 verifies that Notification Display list State has 0 items
+When HMI OP1 opens Notification Display list
+Then HMI OP1 verifies that list State contains on position 0 text Call Intrusion In Progress ...
+
+Scenario: Close popup window
+Then HMI OP1 closes notification popup
 
 Scenario: Verify OP2 call queue list
 Then HMI OP2 has the call queue item OP1-OP2 in state connected

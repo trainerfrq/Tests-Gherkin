@@ -20,6 +20,7 @@ Given booked profiles:
 | profile | group                  | host       |
 | web     | firefox_<<systemName>> | <<CO3_IP>> |
 
+Scenario: Define XVP Configurator page
 Given defined XVP Configurator:
 | key    | profile                    | url                      |
 | config | web firefox_<<systemName>> | <<xvp.configurator.url>> |
@@ -39,7 +40,7 @@ Then verify role fields contain:
 | entry | RoleTest1 | RoleTest1   | twr-layout | default           | RoleTest1   | sip:RoleTest1@example.com | RoleTest1                  |
 
 Then Save button is pressed in Roles editor
-Then waiting 5 seconds for LoadingScreen to disappear
+Then waiting 8 seconds for LoadingScreen to disappear
 When selecting Missions and Roles item in main menu
 
 Scenario: 1. Configurator: The main page of Configuration Management is open
@@ -146,7 +147,7 @@ Meta:
 @TEST_STEP_REACTION: Configurator: A pop-up message displays: Successfully saved the role
 @TEST_STEP_REF: [CATS-REF: Lwna]
 Then Save button is pressed in Roles editor
-Then waiting 5 seconds for LoadingScreen to disappear
+Then waiting 8 seconds for LoadingScreen to disappear
 
 Scenario: 11.1 Verifying pop-up message
 Then pop-up message is visible
@@ -187,7 +188,7 @@ When deleting Roles sub-menu item: <name>
 Then an alert box dialog pops-up with message: Are you sure you want to delete the role <name>?
 
 When clicking on Yes button of Delete alert box dialog
-Then waiting 5 seconds for LoadingScreen to disappear
+Then waiting 8 seconds for LoadingScreen to disappear
 Then pop-up message is visible
 Then verifying pop-up displays message: The file was successfully deleted.
 

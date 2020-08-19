@@ -9,7 +9,7 @@
   "phoneSettings" : {
     "sipAddress" : "sip:LowerEastExec@example.com",
     "roleAliases" : [ "ef4e345d-9510-45dd-9cda-1fd52f5c7f66", "4531ce4a-ae2e-4435-8d0c-695b0ea54f0d", "166483e6-6676-4235-88c1-b251cd5e6c05", "71fb0180-d8f1-47c5-8a79-b2abcaa6a7ba", "ed42a7fe-2dc4-4ad4-ac1f-13451aedc99a", "e00f3197-5d35-4518-bdd7-7bd7e08bf631", "7e111eae-3e82-4acf-b294-34b6a5863429" ],
-    "telephoneGroups" : [ ],
+    "telephoneGroups" : [ "38f59c3d-3de7-41ea-9a19-a269a3630d65" ],
     "defaultSourceForOutgoingCalls" : {
       "id" : "01f5da5a-6b20-4626-b073-29bad60097f4",
       "type" : "ROLE"
@@ -71,10 +71,11 @@
       "minValue" : 0,
       "maxValue" : 1
     },
+    "manualLspSelectionAllowed" : false,
     "brightnessControlRange" : {
       "minValue" : 0,
       "maxValue" : 100
     }
   },
-  "layoutId" : "2315d86b-0f25-4289-ac29-1bfc7d35ea7a"
+  "layoutId" : "7f1e92e5-6e68-4d2f-8f9c-06a2690164a1"
 }

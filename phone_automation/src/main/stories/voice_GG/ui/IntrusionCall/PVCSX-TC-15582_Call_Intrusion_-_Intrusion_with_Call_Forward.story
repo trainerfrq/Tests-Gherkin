@@ -1,15 +1,15 @@
 Meta:
-@TEST_CASE_VERSION: V1
+@TEST_CASE_VERSION: V2
 @TEST_CASE_NAME: Call Intrusion - Intrusion with Call Forward
-@TEST_CASE_DESCRIPTION: 
+@TEST_CASE_DESCRIPTION:
 As an operator having an active G/G DA call
 AND Call Intrusion set to "Enabled"
 AND another operator forwards his calls to me
 I want to receive an incoming Priority call, which was forwarded by the above mentioned operator
 So I can verify that incoming Priority Call is conferenced to the existing call
-@TEST_CASE_PRECONDITION: 
-@TEST_CASE_PASS_FAIL_CRITERIA: 
-@TEST_CASE_DEVICES_IN_USE: 
+@TEST_CASE_PRECONDITION:
+@TEST_CASE_PASS_FAIL_CRITERIA:
+@TEST_CASE_DEVICES_IN_USE:
 @TEST_CASE_ID: PVCSX-TC-15582
 @TEST_CASE_GLOBAL_ID: GID-5589837
 @TEST_CASE_API_ID: 19935970
@@ -111,9 +111,11 @@ Then HMI OP1 has in the call queue the item OP3-OP1 with priority
 Then HMI OP1 has the call queue item OP3-OP1 in the active list with name label <<OP3_NAME>>
 
 Scenario: Verify OP1 Notification Display
-!-- TODO Adjust the scenario after PVCSX-5907 is resolved
-!-- When HMI OP1 opens Notification Display list
-!-- Then HMI OP1 verifies that Notification Display list State has 0 items
+When HMI OP1 opens Notification Display list
+Then HMI OP1 verifies that list State contains on position 0 text Call Intrusion In Progress ...
+
+Scenario: Close popup window
+Then HMI OP1 closes notification popup
 
 Scenario: Verify OP3 call queue list
 Then HMI OP3 has the call queue item OP2-OP3 in state connected

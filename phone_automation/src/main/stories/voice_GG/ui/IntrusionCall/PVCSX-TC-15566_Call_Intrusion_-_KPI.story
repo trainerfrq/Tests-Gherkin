@@ -174,7 +174,7 @@ Meta:
 @TEST_STEP_ACTION: Zabbix: Verify "Number of applied intrusions for incoming priority calls" KPI's value
 @TEST_STEP_REACTION: Zabbix: "Number of applied intrusions for incoming priority calls" new value is greater than previously saved value by 1
 @TEST_STEP_REF: [CATS-REF: zTQq]
-Then verify that ${items_values_update}["Number of applied intrusions for incoming priority calls"] is greater than ${items_values}["Number of applied intrusions for incoming priority calls"]
+Then evaluate ${items_values_update}["Number of applied intrusions for incoming priority calls"] equals #asNumber(${items_values}["Number of applied intrusions for incoming priority calls"])+1
 
 Scenario: 13. OP2: Terminate call with OP1
 Meta:

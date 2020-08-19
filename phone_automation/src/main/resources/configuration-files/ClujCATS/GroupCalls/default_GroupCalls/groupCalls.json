@@ -1,0 +1,12 @@
+{
+  "entities" : [ {
+    "id" : "38f59c3d-3de7-41ea-9a19-a269a3630d65",
+    "name" : "Role1-GroupCall",
+    "displayName" : "Role1-GroupCall",
+    "location" : "",
+    "organization" : "",
+    "comment" : "",
+    "sipAddress" : "sip:Role1-GroupCall@example.com",
+    "assignedRoles" : [ "01f5da5a-6b20-4626-b073-29bad60097f4", "bb0bdbc8-7351-4682-b809-ceb29ef37e4d" ]
+  } ]
+}

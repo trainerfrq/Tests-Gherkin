@@ -1,13 +1,13 @@
 Meta:
-@TEST_CASE_VERSION: V1
+@TEST_CASE_VERSION: V2
 @TEST_CASE_NAME: Call Intrusion - Intrusion on active DA and IA Call
-@TEST_CASE_DESCRIPTION: 
+@TEST_CASE_DESCRIPTION:
 As an operator having an active DA Call, active incoming IA call and Call Intrusion set to "Enabled"
 I want to receive an incoming Priority call
 So I can verify that incoming Priority Call is conferenced to the existing DA call
-@TEST_CASE_PRECONDITION: 
-@TEST_CASE_PASS_FAIL_CRITERIA: 
-@TEST_CASE_DEVICES_IN_USE: 
+@TEST_CASE_PRECONDITION:
+@TEST_CASE_PASS_FAIL_CRITERIA:
+@TEST_CASE_DEVICES_IN_USE:
 @TEST_CASE_ID: PVCSX-TC-15586
 @TEST_CASE_GLOBAL_ID: GID-5600344
 @TEST_CASE_API_ID: 19968259
@@ -112,9 +112,11 @@ Then HMI OP1 has in the call queue the item OP3-OP1 with priority
 Then HMI OP1 has the call queue item OP3-OP1 in the active list with name label <<OP3_NAME>>
 
 Scenario: Verify OP1 Notification Display
-!-- TODO Adjust the scenario after PVCSX-5907 is resolved
-!-- When HMI OP1 opens Notification Display list
-!-- Then HMI OP1 verifies that Notification Display list State has 0 items
+When HMI OP1 opens Notification Display list
+Then HMI OP1 verifies that list State contains on position 0 text Call Intrusion In Progress ...
+
+Scenario: Close popup window
+Then HMI OP1 closes notification popup
 
 Scenario: Verify OP2 call queue list
 Then HMI OP2 has the call queue item OP1-OP2 in state connected
