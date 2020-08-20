@@ -321,6 +321,27 @@ public class PhoneBookUISteps extends AutomationSteps
       }
    }
 
+   @When("$profileName using $systemName and mission $missionName selects: $callRouteSelector")
+   public void selectsCallRouteSelectorsByEntry( final String profileName, final String systemName, final String missionName, final String callRouteSelector ) throws IOException
+   {
+      Mission receivedMission = readMissionFromJson( "/configuration-files/"+systemName+"/missions.json" ).get( missionName );
+      List<CallRouteSelector> callRouteSelectorList = receivedMission.getMissionAssignedCallRouteSelectors();
+
+      for ( int i=0; i<callRouteSelectorList.size();i++ )
+      {
+        String name = callRouteSelectorList.get(i).getName();
+        if(name.toLowerCase().equals(callRouteSelector)){
+           evaluate( remoteStep( "Select call route selector" )
+                   .scriptOn(
+                           profileScriptResolver().map( SelectCallRouteSelectorByEntry.class, BookableProfileName.javafx ),
+                           assertProfile( profileName ) )
+                   .input( SelectCallRouteSelectorByEntry.IPARAM_CALL_ROUTE_SELECTOR_ENTRY, i+1 ) );
+        }
+      }
+
+   }
+
+
 
    public Map<String, Mission> readMissionFromJson( String path ) throws IOException
    {
