@@ -22,7 +22,8 @@ Given the call queue items:
 Scenario: Caller initiates a call with Call Route Selector None
 		  @REQUIREMENTS:GID-4034416
 When HMI OP1 with layout <<LAYOUT_MISSION1>> presses function key PHONEBOOK
-When HMI OP1 selects call route selector: none
+When HMI OP1 using information about <<MISSION_1_NAME>> found in /configuration-files/<<systemName>>/missions.json selects: none
+!-- When HMI OP1 selects call route selector: none
 Then HMI OP1 verify that call route selector shows None
 When HMI OP1 writes in phonebook text box the address: 222222
 When HMI OP1 initiates a call from the phonebook

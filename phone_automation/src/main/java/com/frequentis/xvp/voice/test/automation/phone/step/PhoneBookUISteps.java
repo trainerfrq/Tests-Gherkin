@@ -321,10 +321,10 @@ public class PhoneBookUISteps extends AutomationSteps
       }
    }
 
-   @When("$profileName using $systemName and mission $missionName selects: $callRouteSelector")
-   public void selectsCallRouteSelectorsByEntry( final String profileName, final String systemName, final String missionName, final String callRouteSelector ) throws IOException
+   @When("$profileName using information about $missionName found in $path selects: $callRouteSelector")
+   public void selectsCallRouteSelectorsByEntry( final String profileName, final String missionName, final String path, final String callRouteSelector ) throws IOException
    {
-      Mission receivedMission = readMissionFromJson( "/configuration-files/"+systemName+"/missions.json" ).get( missionName );
+      Mission receivedMission = readMissionFromJson( path ).get( missionName );
       List<CallRouteSelector> callRouteSelectorList = receivedMission.getMissionAssignedCallRouteSelectors();
 
       for ( int i=0; i<callRouteSelectorList.size();i++ )
