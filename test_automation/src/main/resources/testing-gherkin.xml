@@ -2,9 +2,9 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id="context" class="com.frequentis.xvp.voice.test.automation.phone.context.SystemTestingStoriesContext"/>
+    <bean id="context" class="com.github.trainerfrq.test.context.SystemTestingStoriesContext"/>
 
    <!-- LOCAL COMMON STEPS WHICH ARE NOT IN ANY DOMAIN-->
-    <bean class="com.frequentis.xvp.voice.test.automation.phone.step.TestSteps"/>
+    <bean class="com.github.trainerfrq.test.step.TestSteps"/>
 
 </beans>

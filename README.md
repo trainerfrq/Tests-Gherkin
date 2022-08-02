@@ -1,1 +1,1 @@
-Testcases for the nightly XVP GG test pahse will be maintained here.
+to be used for writing tests in Gherkin

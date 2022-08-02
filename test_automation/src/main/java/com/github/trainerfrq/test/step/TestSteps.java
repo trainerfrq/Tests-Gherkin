@@ -1,4 +1,4 @@
-package com.frequentis.xvp.voice.test.automation.phone.step;
+package com.github.trainerfrq.test.step;
 
 import com.frequentis.c4i.test.bdd.fluent.step.AutomationSteps;
 import org.jbehave.core.annotations.When;

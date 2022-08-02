@@ -3,7 +3,7 @@
  *            Registered with Commercial Court Vienna,
  *            reg.no. FN 72.115b.
  */
-package com.frequentis.xvp.voice.test.automation.phone;
+package com.github.trainerfrq.test;
 
 import java.util.ArrayList;
 import java.util.List;

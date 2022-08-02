@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
    <modelVersion>4.0.0</modelVersion>
-   <groupId>com.frequentis.xvp.voice.phone</groupId>
-
-   <artifactId>phone-test-automation</artifactId>
-   <version>2.2.14-SNAPSHOT</version>
-
+   <groupId>com.github.trainerfrq.test</groupId>
+   <artifactId>training-test-automation</artifactId>
+   <version>1.0.0</version>
    <packaging>pom</packaging>
    <url>http://www.frequentis.com</url>
    <organization>
@@ -16,47 +14,92 @@
 
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <iso.name>xvp-deployment-rhel7.4.4-ggd-jenkins-cats.iso</iso.name>
+      <java.version>1.8</java.version>
+      <workaround.hk2-api.version>2.5.0-b42</workaround.hk2-api.version>
 
       <!-- CATS VERSION -->
-      <cats.version>6.5.0</cats.version>
-
-      <!-- common dependency version -->
-      <voice.automation.common.version>0.2.8</voice.automation.common.version>
-
-      <!-- DEPENDENCY VERSIONS -->
-      <voice.service.interface.version>9.7.0</voice.service.interface.version>
-      <voice.config.interface.version>9.4.1</voice.config.interface.version>
-      <voice.common.utilities.version>10.1.2</voice.common.utilities.version>
-      <voice.common.test.utilities.version>10.1.2</voice.common.test.utilities.version>
-      <hmi.config.interface.version>0.19.0</hmi.config.interface.version>
-      <audio-simulator-service.version>0.56.0</audio-simulator-service.version>
-      <audio-service-interface.version>0.30.0</audio-service-interface.version>
-      <voice.hmi.service.version>2.30.1</voice.hmi.service.version>
-      <automated.test.interface.version>1.1.0-CI-85</automated.test.interface.version>
-      <javax.ws.rs-api.version>2.1</javax.ws.rs-api.version>
-
-      <!-- FW DEPENDENCY VERSIONS -->
-      <mission-configurator-plugin.version>1.2.1</mission-configurator-plugin.version>
-
-      <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
-      <maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
-      <maven-compiler-plugin.target>1.8</maven-compiler-plugin.target>
+      <cats.version>8.5.0</cats.version>
 
       <!-- PLUGIN VERSIONS -->
-
-      <reqpro-trace-importer.version>1.21.0</reqpro-trace-importer.version>
       <exec-maven-plugin.version>1.5.0</exec-maven-plugin.version>
       <maven-gmavenplus-plugin.version>1.5</maven-gmavenplus-plugin.version>
       <mixin-maven-plugin.version>0.1-alpha-39</mixin-maven-plugin.version>
-      <xvp-cats-mixin.version>5.0.1</xvp-cats-mixin.version>
       <maven.resources.plugin.version>3.0.0</maven.resources.plugin.version>
       <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
       <fabric8-docker-maven-plugin.version>0.16.8</fabric8-docker-maven-plugin.version>
       <echo-maven-plugin.version>1.2.0</echo-maven-plugin.version>
       <maven-enforcer-plugin.version>3.0.0-M1</maven-enforcer-plugin.version>
+      <maven.jar.plugin.version>2.6</maven.jar.plugin.version>
+      <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
+      <maven-dependency-plugin.version>3.0.0</maven-dependency-plugin.version>
 
    </properties>
+       <dependencyManagement>
+          <dependencies>
+             <dependency>
+                <groupId>org.glassfish.hk2</groupId>
+                <artifactId>hk2-api</artifactId>
+                <version>${workaround.hk2-api.version}</version>
+             </dependency>
+             <dependency>
+			      <groupId>com.frequentis.c4i.test</groupId>
+			      <artifactId>cats-bdd</artifactId>
+               <version>${cats.version}</version>
+		      </dependency>
+            <dependency>
+               <groupId>com.frequentis.c4i.test</groupId>
+               <artifactId>cats-master-common</artifactId>
+               <version>${cats.version}</version>
+            </dependency>
+             <dependency>
+               <groupId>com.jcraft</groupId>
+               <artifactId>jsch</artifactId>
+               <version>${jsch.version}</version>
+             </dependency>
+             <dependency>
+               <groupId>org.slf4j</groupId>
+               <artifactId>slf4j-simple</artifactId>
+               <version>${slf4j.version}</version>
+             </dependency>
+             <dependency>
+               <groupId>co.unruly</groupId>
+               <artifactId>java-8-matchers</artifactId>
+               <version>${java-8-matchers.version}</version>
+             </dependency>
+             <dependency>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-dependency-plugin</artifactId>
+               <version>${maven-dependency-plugin.version}</version>
+             </dependency>
+          </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.glassfish.hk2</groupId>
+            <artifactId>hk2-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.13.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.13.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.13.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>${maven-dependency-plugin.version}</version>
+         </dependency>
+     </dependencies>
 
     <profiles>
         <profile>
@@ -68,71 +111,7 @@
                 <javadoc.opts>-Xdoclint:none</javadoc.opts>
             </properties>
         </profile>
-        <profile>
-            <id>jenkins-release</id>
-            <activation>
-                <property>
-                    <name>catsVersion</name>
-                </property>
-            </activation>
-            <properties>
-                <cats.version>${catsVersion}</cats.version>
-            </properties>
-        </profile>
     </profiles>
-
-   <dependencyManagement>
-        <dependencies>
-            <!-- Manually added dependency to avoid version conflicts -->
-
-           <!-- Domain package dependencies -->
-        <dependency>
-             <groupId>com.frequentis.xvp.voice.automation</groupId>
-             <artifactId>voice-test-automation-common-libs</artifactId>
-             <scope>import</scope>
-             <type>pom</type>
-             <version>${voice.automation.common.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.frequentis.xvp.voice.phone</groupId>
-            <artifactId>cats-voice-hmi-steps</artifactId>
-            <version>${project.version}</version>
-       </dependency>
-        <dependency>
-          <groupId>com.frequentis.xvp.framework</groupId>
-          <artifactId>mission-configurator-plugin</artifactId>
-          <version>${mission-configurator-plugin.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>com.frequentis.xvp.voice</groupId>
-           <artifactId>op-voice-config-interface</artifactId>
-           <version>${voice.config.interface.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>com.frequentis.xvp.voice</groupId>
-           <artifactId>hmi-configurator-interface</artifactId>
-           <version>${hmi.config.interface.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>com.frequentis.xvp.voice</groupId>
-           <artifactId>voice-common-test-utilities</artifactId>
-           <version>${voice.common.test.utilities.version}</version>
-       </dependency>
-            <dependency>
-                <groupId>com.frequentis.xvp.voice</groupId>
-                <artifactId>voice-common-utilities</artifactId>
-                <version>${voice.common.utilities.version}</version>
-            </dependency>
-      <dependency>
-        <groupId>com.frequentis.xvp.voice.phone</groupId>
-        <artifactId>cats-voice-configurator-steps</artifactId>
-        <version>${project.version}</version>
-    </dependency>
-
-
-        </dependencies>
-    </dependencyManagement>
-
 
     <build>
         <pluginManagement>
@@ -143,21 +122,6 @@
                   <artifactId>mixin-maven-plugin</artifactId>
                   <version>${mixin-maven-plugin.version}</version>
                 </plugin>
-               <plugin>
-                  <groupId>com.frequentis.c4i.test</groupId>
-                  <artifactId>cats-maven-assembly-plugin</artifactId>
-                  <version>${cats.version}</version>
-               </plugin>
-                <plugin>
-                    <groupId>com.frequentis.c4i.test</groupId>
-                    <artifactId>cats-maven-integration-plugin</artifactId>
-                    <version>${cats.version}</version>
-                </plugin>
-               <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin.version}</version>
-            </plugin>
                <plugin>
                   <groupId>org.codehaus.mojo</groupId>
                   <artifactId>exec-maven-plugin</artifactId>
@@ -170,8 +134,8 @@
                 </plugin>
                <plugin>
                   <groupId>org.apache.maven.plugins</groupId>
-               <artifactId>maven-resources-plugin</artifactId>
-               <version>${maven.resources.plugin.version}</version>
+                  <artifactId>maven-resources-plugin</artifactId>
+                  <version>${maven.resources.plugin.version}</version>
                </plugin>
                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -183,80 +147,39 @@
                   <artifactId>docker-maven-plugin</artifactId>
                   <version>${fabric8-docker-maven-plugin.version}</version>
                </plugin>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-dependency-plugin</artifactId>
+                  <version>${maven-dependency-plugin.version}</version>
+               </plugin>
+               <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
-
         <plugins>
-           <!--<plugin>
-              <groupId>org.codehaus.mojo</groupId>
-              <artifactId>properties-maven-plugin</artifactId>
-              <version>1.0.0</version>
-              <executions>
-                <execution>
-                  <phase>initialize</phase>
+
+         <plugin>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>${maven.jar.plugin.version}</version>
+            <executions>
+               <execution>
                   <goals>
-                    <goal>read-project-properties</goal>
+                     <goal>test-jar</goal>
                   </goals>
-                  <configuration>
-                    <files>
-                      <file>etc/config/dev.properties</file>
-                    </files>
-                  </configuration>
-                </execution>
-              </executions>
-            </plugin>-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${maven-compiler-plugin.source}</source>
-                    <target>${maven-compiler-plugin.target}</target>
-                </configuration>
-            </plugin>
-        </plugins>
+               </execution>
+            </executions>
+         </plugin>
+      </plugins>
     </build>
 
-   <pluginRepositories>
-      <pluginRepository>
-         <releases>
-            <enabled>true</enabled>
-            <updatePolicy>always</updatePolicy>
-         </releases>
-         <snapshots>
-            <enabled>true</enabled>
-         </snapshots>
-         <id>artifactory</id>
-         <name>Artifactory maven repository</name>
-         <url>http://artifactory.frequentis.frq:8081/artifactory/virtxvp</url>
-      </pluginRepository>
-   </pluginRepositories>
-   <repositories>
-      <repository>
-         <releases>
-            <enabled>true</enabled>
-            <updatePolicy>always</updatePolicy>
-         </releases>
-         <snapshots>
-            <enabled>true</enabled>
-         </snapshots>
-         <id>artifactory</id>
-         <name>Artifactory maven repository</name>
-         <url>http://artifactory.frequentis.frq:8081/artifactory/virtxvp</url>
-      </repository>
-   </repositories>
-
    <modules>
-      <module>phone_automation</module>
-      <module>cats-voice-hmi-steps</module>
-      <module>phone_automation_runner</module>
-      <module>cats-voice-configurator-steps</module>
-      <!-- moved
-      <module>cats-websocket-steps</module>
-      <module>cats-websocket-dto</module>
-      <module>cats-websocket-plugin</module>
-
-      <module>voice-hmi-dsl</module>
-      <module>voice-hmi-dsl-co-support</module>
-      -->
+      <module>test_automation</module>
    </modules>
 </project>
